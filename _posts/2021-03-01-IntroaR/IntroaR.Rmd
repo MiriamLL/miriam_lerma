@@ -1,58 +1,35 @@
 ---
-title: "Clase de intro a R"
+title: "Clase R"
+description:
+  Clases de R desde cero
 authors:
   - name: Miriam Lerma
 date: '2021-01-28'
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 2
     self_contained: false
-categories:
-  - R
-  - teaching
-  
 ---
 
+# Clase de R
+
+Bienvenido!  
+
+Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo (CIAD).
+
+No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.
+
+Ire subiendo materiales conforme se vayan actualizando.
 
 ## Intro a R
-En esta clase aprenderas a abrir RStudio e identificar sus partes para poder navegar.
+En esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. [Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase1).  
 
-Esta clase esta dirigida a tecnicos y estudiantes de posgrado del Centro de Investigacion de Alimentacion y Desarrollo (CIAD)
-
-
-```{r metathis, include = FALSE}
-#Con esta libreria puedo poner informacion que saldra en el titulo, en los buscadores y demas, como de titulo y fechas. Asi como elegir la imagen que saldra de inicio.
-
-library(metathis)
-meta() %>%
-  meta_name("github-repo" = "MiriamLL/Curso_CIAD") %>%
-  meta_social(
-    title = "Intro a R",
-    description = paste0(
-      "Introduccion a RStudio",
-      "Curso de R"),
-    url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Clase1.html",
-    image = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
-    image_alt = paste0(
-      "Introduccion a R y RStudio",
-      "Curso de R"),
-    og_type = "website",
-    og_author = "Miriam Lerma",
-    twitter_card_type = "summary_large_image",
-    twitter_creator = "@MiriamLL",
-    twitter_site = "@MiriamLL")
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png")
 ```
 
-```{r xaringan-slides, echo = FALSE}
-#Con esta libreria puedo agregar un como mini panel para mostrar la presentacion.
-#Tengo que pimpear mi presentacion.
 
-xaringanExtra::use_share_again()
-xaringanExtra::style_share_again(
-  share_buttons = c("twitter"))
-xaringanExtra::embed_xaringan(
-  url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Clase1.html",
-  ratio = "16:9"
-)
-```
+
 
 
