@@ -1,7 +1,7 @@
 ---
-title: "Clase R"
+title: "Clase R desde cero"
 description:
-  Clases de R desde cero
+  En esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. Hay ejemplos de algunos ejercicios para sentirte comodo en RStudio asi como alguna informacion basica de tipos de objetos.
 authors:
   - name: Miriam Lerma
 date: '2021-01-28'

@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/2021-03-01-IntroaR/",
-    "title": "Clase R",
-    "description": "Clases de R desde cero",
+    "title": "Clase R desde cero",
+    "description": "En esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. Hay ejemplos de algunos ejercicios para sentirte comodo en RStudio asi como alguna informacion basica de tipos de objetos.",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -11,9 +11,9 @@
     ],
     "date": "2021-01-28",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo (CIAD).\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIre subiendo materiales conforme se vayan actualizando.\r\nIntro a R\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar.\r\n\r\n\r\n\r\nPresentación.\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo (CIAD).\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIre subiendo materiales conforme se vayan actualizando.\r\nIntro a R\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
-    "last_modified": "2021-03-03T13:10:34+01:00",
-    "input_file": {}
+    "last_modified": "2021-03-03T13:23:59+01:00",
+    "input_file": "IntroaR.utf8.md"
   }
 ]
