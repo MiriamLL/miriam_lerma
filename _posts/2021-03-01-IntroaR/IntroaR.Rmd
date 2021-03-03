@@ -58,7 +58,7 @@ En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y ca
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase2.png")
 ```
 
-## Graficos.  
+## Gráficos.  
 En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.<br> [Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase2).  
 
 ```{r, echo=FALSE, out.width = "50%"}
