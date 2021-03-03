@@ -1,0 +1,58 @@
+---
+title: "Clase de intro a R"
+authors:
+  - name: Miriam Lerma
+date: '2021-01-28'
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - teaching
+  
+---
+
+
+## Intro a R
+En esta clase aprenderas a abrir RStudio e identificar sus partes para poder navegar.
+
+Esta clase esta dirigida a tecnicos y estudiantes de posgrado del Centro de Investigacion de Alimentacion y Desarrollo (CIAD)
+
+
+```{r metathis, include = FALSE}
+#Con esta libreria puedo poner informacion que saldra en el titulo, en los buscadores y demas, como de titulo y fechas. Asi como elegir la imagen que saldra de inicio.
+
+library(metathis)
+meta() %>%
+  meta_name("github-repo" = "MiriamLL/Curso_CIAD") %>%
+  meta_social(
+    title = "Intro a R",
+    description = paste0(
+      "Introduccion a RStudio",
+      "Curso de R"),
+    url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Clase1.html",
+    image = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
+    image_alt = paste0(
+      "Introduccion a R y RStudio",
+      "Curso de R"),
+    og_type = "website",
+    og_author = "Miriam Lerma",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@MiriamLL",
+    twitter_site = "@MiriamLL")
+```
+
+```{r xaringan-slides, echo = FALSE}
+#Con esta libreria puedo agregar un como mini panel para mostrar la presentacion.
+#Tengo que pimpear mi presentacion.
+
+xaringanExtra::use_share_again()
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter"))
+xaringanExtra::embed_xaringan(
+  url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Clase1.html",
+  ratio = "16:9"
+)
+```
+
+

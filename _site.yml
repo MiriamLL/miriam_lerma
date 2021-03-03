@@ -2,7 +2,7 @@ name: "miriamlermadistill"
 base_url: https://miriamlerma.netlify.app/
 title: "Miriam Lerma"
 description: |
-  Miriam Lerma
+  Miriam Lerma's personal website
 output_dir: "_site"
 navbar:
   left:
