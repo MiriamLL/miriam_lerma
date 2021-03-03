@@ -1,5 +1,10 @@
 ---
 title: "My list of publications"
+output:
+  distill::distill_article:
+    toc: false
+    toc_depth: 2
+    self_contained: false
 ---
 
 ```{r setup, include=FALSE}
