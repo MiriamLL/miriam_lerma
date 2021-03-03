@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/2021-03-01-IntroaR/",
-    "title": "Clase de intro a R",
-    "description": {},
+    "title": "Clase R",
+    "description": "Clases de R desde cero",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -10,13 +10,10 @@
       }
     ],
     "date": "2021-01-28",
-    "categories": [
-      "R",
-      "teaching"
-    ],
-    "contents": "\r\nIntro a R\r\nEn esta clase aprenderas a abrir RStudio e identificar sus partes para poder navegar.\r\nEsta clase esta dirigida a tecnicos y estudiantes de posgrado del Centro de Investigacion de Alimentacion y Desarrollo (CIAD)\r\n\r\n.shareagain-bar {\r\n--shareagain-foreground: rgb(255, 255, 255);\r\n--shareagain-background: rgba(0, 0, 0, 0.5);\r\n--shareagain-facebook: none;\r\n--shareagain-linkedin: none;\r\n--shareagain-pinterest: none;\r\n--shareagain-pocket: none;\r\n--shareagain-reddit: none;\r\n}\r\n\r\nfitvids('.shareagain', {players: 'iframe'});\r\n\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-03-03T12:28:20+01:00",
-    "input_file": "IntroaR.utf8.md"
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo (CIAD).\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIre subiendo materiales conforme se vayan actualizando.\r\nIntro a R\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar.\r\n\r\n\r\n\r\nPresentación.\r\n\r\n\r\n\r\n",
+    "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
+    "last_modified": "2021-03-03T13:10:34+01:00",
+    "input_file": {}
   }
 ]
