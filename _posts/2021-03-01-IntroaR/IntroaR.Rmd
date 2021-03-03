@@ -10,6 +10,27 @@ output:
     self_contained: false
 ---
 
+```{r metathis, include = FALSE}
+#Con esta libreria puedo poner informacion que saldra en el titulo, en los buscadores y demas, como de titulo y fechas. Asi como elegir la imagen que saldra de inicio.
+
+library(metathis)
+meta() %>%
+  meta_name("github-repo" = "MiriamLL/Curso_CIAD") %>%
+  meta_social(
+    title = "Curso de R",
+    description = paste0(
+      "Clases de R desde cero, desde como abrir R y RStudio hasta como exportar tus graficos"),
+    url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Clase1.html",
+    image = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
+    image_alt = paste0(
+      "Clases de R"),
+    og_type = "website",
+    og_author = "Miriam Lerma",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@MiriamLL",
+    twitter_site = "@MiriamLL")
+```
+
 # Clase de R
 
 Bienvenido!  
