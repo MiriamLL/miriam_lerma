@@ -1,0 +1,21 @@
+name: "miriamlermadistill"
+base_url: https://miriamlerma.netlify.app/
+title: "Miriam Lerma"
+description: |
+  Miriam Lerma
+output_dir: "_site"
+navbar:
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Publications"
+      href: publications.html
+    - icon: fab fa-twitter
+      href: https://github.com/MiriamLL
+    - icon: fab fa-github
+      href: https://twitter.com/MiriamLermaL
+collections:
+output: 
+  distill::distill_article:
+    theme: miriam.css
+citations: true

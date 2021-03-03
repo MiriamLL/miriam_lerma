@@ -1,0 +1,43 @@
+---
+title: "Miriam Lerma"
+description: |
+ Welcome to my site.
+site: distill::distill_website
+---
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
+library(fontawesome)
+```
+
+Hi there `r fa("hand-peace", fill = "black")`!
+
+Let me introduce myself:  
+I am a postdoctoral researcher at [FTZ](https://www.ftz.uni-kiel.de/de). My research interests include conservation, ecology, physiology and ecotoxicology. I work with coastal and marine animals mostly with shorebirds and seabirds. My goal is to know more about their lives in order to improve the conservation efforts.
+
+I am currently working analyzing spatial patterns of marine animals, while collaborating with biologging projects in Mexico and Chile. Also, I give [R](https://www.r-project.org/about.html) lessons to technicians and students from my home town.
+
+I am very passionate about nature, [R](https://www.r-project.org/about.html) and [QGIS](https://qgis.org/en/site/).  
+If you are interested in some collaboration or have specific questions I am happy to help!    
+Just email me! `r fa("envelope", fill = "black")`  
+I speak Spanish, English and a little bit of German.    
+
+### `r fa("globe-americas", fill = "black")` About  me
+I grew up in a small town in Mexico, which is no small anymore, called [Mazatlan](https://www.google.com/maps/place/Mazatlan). Now I am living in a small town in Germany, which is not so far from the big city of [Hamburg](https://www.google.com/maps/place/Hamburgo/).  
+I enjoy snorkelling, kayaking and birding.
+  
+  
+### `r fa("university", fill = "black")` Education
+**Dr. rer. nat.** | University of Kiel   
+**Master en Marine Sciences**  | Universidad Nacional Autonoma de Mexico  
+**BA in Biology**  | Universidad de Guadalajara
+
+### `r fa("briefcase", fill = "black")` Recent Roles  
+**Data analyst** | Research and Technology Center (FTZ), University of Kiel | Present  
+
+### `r fa("cogs", fill = "black")` Trainings
+**AniMove Summer school** | [Max Planck Institute](https://animove.org/) | 2018  
+**Scientific Writing** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2017  
+**International Summer School on Stable Isotopes in Animal Ecology** | [Centre for Stable Isotope Ecology in Berlin-Brandenburg](http://www.izw-berlin.de/en/summer-school-on-stable-isotopes-in-animal-ecology-en.html) | 2017  
+**GIS for Marine Sciences** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2016  
+
+
