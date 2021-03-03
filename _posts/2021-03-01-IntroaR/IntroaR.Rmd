@@ -43,7 +43,7 @@ No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprend
 
 Iré subiendo materiales conforme se vayan actualizando.
 
-## Intro a R
+## Intro a R.
 En esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase1).  
 
 ```{r, echo=FALSE, out.width = "50%"}
@@ -78,4 +78,13 @@ En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus 
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase5.png")
+```
+
+
+## Proyectos.  
+En esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.  
+[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase4Parte1).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png")
 ```
