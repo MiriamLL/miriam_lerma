@@ -1,7 +1,13 @@
 ---
 title: "Miriam Lerma"
-description: |
- Welcome to my site.
+image: "Lerma_Miriam.jpg"
+links:
+  - label: Twitter
+    url: "https://twitter.com/MiriamLL"
+  - label: GitHub
+    url: "https://github.com/MiriamLermaL"
+  - label: Email
+    url: "mailto:miriamjlerma@gmail.com"
 site: distill::distill_website
 ---
 

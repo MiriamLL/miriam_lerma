@@ -11,6 +11,12 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r, echo=FALSE}
+library(fontawesome)
+```
+
+[ORCID](https://orcid.org/0000-0002-7632-9289)  
+[GoogleScholar](https://scholar.google.de/citations?hl=es&user=uG2XdQcAAAAJ)
 
 # 2020
 ### Breeding stage, not sex, affects foraging characteristics in masked boobies at Rapa Nui
