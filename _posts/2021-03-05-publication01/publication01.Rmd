@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png")
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/Figuras/Publicacion1.jpg")
 ```
 
 # 2020
