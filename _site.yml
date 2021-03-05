@@ -9,7 +9,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Publications"
-      href: publication-index.html
+      href: publications.html
     - text: "Lessons"
       href: materiales.html
     - icon: fab fa-twitter
