@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(fontawesome)
 ```
 
-You can also find me on [GoogleScholar](https://scholar.google.de/citations?hl=es&user=uG2XdQcAAAAJ) and [ResearchGate](https://www.researchgate.net/profile/Miriam-Lerma).
+You can also find me on [GoogleScholar](https://scholar.google.de/citations?hl=es&user=uG2XdQcAAAAJ) and [ResearchGate](https://www.researchgate.net/profile/Miriam-Lerma).  
 
 My ORCID is [0000-0002-7632-9289](https://orcid.org/0000-0002-7632-9289).  
 
