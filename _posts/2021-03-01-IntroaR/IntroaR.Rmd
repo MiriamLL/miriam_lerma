@@ -67,3 +67,13 @@ En esta clase aprenderás porque es importante trabajar por proyectos, como crea
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png")
 ```
+
+
+## Modelo lineal simple.  
+En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu grafico.  
+[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase7).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clas7.png")
+```
+

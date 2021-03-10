@@ -15,8 +15,10 @@ site: distill::distill_website
 library(fontawesome)
 ```
 
-Hi there `r fa("hand-peace", fill = "black")`!
 
+**Welcome to my site!**
+
+<br>
 Let me introduce myself:  
 I am a postdoctoral researcher at [FTZ](https://www.ftz.uni-kiel.de/de). My research interests include conservation, ecology, physiology and ecotoxicology. I work with coastal and marine animals mostly with shorebirds and seabirds. My goal is to know more about their lives in order to improve the conservation efforts.
 
