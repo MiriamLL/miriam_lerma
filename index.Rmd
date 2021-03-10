@@ -16,25 +16,20 @@ library(fontawesome)
 ```
 
 
-## **Welcome to my site!**
+## **Welcome to my site!**  
 
-<br>
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
-I am a postdoctoral researcher at [FTZ](https://www.ftz.uni-kiel.de/de). My research interests include conservation, ecology, physiology and ecotoxicology. I work with coastal and marine animals mostly with shorebirds and seabirds. My goal is to know more about their lives in order to improve the conservation efforts.
+I am a postdoctoral researcher at [FTZ](https://www.ftz.uni-kiel.de/de). Working from home at a small town in Germany, which is not so far from the big city of [Hamburg](https://www.google.com/maps/place/Hamburgo/). My research interests include conservation, ecology, physiology and ecotoxicology. I work with coastal and marine animals mostly with shorebirds and seabirds. My goal is to know more about their lives in order to improve the conservation efforts. Read my [publications](https://miriamlerma.netlify.app/publications.html).
 
-I am currently working on analyzing spatial patterns of marine animals while collaborating with  projects in Mexico and Chile. Also, I am a teaching [R](https://www.r-project.org/about.html)  to technicians and students from my home town. You can find the materials from my class (which are in Spanish) at this webpage. 
+I am currently working on analyzing spatial patterns of marine animals while collaborating with  projects in Mexico and Chile. Also, I am a teaching [R](https://www.r-project.org/about.html)  to technicians and students from my home town, [Mazatlán](https://www.google.com/maps/place/Mazatlan). You can find the materials from my class (which are in Spanish) at this webpage. 
 
 I am very passionate about nature, [R](https://www.r-project.org/about.html) and [QGIS](https://qgis.org/en/site/).  
 If you are interested in some collaboration or have specific questions I am happy to help!    
 Just email me! `r fa("envelope", fill = "black")`  
 I speak Spanish, English and a little bit of German.    
 
-I grew up in a small town in Mexico, which is no small anymore, called [Mazatlán](https://www.google.com/maps/place/Mazatlan). Now I am living in a small town in Germany, which is not so far from the big city of [Hamburg](https://www.google.com/maps/place/Hamburgo/).  
 
-I enjoy snorkeling, kayaking and birding.
-  
-  
 ### `r fa("university", fill = "black")` Education
 **Dr. rer. nat.** | University of Kiel   
 **Master en Marine Sciences**  | Universidad Nacional Autonoma de Mexico  
@@ -51,6 +46,6 @@ I enjoy snorkeling, kayaking and birding.
 
 
 ### `r fa("envelope", fill = "black")` Contact
-**Dr. rer. nat. Miriam Lerma**
+**Dr. rer. nat. Miriam Lerma** <br>
 Email: miriamjlerma@gmail.com
 
