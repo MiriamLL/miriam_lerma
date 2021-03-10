@@ -74,6 +74,6 @@ En esta clase aprenderás como explorar tus datos, cuales son los argumentos par
 [Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase7).  
 
 ```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clas7.png")
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png")
 ```
 

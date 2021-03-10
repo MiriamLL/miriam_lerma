@@ -16,10 +16,11 @@ library(fontawesome)
 ```
 
 
-**Welcome to my site!**
+## **Welcome to my site!**
 
 <br>
-Let me introduce myself:  
+
+### `r fa("chevron-circle-down", fill = "black")` About  me
 I am a postdoctoral researcher at [FTZ](https://www.ftz.uni-kiel.de/de). My research interests include conservation, ecology, physiology and ecotoxicology. I work with coastal and marine animals mostly with shorebirds and seabirds. My goal is to know more about their lives in order to improve the conservation efforts.
 
 I am currently working on analyzing spatial patterns of marine animals while collaborating with  projects in Mexico and Chile. Also, I am a teaching [R](https://www.r-project.org/about.html)  to technicians and students from my home town. You can find the materials from my class (which are in Spanish) at this webpage. 
@@ -29,8 +30,8 @@ If you are interested in some collaboration or have specific questions I am happ
 Just email me! `r fa("envelope", fill = "black")`  
 I speak Spanish, English and a little bit of German.    
 
-### `r fa("globe-americas", fill = "black")` About  me
 I grew up in a small town in Mexico, which is no small anymore, called [Mazatlán](https://www.google.com/maps/place/Mazatlan). Now I am living in a small town in Germany, which is not so far from the big city of [Hamburg](https://www.google.com/maps/place/Hamburgo/).  
+
 I enjoy snorkeling, kayaking and birding.
   
   
@@ -48,4 +49,8 @@ I enjoy snorkeling, kayaking and birding.
 **International Summer School on Stable Isotopes in Animal Ecology** | [Centre for Stable Isotope Ecology in Berlin-Brandenburg](http://www.izw-berlin.de/en/summer-school-on-stable-isotopes-in-animal-ecology-en.html) | 2017  
 **GIS for Marine Sciences** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2016  
 
+
+### `r fa("envelope", fill = "black")` Contact
+**Dr. rer. nat. Miriam Lerma**
+Email: miriamjlerma@gmail.com
 
