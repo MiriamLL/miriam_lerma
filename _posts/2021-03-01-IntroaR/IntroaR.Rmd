@@ -77,3 +77,11 @@ En esta clase aprenderás como explorar tus datos, cuales son los argumentos par
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png")
 ```
 
+## Analisis de varianzas.  
+En esta clase aprenderás como convertir a factor, cuales son los argumentos para un analisis de varianza en R y como crear graficos para visualizar tus resultados del analisis.  
+[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase7).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png")
+```
+
