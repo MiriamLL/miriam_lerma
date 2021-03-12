@@ -16,7 +16,7 @@ library(fontawesome)
 ```
 
 
-## **Welcome to my site!**  
+### **Welcome to my site!**  
 
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
@@ -46,6 +46,6 @@ I speak Spanish, English and a little bit of German.
 
 
 ### `r fa("envelope", fill = "black")` Contact
-**Dr. rer. nat. Miriam Lerma** <br>
+**Dr. rer. nat. Miriam Lerma** <br>  
 Email: miriamjlerma@gmail.com
 
