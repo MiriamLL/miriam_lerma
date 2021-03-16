@@ -16,7 +16,7 @@ output:
 
 Bienvenido!  
 
-Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo (CIAD).
+Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo [CIAD](https://www.ciad.mx/).
 
 No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.
 

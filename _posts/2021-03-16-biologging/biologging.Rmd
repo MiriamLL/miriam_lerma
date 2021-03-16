@@ -1,0 +1,36 @@
+---
+title: "Biologging"
+description: |
+  Desde como descargar tus datos de GPS, como cortar partes de interes, hasta hacer tus primeros graficos con datos de tracking y exportarlos. 
+author:
+  - name: Miriam Lerma
+date: 2021-03-16
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Biologging
+
+Bienvenido!  
+
+Este material fue preparado para estudiantes de posgrado de la [Universidad de Guadalajara](http://www.cucsur.udg.mx/maestria-en-ecologia-y-manejo-de-recursos-costeros-y-marinos).
+
+No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.
+
+Iré subiendo materiales conforme se vayan actualizando.
+
+## Descargar tus datos.
+En esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabla, agregar identificadores por individuo en una columna, y realizar tus primeras graficas. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte1).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/Descargar.png")
+```
+
+

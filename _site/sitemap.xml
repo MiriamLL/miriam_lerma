@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://miriamlerma.netlify.app/</loc>
-    <lastmod>2021-03-15T10:07:29+01:00</lastmod>
+    <lastmod>2021-03-15T10:19:31+01:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/materiales.html</loc>
-    <lastmod>2021-03-03T13:03:02+01:00</lastmod>
+    <lastmod>2021-03-16T13:13:15+01:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/publication_</loc>
@@ -15,6 +15,10 @@
   <url>
     <loc>https://miriamlerma.netlify.app/publications.html</loc>
     <lastmod>2021-03-05T21:21:56+01:00</lastmod>
+  </url>
+  <url>
+    <loc>https://miriamlerma.netlify.app/posts/2021-03-16-biologging/</loc>
+    <lastmod>2021-03-16T13:28:47+01:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/posts/2021-03-01-IntroaR/</loc>

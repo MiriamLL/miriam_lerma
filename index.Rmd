@@ -1,5 +1,5 @@
 ---
-title: "Miriam Lerma"
+title: "Welcome to my site!"
 image: "Lerma_Miriam.jpg"
 links:
   - label: Twitter
@@ -14,9 +14,6 @@ site: distill::distill_website
 ```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
 library(fontawesome)
 ```
-
-
-### **Welcome to my site!**  
 
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
