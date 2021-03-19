@@ -33,4 +33,10 @@ En esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabl
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/Descargar.png")
 ```
 
+## Corregir horas.
+En esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte2).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/Horas.png")
+```
 
