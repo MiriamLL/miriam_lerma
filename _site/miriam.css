@@ -31,7 +31,7 @@ html {
   --aside-color:     rgba(0, 0, 0, 0.6);
   --fig-cap-color:   rgba(0, 0, 0, 0.6);
   /*-- Specify custom fonts ~~~ must be imported above   --*/
-  --heading-font:    "Amiri", serif;
+  --heading-font:    "Bitter", sans-serif;
   --mono-font:       "DM Mono", monospace;
   --body-font:       "Bitter", sans-serif;
   --navbar-font:     "Amiri", serif;
