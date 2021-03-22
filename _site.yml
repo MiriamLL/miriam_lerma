@@ -6,7 +6,7 @@ description: |
 output_dir: "_site"
 navbar:
   logo: 
-    image: Figuras/Mabo.png
+    image: Figuras/Logo1.png
   left:
     - text: "Home"
       href: index.html
