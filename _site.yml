@@ -5,6 +5,8 @@ description: |
   Miriam Lerma's personal website
 output_dir: "_site"
 navbar:
+  logo: 
+    image: Figuras/Mabo.png
   left:
     - text: "Home"
       href: index.html
