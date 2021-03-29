@@ -87,3 +87,18 @@ a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
 }
+
+
+/*-- Agregar encabezado en la pagina --*/
+.article-banner {
+  width: auto;
+  height: auto;
+  border: 0;
+}
+
+img[src="Figuras/Clarion.JPG"] {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  margin: 100px 25px 0px 0px;
+}
