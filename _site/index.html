@@ -2124,6 +2124,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   @import url('https://fonts.googleapis.com/css2?family=Amiri');
   @import url('https://fonts.googleapis.com/css2?family=Bitter');
   @import url('https://fonts.googleapis.com/css2?family=DM+Mono');
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
   html {
     /*-- Main font sizes --*/
@@ -2139,10 +2140,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     --aside-color:     rgba(0, 0, 0, 0.6);
     --fig-cap-color:   rgba(0, 0, 0, 0.6);
     /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    "Josefin Sans", sans-serif;
-    --mono-font:       "Josefin Sans", sans-serif;
-    --body-font:       "Josefin Sans", sans-serif;
-    --navbar-font:     "Josefin Sans", sans-serif;
+    /*-- Cambie el estilo de la letra   --*/
+    --heading-font:    "Raleway", sans-serif;
+    --mono-font:       "Raleway", sans-serif;
+    --body-font:       "Raleway", sans-serif;
+    --navbar-font:     "Raleway", sans-serif;
   }
 
   /*-- ARTICLE METADATA --*/
@@ -2189,11 +2191,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   /* Add any additional CSS rules below                      */
 
   /* Change link appearance */
-  d-article a {
-    /*border-bottom: 2px solid #2a6f97;*/
-    text-decoration: none;
-  }
-  </style>
+  a:hover, a:visited, a:link, a:active
+  {
+      text-decoration: none;
+  }</style>
   <style type="text/css">
   /* base style */
 
@@ -2377,9 +2378,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
-<a class="logo">
-<img src="Figuras/Logo1.png" alt="Logo"/>
-</a>
 <a href="index.html" class="title">Miriam Lerma</a>
 <a href="index.html">Home</a>
 <a href="publications.html">Publications</a>
