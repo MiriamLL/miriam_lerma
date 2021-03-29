@@ -7,6 +7,16 @@ output:
     self_contained: false
 ---
 
+```{css, echo=FALSE, eval=FALSE}
+header {
+  background-color: #edf6f9;
+  background-size: contain;
+  padding: .5em;
+  background-blend-mode: multiply;
+  padding-bottom: 300px;
+}
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
