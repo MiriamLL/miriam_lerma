@@ -1,0 +1,14 @@
+---
+title: "Miriam Lerma"
+image: "Figuras/Lerma_Miriam.jpg"
+links:
+  - label: Twitter
+    url: "https://twitter.com/MiriamLL"
+  - label: GitHub
+    url: "https://github.com/MiriamLermaL"
+  - label: Email
+    url: "mailto:miriamjlerma@gmail.com"
+output:
+  postcards::jolla
+---
+ 
