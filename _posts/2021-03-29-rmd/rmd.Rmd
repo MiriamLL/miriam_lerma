@@ -1,0 +1,33 @@
+---
+title: "Clase de Rmd"
+description: |
+  Desde como crear documentos en Rmd hasta como compartirlos. 
+author:
+  - name: Miriam Lerma
+date: 2021-03-16
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+# Rmarkdown
+
+Bienvenido!  
+
+Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo [CIAD](https://www.ciad.mx/).
+
+No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.
+
+Iré subiendo materiales conforme se vayan actualizando.
+
+## Intro a Rmd.
+En esta clase aprenderás como crear documentos en Rmd. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Rmd-Parte1).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase9.png")
+```
+
+
+
