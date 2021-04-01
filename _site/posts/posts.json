@@ -1,22 +1,5 @@
 [
   {
-    "path": "posts/2021-03-16-biologging/",
-    "title": "Biologging",
-    "description": "Desde como descargar tus datos de GPS, como cortar partes de interes, hasta hacer tus primeros graficos con datos de tracking y exportarlos.",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2021-03-16",
-    "categories": [],
-    "contents": "\r\n\r\nContents\r\nBiologging\r\nDescargar tus datos.\r\nCorregir horas.\r\n\r\n\r\nBiologging\r\nBienvenido!\r\nEste material fue preparado para estudiantes de posgrado de la Universidad de Guadalajara.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nDescargar tus datos.\r\nEn esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabla, agregar identificadores por individuo en una columna, y realizar tus primeras graficas. Ir a la presentación.\r\n\r\n\r\n\r\nCorregir horas.\r\nEn esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-    "preview": "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/Figuras/Descargar.png",
-    "last_modified": "2021-03-22T14:43:53+01:00",
-    "input_file": {}
-  },
-  {
     "path": "posts/2021-03-29-rmd/",
     "title": "Clase de Rmd",
     "description": "Desde como crear documentos en Rmd hasta como compartirlos.",
@@ -32,6 +15,23 @@
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase9.png",
     "last_modified": "2021-03-30T13:48:44+02:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/2021-03-16-biologging/",
+    "title": "Biologging",
+    "description": "Desde como descargar tus datos de GPS, como cortar partes de interes, hasta hacer tus primeros graficos con datos de tracking y exportarlos.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2021-03-16",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nBiologging\r\nDescargar tus datos.\r\nCorregir horas.\r\n\r\n\r\nBiologging\r\nBienvenido!\r\nEste material fue preparado para estudiantes de posgrado de la Universidad de Guadalajara.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nDescargar tus datos.\r\nEn esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabla, agregar identificadores por individuo en una columna, y realizar tus primeras graficas. Ir a la presentación.\r\n\r\n\r\n\r\nCorregir horas.\r\nEn esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarGPS.png",
+    "last_modified": "2021-04-01T11:16:56+02:00",
+    "input_file": "biologging.utf8.md"
   },
   {
     "path": "posts/2021-03-01-IntroaR/",
