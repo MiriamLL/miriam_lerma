@@ -28,10 +28,10 @@
     ],
     "date": "2021-03-16",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nIntro a Rmd.\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nIntro a Rmd.\r\nEn esta clase aprenderás como crear documentos en Rmd. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nXaringan.\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. Ir a la presentación.\r\n\r\n\r\n\r\nXaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase9.png",
-    "last_modified": "2021-03-30T13:48:44+02:00",
-    "input_file": {}
+    "last_modified": "2021-04-01T17:08:09+02:00",
+    "input_file": "rmd.utf8.md"
   },
   {
     "path": "posts/2021-03-01-IntroaR/",

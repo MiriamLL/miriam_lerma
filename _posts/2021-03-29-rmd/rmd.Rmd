@@ -22,7 +22,7 @@ No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprend
 
 Iré subiendo materiales conforme se vayan actualizando.
 
-## Intro a Rmd.
+## Rmarkdown.
 En esta clase aprenderás como crear documentos en Rmd. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Rmd-Parte1).  
 
 ```{r, echo=FALSE, out.width = "50%"}
@@ -30,4 +30,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 ```
 
 
+## Xaringan.
+En esta clase aprenderás como crear presentaciones en Xaringan. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1).  
 
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png")
+```
