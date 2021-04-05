@@ -1,22 +1,5 @@
 [
   {
-    "path": "posts/2021-03-29-rmd/",
-    "title": "Clase de Rmd",
-    "description": "Desde como crear documentos en Rmd hasta como compartirlos.",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2021-03-16",
-    "categories": [],
-    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nXaringan.\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. Ir a la presentación.\r\n\r\n\r\n\r\nXaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-    "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/ClaseRmd.png",
-    "last_modified": "2021-04-05T17:07:03+02:00",
-    "input_file": "rmd.utf8.md"
-  },
-  {
     "path": "posts/2021-03-16-biologging/",
     "title": "Biologging",
     "description": "Desde como descargar tus datos de GPS, como cortar partes de interes, hasta hacer tus primeros graficos con datos de tracking y exportarlos.",
@@ -30,8 +13,25 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nBiologging\r\nDescargar tus datos.\r\nCorregir horas.\r\n\r\n\r\nBiologging\r\nBienvenido!\r\nEste material fue preparado para estudiantes de posgrado de la Universidad de Guadalajara.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nDescargar tus datos.\r\nEn esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabla, agregar identificadores por individuo en una columna, y realizar tus primeras graficas. Ir a la presentación.\r\n\r\n\r\n\r\nCorregir horas.\r\nEn esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png",
-    "last_modified": "2021-04-05T17:09:00+02:00",
-    "input_file": "biologging.utf8.md"
+    "last_modified": "2021-04-05T17:10:37+02:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-03-29-rmd/",
+    "title": "Clase de Rmd",
+    "description": "Desde como crear documentos en Rmd hasta como compartirlos.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2021-03-16",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nXaringan.\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. Ir a la presentación.\r\n\r\n\r\n\r\nXaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/ClaseRmd.png",
+    "last_modified": "2021-04-05T17:07:04+02:00",
+    "input_file": {}
   },
   {
     "path": "posts/2021-03-01-IntroaR/",
@@ -47,7 +47,7 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R.\r\nCargar tus datos.\r\nGráficos.\r\nOperaciones.\r\nOrdenar, unir y exportar.\r\nProyectos.\r\nModelo lineal simple.\r\nAnalisis de varianzas.\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nIntro a R.\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. Ir a la presentación.\r\n\r\n\r\n\r\nCargar tus datos.\r\nEn esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. Ir a la presentación.\r\n\r\n\r\n\r\nGráficos.\r\nEn esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.Ir a la presentación.\r\n\r\n\r\n\r\nOperaciones.\r\nEn esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. Ir a la presentación.\r\n\r\n\r\n\r\nOrdenar, unir y exportar.\r\nEn esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.Ir a la presentación.\r\n\r\n\r\n\r\nProyectos.\r\nEn esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.Ir a la presentación.\r\n\r\n\r\n\r\nModelo lineal simple.\r\nEn esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu grafico.Ir a la presentación.\r\n\r\n\r\n\r\nAnalisis de varianzas.\r\nEn esta clase aprenderás como convertir a factor, cuales son los argumentos para un analisis de varianza en R y como crear graficos para visualizar tus resultados del analisis.Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
-    "last_modified": "2021-04-05T17:07:43+02:00",
-    "input_file": "IntroaR.utf8.md"
+    "last_modified": "2021-04-05T17:07:45+02:00",
+    "input_file": {}
   }
 ]
