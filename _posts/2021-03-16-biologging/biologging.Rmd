@@ -30,7 +30,7 @@ Iré subiendo materiales conforme se vayan actualizando.
 En esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabla, agregar identificadores por individuo en una columna, y realizar tus primeras graficas. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte1).  
 
 ```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarGPS.png")
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png")
 ```
 
 ## Corregir horas.
