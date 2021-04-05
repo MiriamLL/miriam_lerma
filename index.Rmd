@@ -36,6 +36,7 @@ I speak Spanish, English and a little bit of German.
 **Data analyst** | Research and Technology Center (FTZ), University of Kiel | Present  
 
 ### `r fa("cogs", fill = "black")` Trainings
+**Basics of University Teaching** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2018 
 **AniMove Summer school** | [Max Planck Institute](https://animove.org/) | 2018  
 **Scientific Writing** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2017  
 **International Summer School on Stable Isotopes in Animal Ecology** | [Centre for Stable Isotope Ecology in Berlin-Brandenburg](http://www.izw-berlin.de/en/summer-school-on-stable-isotopes-in-animal-ecology-en.html) | 2017  
