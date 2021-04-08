@@ -27,7 +27,7 @@ No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprend
 Iré subiendo materiales conforme se vayan actualizando.
 
 ## Descargar tus datos.
-En esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabla, agregar identificadores por individuo en una columna, y realizar tus primeras graficas. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte1).  
+En esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras graficas. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte1).  
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png")
@@ -40,3 +40,9 @@ En esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CorregirGMT.png")
 ```
 
+## Editar GPS.
+En esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte3).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/EditarGPS.png")
+```
