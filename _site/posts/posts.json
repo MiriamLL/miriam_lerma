@@ -11,10 +11,10 @@
     ],
     "date": "2021-03-16",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nBiologging\r\nDescargar tus datos.\r\nCorregir horas.\r\n\r\n\r\nBiologging\r\nBienvenido!\r\nEste material fue preparado para estudiantes de posgrado de la Universidad de Guadalajara.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nDescargar tus datos.\r\nEn esta clase aprenderás a descargar tus datos de GPS, unirlos en una sola tabla, agregar identificadores por individuo en una columna, y realizar tus primeras graficas. Ir a la presentación.\r\n\r\n\r\n\r\nCorregir horas.\r\nEn esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nBiologging\r\nDescargar tus datos.\r\nCorregir horas.\r\nEditar GPS.\r\n\r\n\r\nBiologging\r\nBienvenido!\r\nEste material fue preparado para estudiantes de posgrado de la Universidad de Guadalajara.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nDescargar tus datos.\r\nEn esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras graficas. Ir a la presentación.\r\n\r\n\r\n\r\nCorregir horas.\r\nEn esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. Ir a la presentación.\r\n\r\n\r\n\r\nEditar GPS.\r\nEn esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png",
-    "last_modified": "2021-04-05T17:10:37+02:00",
-    "input_file": {}
+    "last_modified": "2021-04-08T14:08:31+02:00",
+    "input_file": "biologging.utf8.md"
   },
   {
     "path": "posts/2021-03-29-rmd/",
@@ -28,10 +28,10 @@
     ],
     "date": "2021-03-16",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nXaringan.\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. Ir a la presentación.\r\n\r\n\r\n\r\nXaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-    "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/ClaseRmd.png",
-    "last_modified": "2021-04-05T17:07:04+02:00",
-    "input_file": {}
+    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nRmarkdown para escribir artículos\r\nXaringan.\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. Ir a la presentación.\r\n\r\n\r\n\r\nRmarkdown para escribir artículos\r\nEn esta clase aprenderás como agregar citas y formato de revista. Ir a la presentación.\r\n\r\n\r\n\r\nXaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png",
+    "last_modified": "2021-04-08T18:35:26+02:00",
+    "input_file": "rmd.utf8.md"
   },
   {
     "path": "posts/2021-03-01-IntroaR/",

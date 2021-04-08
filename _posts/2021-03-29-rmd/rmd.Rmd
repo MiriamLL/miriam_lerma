@@ -26,9 +26,15 @@ Iré subiendo materiales conforme se vayan actualizando.
 En esta clase aprenderás como crear documentos en Rmd. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Rmd-Parte1).  
 
 ```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/ClaseRmd.png")
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png")
 ```
 
+## Rmarkdown para escribir artículos
+En esta clase aprenderás como agregar citas y formato de revista. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Rmd-Parte2).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase10.png")
+```
 
 ## Xaringan.
 En esta clase aprenderás como crear presentaciones en Xaringan. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1).  
