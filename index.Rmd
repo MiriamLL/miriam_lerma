@@ -37,7 +37,6 @@ I speak Spanish, English and a some German.
 ### `r fa("cogs", fill = "black")` Trainings  
 **Programación en R para estudios de biologging de vertebrados marinos y sus interacciones con la actividad pesquera en el Perú** [Universidad Científica del Sur](https://www.cientifica.edu.pe/) 2021 <br> 
 **Basics of University Teaching** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2018 <br>
-**Basics of University Teaching** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2018 <br>
 **AniMove Summer school** | [Max Planck Institute](https://animove.org/) | 2018  
 **Scientific Writing** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2017  
 **International Summer School on Stable Isotopes in Animal Ecology** | [Centre for Stable Isotope Ecology in Berlin-Brandenburg](http://www.izw-berlin.de/en/summer-school-on-stable-isotopes-in-animal-ecology-en.html) | 2017  
