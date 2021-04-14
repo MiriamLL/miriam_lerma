@@ -18,7 +18,11 @@ library(fontawesome)
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
 I am a postdoctoral researcher at [FTZ](https://www.ftz.uni-kiel.de/de). 
-I am currently working on analyzing spatial patterns of marine animals while collaborating with  projects in Mexico and Chile. I work with coastal and marine animals mostly with shorebirds and seabirds. My research interests include conservation, ecology, physiology and ecotoxicology. Also, I am a teaching [R](https://www.r-project.org/about.html)  to technicians and students from my home town, [Mazatlán](https://www.google.com/maps/place/Mazatlan). You can find the materials from my class (which are in Spanish) at this webpage. 
+I am currently working on analyzing spatial patterns of marine animals while collaborating with  projects in Mexico and Chile. 
+I study coastal and marine animals mostly with shorebirds and seabirds. 
+My research interests include conservation, ecology, physiology and ecotoxicology. 
+Also, I am a teaching [R](https://www.r-project.org/about.html)  to technicians and students from my home town, [Mazatlán](https://www.google.com/maps/place/Mazatlan). 
+You can find the materials from my class (which are in Spanish) at this webpage. 
  
 I am very passionate about nature, [R](https://www.r-project.org/about.html) and [QGIS](https://qgis.org/en/site/).  
 If you are interested in some collaboration or have specific questions I am happy to help!    

@@ -40,5 +40,5 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 En esta clase aprenderás como crear presentaciones en Xaringan. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1).  
 
 ```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/ClaseXaringan.png")
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png")
 ```
