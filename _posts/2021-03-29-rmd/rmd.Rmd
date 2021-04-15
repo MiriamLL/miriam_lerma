@@ -42,3 +42,10 @@ En esta clase aprenderás como crear presentaciones en Xaringan. <br>[Ir a la pr
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png")
 ```
+
+## Github, Zenodo y Git.
+En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/GitGithubZenodo#1).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase12Github.png")
+```
