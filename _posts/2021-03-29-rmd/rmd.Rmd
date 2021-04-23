@@ -36,12 +36,20 @@ En esta clase aprenderás como agregar citas y formato de revista. <br>[Ir a la 
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase10.png")
 ```
 
-## Xaringan.
-En esta clase aprenderás como crear presentaciones en Xaringan. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1).  
+## Presentar tus resultados usando Xaringan.
+En esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1).  
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png")
 ```
+
+## Estilizar tus dispositivas Xaringan.
+En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png")
+```
+
 
 ## Github, Zenodo y Git.
 En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/GitGithubZenodo#1).  

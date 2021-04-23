@@ -17,35 +17,16 @@ library(fontawesome)
 ```
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
-I am a postdoctoral researcher at [FTZ](https://www.ftz.uni-kiel.de/de). 
-I am currently working on analyzing spatial patterns of marine animals while collaborating with  projects in Mexico and Chile. 
-I study coastal and marine animals mostly shorebirds and seabirds. 
-My research interests include conservation, ecology, physiology and ecotoxicology. 
-Also, I am a teaching [R](https://www.r-project.org/about.html)  to technicians and students from my home town, [Mazatlán](https://www.google.com/maps/place/Mazatlan). 
-You can find the materials from my class (which are in Spanish) at this webpage. 
- 
-I am very passionate about nature, [R](https://www.r-project.org/about.html) and [QGIS](https://qgis.org/en/site/).  
-If you are interested in some collaboration or have specific questions I am happy to help!    
-Just email me! `r fa("envelope", fill = "black")`  
-I speak Spanish, English and a some German.    
+I am a postdoctoral researcher at West Coast Research and Technology Center [FTZ](https://www.ftz.uni-kiel.de/de) in Büsum, Germany. 
 
+My work entitles analyzing spatial patterns of marine animals while collaborating on active projects in Mexico and Chile. My focus is coastal and marine animals, in particular shorebirds and seabirds. 
 
-### `r fa("university", fill = "black")` Education
-**Dr. rer. nat.** | University of Kiel   
-**Master en Marine Sciences**  | Universidad Nacional Autonoma de Mexico  
-**BA in Biology**  | Universidad de Guadalajara
+Currently, I am training technicians and students in [R](https://www.r-project.org/about.html), a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely to students in Mazatlán, Mexico, you can locate them here, please note that these materials are in Spanish [webpage](https://www.miriam-lerma.com/materiales.html).
 
-### `r fa("briefcase", fill = "black")` Recent Roles  
-**Data analyst** | Research and Technology Center (FTZ), University of Kiel | Present  
+My research interests include conservation, ecology, physiology, and ecotoxicology. 
+I am passionate about nature, biology, and outdoor activities.   
 
-### `r fa("cogs", fill = "black")` Trainings  
-**Programación en R para estudios de biologging de vertebrados marinos y sus interacciones con la actividad pesquera en el Perú** [Universidad Científica del Sur](https://www.cientifica.edu.pe/) 2021 <br> 
-**Basics of University Teaching** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2018 <br>
-**AniMove Summer school** | [Max Planck Institute](https://animove.org/) | 2018  
-**Scientific Writing** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2017  
-**International Summer School on Stable Isotopes in Animal Ecology** | [Centre for Stable Isotope Ecology in Berlin-Brandenburg](http://www.izw-berlin.de/en/summer-school-on-stable-isotopes-in-animal-ecology-en.html) | 2017  
-**GIS for Marine Sciences** | [Integrated School of Ocean Sciences](https://www.futureocean.org/de/isos/) | 2016  
-
+If you are interested in a collaboration, or have any questions, please feel free to email me. 
 
 ### `r fa("envelope", fill = "black")` Contact
 **Dr. rer. nat. Miriam Lerma** <br>
