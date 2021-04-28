@@ -47,7 +47,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2).  
 
 ```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png")
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11Xaringan.png")
 ```
 
 
@@ -65,3 +65,4 @@ En esta clase verás básicos de reproducibilidad en la ciencia y en las publica
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase13.png")
 ```
+

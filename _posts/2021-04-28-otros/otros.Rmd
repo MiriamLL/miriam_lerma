@@ -1,0 +1,23 @@
+---
+title: "Avanzado"
+description: |
+  R avanzado. Talleres diversos.
+author:
+  - name: Miriam Lerma
+date: 2021-04-28
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Paquetes
+
+Taller para crear tus propios **paquetes.**<br>[Ir a la presentación](https://miriamll.github.io/Desarrollo_paquetes/PackageDevelop#1). 
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Desarrollo_paquetes/main/Figuras/Portada1.png")
+```
+
