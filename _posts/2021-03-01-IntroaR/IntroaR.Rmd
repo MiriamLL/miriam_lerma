@@ -85,3 +85,12 @@ En esta clase aprenderás como convertir a factor, cuales son los argumentos par
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png")
 ```
 
+## Modelos mixtos.  
+En esta clase es una introducción a los modelos mixtos.  
+[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase8).  
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png")
+```
+
+
