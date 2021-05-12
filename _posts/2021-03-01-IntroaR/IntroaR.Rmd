@@ -78,7 +78,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 ```
 
 ## Analisis de varianzas.  
-En esta clase aprenderás como convertir a factor, cuales son los argumentos para un analisis de varianza en R y como crear graficos para visualizar tus resultados del analisis.  
+En esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.  
 [Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase8).  
 
 ```{r, echo=FALSE, out.width = "50%"}
@@ -86,7 +86,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 ```
 
 ## Modelos mixtos.  
-En esta clase es una introducción a los modelos mixtos.  
+Esta clase es una introducción a los modelos mixtos.  
 [Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase8).  
 
 ```{r, echo=FALSE, out.width = "50%"}
