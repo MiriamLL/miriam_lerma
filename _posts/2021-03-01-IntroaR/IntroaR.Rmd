@@ -87,7 +87,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 
 ## Modelos mixtos.  
 Esta clase es una introducción a los modelos mixtos.  
-[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase8).  
+[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase9-glm).  
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png")
