@@ -12,11 +12,15 @@ navbar:
       href: publications.html
     - text: "Teaching"
       href: materiales.html
+    - text: "Projects"
+      href: projects.html
     - icon: fab fa-twitter
       href: https://twitter.com/MiriamLermaL
     - icon: fab fa-github
       href: https://github.com/MiriamLL
 collections:
+  posts:
+    citations: false
 output: 
   distill::distill_article:
     theme: miriam.css
