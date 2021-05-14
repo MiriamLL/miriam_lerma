@@ -53,7 +53,7 @@
   {
     "path": "posts/2021-03-01-IntroaR/",
     "title": "Clase R desde cero",
-    "description": "Desde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo realizando tu limpieza de datos y analisis en R.",
+    "description": "Desde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo trabajando tus datos y análisis en R.",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -64,7 +64,7 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R.\r\nCargar tus datos.\r\nGráficos.\r\nOperaciones.\r\nOrdenar, unir y exportar.\r\nProyectos.\r\nModelo lineal simple.\r\nAnalisis de varianzas.\r\nModelos mixtos.\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nIntro a R.\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. Ir a la presentación.\r\n\r\n\r\n\r\nCargar tus datos.\r\nEn esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. Ir a la presentación.\r\n\r\n\r\n\r\nGráficos.\r\nEn esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.Ir a la presentación.\r\n\r\n\r\n\r\nOperaciones.\r\nEn esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. Ir a la presentación.\r\n\r\n\r\n\r\nOrdenar, unir y exportar.\r\nEn esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.Ir a la presentación.\r\n\r\n\r\n\r\nProyectos.\r\nEn esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.Ir a la presentación.\r\n\r\n\r\n\r\nModelo lineal simple.\r\nEn esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu grafico.Ir a la presentación.\r\n\r\n\r\n\r\nAnalisis de varianzas.\r\nEn esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.Ir a la presentación.\r\n\r\n\r\n\r\nModelos mixtos.\r\nEsta clase es una introducción a los modelos mixtos.Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
-    "last_modified": "2021-05-12T11:39:59+02:00",
+    "last_modified": "2021-05-14T13:15:45+02:00",
     "input_file": "IntroaR.utf8.md"
   }
 ]

@@ -1,7 +1,7 @@
 ---
 title: "Clase R desde cero"
 description: |
-  Desde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo realizando tu limpieza de datos y analisis en R.
+  Desde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo trabajando tus datos y análisis en R.
 authors:
   - name: Miriam Lerma
 date: '2021-01-28'
@@ -87,7 +87,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 
 ## Modelos mixtos.  
 Esta clase es una introducción a los modelos mixtos.  
-[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase9-glm).  
+[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos).  
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png")
