@@ -1,7 +1,7 @@
 ---
 title: "sula"
 description: |
-  An R package to clean your GPS data and to calculate some trip parameters. Un paquete para editar datos de GPS y calcular parametros de los viajes de alimentación. 
+  An R package to clean your GPS data and to calculate some trip parameters. | Un paquete para editar datos de GPS y calcular parametros de los viajes de alimentación. 
 author:
   - name: Miriam Lerma
 date: 2021-05-15
@@ -12,7 +12,7 @@ output:
     self_contained: false
 ---
 
-```{r, echo=FALSE, out.width = "20%"}
+```{r, echo=FALSE, out.width = "40%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/sula/main/man/figures/logo.png")
 ```
 
