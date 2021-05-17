@@ -1,7 +1,8 @@
 ---
 title: "sula"
 description: |
-  An R package to clean your GPS data and to calculate some trip parameters. | Un paquete para editar datos de GPS y calcular parametros de los viajes de alimentación. 
+  Un paquete para editar datos de GPS y calcular parametros de los viajes de alimentación. 
+preview: sula-logo.png
 author:
   - name: Miriam Lerma
 date: 2021-05-15

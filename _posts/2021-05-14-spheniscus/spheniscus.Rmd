@@ -1,7 +1,8 @@
 ---
 title: "spheniscus"
 description: |
-  An R package to clean TDR data and calculate diving trip parameters during foraging trips.| Un paquete para limpiar datos de TDR y calcular parametros de buceo durante los viajes de alimentación. 
+  Un paquete para limpiar datos de TDR y calcular parametros de buceo durante los viajes de alimentación. 
+preview: spheniscus-logo.png
 author:
   - name: Miriam Lerma
 date: 2021-05-15
