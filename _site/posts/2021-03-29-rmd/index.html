@@ -119,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["rmd_files/anchor-4.2.2/anchor.min.js","rmd_files/bowser-1.9.3/bowser.min.js","rmd_files/distill-2.2.21/template.v2.js","rmd_files/header-attrs-2.6/header-attrs.js","rmd_files/jquery-1.11.3/jquery.min.js","rmd_files/popper-2.6.0/popper.min.js","rmd_files/tippy-6.2.7/tippy-bundle.umd.min.js","rmd_files/tippy-6.2.7/tippy-light-border.css","rmd_files/tippy-6.2.7/tippy.css","rmd_files/tippy-6.2.7/tippy.umd.min.js","rmd_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["rmd_files/anchor-4.2.2/anchor.min.js","rmd_files/bowser-1.9.3/bowser.min.js","rmd_files/distill-2.2.21/template.v2.js","rmd_files/header-attrs-2.6/header-attrs.js","rmd_files/header-attrs-2.8/header-attrs.js","rmd_files/jquery-1.11.3/jquery.min.js","rmd_files/popper-2.6.0/popper.min.js","rmd_files/tippy-6.2.7/tippy-bundle.umd.min.js","rmd_files/tippy-6.2.7/tippy-light-border.css","rmd_files/tippy-6.2.7/tippy.css","rmd_files/tippy-6.2.7/tippy.umd.min.js","rmd_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2223,6 +2223,25 @@ img[src="Figuras/Clarion.png"] {
   padding: 0;
   width: 100%;
   margin: 100px 25px 0px 0px;
+}
+
+
+.icon-link {
+    background-color: transparent;
+    color: #023047;
+    border: 1px solid;
+    border-color: #023047;
+    padding: 5px .4rem 5px .4rem; /*margin: 4px;*/
+    margin-top: 4px;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    border-radius: 5px; /* Rounded edges */
+}
+
+.icon-link:hover {
+    background-color: #023047;
+    border-color: #023047;
+    color: white;
 }</style>
 <style type="text/css">
 /* base style */
@@ -2379,7 +2398,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.6/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.8/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2460,38 +2479,59 @@ d-appendix d-footnote-list a.footnote-backlink {
 </ul>
 </nav>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <h1 id="rmarkdown">Rmarkdown</h1>
 <p>Bienvenido!</p>
 <p>Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo <a href="https://www.ciad.mx/">CIAD</a>.</p>
 <p>No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.</p>
 <p>Iré subiendo materiales conforme se vayan actualizando.</p>
 <h2 id="rmarkdown.">Rmarkdown.</h2>
-<p>En esta clase aprenderás como crear documentos en Rmd. <br><a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte1">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como crear documentos en Rmd. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte1.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png" width="50%" /></p>
 </div>
 <h2 id="rmarkdown-para-escribir-artículos">Rmarkdown para escribir artículos</h2>
-<p>En esta clase aprenderás como agregar citas y formato de revista. <br><a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como agregar citas y formato de revista. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte2.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase10.png" width="50%" /></p>
 </div>
 <h2 id="presentar-tus-resultados-usando-xaringan.">Presentar tus resultados usando Xaringan.</h2>
-<p>En esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. <br><a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte1.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png" width="50%" /></p>
 </div>
 <h2 id="estilizar-tus-dispositivas-xaringan.">Estilizar tus dispositivas Xaringan.</h2>
-<p>En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. <br><a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte2.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11Xaringan.png" width="50%" /></p>
 </div>
 <h2 id="github-zenodo-y-git.">Github, Zenodo y Git.</h2>
-<p>En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br><a href="https://miriamll.github.io/Curso_CIAD/GitGithubZenodo#1">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/GitGithubZenodo" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/GitGithubZenodo.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase12.png" width="50%" /></p>
 </div>
 <h2 id="reproducibilidad.">Reproducibilidad.</h2>
-<p>En esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. <br><a href="https://miriamll.github.io/Curso_CIAD/Repro#1">Ir a la presentación</a>.</p>
+<p>En esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Repro#1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Repro.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase13.png" width="50%" /></p>
 </div>

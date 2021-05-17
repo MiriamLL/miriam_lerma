@@ -12,6 +12,10 @@ output:
     self_contained: false
 ---
 
+```{r libraries, echo=FALSE}
+library(distilltools)
+```
+
 # Rmarkdown
 
 Bienvenido!  
@@ -23,28 +27,70 @@ No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprend
 Iré subiendo materiales conforme se vayan actualizando.
 
 ## Rmarkdown.
-En esta clase aprenderás como crear documentos en Rmd. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Rmd-Parte1).  
+
+En esta clase aprenderás como crear documentos en Rmd. <br>
+
+```{r icon-links1,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_CIAD/Rmd-Parte1")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte1.pdf")
+```
+
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png")
 ```
 
 ## Rmarkdown para escribir artículos
-En esta clase aprenderás como agregar citas y formato de revista. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Rmd-Parte2).  
+
+En esta clase aprenderás como agregar citas y formato de revista. <br>
+
+```{r icon-links2,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_CIAD/Rmd-Parte2")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte2.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase10.png")
 ```
 
 ## Presentar tus resultados usando Xaringan.
-En esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1).  
+
+En esta clase aprenderás como crear presentaciones en Xaringan. 
+Podrás incluir tablas y figuras sin salir de RStudio. <br>
+
+```{r icon-links3,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte1.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png")
 ```
 
 ## Estilizar tus dispositivas Xaringan.
-En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2).  
+
+En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. <br>
+
+```{r icon-links4,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte2.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11Xaringan.png")
@@ -52,7 +98,17 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 
 
 ## Github, Zenodo y Git.
-En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/GitGithubZenodo#1).  
+
+En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br>
+
+```{r icon-links5,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_CIAD/GitGithubZenodo")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/GitGithubZenodo.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase12.png")
@@ -60,7 +116,17 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 
 
 ## Reproducibilidad.
-En esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. <br>[Ir a la presentación](https://miriamll.github.io/Curso_CIAD/Repro#1).  
+
+En esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. <br>
+
+```{r icon-links6,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_CIAD/Repro#1")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Repro.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase13.png")

@@ -119,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["IntroaR_files/anchor-4.2.2/anchor.min.js","IntroaR_files/bowser-1.9.3/bowser.min.js","IntroaR_files/clipboard-2.0.6/clipboard.min.js","IntroaR_files/distill-2.2.21/template.v2.js","IntroaR_files/fitvids-2.1.1/fitvids.min.js","IntroaR_files/header-attrs-2.6/header-attrs.js","IntroaR_files/jquery-1.11.3/jquery.min.js","IntroaR_files/popper-2.6.0/popper.min.js","IntroaR_files/shareon-1.4.1/shareon.min.css","IntroaR_files/shareon-1.4.1/shareon.min.js","IntroaR_files/tippy-6.2.7/tippy-bundle.umd.min.js","IntroaR_files/tippy-6.2.7/tippy-light-border.css","IntroaR_files/tippy-6.2.7/tippy.css","IntroaR_files/tippy-6.2.7/tippy.umd.min.js","IntroaR_files/webcomponents-2.0.0/webcomponents.js","IntroaR_files/xaringanExtra-shareagain-0.2.4/shareagain.css","IntroaR_files/xaringanExtra-shareagain-0.2.4/shareagain.js"]}
+  {"type":"character","attributes":{},"value":["IntroaR_files/anchor-4.2.2/anchor.min.js","IntroaR_files/bowser-1.9.3/bowser.min.js","IntroaR_files/clipboard-2.0.6/clipboard.min.js","IntroaR_files/distill-2.2.21/template.v2.js","IntroaR_files/fitvids-2.1.1/fitvids.min.js","IntroaR_files/header-attrs-2.6/header-attrs.js","IntroaR_files/header-attrs-2.8/header-attrs.js","IntroaR_files/jquery-1.11.3/jquery.min.js","IntroaR_files/popper-2.6.0/popper.min.js","IntroaR_files/shareon-1.4.1/shareon.min.css","IntroaR_files/shareon-1.4.1/shareon.min.js","IntroaR_files/tippy-6.2.7/tippy-bundle.umd.min.js","IntroaR_files/tippy-6.2.7/tippy-light-border.css","IntroaR_files/tippy-6.2.7/tippy.css","IntroaR_files/tippy-6.2.7/tippy.umd.min.js","IntroaR_files/webcomponents-2.0.0/webcomponents.js","IntroaR_files/xaringanExtra-shareagain-0.2.4/shareagain.css","IntroaR_files/xaringanExtra-shareagain-0.2.4/shareagain.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2223,6 +2223,25 @@ img[src="Figuras/Clarion.png"] {
   padding: 0;
   width: 100%;
   margin: 100px 25px 0px 0px;
+}
+
+
+.icon-link {
+    background-color: transparent;
+    color: #023047;
+    border: 1px solid;
+    border-color: #023047;
+    padding: 5px .4rem 5px .4rem; /*margin: 4px;*/
+    margin-top: 4px;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    border-radius: 5px; /* Rounded edges */
+}
+
+.icon-link:hover {
+    background-color: #023047;
+    border-color: #023047;
+    color: white;
 }</style>
 <style type="text/css">
 /* base style */
@@ -2379,7 +2398,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.6/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.8/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2458,58 +2477,83 @@ d-appendix d-footnote-list a.footnote-backlink {
 </ul>
 </nav>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <h1 id="clase-de-r">Clase de R</h1>
 <p>Bienvenido!</p>
 <p>Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo <a href="https://www.ciad.mx/">CIAD</a>.</p>
 <p>No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.</p>
 <p>Iré subiendo materiales conforme se vayan actualizando.</p>
 <h2 id="intro-a-r.">Intro a R.</h2>
-<p>En esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. <br><a href="https://miriamll.github.io/Curso_CIAD/Clase1">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" width="50%" /></p>
 </div>
 <h2 id="cargar-tus-datos.">Cargar tus datos.</h2>
-<p>En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. <br><a href="https://miriamll.github.io/Curso_CIAD/Clase1Parte2">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase1Parte2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1Parte2-CargarDatos.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase2.png" width="50%" /></p>
 </div>
 <h2 id="gráficos.">Gráficos.</h2>
-<p>En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.<br> <a href="https://miriamll.github.io/Curso_CIAD/Clase2">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.<br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase2-Graficos.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase3.png" width="50%" /></p>
 </div>
 <h2 id="operaciones.">Operaciones.</h2>
-<p>En esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. <br> <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte1">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. <br></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase3Parte1-Filascolumnas.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase4.png" width="50%" /></p>
 </div>
 <h2 id="ordenar-unir-y-exportar.">Ordenar, unir y exportar.</h2>
-<p>En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.<br />
-<a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte2">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase3Parte2-tidyverse.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase5.png" width="50%" /></p>
 </div>
 <h2 id="proyectos.">Proyectos.</h2>
-<p>En esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.<br />
-<a href="https://miriamll.github.io/Curso_CIAD/Clase4Parte1">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase4Parte1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase4Parte1-Poyectos.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png" width="50%" /></p>
 </div>
 <h2 id="modelo-lineal-simple.">Modelo lineal simple.</h2>
-<p>En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu grafico.<br />
-<a href="https://miriamll.github.io/Curso_CIAD/Clase7">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu grafico.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase7" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase7.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png" width="50%" /></p>
 </div>
 <h2 id="analisis-de-varianzas.">Analisis de varianzas.</h2>
-<p>En esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.<br />
-<a href="https://miriamll.github.io/Curso_CIAD/Clase8">Ir a la presentación</a>.</p>
+<p>En esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase8" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase8.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png" width="50%" /></p>
 </div>
 <h2 id="modelos-mixtos.">Modelos mixtos.</h2>
-<p>Esta clase es una introducción a los modelos mixtos.<br />
-<a href="https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos">Ir a la presentación</a>.</p>
+<p>Esta clase es una introducción a los modelos mixtos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><a href="https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase9-modelosmixtos.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png" width="50%" /></p>
 </div>

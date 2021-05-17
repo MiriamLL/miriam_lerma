@@ -1,6 +1,0 @@
----
-title: "Publications"
-listing:
-  posts:
-    - 2021-03-05-publication01
----
