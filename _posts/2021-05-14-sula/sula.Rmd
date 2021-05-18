@@ -1,7 +1,7 @@
 ---
 title: "sula"
 description: |
-  Un paquete para editar datos de GPS y calcular parametros de los viajes de alimentación. 
+  Un paquete para editar datos de GPS y calcular parámetros de los viajes de alimentación. 
 preview: sula-logo.png
 author:
   - name: Miriam Lerma
@@ -14,6 +14,7 @@ output:
 ---
 
 ```{r, echo=FALSE, out.width = "40%"}
+library(distilltools)
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/sula/main/man/figures/logo.png")
 ```
 
@@ -23,8 +24,11 @@ Este paquete contiene:
 - **Datos** de tracks de kena (_Sula dactylatra_) colectados en Rapa Nui para replicar los ejemplos 🗿  
 - **Trece funciones** para limpiar y calcular parámetros de viajes a partir de datos GPS
 
-
-**[Link for english](https://github.com/MiriamLL/sula).**
+```{r icon-links1,echo=FALSE}
+icon_link(icon = "fas fa-external-link-alt",
+          text = "English",
+          url = "https://github.com/MiriamLL/sula")
+```
 
 ## Instalación 🤖
 
@@ -216,7 +220,7 @@ Puedes recortar periodos en los viajes.
 Para el ejemplo hay que tener dos data frames:  
 Uno con los **datos de GPS** incluyendo las columnas DateGMT,TimeGMT y IDs.  
 Si no tienen estos nombres favor de renombrarlas.  
-El otro data frame son los **datos de campo** y deben incluir las columnas "IDs", 'Hora_inicio' y "Hora_final".   
+El otro data frame son los **datos de campo** y deben incluir las columnas 'IDs', 'Hora_inicio' y 'Hora_final'.   
 Si no tienen esos nombres favor de renombrarlas.
 
 ```{r,eval=FALSE}
@@ -239,7 +243,7 @@ Nidos_df<-localizar_nidos(GPS_data=GPS_raw,
 ## preparar_varios 🔌🔌🔌
 
 Esta función sirve para preparar los datos antes de calcular parámetros por individuo.  
-En la función especifica: el nombre de tu data frame, el nombre de la columna de los ID (identificadores por individuo), el nombre de la columna de la longitud y el nombre de la columna de la latitud. Para elegir los viajes elige un buffer de fuera de la colonia (distancia_km). Elige también tu sistema de referencia geográfica. 
+En la función debes especificar: el nombre de tu data frame, el nombre de la columna de los ID (identificadores por individuo), el nombre de la columna de la longitud y el nombre de la columna de la latitud. Para elegir los viajes elige un buffer de fuera de la colonia (distancia_km). Elige también tu sistema de referencia geográfica. 
 
 ```{r, eval=FALSE}
 GPS_preparado<-preparar_varios(GPS_data=GPS_raw,
@@ -257,7 +261,7 @@ Enlaces: [¿referencia geográfica?](https://mgimond.github.io/Spatial/chp09-0.h
 
 ## tripparams_varios 📐📐📐
 
-Para calcula parámetros de viajes de varios individuos especifica el nombre de la columna que contiene los identificadores por individuo, el nombre de la columna que contiene información número del viaje y el nombre de la columna que contiene información del día y hora en formato POSTIXct.
+Para calcular parámetros de viajes de varios individuos especifica el nombre de la columna que contiene los identificadores por individuo, el nombre de la columna que contiene información número del viaje y el nombre de la columna que contiene información del día y hora en formato POSTIXct.
 
 ```{r, eval=FALSE}
 trip_params<-tripparams_varios(GPS_data=GPS_preparado,
@@ -279,10 +283,10 @@ GPS_preparado<-ajustar_hora(GPS_data = GPS_preparado,
 
 # Citar
 
-Los datos de prueba vienen de esa publicación. 🔓
-- Lerma M, Dehnhard N, Luna-Jorquera G, Voigt CC, Garthe S (2020) Breeding stage, not sex, affects foraging characteristics in masked boobies at Rapa Nui. Behavioral ecology and sociobiology 74: 149. 
-
 - Lerma M (2021) Package sula. Zenodo. http://doi.org/10.5281/zenodo.4682898 
+
+- Los datos de prueba vienen de la publicación: Lerma M, Dehnhard N, Luna-Jorquera G, Voigt CC, Garthe S (2020) Breeding stage, not sex, affects foraging characteristics in masked boobies at Rapa Nui. Behavioral ecology and sociobiology 74: 149. [🔓](https://link.springer.com/article/10.1007/s00265-020-02921-1)  
+
 
 [![DOI](https://zenodo.org/badge/354821022.svg)](https://zenodo.org/badge/latestdoi/354821022)
 

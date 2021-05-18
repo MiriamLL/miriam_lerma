@@ -6,7 +6,7 @@ description: |
 output_dir: "_site"
 navbar:
   left:
-    - text: "Home"
+    - text: "About"
       href: index.html
     - text: "Publications"
       href: publications.html

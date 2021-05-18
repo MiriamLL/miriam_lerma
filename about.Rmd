@@ -1,14 +1,56 @@
 ---
 title: "Miriam Lerma"
-image: "Figuras/Lerma_Miriam.jpg"
+image: "images/LermaCircular.jpg"
 links:
-  - label: Twitter
-    url: "https://twitter.com/MiriamLL"
-  - label: GitHub
-    url: "https://github.com/MiriamLermaL"
-  - label: Email
+  - label: '<i class="fab fa-twitter"></i> Twitter'
+    url: "https://twitter.com/MiriamLermaL"
+  - label: '<i class="fab fa-github"></i> GitHub'
+    url: "https://github.com/MiriamLL"
+  - label: '<i class="fas fa-envelope"></i> Email'
     url: "mailto:miriamjlerma@gmail.com"
+twitter:
+  creator: "@MiriamLermaL"
+  site: "@MiriamLermaL"
 output:
-  postcards::jolla
+  postcards::trestles
+site: distill::distill_website
 ---
- 
+
+```{r setup, message=FALSE, warning=FALSE, include=FALSE}
+library(metathis)
+meta() %>%
+  meta_description(
+    "Mi sitio personal"
+  ) %>%
+  meta_name("github-repo" = "https://github.com/MiriamLL/miriamlerma_") %>%
+  meta_viewport() %>%
+  meta_social(
+    title = "Miriam Lerma",
+    url = "www.miriam-lerma.com",
+    og_type = "website",
+    og_author = c("Miriam Lerma"),
+    twitter_card_type = "summary",
+    twitter_creator = "@MiriamLermaL"
+  )
+```
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
+library(fontawesome)
+```
+
+### `r fa("chevron-circle-down", fill = "black")` About  me
+
+I am a postdoctoral researcher at West Coast Research and Technology Center [FTZ](https://www.ftz.uni-kiel.de/de) in Büsum, Germany. 
+
+My work entitles analyzing spatial patterns of marine animals while collaborating on active projects in Mexico and Chile. My focus is coastal and marine animals, in particular shorebirds and seabirds. 
+
+Currently, I am training technicians and students in [R](https://www.r-project.org/about.html), a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely to students in Mexico, you can locate them [here](https://www.miriam-lerma.com/materiales.html), please note that these materials are in Spanish. 
+
+My research interests include conservation, ecology, physiology, and ecotoxicology. 
+I am passionate about nature, open science, and outdoor activities.   
+
+If you are interested in a collaboration, or have any questions, please feel free to email me. 
+
+### `r fa("envelope", fill = "black")` Contact
+**Dr. rer. nat. Miriam Lerma** <br>
+Email: miriamjlerma@gmail.com

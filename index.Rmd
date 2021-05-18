@@ -14,7 +14,26 @@ site: distill::distill_website
 
 ```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
 library(fontawesome)
+library(distilltools)
 ```
+
+```{r, fig.height=10,echo=FALSE, fig.align='center'}
+knitr::include_graphics("images/LermaCircular.jpg")
+```
+
+<center>
+```{r icon-links8,echo=FALSE,align = 'center'}
+icon_link(icon = "fab fa-twitter",
+          text = "Twitter",
+          url = "https://twitter.com/MiriamLermaL")
+icon_link(icon = "fab fa-github-alt",
+          text = "Github",
+          url = "https://github.com/MiriamLL")
+icon_link(icon = "far fa-envelope",
+          text = "Email",
+          url = "mailto:miriamjlerma@gmail.com")
+```
+</center>
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
 I am a postdoctoral researcher at West Coast Research and Technology Center [FTZ](https://www.ftz.uni-kiel.de/de) in Büsum, Germany. 

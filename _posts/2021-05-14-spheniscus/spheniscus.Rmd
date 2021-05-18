@@ -14,15 +14,23 @@ output:
 ---
 
 ```{r, echo=FALSE, out.width = "40%"}
+library(distilltools)
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/spheniscus/master/man/figures/logo.png")
 ```
 
 # Intro
 
 El objetivo de este paquete es:  
+
 - Hacer disponibles datos crudos de TDR para que se familiaricen con el formato.  
+
 - Ayudarte a limpiar los datos de TDR para obtener parámetros de buceo de los animales muestreados.  
 
+```{r icon-links1,echo=FALSE}
+icon_link(icon = "fas fa-external-link-alt",
+          text = "English",
+          url = "https://github.com/MiriamLL/spheniscus")
+```
 
 # Instalación 
 
@@ -126,7 +134,7 @@ TDR_dives<-identify_dives(TDR_corrected=TDR_corrected,
                depth_column='corrected_depth')
 ```
 
-## dive_parameters 🤿
+## dive_parameters 🐧
 
 Esta función calcula los parámetros del viaje completo.  
 Incluye:  
@@ -146,11 +154,11 @@ dive_parameters<-calculate_diveparams(TDR_dives)
 knitr::kable(dive_parameters)
 ```
 
-# Citation
+# Citar
 
 Este script acompaña una publicación en pingüinos por Lerma et al. (en preparación)  
 
-Si quieres dar atribución:  
+Para dar atribución:  
 Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.4709837 
 
 [![DOI](https://zenodo.org/badge/360213200.svg)](https://zenodo.org/badge/latestdoi/360213200)
