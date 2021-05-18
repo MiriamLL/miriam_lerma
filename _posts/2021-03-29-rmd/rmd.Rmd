@@ -81,7 +81,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 
 ## Estilizar tus dispositivas Xaringan.
 
-En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. <br>
+En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. También aprenderás como compartirlas ya sea en github o en pdf. <br>
 
 ```{r icon-links4,echo=FALSE}
 icon_link(icon = "fas fa-images",

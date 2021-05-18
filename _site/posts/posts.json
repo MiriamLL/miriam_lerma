@@ -15,8 +15,8 @@
     "preview": "posts/2021-05-14-spheniscus/spheniscus-logo.png",
     "last_modified": "2021-05-17T15:34:28+02:00",
     "input_file": {},
-    "preview_width": 586,
-    "preview_height": 474
+    "preview_width": 491,
+    "preview_height": 463
   },
   {
     "path": "posts/2021-05-14-sula/",
@@ -34,13 +34,13 @@
     "preview": "posts/2021-05-14-sula/sula-logo.png",
     "last_modified": "2021-05-17T15:32:49+02:00",
     "input_file": {},
-    "preview_width": 402,
-    "preview_height": 469
+    "preview_width": 403,
+    "preview_height": 463
   },
   {
     "path": "posts/2021-04-28-otros/",
-    "title": "Avanzado",
-    "description": "R avanzado. Talleres diversos.",
+    "title": "Talleres diversos",
+    "description": "Como crear tus propios paquetes, o como crear tu pagina web.",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -49,9 +49,9 @@
     ],
     "date": "2021-04-28",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nPaquetes\r\n\r\nPaquetes\r\nTaller para crear tus propios paquetes.Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nPaquetes\r\n\r\nPaquetes\r\nTaller para crear tus propios paquetes.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Desarrollo_paquetes/main/Figuras/Portada1.png",
-    "last_modified": "2021-05-07T11:53:06+02:00",
+    "last_modified": "2021-05-18T10:21:01+02:00",
     "input_file": {}
   },
   {
@@ -66,15 +66,15 @@
     ],
     "date": "2021-03-16",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nRmarkdown para escribir artículos\r\nPresentar tus resultados usando Xaringan.\r\nEstilizar tus dispositivas Xaringan.\r\nGithub, Zenodo y Git.\r\nReproducibilidad.\r\n\r\n\r\n\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nRmarkdown para escribir artículos\r\nEn esta clase aprenderás como agregar citas y formato de revista. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nPresentar tus resultados usando Xaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nEstilizar tus dispositivas Xaringan.\r\nEn esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nGithub, Zenodo y Git.\r\nEn esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nReproducibilidad.\r\nEn esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nRmarkdown para escribir artículos\r\nPresentar tus resultados usando Xaringan.\r\nEstilizar tus dispositivas Xaringan.\r\nGithub, Zenodo y Git.\r\nReproducibilidad.\r\n\r\n\r\n\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nRmarkdown para escribir artículos\r\nEn esta clase aprenderás como agregar citas y formato de revista. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nPresentar tus resultados usando Xaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nEstilizar tus dispositivas Xaringan.\r\nEn esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. También aprenderás como compartirlas ya sea en github o en pdf. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nGithub, Zenodo y Git.\r\nEn esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nReproducibilidad.\r\nEn esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png",
-    "last_modified": "2021-05-17T12:56:12+02:00",
+    "last_modified": "2021-05-18T10:19:15+02:00",
     "input_file": {}
   },
   {
     "path": "posts/2021-03-16-biologging/",
     "title": "Biologging",
-    "description": "Desde como descargar tus datos de GPS, como cortar partes de interes, hasta hacer tus primeros graficos con datos de tracking y exportarlos.",
+    "description": "Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos.",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -83,9 +83,9 @@
     ],
     "date": "2021-02-16",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nBiologging\r\nDescargar tus datos.\r\nCorregir horas.\r\nEditar GPS.\r\n\r\n\r\nBiologging\r\nBienvenido!\r\nEste material fue preparado para estudiantes de posgrado de la Universidad de Guadalajara.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nDescargar tus datos.\r\nEn esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras graficas. Ir a la presentación.\r\n\r\n\r\n\r\nCorregir horas.\r\nEn esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. Ir a la presentación.\r\n\r\n\r\n\r\nEditar GPS.\r\nEn esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. Ir a la presentación.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nBiologging\r\nDescargar tus datos.\r\nCorregir horas.\r\nEditar GPS.\r\n\r\n\r\nBiologging\r\nBienvenido!\r\nEste material fue preparado para estudiantes de posgrado de la Universidad de Guadalajara.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nDescargar tus datos.\r\nEn esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras gráficas. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nCorregir horas.\r\nEn esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nEditar GPS.\r\nEn esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png",
-    "last_modified": "2021-04-28T13:19:55+02:00",
+    "last_modified": "2021-05-18T10:19:05+02:00",
     "input_file": {}
   },
   {
@@ -100,9 +100,9 @@
     ],
     "date": "2021-01-28",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R.\r\nCargar tus datos.\r\nGráficos.\r\nOperaciones.\r\nOrdenar, unir y exportar.\r\nProyectos.\r\nModelo lineal simple.\r\nAnalisis de varianzas.\r\nModelos mixtos.\r\n\r\n\r\n\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nIntro a R.\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nCargar tus datos.\r\nEn esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nGráficos.\r\nEn esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nOperaciones.\r\nEn esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nOrdenar, unir y exportar.\r\nEn esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nProyectos.\r\nEn esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nModelo lineal simple.\r\nEn esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu grafico.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nAnalisis de varianzas.\r\nEn esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nModelos mixtos.\r\nEsta clase es una introducción a los modelos mixtos.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R.\r\nCargar tus datos.\r\nGráficos.\r\nOperaciones.\r\nOrdenar, unir y exportar.\r\nProyectos.\r\nModelo lineal simple.\r\nAnalisis de varianzas.\r\nModelos mixtos.\r\n\r\n\r\n\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nIntro a R.\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nCargar tus datos.\r\nEn esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nGráficos.\r\nEn esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nOperaciones.\r\nEn esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. \r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nOrdenar, unir y exportar.\r\nEn esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nProyectos.\r\nEn esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nModelo lineal simple.\r\nEn esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu gráfico.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nAnalisis de varianzas.\r\nEn esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\nModelos mixtos.\r\nEsta clase es una introducción a los modelos mixtos y a la selección de modelos usando el AIC.\r\n\r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png",
-    "last_modified": "2021-05-17T12:49:44+02:00",
+    "last_modified": "2021-05-18T10:19:30+02:00",
     "input_file": {}
   }
 ]

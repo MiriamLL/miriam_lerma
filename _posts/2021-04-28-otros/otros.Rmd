@@ -1,7 +1,7 @@
 ---
-title: "Avanzado"
+title: "Talleres diversos"
 description: |
-  R avanzado. Talleres diversos.
+  Como crear tus propios paquetes, o como crear tu pagina web. 
 author:
   - name: Miriam Lerma
 date: 2021-04-28
@@ -15,7 +15,21 @@ output:
 
 # Paquetes
 
-Taller para crear tus propios **paquetes.**<br>[Ir a la presentación](https://miriamll.github.io/Desarrollo_paquetes/PackageDevelop#1). 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(distilltools)
+```
+
+Taller para crear tus propios **paquetes.**<br>
+
+```{r icon-links1,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Desarrollo_paquetes/PackageDevelop")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Desarrollo_paquetes/main/PackageDevelop.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Desarrollo_paquetes/main/Figuras/Portada1.png")

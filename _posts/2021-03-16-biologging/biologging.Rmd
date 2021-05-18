@@ -1,7 +1,7 @@
 ---
 title: "Biologging"
 description: |
-  Desde como descargar tus datos de GPS, como cortar partes de interes, hasta hacer tus primeros graficos con datos de tracking y exportarlos. 
+  Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos. 
 author:
   - name: Miriam Lerma
 date: 2021-02-16
@@ -14,6 +14,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(distilltools)
 ```
 
 # Biologging
@@ -27,21 +28,48 @@ No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprend
 Iré subiendo materiales conforme se vayan actualizando.
 
 ## Descargar tus datos.
-En esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras graficas. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte1).  
+En esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras gráficas. <br> 
+
+```{r icon-links1,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_tracking/Parte1")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte1.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png")
 ```
 
 ## Corregir horas.
-En esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte2).  
+En esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. <br>
+
+```{r icon-links2,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_tracking/Parte2")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte2.pdf")
+```
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CorregirGMT.png")
 ```
 
 ## Editar GPS.
-En esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. <br>[Ir a la presentación](https://miriamll.github.io/Curso_tracking/Parte3).  
+En esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. <br>
+
+```{r icon-links3,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Presentación",
+          url = "https://miriamll.github.io/Curso_tracking/Parte3")
+icon_link(icon = "fas fa-download",
+          text = "Descargar",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte3.pdf")
+```  
 
 ```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/EditarGPS.png")

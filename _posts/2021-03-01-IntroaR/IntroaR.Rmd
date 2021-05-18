@@ -27,7 +27,7 @@ No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprend
 Iré subiendo materiales conforme se vayan actualizando.
 
 ## Intro a R.
-En esta clase aprenderás a abrir RStudio e identificar sus partes para poder navegar. <br>
+En esta clase aprenderás a abrir RStudio e identificar sus partes. <br>
 
 ```{r icon-links1,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -133,7 +133,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 
 ## Modelo lineal simple.  
 
-En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu grafico.  
+En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu gráfico.  
 
 ```{r icon-links7,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -167,7 +167,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/m
 
 ## Modelos mixtos.  
 
-Esta clase es una introducción a los modelos mixtos.  
+Esta clase es una introducción a los modelos mixtos y a la selección de modelos usando el AIC.  
 
 ```{r icon-links9,echo=FALSE}
 icon_link(icon = "fas fa-images",
