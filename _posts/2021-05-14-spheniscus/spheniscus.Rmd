@@ -125,7 +125,7 @@ plot_depth(TDR_trip = TDR_corrected,
 
 ## identify_dives 🐟
 
-Esta función identifica identifica cada buceo como unidades individuales, y les asigna a cada inmersión un numero, una profundidad media de buceo, una profundidad máxima de buceo, una duración media de buceo y una duración máxima de buceo.  
+Esta función identifica cada buceo como unidades individuales, y les asigna a cada inmersión un numero, una profundidad media de buceo, una profundidad máxima de buceo, una duración media de buceo y una duración máxima de buceo.  
 En el ejemplo, los buceos reales fueron considerados cuando el animal se encontraba más profundo de 3 metros.
 
 ```{r, eval=FALSE}
@@ -156,9 +156,9 @@ knitr::kable(dive_parameters)
 
 # Citar
 
-Este script acompaña una publicación en pingüinos por Lerma et al. (en preparación)  
+- Este script acompaña una publicación en pingüinos por Lerma et al. (en preparación)  
 
-Para dar atribución:  
+- Para dar atribución:  
 Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.4709837 
 
 [![DOI](https://zenodo.org/badge/360213200.svg)](https://zenodo.org/badge/latestdoi/360213200)

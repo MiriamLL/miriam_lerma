@@ -21,7 +21,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/sula/main/ma
 # Intro
 
 Este paquete contiene:  
+
 - **Datos** de tracks de kena (_Sula dactylatra_) colectados en Rapa Nui para replicar los ejemplos 🗿  
+
 - **Trece funciones** para limpiar y calcular parámetros de viajes a partir de datos GPS
 
 ```{r icon-links1,echo=FALSE}
