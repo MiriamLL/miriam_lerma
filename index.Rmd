@@ -30,7 +30,7 @@ icon_link(icon = "fab fa-github-alt",
           text = "Github",
           url = "https://github.com/MiriamLL")
 icon_link(icon = "fab fa-linkedin-in",
-          text = "LinkedId",
+          text = "LinkedIn",
           url = "https://www.linkedin.com/in/miriam-lerma/")
 ```
 </center>
