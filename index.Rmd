@@ -29,11 +29,8 @@ icon_link(icon = "fab fa-twitter",
 icon_link(icon = "fab fa-github-alt",
           text = "Github",
           url = "https://github.com/MiriamLL")
-icon_link(icon = "far fa-envelope",
-          text = "Email",
-          url = "mailto:miriamjlerma@gmail.com")
 icon_link(icon = "fab fa-linkedin-in",
-          text = "LinkedIn",
+          text = "LinkedId",
           url = "https://www.linkedin.com/in/miriam-lerma/")
 ```
 </center>
@@ -46,7 +43,7 @@ My work entitles analyzing spatial patterns of marine animals while collaboratin
 Currently, I am training technicians and students in [R](https://www.r-project.org/about.html), a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely to students in Mexico, you can locate them [here](https://www.miriam-lerma.com/materiales.html), please note that these materials are in Spanish. 
 
 My research interests include conservation, ecology, physiology, and ecotoxicology. 
-I am passionate about nature, biology, and outdoor activities.   
+I am passionate about nature, biology, and outdoor activities. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV0306.pdf).  
 
 If you are interested in a collaboration, or have any questions, please feel free to email me. 
 

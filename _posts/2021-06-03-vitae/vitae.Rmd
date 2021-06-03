@@ -1,0 +1,283 @@
+---
+title: "CV"
+description: |
+  Como crear tu cv en R. 
+preview: cv-logo.png
+author:
+  - name: Miriam Lerma
+date: 2021-06-02
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+Para crear tu cv en R, básicamente necesitas saber Rmd. Si quieres aprender primero Rmd te recomiendo revisar primero [aqui](https://www.miriam-lerma.com/posts/2021-03-29-rmd/).
+
+## Descargar el paquete
+
+Puedes descargar el paquete desde github.
+
+```{r, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("mitchelloharawild/vitae")
+```
+
+Para ver detalles ésta es la [página](https://pkg.mitchelloharawild.com/vitae/).
+**Nota** Tardo muchisimo descargando updates.
+
+## Iniciar con un template
+
+File>NewFile>R Markdown>From template
+
+Te abre un nuevo Rmd, pero si le das a knit, por lo menos a mi me daba error.
+
+```{r, eval=FALSE}
+Error: LaTeX failed to compile Untitled.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips.
+```
+
+Si es tu caso, habrá que instalar de nuevo tinytext.
+
+```{r, eval=FALSE}
+tinytex::install_tinytex()
+```
+
+Elije el template que mas te guste. En la pagina puedes ver algunos ejemplos. Aunque tambien se puede modificar en el output del YAML.
+
+
+## Tus datos
+
+Básicamente de aquí lo que tienes que hacer es sustituir con tus datos.
+
+```{r, eval=FALSE}
+---
+name: Marie
+surname: Curie
+position: "Professor"
+address: "School of Physics & Chemistry, École Normale Supérieure"
+phone: +1 22 3333 4444
+www: mariecurie.com
+email: "Marie.Curie@ens.fr"
+twitter: mariecurie
+github: mariecurie
+linkedin: mariecurie
+date: "`r format(Sys.time(), '%B %Y')`"
+output: 
+  vitae::latexcv:
+    theme: classic
+---
+```
+
+Me estaba causando muchos problemas, entonces cambie el output a awesomecv y puse keep_tex en false. 
+
+```{r}
+output: 
+  vitae::awesomecv:
+    keep_tex: false
+```
+
+
+## Experiencia
+
+Para elegir las partes de mi CV me base en el CV de [Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf)
+
+Contiene
+- Research interest
+- Education
+- Peer-reviewed Publications
+- Teaching experience
+- References
+
+## Agregar entradas
+
+Cuando es por ejemplo educacion puedes poner solo anio.
+Si quieres agregar meses, agrega comillas.
+```{r, eval=FALSE}
+tribble(
+  ~Year, ~Type, ~Desc,
+  "2021-current", "Postdoc", "Universidad de Kiel",
+  "2020-2021","Postdoc","Universidad de Kiel"
+) %>% 
+  detailed_entries(
+    glue::glue("Trabajos {Type}"),
+    Year, 
+    Desc
+  )
+```
+
+Nota que puedes usar brief entries, o detailed entries. Yo elegi detailed_entries
+
+
+## Tus publicaciones
+
+Para agregar publicaciones debes modificar el archivo **.bib** con tus datos.
+
+Si quieres aprender como extraer las citas, te recomiendo mirar [aqui](https://miriamll.github.io/Curso_CIAD/Rmd-Parte2#12) 
+
+```{r, eval=FALSE}
+library(dplyr)
+knitr::write_bib(c("vitae", "tibble"), "papers.bib")
+
+bibliography_entries("papers.bib") %>%
+  arrange(desc(author$family), issued)
+```
+
+Pero a mi no me gusto esta manera porque omite los acentos entonces use 
+
+```{r, eval=FALSE}
+tribble(
+  ~ name, ~ journal,  ~type, ~ bib,
+
+  "Breeding stage, not sex, affects foraging characteristics in masked boobies at Rapa Nui",
+  "Beh Ecol Soc 74: 149",
+  "Journal Article",
+  "Lerma L, Dehnhard N, Luna-Jorquera G, Voigt CC, Garthe S (2020). \\textit{https://doi.org/10.1007/s00265-020-02921-1}",
+  
+ 
+) %>% 
+  mutate(date = as.Date(paste("01", date), format = "%d %m, %Y")) %>% 
+  dplyr::arrange(desc(date)) %>% 
+  detailed_entries(with = name, what = journal, where = type, why = bib, .protect=FALSE)
+```
+
+## Habilidades
+
+```{r, eval=FALSE}
+tribble(
+  ~ company, ~ loc, ~ dates, ~ details,
+  
+  "Teaching skills",  #First, bold
+  "Mazatlán, Mexico", #Azul derecha
+  "January-May 2021",  #Gris derecha
+  
+  list("University teaching: Experimental design and R programming. Centro de Investigación  en Alimentación y Desarrollo A. C."
+    )
+    
+  
+) %>% 
+  detailed_entries(role, dates, company, loc, details)
+```
+
+```{r skills, eval=FALSE}
+tribble(
+  ~ role, ~ company, ~ loc, ~ dates, ~ details,
+  
+  "Statistical analyses", # Second #mayusculas
+  "Computer skills",  #First, bold
+  "", #Azul derecha
+  "",  #Gris derecha
+  
+  list("R",
+       "Statistica",
+       "SPSS",
+       "Sigmaplot"
+    ),
+  
+  "Spatial analyses", # Second #mayusculas
+  "Computer skills",  #First, bold
+  "", #Azul derecha
+  "",  #Gris derecha
+  
+  list("R",
+       "QGIS"
+    ),
+  
+  " ", # Second #mayusculas
+  "Fieldwork skills",  #First, bold
+  "", #Azul derecha
+  "",  #Gris derecha
+  
+  list("Catching and handling wild animals",
+       "Sample collection: extraction of blood and feathers",
+       "Censing populations, monitoring breeding success"
+    ),
+  
+  " ", # Second #mayusculas
+  "Laboratory skills",  #First, bold
+  "", #Azul derecha
+  "",  #Gris derecha
+  
+  list("Dissection of birds",
+       "Determination of heavy metal concentrations",
+       "Stable isotopes analyses",
+       "Physiological (plasma metabolites) analyses"
+    )
+    
+  
+) %>% 
+  detailed_entries(role, dates, company, loc, details)
+```
+
+
+### Tabla
+En el YAML
+
+```{r, eval=FALSE}
+always_allow_html: yes
+```
+
+```{r, eval=FALSE}
+Skills %>%
+  kbl(booktabs = T,align = 'c',#create table, alignt to center
+      format = "latex" #quita las lineas
+      ) %>% 
+  column_spec(column = 1:4, width = '4cm') %>% #adjust size
+  row_spec(0, bold = T, color = "#009acd") %>% #change color in the text
+  row_spec(1, bold = F, color = "#7f7f7f") %>% #greyish text
+```
+
+
+## Agregar iconos
+
+En el YAML, para cambiar colores 
+```{r, eval=FALSE}
+
+```
+
+```{r, eval=FALSE}
+
+```
+
+Inspiracion: [Lorena Abad](https://github.com/loreabad6/R-CV)
+
+## Colores
+
+En el YAML
+
+```{r, eval=FALSE}
+headcolor: 009ACD
+```
+
+## Negritas e italitas
+
+En el texto
+
+```{r, eval=FALSE}
+\\textit{} #italicas
+\\textbf{} #negritas
+```
+
+En la lista, es importante agregar protect a FALSE
+
+```{r, eval=FALSE}
+detailed_entries(Place, 
+                   Position,
+                   Project, 
+                   Year,
+                   .protect = FALSE)
+```
+
+## Resumiendo
+
+Pros: Solo se tiene que hacer la estructura una vez, tiene como una estructura mas atractiva.
+
+Cons: Lentisimo y muchos problemas con latex. En crear el pdf ~ 2 minutos.
+
+
+## Créditos y recursos
+
+- El CV más bonito que he visto por [Lorena Abad](https://github.com/loreabad6/R-CV)
