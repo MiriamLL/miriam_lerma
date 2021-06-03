@@ -13,11 +13,15 @@ output:
 ---
 
 
-# Paquetes
+# Intro
+
+Hay varias maneras de aprender, aqui te muestro el formato de blog, donde puedes ver detalles en el texto, pero si estas en celular, que es frecuentemente mi caso, lo que hago es que 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(distilltools)
+ColorEnlace<-'#7209B7'
+ColorEnlaceInverso<-"#4cc9f0"
 ```
 
 Taller para crear tus propios **paquetes.**<br>

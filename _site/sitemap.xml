@@ -5,12 +5,16 @@
     <lastmod>2021-05-18T21:42:02+02:00</lastmod>
   </url>
   <url>
+    <loc>https://miriamlerma.netlify.app/blog.html</loc>
+    <lastmod>2021-06-03T14:13:07+02:00</lastmod>
+  </url>
+  <url>
     <loc>https://miriamlerma.netlify.app/</loc>
-    <lastmod>2021-05-18T21:46:27+02:00</lastmod>
+    <lastmod>2021-06-03T12:12:47+02:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/materiales.html</loc>
-    <lastmod>2021-04-28T13:17:27+02:00</lastmod>
+    <lastmod>2021-06-03T12:13:03+02:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/projects.html</loc>
@@ -19,6 +23,14 @@
   <url>
     <loc>https://miriamlerma.netlify.app/publications.html</loc>
     <lastmod>2021-03-29T14:11:41+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://miriamlerma.netlify.app/posts/2021-06-03-paquetes/</loc>
+    <lastmod>2021-06-03T14:44:27+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://miriamlerma.netlify.app/posts/2021-06-03-paginadistill/</loc>
+    <lastmod>2021-06-03T14:23:24+02:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/posts/2021-05-14-spheniscus/</loc>
@@ -30,7 +42,7 @@
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/posts/2021-04-28-otros/</loc>
-    <lastmod>2021-05-18T10:21:01+02:00</lastmod>
+    <lastmod>2021-06-03T12:36:51+02:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/posts/2021-03-29-rmd/</loc>

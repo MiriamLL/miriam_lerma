@@ -14,6 +14,8 @@ navbar:
       href: materiales.html
     - text: "Projects"
       href: projects.html
+    - text: "Blog"
+      href: blog.html
     - icon: fab fa-twitter
       href: https://twitter.com/MiriamLermaL
     - icon: fab fa-github

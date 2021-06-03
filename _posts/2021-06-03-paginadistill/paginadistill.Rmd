@@ -1,0 +1,224 @@
+---
+title: "Pagina distill"
+description: |
+  Como crear tu propia pagina y agregar contenidos. 
+preview: spheniscus-logo.png
+author:
+  - name: Miriam Lerma
+date: 2021-06-01
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Crear un sitio 👩🏽‍💻
+
+```{r setup, echo=FALSE}
+library(fontawesome)
+library(distilltools)
+```
+
+Para crear una pagina web usando distill, básicamente necesitas saber Rmd.
+
+Empecemos por instalar el paquete **distill**.
+
+```{r, eval=FALSE}
+#install.packages("distill")
+library(distill)
+```
+
+Tienes que preguntarte: ¿Que tipo de página quieres hacer? ¿Sitio web o blog?
+
+Para cualquiera de las opciones puedes ir a File>New Project> Distill Website o Distill Blog
+
+[Ver otros detalles]('https://rstudio.github.io/distill/images/create-website.png')
+
+La estructura del sitio contiene varios archivos
+
+- La configuración del sitio: **site.yml**
+- La primera página que se abre cuando entras: **index.Rmd**
+- Otros Rmd donde puedes escribir sobre tí. Ej. **about.Rmd**
+
+## Barra de navegación ⛵
+
+Para modificar la barra de navegación, abre el archivo **site.yml** <br>
+Puedes elegir donde quieres que aparezcan los contenidos. Ej. al elegir **left** aparecerán a la izquierda.  
+Para agregar pestañas agrega **text** y **href**. Pon atención a los espacios vacios. <br>
+
+```{r, eval=FALSE}
+navbar:
+  left: 
+    - text: "Home"
+      href: index.html
+    - text: "Projects" 
+      href: projects.html
+    - icon: fab fa-twitter
+      href: https://twitter.com/MiriamLermaL
+    - icon: fab fa-github
+      href: https://github.com/MiriamLL
+
+```
+
+## Crear un post 📬
+
+Usa la función create_post y escribe dentro el nombre que quieras darle a tu post. 
+
+```{r, eval=FALSE}
+library(distill)
+create_post("Nombre de tu post")
+```
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+v Created post at _posts/2021-05-14-Nombre de tu post
+```
+
+Y te abrirá un nuevo Rmd.
+
+[Ver Uwe's blog para otros detalles](http://uwesterr.de/posts/2020-01-17-create-a-blog-with-distill/)
+
+## Escribir en el post ✏️
+
+Puedes abrir el Rmd que creaste usando la función create_post y escribir como en cualquier Rmd.
+
+La información en el yaml aparecerá en el indice de la pestaña.
+
+```{r, eval=FALSE}
+---
+title: "sula"
+description: |
+  A short description of the post.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 05-14-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+```
+
+## Agregar código 👩🏽‍💻
+
+Para agregar código y que no salga por otro lado el titulo, texto y código hay que tener espacios entre ellos.
+
+```{r, eval=FALSE}
+Titulo
+
+Texto
+
+Chunk
+
+```
+
+## CSS 👩🏽‍🎨
+
+En el paquete distill puedes usar la función create_theme, y poner el nombre que le quieres dar al archivo.
+
+```{r,eval=FALSE}
+create_theme("mi_estilo")
+```
+
+Te va a crear un archivo css que puedes modificar para cambiar el aspecto de tu página.
+Una vez creado y/o modificado, debes incluirlo en **site.yml**.
+
+```{r, eval=FALSE}
+output: 
+  distill::distill_article:
+    theme: mi_estilo.css
+```
+
+Puedes cambiar el estilo de las [letras](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#17), y los [colores](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16). [Ver más recursos de estilos](https://rstudio.github.io/distill/website.html#custom-style). 
+
+
+## Citas 🌹
+
+Para que aparezcan o no las citas, hay que abrir el **site.yml** y escribir:
+
+```{r, eval=FALSE}
+collections:
+  posts:
+    citations: false
+```
+
+## Agregar botones 🛎️
+
+Se pueden agregar botones en la página para los enlaces. Para la inspiración y fuente ve al sitio de [Ella Kaye](https://ellakaye.github.io/distilltools/)
+
+Para agregar botones, empieza por instalar el paquete distilltools desde github.
+
+```{r, eval=FALSE}
+#remotes::install_github("EllaKaye/distilltools")
+library(distilltools)
+```
+
+**Nota** Si tienes algunos problemas con rlang, puedes intentar reiniciar sesión y reinstalar el paquete rlang.
+
+
+Para agregar iconos usa la función icon_link
+
+```{r icon-links, eval=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "slides",
+          url = "https://miriamll.github.io/Tutorial_distill_es/TutorialPaginaDistill")
+```
+
+Para elegir el icono, entrar a la pagina [fontawesome](https://fontawesome.com/icons/download?style=solid): (1) Elige el icono; (2) Busca la información de html; (3) Copia lo que esta dentro de < y >.
+
+Para cambiar como se ven los botones, hay que especificarlo en el css. Por ejemplo:
+
+```{r, eval=FALSE}
+.icon-link {
+    background-color: transparent;
+    color: #D40067;
+    border: 1px solid;
+    border-color: #D40067;
+    padding: 5px .4rem 5px .4rem;
+    /*margin: 4px;*/
+    margin-top: 4px;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    border-radius: 5px; /* Rounded edges */
+}
+
+.icon-link:hover {
+    background-color: #D40067;
+    border-color: #D40067;
+    color: white;
+}
+```
+
+
+## De Rstudio a online 👩🏽‍🚀
+
+Uno de los retos es poner tu pagina online. 
+
+- Se pueden subir los archivos directamente a:
+ [Netlify](https://www.netlify.com/)
+
+- Se pueden subir los archivos a github, y conectarlo con Netlify.  
+**Recomendado** porque puedes estar actualizando los materiales desde RStudio.  
+
+De entrada, tu sitio sera tunombre.netlify.app. Si quieres que sea tunombre.com u otro, cuesta alrededor de 12 dolares, pero varia mucho. 
+
+
+Publicar sitio por [Lisa Lendway](https://lisalendway.netlify.app/posts/2020-12-09-buildingdistill/?utm_source=dlvr.it&utm_medium=facebook)
+
+## Créditos y recursos 🚀
+
+- Tutoriales<br>
+[`r fa("robot", fill = "Black")` Crear articulo en distill](https://rstudio.github.io/distill/)<br>
+[`r fa("book-open", fill = "Black")` Crear sitio](https://rstudio.github.io/distill/website.html)<br>
+[`r fa("book-open", fill = "Black")` (Re-)introducing Distill for R Markdown](https://blog.rstudio.com/2020/12/07/distill/)<br>
+[`r fa("book-open", fill = "Black")` Ejemplos de paginas](https://pkgs.rstudio.com/distill/articles/examples.html)<br>
+
+- Blogs<br>
+[`r fa("camera-retro", fill = "Black")` Galeria](https://jhelvy.github.io/distillery/tips_and_tricks.html )<br>
+[`r fa("book-open", fill = "Black")` Paso a paso: crear un sitio por Lisa Lendway](https://lisalendway.netlify.app/posts/2020-12-09-buildingdistill/?utm_source=dlvr.it&utm_medium=facebook)
+
+- Videos<br>
+[`r fa("youtube", fill = "Black")` RLadies Crear un sitio por Lisa Lendway](https://www.youtube.com/watch?v=Fm3bsYCilEU)<br>

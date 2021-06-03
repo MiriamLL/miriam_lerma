@@ -1,0 +1,882 @@
+---
+title: "Paquetes"
+description: |
+  Como crear tu primer paquete con datos y algunas funciones. 
+preview: spheniscus-logo.png
+author:
+  - name: Miriam Lerma
+date: 2021-06-03
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+
+# Intro
+
+```{r setup, echo=FALSE}
+library(emo)
+library(fontawesome)
+ColorEnlace<-'#7209B7'
+ColorEnlaceInverso<-"#4cc9f0"
+```
+
+Para crear un paquete principalmente hay que saber crear **funciones**.
+
+Pero ¿Porque crear un paquete? 🤔
+
+Algunas razones: <br>
+
+- Repito pasos y análisis con datos similares, _hasta ahora re-uso funciones de scripts anteriores_. <br>
+- Estudiantes y colegas me preguntan como realizar análisis similares, pero _no están familiarizados con la sintaxis de las funciones_ <br>
+- Los artículos me piden más detalles de como se realizaron los análisis y _el espacio es limitado para dar detalles_.<br>
+- Aunque existan paquetes similares no cubren todos los pasos, _sirven de inspiración pero no resuelven el problema_.<br>
+
+## 1.1. Nombrar el paquete ✏️
+
+Para crear paquetes se puede usar el paquete **usethis**
+
+```{r, eval=FALSE}
+#install.packages('usethis')
+library(usethis)
+```
+
+Antes de iniciar a crear un paquete, se puede consultar si el nombre no esta siendo usando en otro paquete en en la página [CRAN](https://cran.r-project.org/). También existe el paquete **available** para revisar si el paquete ya existe en CRAN o en github y si el nombre del paquete puede ser ofensivo.
+
+```{r, eval=FALSE}
+install.packages('available')
+library(available)
+available("nombre_paquete")
+```
+
+Te va preguntar si quieres que revise por contenido ofensivo, puedes poner **Y**.
+
+```{r, eval=FALSE}
+Urban Dictionary can contain potentially offensive results,
+  should they be included? [Y]es / [N]o:
+```
+
+Después abre paginas para mostrar que significa el nombre de el paquete.
+
+
+## 1.2. Iniciar un paquete 👩🏽‍🔧️
+
+Para crear un paquete la función **create_package** crea el **esqueleto** de los paquetes.  <br>
+Dentro puedes poner el nombre del paquete que te interesa crear.  
+
+```{r, eval=FALSE}
+usethis::create_package("nombre_paquete")
+```
+
+Aparecerá algo así:
+
+```{r, eval=FALSE}
+√ Creating 'nombre_paquete/'
+√ Setting active project to '...'
+√ Creating 'R/'
+√ Writing 'DESCRIPTION'
+Package: nombre_paquete
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R (parsed):
+    * First Last <first.last@example.com> [aut, cre] (YOUR-ORCID-ID)
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+√ Writing 'NAMESPACE'
+√ Writing 'nombre_paquete.Rproj'
+√ Adding '^nombre_paquete\\.Rproj$' to '.Rbuildignore'
+√ Adding '.Rproj.user' to '.gitignore'
+√ Adding '^\\.Rproj\\.user$' to '.Rbuildignore'
+√ Opening '...' in new RStudio session
+√ Setting active project to '<no active project>'
+```
+
+**Nota**: Si te encuentras dentro de un **proyecto** va a preguntar si deseas sobregrabar el proyecto existente. Si es el caso: **2: Absolutely**
+
+```{r, eval=FALSE}
+v Writing 'NAMESPACE'
+Overwrite pre-existing file 'nombre_paquete.Rproj'?
+
+1: Not now
+2: Absolutely
+3: No way
+```
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+v Writing 'nombre_paquete.Rproj'
+v Adding '^nombre_paquete\\.Rproj$' to '.Rbuildignore'
+v Adding '^\\.Rproj\\.user$' to '.Rbuildignore'
+v Opening '...' in new RStudio session
+v Setting active project to '<no active project>'
+```
+
+Se abrirá el proyecto en otra ventana.
+
+## 1.3. Archivos   📄📂️ 
+
+La función anterior creó los archivos:  
+- .gitignore <br>
+- .Rbuildignore<br>
+- DESCRIPTION<br>
+- NAMESPACE<br>
+- README.md<br>
+
+Las Carpetas:<br>
+- R<br>
+
+
+
+## 1.4. Git & Github 🐱🐙
+
+Si ya tienes instalado git puedes directamente conectar el paquete con tu repositorio, escribiendo en tu consola:
+
+```{r, eval=FALSE}
+usethis::use_git()
+```
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+√ Setting active project to '...'
+√ Adding '.Rdata', '.httr-oauth', '.DS_Store' to '.gitignore'
+There are 6 uncommitted files:
+ '.gitignore'
+ '.Rbuildignore'
+ 'DESCRIPTION'
+ 'NAMESPACE'
+Is it ok to commit them?
+
+1: Absolutely not
+2: Yup
+3: Negative
+```
+
+3: Yup... es **si**
+
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+√ Adding files
+√ Making a commit with message 'Initial commit
+ A restart of RStudio is required to activate the Git pane
+Restart now?
+1: Yup
+2: No
+3: Not now
+```
+
+Si deseas reiniciar RStudio para activar git:  
+1: Yup... es **sip**
+
+Se reiniciara la sesión
+
+Para ahora conectarlo con **github**, hay que escribir en la consola:
+
+```{r, eval=FALSE}
+usethis::use_github()
+```
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+i Defaulting to https Git protocol
+√ Setting active project to 'C:/...'
+√ Checking that current branch is default branch ('master')
+√ Creating GitHub repository '...'
+√ Setting remote 'origin' to 'https://github.com/...git'
+√ Setting URL field in DESCRIPTION to 'https://github.com/...'
+√ Setting BugReports field in DESCRIPTION to 'https://github.com/...'
+There is 1 uncommitted file:
+ 'DESCRIPTION'
+Is it ok to commit it?
+1: No
+2: No way
+3: I agree
+```
+
+Si es correcto elegir 3: I agree, que significa de acuerdo
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+√ Adding files
+√ Making a commit with message 'Add GitHub links to DESCRIPTION'
+√ Pushing 'master' branch to GitHub and setting 'origin/master' as upstream branch
+√ Opening URL 'https://github.com/...'
+```
+
+Abrirá github
+
+## 1.4. devtools ⏳
+
+Escribir en la consola
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+Esta función se dedico a revisar la versión, plataforma, sesiones y demás.   
+Tarda un poquito.
+
+```{r, eval=FALSE}
+0 errors √ | 1 warning x | 0 notes √
+```
+
+El **warning** ocurre porque hay que darle una licencia al paquete.
+
+```{r, eval=FALSE}
+Non-standard license specification:
+    `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+  Standardizable: FALSE
+```
+
+
+## 1.5. Licencia 📋
+
+Para software la licencia más común es **MIT**
+
+```{r, eval=FALSE}
+usethis::use_mit_license("Mi Nombre")
+```
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+√ Setting License field in DESCRIPTION to 'MIT + file LICENSE'
+√ Writing 'LICENSE'
+√ Writing 'LICENSE.md'
+√ Adding '^LICENSE\\.md$' to '.Rbuildignore'
+```
+
+Para revisar si funcionó:
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+Tarda un poquito.
+
+```{r, eval=FALSE}
+0 errors √ | 0 warning √ | 0 notes √
+```
+
+## 1.6. metadata ☎️
+
+Para agregar metadata se debe abrir y modificar el documento que dice DESCRIPTION, agregando tus datos.  
+
+Esta es la información de contacto si hay problemas con el paquete.  
+
+```{r, eval=FALSE}
+Authors@R:
+  person(given = "Miriam",
+         family = "Lerma",
+         role = c("aut", "cre"),
+         email = "miriamjlerma@gmail.com",
+         comment = c(ORCID = "0000-0002-7632-9289"))
+```
+
+## 1.7. README 🏗️
+
+Para crear un nuevo README, el paquete **usethis** tiene una función para crearlo de manera automática,
+
+```{r, eval=FALSE}
+library(usethis)
+use_readme_rmd(open = rlang::is_interactive())
+```
+
+```{r, eval=FALSE}
+√ Setting active project to '...'
+√ Writing 'README.Rmd'
+√ Adding '^README\\.Rmd$' to '.Rbuildignore'
+ Modify 'README.Rmd'
+√ Writing '.git/hooks/pre-commit'
+```
+
+
+# 2. Datos 💾
+
+Para agregar datos en tu paquete, puedes cargar tus datos y despues guardarlos dentro de tu proyecto. <br>
+
+```{r, eval=FALSE, echo=FALSE}
+library(here)
+TDR_raw <- read.table(here("./Data/A13269_05-12-2018_PH2.csv"), header=T, sep="\t")
+```
+
+Por convención los datos puedes ser colocados en una carpeta que se llame **data** en el paquete. <br>
+Puedes hacer eso abriendo la pestaña de **Files** y eligiendo **New Folder**. <br>
+
+Para comprimir datos pesados puedes guardarlos como **.rda**.
+
+```{r, eval=FALSE}
+save(TDR_raw, file="TDR_raw.rda")
+```
+
+Para revisar el peso de los datos puedes usar:
+
+```{r, eval=FALSE}
+object.size(TDR_raw)
+```
+
+```{r, eval=FALSE}
+pryr::mem_used()
+```
+
+
+## 2.1. Documentar datos
+
+Para documentar tus datos, puedes abrir un nuevo script (File>NewFile>R Script) o usar la función del paquete **usethis**.
+
+Tanto la función use_r como use_data funcionan.
+
+```{r, eval=FALSE}
+usethis::use_r("mis_datos")
+usethis::use_data("mis_datos")
+```
+
+Esta función agrega comentarios Roxigen y guarda el documento en tu folder llamado **R**. <br>
+En mi caso yo le di al script el mismo nombre que a los datos. 
+
+```{r, eval=FALSE}
+#' Mis datos son datos de...
+#' Contiene 264197 obs de 1 variable.
+#' @docType data
+#' @usage data(mis_datos)
+#' @format Un data frame con 1 variable
+#' @keywords datasets
+#' @references Lerma et al. 2021
+#' @examples
+#' data(mis_datos)
+"mis_datos"
+```
+
+Una vez creado el archivo **.rda** y **.R** se puede revisar si funcionó usando funciones del paquete **devtools**
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+Si los datos son muy pesados y te aparece un mensaje como este:
+
+```{r, eval=FALSE}
+Note: significantly better compression could be obtained
+          by using R CMD build --resave-data
+```
+
+Es mejor agregar el argumento compress.
+
+```{r, eval=FALSE}
+save(TDR_raw, file="TDR_raw.rda", compress = "xz")
+```
+
+## 2.2. Resumido
+
+Agrega datos al paquete
+
+```{r, eval=FALSE}
+save(mis_datos, file="mis_datos.rda")
+
+# Tu objeto, tu documento rda y tu R deben tener el mismo nombre. 
+
+usethis::use_r("mis_datos")
+
+#Insertar Roxigen Skeleton  (CTRL+ALT+SHIFT+R) o copiar y pegar de otro archivo
+
+devtools::document()
+
+devtools::check()
+```
+
+Si después de usar **devtools::check()**, aparece:
+
+```{r, eval=FALSE}
+0 errors √ | 0 warnings √ | 0 notes √
+```
+
+Ya tienes tu primer paquete con datos 🥳.
+
+- Para instalar el paquete de manera local
+
+```{r, eval=FALSE}
+devtools::install("C:/....")
+```
+
+- Para instalar el paquete desde github
+
+```{r, eval=FALSE}
+devtools::install_github("Desarrollador/paquete")
+```
+
+# 3. Funciónes 🤸🏾‍
+
+Para este paso deberías tener alguna función en mente.  
+
+Si aún no sabes como crear tu primera función puedes ir a [r4ds](https://r4ds-en-espaniol.netlify.app/funciones.html).  
+
+La estructura es algo así:
+
+```{r, eval=FALSE}
+nombre_de_la_funcion<-function(argumentos){
+  algo_que_haga_la_funcion_usando(argumentos)
+  return(resultado)
+}
+```
+
+## 3.1. Función sin dependencias
+
+Para agregar la función al paquete.
+
+```{r, eval=FALSE}
+usethis::use_r("mi_segunda_funcion")
+```
+
+**Abre un nuevo script**  
+Pega allí la función
+
+Aparecerá algo como: 
+
+```{r, eval=FALSE}
+√ Setting active project to 'C:/...'
+ Modify 'R/mi_segunda_funcion.R'
+ Call `use_test()` to create a matching test file
+```
+
+Ahora en la carpeta R aparecerá dentro la función
+
+Agregar un Roxigen skeleton: <br>
+- Poner el cursor justo en la primera linea de la función. <br>
+- Abrir la pestaña de Code>Insert Reoxygen Skeleton (también funciona con Control+Alt+Shift+R).  <br>
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+#' Title
+#'
+#' @param data 
+#' @param trip_start 
+#' @param trip_end 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+```
+
+
+Después de rellenar la información necesaria, para agregar la función al paquete, escribe en la consola:
+
+```{r, eval=FALSE}
+devtools::document()
+```
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+Writing NAMESPACE
+Writing mi_segunda_funcion.Rd
+```
+
+Al abrir la carpeta **man** aparecerá un documento rellenado.  
+El nombre **man** viene de manual y esta es la documentación del paquete.  
+No debe ser editado de manera manual.
+
+Ya puedes revisar la documentación.
+
+```{r, eval=FALSE}
+?mi_segunda_funcion
+```
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+
+## 3.2. Funciones con dependencia
+
+Te recomiendo probar tu función con datos de ejemplo, antes de incluirla en el paquete.  
+
+- Revisa que paquetes son requeridos, por ejemplo: **tidyr** 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyr)
+```
+
+- Define los argumentos por separado como objeto.
+
+```{r parameters, eval=FALSE}
+data=misdatos
+mi_primer_argumento='mi_primer_argumento'
+mi_segundo_argumento='mi_segundo_argumento'
+```
+
+- Prueba la función
+
+```{r, eval=FALSE}
+mi_funcion(data = mis_datos,
+           mi_primer_argumento='mi_primer_argumento',
+           mi_segundo_argumento='mi_segundo_argumento')
+```
+
+Otra opción es usar el paquete ['testthat'](https://testthat.r-lib.org/) para probar tu función.
+
+
+Para agregar la función al paquete:
+
+```{r, eval=FALSE}
+usethis::use_r("tu_funcion")
+```
+
+**Abre un nuevo script**. Pega allí la función. En la consola aparecerá algo como:
+
+```{r, eval=FALSE}
+ Modify 'R/tu_funcion.R'
+ Call `use_test()` to create a matching test file
+```
+
+Ahora en la carpeta **R** dentro del paquete aparece la función.  
+**Nota** sugiere que uses use_test pero puede en conflicto con el siguiente paso.  
+Puedes usar /rm() para quitar tu función.
+
+Para poner la función en la memoria local y confirmar que se ejecute hay que incluirla en el paquete y probarla.
+
+```{r, eval=FALSE}
+devtools::load_all()
+```
+
+Para documentar la función hay que crear un Roxigen skeleton.  
+Para esto se debe poner el cursor justo en la primera linea de la función.  
+Después ir a la pestaña de Code>Insert Reoxygen Skeleton (tambíen funciona con Control+Alt+Shift+R).  
+
+Va a aparecer algo así:
+
+```{r, eval=FALSE}
+#' Title
+#'
+#' @param data 
+#' @param mi_primer_argumento 
+#' @param mi_segundo_argumento 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+```
+
+**Nota** que identifica de manera automática las variables de la función
+
+Ahora, que ya esta la función y la documentación para agregar el paquete hay que escribir en la consola:
+
+```{r, eval=FALSE}
+devtools::document()
+```
+
+Aparece:
+
+```{r, eval=FALSE}
+Writing NAMESPACE
+Writing mi_funcion.Rd
+```
+
+Ahora en la carpeta **man**, aparece un documento rellenado.  
+**man** viene de manual y esta es la documentación del paquete.  
+
+**Nota** No debe ser editado de manera manual.  
+
+Puedes revisar la documentación de la función.
+
+```{r, eval=FALSE}
+?mi_funcion
+```
+
+
+Dependencias son paquetes necesarios para que la función, funcione.
+
+Para revisar si necesitas dependencias se puede usar: 
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+Si tu paquete tiene dependencias, aparecerán errores, warnings y notas.  
+
+Por ejemplo, un paquete que usa: 
+- un **%>% (pipe)** depende del paquete **magrittr**, y 
+- la función **separate** depende del paquete **dplyr**.
+
+
+Para agregar las dependencias se puede escribir el nombre de los paquetes dentro de la función **use_package**
+
+```{r, eval=FALSE}
+usethis::use_package("dplyr")
+```
+
+Aparecerá algo como:
+
+```{r, eval=FALSE}
+√ Adding 'dplyr' to Imports field in DESCRIPTION
+ Refer to functions with `dplyr::fun()`
+```
+
+Así mismo aparecerá en el documento DESCRIPTION:
+
+```{r, eval=FALSE}
+Imports: 
+    dplyr
+```
+
+Lo siguiente es especificar el paquete en la función, tal como recomienda el siguiente mensaje.  
+
+```{r, eval=FALSE}
+ Refer to functions with `dplyr::fun()`
+```
+
+### pipe 🖇️
+
+La función **pipe (%>%)** del paquete magrittr es especial.  
+
+Por lo que hay que usar:
+
+```{r, eval=FALSE}
+usethis::use_pipe()
+```
+
+Aparecerá algo como: 
+
+```{r, eval=FALSE}
+√ Adding 'magrittr' to Imports field in DESCRIPTION
+√ Writing 'R/utils-pipe.R'
+ Run `devtools::document()` to update 'NAMESPACE'
+```
+
+Se recomienda volver a documentar.
+
+```{r, eval=FALSE}
+devtools::document()
+```
+
+Ahora deberá aparecer en la carpeta R un script llamado **utils-pipe.R** y  
+en el archivo DESCRIPTION deberá aparecer **Imports magrittr**
+
+
+Para checar el paquete:
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+```{r, eval=FALSE}
+0 errors √ | 0 warnings √ | 0 notes √
+```
+
+Listo! el paquete esta completo 🥳
+
+### stats 🧮
+
+Cuando queremos agregar alguna función que incluya cálculos de desviación estándar, aunque no se necesite cargar el paquete en RStudio, la función proviene de un paquete.
+
+El paquete es **stats** 
+
+Por lo tanto el paquete **stats** debe ser incluido en las dependencias.
+
+```{r, eval=FALSE}
+usethis::use_package("stats")
+```
+
+Y agregado a la función.
+
+```{r, eval=FALSE}
+resultado<- data %>%
+    dplyr::summarise(max_depth_mean=mean(.data[[var1]]),
+                     max_depth_sd=stats::sd(.data[[var1]]),
+                     max_depth_max=max(.data[[var1]]))
+```
+
+```{r, eval=FALSE}
+devtools::document()
+devtools::check()
+```
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+```{r, eval=FALSE}
+0 errors √ | 0 warnings √ | 0 notes √
+```
+
+Listo! el paquete esta completo 🥳
+
+### ggplot 🎨
+
+Cuando creamos una función con ggplot hay que declarar el uso de la función en varios argumentos de la función.  [Aquí puedes leer más](https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html).
+
+Si no, aparecerá un error:
+
+```{r, eval=FALSE}
+1 error x | 0 warnings √ | 1 note x
+```
+
+Esto occurre debido a que al revisar el paquete, no detecta varias funciones del paquete ggplot.  
+
+```{r, eval=FALSE}
+no visible global function definition for 'aes'
+```
+
+Ejemplo:   
+
+```{r, eval=FALSE}
+ggplot2::ggplot(data=data,ggplot2::aes(x=.data[[var1]],
+                              y=as.numeric(.data[[var2]])))+
+    ggplot2::geom_line()+
+    ggplot2::ylab("Diving depth (m)")+
+    ggplot2::xlab("Month.Day Hour:Minute")+
+    ggplot2::scale_y_reverse()+
+    ggplot2::theme_bw()
+```
+
+```{r, eval=FALSE}
+checking R code for possible problems ...
+```
+
+También pueden aparecer problemas con las variables al usar ggplot dentro de una función.
+
+```{r, eval=FALSE}
+no visible binding for global variable '.mis_datos'
+```
+
+Para resolver esto hay que declarar las variables dentro de la función y posteriormente usar .data
+
+```{r, eval=FALSE}
+data<-TDR_trip
+var1<-time_column
+var2<-depth_column
+  
+ggplot2::ggplot(data,
+                ggplot2::aes(x=.data[[var1]],
+                             y=.data[[var2]))+
+    ggplot2::geom_line()
+```
+
+```{r, eval=FALSE}
+devtools::document()
+devtools::check()
+```
+
+```{r, eval=FALSE}
+devtools::check()
+```
+
+```{r, eval=FALSE}
+0 errors √ | 0 warnings √ | 0 notes √
+```
+
+Listo! el paquete esta completo 🥳
+
+## 3.3. Otros problemas 👻
+
+**Problema** En algunas funciones puedes haber usado assign. Usar assign no es recomendado, por lo que aparecerá una nota.  <br>
+**Solución** Usar return().<br>
+
+**Problema** No nested functions, no circular dependencies.  <br>
+**Solución** No puedes usar funciones de tu paquete en otras funciones del mismo paquete. <br> 
+
+**Problema** Borrar funciones.<br>
+**Solución** Para borrar funciones se debe borrar el script en el archivo R y volver a documentar el paquete para que se reflejen los cambios.<br>  
+
+**Problema** Al usar slot en sapply.<br>
+**Solución** Hay que agregar la dependencia methods.<br> 
+
+**Problema** El ejemplo tiene más de 100 caracteres, es considerado muy largo.  <br>
+**Solución** Separar en la documentación.<br>
+
+```{r, eval=FALSE}
+\examples lines wider than 100 characters:
+```
+
+**Problema** Solo puedo tener un resultado (return) <br>
+**Solución** Crea una lista con los returns.<br>
+Por ejemplo:
+
+```{r, eval=FALSE}
+funcion(primer_argumento, segundo_argumento){
+  multiplicacion<-primer_argumento*segundo_argumento
+  suma<-primer_argumento+segundo_argumento
+  lista<-(list("multiplicacion"=multiplicacion,"suma"=suma))
+  return(lista)
+}
+```
+
+## 3.4. Resumido
+
+```{r, eval=FALSE}
+usethis::use_r("nombre_funcion")
+
+#Insertar Roxigen Skeleton  (CTRL+ALT+SHIFT+R)
+
+devtools::document()
+
+devtools::check()
+
+usethis::use_package("ggplot2")
+
+#Referirse a funciones con ::
+
+devtools::check()
+```
+
+
+# Otros ️
+
+## 4.1. Crear tu propio sticker ❣️
+
+Para crear un hexSticker puedes usar plantillas: <br>
+- En powerpoint [plantilla hecha por Emi Tanaka](https://emitanaka.org/posts/hexsticker/) <br> 
+- En R [paquete hexSticker hecho por GuangchuangYu](https://github.com/GuangchuangYu/hexSticker)
+
+Para instalar el paquete hexSticker (esta en CRAN):  
+
+```{r, eval=FALSE}
+install.packages("hexSticker")
+```
+
+## 4.2. Zenodo 🔗
+
+[Zenodo](https://zenodo.org/) es un repositorio de acceso abierto operado por CERN (Organización Europea para la Investigación Nuclear).
+
+**Ventajas** Permite que se depositen allí artículos de investigación, datos, software, informes y otro tipo de objeto digital relacionado con la investigación. La ventaja frente a github es que asigna un DOI.
+
+**Desventajas** Las versiones de paquetes se pueden registrar en zenodo. No obstante, NO es tan practico  ya que cada versión tiene su propio DOI y la versión anterior no puede ser eliminada.
+
+
+
+# Créditos y recursos 👩🏽‍🏫
+
+- Paquetes  
+[`r fa("robot", fill = ColorEnlaceInverso)` usethis](https://usethis.r-lib.org/)  
+[`r fa("robot", fill = ColorEnlaceInverso)` testthat](https://testthat.r-lib.org/)
+
+- Libros<br>
+[`r fa("book-open", fill = ColorEnlaceInverso)` R Packages](https://r-pkgs.org/intro.html)
+
+- Tutoriales sobre datos <br>
+[`r fa("external-link-alt", fill = ColorEnlaceInverso)` Incluir datos](https://r-pkgs.org/man.html) <br>
+[`r fa("external-link-alt", fill = ColorEnlaceInverso)` Documentar datos](https://kbroman.org/pkg_primer/pages/data.html) <br>
+
+- Tu paquete en una hora <br>
+[`r fa("external-link-alt", fill = ColorEnlaceInverso)` Piping hot data](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/)<br>
+
+- Videos<br>
+[`r fa("youtube", fill = ColorEnlaceInverso)` Rladies como crear funciones](https://www.youtube.com/watch?v=TCIMT6l53tQ&t)<br>
+[`r fa("youtube", fill = ColorEnlaceInverso)` Rladies como crear paquetes](https://www.youtube.com/watch?v=IlWMkz769B4&t)
+
