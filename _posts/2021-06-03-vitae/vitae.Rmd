@@ -1,7 +1,7 @@
 ---
 title: "CV"
 description: |
-  Como crear tu cv en R. 
+  Como crear un curriculo en RStudio usando el paquete vitae. 
 preview: cv-logo.png
 author:
   - name: Miriam Lerma
@@ -16,11 +16,12 @@ output:
 
 # Intro
 
-Para crear tu cv en R, básicamente necesitas saber Rmd. Si quieres aprender primero Rmd te recomiendo revisar primero [aqui](https://www.miriam-lerma.com/posts/2021-03-29-rmd/).
+Para crear un CV en RStudio, básicamente necesitas saber Rmd. Si quieres aprender primero Rmd te recomiendo revisar [aquí](https://www.miriam-lerma.com/posts/2021-03-29-rmd/). Si quieres ver como quedo mi cv, puedes descargarlo [aquí](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
 
-## Descargar el paquete
 
-Puedes descargar el paquete desde github.
+# Descargar el paquete 🕯️
+
+Para crear tu CV puedes descargar el paquete **vitae** desde github.
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
@@ -30,28 +31,30 @@ devtools::install_github("mitchelloharawild/vitae")
 Para ver detalles ésta es la [página](https://pkg.mitchelloharawild.com/vitae/).
 **Nota** Tardo muchisimo descargando updates.
 
-## Iniciar con un template
+# Iniciar con una plantilla 👣
 
 File>NewFile>R Markdown>From template
 
-Te abre un nuevo Rmd, pero si le das a knit, por lo menos a mi me daba error.
+Para elegir la plantilla (template), en la [página](https://pkg.mitchelloharawild.com/vitae/) puedes ver algunos ejemplos. Aunque también se puede modificar en el output del YAML después.
+
+Al elegir tu plantilla, se abrirá un nuevo Rmd. Antes de empezar a rellenar tu CV, te recomiendo probar tener todos las dependencias instaladas. Para esto, dale en knit.
+
+Tal vez tengas que instalar de nuevo tinytext. 
 
 ```{r, eval=FALSE}
-Error: LaTeX failed to compile Untitled.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips.
+Error: LaTeX failed to compile Untitled.tex. 
+See https://yihui.org/tinytex/r/#debugging for debugging tips.
 ```
 
-Si es tu caso, habrá que instalar de nuevo tinytext.
+Para instalarlo:
 
 ```{r, eval=FALSE}
 tinytex::install_tinytex()
 ```
 
-Elije el template que mas te guste. En la pagina puedes ver algunos ejemplos. Aunque tambien se puede modificar en el output del YAML.
+# Tus datos 💾
 
-
-## Tus datos
-
-Básicamente de aquí lo que tienes que hacer es sustituir con tus datos.
+Básicamente tienes que sustituir con tus datos en el YAML. Esto es lo que aparecera en la parte superior de tu CV.
 
 ```{r, eval=FALSE}
 ---
@@ -72,30 +75,32 @@ output:
 ---
 ```
 
-Me estaba causando muchos problemas, entonces cambie el output a awesomecv y puse keep_tex en false. 
+En mi caso al darle knit causando muchos problemas con LaTex, entonces cambie el output a awesomecv y puse keep_tex en false, y funciono el knit, pero tarda en crear el pdf.
 
-```{r}
+```{r, eval=FALSE}
 output: 
   vitae::awesomecv:
     keep_tex: false
 ```
 
 
-## Experiencia
+# Partes de tu CV 💭
 
-Para elegir las partes de mi CV me base en el CV de [Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf)
+Depende para que sea tu CV puedes modificar las partes.
 
-Contiene
-- Research interest
-- Education
-- Peer-reviewed Publications
-- Teaching experience
-- References
+En mi caso, yo me base en el CV de [Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf). 
 
-## Agregar entradas
+Este CV contiene  
+- Research interest  
+- Education  
+- Peer-reviewed Publications  
 
-Cuando es por ejemplo educacion puedes poner solo anio.
-Si quieres agregar meses, agrega comillas.
+# Agregar tu información ✏️
+
+Para agregar las partes a tu CV, la información se maneja como [tribble](https://rstudio-education.github.io/tidyverse-cookbook/tidy.html)
+
+Y unas de las funciones de **vitae** es detailed_entries, que es como sera mostrada la información en tu pdf, otra opción es brief_entries que presenta un formato más cortito.
+
 ```{r, eval=FALSE}
 tribble(
   ~Year, ~Type, ~Desc,
@@ -109,14 +114,10 @@ tribble(
   )
 ```
 
-Nota que puedes usar brief entries, o detailed entries. Yo elegi detailed_entries
+# Tus publicaciones 👩🏽‍🔬
 
-
-## Tus publicaciones
-
-Para agregar publicaciones debes modificar el archivo **.bib** con tus datos.
-
-Si quieres aprender como extraer las citas, te recomiendo mirar [aqui](https://miriamll.github.io/Curso_CIAD/Rmd-Parte2#12) 
+Para agregar publicaciones puedes el archivo **.bib** con tus datos. 
+Si quieres aprender como extraer las citas, te recomiendo mirar [aquí](https://miriamll.github.io/Curso_CIAD/Rmd-Parte2#12) 
 
 ```{r, eval=FALSE}
 library(dplyr)
@@ -126,158 +127,75 @@ bibliography_entries("papers.bib") %>%
   arrange(desc(author$family), issued)
 ```
 
-Pero a mi no me gusto esta manera porque omite los acentos entonces use 
+No obstante, si tus publicaciones incluyen acentos y letras _cursivas_. Entonces puede ser más practico usar tribble y detailed_entries. 
 
-```{r, eval=FALSE}
-tribble(
-  ~ name, ~ journal,  ~type, ~ bib,
-
-  "Breeding stage, not sex, affects foraging characteristics in masked boobies at Rapa Nui",
-  "Beh Ecol Soc 74: 149",
-  "Journal Article",
-  "Lerma L, Dehnhard N, Luna-Jorquera G, Voigt CC, Garthe S (2020). \\textit{https://doi.org/10.1007/s00265-020-02921-1}",
-  
- 
-) %>% 
-  mutate(date = as.Date(paste("01", date), format = "%d %m, %Y")) %>% 
-  dplyr::arrange(desc(date)) %>% 
-  detailed_entries(with = name, what = journal, where = type, why = bib, .protect=FALSE)
-```
-
-## Habilidades
-
-```{r, eval=FALSE}
-tribble(
-  ~ company, ~ loc, ~ dates, ~ details,
-  
-  "Teaching skills",  #First, bold
-  "Mazatlán, Mexico", #Azul derecha
-  "January-May 2021",  #Gris derecha
-  
-  list("University teaching: Experimental design and R programming. Centro de Investigación  en Alimentación y Desarrollo A. C."
-    )
-    
-  
-) %>% 
-  detailed_entries(role, dates, company, loc, details)
-```
-
-```{r skills, eval=FALSE}
-tribble(
-  ~ role, ~ company, ~ loc, ~ dates, ~ details,
-  
-  "Statistical analyses", # Second #mayusculas
-  "Computer skills",  #First, bold
-  "", #Azul derecha
-  "",  #Gris derecha
-  
-  list("R",
-       "Statistica",
-       "SPSS",
-       "Sigmaplot"
-    ),
-  
-  "Spatial analyses", # Second #mayusculas
-  "Computer skills",  #First, bold
-  "", #Azul derecha
-  "",  #Gris derecha
-  
-  list("R",
-       "QGIS"
-    ),
-  
-  " ", # Second #mayusculas
-  "Fieldwork skills",  #First, bold
-  "", #Azul derecha
-  "",  #Gris derecha
-  
-  list("Catching and handling wild animals",
-       "Sample collection: extraction of blood and feathers",
-       "Censing populations, monitoring breeding success"
-    ),
-  
-  " ", # Second #mayusculas
-  "Laboratory skills",  #First, bold
-  "", #Azul derecha
-  "",  #Gris derecha
-  
-  list("Dissection of birds",
-       "Determination of heavy metal concentrations",
-       "Stable isotopes analyses",
-       "Physiological (plasma metabolites) analyses"
-    )
-    
-  
-) %>% 
-  detailed_entries(role, dates, company, loc, details)
-```
-
-
-### Tabla
-En el YAML
-
-```{r, eval=FALSE}
-always_allow_html: yes
-```
-
-```{r, eval=FALSE}
-Skills %>%
-  kbl(booktabs = T,align = 'c',#create table, alignt to center
-      format = "latex" #quita las lineas
-      ) %>% 
-  column_spec(column = 1:4, width = '4cm') %>% #adjust size
-  row_spec(0, bold = T, color = "#009acd") %>% #change color in the text
-  row_spec(1, bold = F, color = "#7f7f7f") %>% #greyish text
-```
-
-
-## Agregar iconos
-
-En el YAML, para cambiar colores 
-```{r, eval=FALSE}
-
-```
-
-```{r, eval=FALSE}
-
-```
-
-Inspiracion: [Lorena Abad](https://github.com/loreabad6/R-CV)
-
-## Colores
-
-En el YAML
-
-```{r, eval=FALSE}
-headcolor: 009ACD
-```
-
-## Negritas e italitas
-
-En el texto
+Para agregar letras negritas o cursivas la sintaxis es:
 
 ```{r, eval=FALSE}
 \\textit{} #italicas
 \\textbf{} #negritas
 ```
 
-En la lista, es importante agregar protect a FALSE
+Ejemplo:
 
 ```{r, eval=FALSE}
-detailed_entries(Place, 
+tribble(
+ ~ Year, ~ Place, ~ Project, ~ Position,
+
+ "2020",
+  "\\textbf{Lerma, M}, Serratosa J, Luna-Jorquera G, Garthe S",
+  "Foraging ecology of masked boobies \\textit{(Sula dactylatra)} in the world’s largest ‘oceanic desert’",
+  "Mar Biol 167: 87"
+ 
+ ) %>% 
+  detailed_entries(Place, 
                    Position,
                    Project, 
                    Year,
                    .protect = FALSE)
 ```
 
-## Resumiendo
+Es importante poner protect en FALSE para que aparezcan los cambios.
 
-Pros: Solo se tiene que hacer la estructura una vez, tiene como una estructura mas atractiva.
+# Habilidades 🤸🏽‍️
 
-Cons: Lentisimo y muchos problemas con latex. En crear el pdf ~ 2 minutos.
+Para incluir tus habilidades puede que no quieras tener una lista con mucho espacio vacío. 
+Una opción para evitar esto es crear una tabla parecida a la que aparece en el CV de [Lorena Abad](https://github.com/loreabad6/R-CV).
+
+```{r, eval=FALSE}
+Skills<-tribble(
+   ~Computer, ~Laboratory, ~Fieldwork,~ Languages,
+  "R -- Statistica -- SPSS -- Sigmaplot -- QGIS -- Git -- Markdown",
+  "Heavy metal analyses -- Stable isotopes -- Plasma metabolites analyses",
+  "Catching and handling wild animals -- Sample collection: extraction blood & feathers -- Censing populations -- Monitoring breeding success",
+  "Spanish (Mother tongue) -- English (TOEFL iBT 99) -- German (Basic-A2)"
+)
+```
+
+```{r, eval=FALSE}
+Skills %>%
+  kbl(booktabs = T, align ="c",format = "latex") %>% #crea tabla y alinea al centro
+  column_spec(column = 1:4, width = '4cm')%>%        #separa las columnas en 4 y las hace de 4 cm
+  row_spec(0, bold = T, color = "#009acd") %>%       #hace las letras en negrita y cambia el color
+  row_spec(1, bold = F, color = "#7f7f7f")           #cambia el color del texto a gris
+```
+
+# Colores de las letras 👩🏾‍🎨
+
+Para cambiar el color del texto se puede ajustar en el YAML.
+
+```{r, eval=FALSE}
+headcolor: 009ACD
+```
 
 
-## Créditos y recursos
+# Resumiendo ✔️
+
+**vitae** es una buena opción para crear tu CV y solo se tiene que hacer la estructura una vez, que además resulta mas atractiva a la vista. No obstante puede traer muchos errores por LaTex.
+
+# Créditos y recursos 👩🏾‍🏫
 
 - El CV más bonito que he visto por [Lorena Abad](https://github.com/loreabad6/R-CV)
+- Inspiración para las partes a incluir ver [Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf)
+- Pagina con galería [vitae](https://pkg.mitchelloharawild.com/vitae/)
+
