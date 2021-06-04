@@ -110,7 +110,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Paquetes"]},{"type":"character","attributes":{},"value":["Como crear tu primer paquete con datos y algunas funciones. \n"]},{"type":"character","attributes":{},"value":["spheniscus-logo.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Paquetes"]},{"type":"character","attributes":{},"value":["Como crear tu primer paquete con datos y algunas funciones. \n"]},{"type":"character","attributes":{},"value":["paquetes-logo.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1756,7 +1756,7 @@ Tarda un poquito.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>Por convención los datos puedes ser colocados en una carpeta que se llame <strong>data</strong> en el paquete. <br> Puedes hacer eso abriendo la pestaña de <strong>Files</strong> y eligiendo <strong>New Folder</strong>. <br></p>
+<p>Por convención los datos son colocados en una carpeta que lleve el nombre de <strong>data</strong> dentro del paquete. <br> Puedes crear esta carpeta desde RStudio abriendo la pestaña de <strong>Files</strong> y eligiendo <strong>New Folder</strong>. <br></p>
 <p>Para comprimir datos pesados puedes guardarlos como <strong>.rda</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1880,7 +1880,7 @@ Tarda un poquito.</p>
 <p>Para agregar la función al paquete.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mi_segunda_funcion"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mi_primera_funcion"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -1889,7 +1889,7 @@ Pega allí la función</p>
 <p>Aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>√ Setting active project to <span class="st">&#39;C:/...&#39;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> Modify <span class="st">&#39;R/mi_segunda_funcion.R&#39;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> Modify <span class="st">&#39;R/mi_primera_funcion.R&#39;</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> Call <span class="st">`</span><span class="at">use_test()</span><span class="st">`</span> to create a matching test file</span></code></pre></div>
 </div>
 <p>Ahora en la carpeta R aparecerá dentro la función</p>
@@ -1920,7 +1920,7 @@ Pega allí la función</p>
 <p>Aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Writing NAMESPACE</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Writing mi_segunda_funcion.Rd</span></code></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Writing mi_primera_funcion.Rd</span></code></pre></div>
 </div>
 <p>Al abrir la carpeta <strong>man</strong> aparecerá un documento rellenado.<br />
 El nombre <strong>man</strong> viene de manual y esta es la documentación del paquete.<br />
@@ -2237,7 +2237,7 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 <h1 id="otros-️">Otros ️</h1>
 <h2 id="crear-tu-propio-sticker-️">4.1. Crear tu propio sticker ❣️</h2>
 <p>Para crear un hexSticker puedes usar plantillas: <br> - En powerpoint <a href="https://emitanaka.org/posts/hexsticker/">plantilla hecha por Emi Tanaka</a> <br> - En R <a href="https://github.com/GuangchuangYu/hexSticker">paquete hexSticker hecho por GuangchuangYu</a></p>
-<p>Para instalar el paquete hexSticker (esta en CRAN):</p>
+<p>Para instalar el paquete hexSticker, puedes descargarlo desde en CRAN:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"hexSticker"</span><span class='op'>)</span>

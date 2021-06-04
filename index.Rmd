@@ -38,12 +38,12 @@ icon_link(icon = "fab fa-linkedin-in",
 ### `r fa("chevron-circle-down", fill = "black")` About  me
 I am a postdoctoral researcher at West Coast Research and Technology Center [FTZ](https://www.ftz.uni-kiel.de/de) in Büsum, Germany. 
 
-My work entitles analyzing spatial patterns of marine animals while collaborating on active projects in Mexico and Chile. My focus is coastal and marine animals, in particular shorebirds and seabirds. 
+My work entitles analyzing spatial patterns of marine animals while collaborating on active projects in Mexico and Chile. My focus is coastal and marine animals, in particular shorebirds and seabirds. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV0306.pdf).
 
 Currently, I am training technicians and students in [R](https://www.r-project.org/about.html), a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely to students in Mexico, you can locate them [here](https://www.miriam-lerma.com/materiales.html), please note that these materials are in Spanish. 
 
 My research interests include conservation, ecology, physiology, and ecotoxicology. 
-I am passionate about nature, biology, and outdoor activities. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV0306.pdf).  
+I am passionate about nature, biology, and outdoor activities (e.g. kayaking, stand-up paddle, hiking and snorkeling).   
 
 If you are interested in a collaboration, or have any questions, please feel free to email me. 
 

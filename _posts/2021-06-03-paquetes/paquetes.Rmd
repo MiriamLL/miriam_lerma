@@ -314,8 +314,8 @@ library(here)
 TDR_raw <- read.table(here("./Data/A13269_05-12-2018_PH2.csv"), header=T, sep="\t")
 ```
 
-Por convención los datos puedes ser colocados en una carpeta que se llame **data** en el paquete. <br>
-Puedes hacer eso abriendo la pestaña de **Files** y eligiendo **New Folder**. <br>
+Por convención los datos son colocados en una carpeta que lleve el nombre de **data** dentro del paquete. <br>
+Puedes crear esta carpeta desde RStudio abriendo la pestaña de **Files** y eligiendo **New Folder**. <br>
 
 Para comprimir datos pesados puedes guardarlos como **.rda**.
 
@@ -438,7 +438,7 @@ nombre_de_la_funcion<-function(argumentos){
 Para agregar la función al paquete.
 
 ```{r, eval=FALSE}
-usethis::use_r("mi_segunda_funcion")
+usethis::use_r("mi_primera_funcion")
 ```
 
 **Abre un nuevo script**  
@@ -448,7 +448,7 @@ Aparecerá algo como:
 
 ```{r, eval=FALSE}
 √ Setting active project to 'C:/...'
- Modify 'R/mi_segunda_funcion.R'
+ Modify 'R/mi_primera_funcion.R'
  Call `use_test()` to create a matching test file
 ```
 
@@ -484,7 +484,7 @@ Aparecerá algo como:
 
 ```{r, eval=FALSE}
 Writing NAMESPACE
-Writing mi_segunda_funcion.Rd
+Writing mi_primera_funcion.Rd
 ```
 
 Al abrir la carpeta **man** aparecerá un documento rellenado.  
@@ -844,7 +844,7 @@ Para crear un hexSticker puedes usar plantillas: <br>
 - En powerpoint [plantilla hecha por Emi Tanaka](https://emitanaka.org/posts/hexsticker/) <br> 
 - En R [paquete hexSticker hecho por GuangchuangYu](https://github.com/GuangchuangYu/hexSticker)
 
-Para instalar el paquete hexSticker (esta en CRAN):  
+Para instalar el paquete hexSticker, puedes descargarlo desde en CRAN:  
 
 ```{r, eval=FALSE}
 install.packages("hexSticker")
