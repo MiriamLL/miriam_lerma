@@ -180,6 +180,13 @@ Skills %>%
   row_spec(1, bold = F, color = "#7f7f7f")           #cambia el color del texto a gris
 ```
 
+Para que no aparezcan las lineas en la tabla, se puede agregar en el YAML:
+
+```{r, eval=FALSE}
+  \usepackage{colortbl}
+  \arrayrulecolor{white}
+```
+
 # Colores de las letras 👩🏾‍🎨
 
 Para cambiar el color del texto se puede ajustar en el YAML.
