@@ -104,7 +104,7 @@ output:
 
 ## Agregar código 👩🏽‍💻
 
-Para agregar código y que no salga por otro lado el titulo, texto y código hay que tener espacios entre ellos.
+Para agregar código en tu post y que no salga por otro lado el titulo, texto y código hay que tener espacios entre ellos.
 
 ```{r, eval=FALSE}
 Titulo
@@ -192,6 +192,13 @@ Para cambiar como se ven los botones, hay que especificarlo en el css. Por ejemp
 }
 ```
 
+## Build 🔨
+
+En la pestaña donde tienes environment, history o git, debe aparecer una nueva pestaña con el nombre de **Build**
+
+Puedes elegir esta pestaña, y darle click al martillo que dice Build Website para ver como quedo tu página. 
+
+En la pestaña Viewer... Ya puedes ver tu pagina distill 🥳.
 
 ## De Rstudio a online 👩🏽‍🚀
 

@@ -44,7 +44,7 @@ Para crear paquetes se puede usar el paquete **usethis**
 library(usethis)
 ```
 
-Antes de iniciar a crear un paquete, se puede consultar si el nombre no esta siendo usando en otro paquete en en la página [CRAN](https://cran.r-project.org/). También existe el paquete **available** para revisar si el paquete ya existe en CRAN o en github y si el nombre del paquete puede ser ofensivo.
+Antes de iniciar a crear un paquete, se puede consultar si el nombre no esta siendo usando en otro paquete en la página [CRAN](https://cran.r-project.org/). También existe el paquete **available** para revisar si el paquete ya existe en CRAN o en github y si el nombre del paquete puede ser ofensivo.
 
 ```{r, eval=FALSE}
 install.packages('available')
@@ -226,7 +226,7 @@ Escribir en la consola
 devtools::check()
 ```
 
-Esta función se dedico a revisar la versión, plataforma, sesiones y demás.   
+Esta función revisa la versión, plataforma, sesiones y demás.   
 Tarda un poquito.
 
 ```{r, eval=FALSE}
@@ -494,7 +494,7 @@ No debe ser editado de manera manual.
 Ya puedes revisar la documentación.
 
 ```{r, eval=FALSE}
-?mi_segunda_funcion
+?mi_primera_funcion
 ```
 
 ```{r, eval=FALSE}
