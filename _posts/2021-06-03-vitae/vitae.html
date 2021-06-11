@@ -110,12 +110,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["CV"]},{"type":"character","attributes":{},"value":["Como crear un curriculo en RStudio usando el paquete vitae. \n"]},{"type":"character","attributes":{},"value":["cv-logo.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-02"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["CV"]},{"type":"character","attributes":{},"value":["Como crear un curriculo en RStudio usando el paquete vitae. \n"]},{"type":"character","attributes":{},"value":["undraw_personal_information_re_vw8a.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-02"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["vitae_files/anchor-4.2.2/anchor.min.js","vitae_files/bowser-1.9.3/bowser.min.js","vitae_files/distill-2.2.21/template.v2.js","vitae_files/header-attrs-2.8/header-attrs.js","vitae_files/jquery-1.11.3/jquery.min.js","vitae_files/popper-2.6.0/popper.min.js","vitae_files/tippy-6.2.7/tippy-bundle.umd.min.js","vitae_files/tippy-6.2.7/tippy-light-border.css","vitae_files/tippy-6.2.7/tippy.css","vitae_files/tippy-6.2.7/tippy.umd.min.js","vitae_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["portada_curriculo.jpg","undraw_personal_information_re_vw8a.png","undraw_personal_information_re_vw8a.svg","vitae_files/anchor-4.2.2/anchor.min.js","vitae_files/bowser-1.9.3/bowser.min.js","vitae_files/distill-2.2.21/template.v2.js","vitae_files/header-attrs-2.8/header-attrs.js","vitae_files/jquery-1.11.3/jquery.min.js","vitae_files/popper-2.6.0/popper.min.js","vitae_files/tippy-6.2.7/tippy-bundle.umd.min.js","vitae_files/tippy-6.2.7/tippy-light-border.css","vitae_files/tippy-6.2.7/tippy.css","vitae_files/tippy-6.2.7/tippy.umd.min.js","vitae_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1640,10 +1640,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
+<p>Para que no aparezcan las lineas en la tabla, se puede agregar en el YAML:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  \usepackage{colortbl}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  \arrayrulecolor{white}</span></code></pre></div>
+</div>
 <h1 id="colores-de-las-letras">Colores de las letras 👩🏾‍🎨</h1>
 <p>Para cambiar el color del texto se puede ajustar en el YAML.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>headcolor<span class="sc">:</span> 009ACD</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>headcolor<span class="sc">:</span> 009ACD</span></code></pre></div>
 </div>
 <h1 id="resumiendo-️">Resumiendo ✔️</h1>
 <p><strong>vitae</strong> es una buena opción para crear tu CV y solo se tiene que hacer la estructura una vez, que además resulta mas atractiva a la vista. No obstante puede traer muchos errores por LaTex.</p>
@@ -1653,7 +1658,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>Inspiración para las partes a incluir ver <a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf">Han Zhang</a></li>
 <li>Pagina con galería <a href="https://pkg.mitchelloharawild.com/vitae/">vitae</a></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
