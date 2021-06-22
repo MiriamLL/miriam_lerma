@@ -16,7 +16,11 @@ output:
 
 # Intro
 
-Para crear un CV en RStudio, básicamente necesitas saber Rmd. Si quieres aprender primero Rmd te recomiendo revisar [aquí](https://www.miriam-lerma.com/posts/2021-03-29-rmd/). Si quieres ver como quedo mi cv, puedes descargarlo [aquí](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
+Para crear un CV en RStudio, básicamente necesitas saber Rmd.  
+
+Para los básicos de Rmd te recomiendo ir [aquí](https://www.miriam-lerma.com/posts/2021-03-29-rmd/). 
+
+Si quieres ver como quedo mi cv, puedes descargarlo [aquí](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
 
 
 # Descargar el paquete 🕯️
@@ -28,14 +32,17 @@ Para crear tu CV puedes descargar el paquete **vitae** desde github.
 devtools::install_github("mitchelloharawild/vitae")
 ```
 
-Para ver detalles ésta es la [página](https://pkg.mitchelloharawild.com/vitae/).
-**Nota** Tardo muchisimo descargando updates.
+Para ver detalles ésta es la [página](https://pkg.mitchelloharawild.com/vitae/).  
 
-# Iniciar con una plantilla 👣
+**Nota** Al instalar el paquete se tarda descargando actualizaciones.
+
+# Iniciar con una plantilla 🧶
 
 File>NewFile>R Markdown>From template
 
-Para elegir la plantilla (template), en la [página](https://pkg.mitchelloharawild.com/vitae/) puedes ver algunos ejemplos. Aunque también se puede modificar en el output del YAML después.
+Para elegir la plantilla (template), en la página puedes ver algunos [ejemplos](https://pkg.mitchelloharawild.com/vitae/). 
+
+Pero si no te decides, se puede modificar en el output del YAML después.
 
 Al elegir tu plantilla, se abrirá un nuevo Rmd. Antes de empezar a rellenar tu CV, te recomiendo probar tener todos las dependencias instaladas. Para esto, dale en knit.
 
@@ -54,7 +61,9 @@ tinytex::install_tinytex()
 
 # Tus datos 💾
 
-Básicamente tienes que sustituir con tus datos en el YAML. Esto es lo que aparecera en la parte superior de tu CV.
+La información que incluyas en el YAML aparecerá en la parte superior de tu CV. 
+
+La plantilla te da un archivo prellenado, que debes modificar de acuerdo a tus datos.
 
 ```{r, eval=FALSE}
 ---
@@ -75,7 +84,7 @@ output:
 ---
 ```
 
-En mi caso al darle knit causando muchos problemas con LaTex, entonces cambie el output a awesomecv y puse keep_tex en false, y funciono el knit, pero tarda en crear el pdf.
+Si al darle knit te esta causando muchos problemas con LaTex, te recomiendo cambiar el output a awesomecv y poner keep_tex en false. 
 
 ```{r, eval=FALSE}
 output: 
@@ -86,9 +95,9 @@ output:
 
 # Partes de tu CV 💭
 
-Depende para que sea tu CV puedes modificar las partes.
+Depende para que sea tu CV puedes estructurarlo de manera diferente. 
 
-En mi caso, yo me base en el CV de [Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf). 
+Si quieres un CV académico te puedes basar en la estructura del CV de [Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf). 
 
 Este CV contiene  
 - Research interest  
@@ -99,7 +108,9 @@ Este CV contiene
 
 Para agregar las partes a tu CV, la información se maneja como [tribble](https://rstudio-education.github.io/tidyverse-cookbook/tidy.html)
 
-Y unas de las funciones de **vitae** es detailed_entries, que es como sera mostrada la información en tu pdf, otra opción es brief_entries que presenta un formato más cortito.
+Unas de las funciones de *vitae* es **detailed_entries**, que es como sera mostrada la información en tu pdf, otra opción es **brief_entries** que presenta un formato más compacto.
+
+Para llenar un tribble:
 
 ```{r, eval=FALSE}
 tribble(
@@ -202,7 +213,11 @@ headcolor: 009ACD
 
 # Créditos y recursos 👩🏾‍🏫
 
-- El CV más bonito que he visto por [Lorena Abad](https://github.com/loreabad6/R-CV)
-- Inspiración para las partes a incluir ver [Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf)
-- Pagina con galería [vitae](https://pkg.mitchelloharawild.com/vitae/)
+```{r, echo=FALSE}
+library(fontawesome)
+```
 
+- Ejemplos<br>
+[`r fa("user", fill = "#4cc9f0")` LorenaAbad](https://github.com/loreabad6/R-CV)  
+[`r fa("user", fill = "#4cc9f0")` Han Zhang](https://github.com/HanZhang-psych/CV/blob/master/CV.pdf)  
+[`r fa("user-friends", fill = "#4cc9f0")` Galería](https://pkg.mitchelloharawild.com/vitae/)

@@ -2476,7 +2476,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <ul>
 <li><a href="#intro">Intro</a></li>
 <li><a href="#descargar-el-paquete-️">Descargar el paquete 🕯️</a></li>
-<li><a href="#iniciar-con-una-plantilla">Iniciar con una plantilla 👣</a></li>
+<li><a href="#iniciar-con-una-plantilla">Iniciar con una plantilla 🧶</a></li>
 <li><a href="#tus-datos">Tus datos 💾</a></li>
 <li><a href="#partes-de-tu-cv">Partes de tu CV 💭</a></li>
 <li><a href="#agregar-tu-información-️">Agregar tu información ✏️</a></li>
@@ -2489,7 +2489,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 </nav>
 </div>
 <h1 id="intro">Intro</h1>
-<p>Para crear un CV en RStudio, básicamente necesitas saber Rmd. Si quieres aprender primero Rmd te recomiendo revisar <a href="https://www.miriam-lerma.com/posts/2021-03-29-rmd/">aquí</a>. Si quieres ver como quedo mi cv, puedes descargarlo <a href="https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf">aquí</a>.</p>
+<p>Para crear un CV en RStudio, básicamente necesitas saber Rmd.</p>
+<p>Para los básicos de Rmd te recomiendo ir <a href="https://www.miriam-lerma.com/posts/2021-03-29-rmd/">aquí</a>.</p>
+<p>Si quieres ver como quedo mi cv, puedes descargarlo <a href="https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf">aquí</a>.</p>
 <h1 id="descargar-el-paquete-️">Descargar el paquete 🕯️</h1>
 <p>Para crear tu CV puedes descargar el paquete <strong>vitae</strong> desde github.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2499,10 +2501,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 </code></pre>
 </div>
 </div>
-<p>Para ver detalles ésta es la <a href="https://pkg.mitchelloharawild.com/vitae/">página</a>. <strong>Nota</strong> Tardo muchisimo descargando updates.</p>
-<h1 id="iniciar-con-una-plantilla">Iniciar con una plantilla 👣</h1>
+<p>Para ver detalles ésta es la <a href="https://pkg.mitchelloharawild.com/vitae/">página</a>.</p>
+<p><strong>Nota</strong> Al instalar el paquete se tarda descargando actualizaciones.</p>
+<h1 id="iniciar-con-una-plantilla">Iniciar con una plantilla 🧶</h1>
 <p>File&gt;NewFile&gt;R Markdown&gt;From template</p>
-<p>Para elegir la plantilla (template), en la <a href="https://pkg.mitchelloharawild.com/vitae/">página</a> puedes ver algunos ejemplos. Aunque también se puede modificar en el output del YAML después.</p>
+<p>Para elegir la plantilla (template), en la página puedes ver algunos <a href="https://pkg.mitchelloharawild.com/vitae/">ejemplos</a>.</p>
+<p>Pero si no te decides, se puede modificar en el output del YAML después.</p>
 <p>Al elegir tu plantilla, se abrirá un nuevo Rmd. Antes de empezar a rellenar tu CV, te recomiendo probar tener todos las dependencias instaladas. Para esto, dale en knit.</p>
 <p>Tal vez tengas que instalar de nuevo tinytext.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2517,7 +2521,8 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 </div>
 <h1 id="tus-datos">Tus datos 💾</h1>
-<p>Básicamente tienes que sustituir con tus datos en el YAML. Esto es lo que aparecera en la parte superior de tu CV.</p>
+<p>La información que incluyas en el YAML aparecerá en la parte superior de tu CV.</p>
+<p>La plantilla te da un archivo prellenado, que debes modificar de acuerdo a tus datos.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>name<span class="sc">:</span> Marie</span>
@@ -2536,7 +2541,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    theme<span class="sc">:</span> classic</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
 </div>
-<p>En mi caso al darle knit causando muchos problemas con LaTex, entonces cambie el output a awesomecv y puse keep_tex en false, y funciono el knit, pero tarda en crear el pdf.</p>
+<p>Si al darle knit te esta causando muchos problemas con LaTex, te recomiendo cambiar el output a awesomecv y poner keep_tex en false.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>output</span><span class='op'>:</span> 
@@ -2546,15 +2551,16 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 </div>
 <h1 id="partes-de-tu-cv">Partes de tu CV 💭</h1>
-<p>Depende para que sea tu CV puedes modificar las partes.</p>
-<p>En mi caso, yo me base en el CV de <a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf">Han Zhang</a>.</p>
+<p>Depende para que sea tu CV puedes estructurarlo de manera diferente.</p>
+<p>Si quieres un CV académico te puedes basar en la estructura del CV de <a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf">Han Zhang</a>.</p>
 <p>Este CV contiene<br />
 - Research interest<br />
 - Education<br />
 - Peer-reviewed Publications</p>
 <h1 id="agregar-tu-información-️">Agregar tu información ✏️</h1>
 <p>Para agregar las partes a tu CV, la información se maneja como <a href="https://rstudio-education.github.io/tidyverse-cookbook/tidy.html">tribble</a></p>
-<p>Y unas de las funciones de <strong>vitae</strong> es detailed_entries, que es como sera mostrada la información en tu pdf, otra opción es brief_entries que presenta un formato más cortito.</p>
+<p>Unas de las funciones de <em>vitae</em> es <strong>detailed_entries</strong>, que es como sera mostrada la información en tu pdf, otra opción es <strong>brief_entries</strong> que presenta un formato más compacto.</p>
+<p>Para llenar un tribble:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tribble</span><span class='op'>(</span>
@@ -2646,10 +2652,13 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1 id="resumiendo-️">Resumiendo ✔️</h1>
 <p><strong>vitae</strong> es una buena opción para crear tu CV y solo se tiene que hacer la estructura una vez, que además resulta mas atractiva a la vista. No obstante puede traer muchos errores por LaTex.</p>
 <h1 id="créditos-y-recursos">Créditos y recursos 👩🏾‍🏫</h1>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <ul>
-<li>El CV más bonito que he visto por <a href="https://github.com/loreabad6/R-CV">Lorena Abad</a></li>
-<li>Inspiración para las partes a incluir ver <a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf">Han Zhang</a></li>
-<li>Pagina con galería <a href="https://pkg.mitchelloharawild.com/vitae/">vitae</a></li>
+<li>Ejemplos<br> <a href="https://github.com/loreabad6/R-CV"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg> LorenaAbad</a><br />
+<a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg> Han Zhang</a><br />
+<a href="https://pkg.mitchelloharawild.com/vitae/"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 640 512"><path d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z"/></svg> Galería</a></li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

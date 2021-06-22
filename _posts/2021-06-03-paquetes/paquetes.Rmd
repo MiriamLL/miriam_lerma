@@ -307,7 +307,7 @@ use_readme_rmd(open = rlang::is_interactive())
 
 # 2. Datos 💾
 
-Para agregar datos en tu paquete, puedes cargar tus datos y despues guardarlos dentro de tu proyecto. <br>
+Para agregar datos en tu paquete, puedes cargar tus datos y después guardarlos dentro de tu proyecto. <br>
 
 ```{r, eval=FALSE, echo=FALSE}
 library(here)
@@ -575,7 +575,7 @@ Va a aparecer algo así:
 
 **Nota** que identifica de manera automática las variables de la función
 
-Ahora, que ya esta la función y la documentación para agregar el paquete hay que escribir en la consola:
+Ahora que ya esta la función y la documentación para agregar el paquete hay que escribir en la consola:
 
 ```{r, eval=FALSE}
 devtools::document()
@@ -752,7 +752,7 @@ checking R code for possible problems ...
 También pueden aparecer problemas con las variables al usar ggplot dentro de una función.
 
 ```{r, eval=FALSE}
-no visible binding for global variable '.mis_datos'
+no visible binding for global variable '.data'
 ```
 
 Para resolver esto hay que declarar las variables dentro de la función y posteriormente usar .data
@@ -794,9 +794,6 @@ Listo! el paquete esta completo 🥳
 **Problema** Borrar funciones.<br>
 **Solución** Para borrar funciones se debe borrar el script en el archivo R y volver a documentar el paquete para que se reflejen los cambios.<br>  
 
-**Problema** Al usar slot en sapply.<br>
-**Solución** Hay que agregar la dependencia methods.<br> 
-
 **Problema** El ejemplo tiene más de 100 caracteres, es considerado muy largo.  <br>
 **Solución** Separar en la documentación.<br>
 
@@ -816,6 +813,9 @@ funcion(primer_argumento, segundo_argumento){
   return(lista)
 }
 ```
+
+**Problema** Al usar slot en sapply.<br>
+**Solución** Hay que agregar la dependencia methods.<br> 
 
 ## 3.4. Resumido
 

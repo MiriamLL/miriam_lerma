@@ -1752,7 +1752,7 @@ Tarda un poquito.</p>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>√ Writing <span class="st">&#39;.git/hooks/pre-commit&#39;</span></span></code></pre></div>
 </div>
 <h1 id="datos">2. Datos 💾</h1>
-<p>Para agregar datos en tu paquete, puedes cargar tus datos y despues guardarlos dentro de tu proyecto. <br></p>
+<p>Para agregar datos en tu paquete, puedes cargar tus datos y después guardarlos dentro de tu proyecto. <br></p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2011,7 +2011,7 @@ Después ir a la pestaña de Code&gt;Insert Reoxygen Skeleton (tambíen funciona
 </div>
 </div>
 <p><strong>Nota</strong> que identifica de manera automática las variables de la función</p>
-<p>Ahora, que ya esta la función y la documentación para agregar el paquete hay que escribir en la consola:</p>
+<p>Ahora que ya esta la función y la documentación para agregar el paquete hay que escribir en la consola:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
@@ -2167,7 +2167,7 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 </div>
 <p>También pueden aparecer problemas con las variables al usar ggplot dentro de una función.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>no visible binding <span class="cf">for</span> global variable <span class="st">&#39;.mis_datos&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>no visible binding <span class="cf">for</span> global variable <span class="st">&#39;.data&#39;</span></span></code></pre></div>
 </div>
 <p>Para resolver esto hay que declarar las variables dentro de la función y posteriormente usar .data</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2201,7 +2201,6 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 <p><strong>Problema</strong> En algunas funciones puedes haber usado assign. Usar assign no es recomendado, por lo que aparecerá una nota. <br> <strong>Solución</strong> Usar return().<br></p>
 <p><strong>Problema</strong> No nested functions, no circular dependencies. <br> <strong>Solución</strong> No puedes usar funciones de tu paquete en otras funciones del mismo paquete. <br></p>
 <p><strong>Problema</strong> Borrar funciones.<br> <strong>Solución</strong> Para borrar funciones se debe borrar el script en el archivo R y volver a documentar el paquete para que se reflejen los cambios.<br></p>
-<p><strong>Problema</strong> Al usar slot en sapply.<br> <strong>Solución</strong> Hay que agregar la dependencia methods.<br></p>
 <p><strong>Problema</strong> El ejemplo tiene más de 100 caracteres, es considerado muy largo. <br> <strong>Solución</strong> Separar en la documentación.<br></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>\examples lines wider than <span class="dv">100</span> characters<span class="sc">:</span></span></code></pre></div>
@@ -2215,6 +2214,7 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lista)</span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
+<p><strong>Problema</strong> Al usar slot en sapply.<br> <strong>Solución</strong> Hay que agregar la dependencia methods.<br></p>
 <h2 id="resumido-1">3.4. Resumido</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
