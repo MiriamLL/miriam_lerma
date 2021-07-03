@@ -835,10 +835,41 @@ usethis::use_package("ggplot2")
 devtools::check()
 ```
 
+# Otros
 
-# Otros ️
+## 4.1 Warnings ⚠️
 
-## 4.1. Crear tu propio sticker ❣️
+Es útil agregar warnings para que el usuario (quien sera a veces tu mismo) pueda corregir errores.
+
+Para checar que el data frame contenga datos, revisa que el numero de filas no sea cero.
+
+```{r, eval=FALSE}
+ if (nrow(data)!=0){
+  } else {
+    warning("Please check the name of the data frame")
+  }
+```
+
+También puedes revisar si tu data frame contiene una columna de acuerdo a su nombre
+
+```{r, eval=FALSE}
+if ("Nombre_columna" %in% colnames(data)){
+  } else {
+    warning("Please check that your data frame has X column, otherwise please rename/create the column")
+  }
+```
+
+Ademas podemos revisar si una columna en especifico aparece en el data frame
+
+```{r, eval=FALSE}
+if (!is.null(data[[columna]])) {
+  } else {
+    warning("The column X is not in your dataframe. Please check the name of the column")
+  }
+```
+ ️
+
+## 4.2. Crear tu propio sticker ❣️
 
 Para crear un hexSticker puedes usar plantillas: <br>
 - En powerpoint [plantilla hecha por Emi Tanaka](https://emitanaka.org/posts/hexsticker/) <br> 
@@ -850,7 +881,7 @@ Para instalar el paquete hexSticker, puedes descargarlo desde en CRAN:
 install.packages("hexSticker")
 ```
 
-## 4.2. Zenodo 🔗
+## 4.3. Zenodo 🔗
 
 [Zenodo](https://zenodo.org/) es un repositorio de acceso abierto operado por CERN (Organización Europea para la Investigación Nuclear).
 

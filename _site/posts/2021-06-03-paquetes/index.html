@@ -125,7 +125,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["paquetes_files/anchor-4.2.2/anchor.min.js","paquetes_files/bowser-1.9.3/bowser.min.js","paquetes_files/distill-2.2.21/template.v2.js","paquetes_files/header-attrs-2.8/header-attrs.js","paquetes_files/jquery-1.11.3/jquery.min.js","paquetes_files/popper-2.6.0/popper.min.js","paquetes_files/tippy-6.2.7/tippy-bundle.umd.min.js","paquetes_files/tippy-6.2.7/tippy-light-border.css","paquetes_files/tippy-6.2.7/tippy.css","paquetes_files/tippy-6.2.7/tippy.umd.min.js","paquetes_files/webcomponents-2.0.0/webcomponents.js","portada_paquetes.jpg","undraw_Moving_twwf.png","undraw_Moving_twwf.svg"]}
+  {"type":"character","attributes":{},"value":["paquetes_files/anchor-4.2.2/anchor.min.js","paquetes_files/bowser-1.9.3/bowser.min.js","paquetes_files/distill-2.2.21/template.v2.js","paquetes_files/header-attrs-2.8/header-attrs.js","paquetes_files/header-attrs-2.9/header-attrs.js","paquetes_files/jquery-1.11.3/jquery.min.js","paquetes_files/popper-2.6.0/popper.min.js","paquetes_files/tippy-6.2.7/tippy-bundle.umd.min.js","paquetes_files/tippy-6.2.7/tippy-light-border.css","paquetes_files/tippy-6.2.7/tippy.css","paquetes_files/tippy-6.2.7/tippy.umd.min.js","paquetes_files/webcomponents-2.0.0/webcomponents.js","portada_paquetes.jpg","undraw_Moving_twwf.png","undraw_Moving_twwf.svg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2404,7 +2404,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.8/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2497,10 +2497,11 @@ d-appendix d-footnote-list a.footnote-backlink {
 <li><a href="#otros-problemas">3.3. Otros problemas 👻</a></li>
 <li><a href="#resumido-1">3.4. Resumido</a></li>
 </ul></li>
-<li><a href="#otros-️">Otros ️</a>
+<li><a href="#otros">Otros</a>
 <ul>
-<li><a href="#crear-tu-propio-sticker-️">4.1. Crear tu propio sticker ❣️</a></li>
-<li><a href="#zenodo">4.2. Zenodo 🔗</a></li>
+<li><a href="#warnings-️">4.1 Warnings ⚠️</a></li>
+<li><a href="#crear-tu-propio-sticker-️">4.2. Crear tu propio sticker ❣️</a></li>
+<li><a href="#zenodo">4.3. Zenodo 🔗</a></li>
 </ul></li>
 <li><a href="#créditos-y-recursos">Créditos y recursos 👩🏽‍🏫</a></li>
 </ul>
@@ -3227,8 +3228,41 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 </code></pre>
 </div>
 </div>
-<h1 id="otros-️">Otros ️</h1>
-<h2 id="crear-tu-propio-sticker-️">4.1. Crear tu propio sticker ❣️</h2>
+<h1 id="otros">Otros</h1>
+<h2 id="warnings-️">4.1 Warnings ⚠️</h2>
+<p>Es útil agregar warnings para que el usuario (quien sera a veces tu mismo) pueda corregir errores.</p>
+<p>Para checar que el data frame contenga datos, revisa que el numero de filas no sea cero.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"> <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>!=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"Please check the name of the data frame"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>También puedes revisar si tu data frame contiene una columna de acuerdo a su nombre</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>if</span> <span class='op'>(</span><span class='st'>"Nombre_columna"</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"Please check that your data frame has X column, otherwise please rename/create the column"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Ademas podemos revisar si una columna en especifico aparece en el data frame</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>[[</span><span class='va'>columna</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"The column X is not in your dataframe. Please check the name of the column"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>️</p>
+<h2 id="crear-tu-propio-sticker-️">4.2. Crear tu propio sticker ❣️</h2>
 <p>Para crear un hexSticker puedes usar plantillas: <br> - En powerpoint <a href="https://emitanaka.org/posts/hexsticker/">plantilla hecha por Emi Tanaka</a> <br> - En R <a href="https://github.com/GuangchuangYu/hexSticker">paquete hexSticker hecho por GuangchuangYu</a></p>
 <p>Para instalar el paquete hexSticker, puedes descargarlo desde en CRAN:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3237,7 +3271,7 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 </code></pre>
 </div>
 </div>
-<h2 id="zenodo">4.2. Zenodo 🔗</h2>
+<h2 id="zenodo">4.3. Zenodo 🔗</h2>
 <p><a href="https://zenodo.org/">Zenodo</a> es un repositorio de acceso abierto operado por CERN (Organización Europea para la Investigación Nuclear).</p>
 <p><strong>Ventajas</strong> Permite que se depositen allí artículos de investigación, datos, software, informes y otro tipo de objeto digital relacionado con la investigación. La ventaja frente a github es que asigna un DOI.</p>
 <p><strong>Desventajas</strong> Las versiones de paquetes se pueden registrar en zenodo. No obstante, NO es tan practico ya que cada versión tiene su propio DOI y la versión anterior no puede ser eliminada.</p>
