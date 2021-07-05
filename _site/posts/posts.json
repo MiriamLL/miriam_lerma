@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-07-05-GIScolores/",
+    "title": "Colores",
+    "description": "Cambiar colores en un en un mapa en ggplot2 y en QGIS.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2021-07-05",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nIntro\r\nMapa 🌎\r\nQGIS 🗺️\r\n\r\nIntro\r\n\r\n\r\n\r\nEste post es acerca de como cambiar los colores de puntos en un mapa en ggplot y en QGIS.\r\nMapa 🌎\r\nPara cargar datos podemos descargar shapefiles de Mexico y hacer el subset de los estados que nos interesen.  - raster cuenta con la funcion getData para bajar shapefiles\r\n\r\n\r\nlibrary(sf)\r\nlibrary(ggplot2)\r\nlibrary(ggspatial)\r\nlibrary(raster)\r\n\r\n\r\n\r\nPara descargar shapefiles de México se usar el siguiente código. Hice un subset para resaltar estados de interés en el mapa más adelante.\r\n\r\n\r\nMexico<- getData('GADM', country='Mexico', level=1) %>% st_as_sf()\r\nQueretaro <- Mexico[Mexico$NAME_1 == \"Querétaro\",]\r\nGuanajuato <- Mexico[Mexico$NAME_1 == \"Guanajuato\",]\r\n\r\n\r\n\r\nPara crear un mapa: - sf es la que utilizaremos para el manejo de los shapefiles.  - ggplot2 es crear las visualizaciones. - ggspatial para agregar la escala.\r\nPara crear un mapa centrado en estos estados se puede usar el siguiente código:\r\nDentro de geom_sf el argumento fill es el color con el que se rellenaran los polígonos, lo puedes cambiar a como más te guste. En el mapa use códigos hexa-númericos que pueden ser encontrados en coolors, para más instrucciones ve aquí\r\n\r\n\r\nMapaBase<-ggplot()+\r\n  geom_sf(data= Mexico, fill='#264653', col='black')+\r\n  geom_sf(data= Queretaro, fill='#2a9d8f')+ #para resaltar estados\r\n  geom_sf(data= Guanajuato, fill='#2a9d8f')+ #para resaltar estados\r\n  \r\n  annotation_north_arrow(location=\"tr\",which_north=\"true\",style=north_arrow_fancy_orienteering ())+ #Norte\r\n  ggspatial::annotation_scale(location = \"bl\",bar_cols = c(\"grey60\", \"white\"))+ #Escala\r\n\r\n  theme_bw()+\r\n  coord_sf(xlim = c(-105,-95), #limites del mapa\r\n           ylim = c(18 ,24), #limites del mapa\r\n           expand = FALSE)\r\nMapaBase\r\n\r\n\r\n\r\n\r\nAhora para agregar sitios se pueden agregar por coordenadas. Use el argumento geom_point, en la x y la y puse las coordenadas, y en color elegí el color que le quiero dar a ese punto.\r\n\r\n\r\nMapaSitios<-MapaBase+geom_point(aes(x=-100, y=21, color='#e63946'))+ #elegir el color\r\n  theme(legend.position='none') #evitar la etiqueta\r\nMapaSitios\r\n\r\n\r\n\r\n\r\nPara agregar muchos puntos, puedes tener o puedes crear un data frame.\r\n\r\n\r\nDatosInventados<-data.frame(long=c(-102,-101,-100,-99,-98),\r\n           lat=c(21.5,21.3,20.9,21,20))\r\n\r\n\r\n\r\nPudes copiar codigos hex y crear tu propia paleta\r\n\r\n\r\npaleta<-c(\"#f8ffe5\",\"#06d6a0\",\"#1b9aaa\",\"#ef476f\",\"#ffc43d\")\r\n\r\n\r\n\r\nAgregar la paleta a las especificaciones del gráfico es dentro de geom_point, en color. Para hacer los puntos más grandes también puedes agregar el argumento size en geom_point\r\n\r\n\r\nMapaSitios<-MapaBase+\r\n  geom_point(data=DatosInventados,aes(x=long, y=lat,color=paleta),size=3)+ \r\n  theme(legend.position='none') #evitar la etiqueta\r\nMapaSitios\r\n\r\n\r\n\r\n\r\nPara exportar el mapa\r\nQGIS 🗺️\r\nAhora, para cambiar colores en QGIS.\r\nPrimero tendrás que tener cargados tus datos en QGIS. Una vez cargados los datos, elige la capa, y ve a propiedades o properties.\r\n\r\n\r\n\r\n\r\n\r\n\r\nAhora dale click en symbology. Despues, en la parte superior elige categorized, elige en value la columna de los nombres de los sitios o algo que los distinga entre si.\r\n\r\n\r\n\r\nDale enter al botón de classify. Dale Ok.\r\n\r\n\r\n\r\nAhora debes tener la opción de cambiar los colores de cada punto.\r\n\r\n\r\n\r\nDale click izquierdo y elige Edit symbol\r\n\r\n\r\n\r\nAhora puedes darle doble click en el color y en la parte que dice html notation cambiarle el código hexagecimal por el que te interesa, puedes buscarlo en coolors.\r\nY listo!\r\n\r\n🥳\r\n\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-07-05-GIScolores/undraw_map_1r69.svg",
+    "last_modified": "2021-07-05T15:20:12+02:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-06-03-paquetes/",
     "title": "Paquetes",
     "description": "Como crear tu primer paquete con datos y algunas funciones.",

@@ -5,4 +5,5 @@ listing:
     - 2021-06-03-paginadistill
     - 2021-06-03-vitae
     - 2021-06-03-paquetes
+    - 2021-07-05-GIScolores
 ---
