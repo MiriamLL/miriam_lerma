@@ -15,10 +15,10 @@
       "presentation",
       "English"
     ],
-    "contents": "\r\nClase de R\r\nThis post is dedicated to my presentation for the Bio-Logging Symposium (https://www.bls7hawaii.com)\r\nDiel foraging behaviour of Humboldt penguins Spheniscus humboldti at Tilgo Island, Northern Chile\r\nMaterials are underdevelopment 👩🏽‍🔧.\r\n\r\n\r\n\r\n",
+    "contents": "\r\nIntro\r\nThis post is dedicated to my presentation for the Bio-Logging Symposium (https://www.bls7hawaii.com)\r\nDiel foraging behaviour of Humboldt penguins Spheniscus humboldti at Tilgo Island, Northern Chile\r\nMaterials are underdevelopment 👩🏽‍🔧.\r\nReferences\r\nDantas, G.P.M., Oliveira, L.R., Santos, A.M., Flores, M.D., De Melo, D.R., Simeone, A., González-Acuña, D., Luna-Jorquera, G., Le Bohec, C., Valdés-Velásquez, A., Cardeña, M., Morgante, J.S. & Vianna, J.A. 2019. Uncovering population structure in the Humboldt penguin (Spheniscus humboldti) along the Pacific coast at South America. PLoS One 14: 1–19. Link\r\nDe La Puente, S., Bussalleu, A., Cardeña, M., Valdés-Velásquez, A., Majluf, P. & Simeone, A. 2020. Humboldt Penguin (Spheniscus humboldti). Birds of the World 269–287. Link\r\nHerling, C., Culik, B.M. & Hennicke, J.C. 2005. Diet of the Humboldt penguin (Spheniscus humboldti) in northern and southern Chile. Mar. Biol. 147: 13–25. Link\r\nKaltenberg, A.M. & Benoit-Bird, K.J. 2009. Diel behavior of sardine and anchovy schools in the California Current System. Mar. Ecol. Prog. Ser. 394: 247–262. Link\r\nQuispe, R., Lerma, M., Serratosa, J. & Luna-Jorquera, G. 2020. Foraging ranges of Humboldt penguins Spheniscus humboldti from Tilgo Island: the critical need for protecting a unique marine habitat. Mar. Ornithol. 48: 205–208. Link\r\nTaylor, J.C., Rand, P.S. & Jenkins, J. 2007. Swimming behavior of juvenile anchovies (Anchoa spp.) in an episodically hypoxic estuary: implications for individual energetics and trophic dynamics. Mar. Biol. 152: 939–957. Link\r\nVianna, J. A. Cortes M., Ramos, B., Sallaberry, N., González-Acuña, D.,Dantas, G.P.M., Morgante, J., Simeone, A., Luna-Jorquera, G. Changes in abudance and distribution of Humboldt penguin Spheniscus humboldti. Mar. Ornithol. 42: 153-159. Link\r\nCredits\r\nNavigation route at Tilgo Island by Oceana\r\nHumboldt penguin call by Carlos Pinto xeno-canto\r\n\r\n\r\n\r\n",
     "preview": "posts/2021-08-03-bls7/BLS_01.jpg",
-    "last_modified": "2021-08-03T13:00:20+02:00",
-    "input_file": {}
+    "last_modified": "2021-08-03T18:02:22+02:00",
+    "input_file": "bls7.knit.md"
   },
   {
     "path": "posts/2021-07-05-GIScolores/",
