@@ -1,5 +1,26 @@
 [
   {
+    "path": "posts/2021-08-03-bls7/",
+    "title": "BLS7",
+    "description": "Link to presentation.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-03",
+    "categories": [
+      "Seabird",
+      "presentation",
+      "English"
+    ],
+    "contents": "\r\nClase de R\r\nThis post is dedicated to my presentation for the Bio-Logging Symposium (https://www.bls7hawaii.com)\r\nDiel foraging behaviour of Humboldt penguins Spheniscus humboldti at Tilgo Island, Northern Chile\r\nMaterials are underdevelopment 👩🏽‍🔧.\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-08-03-bls7/BLS_01.jpg",
+    "last_modified": "2021-08-03T13:00:20+02:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-07-05-GIScolores/",
     "title": "Colores en mapas",
     "description": "Cambiar colores en un en un mapa en ggplot2 y en QGIS.",

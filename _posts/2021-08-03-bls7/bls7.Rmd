@@ -1,0 +1,41 @@
+---
+title: "BLS7"
+description: |
+  Link to presentation.
+preview: BLS_01.jpg
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 08-03-2021
+categories:
+  - Seabird
+  - presentation
+  - English
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(distilltools)
+```
+
+
+# Clase de R
+
+This post is dedicated to my presentation for the Bio-Logging Symposium (https://www.bls7hawaii.com)
+
+Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Island, Northern Chile
+
+Materials are underdevelopment 👩🏽‍🔧.
+
+```{r icon-links1,echo=FALSE, include=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Slides",
+          url = "")
+icon_link(icon = "fas fa-download",
+          text = "Download",
+          url = "f")
+```
