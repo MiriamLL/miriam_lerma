@@ -85,7 +85,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Colores</title>
+  <title>Colores en mapas</title>
 
   <meta property="description" itemprop="description" content="Cambiar colores en un en un mapa en ggplot2 y en QGIS."/>
 
@@ -96,21 +96,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="article:author" content="Miriam Lerma"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Colores"/>
+  <meta property="og:title" content="Colores en mapas"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="Cambiar colores en un en un mapa en ggplot2 y en QGIS."/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Colores"/>
+  <meta property="twitter:title" content="Colores en mapas"/>
   <meta property="twitter:description" content="Cambiar colores en un en un mapa en ggplot2 y en QGIS."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Colores"]},{"type":"character","attributes":{},"value":["Cambiar colores en un en un mapa en ggplot2 y en QGIS.\n"]},{"type":"character","attributes":{},"value":["undraw_map_1r69.svg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Colores en mapas"]},{"type":"character","attributes":{},"value":["Cambiar colores en un en un mapa en ggplot2 y en QGIS.\n"]},{"type":"character","attributes":{},"value":["undraw_map_1r69.svg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"character","attributes":{},"value":["QGIS","R","spatial","Español"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1454,7 +1454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Colores","description":"Cambiar colores en un en un mapa en ggplot2 y en QGIS.","authors":[{"author":"Miriam Lerma","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-05T00:00:00.000+02:00","citationText":"Lerma, 2021"}
+{"title":"Colores en mapas","description":"Cambiar colores en un en un mapa en ggplot2 y en QGIS.","authors":[{"author":"Miriam Lerma","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-05T00:00:00.000+02:00","citationText":"Lerma, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1464,8 +1464,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Colores</h1>
+<h1>Colores en mapas</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">QGIS</div>
+<div class="dt=tag">R</div>
+<div class="dt=tag">spatial</div>
+<div class="dt=tag">Español</div>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>Cambiar colores en un en un mapa en ggplot2 y en QGIS.</p></p>
 </div>
@@ -1482,7 +1488,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#intro">Intro</a></li>
-<li><a href="#mapa">Mapa 🌎</a></li>
+<li><a href="#mapa">Mapa 🌎</a>
+<ul>
+<li><a href="#descargar-datos">Descargar datos</a></li>
+<li><a href="#mapa-base">Mapa base</a></li>
+<li><a href="#agregar-un-sitio">Agregar un sitio</a></li>
+<li><a href="#agregar-varios-sitios">Agregar varios sitios</a></li>
+</ul></li>
 <li><a href="#qgis-️">QGIS 🗺️</a></li>
 </ul>
 </nav>
@@ -1491,19 +1503,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>Este post es acerca de como cambiar los colores de puntos en un mapa en ggplot y en QGIS.</p>
+<p>Este post es acerca de como crear un mapa base de México, incluir puntos para sitios de muestreo y cambiar los colores de puntos en un mapa en ggplot y en QGIS.</p>
 <h1 id="mapa">Mapa 🌎</h1>
-<p>Para cargar datos podemos descargar shapefiles de Mexico y hacer el subset de los estados que nos interesen. <br> - <strong>raster</strong> cuenta con la funcion getData para bajar shapefiles</p>
+<p>Para crear y modificar mapas siguiendo las instrucciones de este post necesitamos los siguientes paquetes:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/raster'>raster</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://paleolimbot.github.io/ggspatial/'>ggspatial</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/raster'>raster</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Para descargar shapefiles de México se usar el siguiente código. Hice un subset para resaltar estados de interés en el mapa más adelante.</p>
+<p>Si no los tienes instalados usa la función install.packages()</p>
+<p>Existen shapefiles disponibles para México que se pueden descargar directamente en R. <br> - Para descargar los shapefiles, el paquete <strong>raster</strong> cuenta con la función getData. <br></p>
+<p>Para crear un mapa: <br> - El paquete <strong>sf</strong> es la que utilizaremos para el manejo de los shapefiles. <br> - El paquete<strong>ggplot2</strong> es crear las visualizaciones.<br> - El paquete <strong>ggspatial</strong> para agregar la escala.<br></p>
+<h2 id="descargar-datos">Descargar datos</h2>
+<p>Lo primero seria descargar los datos usando la función getData. <br> Una vez cargados los datos, podemos hacer una selección de los estados que nos interesen. <br></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Mexico</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/getData.html'>getData</a></span><span class='op'>(</span><span class='st'>'GADM'</span>, country<span class='op'>=</span><span class='st'>'Mexico'</span>, level<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='op'>)</span>
@@ -1512,9 +1528,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Para crear un mapa:<br> - <strong>sf</strong> es la que utilizaremos para el manejo de los shapefiles. <br> - <strong>ggplot2</strong> es crear las visualizaciones.<br> - <strong>ggspatial</strong> para agregar la escala.<br></p>
+<h2 id="mapa-base">Mapa base</h2>
 <p>Para crear un mapa centrado en estos estados se puede usar el siguiente código:</p>
-<p>Dentro de geom_sf el argumento <strong>fill</strong> es el color con el que se rellenaran los polígonos, lo puedes cambiar a como más te guste. En el mapa use códigos hexa-númericos que pueden ser encontrados en <a href="https://coolors.co/">coolors</a>, para más instrucciones <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16">ve aquí</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MapaBase</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
@@ -1534,17 +1549,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="GIScolores_files/figure-html5/unnamed-chunk-3-1.png" width="480" /></p>
 </div>
-<p>Ahora para agregar sitios se pueden agregar por coordenadas. Use el argumento geom_point, en la x y la y puse las coordenadas, y en color elegí el color que le quiero dar a ese punto.</p>
+<p>Dentro de geom_sf el argumento <strong>fill</strong> es el color con el que se rellenaran los polígonos, lo puedes cambiar a como más te guste. En el mapa use códigos hexa-númericos que pueden ser encontrados en <a href="https://coolors.co/">coolors</a>, para más instrucciones <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16">ve aquí</a></p>
+<h2 id="agregar-un-sitio">Agregar un sitio</h2>
+<p>Ahora para agregar sitios, se deben especificar las coordenadas. En el ejemplo el argumento geom_point <strong>x</strong> y <strong>y</strong> son las coordenadas. En color elegí el color que le quiero dar a ese punto y lo escribí como código hexa-númerico (hex).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MapaSitios</span><span class='op'>&lt;-</span><span class='va'>MapaBase</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>-</span><span class='fl'>100</span>, y<span class='op'>=</span><span class='fl'>21</span>, color<span class='op'>=</span><span class='st'>'#e63946'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#elegir el color</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MapaSitios</span><span class='op'>&lt;-</span><span class='va'>MapaBase</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>-</span><span class='fl'>100</span>, y<span class='op'>=</span><span class='fl'>21</span>, 
+                                    color<span class='op'>=</span><span class='st'>'#e63946'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#elegir el color</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span> <span class='co'>#evitar la etiqueta</span>
 <span class='va'>MapaSitios</span>
 </code></pre>
 </div>
 <p><img src="GIScolores_files/figure-html5/unnamed-chunk-4-1.png" width="480" /></p>
 </div>
-<p>Para agregar muchos puntos, puedes tener o puedes crear un data frame.</p>
+<h2 id="agregar-varios-sitios">Agregar varios sitios</h2>
+<p>Otra opción es que si tienes muchos puntos, es más práctico crear o cargar un data frame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>DatosInventados</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>long<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>102</span>,<span class='op'>-</span><span class='fl'>101</span>,<span class='op'>-</span><span class='fl'>100</span>,<span class='op'>-</span><span class='fl'>99</span>,<span class='op'>-</span><span class='fl'>98</span><span class='op'>)</span>,
@@ -1552,7 +1571,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Pudes copiar codigos hex y crear tu propia paleta</p>
+<p>Puedes concatenar varios códigos hex y crear tu propia paleta</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>paleta</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#f8ffe5"</span>,<span class='st'>"#06d6a0"</span>,<span class='st'>"#1b9aaa"</span>,<span class='st'>"#ef476f"</span>,<span class='st'>"#ffc43d"</span><span class='op'>)</span>
@@ -1570,17 +1589,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="GIScolores_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
-<p>Para exportar el <a href="https://miriamll.github.io/Curso_CIAD/Clase2#49">mapa</a></p>
+<p>Para exportar el mapa, <a href="https://miriamll.github.io/Curso_CIAD/Clase2#49">ve aquí</a></p>
 <h1 id="qgis-️">QGIS 🗺️</h1>
 <p>Ahora, para cambiar colores en QGIS.</p>
-<p>Primero tendrás que tener cargados tus datos en QGIS. Una vez cargados los datos, elige la capa, y ve a propiedades o <strong>properties</strong>.</p>
+<p>Primero asumiré que tienes cargados tus datos en QGIS. Una vez cargados los datos, elige la capa, y ve a propiedades o <strong>properties</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie1.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
-<p>Ahora dale click en <strong>symbology</strong>. Despues, en la parte superior elige <strong>categorized</strong>, elige en <strong>value</strong> la columna de los nombres de los sitios o algo que los distinga entre si.</p>
+<p>Ahora dale click en <strong>symbology</strong>. En la parte superior elige <strong>categorized</strong>, elige en <strong>value</strong> la columna de los nombres de los sitios o algo que los distinga entre si.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie2.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
@@ -1588,15 +1607,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie3.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
-<p>Ahora debes tener la opción de cambiar los colores de cada punto.</p>
+<p>Ahora debes tener la opción de cambiar los colores de cada punto.<br />
+Dale click izquierdo y elige <strong>Edit symbol</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie4.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
-<p>Dale click izquierdo y elige <strong>Edit symbol</strong></p>
+<p>Ahora puedes darle doble click en el color y en la parte que dice <strong>html notation</strong> cambiarle el código hexagecimal por el que te interesa, puedes buscarlo en coolors.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie5.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
-<p>Ahora puedes darle doble click en el color y en la parte que dice <strong>html notation</strong> cambiarle el código hexagecimal por el que te interesa, puedes buscarlo en coolors.</p>
 <p>Y listo!</p>
 <h1>
 🥳

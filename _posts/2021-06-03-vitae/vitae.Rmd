@@ -6,6 +6,10 @@ preview: undraw_personal_information_re_vw8a.png
 author:
   - name: Miriam Lerma
 date: 2021-06-02
+categories:
+  - R
+  - funciones
+  - Español
 output:
   distill::distill_article:
     toc: true

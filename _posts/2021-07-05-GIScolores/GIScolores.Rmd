@@ -1,11 +1,16 @@
 ---
-title: "Colores"
+title: "Colores en mapas"
 description: |
   Cambiar colores en un en un mapa en ggplot2 y en QGIS.
 preview: undraw_map_1r69.svg
 author:
   - name: Miriam Lerma
 date: 2021-07-05
+categories:
+  - QGIS
+  - R
+  - spatial
+  - Español
 output:
   distill::distill_article:
     toc: true
@@ -23,21 +28,34 @@ ColorEnlace<-'#7209B7'
 ColorEnlaceInverso<-"#4cc9f0"
 ```
 
-Este post es acerca de como cambiar los colores de puntos en un mapa en ggplot y en QGIS.
+Este post es acerca de como crear un mapa base de México, incluir puntos para sitios de muestreo y cambiar los colores de puntos en un mapa en ggplot y en QGIS.
 
 # Mapa 🌎
 
-Para cargar datos podemos descargar shapefiles de Mexico y hacer el subset de los estados que nos interesen. <br>
-- **raster** cuenta con la funcion getData para bajar shapefiles
+Para crear y modificar mapas siguiendo las instrucciones de este post necesitamos los siguientes paquetes:
 
 ```{r}
+library(raster)
 library(sf)
 library(ggplot2)
 library(ggspatial)
-library(raster)
 ```
 
-Para descargar shapefiles de México se usar el siguiente código. Hice un subset para resaltar estados de interés en el mapa más adelante.
+Si no los tienes instalados usa la función install.packages()
+
+Existen shapefiles disponibles para México que se pueden descargar directamente en R.  <br>
+- Para descargar los shapefiles, el paquete **raster** cuenta con la función getData. <br>
+
+Para crear un mapa: <br>
+- El paquete **sf** es la que utilizaremos para el manejo de los shapefiles. <br>
+- El paquete**ggplot2** es crear las visualizaciones.<br>
+- El paquete **ggspatial** para agregar la escala.<br>
+
+
+## Descargar datos
+
+Lo primero seria descargar los datos usando la función getData. <br>
+Una vez cargados los datos, podemos hacer una selección de los estados que nos interesen. <br>
 
 ```{r}
 Mexico<- getData('GADM', country='Mexico', level=1) %>% st_as_sf()
@@ -45,14 +63,8 @@ Queretaro <- Mexico[Mexico$NAME_1 == "Querétaro",]
 Guanajuato <- Mexico[Mexico$NAME_1 == "Guanajuato",]
 ```
 
-Para crear un mapa:<br>
-- **sf** es la que utilizaremos para el manejo de los shapefiles. <br>
-- **ggplot2** es crear las visualizaciones.<br>
-- **ggspatial** para agregar la escala.<br>
-
+## Mapa base
 Para crear un mapa centrado en estos estados se puede usar el siguiente código:
-
-Dentro de geom_sf el argumento **fill** es el color con el que se rellenaran los polígonos, lo puedes cambiar a como más te guste. En el mapa use códigos hexa-númericos que pueden ser encontrados en [coolors](https://coolors.co/), para más instrucciones [ve aquí](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16)
 
 ```{r, fig.height= 5, fig.width= 5}
 MapaBase<-ggplot()+
@@ -70,23 +82,30 @@ MapaBase<-ggplot()+
 MapaBase
 ```
 
-Ahora para agregar sitios se pueden agregar por coordenadas.
-Use el argumento geom_point, en la x y la y puse las coordenadas, y en color elegí el color que le quiero dar a ese punto.
+Dentro de geom_sf el argumento **fill** es el color con el que se rellenaran los polígonos, lo puedes cambiar a como más te guste. En el mapa use códigos hexa-númericos que pueden ser encontrados en [coolors](https://coolors.co/), para más instrucciones [ve aquí](https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16)
+
+## Agregar un sitio
+
+Ahora para agregar sitios, se deben especificar las coordenadas.
+En el ejemplo el argumento geom_point **x** y **y** son las coordenadas. En color elegí el color que le quiero dar a ese punto y lo escribí como código hexa-númerico (hex). 
 
 ```{r, fig.height= 5, fig.width= 5}
-MapaSitios<-MapaBase+geom_point(aes(x=-100, y=21, color='#e63946'))+ #elegir el color
+MapaSitios<-MapaBase+geom_point(aes(x=-100, y=21, 
+                                    color='#e63946'))+ #elegir el color
   theme(legend.position='none') #evitar la etiqueta
 MapaSitios
 ```
 
-Para agregar muchos puntos, puedes tener o puedes crear un data frame.
+## Agregar varios sitios
+
+Otra opción es que si tienes muchos puntos, es más práctico crear o cargar un data frame. 
 
 ```{r}
 DatosInventados<-data.frame(long=c(-102,-101,-100,-99,-98),
            lat=c(21.5,21.3,20.9,21,20))
 ```
 
-Pudes copiar codigos hex y crear tu propia paleta
+Puedes concatenar varios códigos hex y crear tu propia paleta
 
 ```{r}
 paleta<-c("#f8ffe5","#06d6a0","#1b9aaa","#ef476f","#ffc43d")
@@ -102,13 +121,14 @@ MapaSitios<-MapaBase+
 MapaSitios
 ```
 
-Para exportar el [mapa](https://miriamll.github.io/Curso_CIAD/Clase2#49)
+Para exportar el mapa, [ve aquí](https://miriamll.github.io/Curso_CIAD/Clase2#49)
 
 # QGIS 🗺️
 
 Ahora, para cambiar colores en QGIS.
 
-Primero tendrás que tener cargados tus datos en QGIS. Una vez cargados los datos, elige la capa, y ve a propiedades o **properties**.
+Primero asumiré que tienes cargados tus datos en QGIS. 
+Una vez cargados los datos, elige la capa, y ve a propiedades o **properties**.
 
 ```{r, echo=FALSE}
 library(here)
@@ -123,7 +143,7 @@ Imagen5<-paste0(here(),"/_posts/2021-07-05-GIScolores/QGIS/Folie5.JPG")
 knitr::include_graphics(Imagen1)
 ```
 
-Ahora dale click en **symbology**. Despues, en la parte superior elige **categorized**, elige en **value** la columna de los nombres de los sitios o algo que los distinga entre si.
+Ahora dale click en **symbology**. En la parte superior elige **categorized**, elige en **value** la columna de los nombres de los sitios o algo que los distinga entre si.
 
 ```{r, fig.height=10,echo=FALSE, fig.align='center'}
 knitr::include_graphics(Imagen2)
@@ -135,19 +155,19 @@ Dale enter al botón de classify. Dale Ok.
 knitr::include_graphics(Imagen3)
 ```
 
-Ahora debes tener la opción de cambiar los colores de cada punto.
+Ahora debes tener la opción de cambiar los colores de cada punto.  
+Dale click izquierdo y elige **Edit symbol**.
 
 ```{r, fig.height=10,echo=FALSE, fig.align='center'}
 knitr::include_graphics(Imagen4)
 ```
 
-Dale click izquierdo y elige **Edit symbol**
+Ahora puedes darle doble click en el color y en la parte que dice **html notation** cambiarle el código hexagecimal por el que te interesa, puedes buscarlo en coolors.
 
 ```{r, fig.height=10,echo=FALSE, fig.align='center'}
 knitr::include_graphics(Imagen5)
 ```
 
-Ahora puedes darle doble click en el color y en la parte que dice **html notation** cambiarle el código hexagecimal por el que te interesa, puedes buscarlo en coolors.
 
 Y listo!
 
