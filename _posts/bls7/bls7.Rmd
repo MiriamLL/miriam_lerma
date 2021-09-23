@@ -1,7 +1,7 @@
 ---
 title: "BLS7"
 description: |
-  Link to presentation.
+  Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Island, Northern Chile.
 preview: BLS_01.jpg
 author:
   - name: Miriam Lerma
@@ -42,13 +42,13 @@ icon_link(icon = "fas fa-download",
 
 ## Authors
 
-Miriam Lerma (1), Camila P. Villavicencio (2), Nicolas Luna (3), Matías Portflitt-Toro (4), Juan Serratosa (3,4), Guillermo Luna-Jorquera (3), Stefan Garthe (1), Rene Quispe (5,6)
+**Miriam Lerma ^1^**, Camila P. Villavicencio ^2^, Nicolas Luna ^3^, Matías Portflitt-Toro ^4^, Juan Serratosa ^3,4^, Guillermo Luna-Jorquera ^3^, Stefan Garthe ^1^, Rene Quispe ^5,6^
 
-1. Research and Technology Center (FTZ), University of Kiel, Hafentörn 1, 25761 Büsum, Germany
-2. Instituto de Ecología y Biodiversidad, Departamento de Ciencias Ecológicas, Universidad de Chile, Las Palmeras 3425, Ñuñoa, Santiago, Chile
-3. Millennium Nucleus for Ecology and Sustainable Management of Oceanic Islands - ESMOI, Larrondo 1281, Coquimbo, Chile
+1. Research and Technology Center (FTZ), University of Kiel, Hafentörn 1, 25761 Büsum, Germany. [Link](https://www.ftz.uni-kiel.de/en?set_language=en)
+2. Instituto de Ecología y Biodiversidad, Departamento de Ciencias Ecológicas, Universidad de Chile, Las Palmeras 3425, Ñuñoa, Santiago, Chile. [Link](https://www.uchile.cl/portal/facultades-e-institutos/ciencias/160077/presentacion)
+3. Millennium Nucleus for Ecology and Sustainable Management of Oceanic Islands - ESMOI, Larrondo 1281, Coquimbo, Chile. [Link](https://www.iniciativamilenio.cl/nucleoesmoi/)
 4. BirdLife International, The David Attenborough Building, Pembroke Street, Cambridge, CB2 3QZ, UK
-5. Departamento de Biología Marina, Facultad de Ciencias del Mar, Universidad Católica del Norte, Larrondo 1281, Coquimbo, Chile
+5. Departamento de Biología Marina, Facultad de Ciencias del Mar, Universidad Católica del Norte, Larrondo 1281, Coquimbo, Chile. [Link](https://www.ucn.cl/facultad-de-ciencias-del-mar/departamento-de-biologia-marina/)
 6. Facultad de Ciencias Agropecuarias, Universidad Pedro de Valdivia, Av. Cuatro Esquinas 60, La Serena, Chile
 
 
