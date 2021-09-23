@@ -6,7 +6,7 @@ preview: BLS_01.jpg
 author:
   - name: Miriam Lerma
     url: {}
-date: 08-03-2021
+date: 09-23-2021
 categories:
   - Seabird
   - presentation
@@ -25,7 +25,7 @@ library(distilltools)
 
 # Intro
 
-This post is dedicated to my presentation for the Bio-Logging Symposium (https://www.bls7hawaii.com)
+This post is dedicated to the poster and presentation for the Bio-Logging Symposium (https://www.bls7hawaii.com)
 
 Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Island, Northern Chile
 
@@ -40,27 +40,42 @@ icon_link(icon = "fas fa-download",
           url = "f")
 ```
 
+## Authors
+
+Miriam Lerma (1), Camila P. Villavicencio (2), Nicolas Luna (3), Matías Portflitt-Toro (4), Juan Serratosa (3,4), Guillermo Luna-Jorquera (3), Stefan Garthe (1), Rene Quispe (5,6)
+
+1. Research and Technology Center (FTZ), University of Kiel, Hafentörn 1, 25761 Büsum, Germany
+2. Instituto de Ecología y Biodiversidad, Departamento de Ciencias Ecológicas, Universidad de Chile, Las Palmeras 3425, Ñuñoa, Santiago, Chile
+3. Millennium Nucleus for Ecology and Sustainable Management of Oceanic Islands - ESMOI, Larrondo 1281, Coquimbo, Chile
+4. BirdLife International, The David Attenborough Building, Pembroke Street, Cambridge, CB2 3QZ, UK
+5. Departamento de Biología Marina, Facultad de Ciencias del Mar, Universidad Católica del Norte, Larrondo 1281, Coquimbo, Chile
+6. Facultad de Ciencias Agropecuarias, Universidad Pedro de Valdivia, Av. Cuatro Esquinas 60, La Serena, Chile
+
+
 ## References
 
-Dantas, G.P.M., Oliveira, L.R., Santos, A.M., Flores, M.D., De Melo, D.R., Simeone, A., González-Acuña, D., Luna-Jorquera, G., Le Bohec, C., Valdés-Velásquez, A., Cardeña, M., Morgante, J.S. & Vianna, J.A. 2019. Uncovering population structure in the Humboldt penguin (*Spheniscus humboldti*) along the Pacific coast at South America. PLoS One 14: 1–19. [Link](https://doi.org/10.1371/journal.pone.0215293)
+1. De La Puente, S., Bussalleu, A., Cardeña, M., Valdés-Velásquez, A., Majluf, P. & Simeone, A. 2020. Humboldt Penguin (*Spheniscus humboldti*). Birds of the World 269–287. [Link](https://www.researchgate.net/publication/304626790_Humboldt_Penguin_Spheniscus_humboldti)
 
-De La Puente, S., Bussalleu, A., Cardeña, M., Valdés-Velásquez, A., Majluf, P. & Simeone, A. 2020. Humboldt Penguin (*Spheniscus humboldti*). Birds of the World 269–287. [Link](https://www.researchgate.net/publication/304626790_Humboldt_Penguin_Spheniscus_humboldti)
+2. Vianna, J. A. Cortes M., Ramos, B., Sallaberry, N., González-Acuña, D.,Dantas, G.P.M., Morgante, J., Simeone, A., Luna-Jorquera, G. Changes in abudance and distribution of Humboldt penguin *Spheniscus humboldti*. Mar. Ornithol. 42: 153-159. [Link](https://www.marineornithology.org/PDF/42_2/42_2_153-159.pdf)
 
-Herling, C., Culik, B.M. & Hennicke, J.C. 2005. Diet of the Humboldt penguin (*Spheniscus humboldti*) in northern and southern Chile. Mar. Biol. 147: 13–25. [Link](https://www.researchgate.net/publication/225603482_Diet_of_the_Humboldt_penguin_Spheniscus_humboldti_in_northern_and_southern_Chile)
+3. Dantas, G.P.M., Oliveira, L.R., Santos, A.M., Flores, M.D., De Melo, D.R., Simeone, A., González-Acuña, D., Luna-Jorquera, G., Le Bohec, C., Valdés-Velásquez, A., Cardeña, M., Morgante, J.S. & Vianna, J.A. 2019. Uncovering population structure in the Humboldt penguin (*Spheniscus humboldti*) along the Pacific coast at South America. PLoS One 14: 1–19. [Link](https://doi.org/10.1371/journal.pone.0215293)
 
-Kaltenberg, A.M. & Benoit-Bird, K.J. 2009. Diel behavior of sardine and anchovy schools in the California Current System. Mar. Ecol. Prog. Ser. 394: 247–262. [Link](https://www.researchgate.net/publication/240809604_Diel_behavior_of_sardine_and_anchovy_schools_in_the_California_Current_System)
+4. Quispe, R., Lerma, M., Serratosa, J. & Luna-Jorquera, G. 2020. Foraging ranges of Humboldt penguins *Spheniscus humboldti* from Tilgo Island: the critical need for protecting a unique marine habitat. Mar. Ornithol. 48: 205–208. [Link](https://www.marineornithology.org/PDF/48_2/48_2_205-208.pdf)
 
-Quispe, R., Lerma, M., Serratosa, J. & Luna-Jorquera, G. 2020. Foraging ranges of Humboldt penguins *Spheniscus humboldti* from Tilgo Island: the critical need for protecting a unique marine habitat. Mar. Ornithol. 48: 205–208. [Link](https://www.marineornithology.org/PDF/48_2/48_2_205-208.pdf)
+5. Navigation route of proposed industrial project at Tilgo Island by [Oceana](https://chile.oceana.org/blog/sitios-de-alimentacion-del-pinguino-de-humboldt-se-sobreponen-rutas-de-navegacion-del-Proyecto)
 
-Taylor, J.C., Rand, P.S. & Jenkins, J. 2007. Swimming behavior of juvenile anchovies (Anchoa spp.) in an episodically hypoxic estuary: implications for individual energetics and trophic dynamics. Mar. Biol. 152: 939–957. [Link](https://doi.org/10.1007/s00227-007-0745-6)
+6. Herling, C., Culik, B.M. & Hennicke, J.C. 2005. Diet of the Humboldt penguin (*Spheniscus humboldti*) in northern and southern Chile. Mar. Biol. 147: 13–25. [Link](https://www.researchgate.net/publication/225603482_Diet_of_the_Humboldt_penguin_Spheniscus_humboldti_in_northern_and_southern_Chile)
 
-Vianna, J. A. Cortes M., Ramos, B., Sallaberry, N., González-Acuña, D.,Dantas, G.P.M., Morgante, J., Simeone, A., Luna-Jorquera, G. Changes in abudance and distribution of Humboldt penguin *Spheniscus humboldti*. Mar. Ornithol. 42: 153-159. [Link](https://www.marineornithology.org/PDF/42_2/42_2_153-159.pdf)
+7. Kaltenberg, A.M. & Benoit-Bird, K.J. 2009. Diel behavior of sardine and anchovy schools in the California Current System. Mar. Ecol. Prog. Ser. 394: 247–262. [Link](https://www.researchgate.net/publication/240809604_Diel_behavior_of_sardine_and_anchovy_schools_in_the_California_Current_System)
 
-### Credits
+8. Taylor, J.C., Rand, P.S. & Jenkins, J. 2007. Swimming behavior of juvenile anchovies (Anchoa spp.) in an episodically hypoxic estuary: implications for individual energetics and trophic dynamics. Mar. Biol. 152: 939–957. [Link](https://doi.org/10.1007/s00227-007-0745-6)
 
-Navigation route at Tilgo Island by [Oceana](https://chile.oceana.org/blog/sitios-de-alimentacion-del-pinguino-de-humboldt-se-sobreponen-rutas-de-navegacion-del-Proyecto)
+9. Humboldt penguin call by Carlos Pinto [xeno-canto](https://www.xeno-canto.org/species/Spheniscus-humboldti)
 
-Humboldt penguin call by Carlos Pinto [xeno-canto](https://www.xeno-canto.org/species/Spheniscus-humboldti)
+## Acknowledgments
 
+This study was financed by Fondecyt (grant no. 3170936 to RQ and postdoctorate grant no. 3160679 to CPV) and by CONACyT-INAPI (grant no. 411876 to ML). 
 
+We thank Esther Rickert for the transportation of tracking devices, and Henri Kröling for useful discussions. 
 
+This study was carried out in accordance with the recommendations and permit of the Subsecretaria de Pesca y Acuicultura de Chile (resolution N°3367/2017). 
