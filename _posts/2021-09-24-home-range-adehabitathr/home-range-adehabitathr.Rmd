@@ -1,0 +1,156 @@
+---
+title: "Home Range & adehabitatHR"
+description: |
+  Export polygons generated from adehabitat.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 09-24-2021
+categories:
+  - R
+  - spatial
+  - shapefiles
+  - English
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+# Intro
+
+In this post, you will learn how to:  <br>
+- Calculate UDs from test data from Masked boobies. <br>
+- Calculate UDs using adehabitat.  <br>
+- Export UDs as shapefiles to visualize in other programs. <br>
+
+**Note** that reference system must be adjusted, also href can be adapted.
+
+
+# Data
+
+Load data. This test data is from masked boobies. <br>
+To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+library(sula)
+Data<-(GPS_raw)
+```
+
+You can use the structure of the data to organize your data similarly. 
+It also works with csv data (if you have excel data you can also save it as csv data an import it to R)
+
+## Transform to spatial.
+
+You can use the package **sp** to transform your data frame to spatial data (in this case you end up with **SpatialPointsDataFrame**). 
+This way you can tell R that you have coordinates.
+If you dont have the package sp you need to install it.
+
+```{r}
+#install.packages('sp')
+library(sp)
+DataSp<-as.data.frame(Data)
+coordinates(DataSp) <- c("Longitude", "Latitude")
+class(DataSp)
+```
+
+# Kernel adehabitat
+If you dont have the package adehabitat you have to install it.
+I strongly encourage you to read the vignette, here is the [link.](https://cran.r-project.org/web/packages/adehabitatHR/adehabitatHR.pdf).
+
+```{r}
+#install.packages('adehabitatHR')
+library(adehabitatHR)
+DataUD<-kernelUD(DataSp[,3],h='href') #3 is for the ID  #Here I am using the reference h value
+image(DataUD)
+```
+
+Now you have a object class estUDm as a result. 
+
+```{r}
+class(DataUD)
+```
+
+The function **getvertices** calculates the polygon. 
+You can adjust the percent, here I stated 95%.
+
+```{r}
+DataUD_pol <- getverticeshr(DataUD, percent = 95, unout = c("m2"))
+```
+
+# One individual
+
+You can select the data from one individual to create individual UDs.
+
+```{r}
+GPS01<-subset(Data,Data$IDs=='GPS01')
+```
+
+As before, you transform the data frame to SpatialPointsDataFrame and calculate the kernels using the reference value. 
+
+```{r}
+head(GPS01)
+GPS01Sp<-as.data.frame(GPS01)
+coordinates(GPS01Sp) <- c("Longitude", "Latitude")
+proj4string(GPS01Sp) <- CRS("+proj=utm +zone=12 +south +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+GPS01UD=kernelUD(GPS01Sp,h="href") # Using reference
+GPS01UD
+```
+
+You can check the **h value** used with the following line. This is important because it can be adjusted and you should state it while describing your methods. 
+
+```{r}
+GPS01UD@h
+```
+
+The most common **home ranges calculations are the 50% and the 95%** areas. Here are some lines to obtain those polygons. 
+
+```{r}
+GPS01UD95HR<-getverticeshr(GPS01UD,percent=95)
+GPS01UD50HR<-getverticeshr(GPS01UD,percent=50)
+```
+
+Here you can check on you polygons visually.
+
+```{r}
+plot(GPS01UD95HR, col='yellow')
+plot(GPS01UD50HR, col='green', add=TRUE)
+```
+
+## Export
+
+I advice to first identify which folder do you want to use to save your polygons.
+I have an Rproject and I have created a folder named GIS where I want my polygons to be.
+
+```{r, eval=FALSE}
+library(here)
+here()
+GISFolder<-paste0(here())
+```
+
+There are many ways to export your polygons. 
+
+One is using the package **rgdal** which comes from Geospatial Data Abstraction Library. 
+
+```{r, eval=FALSE}
+#install.packageS('rdgal')
+library(rgdal)
+writeOGR(GPS01UD95HR, dsn = GISFolder, layer = 'GPS01HR95', driver = "ESRI Shapefile")
+```
+
+The other way to export your polygons is using the package **sf**.
+However, to be able to export your polygons, they should be transform to a sf object.
+
+```{r, eval=FALSE}
+library(sf)
+class(GPS01UD95HR)
+GPS01SF95<-st_as_sf(GPS01UD95HR)
+st_write(GPS01SF95, paste0(here(), "/", "GPS01SF95.shp"))
+```
+
+... and thats it.
+
+Hopefully now you have your shapefiles that can be open in any GIS software such as QGIS. 
+
+

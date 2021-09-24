@@ -34,12 +34,12 @@ Materials are underdevelopment 👩🏽‍🔧.
 ```{r icon-links1,echo=FALSE, include=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Preview poster",
-          url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7_2309blue.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf")
 ```
 
 ## Authors
 
-**Miriam Lerma^1^**, Camila P. Villavicencio^2^, Nicolas Luna^3^, Matías Portflitt-Toro^3^, Juan Serratosa^3,4^, Guillermo Luna-Jorquera^3^, Stefan Garthe^1^, Rene Quispe ^5,6^
+**Miriam Lerma^1^**, Camila P. Villavicencio^2^, Nicolas Luna^3^, Matías Portflitt-Toro^3^, Juan Serratosa^3,4^, Guillermo Luna-Jorquera^3^, Stefan Garthe^1^, Rene Quispe^5,6^
 
 1. Research and Technology Center (FTZ), University of Kiel, Hafentörn 1, 25761 Büsum, Germany. [Link](https://www.ftz.uni-kiel.de/en?set_language=en)
 2. Instituto de Ecología y Biodiversidad, Departamento de Ciencias Ecológicas, Universidad de Chile, Las Palmeras 3425, Ñuñoa, Santiago, Chile. [Link](https://www.uchile.cl/portal/facultades-e-institutos/ciencias/160077/presentacion)
