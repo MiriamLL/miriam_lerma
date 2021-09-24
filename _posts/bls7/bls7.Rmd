@@ -31,13 +31,10 @@ Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Isl
 
 Materials are underdevelopment 👩🏽‍🔧.
 
-```{r icon-links1,echo=FALSE, include=FALSE}
+```{r icon-links1,echo=FALSE, include=TRUE}
 icon_link(icon = "fas fa-images",
-          text = "Slides",
-          url = "")
-icon_link(icon = "fas fa-download",
-          text = "Download",
-          url = "f")
+          text = "Preview poster",
+          url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7_2309blue.pdf")
 ```
 
 ## Authors
