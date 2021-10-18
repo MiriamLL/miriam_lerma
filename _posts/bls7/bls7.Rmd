@@ -29,13 +29,15 @@ This post is dedicated to the poster and presentation for the Bio-Logging Sympos
 
 Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Island, Northern Chile
 
-Materials are underdevelopment 👩🏽‍🔧.
+⚡⚡⚡⚡
 
 ```{r icon-links1,echo=FALSE, include=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Preview poster",
           url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf")
 ```
+
+⚡⚡⚡⚡
 
 ## Authors
 
