@@ -1,0 +1,57 @@
+---
+title: "Git & Github"
+description: |
+  A short intro.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 10-27-2021
+preview: portada1.jpg
+categories:
+  - R
+  - Git
+  - Github
+  - English
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r libraries, echo=FALSE}
+library(distilltools)
+library(emo)
+library(fontawesome)
+ColorLink<-"#74c69d"
+```
+
+# Intro
+
+In this presentation, we will have a short intro of:
+
+- Git
+- Github
+- Reproducibility
+- Git+Github
+- Naming things
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2021-09-24-home-range-adehabitathr/blog1.jpg")
+```
+
+👇🏼
+
+```{r icon-links6,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Open presentation",
+          url = "https://miriamll.github.io/git_pres/")
+```
+
+☝🏼
+
+# Keen to learn more?
+
+- Happy git:    
+[`r fa("book-open", fill = 'black')` Happy Git by Jennifer Bryan](https://happygitwithr.com/)<br>
+- Tutorials   
+[`r fa("youtube", fill = 'black')` RLadiesFreiburg](https://www.youtube.com/watch?v=tSse0KPgSoQ&t=1s)
+

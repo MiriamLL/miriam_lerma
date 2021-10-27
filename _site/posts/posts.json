@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2021-10-27-gitgithub/",
+    "title": "Git & Github",
+    "description": "A short intro.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2021-10-27",
+    "categories": [
+      "R",
+      "Git",
+      "Github",
+      "English"
+    ],
+    "contents": "\r\n\r\n\r\n\r\nIntro\r\nIn this presentation, we will have a short intro of:\r\nGit\r\nGithub\r\nReproducibility\r\nGit+Github\r\nNaming things\r\n\r\n\r\n\r\n👇🏼\r\n\r\n Open presentation\r\n\r\n☝🏼\r\nKeen to learn more?\r\nHappy git: Happy Git by Jennifer Bryan\r\nTutorials RLadiesFreiburg\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-10-27-gitgithub/portada1.jpg",
+    "last_modified": "2021-10-27T13:56:52+02:00",
+    "input_file": "gitgithub.knit.md"
+  },
+  {
     "path": "posts/2021-09-24-home-range-adehabitathr/",
     "title": "Home Range & adehabitatHR",
     "description": "Export polygons generated from adehabitat.",
