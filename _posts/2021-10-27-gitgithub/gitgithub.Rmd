@@ -43,7 +43,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/miriamlerma_
 ```{r icon-links6,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Open presentation",
-          url = "https://miriamll.github.io/git_pres/")
+          url = "https://miriamll.github.io/git_pres/GitGithubZenodo#1")
 ```
 
 ☝🏼
