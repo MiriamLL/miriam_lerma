@@ -2,7 +2,7 @@
 title: "BLS7"
 description: |
   Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Island, Northern Chile.
-preview: BLS_01.jpg
+preview: Penguin.jpg
 author:
   - name: Miriam Lerma
     url: {}

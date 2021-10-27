@@ -2,7 +2,7 @@
 title: "Pagina distill"
 description: |
   Como crear tu propia pagina y agregar contenidos. 
-preview: undraw_Wall_post_re_y78d.png
+preview: blog5.jpg
 author:
   - name: Miriam Lerma
 date: 2021-06-01

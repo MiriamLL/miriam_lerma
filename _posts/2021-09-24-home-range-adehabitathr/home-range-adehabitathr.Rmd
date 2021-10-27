@@ -6,6 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 09-24-2021
+preview: blog1.jpg
 categories:
   - R
   - spatial

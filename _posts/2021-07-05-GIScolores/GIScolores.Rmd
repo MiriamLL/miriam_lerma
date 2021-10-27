@@ -2,7 +2,7 @@
 title: "Colores en mapas"
 description: |
   Cambiar colores en un en un mapa en ggplot2 y en QGIS.
-preview: undraw_map_1r69.svg
+preview: blog2.jpg
 author:
   - name: Miriam Lerma
 date: 2021-07-05

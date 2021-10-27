@@ -2,7 +2,7 @@
 title: "Paquetes"
 description: |
   Como crear tu primer paquete con datos y algunas funciones. 
-preview: undraw_Moving_twwf.png
+preview: blog3.jpg
 author:
   - name: Miriam Lerma
 date: 2021-06-03

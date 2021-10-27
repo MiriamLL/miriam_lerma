@@ -2,7 +2,7 @@
 title: "CV"
 description: |
   Como crear un curriculo en RStudio usando el paquete vitae. 
-preview: undraw_personal_information_re_vw8a.png
+preview: blog4.jpg
 author:
   - name: Miriam Lerma
 date: 2021-06-02
