@@ -18,8 +18,8 @@
     ],
     "contents": "\r\n\r\n\r\n\r\nIntro\r\nIn this presentation, we will have a short intro on: - Git - Github - Reproducibility - Git+Github - Naming things\r\n⚡⚡⚡\r\n\r\n\r\n\r\n\r\n Open presentation\r\n\r\n⚡⚡⚡\r\nKeen to learn more?\r\nHappy git: Happy Git by Jennifer Bryan\r\nTutorials RLadiesFreiburg\r\n\r\n\r\n\r\n",
     "preview": "posts/2021-10-27-gitgithub/portada1.jpg",
-    "last_modified": "2021-10-29T11:33:06+02:00",
-    "input_file": "gitgithub.knit.md"
+    "last_modified": "2021-10-29T11:33:07+02:00",
+    "input_file": {}
   },
   {
     "path": "posts/2021-09-24-home-range-adehabitathr/",
@@ -60,8 +60,8 @@
       "English"
     ],
     "contents": "\r\nIntro\r\nThis post is dedicated to the poster and presentation for the Bio-Logging Symposium (https://www.bls7hawaii.com)\r\nDiel foraging behaviour of Humboldt penguins Spheniscus humboldti at Tilgo Island, Northern Chile\r\n⚡⚡⚡⚡\r\n\r\n Preview poster\r\n\r\n⚡⚡⚡⚡\r\nAuthors\r\nMiriam Lerma1, Camila P. Villavicencio2, Nicolas Luna3, Matías Portflitt-Toro3, Juan Serratosa3,4, Guillermo Luna-Jorquera3, Stefan Garthe1, Rene Quispe5,6\r\nResearch and Technology Center (FTZ), University of Kiel, Hafentörn 1, 25761 Büsum, Germany. Link\r\nInstituto de Ecología y Biodiversidad, Departamento de Ciencias Ecológicas, Universidad de Chile, Las Palmeras 3425, Ñuñoa, Santiago, Chile. Link\r\nMillennium Nucleus for Ecology and Sustainable Management of Oceanic Islands - ESMOI, Larrondo 1281, Coquimbo, Chile. Link\r\nBirdLife International, The David Attenborough Building, Pembroke Street, Cambridge, CB2 3QZ, UK\r\nDepartamento de Biología Marina, Facultad de Ciencias del Mar, Universidad Católica del Norte, Larrondo 1281, Coquimbo, Chile. Link\r\nFacultad de Ciencias Agropecuarias, Universidad Pedro de Valdivia, Av. Cuatro Esquinas 60, La Serena, Chile\r\nReferences\r\nDe La Puente, S., Bussalleu, A., Cardeña, M., Valdés-Velásquez, A., Majluf, P. & Simeone, A. 2020. Humboldt Penguin (Spheniscus humboldti). Birds of the World 269–287. Link\r\nVianna, J. A. Cortes M., Ramos, B., Sallaberry, N., González-Acuña, D.,Dantas, G.P.M., Morgante, J., Simeone, A., Luna-Jorquera, G. Changes in abudance and distribution of Humboldt penguin Spheniscus humboldti. Mar. Ornithol. 42: 153-159. Link\r\nDantas, G.P.M., Oliveira, L.R., Santos, A.M., Flores, M.D., De Melo, D.R., Simeone, A., González-Acuña, D., Luna-Jorquera, G., Le Bohec, C., Valdés-Velásquez, A., Cardeña, M., Morgante, J.S. & Vianna, J.A. 2019. Uncovering population structure in the Humboldt penguin (Spheniscus humboldti) along the Pacific coast at South America. PLoS One 14: 1–19. Link\r\nQuispe, R., Lerma, M., Serratosa, J. & Luna-Jorquera, G. 2020. Foraging ranges of Humboldt penguins Spheniscus humboldti from Tilgo Island: the critical need for protecting a unique marine habitat. Mar. Ornithol. 48: 205–208. Link\r\nNavigation route of proposed industrial project at Tilgo Island by Oceana\r\nHerling, C., Culik, B.M. & Hennicke, J.C. 2005. Diet of the Humboldt penguin (Spheniscus humboldti) in northern and southern Chile. Mar. Biol. 147: 13–25. Link\r\nKaltenberg, A.M. & Benoit-Bird, K.J. 2009. Diel behavior of sardine and anchovy schools in the California Current System. Mar. Ecol. Prog. Ser. 394: 247–262. Link\r\nTaylor, J.C., Rand, P.S. & Jenkins, J. 2007. Swimming behavior of juvenile anchovies (Anchoa spp.) in an episodically hypoxic estuary: implications for individual energetics and trophic dynamics. Mar. Biol. 152: 939–957. Link\r\nHumboldt penguin call by Carlos Pinto xeno-canto\r\nAcknowledgments\r\nThis study was financed by Fondecyt (grant no. 3170936 to RQ and postdoctorate grant no. 3160679 to CPV) and by CONACyT-INAPI (grant no. 411876 to ML).\r\nWe thank Esther Rickert for the transportation of tracking devices, and Henri Kröling for useful discussions.\r\nThis study was carried out in accordance with the recommendations and permit of the Subsecretaria de Pesca y Acuicultura de Chile (resolution N°3367/2017).\r\n\r\n\r\n\r\n",
-    "preview": "posts/bls7/Penguin.jpg",
-    "last_modified": "2021-10-27T11:38:01+02:00",
+    "preview": "posts/bls7/Penguin2.jpg",
+    "last_modified": "2021-10-29T11:45:04+02:00",
     "input_file": {}
   },
   {
