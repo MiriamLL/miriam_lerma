@@ -153,7 +153,7 @@ GPS_edited<-contar_viajes(GPS_data=GPS_trip)
 Agrega una columna con la distancia de la colonia de cada punto.  Regresa el mismo data frame con una nueva columna llamada 'maxdist_km.
 
 ```{r, echo=TRUE, eval=FALSE, warnings=FALSE}
-GPS_dist<-dist_colonia(GPS_data = GPS_edited, 
+GPS_dist<-dist_colonia(GPS_edited = GPS_edited, 
                        nest_loc=nest_loc)
 ```
 
@@ -165,7 +165,8 @@ GPS_dist<-dist_colonia(GPS_data = GPS_edited,
 Agrega una columna con la distancia entre cada punto.  Regresa el mismo data frame con una nueva columna llamada 'pointsdist_km'.
 
 ```{r, echo=TRUE, eval=FALSE, warnings=FALSE}
-GPS_dist<-dist_puntos(GPS_data = GPS_edited)
+GPS_dist<-dist_puntos(GPS_data = GPS_edited,
+                      separador='trip_number')
 ```
 
 **Nota** usa CRS: 4326. Incluye NAs al inicio del viaje. Enlaces: [¿referencia geográfica?](https://mgimond.github.io/Spatial/chp09-0.html), [¿cual usar?](https://geocompr.robinlovelace.net/reproj-geo-data.html)
@@ -176,9 +177,10 @@ Identifica el inicio y el final del viaje y calcula la duración.  Regresa un nu
 
 ```{r, eval=FALSE}
 duracion<-calcular_duracion(GPS_data = GPS_edited,
-                              col_diahora = "tStamp",
-                              formato = "%Y-%m-%d %H:%M:%S",
-                              unidades="hours")
+                            col_diahora = "tStamp",
+                            formato = "%Y-%m-%d %H:%M:%S",
+                            unidades="hours",
+                            separador="trip_number")
 ```
 
 **Nota** la duración se calcula en valores númericos.
@@ -191,7 +193,8 @@ Debe contener la columna Longitude y Latitude con estos nombres.
 Regresa un nuevo data frame con la distancia total recorrida por viaje.
 
 ```{r, eval=FALSE}
-totaldist_km<-calcular_totaldist(GPS_edited = GPS_edited)
+totaldist_km<-calcular_totaldist(GPS_data= GPS_edited,
+                                 separador="trip_number")
 ```
 
 ## calcular_maxdist 📏
@@ -201,7 +204,9 @@ Debe contener la columna Longitude y Latitude con estos nombres.
 Regresa un nuevo data frame con la distancia máxima de la colonia por viaje. 
 
 ```{r, eval=FALSE}
-maxdist_km<-calcular_maxdist(GPS_data = GPS_edited, nest_loc=nest_loc)
+maxdist_km<-calcular_maxdist(GPS_data = GPS_edited, 
+                             nest_loc=nest_loc,
+                             separador="trip_number")
 ```
 
 ## calcular_tripparams 📐⏳📏
@@ -210,9 +215,10 @@ Calcula la duración de los viajes, la distancia máxima de la colonia y la dist
 
 ```{r, eval=FALSE}
 trip_params<-calcular_tripparams(GPS_data = GPS_edited,
-                              col_diahora = "tStamp",
+                              diahora_col = "tStamp",
                               formato = "%Y-%m-%d %H:%M:%S",
-                              nest_loc=nest_loc)
+                              nest_loc=nest_loc,
+                              separador="trip_number")
 ```
 
 
@@ -265,14 +271,6 @@ Enlaces: [¿referencia geográfica?](https://mgimond.github.io/Spatial/chp09-0.h
 
 Para calcular parámetros de viajes de varios individuos especifica el nombre de la columna que contiene los identificadores por individuo, el nombre de la columna que contiene información número del viaje y el nombre de la columna que contiene información del día y hora en formato POSTIXct.
 
-```{r, eval=FALSE}
-trip_params<-tripparams_varios(GPS_data=GPS_preparado,
-                               col_ID = "IDs",
-                               col_tripnum="trip_number",
-                               ol_diahora="hora_corregida")
-```
-
-
 **Nota** para usar esta función tus datos deben tener una columna día y hora, si no es así, puedes hacerlo de manera manual o usar la función **ajustar_hora** de este paquete y poner 0 en la diferencia horaria.
 
 ```{r, eval=FALSE}
@@ -282,6 +280,16 @@ GPS_preparado<-ajustar_hora(GPS_data = GPS_preparado,
                             hora_col = 'TimeGMT',
                             formato="%d/%m/%Y %H:%M:%S")
 ```
+
+```{r, eval=FALSE}
+trip_params<-tripparams_varios(GPS_data=GPS_preparado,
+                               col_ID = "IDs",
+                               col_diahora="hora_corregida",
+                               separador="trip_number")
+```
+
+
+
 
 # Citar
 

@@ -2404,7 +2404,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.8/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2523,7 +2523,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># install.packages("devtools")</span>
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/remote-reexports.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/sula"</span><span class='op'>)</span>
+<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/remote-reexports.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/sula"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2626,7 +2626,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>Agrega una columna con la distancia de la colonia de cada punto. Regresa el mismo data frame con una nueva columna llamada ’maxdist_km.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_dist</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/dist_colonia.html'>dist_colonia</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS_edited</span>, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_dist</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/dist_colonia.html'>dist_colonia</a></span><span class='op'>(</span>GPS_edited <span class='op'>=</span> <span class='va'>GPS_edited</span>, 
                        nest_loc<span class='op'>=</span><span class='va'>nest_loc</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2636,7 +2636,8 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>Agrega una columna con la distancia entre cada punto. Regresa el mismo data frame con una nueva columna llamada ‘pointsdist_km’.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_dist</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/dist_puntos.html'>dist_puntos</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS_edited</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_dist</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/dist_puntos.html'>dist_puntos</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS_edited</span>,
+                      separador<span class='op'>=</span><span class='st'>'trip_number'</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2646,9 +2647,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>duracion</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/calcular_duracion.html'>calcular_duracion</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS_edited</span>,
-                              col_diahora <span class='op'>=</span> <span class='st'>"tStamp"</span>,
-                              formato <span class='op'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span>,
-                              unidades<span class='op'>=</span><span class='st'>"hours"</span><span class='op'>)</span>
+                            col_diahora <span class='op'>=</span> <span class='st'>"tStamp"</span>,
+                            formato <span class='op'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span>,
+                            unidades<span class='op'>=</span><span class='st'>"hours"</span>,
+                            separador<span class='op'>=</span><span class='st'>"trip_number"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2659,7 +2661,8 @@ Debe contener la columna Longitude y Latitude con estos nombres.<br />
 Regresa un nuevo data frame con la distancia total recorrida por viaje.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>totaldist_km</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/calcular_totaldist.html'>calcular_totaldist</a></span><span class='op'>(</span>GPS_edited <span class='op'>=</span> <span class='va'>GPS_edited</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>totaldist_km</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/calcular_totaldist.html'>calcular_totaldist</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span> <span class='va'>GPS_edited</span>,
+                                 separador<span class='op'>=</span><span class='st'>"trip_number"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2669,7 +2672,9 @@ Debe contener la columna Longitude y Latitude con estos nombres.<br />
 Regresa un nuevo data frame con la distancia máxima de la colonia por viaje.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>maxdist_km</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/calcular_maxdist.html'>calcular_maxdist</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS_edited</span>, nest_loc<span class='op'>=</span><span class='va'>nest_loc</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>maxdist_km</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/calcular_maxdist.html'>calcular_maxdist</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS_edited</span>, 
+                             nest_loc<span class='op'>=</span><span class='va'>nest_loc</span>,
+                             separador<span class='op'>=</span><span class='st'>"trip_number"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2678,9 +2683,10 @@ Regresa un nuevo data frame con la distancia máxima de la colonia por viaje.</p
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>trip_params</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/calcular_tripparams.html'>calcular_tripparams</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS_edited</span>,
-                              col_diahora <span class='op'>=</span> <span class='st'>"tStamp"</span>,
+                              diahora_col <span class='op'>=</span> <span class='st'>"tStamp"</span>,
                               formato <span class='op'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span>,
-                              nest_loc<span class='op'>=</span><span class='va'>nest_loc</span><span class='op'>)</span>
+                              nest_loc<span class='op'>=</span><span class='va'>nest_loc</span>,
+                              separador<span class='op'>=</span><span class='st'>"trip_number"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2715,7 +2721,7 @@ Si no tienen esos nombres favor de renombrarlas.</p>
 En la función debes especificar: el nombre de tu data frame, el nombre de la columna de los ID (identificadores por individuo), el nombre de la columna de la longitud y el nombre de la columna de la latitud. Para elegir los viajes elige un buffer de fuera de la colonia (distancia_km). Elige también tu sistema de referencia geográfica.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_preparado</span><span class='op'>&lt;-</span><span class='fu'>preparar_varios</span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>GPS_raw</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_preparado</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/preparar_varios.html'>preparar_varios</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>GPS_raw</span>,
                                ID_col<span class='op'>=</span><span class='st'>"IDs"</span>,
                                lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,
                                lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,
@@ -2728,15 +2734,6 @@ En la función debes especificar: el nombre de tu data frame, el nombre de la co
 <p>Enlaces: <a href="https://mgimond.github.io/Spatial/chp09-0.html">¿referencia geográfica?</a>, <a href="https://geocompr.robinlovelace.net/reproj-geo-data.html">¿cual usar?</a></p>
 <h2 id="tripparams_varios">tripparams_varios 📐📐📐</h2>
 <p>Para calcular parámetros de viajes de varios individuos especifica el nombre de la columna que contiene los identificadores por individuo, el nombre de la columna que contiene información número del viaje y el nombre de la columna que contiene información del día y hora en formato POSTIXct.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>trip_params</span><span class='op'>&lt;-</span><span class='fu'>tripparams_varios</span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>GPS_preparado</span>,
-                               col_ID <span class='op'>=</span> <span class='st'>"IDs"</span>,
-                               col_tripnum<span class='op'>=</span><span class='st'>"trip_number"</span>,
-                               ol_diahora<span class='op'>=</span><span class='st'>"hora_corregida"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
 <p><strong>Nota</strong> para usar esta función tus datos deben tener una columna día y hora, si no es así, puedes hacerlo de manera manual o usar la función <strong>ajustar_hora</strong> de este paquete y poner 0 en la diferencia horaria.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2745,6 +2742,16 @@ En la función debes especificar: el nombre de tu data frame, el nombre de la co
                             dia_col <span class='op'>=</span> <span class='st'>'DateGMT'</span>,
                             hora_col <span class='op'>=</span> <span class='st'>'TimeGMT'</span>,
                             formato<span class='op'>=</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>trip_params</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/tripparams_varios.html'>tripparams_varios</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>GPS_preparado</span>,
+                               col_ID <span class='op'>=</span> <span class='st'>"IDs"</span>,
+                               col_tripnum<span class='op'>=</span><span class='st'>"trip_number"</span>,
+                               col_diahora<span class='op'>=</span><span class='st'>"hora_corregida"</span>,
+                               separador<span class='op'>=</span><span class='st'>"trip_number"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
