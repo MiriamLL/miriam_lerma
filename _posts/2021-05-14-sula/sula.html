@@ -1509,6 +1509,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#preparar_varios">preparar_varios 🔌🔌🔌</a></li>
 <li><a href="#tripparams_varios">tripparams_varios 📐📐📐</a></li>
 </ul></li>
+<li><a href="#otras-herramientas">Otras herramientas</a>
+<ul>
+<li><a href="#interpolar-tus-viajes-️">Interpolar tus viajes 🛠️</a></li>
+</ul></li>
 <li><a href="#citar">Citar</a></li>
 </ul>
 </nav>
@@ -1758,6 +1762,19 @@ En la función debes especificar: el nombre de tu data frame, el nombre de la co
                                col_ID <span class='op'>=</span> <span class='st'>"IDs"</span>,
                                col_diahora<span class='op'>=</span><span class='st'>"hora_corregida"</span>,
                                separador<span class='op'>=</span><span class='st'>"trip_number"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="otras-herramientas">Otras herramientas</h1>
+<h2 id="interpolar-tus-viajes-️">Interpolar tus viajes 🛠️</h2>
+<p>Si tienes intervalos disparejos, y necesitas interpolar tus datos puedes establecer un <strong>intervalo</strong> Tu data frame debe contener las columnas Longitud, Latitud, ID, numero de viaje, y hora y dia en formato POSTIXct</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_interpolated</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolar_viajes.html'>interpolar_viajes</a></span><span class='op'>(</span>GPS_preparado<span class='op'>=</span><span class='va'>GPS_preparado</span>, 
+                                    intervalo<span class='op'>=</span><span class='st'>"900 sec"</span>, 
+                                    col_diahora<span class='op'>=</span><span class='st'>"dia_hora"</span>, 
+                                    separador<span class='op'>=</span><span class='st'>'trip_number'</span>,
+                                    col_ID<span class='op'>=</span><span class='st'>'IDs'</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>

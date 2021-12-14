@@ -289,6 +289,22 @@ trip_params<-tripparams_varios(GPS_data=GPS_preparado,
 ```
 
 
+# Otras herramientas
+
+## Interpolar tus viajes 🛠️
+
+Si tienes intervalos disparejos, y necesitas interpolar tus datos puedes establecer un **intervalo**
+Tu data frame debe contener las columnas Longitud, Latitud, ID, numero de viaje, y hora y dia en formato POSTIXct
+
+```{r, eval=FALSE}
+GPS_interpolated<-interpolar_viajes(GPS_preparado=GPS_preparado, 
+                                    intervalo="900 sec", 
+                                    col_diahora="dia_hora", 
+                                    separador='trip_number',
+                                    col_ID='IDs')
+```
+
+
 
 
 # Citar
