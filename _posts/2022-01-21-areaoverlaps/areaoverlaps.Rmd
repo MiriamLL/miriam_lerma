@@ -1,0 +1,246 @@
+---
+title: "Shared Areas"
+description: |
+  Calculate area per polygon, their intersection and the shared areas
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 01-21-2022
+preview: blog7.jpg
+categories:
+  - R
+  - spatial
+  - shapefiles
+  - English
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+Here, some steps for:
+
+- Generating kernel polygons
+
+- Calculating the intersection between two polygons
+
+- Plotting polygons and their intersection
+
+- Creating a table with the shared areas between two polygons 
+
+
+
+# Data
+
+To replicate the exercise, load data from the package 'sula'.
+For accessing the data, you need to have the package installed. 
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+library(sula)
+```
+
+The data is from 10 tracked individuals.
+
+```{r}
+GPS_raw<-(GPS_raw)
+```
+
+# Create polygons
+
+Select which individuals you want to compare
+
+```{r}
+GPS01<-subset(GPS_raw,GPS_raw$IDs=='GPS01')
+GPS02<-subset(GPS_raw,GPS_raw$IDs=='GPS02')
+```
+
+With the following function you can create the polygon of the individual using an specific value.
+
+Your need to provide the name of the column that contains the latitude, the name of the column that contains the longitude, and the value you want to calculate (E.g. core=50, general=95).
+
+```{r}
+create_polygon<-function(Data=Data, lon_col=lon_col,lat_col=lat_col,value=value){
+  
+  Data<-Data
+  Data$Longitude<-Data[[lon_col]]
+  Data$Latitude<-Data[[lat_col]]
+    
+  #convert to spatial
+  DataSp<-as.data.frame(Data)
+  sp::coordinates(DataSp) <- c("Longitude", "Latitude")
+  sp::proj4string(DataSp) <- sp::CRS("+init=epsg:4326")
+  
+  #create polygon
+  DataSp<-adehabitatHR::kernelUD(DataSp,h="href") # Using reference
+  Data_50<-adehabitatHR::getverticeshr(DataSp,percent=value)
+  
+  Data_sf_50<-sf::st_as_sf(Data_50)
+  
+  return(Data_sf_50)
+}
+```
+
+Calculate polygons of 50%.  
+Some warnings may appear
+
+```{r, warning=FALSE}
+GPS01_50<-create_polygon(Data=GPS01,lat_col="Latitude",lon_col="Longitude",value=50)
+GPS02_50<-create_polygon(Data=GPS02,lat_col="Latitude",lon_col="Longitude",value=50)
+```
+
+Calculate polygons of 95%.  
+
+```{r, warning=FALSE}
+GPS01_95<-create_polygon(Data=GPS01,lat_col="Latitude",lon_col="Longitude",value=95)
+GPS02_95<-create_polygon(Data=GPS02,lat_col="Latitude",lon_col="Longitude",value=95)
+```
+
+# Compare
+
+With the function **intersection** of the package **sf** you can obtain the area where both polygons intersect
+
+```{r, warning=FALSE}
+library(sf)
+```
+
+```{r, fig.height=2,echo=FALSE, fig.align='left'}
+knitr::include_graphics("https://geocompr.robinlovelace.net/05-geometry-operations_files/figure-html/circle-intersection-1.png")
+```
+[Source: Geocompr](https://geocompr.robinlovelace.net/05-geometry-operations_files/figure-html/circle-intersection-1.png)
+
+
+```{r, warning=FALSE}
+Intersection_95<-st_intersection(GPS01_95,GPS02_95)
+Intersection_50<-st_intersection(GPS01_50,GPS02_50)
+```
+
+# Plot
+
+Using the following function **plot_overlaps** and the package ggplot, you can visualize where  the intersection is occurring
+
+```{r, warning=FALSE}
+library(ggplot2)
+```
+
+```{r}
+plot_overlaps<-function(ID1_95=ID1_95,ID1_50=ID1_50,ID2_95=ID2_95,ID2_50=ID2_50){
+  
+  Plot<-ggplot2::ggplot()+
+  
+    ggplot2::geom_sf(data = ID1_95,color='#d00000',fill = "#d00000",alpha=0.3,size=1)+ 
+    ggplot2::geom_sf(data = ID2_95,color='#3f88c5',fill = "#3f88c5",alpha=0.3,size=1)+
+    ggplot2::geom_sf(data = Intersection_95,  color='#ffba08', fill = "#ffba08",alpha=0.3,size=1)+
+    
+    ggplot2::geom_sf(data = ID1_50,color='#d00000',fill = "#d00000",alpha=0.7,size=1)+
+    ggplot2::geom_sf(data = ID2_50,color='#3f88c5', fill = "#3f88c5",alpha=0.7,size=1)+ 
+    ggplot2::geom_sf(data = Intersection_50,  color='#ffba08', fill = "#ffba08",alpha=0.7,size=1)+
+    
+    ggplot2::labs(x = "Longitude", y="Latitude")+
+    
+    theme_bw()
+  
+  return(Plot)
+}
+```
+
+It would show a map with your polygons
+
+```{r, fig.height=6}
+overlap_plot<-plot_overlaps(ID1_95=GPS01_95,
+                            ID1_50=GPS01_50,
+                            ID2_95=GPS02_95,
+                            ID2_50=GPS02_50)
+  
+overlap_plot
+```
+
+# Create table
+
+Once you have your polygons for each individual and also the intersection between polygons, you can now create a table using the following custom function **table_areas**
+
+To calculate the shared area, the function follows the formula as in  [Hedd et al. 2014](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194389#sec002)
+
+```{r}
+table_areas<-function(ID1_50=ID1_50,
+                      ID2_50=ID2_50,
+                      ID1_95=ID1_95,
+                      ID2_95=ID2_95,
+                      Intersection_50=Intersection_50,
+                      Intersection_95=Intersection_95){
+  
+  Tabla<-data.frame(
+  UDs=c("50","95"),
+  
+  ID1_area_km2=c(
+    round(as.numeric(units::set_units(st_area(ID1_50),km^2)),2),
+    round(as.numeric(units::set_units(st_area(ID1_95),km^2),2))
+    ),
+  
+  ID2_area_km2=c(
+    round(as.numeric(units::set_units(st_area(ID2_50),km^2),2)),
+    round(as.numeric(units::set_units(st_area(ID2_95),km^2),2))
+    ),
+  
+  intersection_area_km2=c(
+    round(as.numeric(units::set_units(st_area(Intersection_50),km^2),2)),
+    round(as.numeric(units::set_units(st_area(Intersection_95),km^2),2))
+  )
+  )
+  
+  Tabla$shared_area_percent<-
+  (Tabla$intersection_area_km2)/
+    (
+      (Tabla$ID1_area_km2 - Tabla$intersection_area_km2) + 
+       (Tabla$ID2_area_km2 - Tabla$intersection_area_km2) + 
+       Tabla$intersection_area_km2)
+  
+  return(Tabla)
+}
+                    
+```
+
+The table contains the area of each polygon, the intersection and the shared areas
+
+```{r}
+areas_table<-table_areas(ID1_50=GPS01_50,
+                      ID2_50=GPS02_50,
+                      ID1_95=GPS01_95,
+                      ID2_95=GPS02_95,
+                      Intersection_50=Intersection_50,
+                      Intersection_95=Intersection_95)
+```
+
+It should return a table as the following:
+
+```{r, echo=FALSE}
+areas_table %>% 
+  head()%>%
+  knitr::kable(format = "html")
+```
+
+# Export
+
+To export the table as csv:
+
+```{r, eval=FALSE}
+write_csv(areas_table,'areas_table.csv')
+```
+
+To export the polygons as shapefiles:
+
+```{r, eval=FALSE}
+st_write(GPS01_50, "GPS01_50.shp")
+st_write(GPS02_50, "GPS02_95.shp")
+st_write(Intersection_50, "Intersection_50.shp")
+
+st_write(GPS01_95, "GPS01_95.shp")
+st_write(GPS02_95, "GPS02_95.shp")
+st_write(Intersection_95, "Intersection_95.shp")
+```
+
+## Recommended literature
+
+- [Geocomputation in R](https://geocompr.robinlovelace.net/)
+- [Shared areas formula by Hedd et al. 2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194389#sec002)
