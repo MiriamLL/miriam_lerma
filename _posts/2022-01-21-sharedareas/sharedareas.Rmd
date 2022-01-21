@@ -160,7 +160,7 @@ overlap_plot
 
 Once you have your polygons for each individual and also the intersection between polygons, you can now create a table using the following custom function **table_areas**
 
-To calculate the shared area, the function follows the formula as in  [Hedd et al. 2014](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194389#sec002)
+To calculate the shared area, the function follows the formula as in  [Hedd et al. 2014](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194389#sec002) and [McFarlane Tranquila et al. 2013](https://www.int-res.com/articles/meps2013/472/m472p287.pdf)
 
 ```{r}
 table_areas<-function(ID1_50=ID1_50,
@@ -243,4 +243,4 @@ st_write(Intersection_95, "Intersection_95.shp")
 ## Recommended literature
 
 - [Geocomputation in R](https://geocompr.robinlovelace.net/)
-- [Shared areas formula by Hedd et al. 2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194389#sec002)
+- Shared areas formula by [Hedd et al. 2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194389#sec002) and [McFarlane Tranquila et al. 2013](https://www.int-res.com/articles/meps2013/472/m472p287.pdf)
