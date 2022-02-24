@@ -5,8 +5,8 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 02-4-2022
-preview: blog7.jpg
+date: 02-24-2022
+preview: blog8.jpg
 categories:
   - R
   - tracking
@@ -22,7 +22,7 @@ output:
 This post is about how to find overlapping times between your tracked individuals. <br>
 This might help you to: <br>
 - Identify periods where you have **gaps** for each individual, or <br>
-- To **select which period is comparable among individuals** that might have been tracked on different periods <br>
+- To **select which periods are comparable among individuals** that might have been tracked on different periods <br>
 
 
 # Data
@@ -42,7 +42,7 @@ GPS_raw<-(GPS_raw)
 
 # Plot
 
-For this exercise you should install or have installed the package ggplot, and do not forget to 'call it'.
+For this exercise you should install or have installed the package **ggplot**.
 
 ```{r}
 library(ggplot2)
@@ -63,8 +63,8 @@ GPS_raw$DateTime<-as.POSIXct(strptime(GPS_raw$DateTime, "%d/%m/%Y %H:%M:%S"),tz 
 ```
 
 
-Now for plotting, you use the timestamp for the x axis and the IDs of each individual as the y axis (I consider that it is easy to see this way).
-Also if you want each individual to be plotted in different color then you also add the name of the column after the argument color=.
+Now for plotting, you can use the timestamp for the x axis and the IDs of each individual as the y axis.  
+If you want each individual to be plotted in different color, you can also add the name of the column after the argument **color=**.
 
 ```{r}
 Plot_tracking<-ggplot(data=GPS_raw,
@@ -77,22 +77,24 @@ Plot_tracking<-ggplot(data=GPS_raw,
 Plot_tracking
 ```
 
-Because is a ggplot, many things can be further customize.
+
 
 ## Modify legend
-Such as the *legends*
+Because is a ggplot, many things can be further customized.  
+Such as the **legends**
+
+Here, I remove the legend from the side (legend.position='none'), modify the legend in the x axis to 'individuals', and change the angle of the x axis to 60 degrees. 
 
 ```{r}
-Plot_tracking<-Plot_tracking+
+Plot_tracking+
     theme(legend.position='none')+
     labs(x = "", y = "Individuals") +
         theme(axis.text.x=element_text(angle=60, hjust=1))+
     theme(plot.title = element_text(size = 10, face = "bold"))
-Plot_tracking
 ```
 
 ## Change breaks
-You can also select how often you want the breaks, or how detailed the x axis legend should be.
+You can also select how detailed the x axis legend should be and how often you want the breaks.
 
 For one day breaks:
 
@@ -112,6 +114,7 @@ For one month breaks:
 Plot_tracking + scale_x_datetime(date_labels = "%d %b %Y",date_breaks = "1 month")
 ```
 
+It doesnt show, because all were in the same month, but it might be useful for you to know this argument. 
 
 ## Add lines
 You can also mark separations between periods using a line.
@@ -122,9 +125,9 @@ To do so, first you have to make the period where you want to make the line as P
 PA<-as.POSIXct(strptime("2017-11-07 00:00:00", "%Y-%m-%d %H:%M:%S"),tz = "GMT")
 ```
 
-Then you add the line to the ggplot using the function geom_vline (v from vertical line)
-Use the period you have interest on getting the line as xintercept, and
-Linetypes option can be seen [here](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/).
+Then you add the line to the ggplot using the function geom_vline (v from vertical line) <br>
+Use the period you have interest on getting the line as **xintercept**, and <br>
+The **linetypes** options can be seen [here](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/).
 The color depends on your preference, here I use red to make it easy to see at first glance.
 
 ```{r}
@@ -144,10 +147,10 @@ PA<-as.POSIXct(strptime("2017-11-01 00:00:00", "%Y-%m-%d %H:%M:%S"),tz = "GMT")
 PB<-as.POSIXct(strptime("2017-11-07 00:00:00", "%Y-%m-%d %H:%M:%S"),tz = "GMT")
 ```
 
-Then I add it to the plot.
-The xmin is the time where the rectangle will start, and the xmax where it would end.
-Because I want the rectangle to cover the area I used -Inf and Inf
-The color is in fill, and the alpha is to have some transparency (the lower the value the more transparent will be, and the values go from 0 to 1).
+Then I add it to the plot <br>
+The **xmin** is the time where the rectangle will start, and the **xmax** where it would end. <br>
+Because I want the rectangle to cover the area I used **-Inf** and **Inf**. <br>
+The color is in **fill**, and the **alpha** is to have some transparency (the lower the value the more transparent will be, and the values go from 0 to 1).
 
 ```{r}
 Plot_tracking + annotate("rect",
@@ -157,20 +160,20 @@ Plot_tracking + annotate("rect",
 ```
 # Export
 
-To export your plot, you can use the argument *ggsave*
+To export your plot, you can use the argument **ggsave**
 
-The simplest is just to give it a name to your plot, and ggsave will save the latest plot you have created, you just have to give it a name and an extention.
+The simplest is just to give it a name to your plot, and ggsave will save the latest plot you have created.
 
-Some options are: png, eps, pdf, jpeg, tiff, bmp or svg
+To be able to see it other programs, you will have to give it an extention. Some options are: png, eps, pdf, jpeg, tiff, bmp or svg
 
 ```{r, eval=FALSE}
 ggsave(filename = "~/Figure.png")
 ```
 
-Note that the figure would be saved in the same folder where you have the Rmd. If you want an specific folder, change it in the file name.
+Note that if you want the figure to be saved on specific folder, you need to include the path in the file name.
 
 ```{r, eval=FALSE}
-ggsave(filename = "Results/Figure.png")
+ggsave(filename = "~Results/Figure.png")
 ```
 
 If you want to create several figures and want to export just specific ones, you can also use the name of the plot to export only that one.
@@ -191,6 +194,9 @@ ggsave(Plot_tracking,
        units = "in",
        dpi = 500)
 ```
+
+
+I hope this was useful for you, and if you want to go deep in some aspects of ggplot check the recommended sources below.
 
 # Recommended sources
 
