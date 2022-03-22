@@ -10,7 +10,7 @@ preview: blog9.jpg
 categories:
   - R
   - tracking
-  - timestampt
+  - interpolation
   - English
 output:
   distill::distill_article:
