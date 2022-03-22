@@ -471,7 +471,7 @@ d-title {
 
 </style>
 
-<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1878,7 +1878,10 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        return "<p>" + $('#ref-' + ref).html() + "</p>";
+      }).join("\n");
       window.tippy(this, {
         allowHTML: true,
         content: refHtml,
@@ -2437,7 +2440,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <a href="../../index.html">About</a>
 <a href="../../publications.html">Publications</a>
 <a href="../../materiales.html">Teaching</a>
-<a href="../../projects.html">Projects</a>
+<a href="../../projects.html">Packages</a>
 <a href="../../blog.html">Blog</a>
 <a href="https://twitter.com/MiriamLermaL">
 <i class="fab fa-twitter" aria-hidden="true"></i>
