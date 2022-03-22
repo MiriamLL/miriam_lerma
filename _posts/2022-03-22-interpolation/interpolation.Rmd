@@ -1,0 +1,268 @@
+---
+title: "Interpolation"
+description: |
+  How to interpolate tracking data.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-03-22
+preview: blog9.jpg
+categories:
+  - R
+  - tracking
+  - timestampt
+  - English
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+# **Interpolation**
+
+Interpolation is a type of estimation, a method of constructing (or finding) new data ponts based on the range of a discrete set of known data points (source: [wikipedia](https://en.wikipedia.org/wiki/Interpolation))
+
+# Intro
+
+This post is about:   <br>
+- How to prepare your data and use the function interpolate from the package **sula** for interpolating your tracking data  <br>
+
+Interpolating your data might help you to: <br>
+- Fill **gaps** on your tracking data, and/or <br>
+- To **make comparable** trips when individuals were tracked at different intervals <br>
+ ... read more at the end of this page.
+
+⚠️**However**, while interpolating you should be very cautious, because you are creating locations where the bird might have not been. 
+
+This post step by step:  
+1. Load data  
+2. Identify nest location / or central location  
+3. Classify if the bird was inside the central location or outside  
+4. Count the number of trips  
+5. Interpolate only when the animal was on a trip  
+
+
+
+# Step by step
+
+### Data
+
+To do this exercise, load data from the package 'sula'. <br>
+For accessing the data, you need to have the package installed. 
+
+To install:
+
+```{r, eval=FALSE}
+devtools::install_github("MiriamLL/sula")
+```
+
+```{r}
+library(sula)
+```
+
+The data is from 10 tracked individuals.
+
+```{r}
+GPS_raw<-(GPS_raw)
+```
+
+Select only one individual.
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+ID01_track<-GPS_raw %>%
+  dplyr::filter(IDs=='GPS01')
+```
+
+# Identify trips
+
+Because is often the case, you only want to interpolate the data when the bird was off their central location. 
+### Nest location 🐣
+
+Is also often the case that at fieldwork, the GPS started recording data after releasing the animal back to their nest. 
+
+Therefore, we know that the first location recorded will correspond to their nest.
+
+To identify the first location I use the function **locate_nest** from the package **sula**.
+
+Because you might have different column names, you can add the names of your columns here in 'column_lon' and 'column_lat'.
+
+```{r, message=FALSE}
+ID01_nest<-locate_nest(GPS_data = ID01_track,
+                         column_lat = 'Longitude',
+                         column_lon = 'Latitude')
+```
+
+**Manually**: If you did not activate the GPS at their nest and you know the nest location, you can manually write it down.
+
+```{r}
+ID01_nest<-data.frame(Longitude=-109.4531,
+                     Latitude=-27.20097)
+```
+
+### Identify trips 🛩️
+
+Now that you have the nest location, the function **identify_trips** from the package **sula** helps you to identify when the bird was out on a trip.
+
+The function adds a new column, where 'Y' means that the location is outside the range you select (in the example 1 km), and 'N' means that the location is inside the range you select.
+
+Therefore 'Y' is when the bird was on a trip, and 'N' is when it was at the nest. 
+
+```{r}
+ID01_trips<-identify_trips(GPS_data=ID01_track,
+                           Nest_location=ID01_nest,
+                           Distance_km=1)
+```
+
+### Count trips 🧮
+
+The function **count_trips** from the package **sula** removes the locations that are not trips (for example removes all rows where the animal was at the central location) and adds a column with the number of the trip. 
+
+```{r}
+ID01_onlytrips<-count_trips(GPS_data=ID01_trips)
+```
+
+To check when the trips started and end you can also use functions from the package **tidyverse**.
+
+```{r}
+ID01_onlytrips %>% 
+  group_by(trip_number)%>%
+  summarise(start=paste(first(DateGMT),first(TimeGMT)),
+            end=paste(last(DateGMT),last(TimeGMT)))
+```
+
+
+If you know when the trip started and ended, you can also add the trip classification **manually**, using also functions from the package tidyverse. 
+
+```{r, eval=FALSE}
+ID01_onlytrips <- ID01_trips %>%
+  mutate(trip_number=
+           case_when(
+             DateGMT == '02/11/2017' & TimeGMT >= '19:34:31' & TimeGMT <= '20:09:24' ~ 'trip_1',
+             DateGMT == '03/11/2017' & TimeGMT >= '12:44:04' & TimeGMT <= '14:30:00' ~ 'trip_2',
+             DateGMT == '04/11/2017' & TimeGMT >= '07:45:17' & TimeGMT <= '09:41:28' ~ 'trip_3',
+             DateGMT == '04/11/2017' & TimeGMT >= '17:05:36' & TimeGMT <= '20:41:10' ~ 'trip_4',
+             DateGMT == '05/11/2017' & TimeGMT >= '09:06:13' & TimeGMT <= '11:26:14' ~ 'trip_5',
+             TRUE ~ "nest")) %>%
+  filter(trip_number != 'nest')
+```
+
+
+# Interpolate 🌐
+
+Finally, we have our data frame with Longitude, Latitude, and trip_number. Thus we can now interpolate the tracking data. 
+
+The function **interpole_trips** from the package **sula** helps you to interpolate the locations based on an interval. In the examples below 900 secs = 15 minutes and 60 sec = 1 minute
+
+If you need to double check which interval you want you can go to this page: https://www.calculateme.com/time/seconds/to-minutes/900
+
+Because you  might have different column names, this function has a lot of arguments, but basically you just need to replace the name of your data frame, the interval you are interested to do the interpolation, the column names, and the format your date and time is presented. 
+
+```{r}
+ID01_interpolated15m<-interpolate_trips(GPS_data=ID01_onlytrips,
+                                     interval='900 sec',
+                                     column_date='DateGMT',
+                                     column_time='TimeGMT',
+                                     column_trip='trip_number',
+                                     column_lat='Latitude',
+                                     column_lon='Longitude',
+                                     datetime_format<-"%d/%m/%Y %H:%M:%S")
+```
+
+```{r}
+ID01_interpolated1m<-interpolate_trips(GPS_data=ID01_onlytrips,
+                                     interval='60 sec',
+                                     column_date='DateGMT',
+                                     column_time='TimeGMT',
+                                     column_trip='trip_number',
+                                     column_lat='Latitude',
+                                     column_lon='Longitude',
+                                     datetime_format<-"%d/%m/%Y %H:%M:%S")
+```
+
+
+# Plot 🖌️
+
+Now lets compare the before and after, the tracking data vs the interpolated data.
+
+The package **patchwork** lets us see the plots side by side. 
+
+```{r}
+library(patchwork)
+```
+
+Create three plots, one using the original points, and two using the interpolation to compare. 
+
+```{r, fig.height=3, fig.width=9}
+Original_track<-ggplot(ID01_onlytrips, aes(x=Longitude, y=Latitude, color=trip_number)) + 
+  geom_point()+
+  theme_bw()+
+  ggtitle('Original tracking data')+
+  theme(legend.position='none')
+Interpolated_15m<-ggplot(ID01_interpolated15m, aes(x=Longitude, y=Latitude, color=trip_number)) + 
+  geom_point()+
+  theme_bw()+
+  ggtitle('Interpolated to 15 mins')+
+  theme(legend.position='none')
+Interpolated_1m<-ggplot(ID01_interpolated1m, aes(x=Longitude, y=Latitude, color=trip_number)) + 
+  geom_point()+
+  theme_bw()+
+  ggtitle('Interpolated to 1 min')+
+  theme(legend.position='right')
+Original_track+Interpolated_15m+Interpolated_1m
+```
+
+
+Now it is up to you to decide which interpolation interval fits better to your study.
+
+# Summary
+
+TL;DR (too long; didn't read)
+
+```{r, eval=FALSE}
+library(sula)
+library(tidyverse)
+
+ID01_track<-GPS_raw %>% filter(IDs=='GPS01')
+
+ID01_nest<-data.frame(Longitude=-109.4531,Latitude=-27.20097)
+
+ID01_trips<-identify_trips(GPS_data=ID01_track,Nest_location=ID01_nest,Distance_km=1)
+
+ID01_onlytrips<-count_trips(GPS_data=ID01_trips)
+
+ID01_interpolated15m<-interpolate_trips(GPS_data=ID01_onlytrips,
+                                        interval='900 sec',
+                                        column_date='DateGMT',
+                                        column_time='TimeGMT',
+                                        column_trip='trip_number',
+                                        column_lat='Latitude',
+                                        column_lon='Longitude',
+                                        datetime_format<-"%d/%m/%Y %H:%M:%S")
+```
+
+
+# Recommended sources 📑
+
+Some of the reasons to interpolate data are:
+
+- To fit the GPS locations with diving data.
+For example: [Lerma et al. 2020](https://link.springer.com/article/10.1007/s00227-020-03700-2#Sec2), 
+[Browning et al. 2017](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12926)
+
+- Because the recorded data was different between individuals, and thus interpolating data provides fixed intervals. 
+For example: [Borrmann et al. 2019](https://doi.org/10.1111/jav.02156)
+
+- To fill occasional gaps in the tracking data, particularly for animals that dive and do not receive signal when submerged. 
+For example: [Iorio-Merlo et al. 2022](https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2021.2261).
+
+
+If you can thing on another case when interpolation is necessary please do not hesitate to write me to include it on the list. 
+
+Also if you use the function from the package **sula** please consider including the package in your citations. 
+
+For more details or suggestions you can also always write me an [email](miriamjlerma@gmail.com)
+
