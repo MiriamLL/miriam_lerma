@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -55,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -76,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Time overlaps</title>
@@ -110,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Time overlaps"]},{"type":"character","attributes":{},"value":["Find overlapping time periods\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["02-24-2022"]},{"type":"character","attributes":{},"value":["blog8.jpg"]},{"type":"character","attributes":{},"value":["R","tracking","timestampt","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Time overlaps"]},{"type":"character","attributes":{},"value":["Find overlapping time periods\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["02-24-2022"]},{"type":"character","attributes":{},"value":["blog8.jpg"]},{"type":"character","attributes":{},"value":["R","tracking","timestamp","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1262,7 +1264,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1433,8 +1438,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="timeoverlaps_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="timeoverlaps_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="timeoverlaps_files/header-attrs-2.13/header-attrs.js"></script>
+  <script src="timeoverlaps_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="timeoverlaps_files/popper-2.6.0/popper.min.js"></script>
   <link href="timeoverlaps_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="timeoverlaps_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1469,7 +1474,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="dt-tags">
 <div class="dt=tag">R</div>
 <div class="dt=tag">tracking</div>
-<div class="dt=tag">timestampt</div>
+<div class="dt=tag">timestamp</div>
 <div class="dt=tag">English</div>
 </div>
 <!--/radix_placeholder_categories-->
@@ -1484,9 +1489,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p>This post is about how to find overlapping times between your tracked individuals. <br> This might help you to: <br> - Identify periods where you have <strong>gaps</strong> for each individual, or <br> - To <strong>select which periods are comparable among individuals</strong> that might have been tracked on different periods <br></p>
+<p>This post is about how to find overlapping times between your tracked
+individuals. <br> This might help you to: <br> - Identify periods where
+you have <strong>gaps</strong> for each individual, or <br> - To
+<strong>select which periods are comparable among individuals</strong>
+that might have been tracked on different periods <br></p>
 <h1 id="data">Data</h1>
-<p>To replicate the exercise, load data from the package ‘sula’. <br> For accessing the data, you need to have the package installed.</p>
+<p>To replicate the exercise, load data from the package ‘sula’. <br>
+For accessing the data, you need to have the package installed.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#devtools::install_github("MiriamLL/sula")</span>
@@ -1502,29 +1512,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <h1 id="plot">Plot</h1>
-<p>For this exercise you should install or have installed the package <strong>ggplot</strong>.</p>
+<p>For this exercise you should install or have installed the package
+<strong>ggplot</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>In the example data, time and date are in separated columns, therefore the first step is to join those columns.</p>
+<p>In the example data, time and date are in separated columns,
+therefore the first step is to join those columns.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateGMT</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>For plotting times, it is important that the column with the timestamps is in a time format. Be cautious with the format of your time stamps.</p>
+<p>For plotting times, it is important that the column with the
+timestamps is in a time format. Be cautious with the format of your time
+stamps.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span>, <span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Now for plotting, you can use the timestamp for the x axis and the IDs of each individual as the y axis.<br />
-If you want each individual to be plotted in different color, you can also add the name of the column after the argument <strong>color=</strong>.</p>
+<p>Now for plotting, you can use the timestamp for the x axis and the
+IDs of each individual as the y axis.<br />
+If you want each individual to be plotted in different color, you can
+also add the name of the column after the argument
+<strong>color=</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>GPS_raw</span>,
@@ -1542,7 +1559,9 @@ If you want each individual to be plotted in different color, you can also add t
 <h2 id="modify-legend">Modify legend</h2>
 <p>Because is a ggplot, many things can be further customized.<br />
 Such as the <strong>legends</strong></p>
-<p>Here, I remove the legend from the side (legend.position=‘none’), modify the legend in the x axis to ‘individuals’, and change the angle of the x axis to 60 degrees.</p>
+<p>Here, I remove the legend from the side (legend.position=‘none’),
+modify the legend in the x axis to ‘individuals’, and change the angle
+of the x axis to 60 degrees.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span><span class='op'>+</span>
@@ -1555,7 +1574,8 @@ Such as the <strong>legends</strong></p>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
 <h2 id="change-breaks">Change breaks</h2>
-<p>You can also select how detailed the x axis legend should be and how often you want the breaks.</p>
+<p>You can also select how detailed the x axis legend should be and how
+often you want the breaks.</p>
 <p>For one day breaks:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1580,17 +1600,25 @@ Such as the <strong>legends</strong></p>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
 </div>
-<p>It doesnt show, because all were in the same month, but it might be useful for you to know this argument.</p>
+<p>It doesnt show, because all were in the same month, but it might be
+useful for you to know this argument.</p>
 <h2 id="add-lines">Add lines</h2>
 <p>You can also mark separations between periods using a line.</p>
-<p>To do so, first you have to make the period where you want to make the line as POSIXct</p>
+<p>To do so, first you have to make the period where you want to make
+the line as POSIXct</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>PA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-07 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Then you add the line to the ggplot using the function geom_vline (v from vertical line) <br> Use the period you have interest on getting the line as <strong>xintercept</strong>, and <br> The <strong>linetypes</strong> options can be seen <a href="http://www.cookbook-r.com/Graphs/Shapes_and_line_types/">here</a>. The color depends on your preference, here I use red to make it easy to see at first glance.</p>
+<p>Then you add the line to the ggplot using the function geom_vline (v
+from vertical line) <br> Use the period you have interest on getting the
+line as <strong>xintercept</strong>, and <br> The
+<strong>linetypes</strong> options can be seen <a
+href="http://www.cookbook-r.com/Graphs/Shapes_and_line_types/">here</a>.
+The color depends on your preference, here I use red to make it easy to
+see at first glance.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span><span class='op'>+</span>
@@ -1601,8 +1629,10 @@ Such as the <strong>legends</strong></p>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
 <h2 id="add-rectangle">Add rectangle</h2>
-<p>Now if you want to add a rectangle, there are many option but I prefer to use annotation</p>
-<p>First I create an object with the timestamps of where I want the rectangle to begging and end.</p>
+<p>Now if you want to add a rectangle, there are many option but I
+prefer to use annotation</p>
+<p>First I create an object with the timestamps of where I want the
+rectangle to begging and end.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>PA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-01 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
@@ -1610,7 +1640,13 @@ Such as the <strong>legends</strong></p>
 </code></pre>
 </div>
 </div>
-<p>Then I add it to the plot <br> The <strong>xmin</strong> is the time where the rectangle will start, and the <strong>xmax</strong> where it would end. <br> Because I want the rectangle to cover the area I used <strong>-Inf</strong> and <strong>Inf</strong>. <br> The color is in <strong>fill</strong>, and the <strong>alpha</strong> is to have some transparency (the lower the value the more transparent will be, and the values go from 0 to 1).</p>
+<p>Then I add it to the plot <br> The <strong>xmin</strong> is the time
+where the rectangle will start, and the <strong>xmax</strong> where it
+would end. <br> Because I want the rectangle to cover the area I used
+<strong>-Inf</strong> and <strong>Inf</strong>. <br> The color is in
+<strong>fill</strong>, and the <strong>alpha</strong> is to have some
+transparency (the lower the value the more transparent will be, and the
+values go from 0 to 1).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"rect"</span>,
@@ -1622,23 +1658,29 @@ Such as the <strong>legends</strong></p>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
 </div>
 <h1 id="export">Export</h1>
-<p>To export your plot, you can use the argument <strong>ggsave</strong></p>
-<p>The simplest is just to give it a name to your plot, and ggsave will save the latest plot you have created.</p>
-<p>To be able to see it other programs, you will have to give it an extention. Some options are: png, eps, pdf, jpeg, tiff, bmp or svg</p>
+<p>To export your plot, you can use the argument
+<strong>ggsave</strong></p>
+<p>The simplest is just to give it a name to your plot, and ggsave will
+save the latest plot you have created.</p>
+<p>To be able to see it other programs, you will have to give it an
+extention. Some options are: png, eps, pdf, jpeg, tiff, bmp or svg</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='st'>"~/Figure.png"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Note that if you want the figure to be saved on specific folder, you need to include the path in the file name.</p>
+<p>Note that if you want the figure to be saved on specific folder, you
+need to include the path in the file name.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='st'>"~Results/Figure.png"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>If you want to create several figures and want to export just specific ones, you can also use the name of the plot to export only that one.</p>
+<p>If you want to create several figures and want to export just
+specific ones, you can also use the name of the plot to export only that
+one.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='va'>Plot_tracking</span>, 
@@ -1646,7 +1688,9 @@ Such as the <strong>legends</strong></p>
 </code></pre>
 </div>
 </div>
-<p>Also, if you want specific widths and heights, or even dpi, you can also include it. Just note that the size of the letters might need to be adjusted.</p>
+<p>Also, if you want specific widths and heights, or even dpi, you can
+also include it. Just note that the size of the letters might need to be
+adjusted.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='va'>Plot_tracking</span>, 
@@ -1658,13 +1702,16 @@ Such as the <strong>legends</strong></p>
 </code></pre>
 </div>
 </div>
-<p>I hope this was useful for you, and if you want to go deep in some aspects of ggplot check the recommended sources below.</p>
+<p>I hope this was useful for you, and if you want to go deep in some
+aspects of ggplot check the recommended sources below.</p>
 <h1 id="recommended-sources">Recommended sources</h1>
 <ul>
 <li><a href="https://ggplot2.tidyverse.org/index.html">ggplot2</a></li>
-<li><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></li>
+<li><a
+href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
