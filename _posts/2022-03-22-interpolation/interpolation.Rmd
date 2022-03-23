@@ -66,7 +66,7 @@ The data is from 10 tracked individuals.
 GPS_raw<-(GPS_raw)
 ```
 
-Select only one individual.
+Select only one individual. 
 
 ```{r}
 library(tidyverse)
@@ -80,6 +80,7 @@ ID01_track<-GPS_raw %>%
 # Identify trips
 
 Because is often the case, you only want to interpolate the data when the bird was off their central location. 
+
 ### Nest location 🐣
 
 Is also often the case that at fieldwork, the GPS started recording data after releasing the animal back to their nest. 
@@ -183,6 +184,24 @@ ID01_interpolated1m<-interpolate_trips(GPS_data=ID01_onlytrips,
                                      datetime_format<-"%d/%m/%Y %H:%M:%S")
 ```
 
+
+In case you want to interpolate a specific trip, or everything, and you already have a datetime column in the correct format (so R can understand is date and time) there is also the function **interpolate** in the package **sula**
+
+For example, interpolate a specific trip
+
+```{r}
+GPS01_trip5<-GPS_preparado %>%
+  filter(IDs=='GPS01')%>%
+  filter(trip_number=='trip_5')
+```
+
+```{r}
+GPS01_trip1_interpolated<-interpolate(GPS_data = GPS01_trip5,
+                                      interval='10 sec',
+                                      column_datetime = 'dia_hora',
+                                      column_lat = 'Latitude',
+                                      column_lon = 'Longitude')
+```
 
 # Plot 🖌️
 
