@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog9.jpg","interpolation_files/anchor-4.2.2/anchor.min.js","interpolation_files/bowser-1.9.3/bowser.min.js","interpolation_files/distill-2.2.21/template.v2.js","interpolation_files/figure-html5/unnamed-chunk-15-1.png","interpolation_files/figure-html5/unnamed-chunk-16-1.png","interpolation_files/figure-html5/unnamed-chunk-18-1.png","interpolation_files/header-attrs-2.13/header-attrs.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.min.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.min.map","interpolation_files/popper-2.6.0/popper.min.js","interpolation_files/tippy-6.2.7/tippy-bundle.umd.min.js","interpolation_files/tippy-6.2.7/tippy-light-border.css","interpolation_files/tippy-6.2.7/tippy.css","interpolation_files/tippy-6.2.7/tippy.umd.min.js","interpolation_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["blog9.jpg","interpolation_files/anchor-4.2.2/anchor.min.js","interpolation_files/bowser-1.9.3/bowser.min.js","interpolation_files/distill-2.2.21/template.v2.js","interpolation_files/figure-html5/unnamed-chunk-15-1.png","interpolation_files/figure-html5/unnamed-chunk-16-1.png","interpolation_files/figure-html5/unnamed-chunk-17-1.png","interpolation_files/figure-html5/unnamed-chunk-18-1.png","interpolation_files/header-attrs-2.13/header-attrs.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.min.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.min.map","interpolation_files/popper-2.6.0/popper.min.js","interpolation_files/tippy-6.2.7/tippy-bundle.umd.min.js","interpolation_files/tippy-6.2.7/tippy-light-border.css","interpolation_files/tippy-6.2.7/tippy.css","interpolation_files/tippy-6.2.7/tippy.umd.min.js","interpolation_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1550,7 +1550,8 @@ accessing the data, you need to have the package installed.</p>
 </div>
 <h1 id="identify-trips">Identify trips</h1>
 <p>Because is often the case, you only want to interpolate the data when
-the bird was off their central location. ### Nest location 🐣</p>
+the bird was off their central location.</p>
+<h3 id="nest-location">Nest location 🐣</h3>
 <p>Is also often the case that at fieldwork, the GPS started recording
 data after releasing the animal back to their nest.</p>
 <p>Therefore, we know that the first location recorded will correspond
@@ -1687,6 +1688,29 @@ presented.</p>
 </code></pre>
 </div>
 </div>
+<p>In case you want to interpolate a specific trip, or everything, and
+you already have a datetime column in the correct format (so R can
+understand is date and time) there is also the function
+<strong>interpolate</strong> in the package <strong>sula</strong></p>
+<p>For example, interpolate a specific trip</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_trip5</span><span class='op'>&lt;-</span><span class='va'>GPS_preparado</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>==</span><span class='st'>'trip_5'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_trip1_interpolated</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate.html'>interpolate</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS01_trip5</span>,
+                                      interval<span class='op'>=</span><span class='st'>'10 sec'</span>,
+                                      column_datetime <span class='op'>=</span> <span class='st'>'dia_hora'</span>,
+                                      column_lat <span class='op'>=</span> <span class='st'>'Latitude'</span>,
+                                      column_lon <span class='op'>=</span> <span class='st'>'Longitude'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <h1 id="plot">Plot 🖌️</h1>
 <p>Now lets compare the before and after, the tracking data vs the
 interpolated data.</p>
@@ -1720,7 +1744,7 @@ interpolation to compare.</p>
 <span class='va'>Original_track</span><span class='op'>+</span><span class='va'>Interpolated_15m</span><span class='op'>+</span><span class='va'>Interpolated_1m</span>
 </code></pre>
 </div>
-<p><img src="interpolation_files/figure-html5/unnamed-chunk-15-1.png" width="864" /></p>
+<p><img src="interpolation_files/figure-html5/unnamed-chunk-17-1.png" width="864" /></p>
 </div>
 <p>Now it is up to you to decide which interpolation interval fits
 better to your study.</p>
