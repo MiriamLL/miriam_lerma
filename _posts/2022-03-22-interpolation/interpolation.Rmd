@@ -14,15 +14,17 @@ categories:
   - English
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 2
     self_contained: false
 ---
 
 
-# **Interpolation**
+# Intro
+
 
 Interpolation is a type of estimation, a method of constructing (or finding) new data ponts based on the range of a discrete set of known data points (source: [wikipedia](https://en.wikipedia.org/wiki/Interpolation))
 
-# Intro
 
 This post is about:   <br>
 - How to prepare your data and use the function interpolate from the package **sula** for interpolating your tracking data  <br>
@@ -37,15 +39,14 @@ Interpolating your data might help you to: <br>
 This post step by step:  
 1. Load data  
 2. Identify nest location / or central location  
-3. Classify if the bird was inside the central location or outside  
+3. Classify if the animal was inside the central location or outside  
 4. Count the number of trips  
 5. Interpolate only when the animal was on a trip  
 
+You can also just go directly to : interpolate 
 
 
-# Step by step
-
-### Data
+# Data 📖
 
 To do this exercise, load data from the package 'sula'. <br>
 For accessing the data, you need to have the package installed. 
@@ -77,15 +78,15 @@ ID01_track<-GPS_raw %>%
   dplyr::filter(IDs=='GPS01')
 ```
 
-# Identify trips
+# Identify trips 🛩️
 
-Because is often the case, you only want to interpolate the data when the bird was off their central location. 
+Identify the trips allows to remove all the central locations (e.g. the nest), because usually you will be not interested in interpolating the locations where the animal was at their central location, only when it was in a trip.
 
 ### Nest location 🐣
 
-Is also often the case that at fieldwork, the GPS started recording data after releasing the animal back to their nest. 
+Is also often the case that at fieldwork, the GPS are activated to start recording data just after releasing the animal back to their central location (-nest-)
 
-Therefore, we know that the first location recorded will correspond to their nest.
+Therefore, the first location recorded will correspond to their nest.
 
 To identify the first location I use the function **locate_nest** from the package **sula**.
 
@@ -97,7 +98,7 @@ ID01_nest<-locate_nest(GPS_data = ID01_track,
                          column_lon = 'Latitude')
 ```
 
-**Manually**: If you did not activate the GPS at their nest and you know the nest location, you can manually write it down.
+**Manually**: If you did not activate the GPS at their nest but you know the nest location, you can manually write it down.
 
 ```{r}
 ID01_nest<-data.frame(Longitude=-109.4531,
@@ -106,7 +107,7 @@ ID01_nest<-data.frame(Longitude=-109.4531,
 
 ### Identify trips 🛩️
 
-Now that you have the nest location, the function **identify_trips** from the package **sula** helps you to identify when the bird was out on a trip.
+Now that you have the nest location, the function **identify_trips** from the package **sula** helps you to identify when the bird was out on a trip. 
 
 The function adds a new column, where 'Y' means that the location is outside the range you select (in the example 1 km), and 'N' means that the location is inside the range you select.
 
@@ -126,7 +127,7 @@ The function **count_trips** from the package **sula** removes the locations tha
 ID01_onlytrips<-count_trips(GPS_data=ID01_trips)
 ```
 
-To check when the trips started and end you can also use functions from the package **tidyverse**.
+To check when the trips started and ended you can also use functions from the package **tidyverse**.
 
 ```{r}
 ID01_onlytrips %>% 
@@ -134,7 +135,6 @@ ID01_onlytrips %>%
   summarise(start=paste(first(DateGMT),first(TimeGMT)),
             end=paste(last(DateGMT),last(TimeGMT)))
 ```
-
 
 If you know when the trip started and ended, you can also add the trip classification **manually**, using also functions from the package tidyverse. 
 
@@ -154,11 +154,10 @@ ID01_onlytrips <- ID01_trips %>%
 
 # Interpolate 🌐
 
-Finally, we have our data frame with Longitude, Latitude, and trip_number. Thus we can now interpolate the tracking data. 
+## interpolate_trips
+Once the data frame contains columns with Longitude, Latitude, and trip_number, the trips can be interpolated. 
 
 The function **interpole_trips** from the package **sula** helps you to interpolate the locations based on an interval. In the examples below 900 secs = 15 minutes and 60 sec = 1 minute
-
-If you need to double check which interval you want you can go to this page: https://www.calculateme.com/time/seconds/to-minutes/900
 
 Because you  might have different column names, this function has a lot of arguments, but basically you just need to replace the name of your data frame, the interval you are interested to do the interpolation, the column names, and the format your date and time is presented. 
 
@@ -184,16 +183,19 @@ ID01_interpolated1m<-interpolate_trips(GPS_data=ID01_onlytrips,
                                      datetime_format<-"%d/%m/%Y %H:%M:%S")
 ```
 
+## interpolate_all
 
-In case you want to interpolate a specific trip, or everything, and you already have a datetime column in the correct format (so R can understand is date and time) there is also the function **interpolate** in the package **sula**
+In case you want to interpolate a specific trip, or everything (including the central location), and you already have a datetime column in the correct format (so R can understand is date and time) there is also the function **interpolate** in the package **sula** that interpolates all the locations. 
 
-For example, interpolate a specific trip
+For example, to interpolate a specific trip, subset the trip you are interested in interpolating.
 
 ```{r}
 GPS01_trip5<-GPS_preparado %>%
   filter(IDs=='GPS01')%>%
   filter(trip_number=='trip_5')
 ```
+
+Use the function **interpolate**. Here I select the dataframe, the interval ofinterest, and the name of the columns that will be included in the interpolation.
 
 ```{r}
 GPS01_trip1_interpolated<-interpolate(GPS_data = GPS01_trip5,
@@ -237,7 +239,7 @@ Original_track+Interpolated_15m+Interpolated_1m
 
 Now it is up to you to decide which interpolation interval fits better to your study.
 
-# Summary
+# Summary 👩🏽‍💻
 
 TL;DR (too long; didn't read)
 
