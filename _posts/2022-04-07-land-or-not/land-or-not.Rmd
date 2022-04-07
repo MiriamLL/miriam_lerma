@@ -1,0 +1,250 @@
+---
+title: "Land or not"
+description: |
+  How to identify if your animal is on land or not.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-04-07
+preview: blog10.jpg
+categories:
+  - R
+  - tracking
+  - spatial
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+This post is about how to classify locations on your tracking data based on an polygon with geographical information.
+
+This is useful for example when you want to know:  
+- If the animal is using a specific habitats, and  
+- To calculate the percentage of use of a specific habitat  
+See examples on the recommended literature at the bottom of this post.
+
+In this post we will classify tracking locations as **land** vs **not land**.
+
+# Data 📖
+
+To do this exercise, load data from the package 'sula'. <br>
+For accessing the data, you need to have the package installed. 
+
+To install:
+
+```{r, eval=FALSE}
+#devtools::install_github("MiriamLL/sula")
+```
+
+```{r}
+library(sula)
+```
+
+The data is from 10 tracked individuals.
+
+```{r}
+my_locs<-(GPS_raw)
+```
+
+
+Check how many locations I have per individual
+
+```{r, include=FALSE, warnings=FALSE}
+library(tidyverse)
+```
+
+```{r, include=FALSE}
+my_locs %>%
+  drop_na(IDs)%>%
+  group_by(IDs)%>%
+  tally()
+```
+
+
+# Points ⏩
+
+To transform your GPS locations to spatial data, use the functions from the package **sp**.   
+It would turn your data frame into a **SpatialPointsDataFrame**.
+
+```{r}
+my_locs <- as.data.frame(my_locs)
+my_points <-my_locs
+sp::coordinates(my_points) <- ~Longitude + Latitude
+sp::proj4string(my_points) = sp::CRS("+init=epsg:4326")
+```
+
+# Polygon 🗺️
+
+For the polygon, you can download shapefiles according to your interest and area of study. 
+
+Some sources of country polygons are:  
+- [DIVA-GIS](https://www.diva-gis.org/datadown)
+
+But there are many shapefile sources per country,  
+- For **Chile**: several exammples [are summarized here](https://sporella.xyz/2020/12/01/30daymap/)  
+- For **Mexico**: IDEA [Infraestructura de Datos Espaciales Abiertos](https://www.gits.igg.unam.mx/idea/descarga)  
+- For **Germany**: [BSH-GeoSeaPortal](https://www.bsh.de/EN/DATA/GeoSeaPortal/geoseaportal_node.html;jsessionid=8CAD8F86337BF25B4A2B2A7F13C0CDC8.live11311)  
+
+... just to mention a few.
+
+
+Because the tracking data from the example was collected in Chile, we will use the country shapefile of Chile downloaded from the [DIVA-GIS](https://www.diva-gis.org/datadown) portal.
+
+```{r, include=FALSE}
+library(here)
+```
+
+```{r, echo=FALSE}
+ShapefilesDirectory<-here('_posts/2022-04-07-land-or-not')
+```
+
+The package **rgdal** has the function **readOGR** which allows us to load the polygon into R. 
+
+```{r}
+library(rgdal)
+```
+
+The polygon will be read as **SpatialPolygonDataFrame**.
+
+```{r, warning=FALSE, message=FALSE}
+my_polygon<-readOGR(file.path(ShapefilesDirectory,'CHL_adm0.shp')) 
+```
+
+
+# Over 🏞️
+
+The function **over** checks which of the points (my_locs) fall inside the polygon (my_polygon).
+
+Be cautious, the points and the polygon should be at the same CRS.
+
+```{r}
+polygon_proj <- proj4string(my_polygon)
+```
+
+```{r}
+proj4string(my_points) <- polygon_proj
+```
+
+The function **over** will return a data frame with the information where the points and the polygon intersect.
+
+```{r}
+Landornot_over<- over(my_points, my_polygon)
+```
+
+It depends on the information of your polygon, but in this particular example, in the column NAME_0, if the points fall inside the polygon, then it keeps Chile otherwise returns an **NA**.  
+
+```{r}
+unique(Landornot_over$NAME_0)
+```
+
+We can add this information back to our locations to know which of the locations fall inside the territorial land limits or not.
+
+```{r}
+my_locs$landornot <- Landornot_over$NAME_0
+```
+
+To make it easier to understand, replace according to the data available in your polygon. 
+
+```{r}
+my_locs$landornot[is.na(my_locs$landornot)] <- 0
+```
+
+```{r}
+my_locs<-my_locs %>%
+  mutate(landornot=
+           case_when(
+             landornot == 0 ~ 'notland',
+             landornot != 0 ~ 'land',
+             TRUE ~ "U"))
+```
+
+You can also export this data frame to check in a GIS program.
+
+```{r, eval=FALSE}
+write_csv(my_locs,file =paste0(here("1Data"),'/my_locs.csv'))
+```
+
+# Percentages 🥧
+
+Now using functions from the package **tidyverse** you can quantify the numer of locations that the animal was at land or not.
+
+```{r}
+Habitatuse<-my_locs %>%
+  drop_na(IDs)%>%
+  group_by(IDs,landornot)%>%
+  count()%>%
+  pivot_wider(names_from = landornot, values_from = n)
+```
+
+... and also calculate the percentage of time using one habitat or the other.
+
+```{r}
+Habitatuse$total<-Habitatuse$land+Habitatuse$notland
+Habitatuse$prop_land<-Habitatuse$land*100/Habitatuse$total
+Habitatuse$prop_notland<-Habitatuse$notland*100/Habitatuse$total
+Habitatuse$prop<-Habitatuse$prop_land+Habitatuse$prop_notland
+```
+
+# Plot 🖌️
+
+## Map
+
+Plotting the data will help to confirm if the classification makes sense. 
+
+```{r, fig.height=5, fig.width=4}
+ggplot()+
+  geom_polygon(data=my_polygon, aes(x=long, y=lat, group=group), color='black',fill='grey')+
+  geom_point(data=my_locs, aes(x=Longitude,y=Latitude,color=landornot))+
+  scale_color_manual(values=c('#9b2226','#005f73'))+
+  theme_bw()+
+  theme(legend.position = 'top')+
+  labs(x = "Longitude", y="Latitude",color='')+
+  xlim(-110, -108)+
+  ylim(-28.5, -26.5)
+```
+
+To customize your plot, change the **theme_bw** see here for [other options](https://ggplot2.tidyverse.org/reference/ggtheme.html).  
+**Do not forget** to adjust your xlim and ylim to your coordinates. 
+
+
+## Percentages
+
+You can also plot the percentage of habitat use per individual.
+
+To do this, preparing the information in a *long* format will make it easier to plot. 
+
+```{r}
+Habitatuse_prop<-Habitatuse %>%
+  pivot_longer(c(prop_land,prop_notland),
+               names_to = "habitat_use",
+               values_to = "prop_use" )
+```
+
+```{r}
+ggplot(Habitatuse_prop, aes(fill=habitat_use, y=prop_use, x=IDs)) + 
+  geom_bar(position="fill", stat="identity")+
+  scale_fill_manual(values=c('#9b2226','#005f73'))+
+  theme_bw()+
+  theme(legend.position = 'top')+
+  scale_y_continuous(expand = c(0,0)) 
+```
+
+# Recommended literature 👩🏽‍🏫
+
+- Function **over**:  
+[Geometry overlays](https://cran.r-project.org/web/packages/sp/vignettes/over.pdf)
+
+- Examples in the literature:  
+[Quantify habitats visited](https://onlinelibrary.wiley.com/doi/10.1111/ibi.12917)  
+[Individual specialization in an ecological winner](https://www.int-res.com/articles/theme/m578p243.pdf)  
+[Tracking positions inside the protected areas](https://www.researchgate.net/publication/258062415_Correction_Do_Power_Lines_and_Protected_Areas_Present_a_Catch-22_Situation_for_Cape_Vultures_Gyps_coprotheres)
+
+If you can think on another sources of geographical data please do not hesitate to write me to include it on the list. 
+
+For more details or suggestions, or just to say hi you can also always write me an [email](miriamjlerma@gmail.com)

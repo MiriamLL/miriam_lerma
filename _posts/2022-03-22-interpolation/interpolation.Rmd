@@ -281,7 +281,7 @@ For example: [Borrmann et al. 2019](https://doi.org/10.1111/jav.02156)
 For example: [Iorio-Merlo et al. 2022](https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2021.2261).
 
 
-If you can thing on another case when interpolation is necessary please do not hesitate to write me to include it on the list. 
+If you can think on another case when interpolation is necessary please do not hesitate to write me to include it on the list. 
 
 Also if you use the function from the package **sula** please consider including the package in your citations. 
 
