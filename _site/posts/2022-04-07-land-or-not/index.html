@@ -123,7 +123,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog10.jpg","CHL_adm0.cpg","CHL_adm0.csv","CHL_adm0.dbf","CHL_adm0.prj","CHL_adm0.shp","CHL_adm0.shx","land-or-not_files/anchor-4.2.2/anchor.min.js","land-or-not_files/bowser-1.9.3/bowser.min.js","land-or-not_files/distill-2.2.21/template.v2.js","land-or-not_files/figure-html5/unnamed-chunk-21-1.png","land-or-not_files/figure-html5/unnamed-chunk-23-1.png","land-or-not_files/header-attrs-2.13/header-attrs.js","land-or-not_files/jquery-3.6.0/jquery-3.6.0.js","land-or-not_files/jquery-3.6.0/jquery-3.6.0.min.js","land-or-not_files/jquery-3.6.0/jquery-3.6.0.min.map","land-or-not_files/popper-2.6.0/popper.min.js","land-or-not_files/tippy-6.2.7/tippy-bundle.umd.min.js","land-or-not_files/tippy-6.2.7/tippy-light-border.css","land-or-not_files/tippy-6.2.7/tippy.css","land-or-not_files/tippy-6.2.7/tippy.umd.min.js","land-or-not_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["blog10.jpg","CHL_adm0.cpg","CHL_adm0.csv","CHL_adm0.dbf","CHL_adm0.prj","CHL_adm0.shp","CHL_adm0.shx","land-or-not_files/anchor-4.2.2/anchor.min.js","land-or-not_files/bowser-1.9.3/bowser.min.js","land-or-not_files/distill-2.2.21/template.v2.js","land-or-not_files/figure-html5/unnamed-chunk-21-1.png","land-or-not_files/figure-html5/unnamed-chunk-22-1.png","land-or-not_files/figure-html5/unnamed-chunk-23-1.png","land-or-not_files/figure-html5/unnamed-chunk-24-1.png","land-or-not_files/header-attrs-2.13/header-attrs.js","land-or-not_files/jquery-3.6.0/jquery-3.6.0.js","land-or-not_files/jquery-3.6.0/jquery-3.6.0.min.js","land-or-not_files/jquery-3.6.0/jquery-3.6.0.min.map","land-or-not_files/popper-2.6.0/popper.min.js","land-or-not_files/tippy-6.2.7/tippy-bundle.umd.min.js","land-or-not_files/tippy-6.2.7/tippy-light-border.css","land-or-not_files/tippy-6.2.7/tippy.css","land-or-not_files/tippy-6.2.7/tippy.umd.min.js","land-or-not_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2524,6 +2524,34 @@ accessing the data, you need to have the package installed.</p>
 </div>
 </div>
 <p>Check how many locations I have per individual</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_locs</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10 x 2
+   IDs       n
+   &lt;chr&gt; &lt;int&gt;
+ 1 GPS01  1038
+ 2 GPS02  1049
+ 3 GPS03  1246
+ 4 GPS04  1031
+ 5 GPS05   962
+ 6 GPS06  1231
+ 7 GPS07  1004
+ 8 GPS08  1015
+ 9 GPS09   931
+10 GPS10   933</code></pre>
+</div>
 <h1 id="points">Points ⏩</h1>
 <p>To transform your GPS locations to spatial data, use the functions
 from the package <strong>sp</strong>.<br />
@@ -2574,11 +2602,6 @@ href="https://www.diva-gis.org/datadown">DIVA-GIS</a> portal.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_polygon</span><span class='op'>&lt;-</span><span class='fu'><a href='http://rgdal.r-forge.r-project.org/reference/readOGR.html'>readOGR</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>ShapefilesDirectory</span>,<span class='st'>'CHL_adm0.shp'</span><span class='op'>)</span><span class='op'>)</span> 
 </code></pre>
 </div>
-<pre><code>OGR data source with driver: ESRI Shapefile 
-Source: &quot;C:\Users\lerma\OneDrive\Documents\4Proyectos\2022\1Distill\Distill\_posts\2022-04-07-land-or-not\CHL_adm0.shp&quot;, layer: &quot;CHL_adm0&quot;
-with 1 features
-It has 70 fields
-Integer64 fields read as strings:  ID_0 OBJECTID_1 </code></pre>
 </div>
 <h1 id="over">Over 🏞️</h1>
 <p>The function <strong>over</strong> checks which of the points
@@ -2606,8 +2629,8 @@ information where the points and the polygon intersect.</p>
 </div>
 </div>
 <p>It depends on the information of your polygon, but in this particular
-example, in the column NAME_0, if the points fall inside the polygon,
-then it keeps Chile otherwise returns an <strong>NA</strong>.</p>
+example, in the column NAME_0, if the points fall inside the polygon, it
+keeps ‘Chile’ otherwise returns an <strong>NA</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>Landornot_over</span><span class='op'>$</span><span class='va'>NAME_0</span><span class='op'>)</span>
@@ -2623,8 +2646,8 @@ the locations fall inside the territorial land limits or not.</p>
 </code></pre>
 </div>
 </div>
-<p>To make it easier to understand, replace according to the data
-available in your polygon.</p>
+<p>To make it easier to remember you can replace Chile and 0 for the
+data available in your polygon.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>my_locs</span><span class='op'>$</span><span class='va'>landornot</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>my_locs</span><span class='op'>$</span><span class='va'>landornot</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
@@ -2676,8 +2699,8 @@ other.</p>
 </div>
 <h1 id="plot">Plot 🖌️</h1>
 <h2 id="map">Map</h2>
-<p>Plotting the data will help to confirm if the classification makes
-sense.</p>
+<p>Plotting the data will help to confirm if the classification is
+correct.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
@@ -2691,11 +2714,12 @@ sense.</p>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>ylim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>28.5</span>, <span class='op'>-</span><span class='fl'>26.5</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="land-or-not_files/figure-html5/unnamed-chunk-21-1.png" width="384" /></p>
+<p><img src="land-or-not_files/figure-html5/unnamed-chunk-22-1.png" width="384" /></p>
 </div>
-<p>To customize your plot, change the <strong>theme_bw</strong> see here
-for <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">other
-options</a>.<br />
+<p>To customize your plot, you can change many arguments, for example to
+change the <strong>theme_bw</strong> <a
+href="https://ggplot2.tidyverse.org/reference/ggtheme.html">here are
+other options</a>.<br />
 <strong>Do not forget</strong> to adjust your xlim and ylim to your
 coordinates.</p>
 <h2 id="percentages-1">Percentages</h2>
@@ -2721,7 +2745,7 @@ make it easier to plot.</p>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> 
 </code></pre>
 </div>
-<p><img src="land-or-not_files/figure-html5/unnamed-chunk-23-1.png" width="624" /></p>
+<p><img src="land-or-not_files/figure-html5/unnamed-chunk-24-1.png" width="624" /></p>
 </div>
 <h1 id="recommended-literature">Recommended literature 👩🏽‍🏫</h1>
 <ul>

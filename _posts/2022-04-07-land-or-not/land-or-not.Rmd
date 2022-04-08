@@ -55,11 +55,11 @@ my_locs<-(GPS_raw)
 
 Check how many locations I have per individual
 
-```{r, include=FALSE, warnings=FALSE}
+```{r, warnings=FALSE}
 library(tidyverse)
 ```
 
-```{r, include=FALSE}
+```{r}
 my_locs %>%
   drop_na(IDs)%>%
   group_by(IDs)%>%
@@ -112,10 +112,13 @@ library(rgdal)
 
 The polygon will be read as **SpatialPolygonDataFrame**.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
 my_polygon<-readOGR(file.path(ShapefilesDirectory,'CHL_adm0.shp')) 
 ```
 
+```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+my_polygon<-readOGR(file.path(ShapefilesDirectory,'CHL_adm0.shp')) 
+```
 
 # Over 🏞️
 
@@ -137,7 +140,7 @@ The function **over** will return a data frame with the information where the po
 Landornot_over<- over(my_points, my_polygon)
 ```
 
-It depends on the information of your polygon, but in this particular example, in the column NAME_0, if the points fall inside the polygon, then it keeps Chile otherwise returns an **NA**.  
+It depends on the information of your polygon, but in this particular example, in the column NAME_0, if the points fall inside the polygon, it keeps 'Chile' otherwise returns an **NA**.  
 
 ```{r}
 unique(Landornot_over$NAME_0)
@@ -149,7 +152,7 @@ We can add this information back to our locations to know which of the locations
 my_locs$landornot <- Landornot_over$NAME_0
 ```
 
-To make it easier to understand, replace according to the data available in your polygon. 
+To make it easier to remember you can replace Chile and 0 for the data available in your polygon. 
 
 ```{r}
 my_locs$landornot[is.na(my_locs$landornot)] <- 0
@@ -195,7 +198,7 @@ Habitatuse$prop<-Habitatuse$prop_land+Habitatuse$prop_notland
 
 ## Map
 
-Plotting the data will help to confirm if the classification makes sense. 
+Plotting the data will help to confirm if the classification is correct.  
 
 ```{r, fig.height=5, fig.width=4}
 ggplot()+
@@ -209,7 +212,7 @@ ggplot()+
   ylim(-28.5, -26.5)
 ```
 
-To customize your plot, change the **theme_bw** see here for [other options](https://ggplot2.tidyverse.org/reference/ggtheme.html).  
+To customize your plot, you can change many arguments, for example to change the **theme_bw** [here are other options](https://ggplot2.tidyverse.org/reference/ggtheme.html).  
 **Do not forget** to adjust your xlim and ylim to your coordinates. 
 
 
