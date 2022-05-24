@@ -1,7 +1,7 @@
 ---
-title: "Land or not"
+title: "Habitat use"
 description: |
-  How to identify if your animal is on land or not.
+  How to assign habitat use to animal locations.
 author:
   - name: Miriam Lerma
     url: {}

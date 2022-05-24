@@ -1,0 +1,190 @@
+---
+title: "Speed"
+description: |
+  How to calculate speed using time and distance between points.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-05-23
+preview: blog11.jpg
+categories:
+  - R
+  - tracking
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+This post is about how to calculate the speed between points.
+
+This is useful for example when you want to:  
+- Classify behavioural states of the individuals  
+- Clean errors in locations  
+See examples on the literature at the bottom of this post.
+
+In this post we will calculate **distance** between points, then the **time** between those points, and finally the **speed**.
+
+# Data 📖
+
+To do this exercise, load data from the package 'sula'. <br>
+For accessing the data, you need to have the package installed. 
+
+To install:
+
+```{r, eval=FALSE}
+#devtools::install_github("MiriamLL/sula")
+```
+
+```{r}
+library(sula)
+```
+
+The data is from 10 tracked individuals.
+
+```{r}
+my_locs<-(GPS_raw)
+```
+
+Select one individual for the exercise.
+
+```{r, warnings=FALSE}
+library(tidyverse)
+```
+
+```{r}
+ID01<-my_locs %>%
+  filter(IDs=='GPS01')
+```
+
+# Distance 📏
+
+Lets select the columns of interest
+
+```{r}
+ID01_coords<- ID01[,c('Longitude','Latitude')]
+```
+
+Convert the data frame into a spatial object
+
+```{r}
+ID01_spatial <- sp::SpatialPointsDataFrame(coords = ID01_coords, data = ID01)
+```
+
+Use the corresponding CRS (Coordinate Reference System).  
+Note that the CRS might change according to your study area.
+
+```{r}
+sp::proj4string(ID01_spatial)= sp::CRS("+init=epsg:4326")
+```
+
+Using the function **distm** from the package geosphere to calculate the distance between points.
+
+```{r}
+ID01_distance<-sapply(2:nrow(ID01_spatial),
+                             function(i){geosphere::distm(ID01_spatial[i-1,], ID01_spatial[i,])})
+```
+
+To add this information to your original data frame:
+
+```{r}
+ID01_distance<-c(NA,ID01_distance)
+```
+
+To transform it to kilometers:
+
+```{r}
+ID01$dist_km<-ID01_distance/1000
+```
+
+# Time ⏰
+
+Lets select the columns of interest
+
+```{r}
+Times<-paste(ID01$DateGMT,ID01$TimeGMT)
+```
+
+Transform to the corresponding time formart
+
+```{r}
+Times<-as.POSIXct(strptime(Times,"%d/%m/%Y %H:%M:%S"),"GMT")
+```
+
+✋🏽
+Make sure it did not return NAs, otherwise check the format you used.
+
+
+In this example, we will create a new column with the time using the function **lag**. 
+
+```{r}
+Lag<-lag(Times)
+```
+
+Then, we will include a column with the original time (in time format) and the lag as another column on the original data frame.
+
+```{r}
+ID01$Time1<-Times
+ID01$Time2<-Lag
+```
+
+Now, using the function **difftime**, we can calculate the time difference between those columns.  
+In **units** you can select "secs", "mins", "hours","days", "weeks".  
+
+```{r}
+ID01$time_dif<-as.numeric(difftime(ID01$Time1,ID01$Time2, units="mins"))
+```
+
+You can also transform it to hours, with basic conversion.
+
+```{r}
+ID01$time_hr<-as.numeric(ID01$time_dif/60)
+```
+
+# Speed 🥏
+
+As simple as [speed = distance ÷ time](https://www.bbc.co.uk/bitesize/topics/z83rkqt/articles/zhbtng8)
+
+```{r}
+ID01$speed<-ID01$dist_km/ID01$time_hr
+```
+
+# Plots
+
+To visualize the speed from the animal you can also create plots.
+
+```{r, fig.height=2}
+ggplot(ID01, aes(x=speed)) + 
+  geom_density()+
+  theme_minimal()+
+  xlab('Speed (km/hr)')
+```
+
+Also, you can modify the plots according to the units you want to use. Here in **m/s**.
+
+```{r, fig.height=2}
+ggplot(ID01, aes(x=speed*0.277778)) + 
+  geom_density(color="darkblue", fill="lightblue")+
+  theme_minimal()+
+  xlab('Speed (m/s)')
+```
+
+# Further reading 👩🏽‍🏫
+
+- **Speed** [Wikipedia definition](https://en.wikipedia.org/wiki/Speed)
+
+- **Converters** [Speed-converter](https://www.unitconverters.net/speed-converter.html) 
+
+- Some papers that use speed for different pourposes:
+
+Raya Rey et al. 2010 [*"...we identified three phases based on sinuosity and speed of the trajectory..."*](https://link.springer.com/article/10.1007/s10336-010-0531-y)
+
+Nourani et al. 2022 ["...*all data were filtered by speed to ensure that the position information represented period of flight..."*](https://www.biorxiv.org/content/10.1101/2022.05.02.490292v1.full.pdf)
+
+
+The end. 

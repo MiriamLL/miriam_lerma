@@ -1,5 +1,26 @@
 [
   {
+    "path": "posts/2022-05-23-speed/",
+    "title": "Speed",
+    "description": "How to calculate speed using time and distance between points.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2022-05-23",
+    "categories": [
+      "R",
+      "tracking",
+      "English"
+    ],
+    "contents": "\r\n\r\nContents\r\nIntro\r\nData 📖\r\nDistance 📏\r\nTime ⏰\r\nSpeed 🥏\r\nPlots\r\nFurther reading 👩🏽‍🏫\r\n\r\nIntro\r\nThis post is about how to calculate the speed between points.\r\nThis is useful for example when you want to:\r\n- Classify behavioural states of the individuals\r\n- Clean errors in locations\r\nSee examples on the literature at the bottom of this post.\r\nIn this post we will calculate distance between\r\npoints, then the time between those points, and finally\r\nthe speed.\r\nData 📖\r\nTo do this exercise, load data from the package ‘sula’.  For\r\naccessing the data, you need to have the package installed.\r\nTo install:\r\n\r\n\r\n#devtools::install_github(\"MiriamLL/sula\")\r\n\r\n\r\n\r\n\r\n\r\nlibrary(sula)\r\n\r\n\r\n\r\nThe data is from 10 tracked individuals.\r\n\r\n\r\nmy_locs<-(GPS_raw)\r\n\r\n\r\n\r\nSelect one individual for the exercise.\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\n\r\n\r\nID01<-my_locs %>%\r\n  filter(IDs=='GPS01')\r\n\r\n\r\n\r\nDistance 📏\r\nLets select the columns of interest\r\n\r\n\r\nID01_coords<- ID01[,c('Longitude','Latitude')]\r\n\r\n\r\n\r\nConvert the data frame into a spatial object\r\n\r\n\r\nID01_spatial <- sp::SpatialPointsDataFrame(coords = ID01_coords, data = ID01)\r\n\r\n\r\n\r\nUse the corresponding CRS (Coordinate Reference System).\r\nNote that the CRS might change according to your study area.\r\n\r\n\r\nsp::proj4string(ID01_spatial)= sp::CRS(\"+init=epsg:4326\")\r\n\r\n\r\n\r\nUsing the function distm from the package geosphere\r\nto calculate the distance between points.\r\n\r\n\r\nID01_distance<-sapply(2:nrow(ID01_spatial),\r\n                             function(i){geosphere::distm(ID01_spatial[i-1,], ID01_spatial[i,])})\r\n\r\n\r\n\r\nTo add this information to your original data frame:\r\n\r\n\r\nID01_distance<-c(NA,ID01_distance)\r\n\r\n\r\n\r\nTo transform it to kilometers:\r\n\r\n\r\nID01$dist_km<-ID01_distance/1000\r\n\r\n\r\n\r\nTime ⏰\r\nLets select the columns of interest\r\n\r\n\r\nTimes<-paste(ID01$DateGMT,ID01$TimeGMT)\r\n\r\n\r\n\r\nTransform to the corresponding time formart\r\n\r\n\r\nTimes<-as.POSIXct(strptime(Times,\"%d/%m/%Y %H:%M:%S\"),\"GMT\")\r\n\r\n\r\n\r\n✋🏽 Make sure it did not return NAs, otherwise check the format you\r\nused.\r\nIn this example, we will create a new column with the time using the\r\nfunction lag.\r\n\r\n\r\nLag<-lag(Times)\r\n\r\n\r\n\r\nThen, we will include a column with the original time (in time\r\nformat) and the lag as another column on the original data frame.\r\n\r\n\r\nID01$Time1<-Times\r\nID01$Time2<-Lag\r\n\r\n\r\n\r\nNow, using the function difftime, we can calculate\r\nthe time difference between those columns.\r\nIn units you can select “secs”, “mins”, “hours”,“days”,\r\n“weeks”.\r\n\r\n\r\nID01$time_dif<-as.numeric(difftime(ID01$Time1,ID01$Time2, units=\"mins\"))\r\n\r\n\r\n\r\nYou can also transform it to hours, with basic conversion.\r\n\r\n\r\nID01$time_hr<-as.numeric(ID01$time_dif/60)\r\n\r\n\r\n\r\nSpeed 🥏\r\nAs simple as speed\r\n= distance ÷ time\r\n\r\n\r\nID01$speed<-ID01$dist_km/ID01$time_hr\r\n\r\n\r\n\r\nPlots\r\nTo visualize the speed from the animal you can also create plots.\r\n\r\n\r\nggplot(ID01, aes(x=speed)) + \r\n  geom_density()+\r\n  theme_minimal()+\r\n  xlab('Speed (km/hr)')\r\n\r\n\r\n\r\n\r\nAlso, you can modify the plots according to the units you want to\r\nuse. Here in m/s.\r\n\r\n\r\nggplot(ID01, aes(x=speed*0.277778)) + \r\n  geom_density(color=\"darkblue\", fill=\"lightblue\")+\r\n  theme_minimal()+\r\n  xlab('Speed (m/s)')\r\n\r\n\r\n\r\n\r\nFurther reading 👩🏽‍🏫\r\nSpeed Wikipedia\r\ndefinition\r\nConverters Speed-converter\r\nSome papers that use speed for different pourposes:\r\nRaya Rey et al. 2010 “…we\r\nidentified three phases based on sinuosity and speed of the\r\ntrajectory…”\r\nNourani et al. 2022 “…all\r\ndata were filtered by speed to ensure that the position information\r\nrepresented period of flight…“\r\nThe end.\r\n\r\n\r\n\r\n",
+    "preview": "posts/2022-05-23-speed/blog11.jpg",
+    "last_modified": "2022-05-24T13:05:58+02:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2022-04-07-land-or-not/",
     "title": "Habitat use",
     "description": "How to assign habitat use to animal locations.",
