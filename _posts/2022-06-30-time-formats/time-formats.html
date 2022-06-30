@@ -1528,33 +1528,31 @@ time.</p></p>
 <li><a href="#transform-the-column-to-posixct">Transform the column to
 POSIXct</a></li>
 </ul></li>
-<li><a href="#correct-time">Correct time</a>
+<li><a href="#correct-time">Correct time 🌐</a>
 <ul>
-<li><a href="#identify-your-time-zone">Identify your time zone</a></li>
+<li><a href="#identify-your-time-zone">Identify your time zone
+🗺️</a></li>
 </ul></li>
 <li><a href="#other-resources">Other resources 👩🏽‍🏫</a></li>
 </ul>
 </nav>
 </div>
 <h1 id="intro">Intro</h1>
-<p>This post is about how to convert the column where you have date and
-time to a format that R can understand. <br></p>
-<p>Most likely you wrote the date and time during fieldwork in a
-notebook, and then write it down in a spreadsheet at your computer.
-<br></p>
-<p>When you load your this spreadsheet into R, very often R would not
-know that you mean time with that column, it would think is text.
-<br></p>
-<p>Therefore, you need to change the ‘class’ of that column.</p>
-<p>It is important to change the ‘class’ of your column for:<br />
-- Correcting your time to your time zone <br> - Calculating duration of
-events (for example foraging trip duration)<br><br />
-- Count days (for example Julian days)<br> - Identify night and day
-periods<br><br />
-… and many many more</p>
+<p>This post is about how to convert date and time to a format that R
+can understand it. <br></p>
+<p>For example if you wrote the date and time during fieldwork in a
+notebook, and then wrote it down in a spreadsheet at your computer. When
+you load your this spreadsheet into R, very often R would think that
+your date and time is text. Therefore, you need to change the ‘class’ of
+the column where you have date and time.</p>
+<p>It is important to change the ‘class’ of your column, so you
+can:<br />
+- Correct the time zone <br> - Calculate duration of events (for example
+foraging trip duration)<br> - Count days (for example Julian days)<br> -
+Identify night and day periods<br> … and many many more</p>
 <p>In this post we will transform the <strong>class</strong> of our
 column date and time from <strong>character</strong> or other class,
-into <strong>POSTIXct</strong>. Additionally, we can change our
+into <strong>POSTIXct</strong>. Additionally, we will change the
 <strong>time zone</strong>.</p>
 <h1 id="data">Data 📖</h1>
 <p>To do this exercise, load data from the package ‘sula’. <br> For
@@ -1576,7 +1574,7 @@ accessing the data, you need to have the package installed.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h3 id="date">Date</h3>
+<h3 id="date">Date 📅</h3>
 <p>The data frame contains a column with <strong>date</strong>
 information.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1594,14 +1592,14 @@ information.</p>
 </div>
 <pre><code>[1] &quot;character&quot;</code></pre>
 </div>
-<h3 id="time">Time</h3>
+<h3 id="time">Time ⏰</h3>
 <p>The data frame contains a column with <strong>time</strong>
 information.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] &quot;character&quot;</code></pre>
+<pre><code>[1] &quot;17:05:30&quot; &quot;17:09:35&quot; &quot;17:13:50&quot; &quot;17:17:59&quot; &quot;17:22:13&quot; &quot;17:26:25&quot;</code></pre>
 </div>
 <p>The <strong>time infomation</strong> is of class
 <strong>character</strong>.</p>
@@ -1657,54 +1655,52 @@ of the month using the full name<br> <br> <strong>YEAR</strong><br />
 <strong>%M</strong> is used for minutes and goes from 0 to 60<br>
 <strong>SECONDS</strong><br />
 <strong>%S</strong> is used for seconds and goes from 0 to 60<br></p>
-<p>It is also important to note if you are using <strong>/</strong>,
-<strong>-</strong> or other, and do not forget the <strong>:</strong>
-when separating the times<br></p>
+<p>It is also important to note if you are using slash
+(<strong>/</strong>), dash (<strong>-</strong>) or any other, and do not
+forget the colon (<strong>:</strong>) when separating the times<br></p>
 <p>Note for <strong>excel-users</strong>: if you open your file first in
 excel, excel tries to identify the class, and might have transform the
-column already, making it different from your original notes. Therefore
-you might need to use one of the examples from <a
+column. Therefore you might need to use one of the examples from <a
 href="https://stackoverflow.com/questions/31647364/data-difference-in-as-posixct-with-excel">stackoverflow</a></p>
 <h3 id="check">Check</h3>
-<p>Most problems come from not writing your format correctly, therefore
-I recommend you to always check that you have the correct
+<p>Many struggles come from the format. If the format you are giving
+doesnt corresponds to the format of your column, it would generate you
+NAs.<br />
+Therefore, I recommend to create a column to make the trials on the
+format and to always check that you have the correct
 transformations.</p>
+<p>Here is an example for checking:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] &quot;2017-11-02 17:05:30 CET&quot; &quot;2017-11-27 09:48:57 CET&quot;</code></pre>
 </div>
-<p>Note that in my example it returns the word <em>CET</em>.</p>
+<p>Note that in this example it returns the word <em>CET</em>.</p>
 <p>This is because I am in the <strong>C</strong>entral
 <strong>E</strong>uropean <strong>T</strong>ime.</p>
-<p>This might be correct and all good, but in the next steps we will try
-to adjust to our <strong>time zone</strong></p>
-<h1 id="correct-time">Correct time</h1>
+<p>This might be correct and all good, but it is useful to know that you
+can transform it to you <strong>time zone</strong>.</p>
+<h1 id="correct-time">Correct time 🌐</h1>
 <p>One way to directly have the format in our time zone, is to specify
 the time zone when converting the class.</p>
+<p>Here, I am adding the “GMT” at the end.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>GMT</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,<span class='st'>"GMT"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Here I am adding the “GMT” at the end.</p>
+<p>And now shows GMT.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>GMT</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] &quot;2017-11-02 17:05:30 GMT&quot; &quot;2017-11-27 09:48:57 GMT&quot;</code></pre>
 </div>
-<p>And it worked.</p>
-<h2 id="identify-your-time-zone">Identify your time zone</h2>
-<p>In case you are here because you are interested in analyzing tracking
-data, note that it’s common that the GPS record data in GMT+0.</p>
-<p>Therefore, according to where your study, you might need to change
-the time to your time zone <a
+<h2 id="identify-your-time-zone">Identify your time zone 🗺️</h2>
+<p>According to where your study was made, you might need to change the
+time to your time zone <a
 href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Timezones2008_UTC%2B0.png/1200px-Timezones2008_UTC%2B0.png"><strong>tz</strong></a></p>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Timezones2008_UTC%2B0.png/1200px-Timezones2008_UTC%2B0.png" height="350" /></p>
-</div>
 <p>There are many ways to identify your tz:</p>
 <ul>
 <li>You can click on your area on this <a
@@ -1714,6 +1710,11 @@ href="https://dayspedia.com/time-zone-map/">map</a><br></li>
 <li>You can check lists like those of <a
 href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">wikipedia</a></li>
 </ul>
+<p>In case you are here because you are interested in analyzing tracking
+data, note that it’s common that the GPS record data in GMT+0.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Timezones2008_UTC%2B0.png/1200px-Timezones2008_UTC%2B0.png" height="350" /></p>
+</div>
 <h3 id="lubridate">lubridate</h3>
 <p>One option to change your date and time to your time zone is using
 the package <strong>lubridate</strong></p>
@@ -1741,8 +1742,8 @@ the package <strong>lubridate</strong></p>
 </div>
 </div>
 <h3 id="manually">Manually</h3>
-<p>However, you can also change the time if you know the time difference
-between the recording and the region where you are.</p>
+<p>If you know the time difference between the recording and the region
+where you are, you can also calculate it manually.</p>
 <p>For example:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1750,15 +1751,15 @@ between the recording and the region where you are.</p>
 </div>
 </div>
 <p>Thats it!</p>
-<p>Hopefully this might help you.</p>
+<p>Hopefully this would help you.</p>
 <h3 id="recommendations">Recommendations</h3>
-<p>It takes time to get use to this transformations and there are many
-different ways to transform times and date, so if you are struggling,
-you are not the only one, just give it some time.</p>
+<p>Be very careful with the format and your time zone.</p>
 <p>I would recommend that you always create an extra column in your data
 frame to make the transformations, not your original column because if
 it returns NAs you will have to load the data frame over and over.</p>
-<p>Be very careful with the format and your time zone.</p>
+<p>It takes time to get use to this transformations and there are many
+different ways to transform times and date, so if you are struggling,
+you are not the only one, just give it some time.</p>
 <h1 id="other-resources">Other resources 👩🏽‍🏫</h1>
 <ul>
 <li><p>This post in <a
@@ -1771,6 +1772,9 @@ map</a><br></p></li>
 <li><p><a
 href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">List
 of time zones</a></p></li>
+<li><p><a
+href="https://www.r-bloggers.com/2014/02/using-dates-and-times-in-r/">Other
+time transformations</a></p></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
