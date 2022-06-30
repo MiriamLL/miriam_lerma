@@ -1,0 +1,249 @@
+---
+title: "Time formats"
+description: |
+  How to convert your time to a format that R can understand as time.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-06-30
+preview: blog12.jpg
+categories:
+  - R
+  - tracking
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+# Intro
+
+This post is about how to convert the column where you have date and time to a format that R can understand. <br>
+
+Most likely you wrote the date and time during fieldwork in a notebook, and then write it down in a spreadsheet at your computer. <br>
+
+When you load your this spreadsheet into R, very often R would not know that you mean time with that column, it would think is text. <br>  
+
+Therefore, you need to change the 'class' of that column.  
+
+It is important to change the 'class' of your column for:   
+- Correcting your time to your time zone <br>
+- Calculating duration of events (for example foraging trip duration)<br>  
+- Count days (for example Julian days)<br>
+- Identify night and day periods<br>  
+... and many many more
+
+In this post we will transform the **class** of our column date and time from **character** or other class, into **POSTIXct**. 
+Additionally, we can change our **time zone**.
+
+
+# Data 📖
+
+To do this exercise, load data from the package 'sula'. <br>
+For accessing the data, you need to have the package installed. 
+
+To install:
+
+```{r, eval=FALSE}
+#devtools::install_github("MiriamLL/sula")
+```
+
+```{r}
+library(sula)
+```
+
+The data is from 10 tracked individuals.
+
+```{r}
+GPS_raw<-(GPS_raw)
+```
+
+
+### Date 
+
+The data frame contains a column with **date** information.
+
+```{r}
+head(GPS_raw$DateGMT)
+```
+The **date infomation** is of class **character**.
+
+```{r}
+class(GPS_raw$DateGMT)
+```
+
+### Time
+
+The data frame contains a column with **time** information.
+
+```{r}
+class(GPS_raw$TimeGMT)
+```
+The **time infomation** is of class **character**.
+
+```{r}
+class(GPS_raw$TimeGMT)
+```
+
+## Transform the column to POSIXct
+
+**POSIX** comes from *Portable Operating System Interface* and the X from *UNIX*. <br>
+There are two subclasses **ct** from *calendar time*  and **lt** from *local time*. See [R news](https://www.r-project.org/doc/Rnews/Rnews_2001-2.pdf).<br>
+Calendar time being the number of seconds since the beginning of 1970.
+
+<br>
+To create our column with date and time, lets merge the column DateGMT and TimeGMT from our data frame into one column DateTime.
+
+```{r}
+GPS_raw$DateTime<-paste(GPS_raw$DateGMT,GPS_raw$TimeGMT)
+```
+
+Then convert it to **POSIXct**
+
+```{r}
+GPS_raw$DateTime<-as.POSIXct(strptime(GPS_raw$DateTime, format = "%d/%m/%Y %H:%M:%S"))
+```
+
+Arguments used:
+
+**strptime** is a function to convert characters to time objects, where str stands for **string**,  p from **parse**, and time is self explanatory.
+
+Then we provide the information of the format we were using, be specially careful with the format of your date and time.
+
+For the example, I used **%d/%m/%Y %H:%M:%S**
+
+**DAY**  
+**%d** - is used for day and goes from 0 to 31<br>
+**%a** - is used for the day of the week using the first three letters of the name<br>
+**%A** - is used for the day of the week using the full name<br>
+<br>
+**MONTH**  
+**%m** - is used for month it goes from 0 to 12<br>
+**%b** - is used for the name of the month using the first three letters of the name<br>
+**%B** - is used for the name of the month using the full name<br>
+<br>
+**YEAR**  
+**%y** - is used for year using two digits<br>
+**%Y** - is used for year using four difits<br>
+<br>
+
+**HOURS**  
+**%H** -  is used for hours and goes from 0 to 24<br>
+**MINUTES**  
+**%M** is used for minutes and goes from 0 to 60<br>
+**SECONDS**  
+**%S** is used for seconds and goes from 0 to 60<br>
+
+It is also important to note if you are using **/**, **-** or other, and do not forget the **:** when separating the times<br>
+
+Note for **excel-users**: if you open your file first in excel, excel tries to identify the class, and might have transform the column already, making it different from your original notes. Therefore you might need to use one of the examples from [stackoverflow](https://stackoverflow.com/questions/31647364/data-difference-in-as-posixct-with-excel)
+
+### Check
+
+Most problems come from not writing your format correctly, therefore I recommend you to always check that you have the correct transformations.
+
+
+```{r}
+range(GPS_raw$DateTime)
+```
+
+Note that in my example it returns the word *CET*.
+
+This is because I am in the **C**entral **E**uropean **T**ime.
+
+This might be correct and all good, but in the next steps we will try to adjust to our **time zone**
+
+
+
+# Correct time
+
+One way to directly have the format in our time zone, is to specify the time zone when converting the class.
+
+```{r}
+GPS_raw$GMT<-as.POSIXct(strptime(GPS_raw$DateTime, format = "%Y-%m-%d %H:%M:%S"),"GMT")
+```
+
+Here I am adding the "GMT" at the end.
+
+```{r}
+range(GPS_raw$GMT)
+```
+And it worked.
+
+
+## Identify your time zone
+
+In case you are here because you are interested in analyzing tracking data, note that it's common that the GPS record data in GMT+0.
+
+Therefore, according to where your study, you might need to change the time to your time zone [**tz**](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Timezones2008_UTC%2B0.png/1200px-Timezones2008_UTC%2B0.png)
+
+```{r echo=FALSE, out.height=350}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Timezones2008_UTC%2B0.png/1200px-Timezones2008_UTC%2B0.png")
+```
+
+There are many ways to identify your tz:
+
+- You can click on your area on this [map](https://dayspedia.com/time-zone-map/)<br>
+- You can check the list of name in R using the code **OlsonNames()**<br>
+- You can check lists like those of [wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+
+### lubridate
+
+One option to change your date and time to your time zone is using the package **lubridate**
+
+```{r}
+library(lubridate)
+```
+
+Example with the data.
+
+```{r}
+GPS_tz<-GPS_raw
+```
+
+My original tz:
+
+```{r}
+GPS_tz$CET<-ymd_hms(GPS_tz$DateTime, tz = "Europe/Amsterdam")
+```
+
+My goal tz:
+
+```{r}
+GPS_tz$UTC_4<- with_tz(GPS_tz$CET,tzone = "America/La_Paz")
+```
+
+### Manually
+
+However, you can also change the time if you know the time difference between the recording and the region where you are.
+
+For example:
+
+```{r}
+GPS_tz$five_hours_difference <- GPS_tz$CET - 3600*5
+```
+
+Thats it! 
+
+Hopefully this might help you.
+
+
+### Recommendations 
+
+It takes time to get use to this transformations and there are many different ways to transform times and date, so if you are struggling, you are not the only one, just give it some time.
+
+I would recommend that you always create an extra column in your data frame to make the transformations, not your original column because if it returns NAs you will have to load the data frame over and over.
+
+Be very careful with the format and your time zone. 
+
+# Other resources 👩🏽‍🏫
+
+- This post in [Spanish](https://miriamll.github.io/Curso_tracking/Parte2#1)  
+- More options to use Date and Times in R also in [Spanish](https://estadistica-dma.ulpgc.es/cursoR4ULPGC/6h-Fechas.html)  
+
+- [Time zones map](https://dayspedia.com/time-zone-map/)<br>
+- [List of time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+

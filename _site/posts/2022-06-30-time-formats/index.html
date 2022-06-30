@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -87,43 +88,43 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Miriam Lerma: Interpolation</title>
+<title>Miriam Lerma: Time formats</title>
 
-<meta property="description" itemprop="description" content="How to interpolate tracking data."/>
+<meta property="description" itemprop="description" content="How to convert your time to a format that R can understand as time."/>
 
-<link rel="canonical" href="https://miriamlerma.netlify.app/posts/2022-03-22-interpolation/"/>
+<link rel="canonical" href="https://miriamlerma.netlify.app/posts/2022-06-30-time-formats/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2022-03-22"/>
-<meta property="article:created" itemprop="dateCreated" content="2022-03-22"/>
+<meta property="article:published" itemprop="datePublished" content="2022-06-30"/>
+<meta property="article:created" itemprop="dateCreated" content="2022-06-30"/>
 <meta name="article:author" content="Miriam Lerma"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Miriam Lerma: Interpolation"/>
+<meta property="og:title" content="Miriam Lerma: Time formats"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="How to interpolate tracking data."/>
-<meta property="og:url" content="https://miriamlerma.netlify.app/posts/2022-03-22-interpolation/"/>
-<meta property="og:image" content="https://miriamlerma.netlify.app/posts/2022-03-22-interpolation/blog9.jpg"/>
+<meta property="og:description" content="How to convert your time to a format that R can understand as time."/>
+<meta property="og:url" content="https://miriamlerma.netlify.app/posts/2022-06-30-time-formats/"/>
+<meta property="og:image" content="https://miriamlerma.netlify.app/posts/2022-06-30-time-formats/blog12.jpg"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Miriam Lerma"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:title" content="Miriam Lerma: Interpolation"/>
-<meta property="twitter:description" content="How to interpolate tracking data."/>
-<meta property="twitter:url" content="https://miriamlerma.netlify.app/posts/2022-03-22-interpolation/"/>
-<meta property="twitter:image" content="https://miriamlerma.netlify.app/posts/2022-03-22-interpolation/blog9.jpg"/>
+<meta property="twitter:title" content="Miriam Lerma: Time formats"/>
+<meta property="twitter:description" content="How to convert your time to a format that R can understand as time."/>
+<meta property="twitter:url" content="https://miriamlerma.netlify.app/posts/2022-06-30-time-formats/"/>
+<meta property="twitter:image" content="https://miriamlerma.netlify.app/posts/2022-06-30-time-formats/blog12.jpg"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Interpolation"]},{"type":"character","attributes":{},"value":["How to interpolate tracking data."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-03-22"]},{"type":"character","attributes":{},"value":["blog9.jpg"]},{"type":"character","attributes":{},"value":["R","tracking","interpolation","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2022-03-22-interpolation/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Time formats"]},{"type":"character","attributes":{},"value":["How to convert your time to a format that R can understand as time."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-06-30"]},{"type":"character","attributes":{},"value":["blog12.jpg"]},{"type":"character","attributes":{},"value":["R","tracking","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2022-06-30-time-formats/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog9.jpg","interpolation_files/anchor-4.2.2/anchor.min.js","interpolation_files/bowser-1.9.3/bowser.min.js","interpolation_files/distill-2.2.21/template.v2.js","interpolation_files/figure-html5/unnamed-chunk-15-1.png","interpolation_files/figure-html5/unnamed-chunk-16-1.png","interpolation_files/figure-html5/unnamed-chunk-17-1.png","interpolation_files/figure-html5/unnamed-chunk-18-1.png","interpolation_files/header-attrs-2.13/header-attrs.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.min.js","interpolation_files/jquery-3.6.0/jquery-3.6.0.min.map","interpolation_files/popper-2.6.0/popper.min.js","interpolation_files/tippy-6.2.7/tippy-bundle.umd.min.js","interpolation_files/tippy-6.2.7/tippy-light-border.css","interpolation_files/tippy-6.2.7/tippy.css","interpolation_files/tippy-6.2.7/tippy.umd.min.js","interpolation_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["blog12.jpg","time-formats_files/anchor-4.2.2/anchor.min.js","time-formats_files/bowser-1.9.3/bowser.min.js","time-formats_files/distill-2.2.21/template.v2.js","time-formats_files/header-attrs-2.14/header-attrs.js","time-formats_files/jquery-3.6.0/jquery-3.6.0.js","time-formats_files/jquery-3.6.0/jquery-3.6.0.min.js","time-formats_files/jquery-3.6.0/jquery-3.6.0.min.map","time-formats_files/popper-2.6.0/popper.min.js","time-formats_files/tippy-6.2.7/tippy-bundle.umd.min.js","time-formats_files/tippy-6.2.7/tippy-light-border.css","time-formats_files/tippy-6.2.7/tippy.css","time-formats_files/tippy-6.2.7/tippy.umd.min.js","time-formats_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2434,7 +2435,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.13/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2455,7 +2456,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Interpolation","description":"How to interpolate tracking data.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-03-22T00:00:00.000+01:00","citationText":"Lerma, 2022"}
+{"title":"Time formats","description":"How to convert your time to a format that R can understand as time.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-06-30T00:00:00.000+02:00","citationText":"Lerma, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2487,16 +2488,17 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Interpolation</h1>
+<h1>Time formats</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>How to interpolate tracking data.</p></p>
+<p><p>How to convert your time to a format that R can understand as
+time.</p></p>
 </div>
 
 <div class="d-byline">
   Miriam Lerma true 
   
-<br/>2022-03-22
+<br/>2022-06-30
 </div>
 
 <div class="d-article">
@@ -2505,336 +2507,256 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h3>Contents</h3>
 <ul>
 <li><a href="#intro">Intro</a></li>
-<li><a href="#data">Data 📖</a></li>
-<li><a href="#identify-trips">Identify trips 🛩️</a></li>
-<li><a href="#interpolate">Interpolate 🌐</a>
+<li><a href="#data">Data 📖</a>
 <ul>
-<li><a href="#interpolate_trips">interpolate_trips</a></li>
-<li><a href="#interpolate_all">interpolate_all</a></li>
+<li><a href="#transform-the-column-to-posixct">Transform the column to
+POSIXct</a></li>
 </ul></li>
-<li><a href="#plot">Plot 🖌️</a></li>
-<li><a href="#summary">Summary 👩🏽‍💻</a></li>
-<li><a href="#recommended-sources">Recommended sources 📑</a></li>
+<li><a href="#correct-time">Correct time</a>
+<ul>
+<li><a href="#identify-your-time-zone">Identify your time zone</a></li>
+</ul></li>
+<li><a href="#other-resources">Other resources 👩🏽‍🏫</a></li>
 </ul>
 </nav>
 </div>
 <h1 id="intro">Intro</h1>
-<p>Interpolation is a type of estimation, a method of constructing (or
-finding) new data ponts based on the range of a discrete set of known
-data points (source: <a
-href="https://en.wikipedia.org/wiki/Interpolation">wikipedia</a>)</p>
-<p>This post is about: <br> - How to prepare your data and use the
-function interpolate from the package <strong>sula</strong> for
-interpolating your tracking data <br></p>
-<p>Interpolating your data might help you to: <br> - Fill
-<strong>gaps</strong> on your tracking data, and/or <br> - To
-<strong>make comparable</strong> trips when individuals were tracked at
-different intervals <br> … read more at the end of this page.</p>
-<p>⚠️<strong>However</strong>, while interpolating you should be very
-cautious, because you are creating locations where the bird might have
-not been.</p>
-<p>This post step by step:<br />
-1. Load data<br />
-2. Identify nest location / or central location<br />
-3. Classify if the animal was inside the central location or
-outside<br />
-4. Count the number of trips<br />
-5. Interpolate only when the animal was on a trip</p>
-<p>You can also just go directly to : interpolate</p>
+<p>This post is about how to convert the column where you have date and
+time to a format that R can understand. <br></p>
+<p>Most likely you wrote the date and time during fieldwork in a
+notebook, and then write it down in a spreadsheet at your computer.
+<br></p>
+<p>When you load your this spreadsheet into R, very often R would not
+know that you mean time with that column, it would think is text.
+<br></p>
+<p>Therefore, you need to change the ‘class’ of that column.</p>
+<p>It is important to change the ‘class’ of your column for:<br />
+- Correcting your time to your time zone <br> - Calculating duration of
+events (for example foraging trip duration)<br><br />
+- Count days (for example Julian days)<br> - Identify night and day
+periods<br><br />
+… and many many more</p>
+<p>In this post we will transform the <strong>class</strong> of our
+column date and time from <strong>character</strong> or other class,
+into <strong>POSTIXct</strong>. Additionally, we can change our
+<strong>time zone</strong>.</p>
 <h1 id="data">Data 📖</h1>
 <p>To do this exercise, load data from the package ‘sula’. <br> For
 accessing the data, you need to have the package installed.</p>
 <p>To install:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/remote-reexports.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/sula"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#devtools::install_github("MiriamLL/sula")</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>The data is from 10 tracked individuals.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Select only one individual.</p>
+<h3 id="date">Date</h3>
+<p>The data frame contains a column with <strong>date</strong>
+information.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateGMT</span><span class='op'>)</span></span></code></pre>
 </div>
+<pre><code>[1] &quot;02/11/2017&quot; &quot;02/11/2017&quot; &quot;02/11/2017&quot; &quot;02/11/2017&quot; &quot;02/11/2017&quot;
+[6] &quot;02/11/2017&quot;</code></pre>
 </div>
+<p>The <strong>date infomation</strong> is of class
+<strong>character</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_track</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateGMT</span><span class='op'>)</span></span></code></pre>
 </div>
+<pre><code>[1] &quot;character&quot;</code></pre>
 </div>
-<h1 id="identify-trips">Identify trips 🛩️</h1>
-<p>Identify the trips allows to remove all the central locations
-(e.g. the nest), because usually you will be not interested in
-interpolating the locations where the animal was at their central
-location, only when it was in a trip.</p>
-<h3 id="nest-location">Nest location 🐣</h3>
-<p>Is also often the case that at fieldwork, the GPS are activated to
-start recording data just after releasing the animal back to their
-central location (-nest-)</p>
-<p>Therefore, the first location recorded will correspond to their
-nest.</p>
-<p>To identify the first location I use the function
-<strong>locate_nest</strong> from the package <strong>sula</strong>.</p>
-<p>Because you might have different column names, you can add the names
-of your columns here in ‘column_lon’ and ‘column_lat’.</p>
+<h3 id="time">Time</h3>
+<p>The data frame contains a column with <strong>time</strong>
+information.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/locate_nest.html'>locate_nest</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>ID01_track</span>,
-                         column_lat <span class='op'>=</span> <span class='st'>'Longitude'</span>,
-                         column_lon <span class='op'>=</span> <span class='st'>'Latitude'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 x 2
-  Longitude Latitude
-      &lt;dbl&gt;    &lt;dbl&gt;
-1     -27.2    -109.</code></pre>
+<pre><code>[1] &quot;character&quot;</code></pre>
 </div>
-<p><strong>Manually</strong>: If you did not activate the GPS at their
-nest but you know the nest location, you can manually write it down.</p>
+<p>The <strong>time infomation</strong> is of class
+<strong>character</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.4531</span>,
-                     Latitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>27.20097</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span></span></code></pre>
 </div>
+<pre><code>[1] &quot;character&quot;</code></pre>
 </div>
-<h3 id="identify-trips-1">Identify trips 🛩️</h3>
-<p>Now that you have the nest location, the function
-<strong>identify_trips</strong> from the package <strong>sula</strong>
-helps you to identify when the bird was out on a trip.</p>
-<p>The function adds a new column, where ‘Y’ means that the location is
-outside the range you select (in the example 1 km), and ‘N’ means that
-the location is inside the range you select.</p>
-<p>Therefore ‘Y’ is when the bird was on a trip, and ‘N’ is when it was
-at the nest.</p>
+<h2 id="transform-the-column-to-posixct">Transform the column to
+POSIXct</h2>
+<p><strong>POSIX</strong> comes from <em>Portable Operating System
+Interface</em> and the X from <em>UNIX</em>. <br> There are two
+subclasses <strong>ct</strong> from <em>calendar time</em> and
+<strong>lt</strong> from <em>local time</em>. See <a
+href="https://www.r-project.org/doc/Rnews/Rnews_2001-2.pdf">R
+news</a>.<br> Calendar time being the number of seconds since the
+beginning of 1970.</p>
+<p><br> To create our column with date and time, lets merge the column
+DateGMT and TimeGMT from our data frame into one column DateTime.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/identify_trips.html'>identify_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_track</span>,
-                           Nest_location<span class='op'>=</span><span class='va'>ID01_nest</span>,
-                           Distance_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateGMT</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h3 id="count-trips">Count trips 🧮</h3>
-<p>The function <strong>count_trips</strong> from the package
-<strong>sula</strong> removes the locations that are not trips (for
-example removes all rows where the animal was at the central location)
-and adds a column with the number of the trip.</p>
+<p>Then convert it to <strong>POSIXct</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_onlytrips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/count_trips.html'>count_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_trips</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span>, format <span class='op'>=</span> <span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>To check when the trips started and ended you can also use functions
-from the package <strong>tidyverse</strong>.</p>
+<p>Arguments used:</p>
+<p><strong>strptime</strong> is a function to convert characters to time
+objects, where str stands for <strong>string</strong>, p from
+<strong>parse</strong>, and time is self explanatory.</p>
+<p>Then we provide the information of the format we were using, be
+specially careful with the format of your date and time.</p>
+<p>For the example, I used <strong>%d/%m/%Y %H:%M:%S</strong></p>
+<p><strong>DAY</strong><br />
+<strong>%d</strong> - is used for day and goes from 0 to 31<br>
+<strong>%a</strong> - is used for the day of the week using the first
+three letters of the name<br> <strong>%A</strong> - is used for the day
+of the week using the full name<br> <br> <strong>MONTH</strong><br />
+<strong>%m</strong> - is used for month it goes from 0 to 12<br>
+<strong>%b</strong> - is used for the name of the month using the first
+three letters of the name<br> <strong>%B</strong> - is used for the name
+of the month using the full name<br> <br> <strong>YEAR</strong><br />
+<strong>%y</strong> - is used for year using two digits<br>
+<strong>%Y</strong> - is used for year using four difits<br> <br></p>
+<p><strong>HOURS</strong><br />
+<strong>%H</strong> - is used for hours and goes from 0 to 24<br>
+<strong>MINUTES</strong><br />
+<strong>%M</strong> is used for minutes and goes from 0 to 60<br>
+<strong>SECONDS</strong><br />
+<strong>%S</strong> is used for seconds and goes from 0 to 60<br></p>
+<p>It is also important to note if you are using <strong>/</strong>,
+<strong>-</strong> or other, and do not forget the <strong>:</strong>
+when separating the times<br></p>
+<p>Note for <strong>excel-users</strong>: if you open your file first in
+excel, excel tries to identify the class, and might have transform the
+column already, making it different from your original notes. Therefore
+you might need to use one of the examples from <a
+href="https://stackoverflow.com/questions/31647364/data-difference-in-as-posixct-with-excel">stackoverflow</a></p>
+<h3 id="check">Check</h3>
+<p>Most problems come from not writing your format correctly, therefore
+I recommend you to always check that you have the correct
+transformations.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_onlytrips</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>start<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>first</a></span><span class='op'>(</span><span class='va'>DateGMT</span><span class='op'>)</span>,<span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>first</a></span><span class='op'>(</span><span class='va'>TimeGMT</span><span class='op'>)</span><span class='op'>)</span>,
-            end<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='va'>DateGMT</span><span class='op'>)</span>,<span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='va'>TimeGMT</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 5 x 3
-  trip_number start               end                
-  &lt;chr&gt;       &lt;chr&gt;               &lt;chr&gt;              
-1 trip_1      02/11/2017 19:34:31 02/11/2017 20:09:24
-2 trip_2      03/11/2017 12:44:04 03/11/2017 14:30:00
-3 trip_3      04/11/2017 07:45:17 04/11/2017 09:41:28
-4 trip_4      04/11/2017 17:05:36 04/11/2017 20:41:10
-5 trip_5      05/11/2017 09:06:13 05/11/2017 11:26:14</code></pre>
+<pre><code>[1] &quot;2017-11-02 17:05:30 CET&quot; &quot;2017-11-27 09:48:57 CET&quot;</code></pre>
 </div>
-<p>If you know when the trip started and ended, you can also add the
-trip classification <strong>manually</strong>, using also functions from
-the package tidyverse.</p>
+<p>Note that in my example it returns the word <em>CET</em>.</p>
+<p>This is because I am in the <strong>C</strong>entral
+<strong>E</strong>uropean <strong>T</strong>ime.</p>
+<p>This might be correct and all good, but in the next steps we will try
+to adjust to our <strong>time zone</strong></p>
+<h1 id="correct-time">Correct time</h1>
+<p>One way to directly have the format in our time zone, is to specify
+the time zone when converting the class.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_onlytrips</span> <span class='op'>&lt;-</span> <span class='va'>ID01_trips</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>trip_number<span class='op'>=</span>
-           <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span>
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'02/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'19:34:31'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'20:09:24'</span> <span class='op'>~</span> <span class='st'>'trip_1'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'03/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'12:44:04'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'14:30:00'</span> <span class='op'>~</span> <span class='st'>'trip_2'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'04/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'07:45:17'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'09:41:28'</span> <span class='op'>~</span> <span class='st'>'trip_3'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'04/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'17:05:36'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'20:41:10'</span> <span class='op'>~</span> <span class='st'>'trip_4'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'05/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'09:06:13'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'11:26:14'</span> <span class='op'>~</span> <span class='st'>'trip_5'</span>,
-             <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"nest"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span> <span class='op'>!=</span> <span class='st'>'nest'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>GMT</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,<span class='st'>"GMT"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h1 id="interpolate">Interpolate 🌐</h1>
-<h2 id="interpolate_trips">interpolate_trips</h2>
-<p>Once the data frame contains columns with Longitude, Latitude, and
-trip_number, the trips can be interpolated.</p>
-<p>The function <strong>interpole_trips</strong> from the package
-<strong>sula</strong> helps you to interpolate the locations based on an
-interval. In the examples below 900 secs = 15 minutes and 60 sec = 1
-minute</p>
-<p>Because you might have different column names, this function has a
-lot of arguments, but basically you just need to replace the name of
-your data frame, the interval you are interested to do the
-interpolation, the column names, and the format your date and time is
-presented.</p>
+<p>Here I am adding the “GMT” at the end.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_interpolated15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,
-                                     interval<span class='op'>=</span><span class='st'>'900 sec'</span>,
-                                     column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,
-                                     column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,
-                                     column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,
-                                     column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,
-                                     column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,
-                                     <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>GMT</span><span class='op'>)</span></span></code></pre>
 </div>
+<pre><code>[1] &quot;2017-11-02 17:05:30 GMT&quot; &quot;2017-11-27 09:48:57 GMT&quot;</code></pre>
 </div>
+<p>And it worked.</p>
+<h2 id="identify-your-time-zone">Identify your time zone</h2>
+<p>In case you are here because you are interested in analyzing tracking
+data, note that it’s common that the GPS record data in GMT+0.</p>
+<p>Therefore, according to where your study, you might need to change
+the time to your time zone <a
+href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Timezones2008_UTC%2B0.png/1200px-Timezones2008_UTC%2B0.png"><strong>tz</strong></a></p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_interpolated1m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,
-                                     interval<span class='op'>=</span><span class='st'>'60 sec'</span>,
-                                     column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,
-                                     column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,
-                                     column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,
-                                     column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,
-                                     column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,
-                                     <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>
-</code></pre>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Timezones2008_UTC%2B0.png/1200px-Timezones2008_UTC%2B0.png" height="350" /></p>
 </div>
-</div>
-<h2 id="interpolate_all">interpolate_all</h2>
-<p>In case you want to interpolate a specific trip, or everything
-(including the central location), and you already have a datetime column
-in the correct format (so R can understand is date and time) there is
-also the function <strong>interpolate</strong> in the package
-<strong>sula</strong> that interpolates all the locations.</p>
-<p>For example, to interpolate a specific trip, subset the trip you are
-interested in interpolating.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_trip5</span><span class='op'>&lt;-</span><span class='va'>GPS_preparado</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>==</span><span class='st'>'trip_5'</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<p>Use the function <strong>interpolate</strong>. Here I select the
-dataframe, the interval ofinterest, and the name of the columns that
-will be included in the interpolation.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_trip1_interpolated</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate.html'>interpolate</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS01_trip5</span>,
-                                      interval<span class='op'>=</span><span class='st'>'10 sec'</span>,
-                                      column_datetime <span class='op'>=</span> <span class='st'>'dia_hora'</span>,
-                                      column_lat <span class='op'>=</span> <span class='st'>'Latitude'</span>,
-                                      column_lon <span class='op'>=</span> <span class='st'>'Longitude'</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<h1 id="plot">Plot 🖌️</h1>
-<p>Now lets compare the before and after, the tracking data vs the
-interpolated data.</p>
-<p>The package <strong>patchwork</strong> lets us see the plots side by
-side.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://patchwork.data-imaginist.com'>patchwork</a></span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<p>Create three plots, one using the original points, and two using the
-interpolation to compare.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Original_track</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_onlytrips</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Original tracking data'</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span>
-<span class='va'>Interpolated_15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_interpolated15m</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Interpolated to 15 mins'</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span>
-<span class='va'>Interpolated_1m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_interpolated1m</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Interpolated to 1 min'</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'right'</span><span class='op'>)</span>
-<span class='va'>Original_track</span><span class='op'>+</span><span class='va'>Interpolated_15m</span><span class='op'>+</span><span class='va'>Interpolated_1m</span>
-</code></pre>
-</div>
-<p><img src="interpolation_files/figure-html5/unnamed-chunk-17-1.png" width="864" /></p>
-</div>
-<p>Now it is up to you to decide which interpolation interval fits
-better to your study.</p>
-<h1 id="summary">Summary 👩🏽‍💻</h1>
-<p>TL;DR (too long; didn’t read)</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-
-<span class='va'>ID01_track</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span> <span class='op'><a href='https://rdrr.io/pkg/sula/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span>
-
-<span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.4531</span>,Latitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>27.20097</span><span class='op'>)</span>
-
-<span class='va'>ID01_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/identify_trips.html'>identify_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_track</span>,Nest_location<span class='op'>=</span><span class='va'>ID01_nest</span>,Distance_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-
-<span class='va'>ID01_onlytrips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/count_trips.html'>count_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_trips</span><span class='op'>)</span>
-
-<span class='va'>ID01_interpolated15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,
-                                        interval<span class='op'>=</span><span class='st'>'900 sec'</span>,
-                                        column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,
-                                        column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,
-                                        column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,
-                                        column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,
-                                        column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,
-                                        <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<h1 id="recommended-sources">Recommended sources 📑</h1>
-<p>Some of the reasons to interpolate data are:</p>
+<p>There are many ways to identify your tz:</p>
 <ul>
-<li><p>To fit the GPS locations with diving data. For example: <a
-href="https://link.springer.com/article/10.1007/s00227-020-03700-2#Sec2">Lerma
-et al. 2020</a>, <a
-href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12926">Browning
-et al. 2017</a></p></li>
-<li><p>Because the recorded data was different between individuals, and
-thus interpolating data provides fixed intervals. For example: <a
-href="https://doi.org/10.1111/jav.02156">Borrmann et
-al. 2019</a></p></li>
-<li><p>To fill occasional gaps in the tracking data, particularly for
-animals that dive and do not receive signal when submerged. For example:
-<a
-href="https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2021.2261">Iorio-Merlo
-et al. 2022</a>.</p></li>
+<li>You can click on your area on this <a
+href="https://dayspedia.com/time-zone-map/">map</a><br></li>
+<li>You can check the list of name in R using the code
+<strong>OlsonNames()</strong><br></li>
+<li>You can check lists like those of <a
+href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">wikipedia</a></li>
 </ul>
-<p>If you can think on another case when interpolation is necessary
-please do not hesitate to write me to include it on the list.</p>
-<p>Also if you use the function from the package <strong>sula</strong>
-please consider including the package in your citations.</p>
-<p>For more details or suggestions you can also always write me an <a
-href="miriamjlerma@gmail.com">email</a></p>
-<div class="sourceCode" id="cb3"><pre
+<h3 id="lubridate">lubridate</h3>
+<p>One option to change your date and time to your time zone is using
+the package <strong>lubridate</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Example with the data.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_tz</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span></span></code></pre>
+</div>
+</div>
+<p>My original tz:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_tz</span><span class='op'>$</span><span class='va'>CET</span><span class='op'>&lt;-</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd_hms.html'>ymd_hms</a></span><span class='op'>(</span><span class='va'>GPS_tz</span><span class='op'>$</span><span class='va'>DateTime</span>, tz <span class='op'>=</span> <span class='st'>"Europe/Amsterdam"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>My goal tz:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_tz</span><span class='op'>$</span><span class='va'>UTC_4</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/with_tz.html'>with_tz</a></span><span class='op'>(</span><span class='va'>GPS_tz</span><span class='op'>$</span><span class='va'>CET</span>,tzone <span class='op'>=</span> <span class='st'>"America/La_Paz"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="manually">Manually</h3>
+<p>However, you can also change the time if you know the time difference
+between the recording and the region where you are.</p>
+<p>For example:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_tz</span><span class='op'>$</span><span class='va'>five_hours_difference</span> <span class='op'>&lt;-</span> <span class='va'>GPS_tz</span><span class='op'>$</span><span class='va'>CET</span> <span class='op'>-</span> <span class='fl'>3600</span><span class='op'>*</span><span class='fl'>5</span></span></code></pre>
+</div>
+</div>
+<p>Thats it!</p>
+<p>Hopefully this might help you.</p>
+<h3 id="recommendations">Recommendations</h3>
+<p>It takes time to get use to this transformations and there are many
+different ways to transform times and date, so if you are struggling,
+you are not the only one, just give it some time.</p>
+<p>I would recommend that you always create an extra column in your data
+frame to make the transformations, not your original column because if
+it returns NAs you will have to load the data frame over and over.</p>
+<p>Be very careful with the format and your time zone.</p>
+<h1 id="other-resources">Other resources 👩🏽‍🏫</h1>
+<ul>
+<li><p>This post in <a
+href="https://miriamll.github.io/Curso_tracking/Parte2#1">Spanish</a><br />
+</p></li>
+<li><p>More options to use Date and Times in R also in <a
+href="https://estadistica-dma.ulpgc.es/cursoR4ULPGC/6h-Fechas.html">Spanish</a></p></li>
+<li><p><a href="https://dayspedia.com/time-zone-map/">Time zones
+map</a><br></p></li>
+<li><p><a
+href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">List
+of time zones</a></p></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
