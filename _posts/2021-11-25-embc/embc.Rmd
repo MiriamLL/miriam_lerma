@@ -5,7 +5,7 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 11-25-2021
+date: 2021-11-25
 preview: blog6.jpg
 categories:
   - R

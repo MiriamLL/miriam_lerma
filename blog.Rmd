@@ -2,6 +2,7 @@
 title: "Blog"
 listing:
   posts:
+    - 2022-07-01-nestlocation
     - 2022-06-30-time-formats
     - 2022-05-23-speed
     - 2022-04-07-land-or-not
