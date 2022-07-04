@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog6.jpg","embc_files/anchor-4.2.2/anchor.min.js","embc_files/bowser-1.9.3/bowser.min.js","embc_files/distill-2.2.21/template.v2.js","embc_files/figure-html5/unnamed-chunk-12-1.png","embc_files/figure-html5/unnamed-chunk-13-1.png","embc_files/figure-html5/unnamed-chunk-25-1.png","embc_files/figure-html5/unnamed-chunk-27-1.png","embc_files/header-attrs-2.14/header-attrs.js","embc_files/jquery-3.6.0/jquery-3.6.0.js","embc_files/jquery-3.6.0/jquery-3.6.0.min.js","embc_files/jquery-3.6.0/jquery-3.6.0.min.map","embc_files/popper-2.6.0/popper.min.js","embc_files/tippy-6.2.7/tippy-bundle.umd.min.js","embc_files/tippy-6.2.7/tippy-light-border.css","embc_files/tippy-6.2.7/tippy.css","embc_files/tippy-6.2.7/tippy.umd.min.js","embc_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["blog6.jpg","embc_files/anchor-4.2.2/anchor.min.js","embc_files/bowser-1.9.3/bowser.min.js","embc_files/distill-2.2.21/template.v2.js","embc_files/figure-html5/unnamed-chunk-10-1.png","embc_files/figure-html5/unnamed-chunk-11-1.png","embc_files/figure-html5/unnamed-chunk-12-1.png","embc_files/figure-html5/unnamed-chunk-13-1.png","embc_files/figure-html5/unnamed-chunk-25-1.png","embc_files/figure-html5/unnamed-chunk-27-1.png","embc_files/header-attrs-2.14/header-attrs.js","embc_files/jquery-3.6.0/jquery-3.6.0.js","embc_files/jquery-3.6.0/jquery-3.6.0.min.js","embc_files/jquery-3.6.0/jquery-3.6.0.min.map","embc_files/popper-2.6.0/popper.min.js","embc_files/tippy-6.2.7/tippy-bundle.umd.min.js","embc_files/tippy-6.2.7/tippy-light-border.css","embc_files/tippy-6.2.7/tippy.css","embc_files/tippy-6.2.7/tippy.umd.min.js","embc_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1655,16 +1655,10 @@ percentage values</p>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/EMbC/man/stts.html'>stts</a></span><span class='op'>(</span><span class='va'>Data_bc</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         X1.mn    X1.sd    X2.mn    X2.sd     kn  kn(%)
- 1 LL     0.06     0.10     1.47     0.86    519  52.64 
- 2 LH     0.08     0.10     2.95     0.14    293  29.72 
- 3 HL     9.51     5.07     0.17     0.13    103  10.45 
- 4 HH     4.83     3.94     1.59     0.92     70   7.10 </code></pre>
 </div>
 <h3 id="mins-and-maxs">Mins and Maxs</h3>
 <p>You can also check the mimimum and maximum velocity and radians
-(turning angle) using the function <strong><span class="citation"
-data-cites="R">@R</span></strong> from the package EMbC.</p>
+(turning angle).</p>
 <ul>
 <li>X1.min is the minimum velocity<br />
 </li>
@@ -1678,11 +1672,6 @@ data-cites="R">@R</span></strong> from the package EMbC.</p>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Data_bc</span><span class='op'>@</span><span class='va'>R</span></span></code></pre>
 </div>
-<pre><code>        X1.min    X2.min     X1.max    X2.max
-1.LL 0.0000000 0.0000000  0.9197180 2.6603235
-2.LH 0.0000000 2.6603235  0.4699243 3.1409141
-3.HL 0.9197180 0.0000000 20.2502838 0.4694153
-4.HH 0.4699243 0.4694153 20.2502838 3.1409141</code></pre>
 </div>
 <p>Here is important that you check that these values make sense.
 Turning angle should be between 0 and 3.14. Velocity varies according to
@@ -1728,9 +1717,8 @@ use the <strong>view</strong> function from the package EMbC.</p>
 <p><img src="embc_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
 </div>
 <h2 id="export-delimiters">Export delimiters</h2>
-<p>To export the delimiters you can extract information using
-<strong><span class="citation" data-cites="R">@R</span></strong> into a
-data frame and rename the columns.</p>
+<p>To export the delimiters you can extract information into a data
+frame and rename the columns.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Class_bc</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>Data_bc</span><span class='op'>@</span><span class='va'>R</span><span class='op'>)</span></span>
@@ -1761,8 +1749,7 @@ define the folder where I want the file to be.</p>
 <h1 id="tracking-data">Tracking data</h1>
 <h2 id="behaviors">Behaviors</h2>
 <p>You can add the information of velocity and turning angle into you
-GPS data using the function <strong><span class="citation"
-data-cites="A">@A</span></strong> from the package EMbC</p>
+GPS data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Data</span><span class='op'>$</span><span class='va'>Beha</span><span class='op'>&lt;-</span><span class='va'>Data_bc</span><span class='op'>@</span><span class='va'>A</span></span></code></pre>
@@ -1807,20 +1794,11 @@ use the following functions.</p>
 </div>
 </div>
 <h2 id="velocity">Velocity</h2>
-<p>You can add the velocity in a colum of your GPS data frame using the
-function <strong><span class="citation"
-data-cites="X">@X</span></strong> from the package EMbC</p>
+<p>You can add the velocity in a column of your GPS data frame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Data_bc</span><span class='op'>@</span><span class='va'>X</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>     velocity (m/s) turn (rad)
-[1,]    0.038911247  0.0000000
-[2,]    0.036230799  2.6587646
-[3,]    0.009904929  1.1311206
-[4,]    0.011112843  3.0577897
-[5,]    0.033537583  0.6261461
-[6,]    0.037807521  0.2016767</code></pre>
 </div>
 <p>Velocity is in the first column, therefore we use the [,1]. Also, to
 transform it to km/h multiply per 3.6.</p>
@@ -1849,14 +1827,6 @@ transform it to km/h multiply per 3.6.</p>
 <span>            Angle_min<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>HeadingDirection</span><span class='op'>)</span>,</span>
 <span>            Angle_max<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>HeadingDirection</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 5 × 5
-  Behaviour        Velo_min Velo_max Angle_min Angle_max
-  &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 Intense foraging  0.0172      1.60   2.68        3.14 
-2 Relocating        1.44       47.6    0.507       3.14 
-3 Resting           0.00363     1.38   0           2.68 
-4 Travelling        1.45       72.9    0.00105     0.499
-5 Unknown           0           0      0           0    </code></pre>
 </div>
 <h2 id="plot">Plot</h2>
 <p>You can plot the GPS tracking data according to their behaviours
@@ -1871,7 +1841,6 @@ using the function <strong>ggplot</strong></p>
 <span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Longitude"</span>, y<span class='op'>=</span><span class='st'>"Latitude"</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Fig. Tracks'</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="embc_files/figure-html5/unnamed-chunk-25-1.png" width="624" /></p>
 </div>
 <h1 id="further">Further</h1>
 <p>If you are not satisfied with the classification and the delimiters,
@@ -1913,7 +1882,6 @@ and velocity.</p>
 <span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Longitude"</span>, y<span class='op'>=</span><span class='st'>"Latitude"</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Fig. Tracks'</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="embc_files/figure-html5/unnamed-chunk-27-1.png" width="624" /></p>
 </div>
 <h1 id="references-and-recommended-literature">References and
 recommended literature</h1>
@@ -1945,7 +1913,7 @@ href="https://www.connectedpapers.com/main/4b942b897aab5761124d65680e3af4dcc71c0
 href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12995">Hidden
 Markov Models</a></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre
+<div class="sourceCode" id="cb5"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
