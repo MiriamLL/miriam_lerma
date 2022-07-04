@@ -37,6 +37,7 @@ GPS_raw<-as.data.frame(GPS_raw)
 GPS_ind<-subset(GPS_raw,GPS_raw$IDs=='GPS01')
 ```
 
+
 ## Nest or no nest?
 The data I am using does **not** include locations when the animal was on the nest. 
 
@@ -84,7 +85,6 @@ Data<-GPS_ind%>%
 head(Data)
 ```
 
-
 # EMbC
 
 I strongly recommend to read this article by [Garriga et al. 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0151984)
@@ -108,6 +108,7 @@ The -1 in info means that any iteration is supress.
 Data_bc<-stbc(Data[2:4],info=-1) 
 ```
 
+
 ## Check delimiters
 
 ### Mean and sd
@@ -120,21 +121,23 @@ In the package EMbC, the function **stts** offers a compact view of the paramete
 
 kn is the marginal distribution of the cluster in absolute and percentage values
 
-```{r}
+```{r, eval=FALSE}
 stts(Data_bc)
 ```
 
 ### Mins and Maxs
-You can also check the mimimum and maximum velocity and radians (turning angle) using the function **@R** from the package EMbC.
+
+You can also check the mimimum and maximum velocity and radians (turning angle).
 
 - X1.min is the minimum velocity  
 - X2.min is the minimum turning angle  
 - X1.max is the maximum velocity  
 - X2.max is the maximum turning angle  
 
-```{r}
+```{r, eval=FALSE}
 Data_bc@R
 ```
+
 Here is important that you check that these values make sense. Turning angle should be between 0 and 3.14. 
 Velocity varies according to your species. 
 
@@ -146,6 +149,7 @@ For boobies this information can be translated to:
 - HH for Relocating  
 
 You can also compare your results with Table 2 in [Mendez et al. 2017](https://doi.org/10.3354/meps12052), or in methods from [Lerma et al. 2020](https://doi.org/10.1007/s00227-020-03700-2)
+
 
 ### Graphically
 
@@ -166,9 +170,10 @@ To see how the track looks according to the classification you can use the **vie
 EMbC::view(Data_bc)
 ```
 
+
 ## Export delimiters
 
-To export the delimiters you can extract information using **@R** into a data frame and rename the columns. 
+To export the delimiters you can extract information into a data frame and rename the columns. 
 
 ```{r}
 Class_bc<-as.data.frame(Data_bc@R)
@@ -198,7 +203,7 @@ write_csv(
 
 ## Behaviors
 
-You can add the information of velocity and turning angle into you GPS data using the function **@A** from the package EMbC
+You can add the information of velocity and turning angle into you GPS data.
 
 ```{r}
 Data$Beha<-Data_bc@A
@@ -228,7 +233,7 @@ Data<-mutate(Data, Beha_class = ifelse(Data$Beha == "1", "LL",
 
 or 
 
-```{r}
+```{r, eval=FALSE}
 Data<-mutate(Data, Behaviour = ifelse(Data$Beha == "1", "Resting",
                                         ifelse(Data$Beha == "2", "Intense foraging",
                                                ifelse(Data$Beha == "3", 'Travelling',
@@ -236,18 +241,17 @@ Data<-mutate(Data, Behaviour = ifelse(Data$Beha == "1", "Resting",
                                                              "Unknown")))))
 ```
 
-
 ## Velocity
 
-You can add the velocity in a colum of your GPS data frame using the function **@X** from the package EMbC
+You can add the velocity in a column of your GPS data frame.
 
-```{r}
+```{r, eval=FALSE}
 head(Data_bc@X)
 ```
 
 Velocity is in the first column, therefore we use the [,1]. Also, to transform it to km/h multiply per 3.6.
 
-```{r}
+```{r, eval=FALSE}
 Data$Velocity_ms<-Data_bc@X[,1]
 Data$Velocity_kmh<-Data$Velocity_ms*3.6
 ```
@@ -256,7 +260,7 @@ Data$Velocity_kmh<-Data$Velocity_ms*3.6
 
 Heading direction is on the second column, therefore we use the [,2].
 
-```{r}
+```{r, eval=FALSE}
 Data$HeadingDirection<-Data_bc@X[,2]
 ```
 
@@ -264,7 +268,7 @@ Data$HeadingDirection<-Data_bc@X[,2]
 
 Finally you can check the range to coincide with your delimiters.
 
-```{r}
+```{r, eval=FALSE}
 Data %>% 
   group_by(Behaviour) %>%
   summarise(Velo_min=min(Velocity_kmh),
@@ -277,7 +281,7 @@ Data %>%
 
 You can plot the GPS tracking data according to their behaviours using the function **ggplot**
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = Data, 
            aes(x=lon, y = lat))+
   geom_point(aes(colour = Behaviour))+
@@ -293,7 +297,7 @@ If you are not satisfied with the classification and the delimiters, you can set
 
 For example, using data from Mendez et al 2017.
 
-```{r}
+```{r, eval=FALSE}
 Data<-mutate(Data, New_beha = ifelse(Data$Velocity_kmh >= 0 & 
                                       Data$Velocity_kmh <= 4 &
                                       Data$HeadingDirection >= 0 &
@@ -318,7 +322,7 @@ Data<-mutate(Data, New_beha = ifelse(Data$Velocity_kmh >= 0 &
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = Data, 
            aes(x=lon, y = lat))+
   geom_point(aes(colour = New_beha))+
@@ -347,3 +351,4 @@ Other Species
 Alternative options 
 
 - [Hidden Markov Models](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12995)
+
