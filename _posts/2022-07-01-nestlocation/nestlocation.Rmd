@@ -24,7 +24,7 @@ This post is about how to identify the central location from an animal. <br>
 
 For example if you want to identify how far an animals moves, it is helpful to identify where the central location of the animal is to use it as a reference point.  
 
-In this post we will use different logic and/or functions logic to identify **central locations** for animals.
+In this post we will use different logic and/or functions to identify **central locations** for animals.
 
 # Data 📖
 
