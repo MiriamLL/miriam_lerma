@@ -1,5 +1,26 @@
 [
   {
+    "path": "posts/2022-08-17-count-days/",
+    "title": "Count days",
+    "description": "How to add a day number as a column, and see differences as days pass.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2022-08-17",
+    "categories": [
+      "R",
+      "tracking",
+      "English"
+    ],
+    "contents": "\r\n\r\nContents\r\nIntro\r\nData 📖\r\nCount days 🧮\r\nJulian day 📅\r\nMore to read 👩🏽‍🏫\r\n\r\nIntro\r\nThis post is about how:  - Add a column counting the days (day 1,\r\n2…). - Check differences in parameters as days pass.  - Add a\r\ncolumn with julian day (days from the first day of the calendar).\r\n\r\nExamples \r\nThis post is useful to study:\r\nIn species that fed their offspring. Trips might be shorter when\r\nthe parents need to mantain a constant feeding rate, but trips can be\r\nlonger during the incubation period, and when offspring can be left\r\nunattended.\r\nSpecies that use resources that availability change over time.\r\nTrips might be shorter when the prey availability is at its peak, and\r\ntrips might be longer when the prey availability is lower, as\r\nindividuals expend more time to reach their energetic demands.\r\nData 📖\r\nTo do this exercise, we will load data from the package ‘sula’\r\nTo install:\r\n\r\n\r\n#devtools::install_github(\"MiriamLL/sula\")\r\n\r\n\r\n\r\n\r\nlibrary(sula)\r\n\r\n\r\nTo load data from from 1 tracked individual.\r\n\r\n\r\nGPS<-GPS_edited\r\n\r\n\r\nGet nest location.\r\n\r\n\r\nnest_loc<-localizar_nido(GPS_data = GPS,\r\n                          lat_col=\"Latitude\",\r\n                          lon_col=\"Longitude\")\r\n\r\n  Longitude  Latitude\r\n1 -109.4596 -27.23235\r\n\r\nCalculate foraging trip parameters.\r\n\r\n\r\nForaging_trips<-calcular_tripparams(GPS_data = GPS,\r\n                              diahora_col = \"tStamp\",\r\n                              formato = \"%Y-%m-%d %H:%M:%S\",\r\n                              nest_loc=nest_loc,\r\n                              separador=\"trip_number\")\r\n\r\n\r\nCount days 🧮\r\nIdeally, you will have a data frame with the date and time\r\ninformation.\r\nTo add the number of days, we select a column with information from\r\ndate and time.\r\nFor the example we will use trip_start and extract\r\nthe date.\r\n\r\n\r\nForaging_trips$date<-substr(Foraging_trips$trip_start, start = 1, stop = 10)\r\n\r\n\r\nNow we use this date as a factor and number it.\r\n\r\n\r\nForaging_trips$day_number<-as.numeric(as.factor(Foraging_trips$date))\r\n\r\n\r\nWe can also use this information to see the number of days the\r\nindividual was tracked.\r\n\r\n\r\nlength(unique(Foraging_trips$day_number))\r\n\r\n[1] 4\r\n\r\nLoad the package tidyverse.\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\nSummarize the information per day.\r\n\r\n\r\nduration_per_day<-Foraging_trips%>%\r\n  group_by(day_number)%>%\r\n  summarise(duration_day=mean(duration_h))\r\n\r\n\r\nIn the plot, you can now see if there were differences in the trip\r\ndurations among the days that the bird was tracked.\r\n\r\n\r\nggplot(duration_per_day, aes(x=day_number, y=duration_day)) +\r\n  geom_segment( aes(x=day_number, xend=day_number, y=0, yend=duration_day), color=\"grey\") +\r\n  geom_point( color=\"orange\", size=4) +\r\n  theme_classic() +\r\n  xlab('Days since begginnig of tracking')+\r\n  ylab('Mean duration (h)')+\r\n  scale_y_continuous(expand = c(0, 0), limits = c(0, 3))\r\n\r\n\r\n\r\nJulian day 📅\r\nLoad package lubridate\r\n\r\n\r\nlibrary(lubridate)\r\n\r\n\r\nExtract the date using the function as.Date\r\n\r\n\r\nForaging_trips$julian_date <- as.Date(Foraging_trips$date, format=c(\"%Y-%m-%d\"))\r\n\r\n\r\nUse the argument %j to obtain the julian day.\r\n\r\n\r\nForaging_trips$julian <- as.numeric(format(Foraging_trips$julian_date, \"%j\"))\r\n\r\n\r\nThe bird was tagged between the day 306 and 309 of the calendar.\r\n\r\n\r\nrange(Foraging_trips$julian)\r\n\r\n[1] 306 309\r\n\r\nSummarize the information per day.\r\n\r\n\r\nduration_per_julian<-Foraging_trips%>%\r\n  group_by(julian)%>%\r\n  summarise(duration_day=mean(duration_h))\r\n\r\n\r\nThe plot would be more informatiive for whole seasons, or breeding\r\nseasons.\r\n\r\n\r\nggplot(duration_per_julian, aes(x=julian, y=duration_day)) +\r\n  geom_segment( aes(x=julian, xend=julian, y=0, yend=duration_day), color=\"grey\") +\r\n  geom_point( color=\"orange\", size=4) +\r\n  theme_classic() +\r\n  xlab('Calendar day')+\r\n  ylab('Mean duration (h)')+\r\n  scale_y_continuous(expand = c(0, 0), limits = c(0, 3))+\r\n  scale_x_continuous(expand = c(0, 0), limits = c(0, 365))\r\n\r\n\r\n\r\nI hope this might help you.\r\nMore to read 👩🏽‍🏫\r\nPistorious\r\net al. 2015.\r\nLerma\r\net al. 2020\r\n\r\n\r\n\r\n",
+    "preview": "posts/2022-08-17-count-days/blog14.jpg",
+    "last_modified": "2022-08-17T16:02:07+02:00",
+    "input_file": "count-days.knit.md"
+  },
+  {
     "path": "posts/2022-07-01-nestlocation/",
     "title": "Locate nest",
     "description": "How to locate the nest of the bird using their GPS locations.",

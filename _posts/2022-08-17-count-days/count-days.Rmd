@@ -1,0 +1,182 @@
+---
+title: "Count days"
+description: |
+  How to add a day number as a column, and see differences as days pass.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-08-17
+preview: blog14.jpg
+categories:
+  - R
+  - tracking
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro 
+
+This post is about how: <br> 
+- Add a column counting the days (day 1, 2...).<br>
+- Check differences in parameters as days pass. <br>
+- Add a column with julian day (days from the first day of the calendar). <br>
+
+**Examples** <br>
+
+This post is useful to study: 
+
+- In species that fed their offspring. Trips might be shorter when the parents need to mantain a constant feeding rate, but trips can be longer during the incubation period, and when offspring can be left unattended.
+
+- Species that use resources that availability change over time. Trips might be shorter when the prey availability is at its peak, and trips might be longer when the prey availability is lower, as individuals expend more time to reach their energetic demands.
+
+# Data 📖
+
+To do this exercise, we will load data from the package 'sula'
+
+To install:
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+```
+
+```{r}
+library(sula)
+```
+
+To load data from from 1 tracked individual. 
+
+```{r}
+GPS<-GPS_edited
+```
+
+Get nest location.
+
+```{r}
+nest_loc<-localizar_nido(GPS_data = GPS,
+                          lat_col="Latitude",
+                          lon_col="Longitude")
+```
+
+Calculate foraging trip parameters. 
+
+```{r}
+Foraging_trips<-calcular_tripparams(GPS_data = GPS,
+                              diahora_col = "tStamp",
+                              formato = "%Y-%m-%d %H:%M:%S",
+                              nest_loc=nest_loc,
+                              separador="trip_number")
+```
+
+# Count days 🧮
+
+Ideally, you will have a data frame with the date and time information.
+
+To add the number of days, we select a column with information from date and time.
+
+For the example we will use **trip_start** and extract the date.
+
+```{r}
+Foraging_trips$date<-substr(Foraging_trips$trip_start, start = 1, stop = 10)
+```
+
+Now we use this date as a factor and number it. 
+
+```{r}
+Foraging_trips$day_number<-as.numeric(as.factor(Foraging_trips$date))
+```
+
+We can also use this information to see the number of days the individual was tracked.
+
+```{r}
+length(unique(Foraging_trips$day_number))
+```
+Load the package tidyverse.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+Summarize the information per day.
+
+```{r}
+duration_per_day<-Foraging_trips%>%
+  group_by(day_number)%>%
+  summarise(duration_day=mean(duration_h))
+```
+
+In the plot, you can now see if there were differences in the trip durations among the days that the bird was tracked.
+
+```{r, fig.height=5, fig.width=8}
+ggplot(duration_per_day, aes(x=day_number, y=duration_day)) +
+  geom_segment( aes(x=day_number, xend=day_number, y=0, yend=duration_day), color="grey") +
+  geom_point( color="orange", size=4) +
+  theme_classic() +
+  xlab('Days since begginnig of tracking')+
+  ylab('Mean duration (h)')+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 3))
+```
+
+# Julian day 📅
+
+Load package lubridate
+
+```{r, warning=FALSE, message=FALSE}
+library(lubridate)
+```
+
+Extract the date using the function as.Date
+
+```{r}
+Foraging_trips$julian_date <- as.Date(Foraging_trips$date, format=c("%Y-%m-%d"))
+```
+
+Use the argument **%j** to obtain the julian day.
+
+```{r}
+Foraging_trips$julian <- as.numeric(format(Foraging_trips$julian_date, "%j"))
+```
+
+The bird was tagged between the day 306 and 309 of the calendar. 
+
+```{r}
+range(Foraging_trips$julian)
+```
+
+Summarize the information per day.
+
+```{r}
+duration_per_julian<-Foraging_trips%>%
+  group_by(julian)%>%
+  summarise(duration_day=mean(duration_h))
+```
+
+The plot would be more informatiive for whole seasons, or breeding seasons.
+
+```{r, fig.height=5, fig.width=8}
+ggplot(duration_per_julian, aes(x=julian, y=duration_day)) +
+  geom_segment( aes(x=julian, xend=julian, y=0, yend=duration_day), color="grey") +
+  geom_point( color="orange", size=4) +
+  theme_classic() +
+  xlab('Calendar day')+
+  ylab('Mean duration (h)')+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 3))+
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 365))
+```
+
+I hope this might help you.
+
+
+# More to read 👩🏽‍🏫
+
+- [Pistorious et al. 2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4651498/).
+- [Lerma et al. 2020](https://link.springer.com/article/10.1007/s00265-020-02921-1)
+
+
+
+
+
