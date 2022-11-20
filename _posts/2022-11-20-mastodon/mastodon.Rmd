@@ -1,0 +1,210 @@
+---
+title: "Mastodon"
+description: |
+  Migrando a mastodon
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-11-20
+preview: blog17.jpg
+categories:
+  - social medial
+  - español
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+Este post es para compartir los pasos que seguí para crear mi cuenta de **mastodon**.
+
+# Mastodon
+
+Lo primero que hice fue googlear **mastodon**
+
+```{r, echo=FALSE}
+library(here)
+File<-paste0(here(),"/_posts/2022-11-20-mastodon/Imagenes/")
+Imagen1<-paste0(File,"Bild1.png")
+Imagen2<-paste0(File,"Bild2.png")
+Imagen3<-paste0(File,"Bild3.png")
+Imagen4<-paste0(File,"Bild4.png")
+Imagen5<-paste0(File,"Bild5.png")
+Imagen6<-paste0(File,"Bild6.png")
+Imagen7<-paste0(File,"Bild7.png")
+Imagen8<-paste0(File,"Bild8.png")
+
+Imagen9<-paste0(File,"Bild9.png")
+Imagen9b<-paste0(File,"Bild9b.png")
+Imagen9c<-paste0(File,"Bild9c.png")
+Imagen9d<-paste0(File,"Bild9d.png")
+Imagen9e<-paste0(File,"Bild9e.png")
+Imagen9f<-paste0(File,"Bild9f.png")
+
+Imagen10<-paste0(File,"Bild10.png")
+Imagen11<-paste0(File,"Bild11.png")
+Imagen12<-paste0(File,"Bild12.png")
+Imagen13<-paste0(File,"Bild13.png")
+Imagen14<-paste0(File,"Bild14.png")
+
+```
+
+Me encontré con esta pagina y di click en **sign up** (debajo de donde dice log in)
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen1)
+```
+
+Mi lógica me decía que lo primero que tenia que hacer es **create account**.
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen2)
+```
+
+Pero me encontré que no era tan sencillo. Necesito elegir un **server**.
+
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen3)
+```
+
+
+## Server
+
+Elegir un servidor puede o no ser critico. 
+Como a mi me interesan temas de biología elegí **ecoevo.social**. Pero al parecer muchas personas con interés en **R** se fueron a diferentes servidores, como **fosstodon**. El servidor al final da lo mismo porque puedes seguir a todas las personas desde cualquier servidor. Además los servidores se ven muy parecidos. Aunque creo que hay un problema con el conteo de seguidores, pero veremos como evoluciona la plataforma.
+Si elegir servidor te abruma, te recomiendo elegir uno de los servidores a donde migraron las personas que tal vez seguías en twitter.
+
+
+## ecoevo.social 
+
+Ecoevo definitivamente eran mi servidor. Así que le di click en **create account** (del lado derecho, debajo del sign in).
+
+```{r, fig.height=4,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen4)
+```
+
+Me salió un aviso de reglas en la plataforma y al final de la pagina le di al botón de **accept**.
+
+```{r, fig.height=4,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen5)
+```
+
+Ahora si todo listo para registrarme!
+
+```{r, fig.height=4,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen6)
+```
+
+Me llegó un correo y me hice un perfil.
+
+
+## Pagina web
+
+Para usar mastodon desde mi computador, me voy al enlace  https://ecoevo.social/explore y le doy click en **log in**
+
+```{r, fig.height=4,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen7)
+```
+
+
+Ahora ya puedo empezar a **tootear** (escribiendo en el cuadro blanco de la izquierda y dandole al botón de publicar)
+
+```{r, fig.height=4,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen8)
+```
+
+
+## Android
+
+Seré sincera, mi primer encuentro con mastodon no fue fácil.
+Cuando quise descargar la app en mi celular no estaba disponible.
+
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen9)
+```
+
+También intente varias de las aplicaciones recomendadas por la [página](https://joinmastodon.org/apps).
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen9b)
+```
+
+No tener mastodon en mi celular es un problema para mi porque el 80% del tiempo que uso para las redes sociales es mientras estoy en el transporte publico. 
+
+Termine instalando **tooot*
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen9c)
+```
+
+Lo primero que me pidio la app fue ingresar el servidor donde me registre. Para mi caso fue **ecoevo.social**
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen9d)
+```
+
+Una vez ingresado el servidor, lo siguiente es aceptar las reglas de uso.
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen9e)
+```
+
+Y empezar a **tootear**.
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen9f)
+```
+
+## iOS
+
+Mi otra opción fue usar iOS.
+
+En iOS no tuve ningún problema para descargar la app.
+
+```{r, fig.height=1,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen10)
+```
+
+Así es la app una vez que la abres.
+
+```{r, fig.height=2,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen11)
+```
+
+Para acceder a tu perfil, primero hay que poner exactamente el nombre del servidor que elegiste.
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen12)
+```
+
+Una vez elegido el servidor, puedes acceder a tu cuenta usando tu correo electronico y contraseña. 
+
+```{r, fig.height=4,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen13)
+```
+
+Y listo para **tootear**
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen14)
+```
+
+
+## Primeras impresiones
+
+Hasta ahora lo que más me ha gusto es el contenido dirigido que tiene cada servidor. También agradezco mucho no tener que ver anuncios, ni publicaciones que "podrían gustarme".
+No obstante, dedique mucho tiempo a buscar a las personas que seguía en twitter, aunque afortunadamente muchos pusieron su dirección de mastodon en su nombre de perfil. 
+Solo falta que entren más personas. Mientras tanto creo que mantendré ambas plataformas (twitter y mastodon) para mantenerme actualizada con los temas y sobre las personas que me interesan. 
+
+## Leer más
+
+[Informacion detallada sobre mastodon -en ingles-](https://blog.djnavarro.net/posts/2022-11-03_what-i-know-about-mastodon/)
+
+[Mastodon para investigadores -en ingles-](https://www.nature.com/articles/d41586-022-03668-7)
+
