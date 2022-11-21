@@ -40,7 +40,7 @@ Imagen8<-paste0(File,"Bild8.png")
 
 Imagen9<-paste0(File,"Bild9.png")
 Imagen9b<-paste0(File,"Bild9b.png")
-Imagen9c<-paste0(File,"Bild9c.png")
+Imagen9c<-paste0(File,"Picture9.png")
 Imagen9d<-paste0(File,"Bild9d.png")
 Imagen9e<-paste0(File,"Bild9e.png")
 Imagen9f<-paste0(File,"Bild9f.png")
@@ -76,7 +76,7 @@ knitr::include_graphics(Imagen3)
 ## Server
 
 Elegir un servidor puede o no ser critico. 
-Como a mi me interesan temas de biología elegí **ecoevo.social**. Pero al parecer muchas personas con interés en **R** se fueron a diferentes servidores, como **fosstodon**. El servidor al final da lo mismo porque puedes seguir a todas las personas desde cualquier servidor. Además los servidores se ven muy parecidos. Aunque creo que hay un problema con el conteo de seguidores, pero veremos como evoluciona la plataforma.
+Como a mi me interesan temas de biología elegí **ecoevo.social**. Pero al parecer muchas personas con interés en **R** se fueron a diferentes servidores, como **fosstodon**. El servidor al final da lo mismo porque puedes seguir a todas las personas desde cualquier servidor. Además los servidores se ven muy parecidos. Al parecer hay un problema con el conteo de seguidores, pero veremos como evoluciona la plataforma.
 Si elegir servidor te abruma, te recomiendo elegir uno de los servidores a donde migraron las personas que tal vez seguías en twitter.
 
 
@@ -135,11 +135,11 @@ También intente varias de las aplicaciones recomendadas por la [página](https:
 knitr::include_graphics(Imagen9b)
 ```
 
-No tener mastodon en mi celular es un problema para mi porque el 80% del tiempo que uso para las redes sociales es mientras estoy en el transporte publico. 
+El 80% del tiempo que uso para las redes sociales es mientras estoy en el transporte publico po lo que no tener mastodon en mi celular no era lo optimo. 
 
 Termine instalando **tooot*
 
-```{r, fig.height=6,echo=FALSE, fig.align='center'}
+```{r, fig.height=10,fig.width=20,echo=FALSE, fig.align='center'}
 knitr::include_graphics(Imagen9c)
 ```
 
