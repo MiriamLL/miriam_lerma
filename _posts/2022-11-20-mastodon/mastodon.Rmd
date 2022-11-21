@@ -135,7 +135,7 @@ También intente varias de las aplicaciones recomendadas por la [página](https:
 knitr::include_graphics(Imagen9b)
 ```
 
-El 80% del tiempo que uso para las redes sociales es mientras estoy en el transporte publico po lo que no tener mastodon en mi celular no era lo optimo. 
+El 80% del tiempo en el que uso redes sociales es mientras estoy en el transporte publico... por lo que tener mastodon en mi celular es la mejor opción para mi. 
 
 Termine instalando **tooot*
 
