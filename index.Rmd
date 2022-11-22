@@ -23,9 +23,9 @@ knitr::include_graphics("images/LermaCircular.jpg")
 
 <center>
 ```{r icon-links8,echo=FALSE,align = 'center'}
-icon_link(icon = "fab fa-twitter",
-          text = "Twitter",
-          url = "https://twitter.com/MiriamLermaL")
+icon_link(icon = "fab fa-mastodon",
+          text = "Mastodon",
+          url = "https://ecoevo.social/@miriamlerma")
 icon_link(icon = "fab fa-github-alt",
           text = "Github",
           url = "https://github.com/MiriamLL")

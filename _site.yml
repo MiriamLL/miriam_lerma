@@ -16,8 +16,8 @@ navbar:
       href: projects.html
     - text: "Blog"
       href: blog.html
-    - icon: fab fa-twitter
-      href: https://twitter.com/MiriamLermaL
+    - icon: fab fa-mastodon
+      href: https://ecoevo.social/@miriamlerma
     - icon: fab fa-github
       href: https://github.com/MiriamLL
 collections:
