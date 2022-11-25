@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -49,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -72,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Paquetes</title>
@@ -110,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Paquetes"]},{"type":"character","attributes":{},"value":["Como crear tu primer paquete con datos y algunas funciones. \n"]},{"type":"character","attributes":{},"value":["blog3.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-03"]},{"type":"character","attributes":{},"value":["R","funciones","Español"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Paquetes"]},{"type":"character","attributes":{},"value":["Como crear tu primer paquete con datos y algunas funciones. \n"]},{"type":"character","attributes":{},"value":["blog3.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-03"]},{"type":"character","attributes":{},"value":["R","Español"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -427,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1262,7 +1261,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1273,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1372,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1394,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1433,8 +1468,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="paquetes_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="paquetes_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="paquetes_files/header-attrs-2.14/header-attrs.js"></script>
+  <script src="paquetes_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="paquetes_files/popper-2.6.0/popper.min.js"></script>
   <link href="paquetes_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="paquetes_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1467,12 +1502,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Paquetes</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">R</div>
-<div class="dt=tag">funciones</div>
-<div class="dt=tag">Español</div>
+<div class="dt-tag">R</div>
+<div class="dt-tag">Español</div>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>Como crear tu primer paquete con datos y algunas funciones.</p></p>
+<p><p>Como crear tu primer paquete con datos y algunas
+funciones.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1488,14 +1523,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#intro">Intro</a>
 <ul>
-<li><a href="#nombrar-el-paquete-️">1.1. Nombrar el paquete ✏️</a></li>
-<li><a href="#iniciar-un-paquete-️">1.2. Iniciar un paquete 👩🏽‍🔧️</a></li>
-<li><a href="#archivos-️">1.3. Archivos 📄📂️</a></li>
+<li><a href="#nombrar-el-paquete">1.1. Nombrar el paquete ✏️</a></li>
+<li><a href="#iniciar-un-paquete">1.2. Iniciar un paquete 👩🏽‍🔧️</a></li>
+<li><a href="#archivos">1.3. Archivos 📄📂️</a></li>
 <li><a href="#git-github">1.4. Git &amp; Github 🐱🐙</a></li>
 <li><a href="#devtools">1.4. devtools ⏳</a></li>
 <li><a href="#licencia">1.5. Licencia 📋</a></li>
-<li><a href="#metadata-️">1.6. metadata ☎️</a></li>
-<li><a href="#readme-️">1.7. README 🏗️</a></li>
+<li><a href="#metadata">1.6. metadata ☎️</a></li>
+<li><a href="#readme">1.7. README 🏗️</a></li>
 </ul></li>
 <li><a href="#datos">2. Datos 💾</a>
 <ul>
@@ -1504,15 +1539,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul></li>
 <li><a href="#funciónes">3. Funciónes 🤸🏾‍</a>
 <ul>
-<li><a href="#función-sin-dependencias">3.1. Función sin dependencias</a></li>
-<li><a href="#funciones-con-dependencia">3.2. Funciones con dependencia</a></li>
+<li><a href="#función-sin-dependencias">3.1. Función sin
+dependencias</a></li>
+<li><a href="#funciones-con-dependencia">3.2. Funciones con
+dependencia</a></li>
 <li><a href="#otros-problemas">3.3. Otros problemas 👻</a></li>
 <li><a href="#resumido-1">3.4. Resumido</a></li>
 </ul></li>
 <li><a href="#otros">Otros</a>
 <ul>
-<li><a href="#warnings-️">4.1 Warnings ⚠️</a></li>
-<li><a href="#crear-tu-propio-sticker-️">4.2. Crear tu propio sticker ❣️</a></li>
+<li><a href="#warnings">4.1 Warnings ⚠️</a></li>
+<li><a href="#crear-tu-propio-sticker">4.2. Crear tu propio sticker
+❣️</a></li>
 <li><a href="#zenodo">4.3. Zenodo 🔗</a></li>
 </ul></li>
 <li><a href="#créditos-y-recursos">Créditos y recursos 👩🏽‍🏫</a></li>
@@ -1523,45 +1561,57 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>Para crear un paquete principalmente hay que saber crear <strong>funciones</strong>.</p>
+<p>Para crear un paquete principalmente hay que saber crear
+<strong>funciones</strong>.</p>
 <p>Pero ¿Porque crear un paquete? 🤔</p>
 <p>Algunas razones: <br></p>
 <ul>
-<li>Repito pasos y análisis con datos similares, <em>hasta ahora re-uso funciones de scripts anteriores</em>. <br></li>
-<li>Estudiantes y colegas me preguntan como realizar análisis similares, pero <em>no están familiarizados con la sintaxis de las funciones</em> <br></li>
-<li>Los artículos me piden más detalles de como se realizaron los análisis y <em>el espacio es limitado para dar detalles</em>.<br></li>
-<li>Aunque existan paquetes similares no cubren todos los pasos, <em>sirven de inspiración pero no resuelven el problema</em>.<br></li>
+<li>Repito pasos y análisis con datos similares, <em>hasta ahora re-uso
+funciones de scripts anteriores</em>. <br></li>
+<li>Estudiantes y colegas me preguntan como realizar análisis similares,
+pero <em>no están familiarizados con la sintaxis de las funciones</em>
+<br></li>
+<li>Los artículos me piden más detalles de como se realizaron los
+análisis y <em>el espacio es limitado para dar detalles</em>.<br></li>
+<li>Aunque existan paquetes similares no cubren todos los pasos,
+<em>sirven de inspiración pero no resuelven el problema</em>.<br></li>
 </ul>
-<h2 id="nombrar-el-paquete-️">1.1. Nombrar el paquete ✏️</h2>
-<p>Para crear paquetes se puede usar el paquete <strong>usethis</strong></p>
+<h2 id="nombrar-el-paquete">1.1. Nombrar el paquete ✏️</h2>
+<p>Para crear paquetes se puede usar el paquete
+<strong>usethis</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#install.packages('usethis')</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://usethis.r-lib.org'>usethis</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#install.packages('usethis')</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://usethis.r-lib.org'>usethis</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Antes de iniciar a crear un paquete, se puede consultar si el nombre no esta siendo usando en otro paquete en la página <a href="https://cran.r-project.org/">CRAN</a>. También existe el paquete <strong>available</strong> para revisar si el paquete ya existe en CRAN o en github y si el nombre del paquete puede ser ofensivo.</p>
+<p>Antes de iniciar a crear un paquete, se puede consultar si el nombre
+no esta siendo usando en otro paquete en la página <a
+href="https://cran.r-project.org/">CRAN</a>. También existe el paquete
+<strong>available</strong> para revisar si el paquete ya existe en CRAN
+o en github y si el nombre del paquete puede ser ofensivo.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>'available'</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/ropenscilabs/available'>available</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/available/man/available.html'>available</a></span><span class='op'>(</span><span class='st'>"nombre_paquete"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>'available'</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-lib/available'>available</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/available/man/available.html'>available</a></span><span class='op'>(</span><span class='st'>"nombre_paquete"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Te va preguntar si quieres que revise por contenido ofensivo, puedes poner <strong>Y</strong>.</p>
+<p>Te va preguntar si quieres que revise por contenido ofensivo, puedes
+poner <strong>Y</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Urban Dictionary can contain potentially offensive results,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  should they be included? [Y]es <span class="sc">/</span> [N]o<span class="sc">:</span></span></code></pre></div>
 </div>
-<p>Después abre paginas para mostrar que significa el nombre de el paquete.</p>
-<h2 id="iniciar-un-paquete-️">1.2. Iniciar un paquete 👩🏽‍🔧️</h2>
-<p>Para crear un paquete la función <strong>create_package</strong> crea el <strong>esqueleto</strong> de los paquetes. <br> Dentro puedes poner el nombre del paquete que te interesa crear.</p>
+<p>Después abre paginas para mostrar que significa el nombre de el
+paquete.</p>
+<h2 id="iniciar-un-paquete">1.2. Iniciar un paquete 👩🏽‍🔧️</h2>
+<p>Para crear un paquete la función <strong>create_package</strong> crea
+el <strong>esqueleto</strong> de los paquetes. <br> Dentro puedes poner
+el nombre del paquete que te interesa crear.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/create_package.html'>create_package</a></span><span class='op'>(</span><span class='st'>"nombre_paquete"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/create_package.html'>create_package</a></span><span class='op'>(</span><span class='st'>"nombre_paquete"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparecerá algo así:</p>
@@ -1590,7 +1640,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>√ Opening <span class="st">&#39;...&#39;</span> <span class="cf">in</span> new RStudio session</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>√ Setting active project to <span class="st">&#39;&lt;no active project&gt;&#39;</span></span></code></pre></div>
 </div>
-<p><strong>Nota</strong>: Si te encuentras dentro de un <strong>proyecto</strong> va a preguntar si deseas sobregrabar el proyecto existente. Si es el caso: <strong>2: Absolutely</strong></p>
+<p><strong>Nota</strong>: Si te encuentras dentro de un
+<strong>proyecto</strong> va a preguntar si deseas sobregrabar el
+proyecto existente. Si es el caso: <strong>2: Absolutely</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>v Writing <span class="st">&#39;NAMESPACE&#39;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Overwrite pre<span class="sc">-</span>existing file <span class="st">&#39;nombre_paquete.Rproj&#39;</span>?</span>
@@ -1608,16 +1660,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>v Setting active project to <span class="st">&#39;&lt;no active project&gt;&#39;</span></span></code></pre></div>
 </div>
 <p>Se abrirá el proyecto en otra ventana.</p>
-<h2 id="archivos-️">1.3. Archivos 📄📂️</h2>
+<h2 id="archivos">1.3. Archivos 📄📂️</h2>
 <p>La función anterior creó los archivos:<br />
-- .gitignore <br> - .Rbuildignore<br> - DESCRIPTION<br> - NAMESPACE<br> - README.md<br></p>
+- .gitignore <br> - .Rbuildignore<br> - DESCRIPTION<br> - NAMESPACE<br>
+- README.md<br></p>
 <p>Las Carpetas:<br> - R<br></p>
 <h2 id="git-github">1.4. Git &amp; Github 🐱🐙</h2>
-<p>Si ya tienes instalado git puedes directamente conectar el paquete con tu repositorio, escribiendo en tu consola:</p>
+<p>Si ya tienes instalado git puedes directamente conectar el paquete
+con tu repositorio, escribiendo en tu consola:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_git.html'>use_git</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_git.html'>use_git</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparecerá algo como:</p>
@@ -1649,11 +1702,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Si deseas reiniciar RStudio para activar git:<br />
 1: Yup… es <strong>sip</strong></p>
 <p>Se reiniciara la sesión</p>
-<p>Para ahora conectarlo con <strong>github</strong>, hay que escribir en la consola:</p>
+<p>Para ahora conectarlo con <strong>github</strong>, hay que escribir
+en la consola:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_github.html'>use_github</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_github.html'>use_github</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparecerá algo como:</p>
@@ -1685,8 +1738,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Escribir en la consola</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Esta función revisa la versión, plataforma, sesiones y demás.<br />
@@ -1694,7 +1746,8 @@ Tarda un poquito.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">1</span> warning x <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
 </div>
-<p>El <strong>warning</strong> ocurre porque hay que darle una licencia al paquete.</p>
+<p>El <strong>warning</strong> ocurre porque hay que darle una licencia
+al paquete.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Non<span class="sc">-</span>standard license specification<span class="sc">:</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">use_mit_license()</span><span class="st">`</span>, <span class="st">`</span><span class="at">use_gpl3_license()</span><span class="st">`</span> or friends to pick a</span>
@@ -1705,8 +1758,7 @@ Tarda un poquito.</p>
 <p>Para software la licencia más común es <strong>MIT</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/licenses.html'>use_mit_license</a></span><span class='op'>(</span><span class='st'>"Mi Nombre"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/licenses.html'>use_mit_license</a></span><span class='op'>(</span><span class='st'>"Mi Nombre"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparecerá algo como:</p>
@@ -1719,35 +1771,35 @@ Tarda un poquito.</p>
 <p>Para revisar si funcionó:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Tarda un poquito.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">0</span> warning √ <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
 </div>
-<h2 id="metadata-️">1.6. metadata ☎️</h2>
-<p>Para agregar metadata se debe abrir y modificar el documento que dice DESCRIPTION, agregando tus datos.</p>
-<p>Esta es la información de contacto si hay problemas con el paquete.</p>
+<h2 id="metadata">1.6. metadata ☎️</h2>
+<p>Para agregar metadata se debe abrir y modificar el documento que dice
+DESCRIPTION, agregando tus datos.</p>
+<p>Esta es la información de contacto si hay problemas con el
+paquete.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Authors</span><span class='op'>@</span><span class='va'>R</span><span class='op'>:</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/person.html'>person</a></span><span class='op'>(</span>given <span class='op'>=</span> <span class='st'>"Miriam"</span>,
-         family <span class='op'>=</span> <span class='st'>"Lerma"</span>,
-         role <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"aut"</span>, <span class='st'>"cre"</span><span class='op'>)</span>,
-         email <span class='op'>=</span> <span class='st'>"miriamjlerma@gmail.com"</span>,
-         comment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>ORCID <span class='op'>=</span> <span class='st'>"0000-0002-7632-9289"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Authors</span><span class='op'>@</span><span class='va'>R</span><span class='op'>:</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/utils/person.html'>person</a></span><span class='op'>(</span>given <span class='op'>=</span> <span class='st'>"Miriam"</span>,</span>
+<span>         family <span class='op'>=</span> <span class='st'>"Lerma"</span>,</span>
+<span>         role <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"aut"</span>, <span class='st'>"cre"</span><span class='op'>)</span>,</span>
+<span>         email <span class='op'>=</span> <span class='st'>"miriamjlerma@gmail.com"</span>,</span>
+<span>         comment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>ORCID <span class='op'>=</span> <span class='st'>"0000-0002-7632-9289"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h2 id="readme-️">1.7. README 🏗️</h2>
-<p>Para crear un nuevo README, el paquete <strong>usethis</strong> tiene una función para crearlo de manera automática,</p>
+<h2 id="readme">1.7. README 🏗️</h2>
+<p>Para crear un nuevo README, el paquete <strong>usethis</strong> tiene
+una función para crearlo de manera automática,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://usethis.r-lib.org'>usethis</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://usethis.r-lib.org/reference/use_readme_rmd.html'>use_readme_rmd</a></span><span class='op'>(</span>open <span class='op'>=</span> <span class='fu'>rlang</span><span class='fu'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/is_interactive.html'>is_interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://usethis.r-lib.org'>usethis</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_readme_rmd.html'>use_readme_rmd</a></span><span class='op'>(</span>open <span class='op'>=</span> <span class='fu'>rlang</span><span class='fu'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/is_interactive.html'>is_interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -1758,62 +1810,67 @@ Tarda un poquito.</p>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>√ Writing <span class="st">&#39;.git/hooks/pre-commit&#39;</span></span></code></pre></div>
 </div>
 <h1 id="datos">2. Datos 💾</h1>
-<p>Para agregar datos en tu paquete, puedes cargar tus datos y después guardarlos dentro de tu proyecto. <br></p>
+<p>Para agregar datos en tu paquete, puedes cargar tus datos y después
+guardarlos dentro de tu proyecto. <br></p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>Por convención los datos son colocados en una carpeta que lleve el nombre de <strong>data</strong> dentro del paquete. <br> Puedes crear esta carpeta desde RStudio abriendo la pestaña de <strong>Files</strong> y eligiendo <strong>New Folder</strong>. <br></p>
-<p>Para comprimir datos pesados puedes guardarlos como <strong>.rda</strong>.</p>
+<p>Por convención los datos son colocados en una carpeta que lleve el
+nombre de <strong>data</strong> dentro del paquete. <br> Puedes crear
+esta carpeta desde RStudio abriendo la pestaña de <strong>Files</strong>
+y eligiendo <strong>New Folder</strong>. <br></p>
+<p>Para comprimir datos pesados puedes guardarlos como
+<strong>.rda</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file<span class='op'>=</span><span class='st'>"TDR_raw.rda"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file<span class='op'>=</span><span class='st'>"TDR_raw.rda"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Para revisar el peso de los datos puedes usar:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/object.size.html'>object.size</a></span><span class='op'>(</span><span class='va'>TDR_raw</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/object.size.html'>object.size</a></span><span class='op'>(</span><span class='va'>TDR_raw</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>pryr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/pryr/man/mem_used.html'>mem_used</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>pryr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/pryr/man/mem_used.html'>mem_used</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="documentar-datos">2.1. Documentar datos</h2>
-<p>Para documentar tus datos, puedes abrir un nuevo script (File&gt;NewFile&gt;R Script) o usar la función del paquete <strong>usethis</strong>.</p>
+<p>Para documentar tus datos, puedes abrir un nuevo script
+(File&gt;NewFile&gt;R Script) o usar la función del paquete
+<strong>usethis</strong>.</p>
 <p>Tanto la función use_r como use_data funcionan.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mis_datos"</span><span class='op'>)</span>
-<span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_data.html'>use_data</a></span><span class='op'>(</span><span class='st'>"mis_datos"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mis_datos"</span><span class='op'>)</span></span>
+<span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_data.html'>use_data</a></span><span class='op'>(</span><span class='st'>"mis_datos"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Esta función agrega comentarios Roxigen y guarda el documento en tu folder llamado <strong>R</strong>. <br> En mi caso yo le di al script el mismo nombre que a los datos.</p>
+<p>Esta función agrega comentarios Roxigen y guarda el documento en tu
+folder llamado <strong>R</strong>. <br> En mi caso yo le di al script el
+mismo nombre que a los datos.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#' Mis datos son datos de...</span>
-<span class='co'>#' Contiene 264197 obs de 1 variable.</span>
-<span class='co'>#' @docType data</span>
-<span class='co'>#' @usage data(mis_datos)</span>
-<span class='co'>#' @format Un data frame con 1 variable</span>
-<span class='co'>#' @keywords datasets</span>
-<span class='co'>#' @references Lerma et al. 2021</span>
-<span class='co'>#' @examples</span>
-<span class='co'>#' data(mis_datos)</span>
-<span class='st'>"mis_datos"</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#' Mis datos son datos de...</span></span>
+<span><span class='co'>#' Contiene 264197 obs de 1 variable.</span></span>
+<span><span class='co'>#' @docType data</span></span>
+<span><span class='co'>#' @usage data(mis_datos)</span></span>
+<span><span class='co'>#' @format Un data frame con 1 variable</span></span>
+<span><span class='co'>#' @keywords datasets</span></span>
+<span><span class='co'>#' @references Lerma et al. 2021</span></span>
+<span><span class='co'>#' @examples</span></span>
+<span><span class='co'>#' data(mis_datos)</span></span>
+<span><span class='st'>"mis_datos"</span></span></code></pre>
 </div>
 </div>
-<p>Una vez creado el archivo <strong>.rda</strong> y <strong>.R</strong> se puede revisar si funcionó usando funciones del paquete <strong>devtools</strong></p>
+<p>Una vez creado el archivo <strong>.rda</strong> y <strong>.R</strong>
+se puede revisar si funcionó usando funciones del paquete
+<strong>devtools</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Si los datos son muy pesados y te aparece un mensaje como este:</p>
@@ -1824,26 +1881,24 @@ Tarda un poquito.</p>
 <p>Es mejor agregar el argumento compress.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file<span class='op'>=</span><span class='st'>"TDR_raw.rda"</span>, compress <span class='op'>=</span> <span class='st'>"xz"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file<span class='op'>=</span><span class='st'>"TDR_raw.rda"</span>, compress <span class='op'>=</span> <span class='st'>"xz"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="resumido">2.2. Resumido</h2>
 <p>Agrega datos al paquete</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>mis_datos</span>, file<span class='op'>=</span><span class='st'>"mis_datos.rda"</span><span class='op'>)</span>
-
-<span class='co'># Tu objeto, tu documento rda y tu R deben tener el mismo nombre. </span>
-
-<span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mis_datos"</span><span class='op'>)</span>
-
-<span class='co'>#Insertar Roxigen Skeleton  (CTRL+ALT+SHIFT+R) o copiar y pegar de otro archivo</span>
-
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>mis_datos</span>, file<span class='op'>=</span><span class='st'>"mis_datos.rda"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Tu objeto, tu documento rda y tu R deben tener el mismo nombre. </span></span>
+<span></span>
+<span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mis_datos"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#Insertar Roxigen Skeleton  (CTRL+ALT+SHIFT+R) o copiar y pegar de otro archivo</span></span>
+<span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Si después de usar <strong>devtools::check()</strong>, aparece:</p>
@@ -1856,8 +1911,7 @@ Tarda un poquito.</p>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/install.html'>install</a></span><span class='op'>(</span><span class='st'>"C:/...."</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/install.html'>install</a></span><span class='op'>(</span><span class='st'>"C:/...."</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <ul>
@@ -1865,29 +1919,27 @@ Tarda un poquito.</p>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/remote-reexports.html'>install_github</a></span><span class='op'>(</span><span class='st'>"Desarrollador/paquete"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://remotes.r-lib.org/reference/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"Desarrollador/paquete"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="funciónes">3. Funciónes 🤸🏾‍</h1>
 <p>Para este paso deberías tener alguna función en mente.</p>
-<p>Si aún no sabes como crear tu primera función puedes ir a <a href="https://r4ds-en-espaniol.netlify.app/funciones.html">r4ds</a>.</p>
+<p>Si aún no sabes como crear tu primera función puedes ir a <a
+href="https://r4ds-en-espaniol.netlify.app/funciones.html">r4ds</a>.</p>
 <p>La estructura es algo así:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nombre_de_la_funcion</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>argumentos</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='fu'>algo_que_haga_la_funcion_usando</span><span class='op'>(</span><span class='va'>argumentos</span><span class='op'>)</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>resultado</span><span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nombre_de_la_funcion</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>argumentos</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='fu'>algo_que_haga_la_funcion_usando</span><span class='op'>(</span><span class='va'>argumentos</span><span class='op'>)</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>resultado</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <h2 id="función-sin-dependencias">3.1. Función sin dependencias</h2>
 <p>Para agregar la función al paquete.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mi_primera_funcion"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"mi_primera_funcion"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p><strong>Abre un nuevo script</strong><br />
@@ -1899,28 +1951,29 @@ Pega allí la función</p>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> Call <span class="st">`</span><span class="at">use_test()</span><span class="st">`</span> to create a matching test file</span></code></pre></div>
 </div>
 <p>Ahora en la carpeta R aparecerá dentro la función</p>
-<p>Agregar un Roxigen skeleton: <br> - Poner el cursor justo en la primera linea de la función. <br> - Abrir la pestaña de Code&gt;Insert Reoxygen Skeleton (también funciona con Control+Alt+Shift+R). <br></p>
+<p>Agregar un Roxigen skeleton: <br> - Poner el cursor justo en la
+primera linea de la función. <br> - Abrir la pestaña de Code&gt;Insert
+Reoxygen Skeleton (también funciona con Control+Alt+Shift+R). <br></p>
 <p>Aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#' Title</span>
-<span class='co'>#'</span>
-<span class='co'>#' @param data </span>
-<span class='co'>#' @param trip_start </span>
-<span class='co'>#' @param trip_end </span>
-<span class='co'>#'</span>
-<span class='co'>#' @return</span>
-<span class='co'>#' @export</span>
-<span class='co'>#'</span>
-<span class='co'>#' @examples</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#' Title</span></span>
+<span><span class='co'>#'</span></span>
+<span><span class='co'>#' @param data </span></span>
+<span><span class='co'>#' @param trip_start </span></span>
+<span><span class='co'>#' @param trip_end </span></span>
+<span><span class='co'>#'</span></span>
+<span><span class='co'>#' @return</span></span>
+<span><span class='co'>#' @export</span></span>
+<span><span class='co'>#'</span></span>
+<span><span class='co'>#' @examples</span></span></code></pre>
 </div>
 </div>
-<p>Después de rellenar la información necesaria, para agregar la función al paquete, escribe en la consola:</p>
+<p>Después de rellenar la información necesaria, para agregar la función
+al paquete, escribe en la consola:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparecerá algo como:</p>
@@ -1928,26 +1981,28 @@ Pega allí la función</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Writing NAMESPACE</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Writing mi_primera_funcion.Rd</span></code></pre></div>
 </div>
-<p>Al abrir la carpeta <strong>man</strong> aparecerá un documento rellenado.<br />
-El nombre <strong>man</strong> viene de manual y esta es la documentación del paquete.<br />
+<p>Al abrir la carpeta <strong>man</strong> aparecerá un documento
+rellenado.<br />
+El nombre <strong>man</strong> viene de manual y esta es la
+documentación del paquete.<br />
 No debe ser editado de manera manual.</p>
 <p>Ya puedes revisar la documentación.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>mi_primera_funcion</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>?</span><span class='va'>mi_primera_funcion</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="funciones-con-dependencia">3.2. Funciones con dependencia</h2>
-<p>Te recomiendo probar tu función con datos de ejemplo, antes de incluirla en el paquete.</p>
+<p>Te recomiendo probar tu función con datos de ejemplo, antes de
+incluirla en el paquete.</p>
 <ul>
-<li>Revisa que paquetes son requeridos, por ejemplo: <strong>tidyr</strong></li>
+<li>Revisa que paquetes son requeridos, por ejemplo:
+<strong>tidyr</strong></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -1957,10 +2012,9 @@ No debe ser editado de manera manual.</p>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span><span class='op'>=</span><span class='va'>misdatos</span>
-<span class='va'>mi_primer_argumento</span><span class='op'>=</span><span class='st'>'mi_primer_argumento'</span>
-<span class='va'>mi_segundo_argumento</span><span class='op'>=</span><span class='st'>'mi_segundo_argumento'</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data</span><span class='op'>=</span><span class='va'>misdatos</span></span>
+<span><span class='va'>mi_primer_argumento</span><span class='op'>=</span><span class='st'>'mi_primer_argumento'</span></span>
+<span><span class='va'>mi_segundo_argumento</span><span class='op'>=</span><span class='st'>'mi_segundo_argumento'</span></span></code></pre>
 </div>
 </div>
 <ul>
@@ -1968,60 +2022,65 @@ No debe ser editado de manera manual.</p>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>mi_funcion</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>mis_datos</span>,
-           mi_primer_argumento<span class='op'>=</span><span class='st'>'mi_primer_argumento'</span>,
-           mi_segundo_argumento<span class='op'>=</span><span class='st'>'mi_segundo_argumento'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>mi_funcion</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>mis_datos</span>,</span>
+<span>           mi_primer_argumento<span class='op'>=</span><span class='st'>'mi_primer_argumento'</span>,</span>
+<span>           mi_segundo_argumento<span class='op'>=</span><span class='st'>'mi_segundo_argumento'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Otra opción es usar el paquete <a href="https://testthat.r-lib.org/">‘testthat’</a> para probar tu función.</p>
+<p>Otra opción es usar el paquete <a
+href="https://testthat.r-lib.org/">‘testthat’</a> para probar tu
+función.</p>
 <p>Para agregar la función al paquete:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"tu_funcion"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"tu_funcion"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p><strong>Abre un nuevo script</strong>. Pega allí la función. En la consola aparecerá algo como:</p>
+<p><strong>Abre un nuevo script</strong>. Pega allí la función. En la
+consola aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> Modify <span class="st">&#39;R/tu_funcion.R&#39;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> Call <span class="st">`</span><span class="at">use_test()</span><span class="st">`</span> to create a matching test file</span></code></pre></div>
 </div>
-<p>Ahora en la carpeta <strong>R</strong> dentro del paquete aparece la función.<br />
-<strong>Nota</strong> sugiere que uses use_test pero puede en conflicto con el siguiente paso.<br />
+<p>Ahora en la carpeta <strong>R</strong> dentro del paquete aparece la
+función.<br />
+<strong>Nota</strong> sugiere que uses use_test pero puede en conflicto
+con el siguiente paso.<br />
 Puedes usar /rm() para quitar tu función.</p>
-<p>Para poner la función en la memoria local y confirmar que se ejecute hay que incluirla en el paquete y probarla.</p>
+<p>Para poner la función en la memoria local y confirmar que se ejecute
+hay que incluirla en el paquete y probarla.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/load_all.html'>load_all</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/load_all.html'>load_all</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Para documentar la función hay que crear un Roxigen skeleton.<br />
-Para esto se debe poner el cursor justo en la primera linea de la función.<br />
-Después ir a la pestaña de Code&gt;Insert Reoxygen Skeleton (tambíen funciona con Control+Alt+Shift+R).</p>
+Para esto se debe poner el cursor justo en la primera linea de la
+función.<br />
+Después ir a la pestaña de Code&gt;Insert Reoxygen Skeleton (tambíen
+funciona con Control+Alt+Shift+R).</p>
 <p>Va a aparecer algo así:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#' Title</span>
-<span class='co'>#'</span>
-<span class='co'>#' @param data </span>
-<span class='co'>#' @param mi_primer_argumento </span>
-<span class='co'>#' @param mi_segundo_argumento </span>
-<span class='co'>#'</span>
-<span class='co'>#' @return</span>
-<span class='co'>#' @export</span>
-<span class='co'>#'</span>
-<span class='co'>#' @examples</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#' Title</span></span>
+<span><span class='co'>#'</span></span>
+<span><span class='co'>#' @param data </span></span>
+<span><span class='co'>#' @param mi_primer_argumento </span></span>
+<span><span class='co'>#' @param mi_segundo_argumento </span></span>
+<span><span class='co'>#'</span></span>
+<span><span class='co'>#' @return</span></span>
+<span><span class='co'>#' @export</span></span>
+<span><span class='co'>#'</span></span>
+<span><span class='co'>#' @examples</span></span></code></pre>
 </div>
 </div>
-<p><strong>Nota</strong> que identifica de manera automática las variables de la función</p>
-<p>Ahora que ya esta la función y la documentación para agregar el paquete hay que escribir en la consola:</p>
+<p><strong>Nota</strong> que identifica de manera automática las
+variables de la función</p>
+<p>Ahora que ya esta la función y la documentación para agregar el
+paquete hay que escribir en la consola:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparece:</p>
@@ -2029,31 +2088,36 @@ Después ir a la pestaña de Code&gt;Insert Reoxygen Skeleton (tambíen funciona
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Writing NAMESPACE</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Writing mi_funcion.Rd</span></code></pre></div>
 </div>
-<p>Ahora en la carpeta <strong>man</strong>, aparece un documento rellenado.<br />
-<strong>man</strong> viene de manual y esta es la documentación del paquete.</p>
+<p>Ahora en la carpeta <strong>man</strong>, aparece un documento
+rellenado.<br />
+<strong>man</strong> viene de manual y esta es la documentación del
+paquete.</p>
 <p><strong>Nota</strong> No debe ser editado de manera manual.</p>
 <p>Puedes revisar la documentación de la función.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>mi_funcion</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>?</span><span class='va'>mi_funcion</span></span></code></pre>
 </div>
 </div>
-<p>Dependencias son paquetes necesarios para que la función, funcione.</p>
+<p>Dependencias son paquetes necesarios para que la función,
+funcione.</p>
 <p>Para revisar si necesitas dependencias se puede usar:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Si tu paquete tiene dependencias, aparecerán errores, warnings y notas.</p>
-<p>Por ejemplo, un paquete que usa: - un <strong>%&gt;% (pipe)</strong> depende del paquete <strong>magrittr</strong>, y - la función <strong>separate</strong> depende del paquete <strong>dplyr</strong>.</p>
-<p>Para agregar las dependencias se puede escribir el nombre de los paquetes dentro de la función <strong>use_package</strong></p>
+<p>Si tu paquete tiene dependencias, aparecerán errores, warnings y
+notas.</p>
+<p>Por ejemplo, un paquete que usa: - un <strong>%&gt;% (pipe)</strong>
+depende del paquete <strong>magrittr</strong>, y - la función
+<strong>separate</strong> depende del paquete
+<strong>dplyr</strong>.</p>
+<p>Para agregar las dependencias se puede escribir el nombre de los
+paquetes dentro de la función <strong>use_package</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_package.html'>use_package</a></span><span class='op'>(</span><span class='st'>"dplyr"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_package.html'>use_package</a></span><span class='op'>(</span><span class='st'>"dplyr"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparecerá algo como:</p>
@@ -2064,22 +2128,22 @@ Después ir a la pestaña de Code&gt;Insert Reoxygen Skeleton (tambíen funciona
 <p>Así mismo aparecerá en el documento DESCRIPTION:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Imports</span><span class='op'>:</span> 
-    <span class='va'>dplyr</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Imports</span><span class='op'>:</span> </span>
+<span>    <span class='va'>dplyr</span></span></code></pre>
 </div>
 </div>
-<p>Lo siguiente es especificar el paquete en la función, tal como recomienda el siguiente mensaje.</p>
+<p>Lo siguiente es especificar el paquete en la función, tal como
+recomienda el siguiente mensaje.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> Refer to functions with <span class="st">`</span><span class="at">dplyr::fun()</span><span class="st">`</span></span></code></pre></div>
 </div>
-<h3 id="pipe-️">pipe 🖇️</h3>
-<p>La función <strong>pipe (%&gt;%)</strong> del paquete magrittr es especial.</p>
+<h3 id="pipe">pipe 🖇️</h3>
+<p>La función <strong>pipe (%&gt;%)</strong> del paquete magrittr es
+especial.</p>
 <p>Por lo que hay que usar:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_pipe.html'>use_pipe</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_pipe.html'>use_pipe</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Aparecerá algo como:</p>
@@ -2091,17 +2155,17 @@ Después ir a la pestaña de Code&gt;Insert Reoxygen Skeleton (tambíen funciona
 <p>Se recomienda volver a documentar.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Ahora deberá aparecer en la carpeta R un script llamado <strong>utils-pipe.R</strong> y<br />
-en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
+<p>Ahora deberá aparecer en la carpeta R un script llamado
+<strong>utils-pipe.R</strong> y<br />
+en el archivo DESCRIPTION deberá aparecer <strong>Imports
+magrittr</strong></p>
 <p>Para checar el paquete:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2109,36 +2173,35 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 </div>
 <p>Listo! el paquete esta completo 🥳</p>
 <h3 id="stats">stats 🧮</h3>
-<p>Cuando queremos agregar alguna función que incluya cálculos de desviación estándar, aunque no se necesite cargar el paquete en RStudio, la función proviene de un paquete.</p>
+<p>Cuando queremos agregar alguna función que incluya cálculos de
+desviación estándar, aunque no se necesite cargar el paquete en RStudio,
+la función proviene de un paquete.</p>
 <p>El paquete es <strong>stats</strong></p>
-<p>Por lo tanto el paquete <strong>stats</strong> debe ser incluido en las dependencias.</p>
+<p>Por lo tanto el paquete <strong>stats</strong> debe ser incluido en
+las dependencias.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_package.html'>use_package</a></span><span class='op'>(</span><span class='st'>"stats"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_package.html'>use_package</a></span><span class='op'>(</span><span class='st'>"stats"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Y agregado a la función.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>resultado</span><span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>%&gt;%</span>
-    <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>max_depth_mean<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>,
-                     max_depth_sd<span class='op'>=</span><span class='fu'>stats</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>,
-                     max_depth_max<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>resultado</span><span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>%&gt;%</span></span>
+<span>    <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>max_depth_mean<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>,</span>
+<span>                     max_depth_sd<span class='op'>=</span><span class='fu'>stats</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>,</span>
+<span>                     max_depth_max<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2146,36 +2209,41 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 </div>
 <p>Listo! el paquete esta completo 🥳</p>
 <h3 id="ggplot">ggplot 🎨</h3>
-<p>Cuando creamos una función con ggplot hay que declarar el uso de la función en varios argumentos de la función. <a href="https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html">Aquí puedes leer más</a>.</p>
+<p>Cuando creamos una función con ggplot hay que declarar el uso de la
+función en varios argumentos de la función. <a
+href="https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html">Aquí
+puedes leer más</a>.</p>
 <p>Si no, aparecerá un error:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> error x <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">1</span> note x</span></code></pre></div>
 </div>
-<p>Esto occurre debido a que al revisar el paquete, no detecta varias funciones del paquete ggplot.</p>
+<p>Esto occurre debido a que al revisar el paquete, no detecta varias
+funciones del paquete ggplot.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>no visible global <span class="cf">function</span> definition <span class="cf">for</span> <span class="st">&#39;aes&#39;</span></span></code></pre></div>
 </div>
 <p>Ejemplo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>data</span>,<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span>,
-                              y<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"Diving depth (m)"</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"Month.Day Hour:Minute"</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_reverse</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>data</span>,<span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var1</span><span class='op'>]</span><span class='op'>]</span>,</span>
+<span>                              y<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>var2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"Diving depth (m)"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"Month.Day Hour:Minute"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_reverse</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>checking R code <span class="cf">for</span> possible problems ...</span></code></pre></div>
 </div>
-<p>También pueden aparecer problemas con las variables al usar ggplot dentro de una función.</p>
+<p>También pueden aparecer problemas con las variables al usar ggplot
+dentro de una función.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>no visible binding <span class="cf">for</span> global variable <span class="st">&#39;.data&#39;</span></span></code></pre></div>
 </div>
-<p>Para resolver esto hay que declarar las variables dentro de la función y posteriormente usar .data</p>
+<p>Para resolver esto hay que declarar las variables dentro de la
+función y posteriormente usar .data</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>TDR_trip</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>var1<span class="ot">&lt;-</span>time_column</span>
@@ -2188,15 +2256,13 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2204,14 +2270,25 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 </div>
 <p>Listo! el paquete esta completo 🥳</p>
 <h2 id="otros-problemas">3.3. Otros problemas 👻</h2>
-<p><strong>Problema</strong> En algunas funciones puedes haber usado assign. Usar assign no es recomendado, por lo que aparecerá una nota. <br> <strong>Solución</strong> Usar return().<br></p>
-<p><strong>Problema</strong> No nested functions, no circular dependencies. <br> <strong>Solución</strong> No puedes usar funciones de tu paquete en otras funciones del mismo paquete. <br></p>
-<p><strong>Problema</strong> Borrar funciones.<br> <strong>Solución</strong> Para borrar funciones se debe borrar el script en el archivo R y volver a documentar el paquete para que se reflejen los cambios.<br></p>
-<p><strong>Problema</strong> El ejemplo tiene más de 100 caracteres, es considerado muy largo. <br> <strong>Solución</strong> Separar en la documentación.<br></p>
+<p><strong>Problema</strong> En algunas funciones puedes haber usado
+assign. Usar assign no es recomendado, por lo que aparecerá una nota.
+<br> <strong>Solución</strong> Usar return().<br></p>
+<p><strong>Problema</strong> No nested functions, no circular
+dependencies. <br> <strong>Solución</strong> No puedes usar funciones de
+tu paquete en otras funciones del mismo paquete. <br></p>
+<p><strong>Problema</strong> Borrar funciones.<br>
+<strong>Solución</strong> Para borrar funciones se debe borrar el script
+en el archivo R y volver a documentar el paquete para que se reflejen
+los cambios.<br></p>
+<p><strong>Problema</strong> El ejemplo tiene más de 100 caracteres, es
+considerado muy largo. <br> <strong>Solución</strong> Separar en la
+documentación.<br></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>\examples lines wider than <span class="dv">100</span> characters<span class="sc">:</span></span></code></pre></div>
 </div>
-<p><strong>Problema</strong> Solo puedo tener un resultado (return) <br> <strong>Solución</strong> Crea una lista con los returns.<br> Por ejemplo:</p>
+<p><strong>Problema</strong> Solo puedo tener un resultado (return) <br>
+<strong>Solución</strong> Crea una lista con los returns.<br> Por
+ejemplo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funcion</span>(primer_argumento, segundo_argumento){</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  multiplicacion<span class="ot">&lt;-</span>primer_argumento<span class="sc">*</span>segundo_argumento</span>
@@ -2220,84 +2297,114 @@ en el archivo DESCRIPTION deberá aparecer <strong>Imports magrittr</strong></p>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lista)</span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<p><strong>Problema</strong> Al usar slot en sapply.<br> <strong>Solución</strong> Hay que agregar la dependencia methods.<br></p>
+<p><strong>Problema</strong> Al usar slot en sapply.<br>
+<strong>Solución</strong> Hay que agregar la dependencia
+methods.<br></p>
 <h2 id="resumido-1">3.4. Resumido</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"nombre_funcion"</span><span class='op'>)</span>
-
-<span class='co'>#Insertar Roxigen Skeleton  (CTRL+ALT+SHIFT+R)</span>
-
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_package.html'>use_package</a></span><span class='op'>(</span><span class='st'>"ggplot2"</span><span class='op'>)</span>
-
-<span class='co'>#Referirse a funciones con ::</span>
-
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_r</a></span><span class='op'>(</span><span class='st'>"nombre_funcion"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#Insertar Roxigen Skeleton  (CTRL+ALT+SHIFT+R)</span></span>
+<span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/document.html'>document</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_package.html'>use_package</a></span><span class='op'>(</span><span class='st'>"ggplot2"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#Referirse a funciones con ::</span></span>
+<span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/check.html'>check</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="otros">Otros</h1>
-<h2 id="warnings-️">4.1 Warnings ⚠️</h2>
-<p>Es útil agregar warnings para que el usuario (quien sera a veces tu mismo) pueda corregir errores.</p>
-<p>Para checar que el data frame contenga datos, revisa que el numero de filas no sea cero.</p>
+<h2 id="warnings">4.1 Warnings ⚠️</h2>
+<p>Es útil agregar warnings para que el usuario (quien sera a veces tu
+mismo) pueda corregir errores.</p>
+<p>Para checar que el data frame contenga datos, revisa que el numero de
+filas no sea cero.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"> <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>!=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
-    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"Please check the name of the data frame"</span><span class='op'>)</span>
-  <span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span> <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>!=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span></span>
+<span>    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"Please check the name of the data frame"</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span></span></code></pre>
 </div>
 </div>
-<p>También puedes revisar si tu data frame contiene una columna de acuerdo a su nombre</p>
+<p>También puedes revisar si tu data frame contiene una columna de
+acuerdo a su nombre</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>if</span> <span class='op'>(</span><span class='st'>"Nombre_columna"</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
-    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"Please check that your data frame has X column, otherwise please rename/create the column"</span><span class='op'>)</span>
-  <span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'>if</span> <span class='op'>(</span><span class='st'>"Nombre_columna"</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span></span>
+<span>    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"Please check that your data frame has X column, otherwise please rename/create the column"</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span></span></code></pre>
 </div>
 </div>
-<p>Ademas podemos revisar si una columna en especifico aparece en el data frame</p>
+<p>Ademas podemos revisar si una columna en especifico aparece en el
+data frame</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>[[</span><span class='va'>columna</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
-    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"The column X is not in your dataframe. Please check the name of the column"</span><span class='op'>)</span>
-  <span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>[[</span><span class='va'>columna</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span></span>
+<span>    <span class='kw'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span><span class='op'>(</span><span class='st'>"The column X is not in your dataframe. Please check the name of the column"</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <p>️</p>
-<h2 id="crear-tu-propio-sticker-️">4.2. Crear tu propio sticker ❣️</h2>
-<p>Para crear un hexSticker puedes usar plantillas: <br> - En powerpoint <a href="https://emitanaka.org/posts/hexsticker/">plantilla hecha por Emi Tanaka</a> <br> - En R <a href="https://github.com/GuangchuangYu/hexSticker">paquete hexSticker hecho por GuangchuangYu</a></p>
-<p>Para instalar el paquete hexSticker, puedes descargarlo desde en CRAN:</p>
+<h2 id="crear-tu-propio-sticker">4.2. Crear tu propio sticker ❣️</h2>
+<p>Para crear un hexSticker puedes usar plantillas: <br> - En powerpoint
+<a href="https://emitanaka.org/posts/hexsticker/">plantilla hecha por
+Emi Tanaka</a> <br> - En R <a
+href="https://github.com/GuangchuangYu/hexSticker">paquete hexSticker
+hecho por GuangchuangYu</a></p>
+<p>Para instalar el paquete hexSticker, puedes descargarlo desde en
+CRAN:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"hexSticker"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"hexSticker"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="zenodo">4.3. Zenodo 🔗</h2>
-<p><a href="https://zenodo.org/">Zenodo</a> es un repositorio de acceso abierto operado por CERN (Organización Europea para la Investigación Nuclear).</p>
-<p><strong>Ventajas</strong> Permite que se depositen allí artículos de investigación, datos, software, informes y otro tipo de objeto digital relacionado con la investigación. La ventaja frente a github es que asigna un DOI.</p>
-<p><strong>Desventajas</strong> Las versiones de paquetes se pueden registrar en zenodo. No obstante, NO es tan practico ya que cada versión tiene su propio DOI y la versión anterior no puede ser eliminada.</p>
+<p><a href="https://zenodo.org/">Zenodo</a> es un repositorio de acceso
+abierto operado por CERN (Organización Europea para la Investigación
+Nuclear).</p>
+<p><strong>Ventajas</strong> Permite que se depositen allí artículos de
+investigación, datos, software, informes y otro tipo de objeto digital
+relacionado con la investigación. La ventaja frente a github es que
+asigna un DOI.</p>
+<p><strong>Desventajas</strong> Las versiones de paquetes se pueden
+registrar en zenodo. No obstante, NO es tan practico ya que cada versión
+tiene su propio DOI y la versión anterior no puede ser eliminada.</p>
 <h1 id="créditos-y-recursos">Créditos y recursos 👩🏽‍🏫</h1>
 <ul>
 <li><p>Paquetes<br />
-<a href="https://usethis.r-lib.org/"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 640 512"><path d="M0 256v128c0 17.7 14.3 32 32 32h32V224H32c-17.7 0-32 14.3-32 32zM464 96H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H176c-44.2 0-80 35.8-80 80v272c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V176c0-44.2-35.8-80-80-80zM256 416h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm128 120h-64v-32h64v32zm96 0h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm192-72h-32v192h32c17.7 0 32-14.3 32-32V256c0-17.7-14.3-32-32-32z"/></svg> usethis</a><br />
-<a href="https://testthat.r-lib.org/"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 640 512"><path d="M0 256v128c0 17.7 14.3 32 32 32h32V224H32c-17.7 0-32 14.3-32 32zM464 96H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H176c-44.2 0-80 35.8-80 80v272c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V176c0-44.2-35.8-80-80-80zM256 416h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm128 120h-64v-32h64v32zm96 0h-64v-32h64v32zm-32-120c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40zm192-72h-32v192h32c17.7 0 32-14.3 32-32V256c0-17.7-14.3-32-32-32z"/></svg> testthat</a></p></li>
-<li><p>Libros<br> <a href="https://r-pkgs.org/intro.html"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 576 512"><path d="M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z"/></svg> R Packages</a></p></li>
-<li><p>Tutoriales sobre datos <br> <a href="https://r-pkgs.org/man.html"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 576 512"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"/></svg> Incluir datos</a> <br> <a href="https://kbroman.org/pkg_primer/pages/data.html"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 576 512"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"/></svg> Documentar datos</a> <br></p></li>
-<li><p>Tu paquete en una hora <br> <a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 576 512"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"/></svg> Piping hot data</a><br></p></li>
-<li><p>Videos<br> <a href="https://www.youtube.com/watch?v=TCIMT6l53tQ&amp;t"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg> Rladies como crear funciones</a><br> <a href="https://www.youtube.com/watch?v=IlWMkz769B4&amp;t"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg> Rladies como crear paquetes</a></p></li>
+<a
+href="https://usethis.r-lib.org/"><svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z"/></svg>
+usethis</a><br />
+<a
+href="https://testthat.r-lib.org/"><svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z"/></svg>
+testthat</a></p></li>
+<li><p>Libros<br> <a
+href="https://r-pkgs.org/intro.html"><svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z"/></svg>
+R Packages</a></p></li>
+<li><p>Tutoriales sobre datos <br> <a
+href="https://r-pkgs.org/man.html"><svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg>
+Incluir datos</a> <br> <a
+href="https://kbroman.org/pkg_primer/pages/data.html"><svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg>
+Documentar datos</a> <br></p></li>
+<li><p>Tu paquete en una hora <br> <a
+href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/"><svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"/></svg>
+Piping hot data</a><br></p></li>
+<li><p>Videos<br> <a
+href="https://www.youtube.com/watch?v=TCIMT6l53tQ&amp;t"><svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+Rladies como crear funciones</a><br> <a
+href="https://www.youtube.com/watch?v=IlWMkz769B4&amp;t"><svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+Rladies como crear paquetes</a></p></li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
