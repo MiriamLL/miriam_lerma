@@ -29,6 +29,15 @@ Iré subiendo materiales conforme se vayan actualizando.
 ## Intro a R.
 En esta clase aprenderás a abrir RStudio e identificar sus partes. <br>
 
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
+
 ```{r icon-links1,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
@@ -38,14 +47,18 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png")
-```
-
-
 ## Cargar tus datos.
 
 En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. <br>
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase1Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase2.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
+
 
 ```{r icon-links2,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -56,14 +69,18 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1Parte2-CargarDatos.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase2.png")
-```
 
 ## Gráficos.  
 
 En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.<br> 
 
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase3.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links3,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -74,13 +91,19 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase2-Graficos.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase3.png")
-```
 
 ## Operaciones.  
 
 En esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. <br> 
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase4.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
+
 
 ```{r icon-links4,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -91,13 +114,18 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase3Parte1-Filascolumnas.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase4.png")
-```
 
 ## Ordenar, unir y exportar.  
 
 En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.  
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase5.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links5,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -108,14 +136,18 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase3Parte2-tidyverse.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase5.png")
-```
-
 
 ## Proyectos.  
 
 En esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.  
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase4Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links6,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -126,14 +158,19 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase4Parte1-Poyectos.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png")
-```
 
 
 ## Modelo lineal simple.  
 
 En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu gráfico.  
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase7"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links7,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -144,13 +181,18 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase7.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png")
-```
 
 ## Analisis de varianzas.  
 
 En esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.  
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase8"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links8,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -161,13 +203,19 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase8.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png")
-```
+
 
 ## Modelos mixtos.  
 
 Esta clase es una introducción a los modelos mixtos y a la selección de modelos usando el AIC.  
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links9,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -178,6 +226,3 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase9-modelosmixtos.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png")
-```

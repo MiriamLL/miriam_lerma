@@ -37,6 +37,26 @@ icon_link(icon = "fas fa-images",
           url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf")
 ```
 
+```{r, echo=FALSE}
+library(here)
+File<-paste0(here(),"/_posts/bls7/")
+Imagen1<-paste0(File,"Poster_BSL.png")
+```
+
+```{r, fig.height=6,echo=FALSE, fig.align='center', eval=FALSE}
+knitr::include_graphics(Imagen1)
+```
+
+
+<html>
+<body>
+   <center>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf"><img src="Poster_BSL.png" style="width:1100px"></a>
+   </center>
+</body>
+</html>
+
+
 ⚡⚡⚡⚡
 
 ## Authors
