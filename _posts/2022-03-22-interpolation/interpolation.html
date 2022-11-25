@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -112,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Interpolation"]},{"type":"character","attributes":{},"value":["How to interpolate tracking data.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-03-22"]},{"type":"character","attributes":{},"value":["blog9.jpg"]},{"type":"character","attributes":{},"value":["R","tracking","interpolation","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Interpolation"]},{"type":"character","attributes":{},"value":["How to interpolate tracking data.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-03-22"]},{"type":"character","attributes":{},"value":["blog9.jpg"]},{"type":"character","attributes":{},"value":["R","Tracking","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -429,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1264,6 +1261,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1278,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1377,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1399,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1438,7 +1468,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="interpolation_files/header-attrs-2.13/header-attrs.js"></script>
+  <script src="interpolation_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="interpolation_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="interpolation_files/popper-2.6.0/popper.min.js"></script>
   <link href="interpolation_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,10 +1502,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Interpolation</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">R</div>
-<div class="dt=tag">tracking</div>
-<div class="dt=tag">interpolation</div>
-<div class="dt=tag">English</div>
+<div class="dt-tag">R</div>
+<div class="dt-tag">Tracking</div>
+<div class="dt-tag">English</div>
 </div>
 <!--/radix_placeholder_categories-->
 <p><p>How to interpolate tracking data.</p></p>
@@ -1535,35 +1564,30 @@ accessing the data, you need to have the package installed.</p>
 <p>To install:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org/reference/remote-reexports.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/sula"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://remotes.r-lib.org/reference/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/sula"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>The data is from 10 tracked individuals.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Select only one individual.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_track</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_track</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="identify-trips">Identify trips 🛩️</h1>
@@ -1583,12 +1607,11 @@ nest.</p>
 of your columns here in ‘column_lon’ and ‘column_lat’.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/locate_nest.html'>locate_nest</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>ID01_track</span>,
-                         column_lat <span class='op'>=</span> <span class='st'>'Longitude'</span>,
-                         column_lon <span class='op'>=</span> <span class='st'>'Latitude'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/locate_nest.html'>locate_nest</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>ID01_track</span>,</span>
+<span>                         column_lat <span class='op'>=</span> <span class='st'>'Longitude'</span>,</span>
+<span>                         column_lon <span class='op'>=</span> <span class='st'>'Latitude'</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 x 2
+<pre><code># A tibble: 1 × 2
   Longitude Latitude
       &lt;dbl&gt;    &lt;dbl&gt;
 1     -27.2    -109.</code></pre>
@@ -1597,9 +1620,8 @@ of your columns here in ‘column_lon’ and ‘column_lat’.</p>
 nest but you know the nest location, you can manually write it down.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.4531</span>,
-                     Latitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>27.20097</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.4531</span>,</span>
+<span>                     Latitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>27.20097</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h3 id="identify-trips-1">Identify trips 🛩️</h3>
@@ -1613,10 +1635,9 @@ the location is inside the range you select.</p>
 at the nest.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/identify_trips.html'>identify_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_track</span>,
-                           Nest_location<span class='op'>=</span><span class='va'>ID01_nest</span>,
-                           Distance_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/identify_trips.html'>identify_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_track</span>,</span>
+<span>                           Nest_location<span class='op'>=</span><span class='va'>ID01_nest</span>,</span>
+<span>                           Distance_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h3 id="count-trips">Count trips 🧮</h3>
@@ -1626,21 +1647,19 @@ example removes all rows where the animal was at the central location)
 and adds a column with the number of the trip.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_onlytrips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/count_trips.html'>count_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_trips</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_onlytrips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/count_trips.html'>count_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_trips</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>To check when the trips started and ended you can also use functions
 from the package <strong>tidyverse</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_onlytrips</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>start<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>first</a></span><span class='op'>(</span><span class='va'>DateGMT</span><span class='op'>)</span>,<span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>first</a></span><span class='op'>(</span><span class='va'>TimeGMT</span><span class='op'>)</span><span class='op'>)</span>,
-            end<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='va'>DateGMT</span><span class='op'>)</span>,<span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='va'>TimeGMT</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_onlytrips</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>start<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>first</a></span><span class='op'>(</span><span class='va'>DateGMT</span><span class='op'>)</span>,<span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>first</a></span><span class='op'>(</span><span class='va'>TimeGMT</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>            end<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='va'>DateGMT</span><span class='op'>)</span>,<span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='va'>TimeGMT</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 5 x 3
+<pre><code># A tibble: 5 × 3
   trip_number start               end                
   &lt;chr&gt;       &lt;chr&gt;               &lt;chr&gt;              
 1 trip_1      02/11/2017 19:34:31 02/11/2017 20:09:24
@@ -1654,17 +1673,16 @@ trip classification <strong>manually</strong>, using also functions from
 the package tidyverse.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_onlytrips</span> <span class='op'>&lt;-</span> <span class='va'>ID01_trips</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>trip_number<span class='op'>=</span>
-           <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span>
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'02/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'19:34:31'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'20:09:24'</span> <span class='op'>~</span> <span class='st'>'trip_1'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'03/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'12:44:04'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'14:30:00'</span> <span class='op'>~</span> <span class='st'>'trip_2'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'04/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'07:45:17'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'09:41:28'</span> <span class='op'>~</span> <span class='st'>'trip_3'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'04/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'17:05:36'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'20:41:10'</span> <span class='op'>~</span> <span class='st'>'trip_4'</span>,
-             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'05/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'09:06:13'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'11:26:14'</span> <span class='op'>~</span> <span class='st'>'trip_5'</span>,
-             <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"nest"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span> <span class='op'>!=</span> <span class='st'>'nest'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_onlytrips</span> <span class='op'>&lt;-</span> <span class='va'>ID01_trips</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>trip_number<span class='op'>=</span></span>
+<span>           <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'02/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'19:34:31'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'20:09:24'</span> <span class='op'>~</span> <span class='st'>'trip_1'</span>,</span>
+<span>             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'03/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'12:44:04'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'14:30:00'</span> <span class='op'>~</span> <span class='st'>'trip_2'</span>,</span>
+<span>             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'04/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'07:45:17'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'09:41:28'</span> <span class='op'>~</span> <span class='st'>'trip_3'</span>,</span>
+<span>             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'04/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'17:05:36'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'20:41:10'</span> <span class='op'>~</span> <span class='st'>'trip_4'</span>,</span>
+<span>             <span class='va'>DateGMT</span> <span class='op'>==</span> <span class='st'>'05/11/2017'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&gt;=</span> <span class='st'>'09:06:13'</span> <span class='op'>&amp;</span> <span class='va'>TimeGMT</span> <span class='op'>&lt;=</span> <span class='st'>'11:26:14'</span> <span class='op'>~</span> <span class='st'>'trip_5'</span>,</span>
+<span>             <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"nest"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span> <span class='op'>!=</span> <span class='st'>'nest'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="interpolate">Interpolate 🌐</h1>
@@ -1682,28 +1700,26 @@ interpolation, the column names, and the format your date and time is
 presented.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_interpolated15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,
-                                     interval<span class='op'>=</span><span class='st'>'900 sec'</span>,
-                                     column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,
-                                     column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,
-                                     column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,
-                                     column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,
-                                     column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,
-                                     <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_interpolated15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,</span>
+<span>                                     interval<span class='op'>=</span><span class='st'>'900 sec'</span>,</span>
+<span>                                     column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,</span>
+<span>                                     column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,</span>
+<span>                                     column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,</span>
+<span>                                     column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,</span>
+<span>                                     column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,</span>
+<span>                                     <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ID01_interpolated1m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,
-                                     interval<span class='op'>=</span><span class='st'>'60 sec'</span>,
-                                     column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,
-                                     column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,
-                                     column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,
-                                     column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,
-                                     column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,
-                                     <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ID01_interpolated1m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,</span>
+<span>                                     interval<span class='op'>=</span><span class='st'>'60 sec'</span>,</span>
+<span>                                     column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,</span>
+<span>                                     column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,</span>
+<span>                                     column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,</span>
+<span>                                     column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,</span>
+<span>                                     column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,</span>
+<span>                                     <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="interpolate_all">interpolate_all</h2>
@@ -1716,10 +1732,9 @@ also the function <strong>interpolate</strong> in the package
 interested in interpolating.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_trip5</span><span class='op'>&lt;-</span><span class='va'>GPS_preparado</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>==</span><span class='st'>'trip_5'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS01_trip5</span><span class='op'>&lt;-</span><span class='va'>GPS_preparado</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>==</span><span class='st'>'trip_5'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Use the function <strong>interpolate</strong>. Here I select the
@@ -1727,12 +1742,11 @@ dataframe, the interval ofinterest, and the name of the columns that
 will be included in the interpolation.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_trip1_interpolated</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate.html'>interpolate</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS01_trip5</span>,
-                                      interval<span class='op'>=</span><span class='st'>'10 sec'</span>,
-                                      column_datetime <span class='op'>=</span> <span class='st'>'dia_hora'</span>,
-                                      column_lat <span class='op'>=</span> <span class='st'>'Latitude'</span>,
-                                      column_lon <span class='op'>=</span> <span class='st'>'Longitude'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS01_trip1_interpolated</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate.html'>interpolate</a></span><span class='op'>(</span>GPS_data <span class='op'>=</span> <span class='va'>GPS01_trip5</span>,</span>
+<span>                                      interval<span class='op'>=</span><span class='st'>'10 sec'</span>,</span>
+<span>                                      column_datetime <span class='op'>=</span> <span class='st'>'dia_hora'</span>,</span>
+<span>                                      column_lat <span class='op'>=</span> <span class='st'>'Latitude'</span>,</span>
+<span>                                      column_lon <span class='op'>=</span> <span class='st'>'Longitude'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="plot">Plot 🖌️</h1>
@@ -1742,31 +1756,29 @@ interpolated data.</p>
 side.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://patchwork.data-imaginist.com'>patchwork</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://patchwork.data-imaginist.com'>patchwork</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Create three plots, one using the original points, and two using the
 interpolation to compare.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Original_track</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_onlytrips</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Original tracking data'</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span>
-<span class='va'>Interpolated_15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_interpolated15m</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Interpolated to 15 mins'</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span>
-<span class='va'>Interpolated_1m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_interpolated1m</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Interpolated to 1 min'</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'right'</span><span class='op'>)</span>
-<span class='va'>Original_track</span><span class='op'>+</span><span class='va'>Interpolated_15m</span><span class='op'>+</span><span class='va'>Interpolated_1m</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Original_track</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_onlytrips</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Original tracking data'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span></span>
+<span><span class='va'>Interpolated_15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_interpolated15m</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Interpolated to 15 mins'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span></span>
+<span><span class='va'>Interpolated_1m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>ID01_interpolated1m</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Interpolated to 1 min'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'right'</span><span class='op'>)</span></span>
+<span><span class='va'>Original_track</span><span class='op'>+</span><span class='va'>Interpolated_15m</span><span class='op'>+</span><span class='va'>Interpolated_1m</span></span></code></pre>
 </div>
 <p><img src="interpolation_files/figure-html5/unnamed-chunk-17-1.png" width="864" /></p>
 </div>
@@ -1776,26 +1788,25 @@ better to your study.</p>
 <p>TL;DR (too long; didn’t read)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-
-<span class='va'>ID01_track</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span> <span class='op'><a href='https://rdrr.io/pkg/sula/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span>
-
-<span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.4531</span>,Latitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>27.20097</span><span class='op'>)</span>
-
-<span class='va'>ID01_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/identify_trips.html'>identify_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_track</span>,Nest_location<span class='op'>=</span><span class='va'>ID01_nest</span>,Distance_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-
-<span class='va'>ID01_onlytrips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/count_trips.html'>count_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_trips</span><span class='op'>)</span>
-
-<span class='va'>ID01_interpolated15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,
-                                        interval<span class='op'>=</span><span class='st'>'900 sec'</span>,
-                                        column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,
-                                        column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,
-                                        column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,
-                                        column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,
-                                        column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,
-                                        <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>ID01_track</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>ID01_nest</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.4531</span>,Latitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>27.20097</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>ID01_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/identify_trips.html'>identify_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_track</span>,Nest_location<span class='op'>=</span><span class='va'>ID01_nest</span>,Distance_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>ID01_onlytrips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/count_trips.html'>count_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_trips</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>ID01_interpolated15m</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/sula/man/interpolate_trips.html'>interpolate_trips</a></span><span class='op'>(</span>GPS_data<span class='op'>=</span><span class='va'>ID01_onlytrips</span>,</span>
+<span>                                        interval<span class='op'>=</span><span class='st'>'900 sec'</span>,</span>
+<span>                                        column_date<span class='op'>=</span><span class='st'>'DateGMT'</span>,</span>
+<span>                                        column_time<span class='op'>=</span><span class='st'>'TimeGMT'</span>,</span>
+<span>                                        column_trip<span class='op'>=</span><span class='st'>'trip_number'</span>,</span>
+<span>                                        column_lat<span class='op'>=</span><span class='st'>'Latitude'</span>,</span>
+<span>                                        column_lon<span class='op'>=</span><span class='st'>'Longitude'</span>,</span>
+<span>                                        <span class='va'>datetime_format</span><span class='op'>&lt;-</span><span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="recommended-sources">Recommended sources 📑</h1>

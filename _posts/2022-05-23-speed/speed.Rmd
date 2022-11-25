@@ -9,7 +9,7 @@ date: 2022-05-23
 preview: blog11.jpg
 categories:
   - R
-  - tracking
+  - Tracking
   - English
 output:
   distill::distill_article:

@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -49,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -72,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>CV</title>
@@ -110,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["CV"]},{"type":"character","attributes":{},"value":["Como crear un curriculo en RStudio usando el paquete vitae. \n"]},{"type":"character","attributes":{},"value":["blog4.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-02"]},{"type":"character","attributes":{},"value":["R","funciones","Español"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["CV"]},{"type":"character","attributes":{},"value":["Como crear un curriculo en RStudio usando el paquete vitae. \n"]},{"type":"character","attributes":{},"value":["blog4.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-02"]},{"type":"character","attributes":{},"value":["R","Español"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -427,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1262,7 +1261,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1273,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1372,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1394,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1433,8 +1468,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="vitae_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="vitae_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="vitae_files/header-attrs-2.14/header-attrs.js"></script>
+  <script src="vitae_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="vitae_files/popper-2.6.0/popper.min.js"></script>
   <link href="vitae_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="vitae_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1467,12 +1502,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>CV</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">R</div>
-<div class="dt=tag">funciones</div>
-<div class="dt=tag">Español</div>
+<div class="dt-tag">R</div>
+<div class="dt-tag">Español</div>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>Como crear un curriculo en RStudio usando el paquete vitae.</p></p>
+<p><p>Como crear un curriculo en RStudio usando el paquete
+vitae.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1487,39 +1522,48 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#intro">Intro</a></li>
-<li><a href="#descargar-el-paquete-️">Descargar el paquete 🕯️</a></li>
-<li><a href="#iniciar-con-una-plantilla">Iniciar con una plantilla 🧶</a></li>
+<li><a href="#descargar-el-paquete">Descargar el paquete 🕯️</a></li>
+<li><a href="#iniciar-con-una-plantilla">Iniciar con una plantilla
+🧶</a></li>
 <li><a href="#tus-datos">Tus datos 💾</a></li>
 <li><a href="#partes-de-tu-cv">Partes de tu CV 💭</a></li>
-<li><a href="#agregar-tu-información-️">Agregar tu información ✏️</a></li>
+<li><a href="#agregar-tu-información">Agregar tu información ✏️</a></li>
 <li><a href="#tus-publicaciones">Tus publicaciones 👩🏽‍🔬</a></li>
-<li><a href="#habilidades-️">Habilidades 🤸🏽‍️</a></li>
+<li><a href="#habilidades">Habilidades 🤸🏽‍️</a></li>
 <li><a href="#colores-de-las-letras">Colores de las letras 👩🏾‍🎨</a></li>
-<li><a href="#resumiendo-️">Resumiendo ✔️</a></li>
+<li><a href="#resumiendo">Resumiendo ✔️</a></li>
 <li><a href="#créditos-y-recursos">Créditos y recursos 👩🏾‍🏫</a></li>
 </ul>
 </nav>
 </div>
 <h1 id="intro">Intro</h1>
 <p>Para crear un CV en RStudio, básicamente necesitas saber Rmd.</p>
-<p>Para los básicos de Rmd te recomiendo ir <a href="https://www.miriam-lerma.com/posts/2021-03-29-rmd/">aquí</a>.</p>
-<p>Si quieres ver como quedo mi cv, puedes descargarlo <a href="https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf">aquí</a>.</p>
-<h1 id="descargar-el-paquete-️">Descargar el paquete 🕯️</h1>
-<p>Para crear tu CV puedes descargar el paquete <strong>vitae</strong> desde github.</p>
+<p>Para los básicos de Rmd te recomiendo ir <a
+href="https://www.miriam-lerma.com/posts/2021-03-29-rmd/">aquí</a>.</p>
+<p>Si quieres ver como quedo mi cv, puedes descargarlo <a
+href="https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf">aquí</a>.</p>
+<h1 id="descargar-el-paquete">Descargar el paquete 🕯️</h1>
+<p>Para crear tu CV puedes descargar el paquete <strong>vitae</strong>
+desde github.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># install.packages("devtools")</span>
-<span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://devtools.r-lib.org//reference/remote-reexports.html'>install_github</a></span><span class='op'>(</span><span class='st'>"mitchelloharawild/vitae"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># install.packages("devtools")</span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://remotes.r-lib.org/reference/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"mitchelloharawild/vitae"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Para ver detalles ésta es la <a href="https://pkg.mitchelloharawild.com/vitae/">página</a>.</p>
-<p><strong>Nota</strong> Al instalar el paquete se tarda descargando actualizaciones.</p>
+<p>Para ver detalles ésta es la <a
+href="https://pkg.mitchelloharawild.com/vitae/">página</a>.</p>
+<p><strong>Nota</strong> Al instalar el paquete se tarda descargando
+actualizaciones.</p>
 <h1 id="iniciar-con-una-plantilla">Iniciar con una plantilla 🧶</h1>
 <p>File&gt;NewFile&gt;R Markdown&gt;From template</p>
-<p>Para elegir la plantilla (template), en la página puedes ver algunos <a href="https://pkg.mitchelloharawild.com/vitae/">ejemplos</a>.</p>
-<p>Pero si no te decides, se puede modificar en el output del YAML después.</p>
-<p>Al elegir tu plantilla, se abrirá un nuevo Rmd. Antes de empezar a rellenar tu CV, te recomiendo probar tener todos las dependencias instaladas. Para esto, dale en knit.</p>
+<p>Para elegir la plantilla (template), en la página puedes ver algunos
+<a href="https://pkg.mitchelloharawild.com/vitae/">ejemplos</a>.</p>
+<p>Pero si no te decides, se puede modificar en el output del YAML
+después.</p>
+<p>Al elegir tu plantilla, se abrirá un nuevo Rmd. Antes de empezar a
+rellenar tu CV, te recomiendo probar tener todos las dependencias
+instaladas. Para esto, dale en knit.</p>
 <p>Tal vez tengas que instalar de nuevo tinytext.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> LaTeX failed to compile Untitled.tex. </span>
@@ -1528,13 +1572,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Para instalarlo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tinytex</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tinytex/man/install_tinytex.html'>install_tinytex</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>tinytex</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tinytex/man/install_tinytex.html'>install_tinytex</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="tus-datos">Tus datos 💾</h1>
-<p>La información que incluyas en el YAML aparecerá en la parte superior de tu CV.</p>
-<p>La plantilla te da un archivo prellenado, que debes modificar de acuerdo a tus datos.</p>
+<p>La información que incluyas en el YAML aparecerá en la parte superior
+de tu CV.</p>
+<p>La plantilla te da un archivo prellenado, que debes modificar de
+acuerdo a tus datos.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>name<span class="sc">:</span> Marie</span>
@@ -1553,54 +1598,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    theme<span class="sc">:</span> classic</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
 </div>
-<p>Si al darle knit te esta causando muchos problemas con LaTex, te recomiendo cambiar el output a awesomecv y poner keep_tex en false.</p>
+<p>Si al darle knit te esta causando muchos problemas con LaTex, te
+recomiendo cambiar el output a awesomecv y poner keep_tex en false.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>output</span><span class='op'>:</span> 
-  <span class='fu'>vitae</span><span class='fu'>::</span><span class='va'><a href='https://pkg.mitchelloharawild.com/vitae/reference/awesomecv.html'>awesomecv</a></span><span class='op'>:</span>
-    <span class='va'>keep_tex</span><span class='op'>:</span> <span class='va'>false</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>output</span><span class='op'>:</span> </span>
+<span>  <span class='fu'>vitae</span><span class='fu'>::</span><span class='va'><a href='https://pkg.mitchelloharawild.com/vitae/reference/awesomecv.html'>awesomecv</a></span><span class='op'>:</span></span>
+<span>    <span class='va'>keep_tex</span><span class='op'>:</span> <span class='va'>false</span></span></code></pre>
 </div>
 </div>
 <h1 id="partes-de-tu-cv">Partes de tu CV 💭</h1>
-<p>Depende para que sea tu CV puedes estructurarlo de manera diferente.</p>
-<p>Si quieres un CV académico te puedes basar en la estructura del CV de <a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf">Han Zhang</a>.</p>
+<p>Depende para que sea tu CV puedes estructurarlo de manera
+diferente.</p>
+<p>Si quieres un CV académico te puedes basar en la estructura del CV de
+<a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf">Han
+Zhang</a>.</p>
 <p>Este CV contiene<br />
 - Research interest<br />
 - Education<br />
 - Peer-reviewed Publications</p>
-<h1 id="agregar-tu-información-️">Agregar tu información ✏️</h1>
-<p>Para agregar las partes a tu CV, la información se maneja como <a href="https://rstudio-education.github.io/tidyverse-cookbook/tidy.html">tribble</a></p>
-<p>Unas de las funciones de <em>vitae</em> es <strong>detailed_entries</strong>, que es como sera mostrada la información en tu pdf, otra opción es <strong>brief_entries</strong> que presenta un formato más compacto.</p>
+<h1 id="agregar-tu-información">Agregar tu información ✏️</h1>
+<p>Para agregar las partes a tu CV, la información se maneja como <a
+href="https://rstudio-education.github.io/tidyverse-cookbook/tidy.html">tribble</a></p>
+<p>Unas de las funciones de <em>vitae</em> es
+<strong>detailed_entries</strong>, que es como sera mostrada la
+información en tu pdf, otra opción es <strong>brief_entries</strong> que
+presenta un formato más compacto.</p>
 <p>Para llenar un tribble:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tribble</span><span class='op'>(</span>
-  <span class='op'>~</span><span class='va'>Year</span>, <span class='op'>~</span><span class='va'>Type</span>, <span class='op'>~</span><span class='va'>Desc</span>,
-  <span class='st'>"2021-current"</span>, <span class='st'>"Postdoc"</span>, <span class='st'>"Universidad de Kiel"</span>,
-  <span class='st'>"2020-2021"</span>,<span class='st'>"Postdoc"</span>,<span class='st'>"Universidad de Kiel"</span>
-<span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>detailed_entries</span><span class='op'>(</span>
-    <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Trabajos {Type}"</span><span class='op'>)</span>,
-    <span class='va'>Year</span>, 
-    <span class='va'>Desc</span>
-  <span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>tribble</span><span class='op'>(</span></span>
+<span>  <span class='op'>~</span><span class='va'>Year</span>, <span class='op'>~</span><span class='va'>Type</span>, <span class='op'>~</span><span class='va'>Desc</span>,</span>
+<span>  <span class='st'>"2021-current"</span>, <span class='st'>"Postdoc"</span>, <span class='st'>"Universidad de Kiel"</span>,</span>
+<span>  <span class='st'>"2020-2021"</span>,<span class='st'>"Postdoc"</span>,<span class='st'>"Universidad de Kiel"</span></span>
+<span><span class='op'>)</span> <span class='op'>%&gt;%</span> </span>
+<span>  <span class='fu'>detailed_entries</span><span class='op'>(</span></span>
+<span>    <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"Trabajos {Type}"</span><span class='op'>)</span>,</span>
+<span>    <span class='va'>Year</span>, </span>
+<span>    <span class='va'>Desc</span></span>
+<span>  <span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="tus-publicaciones">Tus publicaciones 👩🏽‍🔬</h1>
-<p>Para agregar publicaciones puedes el archivo <strong>.bib</strong> con tus datos. Si quieres aprender como extraer las citas, te recomiendo mirar <a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2#12">aquí</a></p>
+<p>Para agregar publicaciones puedes el archivo <strong>.bib</strong>
+con tus datos. Si quieres aprender como extraer las citas, te recomiendo
+mirar <a
+href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2#12">aquí</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
-<span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/write_bib.html'>write_bib</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"vitae"</span>, <span class='st'>"tibble"</span><span class='op'>)</span>, <span class='st'>"papers.bib"</span><span class='op'>)</span>
-
-<span class='fu'>bibliography_entries</span><span class='op'>(</span><span class='st'>"papers.bib"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>author</span><span class='op'>$</span><span class='va'>family</span><span class='op'>)</span>, <span class='va'>issued</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/write_bib.html'>write_bib</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"vitae"</span>, <span class='st'>"tibble"</span><span class='op'>)</span>, <span class='st'>"papers.bib"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>bibliography_entries</span><span class='op'>(</span><span class='st'>"papers.bib"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>author</span><span class='op'>$</span><span class='va'>family</span><span class='op'>)</span>, <span class='va'>issued</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>No obstante, si tus publicaciones incluyen acentos y letras <em>cursivas</em>. Entonces puede ser más practico usar tribble y detailed_entries.</p>
+<p>No obstante, si tus publicaciones incluyen acentos y letras
+<em>cursivas</em>. Entonces puede ser más practico usar tribble y
+detailed_entries.</p>
 <p>Para agregar letras negritas o cursivas la sintaxis es:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>\\textit{} <span class="co">#italicas</span></span>
@@ -1609,49 +1664,51 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Ejemplo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
- <span class='op'>~</span> <span class='va'>Year</span>, <span class='op'>~</span> <span class='va'>Place</span>, <span class='op'>~</span> <span class='va'>Project</span>, <span class='op'>~</span> <span class='va'>Position</span>,
-
- <span class='st'>"2020"</span>,
-  <span class='st'>"\\textbf{Lerma, M}, Serratosa J, Luna-Jorquera G, Garthe S"</span>,
-  <span class='st'>"Foraging ecology of masked boobies \\textit{(Sula dactylatra)} in the world’s largest ‘oceanic desert’"</span>,
-  <span class='st'>"Mar Biol 167: 87"</span>
- 
- <span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>detailed_entries</span><span class='op'>(</span><span class='va'>Place</span>, 
-                   <span class='va'>Position</span>,
-                   <span class='va'>Project</span>, 
-                   <span class='va'>Year</span>,
-                   .protect <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span></span>
+<span> <span class='op'>~</span> <span class='va'>Year</span>, <span class='op'>~</span> <span class='va'>Place</span>, <span class='op'>~</span> <span class='va'>Project</span>, <span class='op'>~</span> <span class='va'>Position</span>,</span>
+<span></span>
+<span> <span class='st'>"2020"</span>,</span>
+<span>  <span class='st'>"\\textbf{Lerma, M}, Serratosa J, Luna-Jorquera G, Garthe S"</span>,</span>
+<span>  <span class='st'>"Foraging ecology of masked boobies \\textit{(Sula dactylatra)} in the world’s largest ‘oceanic desert’"</span>,</span>
+<span>  <span class='st'>"Mar Biol 167: 87"</span></span>
+<span> </span>
+<span> <span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'>detailed_entries</span><span class='op'>(</span><span class='va'>Place</span>, </span>
+<span>                   <span class='va'>Position</span>,</span>
+<span>                   <span class='va'>Project</span>, </span>
+<span>                   <span class='va'>Year</span>,</span>
+<span>                   .protect <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Es importante poner protect en FALSE para que aparezcan los cambios.</p>
-<h1 id="habilidades-️">Habilidades 🤸🏽‍️</h1>
-<p>Para incluir tus habilidades puede que no quieras tener una lista con mucho espacio vacío. Una opción para evitar esto es crear una tabla parecida a la que aparece en el CV de <a href="https://github.com/loreabad6/R-CV">Lorena Abad</a>.</p>
+<p>Es importante poner protect en FALSE para que aparezcan los
+cambios.</p>
+<h1 id="habilidades">Habilidades 🤸🏽‍️</h1>
+<p>Para incluir tus habilidades puede que no quieras tener una lista con
+mucho espacio vacío. Una opción para evitar esto es crear una tabla
+parecida a la que aparece en el CV de <a
+href="https://github.com/loreabad6/R-CV">Lorena Abad</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Skills</span><span class='op'>&lt;-</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
-   <span class='op'>~</span><span class='va'>Computer</span>, <span class='op'>~</span><span class='va'>Laboratory</span>, <span class='op'>~</span><span class='va'>Fieldwork</span>,<span class='op'>~</span> <span class='va'>Languages</span>,
-  <span class='st'>"R -- Statistica -- SPSS -- Sigmaplot -- QGIS -- Git -- Markdown"</span>,
-  <span class='st'>"Heavy metal analyses -- Stable isotopes -- Plasma metabolites analyses"</span>,
-  <span class='st'>"Catching and handling wild animals -- Sample collection: extraction blood &amp; feathers -- Censing populations -- Monitoring breeding success"</span>,
-  <span class='st'>"Spanish (Mother tongue) -- English (TOEFL iBT 99) -- German (Basic-A2)"</span>
-<span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Skills</span><span class='op'>&lt;-</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span></span>
+<span>   <span class='op'>~</span><span class='va'>Computer</span>, <span class='op'>~</span><span class='va'>Laboratory</span>, <span class='op'>~</span><span class='va'>Fieldwork</span>,<span class='op'>~</span> <span class='va'>Languages</span>,</span>
+<span>  <span class='st'>"R -- Statistica -- SPSS -- Sigmaplot -- QGIS -- Git -- Markdown"</span>,</span>
+<span>  <span class='st'>"Heavy metal analyses -- Stable isotopes -- Plasma metabolites analyses"</span>,</span>
+<span>  <span class='st'>"Catching and handling wild animals -- Sample collection: extraction blood &amp; feathers -- Censing populations -- Monitoring breeding success"</span>,</span>
+<span>  <span class='st'>"Spanish (Mother tongue) -- English (TOEFL iBT 99) -- German (Basic-A2)"</span></span>
+<span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Skills</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>kbl</span><span class='op'>(</span>booktabs <span class='op'>=</span> <span class='cn'>T</span>, align <span class='op'>=</span><span class='st'>"c"</span>,format <span class='op'>=</span> <span class='st'>"latex"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'>#crea tabla y alinea al centro</span>
-  <span class='fu'>column_spec</span><span class='op'>(</span>column <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, width <span class='op'>=</span> <span class='st'>'4cm'</span><span class='op'>)</span><span class='op'>%&gt;%</span>        <span class='co'>#separa las columnas en 4 y las hace de 4 cm</span>
-  <span class='fu'>row_spec</span><span class='op'>(</span><span class='fl'>0</span>, bold <span class='op'>=</span> <span class='cn'>T</span>, color <span class='op'>=</span> <span class='st'>"#009acd"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>       <span class='co'>#hace las letras en negrita y cambia el color</span>
-  <span class='fu'>row_spec</span><span class='op'>(</span><span class='fl'>1</span>, bold <span class='op'>=</span> <span class='cn'>F</span>, color <span class='op'>=</span> <span class='st'>"#7f7f7f"</span><span class='op'>)</span>           <span class='co'>#cambia el color del texto a gris</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Skills</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'>kbl</span><span class='op'>(</span>booktabs <span class='op'>=</span> <span class='cn'>T</span>, align <span class='op'>=</span><span class='st'>"c"</span>,format <span class='op'>=</span> <span class='st'>"latex"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'>#crea tabla y alinea al centro</span></span>
+<span>  <span class='fu'>column_spec</span><span class='op'>(</span>column <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, width <span class='op'>=</span> <span class='st'>'4cm'</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>        <span class='co'>#separa las columnas en 4 y las hace de 4 cm</span></span>
+<span>  <span class='fu'>row_spec</span><span class='op'>(</span><span class='fl'>0</span>, bold <span class='op'>=</span> <span class='cn'>T</span>, color <span class='op'>=</span> <span class='st'>"#009acd"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>       <span class='co'>#hace las letras en negrita y cambia el color</span></span>
+<span>  <span class='fu'>row_spec</span><span class='op'>(</span><span class='fl'>1</span>, bold <span class='op'>=</span> <span class='cn'>F</span>, color <span class='op'>=</span> <span class='st'>"#7f7f7f"</span><span class='op'>)</span>           <span class='co'>#cambia el color del texto a gris</span></span></code></pre>
 </div>
 </div>
-<p>Para que no aparezcan las lineas en la tabla, se puede agregar en el YAML:</p>
+<p>Para que no aparezcan las lineas en la tabla, se puede agregar en el
+YAML:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  \usepackage{colortbl}</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  \arrayrulecolor{white}</span></code></pre></div>
@@ -1661,18 +1718,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>headcolor<span class="sc">:</span> 009ACD</span></code></pre></div>
 </div>
-<h1 id="resumiendo-️">Resumiendo ✔️</h1>
-<p><strong>vitae</strong> es una buena opción para crear tu CV y solo se tiene que hacer la estructura una vez, que además resulta mas atractiva a la vista. No obstante puede traer muchos errores por LaTex.</p>
+<h1 id="resumiendo">Resumiendo ✔️</h1>
+<p><strong>vitae</strong> es una buena opción para crear tu CV y solo se
+tiene que hacer la estructura una vez, que además resulta mas atractiva
+a la vista. No obstante puede traer muchos errores por LaTex.</p>
 <h1 id="créditos-y-recursos">Créditos y recursos 👩🏾‍🏫</h1>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <ul>
-<li>Ejemplos<br> <a href="https://github.com/loreabad6/R-CV"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg> LorenaAbad</a><br />
-<a href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg> Han Zhang</a><br />
-<a href="https://pkg.mitchelloharawild.com/vitae/"><svg style="height:0.8em;top:.04em;position:relative;fill:#4cc9f0;" viewBox="0 0 640 512"><path d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z"/></svg> Galería</a></li>
+<li>Ejemplos<br> <a
+href="https://github.com/loreabad6/R-CV"><svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>
+LorenaAbad</a><br />
+<a
+href="https://github.com/HanZhang-psych/CV/blob/master/CV.pdf"><svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>
+Han Zhang</a><br />
+<a
+href="https://pkg.mitchelloharawild.com/vitae/"><svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z"/></svg>
+Galería</a></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

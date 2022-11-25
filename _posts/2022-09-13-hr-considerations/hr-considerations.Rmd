@@ -9,8 +9,7 @@ date: 09-14-2022
 preview: blog15.jpg
 categories:
   - R
-  - spatial
-  - cleaning
+  - Tracking
   - English
 output:
   distill::distill_article:

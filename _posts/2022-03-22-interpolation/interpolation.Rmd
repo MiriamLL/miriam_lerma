@@ -9,8 +9,7 @@ date: 2022-03-22
 preview: blog9.jpg
 categories:
   - R
-  - tracking
-  - interpolation
+  - Tracking
   - English
 output:
   distill::distill_article:

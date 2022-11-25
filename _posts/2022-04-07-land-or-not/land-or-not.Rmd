@@ -9,8 +9,7 @@ date: 2022-04-07
 preview: blog10.jpg
 categories:
   - R
-  - tracking
-  - spatial
+  - Tracking
   - English
 output:
   distill::distill_article:

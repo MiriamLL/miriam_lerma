@@ -10,7 +10,6 @@ preview: portada1.jpg
 categories:
   - R
   - Git
-  - Github
   - English
 output:
   distill::distill_article:

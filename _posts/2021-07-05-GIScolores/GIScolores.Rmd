@@ -7,9 +7,8 @@ author:
   - name: Miriam Lerma
 date: 2021-07-05
 categories:
-  - QGIS
+  - GIS
   - R
-  - spatial
   - Español
 output:
   distill::distill_article:

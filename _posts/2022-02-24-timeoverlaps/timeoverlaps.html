@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -112,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Time overlaps"]},{"type":"character","attributes":{},"value":["Find overlapping time periods.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["02-24-2022"]},{"type":"character","attributes":{},"value":["blog8.jpg"]},{"type":"character","attributes":{},"value":["R","tracking","timestamp","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Time overlaps"]},{"type":"character","attributes":{},"value":["Find overlapping time periods.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["02-24-2022"]},{"type":"character","attributes":{},"value":["blog8.jpg"]},{"type":"character","attributes":{},"value":["R","Tracking","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -429,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1264,6 +1261,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1278,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1377,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1399,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1438,7 +1468,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="timeoverlaps_files/header-attrs-2.13/header-attrs.js"></script>
+  <script src="timeoverlaps_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="timeoverlaps_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="timeoverlaps_files/popper-2.6.0/popper.min.js"></script>
   <link href="timeoverlaps_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1472,10 +1502,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Time overlaps</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">R</div>
-<div class="dt=tag">tracking</div>
-<div class="dt=tag">timestamp</div>
-<div class="dt=tag">English</div>
+<div class="dt-tag">R</div>
+<div class="dt-tag">Tracking</div>
+<div class="dt-tag">English</div>
 </div>
 <!--/radix_placeholder_categories-->
 <p><p>Find overlapping time periods.</p></p>
@@ -1499,16 +1528,14 @@ that might have been tracked on different periods <br></p>
 For accessing the data, you need to have the package installed.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#devtools::install_github("MiriamLL/sula")</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#devtools::install_github("MiriamLL/sula")</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>The data is from 10 tracked individuals.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="plot">Plot</h1>
@@ -1516,16 +1543,14 @@ For accessing the data, you need to have the package installed.</p>
 <strong>ggplot</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>In the example data, time and date are in separated columns,
 therefore the first step is to join those columns.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateGMT</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateGMT</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>TimeGMT</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>For plotting times, it is important that the column with the
@@ -1533,8 +1558,7 @@ timestamps is in a time format. Be cautious with the format of your time
 stamps.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span>, <span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>DateTime</span>, <span class='st'>"%d/%m/%Y %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Now for plotting, you can use the timestamp for the x axis and the
@@ -1544,15 +1568,14 @@ also add the name of the column after the argument
 <strong>color=</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>GPS_raw</span>,
-                      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>DateTime</span>,
-                          y<span class='op'>=</span><span class='va'>IDs</span>,
-                          color<span class='op'>=</span><span class='va'>IDs</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>Plot_tracking</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_tracking</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>GPS_raw</span>,</span>
+<span>                      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>DateTime</span>,</span>
+<span>                          y<span class='op'>=</span><span class='va'>IDs</span>,</span>
+<span>                          color<span class='op'>=</span><span class='va'>IDs</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='va'>Plot_tracking</span></span></code></pre>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
@@ -1564,12 +1587,11 @@ modify the legend in the x axis to ‘individuals’, and change the angle
 of the x axis to 60 degrees.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span><span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>""</span>, y <span class='op'>=</span> <span class='st'>"Individuals"</span><span class='op'>)</span> <span class='op'>+</span>
-        <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle<span class='op'>=</span><span class='fl'>60</span>, hjust<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_tracking</span><span class='op'>+</span></span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>""</span>, y <span class='op'>=</span> <span class='st'>"Individuals"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>        <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle<span class='op'>=</span><span class='fl'>60</span>, hjust<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
@@ -1579,24 +1601,21 @@ often you want the breaks.</p>
 <p>For one day breaks:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_datetime</a></span><span class='op'>(</span>date_labels <span class='op'>=</span> <span class='st'>"%d %b %Y"</span>,date_breaks <span class='op'>=</span> <span class='st'>"1 day"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_datetime</a></span><span class='op'>(</span>date_labels <span class='op'>=</span> <span class='st'>"%d %b %Y"</span>,date_breaks <span class='op'>=</span> <span class='st'>"1 day"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <p>For one week breaks:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_datetime</a></span><span class='op'>(</span>date_labels <span class='op'>=</span> <span class='st'>"%d %b %Y"</span>,date_breaks <span class='op'>=</span> <span class='st'>"1 week"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_datetime</a></span><span class='op'>(</span>date_labels <span class='op'>=</span> <span class='st'>"%d %b %Y"</span>,date_breaks <span class='op'>=</span> <span class='st'>"1 week"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
 <p>For one month breaks:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_datetime</a></span><span class='op'>(</span>date_labels <span class='op'>=</span> <span class='st'>"%d %b %Y"</span>,date_breaks <span class='op'>=</span> <span class='st'>"1 month"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_datetime</a></span><span class='op'>(</span>date_labels <span class='op'>=</span> <span class='st'>"%d %b %Y"</span>,date_breaks <span class='op'>=</span> <span class='st'>"1 month"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
 </div>
@@ -1608,8 +1627,7 @@ useful for you to know this argument.</p>
 the line as POSIXct</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>PA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-07 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>PA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-07 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Then you add the line to the ggplot using the function geom_vline (v
@@ -1621,10 +1639,9 @@ The color depends on your preference, here I use red to make it easy to
 see at first glance.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_vline</a></span><span class='op'>(</span>xintercept<span class='op'>=</span><span class='va'>PA</span>,
-                linetype<span class='op'>=</span><span class='fl'>4</span>, colour<span class='op'>=</span><span class='st'>"red"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_tracking</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_vline</a></span><span class='op'>(</span>xintercept<span class='op'>=</span><span class='va'>PA</span>,</span>
+<span>                linetype<span class='op'>=</span><span class='fl'>4</span>, colour<span class='op'>=</span><span class='st'>"red"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
@@ -1635,9 +1652,8 @@ prefer to use annotation</p>
 rectangle to begging and end.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>PA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-01 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
-<span class='va'>PB</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-07 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>PA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-01 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span></span>
+<span><span class='va'>PB</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2017-11-07 00:00:00"</span>, <span class='st'>"%Y-%m-%d %H:%M:%S"</span><span class='op'>)</span>,tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Then I add it to the plot <br> The <strong>xmin</strong> is the time
@@ -1649,11 +1665,10 @@ transparency (the lower the value the more transparent will be, and the
 values go from 0 to 1).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"rect"</span>,
-                         xmin <span class='op'>=</span> <span class='va'>PA</span>, xmax <span class='op'>=</span> <span class='va'>PB</span>, 
-                         ymin <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>, ymax <span class='op'>=</span> <span class='cn'>Inf</span>,  
-                         fill <span class='op'>=</span> <span class='st'>"blue"</span>, alpha<span class='op'>=</span><span class='fl'>0.1</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_tracking</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"rect"</span>,</span>
+<span>                         xmin <span class='op'>=</span> <span class='va'>PA</span>, xmax <span class='op'>=</span> <span class='va'>PB</span>, </span>
+<span>                         ymin <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>, ymax <span class='op'>=</span> <span class='cn'>Inf</span>,  </span>
+<span>                         fill <span class='op'>=</span> <span class='st'>"blue"</span>, alpha<span class='op'>=</span><span class='fl'>0.1</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="timeoverlaps_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
 </div>
@@ -1666,16 +1681,14 @@ save the latest plot you have created.</p>
 extention. Some options are: png, eps, pdf, jpeg, tiff, bmp or svg</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='st'>"~/Figure.png"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='st'>"~/Figure.png"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Note that if you want the figure to be saved on specific folder, you
 need to include the path in the file name.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='st'>"~Results/Figure.png"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='st'>"~Results/Figure.png"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>If you want to create several figures and want to export just
@@ -1683,9 +1696,8 @@ specific ones, you can also use the name of the plot to export only that
 one.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='va'>Plot_tracking</span>, 
-       filename <span class='op'>=</span> <span class='st'>"~/Figura.png"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='va'>Plot_tracking</span>, </span>
+<span>       filename <span class='op'>=</span> <span class='st'>"~/Figura.png"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Also, if you want specific widths and heights, or even dpi, you can
@@ -1693,13 +1705,12 @@ also include it. Just note that the size of the letters might need to be
 adjusted.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='va'>Plot_tracking</span>, 
-       filename <span class='op'>=</span> <span class='st'>"~/Figura.png"</span>,
-       width <span class='op'>=</span> <span class='fl'>24</span>, 
-       height <span class='op'>=</span> <span class='fl'>24</span>, 
-       units <span class='op'>=</span> <span class='st'>"in"</span>,
-       dpi <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='va'>Plot_tracking</span>, </span>
+<span>       filename <span class='op'>=</span> <span class='st'>"~/Figura.png"</span>,</span>
+<span>       width <span class='op'>=</span> <span class='fl'>24</span>, </span>
+<span>       height <span class='op'>=</span> <span class='fl'>24</span>, </span>
+<span>       units <span class='op'>=</span> <span class='st'>"in"</span>,</span>
+<span>       dpi <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>I hope this was useful for you, and if you want to go deep in some

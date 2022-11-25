@@ -8,7 +8,6 @@ author:
 date: 2021-06-02
 categories:
   - R
-  - funciones
   - Español
 output:
   distill::distill_article:

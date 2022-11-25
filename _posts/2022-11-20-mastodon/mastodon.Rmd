@@ -8,8 +8,8 @@ author:
 date: 2022-11-20
 preview: blog17.jpg
 categories:
-  - redes sociales
-  - español
+  - Redes sociales
+  - Español
 output:
   distill::distill_article:
     toc: true

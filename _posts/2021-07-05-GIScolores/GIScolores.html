@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -49,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -72,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Colores en mapas</title>
@@ -110,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Colores en mapas"]},{"type":"character","attributes":{},"value":["Cambiar colores en un en un mapa en ggplot2 y en QGIS.\n"]},{"type":"character","attributes":{},"value":["blog2.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"character","attributes":{},"value":["QGIS","R","spatial","Español"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Colores en mapas"]},{"type":"character","attributes":{},"value":["Cambiar colores en un en un mapa en ggplot2 y en QGIS.\n"]},{"type":"character","attributes":{},"value":["blog2.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-07-05"]},{"type":"character","attributes":{},"value":["GIS","R","Español"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -427,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1262,7 +1261,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1273,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1372,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1394,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1433,8 +1468,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="GIScolores_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="GIScolores_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="GIScolores_files/header-attrs-2.14/header-attrs.js"></script>
+  <script src="GIScolores_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="GIScolores_files/popper-2.6.0/popper.min.js"></script>
   <link href="GIScolores_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="GIScolores_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1467,10 +1502,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Colores en mapas</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">QGIS</div>
-<div class="dt=tag">R</div>
-<div class="dt=tag">spatial</div>
-<div class="dt=tag">Español</div>
+<div class="dt-tag">GIS</div>
+<div class="dt-tag">R</div>
+<div class="dt-tag">Español</div>
 </div>
 <!--/radix_placeholder_categories-->
 <p><p>Cambiar colores en un en un mapa en ggplot2 y en QGIS.</p></p>
@@ -1495,7 +1529,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#agregar-un-sitio">Agregar un sitio</a></li>
 <li><a href="#agregar-varios-sitios">Agregar varios sitios</a></li>
 </ul></li>
-<li><a href="#qgis-️">QGIS 🗺️</a></li>
+<li><a href="#qgis">QGIS 🗺️</a></li>
 </ul>
 </nav>
 </div>
@@ -1503,103 +1537,125 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>Este post es acerca de como crear un mapa base de México, incluir puntos para sitios de muestreo y cambiar los colores de puntos en un mapa en ggplot y en QGIS.</p>
+<p>Este post es acerca de como crear un mapa base de México, incluir
+puntos para sitios de muestreo y cambiar los colores de puntos en un
+mapa en ggplot y en QGIS.</p>
 <h1 id="mapa">Mapa 🌎</h1>
-<p>Para crear y modificar mapas siguiendo las instrucciones de este post necesitamos los siguientes paquetes:</p>
+<p>Para crear y modificar mapas siguiendo las instrucciones de este post
+necesitamos los siguientes paquetes:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/raster'>raster</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://paleolimbot.github.io/ggspatial/'>ggspatial</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/raster'>raster</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://paleolimbot.github.io/ggspatial/'>ggspatial</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Si no los tienes instalados usa la función install.packages()</p>
-<p>Existen shapefiles disponibles para México que se pueden descargar directamente en R. <br> - Para descargar los shapefiles, el paquete <strong>raster</strong> cuenta con la función getData. <br></p>
-<p>Para crear un mapa: <br> - El paquete <strong>sf</strong> es la que utilizaremos para el manejo de los shapefiles. <br> - El paquete<strong>ggplot2</strong> es crear las visualizaciones.<br> - El paquete <strong>ggspatial</strong> para agregar la escala.<br></p>
+<p>Existen shapefiles disponibles para México que se pueden descargar
+directamente en R. <br> - Para descargar los shapefiles, el paquete
+<strong>raster</strong> cuenta con la función getData. <br></p>
+<p>Para crear un mapa: <br> - El paquete <strong>sf</strong> es la que
+utilizaremos para el manejo de los shapefiles. <br> - El
+paquete<strong>ggplot2</strong> es crear las visualizaciones.<br> - El
+paquete <strong>ggspatial</strong> para agregar la escala.<br></p>
 <h2 id="descargar-datos">Descargar datos</h2>
-<p>Lo primero seria descargar los datos usando la función getData. <br> Una vez cargados los datos, podemos hacer una selección de los estados que nos interesen. <br></p>
+<p>Lo primero seria descargar los datos usando la función getData. <br>
+Una vez cargados los datos, podemos hacer una selección de los estados
+que nos interesen. <br></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Mexico</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/getData.html'>getData</a></span><span class='op'>(</span><span class='st'>'GADM'</span>, country<span class='op'>=</span><span class='st'>'Mexico'</span>, level<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>Queretaro</span> <span class='op'>&lt;-</span> <span class='va'>Mexico</span><span class='op'>[</span><span class='va'>Mexico</span><span class='op'>$</span><span class='va'>NAME_1</span> <span class='op'>==</span> <span class='st'>"Querétaro"</span>,<span class='op'>]</span>
-<span class='va'>Guanajuato</span> <span class='op'>&lt;-</span> <span class='va'>Mexico</span><span class='op'>[</span><span class='va'>Mexico</span><span class='op'>$</span><span class='va'>NAME_1</span> <span class='op'>==</span> <span class='st'>"Guanajuato"</span>,<span class='op'>]</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Mexico</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/getData.html'>getData</a></span><span class='op'>(</span><span class='st'>'GADM'</span>, country<span class='op'>=</span><span class='st'>'Mexico'</span>, level<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='va'>Queretaro</span> <span class='op'>&lt;-</span> <span class='va'>Mexico</span><span class='op'>[</span><span class='va'>Mexico</span><span class='op'>$</span><span class='va'>NAME_1</span> <span class='op'>==</span> <span class='st'>"Querétaro"</span>,<span class='op'>]</span></span>
+<span><span class='va'>Guanajuato</span> <span class='op'>&lt;-</span> <span class='va'>Mexico</span><span class='op'>[</span><span class='va'>Mexico</span><span class='op'>$</span><span class='va'>NAME_1</span> <span class='op'>==</span> <span class='st'>"Guanajuato"</span>,<span class='op'>]</span></span></code></pre>
 </div>
 </div>
 <h2 id="mapa-base">Mapa base</h2>
-<p>Para crear un mapa centrado en estos estados se puede usar el siguiente código:</p>
+<p>Para crear un mapa centrado en estos estados se puede usar el
+siguiente código:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MapaBase</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>Mexico</span>, fill<span class='op'>=</span><span class='st'>'#264653'</span>, col<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>Queretaro</span>, fill<span class='op'>=</span><span class='st'>'#2a9d8f'</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#para resaltar estados</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>Guanajuato</span>, fill<span class='op'>=</span><span class='st'>'#2a9d8f'</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#para resaltar estados</span>
-  
-  <span class='fu'><a href='https://paleolimbot.github.io/ggspatial/reference/annotation_north_arrow.html'>annotation_north_arrow</a></span><span class='op'>(</span>location<span class='op'>=</span><span class='st'>"tr"</span>,which_north<span class='op'>=</span><span class='st'>"true"</span>,style<span class='op'>=</span><span class='fu'><a href='https://paleolimbot.github.io/ggspatial/reference/north_arrow_orienteering.html'>north_arrow_fancy_orienteering</a></span> <span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#Norte</span>
-  <span class='fu'>ggspatial</span><span class='fu'>::</span><span class='fu'><a href='https://paleolimbot.github.io/ggspatial/reference/annotation_scale.html'>annotation_scale</a></span><span class='op'>(</span>location <span class='op'>=</span> <span class='st'>"bl"</span>,bar_cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grey60"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#Escala</span>
-
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>105</span>,<span class='op'>-</span><span class='fl'>95</span><span class='op'>)</span>, <span class='co'>#limites del mapa</span>
-           ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>18</span> ,<span class='fl'>24</span><span class='op'>)</span>, <span class='co'>#limites del mapa</span>
-           expand <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='va'>MapaBase</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>MapaBase</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>Mexico</span>, fill<span class='op'>=</span><span class='st'>'#264653'</span>, col<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>Queretaro</span>, fill<span class='op'>=</span><span class='st'>'#2a9d8f'</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#para resaltar estados</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>Guanajuato</span>, fill<span class='op'>=</span><span class='st'>'#2a9d8f'</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#para resaltar estados</span></span>
+<span>  </span>
+<span>  <span class='fu'><a href='https://paleolimbot.github.io/ggspatial/reference/annotation_north_arrow.html'>annotation_north_arrow</a></span><span class='op'>(</span>location<span class='op'>=</span><span class='st'>"tr"</span>,which_north<span class='op'>=</span><span class='st'>"true"</span>,style<span class='op'>=</span><span class='fu'><a href='https://paleolimbot.github.io/ggspatial/reference/north_arrow_orienteering.html'>north_arrow_fancy_orienteering</a></span> <span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#Norte</span></span>
+<span>  <span class='fu'>ggspatial</span><span class='fu'>::</span><span class='fu'><a href='https://paleolimbot.github.io/ggspatial/reference/annotation_scale.html'>annotation_scale</a></span><span class='op'>(</span>location <span class='op'>=</span> <span class='st'>"bl"</span>,bar_cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grey60"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#Escala</span></span>
+<span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>105</span>,<span class='op'>-</span><span class='fl'>95</span><span class='op'>)</span>, <span class='co'>#limites del mapa</span></span>
+<span>           ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>18</span> ,<span class='fl'>24</span><span class='op'>)</span>, <span class='co'>#limites del mapa</span></span>
+<span>           expand <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span><span class='va'>MapaBase</span></span></code></pre>
 </div>
 <p><img src="GIScolores_files/figure-html5/unnamed-chunk-3-1.png" width="480" /></p>
 </div>
-<p>Dentro de geom_sf el argumento <strong>fill</strong> es el color con el que se rellenaran los polígonos, lo puedes cambiar a como más te guste. En el mapa use códigos hexa-númericos que pueden ser encontrados en <a href="https://coolors.co/">coolors</a>, para más instrucciones <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16">ve aquí</a></p>
+<p>Dentro de geom_sf el argumento <strong>fill</strong> es el color con
+el que se rellenaran los polígonos, lo puedes cambiar a como más te
+guste. En el mapa use códigos hexa-númericos que pueden ser encontrados
+en <a href="https://coolors.co/">coolors</a>, para más instrucciones <a
+href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16">ve
+aquí</a></p>
 <h2 id="agregar-un-sitio">Agregar un sitio</h2>
-<p>Ahora para agregar sitios, se deben especificar las coordenadas. En el ejemplo el argumento geom_point <strong>x</strong> y <strong>y</strong> son las coordenadas. En color elegí el color que le quiero dar a ese punto y lo escribí como código hexa-númerico (hex).</p>
+<p>Ahora para agregar sitios, se deben especificar las coordenadas. En
+el ejemplo el argumento geom_point <strong>x</strong> y
+<strong>y</strong> son las coordenadas. En color elegí el color que le
+quiero dar a ese punto y lo escribí como código hexa-númerico (hex).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MapaSitios</span><span class='op'>&lt;-</span><span class='va'>MapaBase</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>-</span><span class='fl'>100</span>, y<span class='op'>=</span><span class='fl'>21</span>, 
-                                    color<span class='op'>=</span><span class='st'>'#e63946'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#elegir el color</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span> <span class='co'>#evitar la etiqueta</span>
-<span class='va'>MapaSitios</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>MapaSitios</span><span class='op'>&lt;-</span><span class='va'>MapaBase</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>-</span><span class='fl'>100</span>, y<span class='op'>=</span><span class='fl'>21</span>, </span>
+<span>                                    color<span class='op'>=</span><span class='st'>'#e63946'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='co'>#elegir el color</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span> <span class='co'>#evitar la etiqueta</span></span>
+<span><span class='va'>MapaSitios</span></span></code></pre>
 </div>
 <p><img src="GIScolores_files/figure-html5/unnamed-chunk-4-1.png" width="480" /></p>
 </div>
 <h2 id="agregar-varios-sitios">Agregar varios sitios</h2>
-<p>Otra opción es que si tienes muchos puntos, es más práctico crear o cargar un data frame.</p>
+<p>Otra opción es que si tienes muchos puntos, es más práctico crear o
+cargar un data frame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>DatosInventados</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>long<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>102</span>,<span class='op'>-</span><span class='fl'>101</span>,<span class='op'>-</span><span class='fl'>100</span>,<span class='op'>-</span><span class='fl'>99</span>,<span class='op'>-</span><span class='fl'>98</span><span class='op'>)</span>,
-           lat<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>21.5</span>,<span class='fl'>21.3</span>,<span class='fl'>20.9</span>,<span class='fl'>21</span>,<span class='fl'>20</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DatosInventados</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>long<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>102</span>,<span class='op'>-</span><span class='fl'>101</span>,<span class='op'>-</span><span class='fl'>100</span>,<span class='op'>-</span><span class='fl'>99</span>,<span class='op'>-</span><span class='fl'>98</span><span class='op'>)</span>,</span>
+<span>           lat<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>21.5</span>,<span class='fl'>21.3</span>,<span class='fl'>20.9</span>,<span class='fl'>21</span>,<span class='fl'>20</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Puedes concatenar varios códigos hex y crear tu propia paleta</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>paleta</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#f8ffe5"</span>,<span class='st'>"#06d6a0"</span>,<span class='st'>"#1b9aaa"</span>,<span class='st'>"#ef476f"</span>,<span class='st'>"#ffc43d"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>paleta</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#f8ffe5"</span>,<span class='st'>"#06d6a0"</span>,<span class='st'>"#1b9aaa"</span>,<span class='st'>"#ef476f"</span>,<span class='st'>"#ffc43d"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Agregar la paleta a las especificaciones del gráfico es dentro de geom_point, en <strong>color</strong>. Para hacer los puntos más grandes también puedes agregar el argumento <strong>size</strong> en <strong>geom_point</strong></p>
+<p>Agregar la paleta a las especificaciones del gráfico es dentro de
+geom_point, en <strong>color</strong>. Para hacer los puntos más grandes
+también puedes agregar el argumento <strong>size</strong> en
+<strong>geom_point</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MapaSitios</span><span class='op'>&lt;-</span><span class='va'>MapaBase</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>DatosInventados</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>long</span>, y<span class='op'>=</span><span class='va'>lat</span>,color<span class='op'>=</span><span class='va'>paleta</span><span class='op'>)</span>,size<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span> <span class='co'>#evitar la etiqueta</span>
-<span class='va'>MapaSitios</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>MapaSitios</span><span class='op'>&lt;-</span><span class='va'>MapaBase</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>DatosInventados</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>long</span>, y<span class='op'>=</span><span class='va'>lat</span>,color<span class='op'>=</span><span class='va'>paleta</span><span class='op'>)</span>,size<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span> <span class='co'>#evitar la etiqueta</span></span>
+<span><span class='va'>MapaSitios</span></span></code></pre>
 </div>
 <p><img src="GIScolores_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
-<p>Para exportar el mapa, <a href="https://miriamll.github.io/Curso_CIAD/Clase2#49">ve aquí</a></p>
-<h1 id="qgis-️">QGIS 🗺️</h1>
+<p>Para exportar el mapa, <a
+href="https://miriamll.github.io/Curso_CIAD/Clase2#49">ve aquí</a></p>
+<h1 id="qgis">QGIS 🗺️</h1>
 <p>Ahora, para cambiar colores en QGIS.</p>
-<p>Primero asumiré que tienes cargados tus datos en QGIS. Una vez cargados los datos, elige la capa, y ve a propiedades o <strong>properties</strong>.</p>
+<p>Primero asumiré que tienes cargados tus datos en QGIS. Una vez
+cargados los datos, elige la capa, y ve a propiedades o
+<strong>properties</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie1.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
-<p>Ahora dale click en <strong>symbology</strong>. En la parte superior elige <strong>categorized</strong>, elige en <strong>value</strong> la columna de los nombres de los sitios o algo que los distinga entre si.</p>
+<p>Ahora dale click en <strong>symbology</strong>. En la parte superior
+elige <strong>categorized</strong>, elige en <strong>value</strong> la
+columna de los nombres de los sitios o algo que los distinga entre
+si.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie2.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
@@ -1607,12 +1663,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie3.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
-<p>Ahora debes tener la opción de cambiar los colores de cada punto.<br />
+<p>Ahora debes tener la opción de cambiar los colores de cada
+punto.<br />
 Dale click izquierdo y elige <strong>Edit symbol</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie4.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
-<p>Ahora puedes darle doble click en el color y en la parte que dice <strong>html notation</strong> cambiarle el código hexagecimal por el que te interesa, puedes buscarlo en coolors.</p>
+<p>Ahora puedes darle doble click en el color y en la parte que dice
+<strong>html notation</strong> cambiarle el código hexagecimal por el
+que te interesa, puedes buscarlo en coolors.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="QGIS/Folie5.JPG" width="640" style="display: block; margin: auto;" /></p>
 </div>
@@ -1620,7 +1679,8 @@ Dale click izquierdo y elige <strong>Edit symbol</strong>.</p>
 <h1>
 🥳
 </h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

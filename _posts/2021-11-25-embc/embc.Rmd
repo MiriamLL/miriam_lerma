@@ -9,7 +9,7 @@ date: 2021-11-25
 preview: blog6.jpg
 categories:
   - R
-  - funciones
+  - Tracking
   - English
 output:
   distill::distill_article:

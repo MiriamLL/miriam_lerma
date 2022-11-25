@@ -9,8 +9,7 @@ date: 09-24-2021
 preview: blog1.jpg
 categories:
   - R
-  - spatial
-  - shapefiles
+  - Tracking
   - English
 output:
   distill::distill_article:
