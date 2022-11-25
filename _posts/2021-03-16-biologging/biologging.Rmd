@@ -4,6 +4,7 @@ description: |
   Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos. 
 author:
   - name: Miriam Lerma
+preview: biologging.png
 date: 2021-02-16
 output:
   distill::distill_article:
@@ -30,6 +31,14 @@ Iré subiendo materiales conforme se vayan actualizando.
 ## Descargar tus datos.
 En esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras gráficas. <br> 
 
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_tracking/Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
+
 ```{r icon-links1,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
@@ -39,12 +48,17 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte1.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png")
-```
 
 ## Corregir horas.
 En esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. <br>
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_tracking/Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CorregirGMT.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links2,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -55,12 +69,17 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte2.pdf")
 ```
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CorregirGMT.png")
-```
 
 ## Editar GPS.
 En esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. <br>
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_tracking/Parte3"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/EditarGPS.png" style="width:500px"></a>
+   </left>
+</body>
+</html>
 
 ```{r icon-links3,echo=FALSE}
 icon_link(icon = "fas fa-images",
@@ -71,6 +90,4 @@ icon_link(icon = "fas fa-download",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte3.pdf")
 ```  
 
-```{r, echo=FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/EditarGPS.png")
-```
+

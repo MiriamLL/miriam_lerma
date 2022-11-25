@@ -4,6 +4,7 @@ description: |
   Desde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo trabajando tus datos y análisis en R.
 authors:
   - name: Miriam Lerma
+preview: cursoR.png
 date: '2021-01-28'
 output:
   distill::distill_article:
