@@ -2,6 +2,7 @@
 title: "Blog"
 listing:
   posts:
+    - 2022-12-04-day-night
     - 2022-11-20-mastodon
     - 2022-10-04-identify-gaps
     - 2022-09-13-hr-considerations
