@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2022-04-07
-preview: blog10.jpg
+preview: blog10b.jpg
 categories:
   - R
   - Tracking
