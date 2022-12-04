@@ -50,7 +50,7 @@ knitr::include_graphics(Imagen1)
 <html>
 <body>
    <center>
-      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf"><img src="Poster_BSL.png" style="width:1100px"></a>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf"><img src="Poster_BSL.png" style="width:600px"></a>
    </center>
 </body>
 </html>

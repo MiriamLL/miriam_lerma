@@ -1,0 +1,90 @@
+---
+title: "Day and night"
+description: |
+  Create a column with the classification day or nigth
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-12-04
+preview: blog18.jpg
+categories:
+  - R
+  - Tracking
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+This post is to create a column day or night.   
+
+
+## Data
+For the exercises, test data is from masked boobies. <br>
+To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
+
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+library(sula)
+GPS01<-(GPS_01)
+```
+
+## Transform time and date
+```{r}
+library(dplyr)
+```
+
+Identify column with time date data
+
+```{r}
+GPS01$dt <- as.POSIXct(strptime(GPS01$tStamp, "%Y-%m-%d %H:%M:%S"))
+```
+
+
+## Extract hours
+
+Once is in time and date format, you can extract just the hours
+
+```{r}
+GPS01$hour <- as.numeric(substr(GPS01$dt, 12, 13))
+```
+
+## Classify day and night
+Create a classification base on the time of sunset and sunrise.
+
+```{r}
+GPS01<-GPS01 %>%
+ mutate(
+    day_night = case_when(
+      hour > 20 |  hour < 6 ~ "night",
+      TRUE  ~ "day"
+    ))
+```
+
+## Quantify proportions
+
+```{r}
+library(tidyverse)
+```
+
+Now you can quantify how much your animals were out at night
+
+```{r}
+GPS01 %>%
+  group_by(day_night)%>%
+  count()%>%
+  pivot_wider(names_from = day_night, values_from = n)
+```
+
+I hope this might help you
+
+## Further reads
+
+Classify activities at night [in penguins](https://www.miriam-lerma.com/posts/bls7)
+

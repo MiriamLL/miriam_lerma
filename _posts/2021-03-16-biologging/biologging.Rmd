@@ -34,7 +34,7 @@ En esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus p
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_tracking/Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_tracking/Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -55,7 +55,7 @@ En esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_tracking/Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CorregirGMT.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_tracking/Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CorregirGMT.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -76,7 +76,7 @@ En esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. <br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_tracking/Parte3"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/EditarGPS.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_tracking/Parte3"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/EditarGPS.png" style="width:300px"></a>
    </left>
 </body>
 </html>

@@ -23,7 +23,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -50,17 +49,16 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
+code span.at { color: #20794d; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
+code span.cf { color: #007ba5; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -74,18 +72,17 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
+code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
+code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.sc { color: #20794d; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
-
 
   <!--radix_placeholder_meta_tags-->
   <title>Clase de Rmd</title>
@@ -118,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Rmd.png","rmd_files/anchor-4.2.2/anchor.min.js","rmd_files/bowser-1.9.3/bowser.min.js","rmd_files/distill-2.2.21/template.v2.js","rmd_files/header-attrs-2.6/header-attrs.js","rmd_files/header-attrs-2.8/header-attrs.js","rmd_files/jquery-1.11.3/jquery.min.js","rmd_files/popper-2.6.0/popper.min.js","rmd_files/tippy-6.2.7/tippy-bundle.umd.min.js","rmd_files/tippy-6.2.7/tippy-light-border.css","rmd_files/tippy-6.2.7/tippy.css","rmd_files/tippy-6.2.7/tippy.umd.min.js","rmd_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Rmd.png","rmd_files/anchor-4.2.2/anchor.min.js","rmd_files/bowser-1.9.3/bowser.min.js","rmd_files/distill-2.2.21/template.v2.js","rmd_files/header-attrs-2.14/header-attrs.js","rmd_files/header-attrs-2.6/header-attrs.js","rmd_files/header-attrs-2.8/header-attrs.js","rmd_files/jquery-1.11.3/jquery.min.js","rmd_files/jquery-3.6.0/jquery-3.6.0.js","rmd_files/jquery-3.6.0/jquery-3.6.0.min.js","rmd_files/jquery-3.6.0/jquery-3.6.0.min.map","rmd_files/popper-2.6.0/popper.min.js","rmd_files/tippy-6.2.7/tippy-bundle.umd.min.js","rmd_files/tippy-6.2.7/tippy-light-border.css","rmd_files/tippy-6.2.7/tippy.css","rmd_files/tippy-6.2.7/tippy.umd.min.js","rmd_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -430,6 +427,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
   }
 
   .figure .caption {
@@ -1261,16 +1262,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
-          $(this).html(fn.shadowRoot.querySelector("sup"))
-          $(this).id = fn.id
-          fn.remove()
-        }
-        var refs = $(this).attr('data-cites').split(" ");
-        var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
-        }).join("\n");
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1281,31 +1273,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-
-      // fix footnotes in tables (#411)
-      // replacing broken distill.pub feature
-      $('table d-footnote').each(function() {
-        // we replace internal showAtNode methode which is triggered when hovering a footnote
-        this.hoverBox.showAtNode = function(node) {
-          // ported from https://github.com/distillpub/template/pull/105/files
-          calcOffset = function(elem) {
-              let x = elem.offsetLeft;
-              let y = elem.offsetTop;
-              // Traverse upwards until an `absolute` element is found or `elem`
-              // becomes null.
-              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
-                  x += elem.offsetLeft;
-                  y += elem.offsetTop;
-              }
-
-              return { left: x, top: y };
-          }
-          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-          const bbox = node.getBoundingClientRect();
-          const offset = calcOffset(node);
-          this.show([offset.left + bbox.width, offset.top + bbox.height]);
-        }
-      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1405,8 +1372,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
-      // ignore leaflet img layers (#106)
-      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1429,7 +1394,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
 
@@ -1468,8 +1433,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="rmd_files/header-attrs-2.14/header-attrs.js"></script>
-  <script src="rmd_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="rmd_files/header-attrs-2.9/header-attrs.js"></script>
+  <script src="rmd_files/jquery-1.11.3/jquery.min.js"></script>
   <script src="rmd_files/popper-2.6.0/popper.min.js"></script>
   <link href="rmd_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="rmd_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1489,7 +1454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Clase de Rmd","description":"Desde como crear documentos en Rmd hasta como compartirlos.","authors":[{"author":"Miriam Lerma","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-16T00:00:00.000+01:00","citationText":"Lerma, 2021"}
+{"title":"Clase de Rmd","description":"Desde como crear documentos en Rmd hasta como compartirlos.","authors":[{"author":"Miriam Lerma","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-16T00:00:00.000-03:00","citationText":"Lerma, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1502,8 +1467,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Clase de Rmd</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Desde como crear documentos en Rmd hasta como
-compartirlos.</p></p>
+<p><p>Desde como crear documentos en Rmd hasta como compartirlos.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1520,12 +1484,9 @@ compartirlos.</p></p>
 <li><a href="#rmarkdown">Rmarkdown</a>
 <ul>
 <li><a href="#rmarkdown.">Rmarkdown.</a></li>
-<li><a href="#rmarkdown-para-escribir-artículos">Rmarkdown para escribir
-artículos</a></li>
-<li><a href="#presentar-tus-resultados-usando-xaringan.">Presentar tus
-resultados usando Xaringan.</a></li>
-<li><a href="#estilizar-tus-dispositivas-xaringan.">Estilizar tus
-dispositivas Xaringan.</a></li>
+<li><a href="#rmarkdown-para-escribir-artículos">Rmarkdown para escribir artículos</a></li>
+<li><a href="#presentar-tus-resultados-usando-xaringan.">Presentar tus resultados usando Xaringan.</a></li>
+<li><a href="#estilizar-tus-dispositivas-xaringan.">Estilizar tus dispositivas Xaringan.</a></li>
 <li><a href="#github-zenodo-y-git.">Github, Zenodo y Git.</a></li>
 <li><a href="#reproducibilidad.">Reproducibilidad.</a></li>
 </ul></li>
@@ -1537,96 +1498,70 @@ dispositivas Xaringan.</a></li>
 </div>
 <h1 id="rmarkdown">Rmarkdown</h1>
 <p>Bienvenido!</p>
-<p>Este material fue preparado para técnicos y estudiantes de posgrado
-del Centro de Investigación de Alimentación y Desarrollo <a
-href="https://www.ciad.mx/">CIAD</a>.</p>
-<p>No obstante, espero sea de ayuda para cualquiera que tenga
-intenciones de aprender R.</p>
+<p>Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo <a href="https://www.ciad.mx/">CIAD</a>.</p>
+<p>No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.</p>
 <p>Iré subiendo materiales conforme se vayan actualizando.</p>
 <h2 id="rmarkdown.">Rmarkdown.</h2>
 <p>En esta clase aprenderás como crear documentos en Rmd. <br></p>
 <html>
 <body>
-<left>
-<a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png" style="width:500px"></a>
-</left>
+<left> <a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png" style="width:300px"></a> </left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
 <p><a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte1.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
 </div>
-<h2 id="rmarkdown-para-escribir-artículos">Rmarkdown para escribir
-artículos</h2>
-<p>En esta clase aprenderás como agregar citas y formato de revista.
-<br></p>
+<h2 id="rmarkdown-para-escribir-artículos">Rmarkdown para escribir artículos</h2>
+<p>En esta clase aprenderás como agregar citas y formato de revista. <br></p>
 <html>
 <body>
-<left>
-<a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase10.png" style="width:500px"></a>
-</left>
+<left> <a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase10.png" style="width:300px"></a> </left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
 <p><a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte2.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
 </div>
-<h2 id="presentar-tus-resultados-usando-xaringan.">Presentar tus
-resultados usando Xaringan.</h2>
-<p>En esta clase aprenderás como crear presentaciones en Xaringan.
-Podrás incluir tablas y figuras sin salir de RStudio. <br></p>
+<h2 id="presentar-tus-resultados-usando-xaringan.">Presentar tus resultados usando Xaringan.</h2>
+<p>En esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. <br></p>
 <html>
 <body>
-<left>
-<a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png" style="width:500px"></a>
-</left>
+<left> <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png" style="width:300px"></a> </left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
 <p><a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte1.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
 </div>
-<h2 id="estilizar-tus-dispositivas-xaringan.">Estilizar tus dispositivas
-Xaringan.</h2>
-<p>En esta clase aprenderás como cambiar el estilo de letras o colores
-de tus presentaciones en Xaringan. También aprenderás como compartirlas
-ya sea en github o en pdf. <br></p>
+<h2 id="estilizar-tus-dispositivas-xaringan.">Estilizar tus dispositivas Xaringan.</h2>
+<p>En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. También aprenderás como compartirlas ya sea en github o en pdf. <br></p>
 <html>
 <body>
-<left>
-<a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11Xaringan.png" style="width:500px"></a>
-</left>
+<left> <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11Xaringan.png" style="width:300px"></a> </left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
 <p><a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte2.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
 </div>
 <h2 id="github-zenodo-y-git.">Github, Zenodo y Git.</h2>
-<p>En esta clase aprenderás como crear un repositorio en github, como
-utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de
-Git. <br></p>
+<p>En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br></p>
 <html>
 <body>
-<left>
-<a href="https://miriamll.github.io/Curso_CIAD/GitGithubZenodo"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase12.png" style="width:500px"></a>
-</left>
+<left> <a href="https://miriamll.github.io/Curso_CIAD/GitGithubZenodo"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase12.png" style="width:300px"></a> </left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
 <p><a href="https://miriamll.github.io/Curso_CIAD/GitGithubZenodo" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/GitGithubZenodo.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
 </div>
 <h2 id="reproducibilidad.">Reproducibilidad.</h2>
-<p>En esta clase verás básicos de reproducibilidad en la ciencia y en
-las publicaciones. <br></p>
+<p>En esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. <br></p>
 <html>
 <body>
-<left>
-<a href="https://miriamll.github.io/Curso_CIAD/Repro#1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase13.png" style="width:500px"></a>
-</left>
+<left> <a href="https://miriamll.github.io/Curso_CIAD/Repro#1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase13.png" style="width:300px"></a> </left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
 <p><a href="https://miriamll.github.io/Curso_CIAD/Repro#1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Repro.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
 </div>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

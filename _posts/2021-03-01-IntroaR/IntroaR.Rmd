@@ -34,7 +34,7 @@ En esta clase aprenderás a abrir RStudio e identificar sus partes. <br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -55,7 +55,7 @@ En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y ca
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase1Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase2.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase1Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase2.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -78,7 +78,7 @@ En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráfic
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase3.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase3.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -100,7 +100,7 @@ En esta clase aprenderás algunas funciones básicas para realizar operaciones m
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase4.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase4.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -123,7 +123,7 @@ En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus 
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase5.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase5.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -145,7 +145,7 @@ En esta clase aprenderás porque es importante trabajar por proyectos, como crea
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase4Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase4Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -168,7 +168,7 @@ En esta clase aprenderás como explorar tus datos, cuales son los argumentos par
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase7"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase7"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -190,7 +190,7 @@ En esta clase aprenderás como convertir a factor, cuales son los argumentos par
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase8"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase8"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -213,7 +213,7 @@ Esta clase es una introducción a los modelos mixtos y a la selección de modelo
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png" style="width:500px"></a>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png" style="width:300px"></a>
    </left>
 </body>
 </html>
