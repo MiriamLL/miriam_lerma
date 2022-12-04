@@ -1,0 +1,105 @@
+---
+title: "Mapa estatico en QGIS"
+description: |
+  Agregar un mapa base estatico en QGIS
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2022-12-20
+preview: blog18.jpg
+categories:
+  - GIS
+  - Español
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+Este post es para compartir los pasos que seguí para agregar un mapa estatico de google a mi QGIS.
+
+
+# QGIS
+
+Actualmente cuento con QGIS 3.28.1 Firenze
+Para [descargarlo](https://www.qgis.org/en/site/forusers/download.html)
+
+```{r}
+
+```
+
+
+# Google cloud
+
+1. Lo primero que hice fue entrar a esta liga de google [cloud](https://console.cloud.google.com/getting-started?pli=1)
+
+Alli tienes que registrarte y aceptar los terminos de uso. 
+
+Desafortunadamente tuve que ponder mis datos de la tarjeta para poder usar este servicio, aunque no se me cobro nada. 
+
+```{r, echo=FALSE}
+library(here)
+File<-paste0(here(),"/_posts/2022-11-28-streetmap/")
+Imagen1<-paste0(File,"Imagen1.png")
+```
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(Imagen1)
+```
+
+2. Cree un nuevo proyecto
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(paste0(File,"Imgen2.jpg"))
+```
+
+3. No pude ninguna ubicacion relevante
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(paste0(File,"Imagen3.png"))
+```
+
+
+4. Me fui a la parte de APIs y servicios
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(paste0(File,"Imagen4.png"))
+```
+
+5. Me aparecio un buscador en el que escribi **static**
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(paste0(File,"Imagen5.png"))
+```
+
+6. Encontre el que me interesaba
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(paste0(File,"Imagen6.png"))
+```
+
+7. Le di en **habilitar**
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(paste0(File,"Imagen7.png"))
+```
+
+
+Esto me dio acceso a varios tipos de mapas
+
+```{r, fig.height=6,echo=FALSE, fig.align='center'}
+knitr::include_graphics(paste0(File,"Imagen8.png"))
+```
+
+Fuente: [Medium](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922)
+
+
+## Leer más
+
+[Agregar mapa de fondo en QGIS en inglés](https://www.littlemissdata.com/blog/maps)
+
+[Google API](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922)
