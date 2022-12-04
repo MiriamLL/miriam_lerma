@@ -23,7 +23,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -50,17 +49,16 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
+code span.at { color: #20794d; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
+code span.cf { color: #007ba5; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -74,18 +72,17 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
+code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
+code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.sc { color: #20794d; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
-
 
   <!--radix_placeholder_meta_tags-->
   <title>BLS7</title>
@@ -430,6 +427,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
   }
 
   .figure .caption {
@@ -1261,16 +1262,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
-          $(this).html(fn.shadowRoot.querySelector("sup"))
-          $(this).id = fn.id
-          fn.remove()
-        }
-        var refs = $(this).attr('data-cites').split(" ");
-        var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
-        }).join("\n");
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1281,31 +1273,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-
-      // fix footnotes in tables (#411)
-      // replacing broken distill.pub feature
-      $('table d-footnote').each(function() {
-        // we replace internal showAtNode methode which is triggered when hovering a footnote
-        this.hoverBox.showAtNode = function(node) {
-          // ported from https://github.com/distillpub/template/pull/105/files
-          calcOffset = function(elem) {
-              let x = elem.offsetLeft;
-              let y = elem.offsetTop;
-              // Traverse upwards until an `absolute` element is found or `elem`
-              // becomes null.
-              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
-                  x += elem.offsetLeft;
-                  y += elem.offsetTop;
-              }
-
-              return { left: x, top: y };
-          }
-          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-          const bbox = node.getBoundingClientRect();
-          const offset = calcOffset(node);
-          this.show([offset.left + bbox.width, offset.top + bbox.height]);
-        }
-      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1405,8 +1372,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
-      // ignore leaflet img layers (#106)
-      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1429,7 +1394,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
 
@@ -1468,8 +1433,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="bls7_files/header-attrs-2.14/header-attrs.js"></script>
-  <script src="bls7_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="bls7_files/header-attrs-2.9/header-attrs.js"></script>
+  <script src="bls7_files/jquery-1.11.3/jquery.min.js"></script>
   <script src="bls7_files/popper-2.6.0/popper.min.js"></script>
   <link href="bls7_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="bls7_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1489,7 +1454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"BLS7","description":"Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Island, Northern Chile.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-23T00:00:00.000+02:00","citationText":"Lerma, 2021"}
+{"title":"BLS7","description":"Diel foraging behaviour of Humboldt penguins *Spheniscus humboldti* at Tilgo Island, Northern Chile.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-23T00:00:00.000-03:00","citationText":"Lerma, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1502,12 +1467,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>BLS7</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt-tag">Presentation</div>
-<div class="dt-tag">English</div>
+<div class="dt=tag">Presentation</div>
+<div class="dt=tag">English</div>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>Diel foraging behaviour of Humboldt penguins <em>Spheniscus
-humboldti</em> at Tilgo Island, Northern Chile.</p></p>
+<p><p>Diel foraging behaviour of Humboldt penguins <em>Spheniscus humboldti</em> at Tilgo Island, Northern Chile.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1518,11 +1482,8 @@ humboldti</em> at Tilgo Island, Northern Chile.</p></p>
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p>This post is dedicated to the poster and presentation for the
-Bio-Logging Symposium (<a href="https://www.bls7hawaii.com"
-class="uri">https://www.bls7hawaii.com</a>)</p>
-<p>Diel foraging behaviour of Humboldt penguins <em>Spheniscus
-humboldti</em> at Tilgo Island, Northern Chile</p>
+<p>This post is dedicated to the poster and presentation for the Bio-Logging Symposium (<a href="https://www.bls7hawaii.com" class="uri">https://www.bls7hawaii.com</a>)</p>
+<p>Diel foraging behaviour of Humboldt penguins <em>Spheniscus humboldti</em> at Tilgo Island, Northern Chile</p>
 <p>⚡⚡⚡⚡</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Preview poster</a></p>
@@ -1536,89 +1497,38 @@ humboldti</em> at Tilgo Island, Northern Chile</p>
 <html>
 <body>
 <center>
-<a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf"><img src="Poster_BSL.png" style="width:1100px"></a>
+<a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf"><img src="Poster_BSL.png" style="width:600px"></a>
 </center>
 </body>
 </html>
 <p>⚡⚡⚡⚡</p>
 <h2 id="authors">Authors</h2>
-<p><strong>Miriam Lerma<sup>1</sup></strong>, Camila P.
-Villavicencio<sup>2</sup>, Nicolas Luna<sup>3</sup>, Matías
-Portflitt-Toro<sup>3</sup>, Juan Serratosa<sup>3,4</sup>, Guillermo
-Luna-Jorquera<sup>3</sup>, Stefan Garthe<sup>1</sup>, Rene
-Quispe<sup>5,6</sup></p>
+<p><strong>Miriam Lerma<sup>1</sup></strong>, Camila P. Villavicencio<sup>2</sup>, Nicolas Luna<sup>3</sup>, Matías Portflitt-Toro<sup>3</sup>, Juan Serratosa<sup>3,4</sup>, Guillermo Luna-Jorquera<sup>3</sup>, Stefan Garthe<sup>1</sup>, Rene Quispe<sup>5,6</sup></p>
 <ol type="1">
-<li>Research and Technology Center (FTZ), University of Kiel, Hafentörn
-1, 25761 Büsum, Germany. <a
-href="https://www.ftz.uni-kiel.de/en?set_language=en">Link</a></li>
-<li>Instituto de Ecología y Biodiversidad, Departamento de Ciencias
-Ecológicas, Universidad de Chile, Las Palmeras 3425, Ñuñoa, Santiago,
-Chile. <a
-href="https://www.uchile.cl/portal/facultades-e-institutos/ciencias/160077/presentacion">Link</a></li>
-<li>Millennium Nucleus for Ecology and Sustainable Management of Oceanic
-Islands - ESMOI, Larrondo 1281, Coquimbo, Chile. <a
-href="https://www.iniciativamilenio.cl/nucleoesmoi/">Link</a></li>
-<li>BirdLife International, The David Attenborough Building, Pembroke
-Street, Cambridge, CB2 3QZ, UK</li>
-<li>Departamento de Biología Marina, Facultad de Ciencias del Mar,
-Universidad Católica del Norte, Larrondo 1281, Coquimbo, Chile. <a
-href="https://www.ucn.cl/facultad-de-ciencias-del-mar/departamento-de-biologia-marina/">Link</a></li>
-<li>Facultad de Ciencias Agropecuarias, Universidad Pedro de Valdivia,
-Av. Cuatro Esquinas 60, La Serena, Chile</li>
+<li>Research and Technology Center (FTZ), University of Kiel, Hafentörn 1, 25761 Büsum, Germany. <a href="https://www.ftz.uni-kiel.de/en?set_language=en">Link</a></li>
+<li>Instituto de Ecología y Biodiversidad, Departamento de Ciencias Ecológicas, Universidad de Chile, Las Palmeras 3425, Ñuñoa, Santiago, Chile. <a href="https://www.uchile.cl/portal/facultades-e-institutos/ciencias/160077/presentacion">Link</a></li>
+<li>Millennium Nucleus for Ecology and Sustainable Management of Oceanic Islands - ESMOI, Larrondo 1281, Coquimbo, Chile. <a href="https://www.iniciativamilenio.cl/nucleoesmoi/">Link</a></li>
+<li>BirdLife International, The David Attenborough Building, Pembroke Street, Cambridge, CB2 3QZ, UK</li>
+<li>Departamento de Biología Marina, Facultad de Ciencias del Mar, Universidad Católica del Norte, Larrondo 1281, Coquimbo, Chile. <a href="https://www.ucn.cl/facultad-de-ciencias-del-mar/departamento-de-biologia-marina/">Link</a></li>
+<li>Facultad de Ciencias Agropecuarias, Universidad Pedro de Valdivia, Av. Cuatro Esquinas 60, La Serena, Chile</li>
 </ol>
 <h2 id="references">References</h2>
 <ol type="1">
-<li><p>De La Puente, S., Bussalleu, A., Cardeña, M., Valdés-Velásquez,
-A., Majluf, P. &amp; Simeone, A. 2020. Humboldt Penguin (<em>Spheniscus
-humboldti</em>). Birds of the World 269–287. <a
-href="https://www.researchgate.net/publication/304626790_Humboldt_Penguin_Spheniscus_humboldti">Link</a></p></li>
-<li><p>Vianna, J. A. Cortes M., Ramos, B., Sallaberry, N.,
-González-Acuña, D.,Dantas, G.P.M., Morgante, J., Simeone, A.,
-Luna-Jorquera, G. Changes in abudance and distribution of Humboldt
-penguin <em>Spheniscus humboldti</em>. Mar. Ornithol. 42: 153-159. <a
-href="https://www.marineornithology.org/PDF/42_2/42_2_153-159.pdf">Link</a></p></li>
-<li><p>Dantas, G.P.M., Oliveira, L.R., Santos, A.M., Flores, M.D., De
-Melo, D.R., Simeone, A., González-Acuña, D., Luna-Jorquera, G., Le
-Bohec, C., Valdés-Velásquez, A., Cardeña, M., Morgante, J.S. &amp;
-Vianna, J.A. 2019. Uncovering population structure in the Humboldt
-penguin (<em>Spheniscus humboldti</em>) along the Pacific coast at South
-America. PLoS One 14: 1–19. <a
-href="https://doi.org/10.1371/journal.pone.0215293">Link</a></p></li>
-<li><p>Quispe, R., Lerma, M., Serratosa, J. &amp; Luna-Jorquera, G.
-2020. Foraging ranges of Humboldt penguins <em>Spheniscus humboldti</em>
-from Tilgo Island: the critical need for protecting a unique marine
-habitat. Mar. Ornithol. 48: 205–208. <a
-href="https://www.marineornithology.org/PDF/48_2/48_2_205-208.pdf">Link</a></p></li>
-<li><p>Navigation route of proposed industrial project at Tilgo Island
-by <a
-href="https://chile.oceana.org/blog/sitios-de-alimentacion-del-pinguino-de-humboldt-se-sobreponen-rutas-de-navegacion-del-Proyecto">Oceana</a></p></li>
-<li><p>Herling, C., Culik, B.M. &amp; Hennicke, J.C. 2005. Diet of the
-Humboldt penguin (<em>Spheniscus humboldti</em>) in northern and
-southern Chile. Mar. Biol. 147: 13–25. <a
-href="https://www.researchgate.net/publication/225603482_Diet_of_the_Humboldt_penguin_Spheniscus_humboldti_in_northern_and_southern_Chile">Link</a></p></li>
-<li><p>Kaltenberg, A.M. &amp; Benoit-Bird, K.J. 2009. Diel behavior of
-sardine and anchovy schools in the California Current System. Mar. Ecol.
-Prog. Ser. 394: 247–262. <a
-href="https://www.researchgate.net/publication/240809604_Diel_behavior_of_sardine_and_anchovy_schools_in_the_California_Current_System">Link</a></p></li>
-<li><p>Taylor, J.C., Rand, P.S. &amp; Jenkins, J. 2007. Swimming
-behavior of juvenile anchovies (Anchoa spp.) in an episodically hypoxic
-estuary: implications for individual energetics and trophic dynamics.
-Mar. Biol. 152: 939–957. <a
-href="https://doi.org/10.1007/s00227-007-0745-6">Link</a></p></li>
-<li><p>Humboldt penguin call by Carlos Pinto <a
-href="https://www.xeno-canto.org/species/Spheniscus-humboldti">xeno-canto</a></p></li>
+<li><p>De La Puente, S., Bussalleu, A., Cardeña, M., Valdés-Velásquez, A., Majluf, P. &amp; Simeone, A. 2020. Humboldt Penguin (<em>Spheniscus humboldti</em>). Birds of the World 269–287. <a href="https://www.researchgate.net/publication/304626790_Humboldt_Penguin_Spheniscus_humboldti">Link</a></p></li>
+<li><p>Vianna, J. A. Cortes M., Ramos, B., Sallaberry, N., González-Acuña, D.,Dantas, G.P.M., Morgante, J., Simeone, A., Luna-Jorquera, G. Changes in abudance and distribution of Humboldt penguin <em>Spheniscus humboldti</em>. Mar. Ornithol. 42: 153-159. <a href="https://www.marineornithology.org/PDF/42_2/42_2_153-159.pdf">Link</a></p></li>
+<li><p>Dantas, G.P.M., Oliveira, L.R., Santos, A.M., Flores, M.D., De Melo, D.R., Simeone, A., González-Acuña, D., Luna-Jorquera, G., Le Bohec, C., Valdés-Velásquez, A., Cardeña, M., Morgante, J.S. &amp; Vianna, J.A. 2019. Uncovering population structure in the Humboldt penguin (<em>Spheniscus humboldti</em>) along the Pacific coast at South America. PLoS One 14: 1–19. <a href="https://doi.org/10.1371/journal.pone.0215293">Link</a></p></li>
+<li><p>Quispe, R., Lerma, M., Serratosa, J. &amp; Luna-Jorquera, G. 2020. Foraging ranges of Humboldt penguins <em>Spheniscus humboldti</em> from Tilgo Island: the critical need for protecting a unique marine habitat. Mar. Ornithol. 48: 205–208. <a href="https://www.marineornithology.org/PDF/48_2/48_2_205-208.pdf">Link</a></p></li>
+<li><p>Navigation route of proposed industrial project at Tilgo Island by <a href="https://chile.oceana.org/blog/sitios-de-alimentacion-del-pinguino-de-humboldt-se-sobreponen-rutas-de-navegacion-del-Proyecto">Oceana</a></p></li>
+<li><p>Herling, C., Culik, B.M. &amp; Hennicke, J.C. 2005. Diet of the Humboldt penguin (<em>Spheniscus humboldti</em>) in northern and southern Chile. Mar. Biol. 147: 13–25. <a href="https://www.researchgate.net/publication/225603482_Diet_of_the_Humboldt_penguin_Spheniscus_humboldti_in_northern_and_southern_Chile">Link</a></p></li>
+<li><p>Kaltenberg, A.M. &amp; Benoit-Bird, K.J. 2009. Diel behavior of sardine and anchovy schools in the California Current System. Mar. Ecol. Prog. Ser. 394: 247–262. <a href="https://www.researchgate.net/publication/240809604_Diel_behavior_of_sardine_and_anchovy_schools_in_the_California_Current_System">Link</a></p></li>
+<li><p>Taylor, J.C., Rand, P.S. &amp; Jenkins, J. 2007. Swimming behavior of juvenile anchovies (Anchoa spp.) in an episodically hypoxic estuary: implications for individual energetics and trophic dynamics. Mar. Biol. 152: 939–957. <a href="https://doi.org/10.1007/s00227-007-0745-6">Link</a></p></li>
+<li><p>Humboldt penguin call by Carlos Pinto <a href="https://www.xeno-canto.org/species/Spheniscus-humboldti">xeno-canto</a></p></li>
 </ol>
 <h2 id="acknowledgments">Acknowledgments</h2>
-<p>This study was financed by Fondecyt (grant no. 3170936 to RQ and
-postdoctorate grant no. 3160679 to CPV) and by CONACyT-INAPI (grant no.
-411876 to ML).</p>
-<p>We thank Esther Rickert for the transportation of tracking devices,
-and Henri Kröling for useful discussions.</p>
-<p>This study was carried out in accordance with the recommendations and
-permit of the Subsecretaria de Pesca y Acuicultura de Chile (resolution
-N°3367/2017).</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>This study was financed by Fondecyt (grant no. 3170936 to RQ and postdoctorate grant no. 3160679 to CPV) and by CONACyT-INAPI (grant no. 411876 to ML).</p>
+<p>We thank Esther Rickert for the transportation of tracking devices, and Henri Kröling for useful discussions.</p>
+<p>This study was carried out in accordance with the recommendations and permit of the Subsecretaria de Pesca y Acuicultura de Chile (resolution N°3367/2017).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
