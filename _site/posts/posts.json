@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2022-11-28-streetmap/",
+    "title": "Mapa estatico en QGIS",
+    "description": "Agregar un mapa base estatico en QGIS",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2022-12-20",
+    "categories": [
+      "GIS",
+      "Español"
+    ],
+    "contents": "\r\n\r\nContents\r\nIntro\r\nQGIS\r\nGoogle cloud\r\nLeer más\r\n\r\n\r\nIntro\r\nEste post es para compartir los pasos que seguí para agregar un mapa\r\nestatico de google a mi QGIS.\r\nQGIS\r\nActualmente cuento con QGIS 3.28.1 Firenze Para descargarlo\r\n\r\n\r\n\r\nGoogle cloud\r\nLo primero que hice fue entrar a esta liga de google cloud\r\nAlli tienes que registrarte y aceptar los terminos de uso.\r\nDesafortunadamente tuve que ponder mis datos de la tarjeta para poder\r\nusar este servicio, aunque no se me cobro nada.\r\n\r\n\r\n\r\n\r\n\r\n\r\nCree un nuevo proyecto\r\n\r\n\r\n\r\nNo pude ninguna ubicacion relevante\r\n\r\n\r\n\r\nMe fui a la parte de APIs y servicios\r\n\r\n\r\n\r\nMe aparecio un buscador en el que escribi static\r\n\r\n\r\n\r\nEncontre el que me interesaba\r\n\r\n\r\n\r\nLe di en habilitar\r\n\r\n\r\n\r\nY esto me dio acceso a varios tipos de mapas\r\n\r\n\r\n\r\nFuente: Medium\r\nLeer más\r\nAgregar mapa de\r\nfondo en QGIS en inglés\r\nGoogle\r\nAPI\r\n\r\n\r\n\r\n",
+    "preview": "posts/2022-11-28-streetmap/Imagen1.png",
+    "last_modified": "2022-11-28T13:36:55+01:00",
+    "input_file": "streetmap.knit.md",
+    "preview_width": 1128,
+    "preview_height": 491
+  },
+  {
     "path": "posts/2022-11-20-mastodon/",
     "title": "Mastodon",
     "description": "Migrando a mastodon",
