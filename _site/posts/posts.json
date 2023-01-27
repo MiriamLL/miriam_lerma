@@ -1,6 +1,27 @@
 [
   {
-    "path": "posts/2022-11-28-streetmap/",
+    "path": "posts/2023-01-27-qgispolygon/",
+    "title": "Custom made polygon",
+    "description": "Create a polygon in QGIS using google maps as background",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2023-01-23",
+    "categories": [
+      "QGIS",
+      "Tracking",
+      "English"
+    ],
+    "contents": "\r\n\r\nContents\r\nIntro\r\nProgram\r\nQGIS\r\nCreate polygon\r\nReferences\r\n\r\n\r\nIntro\r\nThis post is to give you an example on how to create your own polygon\r\nusing google maps.\r\nProgram\r\nFor this exercise we used the release candidate of QGIS, but every\r\nversion has the option to create new layers, so no worries in which\r\nversion you are using.\r\n\r\n\r\n\r\nIf you still dont have it, here is the link for download QGIS\r\nQGIS\r\nIn earlier QGIS versions, there was a plugin called Open\r\nLayers plugin, but is not available anymore (as far as I am\r\naware of).\r\nNow to add a google satellite map in your QGIS you\r\ncould do the following:\r\nGo to View > Panels > Activate Browser Panel\r\n\r\n\r\n\r\nNow go to XYZ > a new connection\r\n\r\n\r\n\r\nA new window will appear\r\n\r\n\r\n\r\nFill in the spaces with the map you want to use\r\nYou need to give it a name and the URL\r\nThere are many options of maps, you can look at some here: Google\r\nURLs\r\nWe will use Open Street Map: https://tile.openstreetmap.org/{z}/{x}/{y}.png for the\r\nexample.\r\n\r\n\r\n\r\nOnce you have create the connection, double click on the name and the\r\nmap should be loaded as a layer.\r\n\r\n\r\n\r\nReady to Use!\r\n\r\n\r\n\r\nCreate polygon\r\nSelect New Shapefile Layer\r\n\r\n\r\n\r\nGive a name to your new shapefile\r\nI recommend to click on the three dots to select also the\r\ndirectory\r\nIn the exercise, we will create a polygon, therefore, select\r\nPolygon in Geometry type\r\n\r\n\r\n\r\nSelect Layer > Toggle editing, or just click on the icon with the\r\nyellow pencil\r\n\r\n\r\n\r\nNow add polygon feature by clicking on the green polygon icon\r\n\r\n\r\n\r\nUse the pointer of your mouse and click one time to create\r\npoints\r\nThe areas will start to look red\r\nKeep clicking until you have a more or less the polygon you want\r\nWhen you finish you should add an id, here I used the number 1 for an\r\nexample\r\n\r\n\r\n\r\nNow you should have a polygon!\r\nTo edit the shapes you can use the vertex tool\r\n\r\n\r\n\r\nThe corners can be moved/dragged when the icon has been\r\nselected\r\n\r\n\r\n\r\nNew points can be created using the cross\r\n\r\n\r\n\r\nWhen you are editing your layer you will have a red pencil icon,\r\nclick on the yellow pencil for finish editing\r\n\r\n\r\n\r\nDo not forget to save the changes!\r\n\r\n\r\n\r\n… Now you are done!\r\nI hope this helped you.\r\nReferences\r\nFor continuing learning, here are other uses of google maps:\r\nMedium\r\nAdd background\r\nmap\r\nGoogle\r\nAPI\r\nGoogle\r\nURLs\r\n\r\n\r\n\r\n",
+    "preview": "posts/2023-01-27-qgispolygon/blog19.jpg",
+    "last_modified": "2023-01-27T21:49:38+01:00",
+    "input_file": "qgispolygon.knit.md"
+  },
+  {
+    "path": "posts/2023-02-28-streetmap/",
     "title": "Mapa estatico en QGIS",
     "description": "Agregar un mapa base estatico en QGIS",
     "author": [
@@ -15,11 +36,9 @@
       "Español"
     ],
     "contents": "\r\n\r\nContents\r\nIntro\r\nQGIS\r\nGoogle cloud\r\nLeer más\r\n\r\n\r\nIntro\r\nEste post es para compartir los pasos que seguí para agregar un mapa\r\nestatico de google a mi QGIS.\r\nQGIS\r\nActualmente cuento con QGIS 3.28.1 Firenze Para descargarlo\r\n\r\n\r\n\r\nGoogle cloud\r\nLo primero que hice fue entrar a esta liga de google cloud\r\nAlli tienes que registrarte y aceptar los terminos de uso.\r\nDesafortunadamente tuve que ponder mis datos de la tarjeta para poder\r\nusar este servicio, aunque no se me cobro nada.\r\n\r\n\r\n\r\n\r\n\r\n\r\nCree un nuevo proyecto\r\n\r\n\r\n\r\nNo pude ninguna ubicacion relevante\r\n\r\n\r\n\r\nMe fui a la parte de APIs y servicios\r\n\r\n\r\n\r\nMe aparecio un buscador en el que escribi static\r\n\r\n\r\n\r\nEncontre el que me interesaba\r\n\r\n\r\n\r\nLe di en habilitar\r\n\r\n\r\n\r\nY esto me dio acceso a varios tipos de mapas\r\n\r\n\r\n\r\nFuente: Medium\r\nLeer más\r\nAgregar mapa de\r\nfondo en QGIS en inglés\r\nGoogle\r\nAPI\r\n\r\n\r\n\r\n",
-    "preview": "posts/2022-11-28-streetmap/Imagen1.png",
+    "preview": {},
     "last_modified": "2022-11-28T13:36:55+01:00",
-    "input_file": {},
-    "preview_width": 1128,
-    "preview_height": 491
+    "input_file": {}
   },
   {
     "path": "posts/2022-12-04-day-night/",

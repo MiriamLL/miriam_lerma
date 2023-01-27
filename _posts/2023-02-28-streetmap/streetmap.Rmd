@@ -103,3 +103,61 @@ Fuente: [Medium](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922
 [Agregar mapa de fondo en QGIS en inglés](https://www.littlemissdata.com/blog/maps)
 
 [Google API](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922)
+
+
+
+## Google maps
+
+For this post I have upload the google maps background.
+
+1. I went to the google cloud [cloud](https://console.cloud.google.com/getting-started?pli=1)
+
+2. Unfortunately I had to include my credit card data, even when I was not charged to use the service.
+
+```{r, fig.height=1,echo=FALSE, fig.align='center'}
+Imagen2<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image2.png")
+knitr::include_graphics(Imagen2)
+```
+
+3. I created a new project
+
+```{r, fig.height=1,echo=FALSE, fig.align='center'}
+Imagen3<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image3.jpg")
+knitr::include_graphics(Imagen3)
+```
+
+4. Fill out the name of the project and that I belong to no organization
+
+```{r, fig.height=1,echo=FALSE, fig.align='center'}
+Imagen4<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image4.png")
+knitr::include_graphics(Imagen4)
+```
+
+5. Went to API and services, and selected library
+
+```{r, fig.height=1,echo=FALSE, fig.align='center'}
+Imagen5<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image5.png")
+knitr::include_graphics(Imagen5)
+```
+
+6. There was a search bar tool and I wanted to use the Static maps API
+
+```{r}
+Imagen6<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image6.png")
+knitr::include_graphics(Imagen6)
+```
+
+7. I clicked on the blue bottom
+
+```{r}
+Imagen7<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image7.png")
+knitr::include_graphics(Imagen7)
+```
+
+8. Now I have access to different maps
+
+```{r}
+Imagen8<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image9.png")
+knitr::include_graphics(Imagen8)
+```
+
