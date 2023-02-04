@@ -1,7 +1,7 @@
 ---
 title: "sula"
 description: |
-  Un paquete para editar datos de GPS y calcular parámetros de los viajes de alimentación. 
+  Functions to clean your data and calculate the foraging trip parameters of the individuals.  | Un paquete para editar datos de GPS y calcular parámetros de los viajes de alimentación. 
 preview: sula-logo.png
 author:
   - name: Miriam Lerma
