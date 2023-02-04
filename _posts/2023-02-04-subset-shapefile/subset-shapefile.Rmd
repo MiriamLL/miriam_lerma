@@ -1,0 +1,100 @@
+---
+title: "Subset shapefile"
+description: |
+  Extract a specific polygon from a shapefile and export it as new shapefile.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 02-04-2023
+preview: blog20.jpg
+categories:
+  - QGIS
+  - shapefiles
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+# Intro
+
+Three steps to subset a shapefile and export a new shapefile with the attributes you are interested in.
+
+# 1. Load shapefile
+
+Load the package **sf** to load your shapefile into R
+
+```{r}
+library(sf)
+```
+
+Load the package **here** to use your directory (in which folder is your shapefile)
+
+```{r}
+library(here)
+```
+
+```{r, echo=FALSE}
+My_directory<-here('_posts/2023-02-04-subset-shapefile')
+```
+
+Load your shapefile, be careful with your directory
+
+```{r}
+Old_shapefile<- read_sf(paste0(My_directory,'/original_shapefile.shp'))
+```
+
+Check the class, theoretically it would show sf
+
+```{r}
+class(Old_shapefile)
+```
+
+Explore the contents
+
+```{r, eval=FALSE}
+str(Old_shapefile)
+```
+
+Check the values in the column that you are interested to subset, to show unique values use the argument **unique** and to show them in alphabetic order use **sort**
+
+```{r, eval = FALSE}
+sort(unique(Old_shapefile$comuna))
+```
+
+# 2. Filter
+
+Load the package **tidyverse**
+
+```{r, message = FALSE, echo=TRUE}
+library(tidyverse)
+```
+
+Using the function **filter** you can subset your old new shapefile and get the new one
+
+In the example we used the column *comuna* and the value we are interested is *La Higuera*, do not forget to replace those values
+
+```{r}
+New_shapefile<-Old_shapefile %>%
+  filter(comuna=="La Higuera")
+```
+
+# 3. Export your new shapefile
+
+Check the class of your new object
+
+```{r}
+class(New_shapefile)
+```
+
+Export to your selected directory
+
+```{r, echo=TRUE, eval=FALSE}
+st_write(New_shapefile, paste0(My_directory,'/New_shapefile.shp'))
+```
+
+# Read more
+
+- [Geocomputation with R](https://geocompr.robinlovelace.net/attr.html)
