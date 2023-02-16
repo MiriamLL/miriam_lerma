@@ -24,7 +24,7 @@ library(distilltools)
 
 # Intro
 
-This post is dedicated to the poster and presentation for the 50TH ANNUAL MEETING OF THE PACIFIC SEABIRD GROUP (https://psg.wildapricot.org/Annual-Meeting)
+This post is dedicated to the presentation for the 50th annual meeting of the Pacific Seabird Group (https://psg.wildapricot.org/Annual-Meeting)
 
 Habitat use of Kelp gulls
 
