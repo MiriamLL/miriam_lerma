@@ -1,0 +1,89 @@
+---
+title: "PSG2023"
+description: |
+  Habitat use of Kelp gulls
+preview: PSG2023.jpg
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 02-16-2023
+categories:
+  - Presentation
+  - English
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(distilltools)
+```
+
+
+# Intro
+
+This post is dedicated to the poster and presentation for the 50TH ANNUAL MEETING OF THE PACIFIC SEABIRD GROUP (https://psg.wildapricot.org/Annual-Meeting)
+
+Habitat use of Kelp gulls
+
+⚡⚡⚡⚡
+
+```{r icon-links1,echo=FALSE, include=TRUE}
+icon_link(icon = "fas fa-images",
+          text = "Download presentation",
+          url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf")
+```
+
+```{r, echo=FALSE}
+library(here)
+File<-paste0(here(),"/_posts/psg2023/")
+Imagen1<-paste0(File,"PSG2023.jpg")
+```
+
+```{r, fig.height=6,echo=FALSE, fig.align='center', eval=FALSE}
+knitr::include_graphics(Imagen1)
+```
+
+
+<html>
+<body>
+   <center>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf"><img src="PSG2023.jpg" style="width:600px"></a>
+   </center>
+</body>
+</html>
+
+
+⚡⚡⚡⚡
+
+## Authors
+
+**Miriam Lerma^1^**, 
+
+
+## References
+
+Neubauer et al. 2006 [Link](https://www.iop.krakow.pl/pobierz-publikacje,1203)
+
+Liznizer et al. 2011 [Link](https://www.researchgate.net/publication/263002196_Spatial_and_temporal_variation_in_population_trends_of_Kelp_Gulls_in_northern_Patagonia_Argentina)
+
+Cotter 2012 [Link](https://www.researchgate.net/publication/270569895_Population_status_distribution_and_trends_of_gulls_and_kittiwakes_breeding_in_eastern_Canada_1998-2007?enrichId=rgreq-2f48f2578f5db70e85898393ba5fc46e-XXX&enrichSource=Y292ZXJQYWdlOzI3MDU2OTg5NTtBUzoxODMwNzQ2NzEzMDg4MDFAMTQyMDY1OTgxMTY1OQ%3D%3D&el=1_x_2&_esc=publicationCoverPdf)
+
+Duhem et al. 2008 [Link](https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z)
+
+Yoda et al. 2012 [Link](https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z)
+
+Spelt 2019
+Ludynia 2005
+Yorio 2016
+Simeone Luna-Jorquera 2012
+Pasten-Araya 2021
+Rodriguez 2012
+Lenzi 2016
+Kasinsky 2018
+Lenzi 2018
+Reusch 2020
+Oro 2013
+Witteveen 2017

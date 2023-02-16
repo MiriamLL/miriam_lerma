@@ -2,6 +2,7 @@
 title: "Blog"
 listing:
   posts:
+    - psg2023
     - 2023-02-04-subset-shapefile
     - 2023-01-27-qgispolygon
     - 2022-12-04-day-night
