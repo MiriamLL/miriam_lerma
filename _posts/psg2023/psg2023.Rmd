@@ -33,7 +33,7 @@ Habitat use of Kelp gulls
 ```{r icon-links1,echo=FALSE, include=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Download presentation",
-          url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/psg2023/Gulls_1502.pdf")
 ```
 
 ```{r, echo=FALSE}
@@ -50,7 +50,7 @@ knitr::include_graphics(Imagen1)
 <html>
 <body>
    <center>
-      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/bls7/Poster_BSL7.pdf"><img src="PSG2023.jpg" style="width:600px"></a>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/psg2023/Gulls_1502.pdf"><img src="PSG2023.jpg" style="width:600px"></a>
    </center>
 </body>
 </html>
