@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -49,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -72,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Miriam Lerma: PSG2023</title>
@@ -121,7 +124,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Gulls_psg.pdf","PSG2023.jpg","psg2023_files/anchor-4.2.2/anchor.min.js","psg2023_files/bowser-1.9.3/bowser.min.js","psg2023_files/distill-2.2.21/template.v2.js","psg2023_files/header-attrs-2.9/header-attrs.js","psg2023_files/jquery-1.11.3/jquery.min.js","psg2023_files/popper-2.6.0/popper.min.js","psg2023_files/tippy-6.2.7/tippy-bundle.umd.min.js","psg2023_files/tippy-6.2.7/tippy-light-border.css","psg2023_files/tippy-6.2.7/tippy.css","psg2023_files/tippy-6.2.7/tippy.umd.min.js","psg2023_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Gulls_psg.pdf","PSG2023.jpg","psg2023_files/anchor-4.2.2/anchor.min.js","psg2023_files/bowser-1.9.3/bowser.min.js","psg2023_files/distill-2.2.21/template.v2.js","psg2023_files/header-attrs-2.14/header-attrs.js","psg2023_files/header-attrs-2.9/header-attrs.js","psg2023_files/jquery-1.11.3/jquery.min.js","psg2023_files/jquery-3.6.0/jquery-3.6.0.js","psg2023_files/jquery-3.6.0/jquery-3.6.0.min.js","psg2023_files/jquery-3.6.0/jquery-3.6.0.min.map","psg2023_files/popper-2.6.0/popper.min.js","psg2023_files/tippy-6.2.7/tippy-bundle.umd.min.js","psg2023_files/tippy-6.2.7/tippy-light-border.css","psg2023_files/tippy-6.2.7/tippy.css","psg2023_files/tippy-6.2.7/tippy.umd.min.js","psg2023_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -467,7 +470,7 @@ d-title {
 
 </style>
 
-<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1039,10 +1042,6 @@ figure img.external {
   position: relative;
   margin-bottom: 2.5em;
   margin-top: 1.5em;
-}
-
-.figure img {
-  width: 100%;
 }
 
 .figure .caption {
@@ -1874,7 +1873,16 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+        var fn = $(this).children()[0]
+        $(this).html(fn.shadowRoot.querySelector("sup"))
+        $(this).id = fn.id
+        fn.remove()
+      }
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        return "<p>" + $('#ref-' + ref).html() + "</p>";
+      }).join("\n");
       window.tippy(this, {
         allowHTML: true,
         content: refHtml,
@@ -1885,6 +1893,31 @@ function init_distill() {
         placement: 'bottom-start'
       });
     });
+
+    // fix footnotes in tables (#411)
+    // replacing broken distill.pub feature
+    $('table d-footnote').each(function() {
+      // we replace internal showAtNode methode which is triggered when hovering a footnote
+      this.hoverBox.showAtNode = function(node) {
+        // ported from https://github.com/distillpub/template/pull/105/files
+        calcOffset = function(elem) {
+            let x = elem.offsetLeft;
+            let y = elem.offsetTop;
+            // Traverse upwards until an `absolute` element is found or `elem`
+            // becomes null.
+            while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                x += elem.offsetLeft;
+                y += elem.offsetTop;
+            }
+
+            return { left: x, top: y };
+        }
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+        const bbox = node.getBoundingClientRect();
+        const offset = calcOffset(node);
+        this.show([offset.left + bbox.width, offset.top + bbox.height]);
+      }
+    })
 
     // clear polling timer
     clearInterval(tid);
@@ -1984,6 +2017,8 @@ function init_common() {
   // mark non-body figures created by knitr chunks as 100% width
   $('.layout-chunk').each(function(i, val) {
     var figures = $(this).find('img, .html-widget');
+    // ignore leaflet img layers (#106)
+    figures = figures.filter(':not(img[class*="leaflet"])')
     if ($(this).attr('data-layout') !== "l-body") {
       figures.css('width', '100%');
     } else {
@@ -2006,7 +2041,7 @@ function init_common() {
   // get rid of index.html references in header
   if (window.location.protocol !== "file:") {
     $('.distill-site-header a[href]').each(function(i,val) {
-      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
     });
   }
 
@@ -2400,8 +2435,8 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2421,7 +2456,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"PSG2023","description":"Habitat use of Kelp gulls","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-02-16T00:00:00.000-08:00","citationText":"Lerma, 2023"}
+{"title":"PSG2023","description":"Habitat use of Kelp gulls","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-02-16T00:00:00.000+01:00","citationText":"Lerma, 2023"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2467,7 +2502,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p>This post is dedicated to the presentation for the 50th annual meeting of the Pacific Seabird Group (<a href="https://psg.wildapricot.org/Annual-Meeting" class="uri">https://psg.wildapricot.org/Annual-Meeting</a>)</p>
+<p>This post is dedicated to the presentation for the 50th annual
+meeting of the Pacific Seabird Group (<a
+href="https://psg.wildapricot.org/Annual-Meeting"
+class="uri">https://psg.wildapricot.org/Annual-Meeting</a>)</p>
 <p>Habitat use of Kelp gulls</p>
 <p>⚡⚡⚡⚡</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2488,28 +2526,57 @@ d-appendix d-footnote-list a.footnote-backlink {
 </html>
 <p>⚡⚡⚡⚡</p>
 <h2 id="authors">Authors</h2>
-<p><strong>Miriam Lerma</strong>, Claudia Fernandez, Mylene Seguel, Guillermo Luna-Jorquera, Stefan Garthe</p>
+<p><strong>Miriam Lerma</strong><sup>1</sup>, Claudia
+Fernandez<sup>2</sup>, Mylene Seguel<sup>2</sup>, Guillermo
+Luna-Jorquera<sup>2</sup>, Stefan Garthe<sup>1</sup></p>
+<ol type="1">
+<li>Research and Technology Center (FTZ), University of Kiel, Hafentörn
+1, 25761 Büsum, Germany. <a
+href="https://www.ftz.uni-kiel.de/en?set_language=en">Link</a></li>
+<li>Departamento de Biología Marina, Facultad de Ciencias del Mar,
+Universidad Católica del Norte, Coquimbo, Chile. <a
+href="https://www.ucn.cl/">Link</a></li>
+</ol>
 <h2 id="references">References</h2>
 <p>By alphabetic order</p>
 <ol type="1">
-<li><p>Cotter et al. 2012 <a href="https://www.researchgate.net/publication/270569895_Population_status_distribution_and_trends_of_gulls_and_kittiwakes_breeding_in_eastern_Canada_1998-2007?enrichId=rgreq-2f48f2578f5db70e85898393ba5fc46e-XXX&amp;enrichSource=Y292ZXJQYWdlOzI3MDU2OTg5NTtBUzoxODMwNzQ2NzEzMDg4MDFAMTQyMDY1OTgxMTY1OQ%3D%3D&amp;el=1_x_2&amp;_esc=publicationCoverPdf">Link</a></p></li>
-<li><p>Duhem et al. 2008 <a href="https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z">Link</a></p></li>
-<li><p>Kasinsky et al. 2018 <a href="https://bioone.org/journals/waterbirds/volume-41/issue-3/063.041.0308/Kelp-Gull-Larus-dominicanus-Use-of-Alternative-Feeding-Habitats-at/10.1675/063.041.0308.short">Link</a></p></li>
-<li><p>Lenzi et al. 2016 <a href="https://www.researchgate.net/project/The-impact-of-plastic-pollution-on-the-ecology-of-seabirds">Link</a></p></li>
-<li><p>Lenzi et al. 2018 <a href="https://hammer.purdue.edu/articles/thesis/THE_IMPACT_OF_REFUSE_ON_THE_KELP_GULL_LARUS_DOMINICANUS_IN_THE_R_O_DE_LA_PLATA_ESTUARY_URUGUAY/7403657">Link</a></p></li>
-<li><p>Liznizer et al. 2011 <a href="https://www.researchgate.net/publication/263002196_Spatial_and_temporal_variation_in_population_trends_of_Kelp_Gulls_in_northern_Patagonia_Argentina">Link</a></p></li>
-<li><p>Ludynia et al. 2005 <a href="https://bioone.org/journals/waterbirds/volume-28/issue-3/1524-4695_2005_028_0359_SARVIT_2.0.CO_2/Seasonal-and-Regional-Variation-in-the-Diet-of-the-Kelp/10.1675/1524-4695(2005)028%5B0359:SARVIT%5D2.0.CO;2.short">Link</a></p></li>
-<li><p>Neubauer et al. 2006 <a href="https://www.iop.krakow.pl/pobierz-publikacje,1203">Link</a> Pasten-Araya 2021 <a href="https://aveschile.cl/wp-content/uploads/2021/12/7.-Pasten-Araya_et_al.pdf">Link</a></p></li>
-<li><p>Oro et al. 2013 <a href="https://www.researchgate.net/publication/258054052_Ecological_and_evolutionary_implications_of_food_subsidies_from_humans?_sg%5B0%5D=ibjhPvOXCyFo4LT4r1gpklrVPzVIdkMVG2PF10ou39e7eECmg-kGBpxwjHxQu-zHAND4elun1uxPsBM.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&amp;_sg%5B1%5D=g-s_fCH2DyQ8mlwfWjNHNK7DlWoIu7Oncol1CaZqaUxBlK_MCZEXwl2qYbJztEIt0UpG6iNCQGiTsYq0leer1AwReNQ.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&amp;_sg%5B2%5D=YPDaewKuN0qslXmEAO_q81De3hO38q5VNGoJnkkF-kxrjuIg-PzcmmhHNUU96V-V1eBi--zhWWc96Qh9yw.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&amp;_sgd%5Bpr%5D=1">Link</a></p></li>
-<li><p>Reusch 2020 <a href="https://movementecologyjournal.biomedcentral.com/articles/10.1186/s40462-020-00221-x">Link</a></p></li>
-<li><p>Rodriguez 2012 <a href="https://pubmed.ncbi.nlm.nih.gov/23060519/">Link</a></p></li>
-<li><p>Simeone and Luna-Jorquera 2012 <a href="https://www.researchgate.net/publication/244283287_Estimating_rat_predation_on_Humboldt_Penguin_colonies_in_north-central_Chile">Link</a></p></li>
-<li><p>Spelt et al. 2019 <a href="https://www.nature.com/articles/s41598-019-46890-6">Link</a></p></li>
-<li><p>Witteveen et al. 2017 <a href="https://www.sciencedirect.com/science/article/abs/pii/S0025326X16308694?via%3Dihub">Link</a></p></li>
-<li><p>Yoda et al. 2012 <a href="https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z">Link</a></p></li>
-<li><p>Yorio et al. 2016 <a href="https://bioone.org/journals/waterbirds/volume-39/issue-sp1/063.039.sp103/Distribution-and-Trends-in-Kelp-Gull-Larus-dominicanus-Coastal-Breeding/10.1675/063.039.sp103.short">Link</a></p></li>
+<li><p>Cotter et al. 2012 <a
+href="https://www.researchgate.net/publication/270569895_Population_status_distribution_and_trends_of_gulls_and_kittiwakes_breeding_in_eastern_Canada_1998-2007?enrichId=rgreq-2f48f2578f5db70e85898393ba5fc46e-XXX&amp;enrichSource=Y292ZXJQYWdlOzI3MDU2OTg5NTtBUzoxODMwNzQ2NzEzMDg4MDFAMTQyMDY1OTgxMTY1OQ%3D%3D&amp;el=1_x_2&amp;_esc=publicationCoverPdf">Link</a></p></li>
+<li><p>Duhem et al. 2008 <a
+href="https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z">Link</a></p></li>
+<li><p>Kasinsky et al. 2018 <a
+href="https://bioone.org/journals/waterbirds/volume-41/issue-3/063.041.0308/Kelp-Gull-Larus-dominicanus-Use-of-Alternative-Feeding-Habitats-at/10.1675/063.041.0308.short">Link</a></p></li>
+<li><p>Lenzi et al. 2016 <a
+href="https://www.researchgate.net/project/The-impact-of-plastic-pollution-on-the-ecology-of-seabirds">Link</a></p></li>
+<li><p>Lenzi et al. 2018 <a
+href="https://hammer.purdue.edu/articles/thesis/THE_IMPACT_OF_REFUSE_ON_THE_KELP_GULL_LARUS_DOMINICANUS_IN_THE_R_O_DE_LA_PLATA_ESTUARY_URUGUAY/7403657">Link</a></p></li>
+<li><p>Liznizer et al. 2011 <a
+href="https://www.researchgate.net/publication/263002196_Spatial_and_temporal_variation_in_population_trends_of_Kelp_Gulls_in_northern_Patagonia_Argentina">Link</a></p></li>
+<li><p>Ludynia et al. 2005 <a
+href="https://bioone.org/journals/waterbirds/volume-28/issue-3/1524-4695_2005_028_0359_SARVIT_2.0.CO_2/Seasonal-and-Regional-Variation-in-the-Diet-of-the-Kelp/10.1675/1524-4695(2005)028%5B0359:SARVIT%5D2.0.CO;2.short">Link</a></p></li>
+<li><p>Neubauer et al. 2006 <a
+href="https://www.iop.krakow.pl/pobierz-publikacje,1203">Link</a></p></li>
+<li><p>Pasten-Araya 2021 <a
+href="https://aveschile.cl/wp-content/uploads/2021/12/7.-Pasten-Araya_et_al.pdf">Link</a></p></li>
+<li><p>Oro et al. 2013 <a
+href="https://www.researchgate.net/publication/258054052_Ecological_and_evolutionary_implications_of_food_subsidies_from_humans?_sg%5B0%5D=ibjhPvOXCyFo4LT4r1gpklrVPzVIdkMVG2PF10ou39e7eECmg-kGBpxwjHxQu-zHAND4elun1uxPsBM.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&amp;_sg%5B1%5D=g-s_fCH2DyQ8mlwfWjNHNK7DlWoIu7Oncol1CaZqaUxBlK_MCZEXwl2qYbJztEIt0UpG6iNCQGiTsYq0leer1AwReNQ.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&amp;_sg%5B2%5D=YPDaewKuN0qslXmEAO_q81De3hO38q5VNGoJnkkF-kxrjuIg-PzcmmhHNUU96V-V1eBi--zhWWc96Qh9yw.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&amp;_sgd%5Bpr%5D=1">Link</a></p></li>
+<li><p>Reusch 2020 <a
+href="https://movementecologyjournal.biomedcentral.com/articles/10.1186/s40462-020-00221-x">Link</a></p></li>
+<li><p>Rodriguez 2012 <a
+href="https://pubmed.ncbi.nlm.nih.gov/23060519/">Link</a></p></li>
+<li><p>Simeone and Luna-Jorquera 2012 <a
+href="https://www.researchgate.net/publication/244283287_Estimating_rat_predation_on_Humboldt_Penguin_colonies_in_north-central_Chile">Link</a></p></li>
+<li><p>Spelt et al. 2019 <a
+href="https://www.nature.com/articles/s41598-019-46890-6">Link</a></p></li>
+<li><p>Witteveen et al. 2017 <a
+href="https://www.sciencedirect.com/science/article/abs/pii/S0025326X16308694?via%3Dihub">Link</a></p></li>
+<li><p>Yoda et al. 2012 <a
+href="https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z">Link</a></p></li>
+<li><p>Yorio et al. 2016 <a
+href="https://bioone.org/journals/waterbirds/volume-39/issue-sp1/063.039.sp103/Distribution-and-Trends-in-Kelp-Gull-Larus-dominicanus-Coastal-Breeding/10.1675/063.039.sp103.short">Link</a></p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

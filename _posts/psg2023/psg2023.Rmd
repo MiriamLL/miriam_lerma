@@ -60,7 +60,10 @@ knitr::include_graphics(Imagen1)
 
 ## Authors
 
-**Miriam Lerma**, Claudia Fernandez, Mylene Seguel, Guillermo Luna-Jorquera, Stefan Garthe
+**Miriam Lerma**^1^, Claudia Fernandez^2^, Mylene Seguel^2^, Guillermo Luna-Jorquera^2^, Stefan Garthe^1^
+
+1. Research and Technology Center (FTZ), University of Kiel, Hafentörn 1, 25761 Büsum, Germany. [Link](https://www.ftz.uni-kiel.de/en?set_language=en)
+2. Departamento de Biología Marina, Facultad de Ciencias del Mar, Universidad Católica del Norte, Coquimbo, Chile. [Link](https://www.ucn.cl/)
 
 
 ## References
@@ -81,20 +84,21 @@ By alphabetic order
 7. Ludynia et al. 2005 [Link](https://bioone.org/journals/waterbirds/volume-28/issue-3/1524-4695_2005_028_0359_SARVIT_2.0.CO_2/Seasonal-and-Regional-Variation-in-the-Diet-of-the-Kelp/10.1675/1524-4695(2005)028[0359:SARVIT]2.0.CO;2.short)
 
 8. Neubauer et al. 2006 [Link](https://www.iop.krakow.pl/pobierz-publikacje,1203)
-Pasten-Araya 2021 [Link](https://aveschile.cl/wp-content/uploads/2021/12/7.-Pasten-Araya_et_al.pdf)
 
-9. Oro et al. 2013 [Link](https://www.researchgate.net/publication/258054052_Ecological_and_evolutionary_implications_of_food_subsidies_from_humans?_sg%5B0%5D=ibjhPvOXCyFo4LT4r1gpklrVPzVIdkMVG2PF10ou39e7eECmg-kGBpxwjHxQu-zHAND4elun1uxPsBM.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&_sg%5B1%5D=g-s_fCH2DyQ8mlwfWjNHNK7DlWoIu7Oncol1CaZqaUxBlK_MCZEXwl2qYbJztEIt0UpG6iNCQGiTsYq0leer1AwReNQ.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&_sg%5B2%5D=YPDaewKuN0qslXmEAO_q81De3hO38q5VNGoJnkkF-kxrjuIg-PzcmmhHNUU96V-V1eBi--zhWWc96Qh9yw.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&_sgd%5Bpr%5D=1)
+9. Pasten-Araya 2021 [Link](https://aveschile.cl/wp-content/uploads/2021/12/7.-Pasten-Araya_et_al.pdf)
 
-10. Reusch 2020 [Link](https://movementecologyjournal.biomedcentral.com/articles/10.1186/s40462-020-00221-x)
+10. Oro et al. 2013 [Link](https://www.researchgate.net/publication/258054052_Ecological_and_evolutionary_implications_of_food_subsidies_from_humans?_sg%5B0%5D=ibjhPvOXCyFo4LT4r1gpklrVPzVIdkMVG2PF10ou39e7eECmg-kGBpxwjHxQu-zHAND4elun1uxPsBM.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&_sg%5B1%5D=g-s_fCH2DyQ8mlwfWjNHNK7DlWoIu7Oncol1CaZqaUxBlK_MCZEXwl2qYbJztEIt0UpG6iNCQGiTsYq0leer1AwReNQ.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&_sg%5B2%5D=YPDaewKuN0qslXmEAO_q81De3hO38q5VNGoJnkkF-kxrjuIg-PzcmmhHNUU96V-V1eBi--zhWWc96Qh9yw.5o3McySY6PCObQ02pjClRtwIToj67KJHxd4XLMK7_VZ7YuCV9RrCNEl30ApwjkvQnYn4BTI0jQJTDzs7yFfwRg&_sgd%5Bpr%5D=1)
 
-11. Rodriguez 2012 [Link](https://pubmed.ncbi.nlm.nih.gov/23060519/)
+11. Reusch 2020 [Link](https://movementecologyjournal.biomedcentral.com/articles/10.1186/s40462-020-00221-x)
 
-12. Simeone and Luna-Jorquera 2012 [Link](https://www.researchgate.net/publication/244283287_Estimating_rat_predation_on_Humboldt_Penguin_colonies_in_north-central_Chile)
+12. Rodriguez 2012 [Link](https://pubmed.ncbi.nlm.nih.gov/23060519/)
 
-13. Spelt et al. 2019 [Link](https://www.nature.com/articles/s41598-019-46890-6)
+13. Simeone and Luna-Jorquera 2012 [Link](https://www.researchgate.net/publication/244283287_Estimating_rat_predation_on_Humboldt_Penguin_colonies_in_north-central_Chile)
 
-14. Witteveen et al. 2017 [Link](https://www.sciencedirect.com/science/article/abs/pii/S0025326X16308694?via%3Dihub)
+14. Spelt et al. 2019 [Link](https://www.nature.com/articles/s41598-019-46890-6)
 
-15. Yoda et al. 2012 [Link](https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z)
+15. Witteveen et al. 2017 [Link](https://www.sciencedirect.com/science/article/abs/pii/S0025326X16308694?via%3Dihub)
 
-16. Yorio et al. 2016 [Link](https://bioone.org/journals/waterbirds/volume-39/issue-sp1/063.039.sp103/Distribution-and-Trends-in-Kelp-Gull-Larus-dominicanus-Coastal-Breeding/10.1675/063.039.sp103.short)
+16. Yoda et al. 2012 [Link](https://esj-journals.onlinelibrary.wiley.com/doi/abs/10.1007/s10144-007-0059-z)
+
+17. Yorio et al. 2016 [Link](https://bioone.org/journals/waterbirds/volume-39/issue-sp1/063.039.sp103/Distribution-and-Trends-in-Kelp-Gull-Larus-dominicanus-Coastal-Breeding/10.1675/063.039.sp103.short)
