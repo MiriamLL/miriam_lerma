@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 02-04-2023
-preview: blog20.jpg
+preview: blog20b.jpg
 categories:
   - QGIS
   - shapefiles
