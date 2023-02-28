@@ -1,5 +1,28 @@
 [
   {
+    "path": "posts/2023-02-28-mapping-in-r/",
+    "title": "Mapping in R",
+    "description": "Create a map of Europe in ggplot2.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2023-02-28",
+    "categories": [
+      "R",
+      "ggplot2",
+      "English"
+    ],
+    "contents": "\r\n\r\nContents\r\nIntro\r\n1. Getting ready\r\n2. Load your shapefile\r\n3. Create a basic map\r\n4. Add colors\r\n5. Change background\r\ncolor\r\n6. Add limits\r\n7. Add scale\r\n8. Add arrow\r\n\r\n\r\nIntro\r\nHow to create a map in ggplot and add attributes.\r\n1. Getting ready\r\nYou can download shapefiles from: https://www.naturalearthdata.com/downloads/\r\nLoad the package here to work in your directory.\r\n\r\n\r\nlibrary(here)\r\n\r\n\r\nLoad the package sf to read the shapefiles into\r\nR\r\n\r\n\r\nlibrary(sf)\r\n\r\n\r\n2. Load your shapefile\r\nUse your directory name, and give the name of your shapefile\r\n\r\n\r\n\r\n\r\n\r\nEurope<-st_read(paste0(Directory,MyShapefileName))\r\n\r\nReading layer `country' from data source \r\n  `C:\\Users\\lerma\\OneDrive\\Documents\\4Programacion\\2022\\1Distill\\Distill\\_posts\\2023-02-28-mapping-in-r\\country.shp' \r\n  using driver `ESRI Shapefile'\r\nSimple feature collection with 54 features and 2 fields\r\nGeometry type: MULTIPOLYGON\r\nDimension:     XY\r\nBounding box:  xmin: -31.26575 ymin: 32.39748 xmax: 69.07032 ymax: 81.85737\r\nGeodetic CRS:  WGS 84\r\n\r\n3. Create a basic map\r\nLoad ggplot2\r\n\r\n\r\nlibrary(ggplot2)\r\n\r\n\r\nPlot your shapefile\r\n\r\n\r\nggplot()+  \r\n  geom_sf(data = Europe)\r\n\r\n\r\n\r\n4. Add colors\r\nI like using coolors.co to select my color palettes, I copy the hex\r\ncolors from here\r\n\r\n\r\nggplot()+  \r\n  geom_sf(data = Europe, \r\n          colour = \"#edf2f4\", \r\n          fill = \"#2b2d42\",\r\n          size=0.5)\r\n\r\n\r\n\r\n5. Change background color\r\nYou can eliminate the grids and the change the background color in\r\nggplot\r\n\r\n\r\nggplot()+  \r\n  geom_sf(data = Europe, \r\n          colour = \"#edf2f4\", \r\n          fill = \"#2b2d42\",\r\n          size=0.5)+\r\n  theme(\r\n        panel.grid.major = element_blank(), \r\n        panel.grid.minor = element_blank(),\r\n        panel.background = element_rect(fill = '#edf2f4'),\r\n        legend.background = element_rect(fill = '#edf2f4'))\r\n\r\n\r\n\r\n6. Add limits\r\nReduce to focus in your area of interest\r\n\r\n\r\nggplot()+  \r\n  geom_sf(data = Europe, \r\n          colour = \"#edf2f4\", \r\n          fill = \"#2b2d42\",\r\n          size=0.5)+\r\n  theme(\r\n        panel.grid.major = element_blank(), \r\n        panel.grid.minor = element_blank(),\r\n        panel.background = element_rect(fill = '#edf2f4'),\r\n        legend.background = element_rect(fill = '#edf2f4'))+\r\n  \r\n  coord_sf(xlim = c(9, 31),ylim = c(53, 65))\r\n\r\n\r\n\r\n7. Add scale\r\nLoad the package ggspatial to add a scale and an\r\nnorth arrow\r\n\r\n\r\nlibrary(ggspatial)\r\n\r\n\r\nbr is from bottom rightbar_cols is for column colorstext_col is for the color of the text\r\n\r\n\r\nggplot()+  \r\n  geom_sf(data = Europe, \r\n          colour = \"#edf2f4\", \r\n          fill = \"#2b2d42\",\r\n          size=0.5)+\r\n  theme(\r\n        panel.grid.major = element_blank(), \r\n        panel.grid.minor = element_blank(),\r\n        panel.background = element_rect(fill = '#edf2f4'),\r\n        legend.background = element_rect(fill = '#edf2f4'))+\r\n  \r\n  coord_sf(xlim = c(9, 31),ylim = c(53, 65))+\r\n    scale_x_continuous(labels = function(x) paste0(x, '\\u00B0', \"W\")) +\r\n    scale_y_continuous(labels = function(x) paste0(x, '\\u00B0', \"N\")) +\r\n  \r\n  annotation_scale(location = \"br\",bar_cols = c(\"#ef233c\", \"#d90429\"),text_col = '#ef233c')\r\n\r\n\r\n\r\n8. Add arrow\r\ntl is for top leftwhich_north preferably true (see why here)north_arrow_fancy_orienteering (see other styles here)\r\n\r\n\r\nggplot()+  \r\n  geom_sf(data = Europe, \r\n          colour = \"#edf2f4\", \r\n          fill = \"#2b2d42\",\r\n          size=0.5)+\r\n  theme(\r\n        panel.grid.major = element_blank(), \r\n        panel.grid.minor = element_blank(),\r\n        panel.background = element_rect(fill = '#edf2f4'),\r\n        legend.background = element_rect(fill = '#edf2f4'))+\r\n  \r\n  coord_sf(xlim = c(9, 31),ylim = c(53, 65))+\r\n    scale_x_continuous(labels = function(x) paste0(x, '\\u00B0', \"W\")) +\r\n    scale_y_continuous(labels = function(x) paste0(x, '\\u00B0', \"N\")) +\r\n  \r\n   annotation_scale(location = \"br\",bar_cols = c(\"#ef233c\", \"#d90429\"),text_col = '#ef233c')+\r\n  \r\n  annotation_north_arrow(location = \"tl\", style = north_arrow_minimal(text_col = '#ffd60a',line_col = '#ffd60a',fill = '#ffd60a')) \r\n\r\n\r\n\r\nThats it for now!\r\n\r\n\r\n\r\n",
+    "preview": "posts/2023-02-28-mapping-in-r/mapping-in-r_files/figure-html5/unnamed-chunk-6-1.png",
+    "last_modified": "2023-02-28T10:17:28+01:00",
+    "input_file": "mapping-in-r.knit.md",
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/psg2023/",
     "title": "PSG2023",
     "description": "Habitat use of Kelp gulls",
@@ -58,26 +81,6 @@
     ],
     "contents": "\r\n\r\nContents\r\nIntro\r\nProgram\r\nQGIS\r\nCreate polygon\r\nReferences\r\n\r\n\r\nIntro\r\nThis post is to give you an example on how to create your own polygon\r\nusing google maps.\r\nProgram\r\nFor this exercise we used the release candidate of QGIS, but every\r\nversion has the option to create new layers, so no worries in which\r\nversion you are using.\r\n\r\n\r\n\r\nIf you still dont have it, here is the link for download QGIS\r\nQGIS\r\nIn earlier QGIS versions, there was a plugin called Open\r\nLayers plugin, but is not available anymore (as far as I am\r\naware of).\r\nNow to add a google satellite map in your QGIS you\r\ncould do the following:\r\nGo to View > Panels > Activate Browser Panel\r\n\r\n\r\n\r\nNow go to XYZ > a new connection\r\n\r\n\r\n\r\nA new window will appear\r\n\r\n\r\n\r\nFill in the spaces with the map you want to use\r\nYou need to give it a name and the URL\r\nThere are many options of maps, you can look at some here: Google\r\nURLs\r\nWe will use Open Street Map: https://tile.openstreetmap.org/{z}/{x}/{y}.png for the\r\nexample.\r\n\r\n\r\n\r\nOnce you have create the connection, double click on the name and the\r\nmap should be loaded as a layer.\r\n\r\n\r\n\r\nReady to Use!\r\n\r\n\r\n\r\nCreate polygon\r\nSelect New Shapefile Layer\r\n\r\n\r\n\r\nGive a name to your new shapefile\r\nI recommend to click on the three dots to select also the\r\ndirectory\r\nIn the exercise, we will create a polygon, therefore, select\r\nPolygon in Geometry type\r\n\r\n\r\n\r\nSelect Layer > Toggle editing, or just click on the icon with the\r\nyellow pencil\r\n\r\n\r\n\r\nNow add polygon feature by clicking on the green polygon icon\r\n\r\n\r\n\r\nUse the pointer of your mouse and click one time to create\r\npoints\r\nThe areas will start to look red\r\nKeep clicking until you have a more or less the polygon you want\r\nWhen you finish you should add an id, here I used the number 1 for an\r\nexample\r\n\r\n\r\n\r\nNow you should have a polygon!\r\nTo edit the shapes you can use the vertex tool\r\n\r\n\r\n\r\nThe corners can be moved/dragged when the icon has been\r\nselected\r\n\r\n\r\n\r\nNew points can be created using the cross\r\n\r\n\r\n\r\nWhen you are editing your layer you will have a red pencil icon,\r\nclick on the yellow pencil for finish editing\r\n\r\n\r\n\r\nDo not forget to save the changes!\r\n\r\n\r\n\r\n… Now you are done!\r\nI hope this helped you.\r\nReferences\r\nFor continuing learning, here are other uses of google maps:\r\nMedium\r\nAdd background\r\nmap\r\nGoogle\r\nAPI\r\nGoogle\r\nURLs\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-01-27-qgispolygon/blog19.jpg",
-    "last_modified": "2023-02-04T13:14:10+01:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/2023-02-28-streetmap/",
-    "title": "Mapa estatico en QGIS",
-    "description": "Agregar un mapa base estatico en QGIS",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2022-12-20",
-    "categories": [
-      "GIS",
-      "Español"
-    ],
-    "contents": "\r\n\r\nContents\r\nIntro\r\nQGIS\r\nGoogle cloud\r\nLeer más\r\n\r\n\r\nIntro\r\nEste post es para compartir los pasos que seguí para agregar un mapa\r\nestatico de google a mi QGIS.\r\nQGIS\r\nActualmente cuento con QGIS 3.28.1 Firenze Para descargarlo\r\n\r\n\r\n\r\nGoogle cloud\r\nLo primero que hice fue entrar a esta liga de google cloud\r\nAlli tienes que registrarte y aceptar los terminos de uso.\r\nDesafortunadamente tuve que ponder mis datos de la tarjeta para poder\r\nusar este servicio, aunque no se me cobro nada.\r\n\r\n\r\n\r\n\r\n\r\n\r\nCree un nuevo proyecto\r\n\r\n\r\n\r\nNo pude ninguna ubicacion relevante\r\n\r\n\r\n\r\nMe fui a la parte de APIs y servicios\r\n\r\n\r\n\r\nMe aparecio un buscador en el que escribi static\r\n\r\n\r\n\r\nEncontre el que me interesaba\r\n\r\n\r\n\r\nLe di en habilitar\r\n\r\n\r\n\r\nY esto me dio acceso a varios tipos de mapas\r\n\r\n\r\n\r\nFuente: Medium\r\nLeer más\r\nAgregar mapa de\r\nfondo en QGIS en inglés\r\nGoogle\r\nAPI\r\n\r\n\r\n\r\n",
-    "preview": {},
     "last_modified": "2023-02-04T13:14:10+01:00",
     "input_file": {}
   },
