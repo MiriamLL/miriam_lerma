@@ -1,0 +1,68 @@
+---
+title: "custom_points"
+description: |
+  Create a map with custom points and shapes
+author:
+  - name: Miriam Lerma
+    url: {}
+preview: blog24.jpg
+categories:
+  - R
+  - gganimate
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+Create a map with custom points, size and colors
+
+# Params
+
+## Class
+
+```{r}
+Weis01<-Weis01 %>% 
+    mutate(H_class = case_when(
+      height_abo <= 0 ~ as.character("<0"),
+      height_abo >= 0 & height_abo <=  200 ~ as.character(">0 - 200"),
+      height_abo >= 200 & height_abo <= 600 ~ as.character(">200 - 600"),
+      height_abo >= 600 & height_abo <= 1000 ~ as.character(">600 - 1000"),
+      height_abo >= 1000 & height_abo <= 1500 ~ as.character(">1000 - 1500"),
+      height_abo >= 1500 & height_abo <= 5000 ~ as.character(">1500 - 5000"),
+      height_abo >= 5000 ~ as.character('>5000'),
+      TRUE~"U"))
+```
+
+
+## Sizes
+
+```{r}
+class_size<-c('<0'='0.5',
+              '>0 - 200'='0.75',
+              '>200 - 600'='1',
+              '>600 - 1000'='1.5',
+              '>1000 - 1500'='2',
+              '>1500 - 5000'='3',
+              '>5000'='4')
+```
+
+## Colors
+
+
+```{r}
+class_color<-c('<0'='#005f73', #0 BLUE
+               '>0 - 200'='#0a9396', #'>0 - 200',
+               '>200 - 600'='#94d2bd', #'>200 - 600',
+               '>600 - 1000'='#ee9b00', #'>600 - 1000', YELLOW
+               '>1000 - 1500'='#ca6702', #'>1000 - 1500', 
+               '>1500 - 5000'='#bb3e03', #'>1500 - 5000', 
+               '>5000'='#9b2226') #'>5000') RED
+```
+
+
