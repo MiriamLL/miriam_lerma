@@ -7,7 +7,7 @@ output_dir: "_site"
 navbar:
   left:
     - text: "About"
-      href: index.html
+      href: about.html
     - text: "Publications"
       href: publications.html
     - text: "Teaching"
