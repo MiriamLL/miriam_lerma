@@ -1,68 +1,44 @@
 ---
-title: "Miriam Lerma"
-image: "images/LermaCircular.jpg"
+title: "Welcome to my site"
+image: "Lerma_Miriam.jpg"
 links:
-  - label: '<i class="fab fa-mastodon"></i> Mastodon'
-    url: "https://tinyurl.com/47d4fvnx"
-  - label: '<i class="fab fa-github"></i> GitHub'
-    url: "https://github.com/MiriamLL"
-  - label: '<i class="fas fa-envelope"></i> Email'
+  - label: Twitter
+    url: "https://twitter.com/MiriamLL"
+  - label: GitHub
+    url: "https://github.com/MiriamLermaL"
+  - label: Email
     url: "mailto:miriamjlerma@gmail.com"
-twitter:
-  creator: "@MiriamLermaL"
-  site: "@MiriamLermaL"
-output:
-  postcards::trestles
 site: distill::distill_website
 ---
 
-```{r setup, message=FALSE, warning=FALSE, include=FALSE}
-library(metathis)
-meta() %>%
-  meta_description(
-    "Mi sitio personal"
-  ) %>%
-  meta_name("github-repo" = "https://github.com/MiriamLL/miriamlerma_") %>%
-  meta_viewport() %>%
-  meta_social(
-    title = "Miriam Lerma",
-    url = "www.miriam-lerma.com",
-    og_type = "website",
-    og_author = c("Miriam Lerma"),
-    twitter_card_type = "summary",
-    twitter_creator = "@MiriamLermaL"
-  )
-```
 
 ```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
 library(fontawesome)
 library(distilltools)
 ```
 
-### `r fa("chevron-circle-down", fill = "black")` About  me
+```{r, fig.height=10,echo=FALSE, fig.align='center',eval=FALSE}
+knitr::include_graphics("images/LermaCircular.jpg")
+```
 
-I am a postdoctoral researcher at West Coast Research and Technology Center [FTZ](https://www.ftz.uni-kiel.de/de) in Büsum, Germany and part of the Seevogelmonitoring team at the Dachverband Deutscher Avifaunisten [DDA](https://www.dda-web.de/). 
+### `r fa("chevron-circle-down", fill = "black")` [**About**](https://www.miriam-lerma.com/about.html)<br>
+Learn a little bit about me, my interests and find my contact information at the about section.
+<br>  
 
-My work entitles analyzing spatial patterns of marine animals while collaborating on active projects in Mexico and Chile. My focus is coastal and marine animals, in particular shorebirds and seabirds. My research interests include conservation, ecology, physiology, and ecotoxicology. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
+### `r fa("book", fill = "black")` [**Publications**](https://www.miriam-lerma.com/publications.html)  
 
-I am passionate about nature, biology, and outdoor activities (hiking, kayaking, snorkelling).   
-  
-**Publications**  
-You can find abstracts and links to my [publications](https://www.miriam-lerma.com/publications.html). If you can't access any of the publications please don't hesitate to contact me.
-<br>
-**Teaching**  
-I prepared materials for training technicians and students in [R](https://www.r-project.org/about.html), a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely, you can locate them [here](https://www.miriam-lerma.com/materiales.html), please note that these materials are in Spanish. 
-<br>
-**Packages**  
-I develop R [packages](https://www.miriam-lerma.com/projects.html) that are useful for my work. Instructions are in Spanish, but a link to the English translation at github is provided. 
-<br>
-**Blog**  
-I blog about what I consider could be useful to other people. Most ideas come from people asking me how to do something in particular, something that I was learning at the moment. I write in English and Spanish. 
-<br>
+You can find abstracts and links to my publications. If you can't access any of the publications please don't hesitate to contact me.
+<br>  
 
-### `r fa("envelope", fill = "black")` Contact
+### `r fa("school", fill = "black")` [**Teaching**](https://www.miriam-lerma.com/materiales.html)  
+I prepared materials for training technicians and students in R, a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely, you can locate them here, please note that these materials are in Spanish. 
+<br>  
 
-If you are interested in a collaboration, or have any questions, please feel free to email me. 
+###  `r fa("box", fill = "black")` [**Packages**](https://www.miriam-lerma.com/projects.html)  
+I develop R packages that are useful for my work. Instructions are in Spanish, but a link to the English translation at github is provided. A new package is coming soon.
+<br>  
 
-**Dr. rer. nat. Miriam Lerma** <br>
-Email: miriamjlerma@gmail.com
+### `r fa("keyboard", fill = "black")` [**Blog**](https://www.miriam-lerma.com/blog.html)  
+I blog about what I consider could be useful to other people. I write in English and Spanish. 
+<br>  
+
