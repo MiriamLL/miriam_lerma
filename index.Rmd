@@ -1,47 +1,45 @@
 ---
-title: "Welcome to my site!"
-image: "Lerma_Miriam.jpg"
+title: "Miriam Lerma"
+image: "images/LermaCircular.jpg"
 links:
-  - label: Twitter
-    url: "https://twitter.com/MiriamLL"
-  - label: GitHub
-    url: "https://github.com/MiriamLermaL"
-  - label: Email
+  - label: '<i class="fab fa-mastodon"></i> Mastodon'
+    url: "https://tinyurl.com/47d4fvnx"
+  - label: '<i class="fab fa-github"></i> GitHub'
+    url: "https://github.com/MiriamLL"
+  - label: '<i class="fas fa-envelope"></i> Email'
     url: "mailto:miriamjlerma@gmail.com"
+twitter:
+  creator: "@MiriamLermaL"
+  site: "@MiriamLermaL"
+output:
+  postcards::trestles
 site: distill::distill_website
 ---
 
+```{r setup, message=FALSE, warning=FALSE, include=FALSE}
+library(metathis)
+meta() %>%
+  meta_description(
+    "Mi sitio personal"
+  ) %>%
+  meta_name("github-repo" = "https://github.com/MiriamLL/miriamlerma_") %>%
+  meta_viewport() %>%
+  meta_social(
+    title = "Miriam Lerma",
+    url = "www.miriam-lerma.com",
+    og_type = "website",
+    og_author = c("Miriam Lerma"),
+    twitter_card_type = "summary",
+    twitter_creator = "@MiriamLermaL"
+  )
+```
 
 ```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
 library(fontawesome)
-library(distilltools)
 ```
-
-```{r, fig.height=10,echo=FALSE, fig.align='center'}
-knitr::include_graphics("images/LermaCircular.jpg")
-```
-
-<center>
-```{r icon-links8,eval=FALSE,echo=FALSE}
-icon_link(icon = "fab fa-mastodon",
-          text = "mastodon",
-          url = "https://ecoevo.social/@miriamlerma")
-```
-
-```{r icon-links7,eval=FALSE,echo=FALSE}
-icon_link(icon = "fab fa-github-alt",
-          text = "github",
-          url = "https://github.com/MiriamLL")
-```
-
-```{r icon-links6,eval=FALSE,echo=FALSE}
-icon_link(icon = "fab fa-linkedin-in",
-          text = "linkedin",
-          url = "https://www.linkedin.com/in/miriam-lerma/")
-```
-</center>
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
+
 I am a postdoctoral researcher at West Coast Research and Technology Center [FTZ](https://www.ftz.uni-kiel.de/de) in Büsum, Germany and part of the Seevogelmonitoring team at the Dachverband Deutscher Avifaunisten [DDA](https://www.dda-web.de/). 
 
 My work entitles analyzing spatial patterns of marine animals while collaborating on active projects in Mexico and Chile. My focus is coastal and marine animals, in particular shorebirds and seabirds. My research interests include conservation, ecology, physiology, and ecotoxicology. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
@@ -55,4 +53,3 @@ If you are interested in a collaboration, or have any questions, please feel fre
 ### `r fa("envelope", fill = "black")` Contact
 **Dr. rer. nat. Miriam Lerma** <br>
 Email: miriamjlerma@gmail.com
-
