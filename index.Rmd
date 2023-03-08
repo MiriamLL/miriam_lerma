@@ -27,7 +27,7 @@ Learn a little bit about me, my interests and find my contact information at the
 
 ### `r fa("book", fill = "black")` [**Publications**](https://www.miriam-lerma.com/publications.html)  
 
-You can find abstracts and links to my publications. If you can't access any of the publications please don't hesitate to contact me.
+You can find abstracts and links to my publications. If you can't access a publication please don't hesitate to contact me.
 <br>  
 
 ### `r fa("school", fill = "black")` [**Teaching**](https://www.miriam-lerma.com/materiales.html)  
