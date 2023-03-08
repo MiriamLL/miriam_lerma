@@ -1,5 +1,10 @@
 ---
 title: "Blog"
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    toc_float: true
 listing:
   posts:
     - 2023-03-04-mapping-in-r
@@ -26,4 +31,5 @@ listing:
     - 2021-06-03-paquetes    
     - 2021-06-03-vitae    
     - 2021-06-03-paginadistill
+
 ---

@@ -4,8 +4,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
-    toc_float: false
-    self_contained: false
+    toc_float: true
 ---
 
 ```{css, echo=FALSE, eval=FALSE}
