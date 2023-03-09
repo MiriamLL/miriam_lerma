@@ -39,6 +39,6 @@ I develop R packages that are useful for my work. Instructions are in Spanish, b
 <br>  
 
 ### `r fa("keyboard", fill = "black")` [**Blog**](https://www.miriam-lerma.com/blog.html)  
-I blog about what I consider could be useful to other people. I write in English and Spanish. 
+I blog about what I consider are useful topics and can help other people. I write mostly about R and QGIS, but some of my talks are there. I write in English and Spanish. 
 <br>  
 
