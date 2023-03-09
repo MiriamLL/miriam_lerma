@@ -1,0 +1,318 @@
+---
+title: "Grid, Raster, Colors"
+description: |
+  Create a grid, then a raster, and plot them with your custom colors
+author:
+  - name: Miriam Lerma
+    url: {}
+preview: blog22_rectangular.jpg
+categories:
+  - R
+  - GIS
+  - English
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+In this post, we will:
+
+1- Create a grid <br>
+2- Extract values per grid <br>
+3- Keep only grid cells with values <br>
+4- Calculate mean values per grid <br>
+5- Customize raster plot <br>
+
+
+## Data
+
+For this example, we will use the data provided in the package **sula** <br>
+The data is from tracked masked boobies at Rapa Nui <br>
+The data is already in tidy format <br>
+
+```{r}
+my_data<-(sula::GPS_preparado)
+```
+
+# 1. Grid
+
+We will start by converting the data from data.frame to an sf object
+
+For this we will need the package **sf**
+
+```{r}
+library(sf)
+```
+
+Using the argument **st_as_sf** we convert the data to a sf object
+
+```{r}
+my_points<-my_data %>%
+  st_as_sf(coords=c('Longitude','Latitude'),
+           crs=4326,
+           remove=FALSE)
+```
+
+For plotting the data we will use the package **ggplot2**
+
+```{r}
+library(ggplot2)
+```
+
+Since our data is an sf object we will use the function **geom_sf**
+
+```{r,fig.height=5}
+ggplot()+
+  geom_sf(data=my_points)+
+  theme_minimal()
+```
+
+Next step is to create a grid on the area that we are exploring.
+
+We will use a **fish net**. <br>
+*Fish net, or square grids, is a good method of covering a surface. <br>
+The method is called [tessellation](https://en.wikipedia.org/wiki/Tessellation), and it means covering a surface with no overlaps or gaps, like when using tiles.*<br>
+
+
+We will use the function **st_make_grid** to create the grid  <br>
+The arguments are:  <br>
+**n** - integer of length 1 or 2, number of grid cells in x and y direction (columns, rows)<br>
+**what** - do yo want polygons, corners or centers<br>
+**square**- TRUE create square, FALSE creates an hexagonal grid<br>
+
+Using the function **range** I check my latitudes and longitudes to decide how to plot the grid
+
+```{r}
+range(my_points$Latitude)
+range(my_points$Longitude)
+```
+
+```{r}
+my_grid<-st_make_grid(my_points, 
+                       c(0.05, 0.05), 
+                       what = "polygons",
+                       square = TRUE)
+```
+
+Transform grid to sf using the function **st_sf** and add an *grid_id* to the grid cell using the function **mutate** from the package **dplyr**
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+my_grid_sf = st_sf(my_grid) %>%
+  mutate(grid_id = 1:length(lengths(my_grid)))
+```
+
+You can now plot your grid
+
+```{r,fig.height=5}
+ggplot()+
+  geom_sf(data=my_grid_sf)+
+  geom_sf(data=my_points)+
+  theme_minimal()
+```
+
+
+# 2. Extract values per grid
+
+Using the function **st_intersection** the values from your points can be added to the grid
+
+
+Using the argument **lenghts** we can calculate the sample number per grid
+
+```{r}
+my_grid_sf$nlocs <- lengths(st_intersects(my_grid_sf, my_points))
+```
+
+To add color to our plot, we use the package **viridis**
+
+```{r}
+library(viridis)
+```
+
+In the plot, we can see the places with the most locations recorded 
+
+```{r,fig.height=5}
+ggplot()+
+  geom_sf(data=my_grid_sf,aes(fill=nlocs))+
+  theme_minimal()+
+  scale_fill_viridis(direction = -1) 
+```
+
+
+# 3. Keep only grid cells that were surveyed
+
+It could be that we would like to keep only grids that were sampled.  
+
+One way to do it is filter for those grid cells that have less than 0 recordings
+
+```{r}
+grid_w_data = filter(my_grid_sf, nlocs > 0)
+```
+
+Check
+
+```{r,fig.height=5}
+ggplot()+
+  geom_sf(data = my_grid)+
+  geom_sf(data = grid_w_data, colour = "#42a921", fill= '#bde0fe',alpha=0.9)+
+  NULL
+```
+
+
+# 4. Calculate mean values per grid
+
+
+
+```{r}
+my_dens<-my_points
+```
+
+Here, I create random values that could be densities
+
+```{r}
+my_dens$densities<-runif(nrow(my_dens), min=0, max=1)
+```
+
+Transform from data.frame to sf object
+
+```{r}
+my_dens_sf <-my_dens %>% 
+  st_as_sf(coords = c("Longitude", "Latitude"))
+```
+
+Assign the coordinate system
+
+```{r}
+my_dens_sf  = st_set_crs(my_dens_sf , "EPSG:4326")
+```
+
+Using the function **st_intersection**, we add grid number to each data point 
+
+```{r}
+dens_grid <- st_intersection(grid_w_data,my_dens_sf)
+```
+
+With the function **mutate**, the mean density per grid will be calculated
+
+```{r}
+dens_mean <- dens_grid %>%
+  st_drop_geometry() %>%
+  group_by(grid_id)%>%
+  mutate(grid_dens_means=mean(densities))
+```
+
+Finally, the mean density will be added to the general grid
+
+```{r}
+grid_w_dens<-merge(grid_w_data,dens_mean, by='grid_id', all=TRUE)
+```
+
+Now lets get only one mean value per grid
+
+```{r}
+grid_dens<-grid_w_dens %>%
+  group_by(grid_id)%>%
+  summarise_at(vars(grid_dens_means),
+               list(name = mean)) %>%
+  rename(dens_mean=name)
+```
+
+Remove grid without values
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+grid_dens<-grid_dens%>%
+  drop_na(dens_mean)
+```
+
+```{r,fig.height=5}
+ggplot()+
+  geom_sf(data = grid_dens,aes(fill = dens_mean))+
+  geom_sf(data= my_dens_sf)+
+    scale_fill_viridis(direction = -1) 
+```
+
+
+# 5. Customize raster plot
+
+The function **geom_sf** will help us to plot the raster
+
+Axis labels cab be changed using **scale_x_continuous** and **scale_y_continuous**
+
+To see less distracting colors on the background, I added **theme_minimal**
+
+```{r, fig.height=5}
+ggplot()+
+  geom_sf(data = grid_dens,aes(fill = dens_mean))+
+    scale_fill_viridis(direction = -1) +
+    scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
+    scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N"))+
+  theme_minimal()
+```
+
+To make a custom raster palette use the function **scale_fill_gradientn**
+
+```{r}
+dens_colors<-c('white','#6CB4D3','#1A89AB','#7CC252','#B2EC2B','#DCF754','#FFE454','#FD9708','#F6640F','#EC2C11')
+dens_breaks<-c(0,0.30,0.60,0.85)
+dens_labels<-c('0','0.30','0.60','> 0.85')
+```
+
+The plot with our palette arguments include:<br>
+**colours** for the colors you want to use <br>
+**breaks** for the breaks<br>
+**labels** for what you want to be show in the label<br>
+**limits** to decide what colors are to be included<br>
+
+To customize legend<br>
+**legend.key** will modify the legend<br>
+
+```{r, fig.height=5}
+ggplot()+
+  geom_sf(data = grid_dens,aes(fill = dens_mean),color='transparent')+
+    
+  scale_fill_gradientn(name='Density',
+    colours = dens_colors,
+    breaks = dens_breaks, 
+    labels = dens_labels,
+    limits=c(0,1))+
+  
+  
+    scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
+    scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N"))+
+  
+  theme_bw()+
+  
+  theme(panel.background = element_rect(fill = '#3668b4'),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())+
+  
+  
+  theme(
+    legend.key = element_rect(color = "black",size=5),
+    legend.key.width = unit(1, "cm"),
+    legend.key.height = unit(1, "cm")) +
+  
+  guides(fill = guide_colorbar(ticks.colour = "transparent"))
+```
+
+
+
+# Further reads
+
+[Create a grid by Urban data palette](https://urbandatapalette.com/post/2021-08-tessellation-sf/)<br>
+[Thematic mapping in Mapping in R](https://map-rfun.library.duke.edu/032_thematic_mapping_geom_sf.html)<br>
+[Mapping in R workshop](https://geanders.github.io/navy_public_health/index.html#prerequisites) <br>
+[ggplot2 color scales](https://ggplot2-book.org/scale-colour.html)<br>
+[ggplot2 legend keys](https://www.rusersplace.com/2022/08/21/index.zh-cn/images/FabxzmnX0AEwau0.jpg)<br>
