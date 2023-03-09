@@ -1,7 +1,7 @@
 ---
 title: "custom_points"
 description: |
-  Create a map with custom points and shapes
+  Plot points in a map using custom colors
 author:
   - name: Miriam Lerma
     url: {}
@@ -20,7 +20,8 @@ output:
 
 # Intro
 
-Create a map with custom points, size and colors
+Create a grid, extract values per grid, and plot a raster with custom points, size and colors
+
 
 # Params
 
@@ -64,5 +65,7 @@ class_color<-c('<0'='#005f73', #0 BLUE
                '>1500 - 5000'='#bb3e03', #'>1500 - 5000', 
                '>5000'='#9b2226') #'>5000') RED
 ```
+
+
 
 
