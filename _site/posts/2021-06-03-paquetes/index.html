@@ -124,7 +124,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog3.jpg","paquetes_files/anchor-4.2.2/anchor.min.js","paquetes_files/bowser-1.9.3/bowser.min.js","paquetes_files/distill-2.2.21/template.v2.js","paquetes_files/header-attrs-2.8/header-attrs.js","paquetes_files/header-attrs-2.9/header-attrs.js","paquetes_files/jquery-1.11.3/jquery.min.js","paquetes_files/popper-2.6.0/popper.min.js","paquetes_files/tippy-6.2.7/tippy-bundle.umd.min.js","paquetes_files/tippy-6.2.7/tippy-light-border.css","paquetes_files/tippy-6.2.7/tippy.css","paquetes_files/tippy-6.2.7/tippy.umd.min.js","paquetes_files/webcomponents-2.0.0/webcomponents.js","portada_paquetes.jpg","undraw_Moving_twwf.png","undraw_Moving_twwf.svg"]}
+  {"type":"character","attributes":{},"value":["blog3.jpg","paquetes_files/anchor-4.2.2/anchor.min.js","paquetes_files/bowser-1.9.3/bowser.min.js","paquetes_files/distill-2.2.21/template.v2.js","paquetes_files/header-attrs-2.14/header-attrs.js","paquetes_files/header-attrs-2.8/header-attrs.js","paquetes_files/header-attrs-2.9/header-attrs.js","paquetes_files/jquery-1.11.3/jquery.min.js","paquetes_files/jquery-3.6.0/jquery-3.6.0.js","paquetes_files/jquery-3.6.0/jquery-3.6.0.min.js","paquetes_files/jquery-3.6.0/jquery-3.6.0.min.map","paquetes_files/popper-2.6.0/popper.min.js","paquetes_files/tippy-6.2.7/tippy-bundle.umd.min.js","paquetes_files/tippy-6.2.7/tippy-light-border.css","paquetes_files/tippy-6.2.7/tippy.css","paquetes_files/tippy-6.2.7/tippy.umd.min.js","paquetes_files/webcomponents-2.0.0/webcomponents.js","portada_paquetes.jpg","undraw_Moving_twwf.png","undraw_Moving_twwf.svg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2435,7 +2435,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2867,6 +2867,15 @@ se puede revisar si funcionó usando funciones del paquete
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file<span class='op'>=</span><span class='st'>"TDR_raw.rda"</span>, compress <span class='op'>=</span> <span class='st'>"xz"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p><strong>actualizacion 2023</strong><br />
+Si aparece el mensaje <em>WARNING: Added dependency on R &gt;= 3.5.0
+because serialized objects in serialize/load version 3 cannot be read in
+older versions of R. </em> Hay que usar .RData</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file <span class='op'>=</span> <span class='st'>"TDR_raw.RData"</span>, version <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="resumido">2.2. Resumido</h2>

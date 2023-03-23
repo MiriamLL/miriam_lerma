@@ -383,6 +383,15 @@ Es mejor agregar el argumento compress.
 save(TDR_raw, file="TDR_raw.rda", compress = "xz")
 ```
 
+
+**actualizacion 2023**  
+Si aparece el mensaje *WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R. *
+Hay que usar .RData
+
+```{r, eval=FALSE}
+save(TDR_raw, file = "TDR_raw.RData", version = 2)
+```
+
 ## 2.2. Resumido
 
 Agrega datos al paquete
