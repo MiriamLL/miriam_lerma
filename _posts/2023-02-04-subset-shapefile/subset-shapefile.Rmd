@@ -8,9 +8,11 @@ author:
 date: 02-04-2023
 preview: blog20b.jpg
 categories:
-  - QGIS
+  - GIS
   - shapefiles
   - English
+  - R
+  - Y2023
 output:
   distill::distill_article:
     toc: true

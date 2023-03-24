@@ -10,6 +10,7 @@ categories:
   - R
   - Español
   - Package
+  - Y2023
 output:
   distill::distill_article:
     toc: true
@@ -385,13 +386,7 @@ save(TDR_raw, file="TDR_raw.rda", compress = "xz")
 ```
 
 
-**actualizacion 2023**  
-Si aparece el mensaje *WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R. *
-Hay que usar .RData
 
-```{r, eval=FALSE}
-save(TDR_raw, file = "TDR_raw.RData", version = 2)
-```
 
 ## 2.2. Resumido
 
@@ -430,6 +425,25 @@ devtools::install("C:/....")
 ```{r, eval=FALSE}
 devtools::install_github("Desarrollador/paquete")
 ```
+
+## 2.3. Actualizaciones
+
+**RData**  
+Si aparece el mensaje *WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R. *
+Hay que usar .RData
+
+```{r, eval=FALSE}
+save(TDR_raw, file = "TDR_raw.RData", version = 2)
+```
+
+**LazyData**
+Tambien tener cuidado de incluir en DESCRIPTION
+
+```{r, eval=FALSE}
+LazyData: true
+```
+
+Para poder usar directamente los datos
 
 # 3. Funciónes 🤸🏾‍
 

@@ -113,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Paquetes"]},{"type":"character","attributes":{},"value":["Como crear tu primer paquete con datos y algunas funciones. \n"]},{"type":"character","attributes":{},"value":["blog3.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-03"]},{"type":"character","attributes":{},"value":["R","Español","Package"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Paquetes"]},{"type":"character","attributes":{},"value":["Como crear tu primer paquete con datos y algunas funciones. \n"]},{"type":"character","attributes":{},"value":["blog3.jpg"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2021-06-03"]},{"type":"character","attributes":{},"value":["R","Español","Package","Y2023"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1505,6 +1505,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="dt-tag">R</div>
 <div class="dt-tag">Español</div>
 <div class="dt-tag">Package</div>
+<div class="dt-tag">Y2023</div>
 </div>
 <!--/radix_placeholder_categories-->
 <p><p>Como crear tu primer paquete con datos y algunas
@@ -1537,6 +1538,7 @@ funciones.</p></p>
 <ul>
 <li><a href="#documentar-datos">2.1. Documentar datos</a></li>
 <li><a href="#resumido">2.2. Resumido</a></li>
+<li><a href="#actualizaciones">2.3. Actualizaciones</a></li>
 </ul></li>
 <li><a href="#funciónes">3. Funciónes 🤸🏾‍</a>
 <ul>
@@ -1885,15 +1887,6 @@ se puede revisar si funcionó usando funciones del paquete
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file<span class='op'>=</span><span class='st'>"TDR_raw.rda"</span>, compress <span class='op'>=</span> <span class='st'>"xz"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p><strong>actualizacion 2023</strong><br />
-Si aparece el mensaje <em>WARNING: Added dependency on R &gt;= 3.5.0
-because serialized objects in serialize/load version 3 cannot be read in
-older versions of R. </em> Hay que usar .RData</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file <span class='op'>=</span> <span class='st'>"TDR_raw.RData"</span>, version <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
 <h2 id="resumido">2.2. Resumido</h2>
 <p>Agrega datos al paquete</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1932,6 +1925,24 @@ older versions of R. </em> Hay que usar .RData</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://remotes.r-lib.org/reference/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"Desarrollador/paquete"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<h2 id="actualizaciones">2.3. Actualizaciones</h2>
+<p><strong>RData</strong><br />
+Si aparece el mensaje <em>WARNING: Added dependency on R &gt;= 3.5.0
+because serialized objects in serialize/load version 3 cannot be read in
+older versions of R. </em> Hay que usar .RData</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>TDR_raw</span>, file <span class='op'>=</span> <span class='st'>"TDR_raw.RData"</span>, version <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p><strong>LazyData</strong> Tambien tener cuidado de incluir en
+DESCRIPTION</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>LazyData</span><span class='op'>:</span> <span class='va'>true</span></span></code></pre>
+</div>
+</div>
+<p>Para poder usar directamente los datos</p>
 <h1 id="funciónes">3. Funciónes 🤸🏾‍</h1>
 <p>Para este paso deberías tener alguna función en mente.</p>
 <p>Si aún no sabes como crear tu primera función puedes ir a <a
