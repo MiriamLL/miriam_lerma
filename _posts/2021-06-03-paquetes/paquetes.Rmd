@@ -926,6 +926,7 @@ install.packages("hexSticker")
 
 - Libros<br>
 [`r fa("book-open", fill = ColorEnlaceInverso)` R Packages](https://r-pkgs.org/intro.html)
+[`r fa("book-open", fill = ColorEnlaceInverso)` R Packages 2e](https://r-pkgs.org/package-within.html#echo-a-working-package)
 
 - Tutoriales sobre datos <br>
 [`r fa("external-link-alt", fill = ColorEnlaceInverso)` Incluir datos](https://r-pkgs.org/man.html) <br>
