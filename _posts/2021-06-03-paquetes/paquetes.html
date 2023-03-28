@@ -1942,6 +1942,19 @@ DESCRIPTION</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>LazyData</span><span class='op'>:</span> <span class='va'>true</span></span></code></pre>
 </div>
 </div>
+<p>If LazyData DB of 21.3 MB without LazyData Compression set</p>
+Agregar
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>LazyDataCompression</span><span class='op'>:</span><span class='va'>xz</span></span></code></pre>
+</div>
+</div>
+<p>If checking data for ASCII and uncompressed saves … Warning: package
+needs dependence on R (&gt;= 2.10)</p>
+In DESCRIPTION:
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Depends<span class="sc">:</span> <span class="fu">R</span> (<span class="sc">&gt;=</span> <span class="fl">2.10</span>)</span></code></pre></div>
+</div>
 <p>Para poder usar directamente los datos</p>
 <h1 id="funciónes">3. Funciónes 🤸🏾‍</h1>
 <p>Para este paso deberías tener alguna función en mente.</p>
@@ -1967,9 +1980,9 @@ href="https://r4ds-en-espaniol.netlify.app/funciones.html">r4ds</a>.</p>
 Pega allí la función</p>
 <p>Aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>√ Setting active project to <span class="st">&#39;C:/...&#39;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> Modify <span class="st">&#39;R/mi_primera_funcion.R&#39;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> Call <span class="st">`</span><span class="at">use_test()</span><span class="st">`</span> to create a matching test file</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>√ Setting active project to <span class="st">&#39;C:/...&#39;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> Modify <span class="st">&#39;R/mi_primera_funcion.R&#39;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> Call <span class="st">`</span><span class="at">use_test()</span><span class="st">`</span> to create a matching test file</span></code></pre></div>
 </div>
 <p>Ahora en la carpeta R aparecerá dentro la función</p>
 <p>Agregar un Roxigen skeleton: <br> - Poner el cursor justo en la
@@ -1999,8 +2012,8 @@ al paquete, escribe en la consola:</p>
 </div>
 <p>Aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Writing NAMESPACE</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Writing mi_primera_funcion.Rd</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Writing NAMESPACE</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Writing mi_primera_funcion.Rd</span></code></pre></div>
 </div>
 <p>Al abrir la carpeta <strong>man</strong> aparecerá un documento
 rellenado.<br />
@@ -2060,8 +2073,8 @@ función.</p>
 <p><strong>Abre un nuevo script</strong>. Pega allí la función. En la
 consola aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> Modify <span class="st">&#39;R/tu_funcion.R&#39;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> Call <span class="st">`</span><span class="at">use_test()</span><span class="st">`</span> to create a matching test file</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a> Modify <span class="st">&#39;R/tu_funcion.R&#39;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> Call <span class="st">`</span><span class="at">use_test()</span><span class="st">`</span> to create a matching test file</span></code></pre></div>
 </div>
 <p>Ahora en la carpeta <strong>R</strong> dentro del paquete aparece la
 función.<br />
@@ -2106,8 +2119,8 @@ paquete hay que escribir en la consola:</p>
 </div>
 <p>Aparece:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Writing NAMESPACE</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Writing mi_funcion.Rd</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Writing NAMESPACE</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Writing mi_funcion.Rd</span></code></pre></div>
 </div>
 <p>Ahora en la carpeta <strong>man</strong>, aparece un documento
 rellenado.<br />
@@ -2143,8 +2156,8 @@ paquetes dentro de la función <strong>use_package</strong></p>
 </div>
 <p>Aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>√ Adding <span class="st">&#39;dplyr&#39;</span> to Imports field <span class="cf">in</span> DESCRIPTION</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> Refer to functions with <span class="st">`</span><span class="at">dplyr::fun()</span><span class="st">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>√ Adding <span class="st">&#39;dplyr&#39;</span> to Imports field <span class="cf">in</span> DESCRIPTION</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> Refer to functions with <span class="st">`</span><span class="at">dplyr::fun()</span><span class="st">`</span></span></code></pre></div>
 </div>
 <p>Así mismo aparecerá en el documento DESCRIPTION:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2156,7 +2169,7 @@ paquetes dentro de la función <strong>use_package</strong></p>
 <p>Lo siguiente es especificar el paquete en la función, tal como
 recomienda el siguiente mensaje.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> Refer to functions with <span class="st">`</span><span class="at">dplyr::fun()</span><span class="st">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> Refer to functions with <span class="st">`</span><span class="at">dplyr::fun()</span><span class="st">`</span></span></code></pre></div>
 </div>
 <h3 id="pipe">pipe 🖇️</h3>
 <p>La función <strong>pipe (%&gt;%)</strong> del paquete magrittr es
@@ -2169,9 +2182,9 @@ especial.</p>
 </div>
 <p>Aparecerá algo como:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>√ Adding <span class="st">&#39;magrittr&#39;</span> to Imports field <span class="cf">in</span> DESCRIPTION</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>√ Writing <span class="st">&#39;R/utils-pipe.R&#39;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a> Run <span class="st">`</span><span class="at">devtools::document()</span><span class="st">`</span> to update <span class="st">&#39;NAMESPACE&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>√ Adding <span class="st">&#39;magrittr&#39;</span> to Imports field <span class="cf">in</span> DESCRIPTION</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>√ Writing <span class="st">&#39;R/utils-pipe.R&#39;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a> Run <span class="st">`</span><span class="at">devtools::document()</span><span class="st">`</span> to update <span class="st">&#39;NAMESPACE&#39;</span></span></code></pre></div>
 </div>
 <p>Se recomienda volver a documentar.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2190,7 +2203,7 @@ magrittr</strong></p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
 </div>
 <p>Listo! el paquete esta completo 🥳</p>
 <h3 id="stats">stats 🧮</h3>
@@ -2226,7 +2239,7 @@ las dependencias.</p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
 </div>
 <p>Listo! el paquete esta completo 🥳</p>
 <h3 id="ggplot">ggplot 🎨</h3>
@@ -2236,12 +2249,12 @@ href="https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html">Aquí
 puedes leer más</a>.</p>
 <p>Si no, aparecerá un error:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> error x <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">1</span> note x</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> error x <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">1</span> note x</span></code></pre></div>
 </div>
 <p>Esto occurre debido a que al revisar el paquete, no detecta varias
 funciones del paquete ggplot.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>no visible global <span class="cf">function</span> definition <span class="cf">for</span> <span class="st">&#39;aes&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>no visible global <span class="cf">function</span> definition <span class="cf">for</span> <span class="st">&#39;aes&#39;</span></span></code></pre></div>
 </div>
 <p>Ejemplo:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2256,24 +2269,24 @@ funciones del paquete ggplot.</p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>checking R code <span class="cf">for</span> possible problems ...</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>checking R code <span class="cf">for</span> possible problems ...</span></code></pre></div>
 </div>
 <p>También pueden aparecer problemas con las variables al usar ggplot
 dentro de una función.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>no visible binding <span class="cf">for</span> global variable <span class="st">&#39;.data&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>no visible binding <span class="cf">for</span> global variable <span class="st">&#39;.data&#39;</span></span></code></pre></div>
 </div>
 <p>Para resolver esto hay que declarar las variables dentro de la
 función y posteriormente usar .data</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>TDR_trip</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>var1<span class="ot">&lt;-</span>time_column</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>var2<span class="ot">&lt;-</span>depth_column</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x=</span>.data[[var1]],</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y=</span>.data[[var2]))<span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>TDR_trip</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>var1<span class="ot">&lt;-</span>time_column</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>var2<span class="ot">&lt;-</span>depth_column</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>                ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x=</span>.data[[var1]],</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y=</span>.data[[var2]))<span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_line</span>()</span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2287,7 +2300,7 @@ función y posteriormente usar .data</p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors √ <span class="sc">|</span> <span class="dv">0</span> warnings √ <span class="sc">|</span> <span class="dv">0</span> notes √</span></code></pre></div>
 </div>
 <p>Listo! el paquete esta completo 🥳</p>
 <h2 id="otros-problemas">3.3. Otros problemas 👻</h2>
@@ -2305,18 +2318,18 @@ los cambios.<br></p>
 considerado muy largo. <br> <strong>Solución</strong> Separar en la
 documentación.<br></p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>\examples lines wider than <span class="dv">100</span> characters<span class="sc">:</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>\examples lines wider than <span class="dv">100</span> characters<span class="sc">:</span></span></code></pre></div>
 </div>
 <p><strong>Problema</strong> Solo puedo tener un resultado (return) <br>
 <strong>Solución</strong> Crea una lista con los returns.<br> Por
 ejemplo:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funcion</span>(primer_argumento, segundo_argumento){</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  multiplicacion<span class="ot">&lt;-</span>primer_argumento<span class="sc">*</span>segundo_argumento</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  suma<span class="ot">&lt;-</span>primer_argumento<span class="sc">+</span>segundo_argumento</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  lista<span class="ot">&lt;-</span>(<span class="fu">list</span>(<span class="st">&quot;multiplicacion&quot;</span><span class="ot">=</span>multiplicacion,<span class="st">&quot;suma&quot;</span><span class="ot">=</span>suma))</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lista)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funcion</span>(primer_argumento, segundo_argumento){</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  multiplicacion<span class="ot">&lt;-</span>primer_argumento<span class="sc">*</span>segundo_argumento</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  suma<span class="ot">&lt;-</span>primer_argumento<span class="sc">+</span>segundo_argumento</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  lista<span class="ot">&lt;-</span>(<span class="fu">list</span>(<span class="st">&quot;multiplicacion&quot;</span><span class="ot">=</span>multiplicacion,<span class="st">&quot;suma&quot;</span><span class="ot">=</span>suma))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lista)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <p><strong>Problema</strong> Al usar slot en sapply.<br>
 <strong>Solución</strong> Hay que agregar la dependencia
@@ -2426,7 +2439,7 @@ Rladies como crear funciones</a><br> <a
 href="https://www.youtube.com/watch?v=IlWMkz769B4&amp;t"><svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#4cc9f0;overflow:visible;position:relative;"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
 Rladies como crear paquetes</a></p></li>
 </ul>
-<div class="sourceCode" id="cb33"><pre
+<div class="sourceCode" id="cb34"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

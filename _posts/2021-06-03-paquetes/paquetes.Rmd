@@ -443,6 +443,22 @@ Tambien tener cuidado de incluir en DESCRIPTION
 LazyData: true
 ```
 
+If
+LazyData DB of 21.3 MB without LazyData Compression set
+
+Agregar
+```{r, eval=FALSE}
+LazyDataCompression:xz
+```
+
+If  checking data for ASCII and uncompressed saves ... 
+     Warning: package needs dependence on R (>= 2.10)
+     
+In DESCRIPTION:
+```{r, eval=FALSE}
+Depends: R (>= 2.10)
+```
+
 Para poder usar directamente los datos
 
 # 3. Funciónes 🤸🏾‍
