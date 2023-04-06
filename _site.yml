@@ -11,7 +11,7 @@ navbar:
     - text: "Publications"
       href: publications.html
     - text: "Teaching"
-      href: materiales.html
+      href: teaching.html
     - text: "Packages"
       href: projects.html
     - text: "Blog"

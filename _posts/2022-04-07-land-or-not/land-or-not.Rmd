@@ -11,6 +11,7 @@ categories:
   - R
   - Tracking
   - English
+  - Y2022
 output:
   distill::distill_article:
     toc: true

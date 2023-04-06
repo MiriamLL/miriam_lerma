@@ -95,8 +95,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <link rel="canonical" href="https://miriamlerma.netlify.app/posts/2023-04-11-gridraster/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2023-03-09"/>
-<meta property="article:created" itemprop="dateCreated" content="2023-03-09"/>
+<meta property="article:published" itemprop="datePublished" content="2023-04-06"/>
+<meta property="article:created" itemprop="dateCreated" content="2023-04-06"/>
 <meta name="article:author" content="Miriam Lerma"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -119,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","preview","categories","output","date","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Grid, Raster, Colors"]},{"type":"character","attributes":{},"value":["Create a grid, then a raster, and plot them with your custom colors"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["blog22_rectangular.jpg"]},{"type":"character","attributes":{},"value":["R","GIS","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["03-09-2023"]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2023-04-11-gridraster/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","preview","date","categories","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Grid, Raster, Colors"]},{"type":"character","attributes":{},"value":["Create a grid, then a raster, and plot them with your custom colors"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["blog22_rectangular.jpg"]},{"type":"character","attributes":{},"value":["2023-04-06"]},{"type":"character","attributes":{},"value":["R","GIS","English","Y2023"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2023-04-11-gridraster/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2463,7 +2463,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Grid, Raster, Colors","description":"Create a grid, then a raster, and plot them with your custom colors","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-03-09T00:00:00.000+01:00","citationText":"Lerma, 2023"}
+{"title":"Grid, Raster, Colors","description":"Create a grid, then a raster, and plot them with your custom colors","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-04-06T00:00:00.000+02:00","citationText":"Lerma, 2023"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2474,7 +2474,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <a href="../../index.html" class="title">Miriam Lerma</a>
 <a href="../../about.html">About</a>
 <a href="../../publications.html">Publications</a>
-<a href="../../materiales.html">Teaching</a>
+<a href="../../teaching.html">Teaching</a>
 <a href="../../projects.html">Packages</a>
 <a href="../../blog.html">Blog</a>
 <a href="https://ecoevo.social/@miriamlerma">
@@ -2498,14 +2498,13 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1>Grid, Raster, Colors</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Create a grid, then a raster, and plot them with your custom
-colors</p></p>
+<p><p>Create a grid, then a raster, and plot them with your custom colors</p></p>
 </div>
 
 <div class="d-byline">
   Miriam Lerma true 
   
-<br/>03-09-2023
+<br/>2023-04-06
 </div>
 
 <div class="d-article">
@@ -2513,47 +2512,44 @@ colors</p></p>
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#intro">Intro</a>
+<li><a href="#intro" id="toc-intro">Intro</a>
 <ul>
-<li><a href="#data">Data</a></li>
+<li><a href="#data" id="toc-data">Data</a></li>
 </ul></li>
-<li><a href="#grid">1. Grid</a></li>
-<li><a href="#extract-values-per-grid">2. Extract values per
-grid</a></li>
-<li><a href="#keep-only-grid-cells-that-were-surveyed">3. Keep only grid
-cells that were surveyed</a></li>
-<li><a href="#calculate-mean-values-per-grid">4. Calculate mean values
-per grid</a></li>
-<li><a href="#customize-raster-plot">5. Customize raster plot</a></li>
-<li><a href="#further-reads">Further reads</a></li>
+<li><a href="#grid" id="toc-grid">1. Grid</a></li>
+<li><a href="#extract-values-per-grid" id="toc-extract-values-per-grid">2. Extract values per grid</a></li>
+<li><a href="#keep-only-grid-cells-that-were-surveyed" id="toc-keep-only-grid-cells-that-were-surveyed">3. Keep only grid cells that were surveyed</a></li>
+<li><a href="#calculate-mean-values-per-grid" id="toc-calculate-mean-values-per-grid">4. Calculate mean values per grid</a></li>
+<li><a href="#customize-raster-plot" id="toc-customize-raster-plot">5. Customize raster plot</a></li>
+<li><a href="#further-reads" id="toc-further-reads">Further reads</a></li>
 </ul>
 </nav>
 </div>
 <h1 id="intro">Intro</h1>
 <p>In this post, we will:</p>
-<p>1- Create a grid <br> 2- Extract values per grid <br> 3- Keep only
-grid cells with values <br> 4- Calculate mean values per grid <br> 5-
-Customize raster plot <br></p>
+<p>1- Create a grid <br>
+2- Extract values per grid <br>
+3- Keep only grid cells with values <br>
+4- Calculate mean values per grid <br>
+5- Customize raster plot <br></p>
 <h2 id="data">Data</h2>
-<p>For this example, we will use the data provided in the package
-<strong>sula</strong> <br> The data is from tracked masked boobies at
-Rapa Nui <br> The data is already in tidy format <br></p>
+<p>For this example, we will use the data provided in the package <strong>sula</strong> <br>
+The data is from tracked masked boobies at Rapa Nui <br>
+The data is already in tidy format <br></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>my_data</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='fu'>sula</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/sula/man/GPS_preparado.html'>GPS_preparado</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="grid">1. Grid</h1>
-<p>We will start by converting the data from data.frame to an sf
-object</p>
+<p>We will start by converting the data from data.frame to an sf object</p>
 <p>For this we will need the package <strong>sf</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Using the argument <strong>st_as_sf</strong> we convert the data to a
-sf object</p>
+<p>Using the argument <strong>st_as_sf</strong> we convert the data to a sf object</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>my_points</span><span class='op'>&lt;-</span><span class='va'>my_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
@@ -2562,15 +2558,13 @@ sf object</p>
 <span>           remove<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>For plotting the data we will use the package
-<strong>ggplot2</strong></p>
+<p>For plotting the data we will use the package <strong>ggplot2</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Since our data is an sf object we will use the function
-<strong>geom_sf</strong></p>
+<p>Since our data is an sf object we will use the function <strong>geom_sf</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
@@ -2580,19 +2574,15 @@ sf object</p>
 <p><img src="gridraster_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <p>Next step is to create a grid on the area that we are exploring.</p>
-<p>We will use a <strong>fish net</strong>. <br> <em>Fish net, or square
-grids, is a good method of covering a surface. <br> The method is called
-<a href="https://en.wikipedia.org/wiki/Tessellation">tessellation</a>,
-and it means covering a surface with no overlaps or gaps, like when
-using tiles.</em><br></p>
-<p>We will use the function <strong>st_make_grid</strong> to create the
-grid <br> The arguments are: <br> <strong>n</strong> - integer of length
-1 or 2, number of grid cells in x and y direction (columns, rows)<br>
+<p>We will use a <strong>fish net</strong>. <br>
+<em>Fish net, or square grids, is a good method of covering a surface. <br>
+The method is called <a href="https://en.wikipedia.org/wiki/Tessellation">tessellation</a>, and it means covering a surface with no overlaps or gaps, like when using tiles.</em><br></p>
+<p>We will use the function <strong>st_make_grid</strong> to create the grid <br>
+The arguments are: <br>
+<strong>n</strong> - integer of length 1 or 2, number of grid cells in x and y direction (columns, rows)<br>
 <strong>what</strong> - do yo want polygons, corners or centers<br>
-<strong>square</strong>- TRUE create square, FALSE creates an hexagonal
-grid<br></p>
-<p>Using the function <strong>range</strong> I check my latitudes and
-longitudes to decide how to plot the grid</p>
+<strong>square</strong>- TRUE create square, FALSE creates an hexagonal grid<br></p>
+<p>Using the function <strong>range</strong> I check my latitudes and longitudes to decide how to plot the grid</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>my_points</span><span class='op'>$</span><span class='va'>Latitude</span><span class='op'>)</span></span></code></pre>
@@ -2611,9 +2601,7 @@ longitudes to decide how to plot the grid</p>
 <span>                       square <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Transform grid to sf using the function <strong>st_sf</strong> and
-add an <em>grid_id</em> to the grid cell using the function
-<strong>mutate</strong> from the package <strong>dplyr</strong></p>
+<p>Transform grid to sf using the function <strong>st_sf</strong> and add an <em>grid_id</em> to the grid cell using the function <strong>mutate</strong> from the package <strong>dplyr</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span></code></pre>
@@ -2636,24 +2624,20 @@ add an <em>grid_id</em> to the grid cell using the function
 <p><img src="gridraster_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
 </div>
 <h1 id="extract-values-per-grid">2. Extract values per grid</h1>
-<p>Using the function <strong>st_intersection</strong> the values from
-your points can be added to the grid</p>
-<p>Using the argument <strong>lenghts</strong> we can calculate the
-sample number per grid</p>
+<p>Using the function <strong>st_intersection</strong> the values from your points can be added to the grid</p>
+<p>Using the argument <strong>lenghts</strong> we can calculate the sample number per grid</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>my_grid_sf</span><span class='op'>$</span><span class='va'>nlocs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lengths.html'>lengths</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_pred.html'>st_intersects</a></span><span class='op'>(</span><span class='va'>my_grid_sf</span>, <span class='va'>my_points</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>To add color to our plot, we use the package
-<strong>viridis</strong></p>
+<p>To add color to our plot, we use the package <strong>viridis</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://sjmgarnier.github.io/viridis/'>viridis</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>In the plot, we can see the places with the most locations
-recorded</p>
+<p>In the plot, we can see the places with the most locations recorded</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
@@ -2663,12 +2647,9 @@ recorded</p>
 </div>
 <p><img src="gridraster_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
 </div>
-<h1 id="keep-only-grid-cells-that-were-surveyed">3. Keep only grid cells
-that were surveyed</h1>
-<p>It could be that we would like to keep only grids that were
-sampled.</p>
-<p>One way to do it is filter for those grid cells that have less than 0
-recordings</p>
+<h1 id="keep-only-grid-cells-that-were-surveyed">3. Keep only grid cells that were surveyed</h1>
+<p>It could be that we would like to keep only grids that were sampled.</p>
+<p>One way to do it is filter for those grid cells that have less than 0 recordings</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>grid_w_data</span> <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>my_grid_sf</span>, <span class='va'>nlocs</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span></span></code></pre>
@@ -2684,8 +2665,7 @@ recordings</p>
 </div>
 <p><img src="gridraster_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
 </div>
-<h1 id="calculate-mean-values-per-grid">4. Calculate mean values per
-grid</h1>
+<h1 id="calculate-mean-values-per-grid">4. Calculate mean values per grid</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>my_dens</span><span class='op'>&lt;-</span><span class='va'>my_points</span></span></code></pre>
@@ -2710,15 +2690,13 @@ grid</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>my_dens_sf</span>  <span class='op'>=</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_crs.html'>st_set_crs</a></span><span class='op'>(</span><span class='va'>my_dens_sf</span> , <span class='st'>"EPSG:4326"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Using the function <strong>st_intersection</strong>, we add grid
-number to each data point</p>
+<p>Using the function <strong>st_intersection</strong>, we add grid number to each data point</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>dens_grid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_ops.html'>st_intersection</a></span><span class='op'>(</span><span class='va'>grid_w_data</span>,<span class='va'>my_dens_sf</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>With the function <strong>mutate</strong>, the mean density per grid
-will be calculated</p>
+<p>With the function <strong>mutate</strong>, the mean density per grid will be calculated</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>dens_mean</span> <span class='op'>&lt;-</span> <span class='va'>dens_grid</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
@@ -2765,12 +2743,9 @@ will be calculated</p>
 <p><img src="gridraster_files/figure-html5/unnamed-chunk-26-1.png" width="624" /></p>
 </div>
 <h1 id="customize-raster-plot">5. Customize raster plot</h1>
-<p>The function <strong>geom_sf</strong> will help us to plot the
-raster</p>
-<p>Axis labels cab be changed using <strong>scale_x_continuous</strong>
-and <strong>scale_y_continuous</strong></p>
-<p>To see less distracting colors on the background, I added
-<strong>theme_minimal</strong></p>
+<p>The function <strong>geom_sf</strong> will help us to plot the raster</p>
+<p>Axis labels cab be changed using <strong>scale_x_continuous</strong> and <strong>scale_y_continuous</strong></p>
+<p>To see less distracting colors on the background, I added <strong>theme_minimal</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
@@ -2782,8 +2757,7 @@ and <strong>scale_y_continuous</strong></p>
 </div>
 <p><img src="gridraster_files/figure-html5/unnamed-chunk-27-1.png" width="624" /></p>
 </div>
-<p>To make a custom raster palette use the function
-<strong>scale_fill_gradientn</strong></p>
+<p>To make a custom raster palette use the function <strong>scale_fill_gradientn</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>dens_colors</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'white'</span>,<span class='st'>'#6CB4D3'</span>,<span class='st'>'#1A89AB'</span>,<span class='st'>'#7CC252'</span>,<span class='st'>'#B2EC2B'</span>,<span class='st'>'#DCF754'</span>,<span class='st'>'#FFE454'</span>,<span class='st'>'#FD9708'</span>,<span class='st'>'#F6640F'</span>,<span class='st'>'#EC2C11'</span><span class='op'>)</span></span>
@@ -2793,11 +2767,11 @@ and <strong>scale_y_continuous</strong></p>
 </div>
 <p>The plot with our palette arguments include:<br>
 <strong>colours</strong> for the colors you want to use <br>
-<strong>breaks</strong> for the breaks<br> <strong>labels</strong> for
-what you want to be show in the label<br> <strong>limits</strong> to
-decide what colors are to be included<br></p>
-<p>To customize legend<br> <strong>legend.key</strong> will modify the
-legend<br></p>
+<strong>breaks</strong> for the breaks<br>
+<strong>labels</strong> for what you want to be show in the label<br>
+<strong>limits</strong> to decide what colors are to be included<br></p>
+<p>To customize legend<br>
+<strong>legend.key</strong> will modify the legend<br></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
@@ -2830,19 +2804,12 @@ legend<br></p>
 <p><img src="gridraster_files/figure-html5/unnamed-chunk-29-1.png" width="624" /></p>
 </div>
 <h1 id="further-reads">Further reads</h1>
-<p><a
-href="https://urbandatapalette.com/post/2021-08-tessellation-sf/">Create
-a grid by Urban data palette</a><br> <a
-href="https://map-rfun.library.duke.edu/032_thematic_mapping_geom_sf.html">Thematic
-mapping in Mapping in R</a><br> <a
-href="https://geanders.github.io/navy_public_health/index.html#prerequisites">Mapping
-in R workshop</a> <br> <a
-href="https://ggplot2-book.org/scale-colour.html">ggplot2 color
-scales</a><br> <a
-href="https://www.rusersplace.com/2022/08/21/index.zh-cn/images/FabxzmnX0AEwau0.jpg">ggplot2
-legend keys</a><br></p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><a href="https://urbandatapalette.com/post/2021-08-tessellation-sf/">Create a grid by Urban data palette</a><br>
+<a href="https://map-rfun.library.duke.edu/032_thematic_mapping_geom_sf.html">Thematic mapping in Mapping in R</a><br>
+<a href="https://geanders.github.io/navy_public_health/index.html#prerequisites">Mapping in R workshop</a> <br>
+<a href="https://ggplot2-book.org/scale-colour.html">ggplot2 color scales</a><br>
+<a href="https://www.rusersplace.com/2022/08/21/index.zh-cn/images/FabxzmnX0AEwau0.jpg">ggplot2 legend keys</a><br></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

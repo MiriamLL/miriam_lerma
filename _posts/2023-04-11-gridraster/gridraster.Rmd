@@ -6,10 +6,12 @@ author:
   - name: Miriam Lerma
     url: {}
 preview: blog22_rectangular.jpg
+date: 2023-04-06
 categories:
   - R
   - GIS
   - English
+  - Y2023
 output:
   distill::distill_article:
     toc: true
