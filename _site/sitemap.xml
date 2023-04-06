@@ -6,15 +6,11 @@
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/blog.html</loc>
-    <lastmod>2023-04-06T13:26:37+02:00</lastmod>
+    <lastmod>2023-04-06T21:02:22+02:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/</loc>
     <lastmod>2023-03-19T11:34:47+01:00</lastmod>
-  </url>
-  <url>
-    <loc>https://miriamlerma.netlify.app/materiales.html</loc>
-    <lastmod>2022-11-20T16:02:42+01:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/projects.html</loc>
@@ -26,11 +22,15 @@
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/teaching.html</loc>
-    <lastmod>2023-04-06T20:26:00+02:00</lastmod>
+    <lastmod>2023-04-06T21:01:53+02:00</lastmod>
   </url>
   <url>
-    <loc>https://miriamlerma.netlify.app/posts/2023-04-11-gridraster/</loc>
+    <loc>https://miriamlerma.netlify.app/posts/2023-04-06-gridraster/</loc>
     <lastmod>2023-04-06T20:32:22+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://miriamlerma.netlify.app/posts/2023-04-18-intro-to-r/</loc>
+    <lastmod>2023-04-06T20:58:22+02:00</lastmod>
   </url>
   <url>
     <loc>https://miriamlerma.netlify.app/posts/2023-03-04-mapping-in-r/</loc>
@@ -149,7 +149,7 @@
     <lastmod>2022-11-26T23:49:55+01:00</lastmod>
   </url>
   <url>
-    <loc>https://miriamlerma.netlify.app/posts/2021-03-16-biologging/</loc>
+    <loc>https://miriamlerma.netlify.app/posts/2024-01-02-biologging/</loc>
     <lastmod>2022-11-26T23:48:03+01:00</lastmod>
   </url>
   <url>

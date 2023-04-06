@@ -1,5 +1,5 @@
 ---
-title: "Biologging"
+title: "Descargar datos de GPS"
 description: |
   Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos. 
 author:

@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -49,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -72,11 +74,11 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -84,48 +86,43 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
-<title>Miriam Lerma: Biologging</title>
+<title>Miriam Lerma: Intro-to-R</title>
 
-<meta property="description" itemprop="description" content="Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos."/>
+<meta property="description" itemprop="description" content="First steps into R."/>
 
-<link rel="canonical" href="https://miriamlerma.netlify.app/posts/2021-03-16-biologging/"/>
+<link rel="canonical" href="https://miriamlerma.netlify.app/posts/2023-04-18-intro-to-r/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-02-16"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-02-16"/>
+<meta property="article:published" itemprop="datePublished" content="2023-04-06"/>
+<meta property="article:created" itemprop="dateCreated" content="2023-04-06"/>
 <meta name="article:author" content="Miriam Lerma"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Miriam Lerma: Biologging"/>
+<meta property="og:title" content="Miriam Lerma: Intro-to-R"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos."/>
-<meta property="og:url" content="https://miriamlerma.netlify.app/posts/2021-03-16-biologging/"/>
-<meta property="og:image" content="https://miriamlerma.netlify.app/posts/2021-03-16-biologging/biologging.png"/>
-<meta property="og:image:width" content="1236"/>
-<meta property="og:image:height" content="927"/>
+<meta property="og:description" content="First steps into R."/>
+<meta property="og:url" content="https://miriamlerma.netlify.app/posts/2023-04-18-intro-to-r/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Miriam Lerma"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:title" content="Miriam Lerma: Biologging"/>
-<meta property="twitter:description" content="Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos."/>
-<meta property="twitter:url" content="https://miriamlerma.netlify.app/posts/2021-03-16-biologging/"/>
-<meta property="twitter:image" content="https://miriamlerma.netlify.app/posts/2021-03-16-biologging/biologging.png"/>
-<meta property="twitter:image:width" content="1236"/>
-<meta property="twitter:image:height" content="927"/>
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="Miriam Lerma: Intro-to-R"/>
+<meta property="twitter:description" content="First steps into R."/>
+<meta property="twitter:url" content="https://miriamlerma.netlify.app/posts/2023-04-18-intro-to-r/"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","preview","date","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Biologging"]},{"type":"character","attributes":{},"value":["Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["biologging.png"]},{"type":"character","attributes":{},"value":["2021-02-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2021-03-16-biologging/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Intro-to-R"]},{"type":"character","attributes":{},"value":["First steps into R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2023-04-06"]},{"type":"character","attributes":{},"value":["cursoR.png"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2023-04-18-intro-to-r/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Biologging.png","biologging_files/anchor-4.2.2/anchor.min.js","biologging_files/bowser-1.9.3/bowser.min.js","biologging_files/distill-2.2.21/template.v2.js","biologging_files/header-attrs-2.14/header-attrs.js","biologging_files/header-attrs-2.6/header-attrs.js","biologging_files/header-attrs-2.8/header-attrs.js","biologging_files/header-attrs-2.9/header-attrs.js","biologging_files/jquery-1.11.3/jquery.min.js","biologging_files/jquery-3.6.0/jquery-3.6.0.js","biologging_files/jquery-3.6.0/jquery-3.6.0.min.js","biologging_files/jquery-3.6.0/jquery-3.6.0.min.map","biologging_files/popper-2.6.0/popper.min.js","biologging_files/tippy-6.2.7/tippy-bundle.umd.min.js","biologging_files/tippy-6.2.7/tippy-light-border.css","biologging_files/tippy-6.2.7/tippy.css","biologging_files/tippy-6.2.7/tippy.umd.min.js","biologging_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"NULL"}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2443,8 +2440,8 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.20/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2464,7 +2461,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Biologging","description":"Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos.","authors":[{"author":"Miriam Lerma","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-16T00:00:00.000+01:00","citationText":"Lerma, 2021"}
+{"title":"Intro-to-R","description":"First steps into R.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-04-06T00:00:00.000+02:00","citationText":"Lerma, 2023"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2496,16 +2493,16 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Biologging</h1>
+<h1>Intro-to-R</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Desde como descargar tus datos de GPS, como cortar partes de interés, hasta hacer tus primeros gráficos con datos de tracking y exportarlos.</p></p>
+<p><p>First steps into R.</p></p>
 </div>
 
 <div class="d-byline">
-  Miriam Lerma  
+  Miriam Lerma true 
   
-<br/>2021-02-16
+<br/>2023-04-06
 </div>
 
 <div class="d-article">
@@ -2513,49 +2510,38 @@ d-appendix d-footnote-list a.footnote-backlink {
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#biologging">Biologging</a>
+<li><a href="#first-steps-into-r" id="toc-first-steps-into-r">First steps into R</a>
 <ul>
-<li><a href="#descargar-tus-datos.">Descargar tus datos.</a></li>
-<li><a href="#corregir-horas.">Corregir horas.</a></li>
-<li><a href="#editar-gps.">Editar GPS.</a></li>
+<li><a href="#intro-a-r." id="toc-intro-a-r.">Intro a R.</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
-<h1 id="biologging">Biologging</h1>
-<p>Bienvenido!</p>
-<p>Este material fue preparado para estudiantes de posgrado de la <a href="http://www.cucsur.udg.mx/maestria-en-ecologia-y-manejo-de-recursos-costeros-y-marinos">Universidad de Guadalajara</a>.</p>
-<p>No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender como manejar sus datos de GPS en R.</p>
-<p>Iré subiendo materiales conforme se vayan actualizando.</p>
-<h2 id="descargar-tus-datos.">Descargar tus datos.</h2>
-<p>En esta clase aprenderás a descargar tus datos de GPS, unirlos y realizar tus primeras gráficas. <br></p>
-<html>
-<body>
-<left> <a href="https://miriamll.github.io/Curso_tracking/Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CortarDatosGPS.png" style="width:300px"></a> </left>
-</body>
-</html>
 <div class="layout-chunk" data-layout="l-body">
-<p><a href="https://miriamll.github.io/Curso_tracking/Parte1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte1.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+
 </div>
-<h2 id="corregir-horas.">Corregir horas.</h2>
-<p>En esta clase aprenderás a corregir la hora en tus datos de GPS de acuerdo a tu GMT. <br></p>
+<h1 id="first-steps-into-r">First steps into R</h1>
+<p>Welcome!</p>
+<p>This material was prepared for <strong>FTZ-DDA</strong></p>
+<p>The materials will be updated together with the trainings.</p>
+<h2 id="intro-a-r.">Intro a R.</h2>
+<p>In this class: <br>
+- Install or update R
+- Workspace panes
+- Packages
+- Directories
+- Load data
+- Basics in Rmd</p>
 <html>
 <body>
-<left> <a href="https://miriamll.github.io/Curso_tracking/Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/CorregirGMT.png" style="width:300px"></a> </left>
+<left>
+<a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" style="width:300px"></a>
+</left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
-<p><a href="https://miriamll.github.io/Curso_tracking/Parte2" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte2.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
-</div>
-<h2 id="editar-gps.">Editar GPS.</h2>
-<p>En esta clase aprenderás a cortar periodos de tiempo de tus datos GPS. <br></p>
-<html>
-<body>
-<left> <a href="https://miriamll.github.io/Curso_tracking/Parte3"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/03Figuras/EditarGPS.png" style="width:300px"></a> </left>
-</body>
-</html>
-<div class="layout-chunk" data-layout="l-body">
-<p><a href="https://miriamll.github.io/Curso_tracking/Parte3" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a><a href="https://raw.githubusercontent.com/MiriamLL/Curso_tracking/main/02PDFs/Parte3.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a></p>
+<a href="https://miriamll.github.io/Curso_CIAD/Clase1" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a>
+<a href="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
