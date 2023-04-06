@@ -30,8 +30,8 @@ Learn a little bit about me, my interests and find my contact information at the
 You can find abstracts and links to my publications. If you can't access a publication please don't hesitate to contact me.
 <br>  
 
-### `r fa("school", fill = "black")` [**Teaching**](https://www.miriam-lerma.com/materiales.html)  
-I prepared materials for training technicians and students in R, a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely, you can locate them here, please note that these materials are in Spanish. 
+### `r fa("school", fill = "black")` [**Teaching**](https://www.miriam-lerma.com/teaching.html)  
+I prepared materials for teaching R, a programming language for statistical computing and graphics. If you are interested in accessing the materials for these trainings, which are taught remotely, you can locate them here. 
 <br>  
 
 ###  `r fa("box", fill = "black")` [**Packages**](https://www.miriam-lerma.com/projects.html)  

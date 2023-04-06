@@ -18,8 +18,8 @@
       "path": "index.html",
       "title": "Welcome to my site",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\nAbout\r\nLearn a little bit about me, my interests and find my contact information at the about section.\r\n\r\nPublications\r\nYou can find abstracts and links to my publications. If you can’t access a publication please don’t hesitate to contact me.\r\n\r\nTeaching\r\nI prepared materials for training technicians and students in R, a programming language for statistical computing and graphics. If you are interested in accessing the materials for this class, which is taught remotely, you can locate them here, please note that these materials are in Spanish.\r\n\r\nPackages\r\nI develop R packages that are useful for my work. Instructions are in Spanish, but a link to the English translation at github is provided. A new package is coming soon.\r\n\r\nBlog\r\nI blog about what I consider are useful topics and can help other people. I write mostly about R and QGIS, but some of my talks are there. I write in English and Spanish.\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2023-04-06T21:03:12+02:00"
+      "contents": "\r\n\r\n\r\n\r\nAbout\r\nLearn a little bit about me, my interests and find my contact information at the about section.\r\n\r\nPublications\r\nYou can find abstracts and links to my publications. If you can’t access a publication please don’t hesitate to contact me.\r\n\r\nTeaching\r\nI prepared materials for teaching R, a programming language for statistical computing and graphics. If you are interested in accessing the materials for these trainings, which are taught remotely, you can locate them here.\r\n\r\nPackages\r\nI develop R packages that are useful for my work. Instructions are in Spanish, but a link to the English translation at github is provided. A new package is coming soon.\r\n\r\nBlog\r\nI blog about what I consider are useful topics and can help other people. I write mostly about R and QGIS, but some of my talks are there. I write in English and Spanish.\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2023-04-06T21:17:21+02:00"
     },
     {
       "path": "projects.html",
@@ -40,7 +40,7 @@
       "title": "Teaching",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2023-04-06T21:03:21+02:00"
+      "last_modified": "2023-04-06T21:20:28+02:00"
     }
   ],
   "collections": ["posts/posts.json"]
