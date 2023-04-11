@@ -1530,6 +1530,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#branch-1">Branch</a></li>
 <li><a href="#reload">Reload</a></li>
 <li><a href="#diferent-slides">Diferent slides</a></li>
+<li><a href="#to-pdf">To pdf</a></li>
 <li><a href="#further-reading">Further reading</a></li>
 </ul>
 </nav>
@@ -1582,9 +1583,26 @@ name at the end of the site.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>miriamll.github.io<span class="sc">/</span>R_intro<span class="sc">/</span>IntroToR_0604.html<span class="co">#1</span></span></code></pre></div>
 </div>
+<h1 id="to-pdf">To pdf</h1>
+<p>The slides can also be converted to pdf</p>
+<p>Install package using
+<strong>install.packages(“renderthis”)</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jhelvy.github.io/renderthis/'>renderthis</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://jhelvy.github.io/renderthis/reference/to_pdf.html'>to_pdf</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='st'>"https://miriamll.github.io/R_intro/IntroToR_0604.html"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
 <h1 id="further-reading">Further reading</h1>
 <ul>
-<li><a href="https://pages.github.com/">Github Pages</a></li>
+<li><a href="https://pages.github.com/">Github Pages</a><br />
+</li>
+<li><a
+href="https://jhelvy.github.io/renderthis/articles/renderthis.html">renderthis</a></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

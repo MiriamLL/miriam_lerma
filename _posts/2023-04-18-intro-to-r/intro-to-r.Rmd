@@ -43,15 +43,20 @@ Underconstruction
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:300px"></a>
+      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:300px"></a>
    </left>
 </body>
 </html>
 
-```{r icon-links1,echo=FALSE,eval=FALSE}
+```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase1")
+          url = "https://miriamll.github.io/R_intro/IntroToR_1104.html")
+```
+
+<br>
+
+```{r icon-links2,echo=FALSE,eval=FALSE}
 icon_link(icon = "fas fa-download",
           text = "Descargar",
           url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf")

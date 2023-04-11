@@ -189,7 +189,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1262,21 +1261,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1523,9 +1516,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#first-steps-into-r" id="toc-first-steps-into-r">First steps into R</a>
+<li><a href="#first-steps-into-r">First steps into R</a>
 <ul>
-<li><a href="#intro-a-r." id="toc-intro-a-r.">Intro a R.</a></li>
+<li><a href="#intro-a-r.">Intro a R.</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1538,8 +1531,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>This material was prepared for <strong>FTZ-DDA</strong></p>
 <p>The materials will be updated together with the trainings.</p>
 <h2 id="intro-a-r.">Intro a R.</h2>
-<p>In this class: <br>
-- Install or update R<br />
+<p>In this class: <br> - Install or update R<br />
 - Workspace panes<br />
 - Packages<br />
 - Directories<br />
@@ -1549,14 +1541,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <html>
 <body>
 <left>
-<a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:300px"></a>
+<a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:300px"></a>
 </left>
 </body>
 </html>
 <div class="layout-chunk" data-layout="l-body">
+<a href="https://miriamll.github.io/R_intro/IntroToR_1104.html" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> Presentación</a>
+</div>
+<p><br></p>
+<div class="layout-chunk" data-layout="l-body">
 
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

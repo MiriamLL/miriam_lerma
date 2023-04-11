@@ -91,6 +91,22 @@ https://miriamll.github.io/R_intro/IntroToR_0604.html#1
 ```
 
 
+# To pdf
+
+The slides can also be converted to pdf
+
+Install package using **install.packages("renderthis")**
+
+```{r}
+library(renderthis)
+```
+
+```{r, eval=FALSE}
+to_pdf(from="https://miriamll.github.io/R_intro/IntroToR_0604.html")
+```
+
+
 # Further reading
 
-- [Github Pages](https://pages.github.com/)
+- [Github Pages](https://pages.github.com/)  
+- [renderthis](https://jhelvy.github.io/renderthis/articles/renderthis.html)
