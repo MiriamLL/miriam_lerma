@@ -785,7 +785,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1858,21 +1857,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2722,7 +2715,7 @@ function init_posts_list() {
 </div>
 </a>
 <a href="posts/2022-12-04-day-night/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English"]}</script>
+<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English","Y2022"]}</script>
 <div class="metadata">
 <div class="publishedDate">Dec. 4, 2022</div>
 <div class="dt-authors">
@@ -2738,12 +2731,13 @@ function init_posts_list() {
 <div class="dt-tag">R</div>
 <div class="dt-tag">Tracking</div>
 <div class="dt-tag">English</div>
+<div class="dt-tag">Y2022</div>
 </div>
 <p>Create a column with the classification day or night</p>
 </div>
 </a>
 <a href="posts/2022-11-20-mastodon/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Redes sociales","Español"]}</script>
+<script class="post-metadata" type="text/json">{"categories":["Español","Y2022"]}</script>
 <div class="metadata">
 <div class="publishedDate">Nov. 20, 2022</div>
 <div class="dt-authors">
@@ -2756,14 +2750,14 @@ function init_posts_list() {
 <div class="description">
 <h2>Mastodon</h2>
 <div class="dt-tags">
-<div class="dt-tag">Redes sociales</div>
 <div class="dt-tag">Español</div>
+<div class="dt-tag">Y2022</div>
 </div>
 <p>Migrando a mastodon</p>
 </div>
 </a>
 <a href="posts/2022-10-04-identify-gaps/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English"]}</script>
+<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English","Y2022"]}</script>
 <div class="metadata">
 <div class="publishedDate">Oct. 3, 2022</div>
 <div class="dt-authors">
@@ -2779,12 +2773,13 @@ function init_posts_list() {
 <div class="dt-tag">R</div>
 <div class="dt-tag">Tracking</div>
 <div class="dt-tag">English</div>
+<div class="dt-tag">Y2022</div>
 </div>
 <p>Find the gaps between recordings</p>
 </div>
 </a>
 <a href="posts/2022-09-13-hr-considerations/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English"]}</script>
+<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English","Y2022"]}</script>
 <div class="metadata">
 <div class="publishedDate">Sept. 14, 2022</div>
 <div class="dt-authors">
@@ -2800,12 +2795,13 @@ function init_posts_list() {
 <div class="dt-tag">R</div>
 <div class="dt-tag">Tracking</div>
 <div class="dt-tag">English</div>
+<div class="dt-tag">Y2022</div>
 </div>
 <p>Some things to consider before making kernel density estimations.</p>
 </div>
 </a>
 <a href="posts/2022-08-17-count-days/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English"]}</script>
+<script class="post-metadata" type="text/json">{"categories":["R","Tracking","English","Y2022"]}</script>
 <div class="metadata">
 <div class="publishedDate">Aug. 17, 2022</div>
 <div class="dt-authors">
@@ -2821,6 +2817,7 @@ function init_posts_list() {
 <div class="dt-tag">R</div>
 <div class="dt-tag">Tracking</div>
 <div class="dt-tag">English</div>
+<div class="dt-tag">Y2022</div>
 </div>
 <p>How to add a day number as a column, and see differences as days pass.</p>
 </div>
@@ -3190,10 +3187,6 @@ function init_posts_list() {
 <span class="category-count">(21)</span>
 </li>
 <li>
-<a href="#category:Redes_sociales">Redes sociales</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
 <a href="#category:shapefiles">shapefiles</a>
 <span class="category-count">(2)</span>
 </li>
@@ -3207,7 +3200,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:Y2022">Y2022</a>
-<span class="category-count">(1)</span>
+<span class="category-count">(6)</span>
 </li>
 <li>
 <a href="#category:Y2023">Y2023</a>
@@ -3231,7 +3224,8 @@ function init_posts_list() {
 
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

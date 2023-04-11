@@ -9,8 +9,9 @@ date: 2021-11-25
 preview: blog6.jpg
 categories:
   - R
-  - Tracking
+  - Biologging
   - English
+  - Y2022
 output:
   distill::distill_article:
     self_contained: false

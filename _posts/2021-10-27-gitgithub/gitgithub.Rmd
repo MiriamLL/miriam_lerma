@@ -11,6 +11,7 @@ categories:
   - R
   - Git
   - English
+  - Y2021
 output:
   distill::distill_article:
     self_contained: false
@@ -25,12 +26,12 @@ ColorLink<-"#74c69d"
 
 # Intro
 
-In this presentation, we will have a short intro on:
-- Git 
-- Github
-- Reproducibility
-- Git+Github
-- Naming things
+In this presentation, we will have a short intro on:  
+- Git  
+- Github  
+- Reproducibility  
+- Git+Github  
+- Naming things  
 
 ⚡⚡⚡
 

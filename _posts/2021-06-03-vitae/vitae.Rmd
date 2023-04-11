@@ -9,6 +9,7 @@ date: 2021-06-02
 categories:
   - R
   - Español
+  - Y2021
 output:
   distill::distill_article:
     toc: true
