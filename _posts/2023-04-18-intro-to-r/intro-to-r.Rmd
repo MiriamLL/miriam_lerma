@@ -51,7 +51,7 @@ Underconstruction
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/R_intro/IntroToR_1104.html")
+          url = "https://miriamll.github.io/R_intro/IntroToR_1104.html#1")
 ```
 
 <br>
