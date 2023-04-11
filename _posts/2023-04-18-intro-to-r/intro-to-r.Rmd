@@ -41,11 +41,19 @@ In this class: <br>
 
 Underconstruction
 
-## Slides
 <html>
 <body>
    <left>
       <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:300px"></a>
+   </left>
+</body>
+</html>
+
+## Slides
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000Index.png?raw=true" style="width:400px"></a>
    </left>
 </body>
 </html>
@@ -56,6 +64,8 @@ icon_link(icon = "fas fa-images",
           text = "Open",
           url = "https://miriamll.github.io/R_intro/IntroToR_1104.html#1")
 ```
+
+
 
 <br>
 
@@ -71,10 +81,8 @@ To download the files there are several options:
 
 **Exercise 1**
 
+- R script containing exercises from the first part. Click [here]("https://raw.githubusercontent.com/MiriamLL/R_intro/master/01Exercises.R").
 
-```{r icon-links3,echo=FALSE,eval=TRUE}
-icon_link(icon = "fas fa-download",
-          text = "Download",
-          url = "https://raw.githubusercontent.com/MiriamLL/R_intro/master/01Exercises.R")
-```
+- Csv file containing penguin data. Click [here]("https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv").
+
 
