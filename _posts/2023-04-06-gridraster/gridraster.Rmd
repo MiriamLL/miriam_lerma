@@ -22,7 +22,7 @@ output:
 
 # Intro
 
-In this post, we will:
+The goal of this post is to:  
 
 1- Create a grid <br>
 2- Extract values per grid <br>
@@ -41,17 +41,15 @@ The data is already in tidy format <br>
 my_data<-(sula::GPS_preparado)
 ```
 
-# 1. Grid
+# 1. Grid 
 
-We will start by converting the data from data.frame to an sf object
-
-For this we will need the package **sf**
+Start by converting the data from data.frame to an sf object using functions from the package **sf**
 
 ```{r}
 library(sf)
 ```
 
-Using the argument **st_as_sf** we convert the data to a sf object
+Using the argument **st_as_sf** convert the data to a sf object
 
 ```{r}
 my_points<-my_data %>%
@@ -60,13 +58,13 @@ my_points<-my_data %>%
            remove=FALSE)
 ```
 
-For plotting the data we will use the package **ggplot2**
+For plotting the data use the package **ggplot2**
 
 ```{r}
 library(ggplot2)
 ```
 
-Since our data is an sf object we will use the function **geom_sf**
+Since the data is an sf object, use the function **geom_sf** to plot
 
 ```{r,fig.height=5}
 ggplot()+
@@ -74,22 +72,21 @@ ggplot()+
   theme_minimal()
 ```
 
-Next step is to create a grid on the area that we are exploring.
+To create a grid using the points.
 
-We will use a **fish net**. <br>
-*Fish net, or square grids, is a good method of covering a surface. <br>
-The method is called [tessellation](https://en.wikipedia.org/wiki/Tessellation), and it means covering a surface with no overlaps or gaps, like when using tiles.*<br>
+A common used method is the **fish net**. By definition, the fish net, or square grids, is a good method of covering a surface. The method is called [tessellation](https://en.wikipedia.org/wiki/Tessellation), and it converts a surface with no overlaps or gaps, like when using tiles.<br>
 
 
-We will use the function **st_make_grid** to create the grid  <br>
-The arguments are:  <br>
-**n** - integer of length 1 or 2, number of grid cells in x and y direction (columns, rows)<br>
-**what** - do yo want polygons, corners or centers<br>
-**square**- TRUE create square, FALSE creates an hexagonal grid<br>
+To create a grid the function **st_make_grid** can be used <br>
 
-Using the function **range** I check my latitudes and longitudes to decide how to plot the grid
+The arguments of the function **st_make_grid** are:  <br>
+**n** - an integer of length 1 or 2, which corresponds to the number of grid cells in x and y direction (columns, rows)<br>
+**what** - defines if polygons, corners or centers are to be created <br>
+**square**- is set to TRUE creates squares, if set to FALSE creates an hexagonal grid<br>
 
-```{r}
+To decide on the size of the grids, check the differences in latitudes and longitudes using the function **range**
+
+```{r, eval=FALSE}
 range(my_points$Latitude)
 range(my_points$Longitude)
 ```
@@ -101,7 +98,7 @@ my_grid<-st_make_grid(my_points,
                        square = TRUE)
 ```
 
-Transform grid to sf using the function **st_sf** and add an *grid_id* to the grid cell using the function **mutate** from the package **dplyr**
+Now that the grid has been calculated, transform the grid to sf using the function **st_sf** and add an *grid_id* to the grid cell using the function **mutate** from the package **dplyr**
 
 ```{r}
 library(dplyr)
@@ -112,7 +109,7 @@ my_grid_sf = st_sf(my_grid) %>%
   mutate(grid_id = 1:length(lengths(my_grid)))
 ```
 
-You can now plot your grid
+To plot the recently created grid:
 
 ```{r,fig.height=5}
 ggplot()+
@@ -122,24 +119,24 @@ ggplot()+
 ```
 
 
-# 2. Extract values per grid
+# 2. Extract values per grid 
 
-Using the function **st_intersection** the values from your points can be added to the grid
+Using the function **st_intersection** the values from the points can be added to the grid
 
-
-Using the argument **lenghts** we can calculate the sample number per grid
+Using the argument **lenghts** the sample number per grid can be calculated
 
 ```{r}
-my_grid_sf$nlocs <- lengths(st_intersects(my_grid_sf, my_points))
+my_grid_sf$nlocs <- lengths(st_intersects(my_grid_sf, 
+                                          my_points))
 ```
 
-To add color to our plot, we use the package **viridis**
+To add color to the plot, the package **viridis** provides the function **scale_fill_viridis**.  
 
 ```{r}
 library(viridis)
 ```
 
-In the plot, we can see the places with the most locations recorded 
+The color will correspond to the number of locations (nlocs)
 
 ```{r,fig.height=5}
 ggplot()+
@@ -149,17 +146,15 @@ ggplot()+
 ```
 
 
-# 3. Keep only grid cells that were surveyed
+# 3. Surveyed 👩🏾‍💻
 
-It could be that we would like to keep only grids that were sampled.  
-
-One way to do it is filter for those grid cells that have less than 0 recordings
+To keep only the grid cells that were surveyed, the grid cells that have 0 recording can be removed 
 
 ```{r}
 grid_w_data = filter(my_grid_sf, nlocs > 0)
 ```
 
-Check
+To check which grid cells were removed, plot the previous and current grid
 
 ```{r,fig.height=5}
 ggplot()+
@@ -169,40 +164,40 @@ ggplot()+
 ```
 
 
-# 4. Calculate mean values per grid
+# 4. Mean values 👩🏾‍🔧
 
-
+To calculate the mean values per grid, functions from the package **tidyverse** can be used
 
 ```{r}
 my_dens<-my_points
 ```
 
-Here, I create random values that could be densities
+For the exercise, generate random data using the function **runif**
 
 ```{r}
 my_dens$densities<-runif(nrow(my_dens), min=0, max=1)
 ```
 
-Transform from data.frame to sf object
+To transform from data.frame to sf object the function **st_as_sf** can be used
 
 ```{r}
 my_dens_sf <-my_dens %>% 
   st_as_sf(coords = c("Longitude", "Latitude"))
 ```
 
-Assign the coordinate system
+To assign the coordinate system the function **st_set_crs** can be used
 
 ```{r}
 my_dens_sf  = st_set_crs(my_dens_sf , "EPSG:4326")
 ```
 
-Using the function **st_intersection**, we add grid number to each data point 
+Using the function **st_intersection**, the grid number to each data point is added
 
 ```{r}
 dens_grid <- st_intersection(grid_w_data,my_dens_sf)
 ```
 
-With the function **mutate**, the mean density per grid will be calculated
+With the function **mutate**, the mean density per grid can be calculated
 
 ```{r}
 dens_mean <- dens_grid %>%
@@ -211,13 +206,13 @@ dens_mean <- dens_grid %>%
   mutate(grid_dens_means=mean(densities))
 ```
 
-Finally, the mean density will be added to the general grid
+Finally, the mean density can be added to the general grid
 
 ```{r}
 grid_w_dens<-merge(grid_w_data,dens_mean, by='grid_id', all=TRUE)
 ```
 
-Now lets get only one mean value per grid
+There might be more than one value per grid, to have one value per grid the function  **summarise_at** can be used.
 
 ```{r}
 grid_dens<-grid_w_dens %>%
@@ -227,7 +222,7 @@ grid_dens<-grid_w_dens %>%
   rename(dens_mean=name)
 ```
 
-Remove grid without values
+To remove grid without values, the function **drop_na** can be used
 
 ```{r}
 library(tidyverse)
@@ -238,6 +233,8 @@ grid_dens<-grid_dens%>%
   drop_na(dens_mean)
 ```
 
+To check the values that were removed, plot the data.
+
 ```{r,fig.height=5}
 ggplot()+
   geom_sf(data = grid_dens,aes(fill = dens_mean))+
@@ -246,13 +243,13 @@ ggplot()+
 ```
 
 
-# 5. Customize raster plot
+# 5. Customize raster plot 👩🏾‍🎨
 
-The function **geom_sf** will help us to plot the raster
+The function **geom_sf** allows to plot a raster
 
-Axis labels cab be changed using **scale_x_continuous** and **scale_y_continuous**
+Axis labels can be changed using **scale_x_continuous** and **scale_y_continuous**
 
-To see less distracting colors on the background, I added **theme_minimal**
+To see less distracting colors on the background, **theme_minimal** removed the background colors
 
 ```{r, fig.height=5}
 ggplot()+
@@ -263,7 +260,7 @@ ggplot()+
   theme_minimal()
 ```
 
-To make a custom raster palette use the function **scale_fill_gradientn**
+To make a custom raster palette the function **scale_fill_gradientn** can be used
 
 ```{r}
 dens_colors<-c('white','#6CB4D3','#1A89AB','#7CC252','#B2EC2B','#DCF754','#FFE454','#FD9708','#F6640F','#EC2C11')
@@ -271,14 +268,14 @@ dens_breaks<-c(0,0.30,0.60,0.85)
 dens_labels<-c('0','0.30','0.60','> 0.85')
 ```
 
-The plot with our palette arguments include:<br>
-**colours** for the colors you want to use <br>
-**breaks** for the breaks<br>
-**labels** for what you want to be show in the label<br>
-**limits** to decide what colors are to be included<br>
+The plot with custom palette arguments consider:<br>
+**colours** the number of colors should correspond to the values <br>
+**breaks** for those numbers that are to be displayed <br>
+**labels** for those labels that are to be displayed<br>
+**limits** to set up minimum and maximum values on the scale<br>
 
-To customize legend<br>
-**legend.key** will modify the legend<br>
+To customize legend:  
+**legend.key** can be uses<br>
 
 ```{r, fig.height=5}
 ggplot()+
@@ -311,10 +308,10 @@ ggplot()+
 
 
 
-# Further reads
+# Further reads 👩🏾‍🏫
 
-[Create a grid by Urban data palette](https://urbandatapalette.com/post/2021-08-tessellation-sf/)<br>
-[Thematic mapping in Mapping in R](https://map-rfun.library.duke.edu/032_thematic_mapping_geom_sf.html)<br>
-[Mapping in R workshop](https://geanders.github.io/navy_public_health/index.html#prerequisites) <br>
-[ggplot2 color scales](https://ggplot2-book.org/scale-colour.html)<br>
-[ggplot2 legend keys](https://www.rusersplace.com/2022/08/21/index.zh-cn/images/FabxzmnX0AEwau0.jpg)<br>
+- [Create a grid by Urban data palette](https://urbandatapalette.com/post/2021-08-tessellation-sf/)<br>
+- [Thematic mapping in Mapping in R](https://map-rfun.library.duke.edu/032_thematic_mapping_geom_sf.html)<br>
+- [Mapping in R workshop](https://geanders.github.io/navy_public_health/index.html#prerequisites) <br>
+- [ggplot2 color scales](https://ggplot2-book.org/scale-colour.html)<br>
+- [ggplot2 legend keys](https://www.rusersplace.com/2022/08/21/index.zh-cn/images/FabxzmnX0AEwau0.jpg)<br>
