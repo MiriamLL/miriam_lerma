@@ -17,6 +17,7 @@ output:
 ```{r libraries, echo=FALSE}
 library(distilltools)
 library(emo)
+library(fontawesome)
 ```
 
 # First steps into R
@@ -40,6 +41,7 @@ In this class: <br>
 
 Underconstruction
 
+## Slides
 <html>
 <body>
    <left>
@@ -48,17 +50,31 @@ Underconstruction
 </body>
 </html>
 
+
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
-          text = "Presentación",
+          text = "Open",
           url = "https://miriamll.github.io/R_intro/IntroToR_1104.html#1")
 ```
 
 <br>
 
-```{r icon-links2,echo=FALSE,eval=FALSE}
+## Downloads
+
+To download the files there are several options:  
+
+1. Directly from github `r fa("github", fill = "#e76f51")`, go to file, click on raw, select **save as**. [See video here](https://www.gitkraken.com/learn/git/github-download#how-to-download-a-csv-from-github)
+
+2. In firefox `r fa("firefox", fill = "#e76f51")`, open link, click on three lines icon `r fa("grip-lines", fill = "#ee9b00")`, and select **save page as** (or control+S)
+
+3. In chrome `r fa("chrome", fill = "#e76f51")`, open the link, and click on the share icon `r fa("share-square", fill = "#ee9b00")`
+
+**Exercise 1**
+
+
+```{r icon-links3,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-download",
-          text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf")
+          text = "Download",
+          url = "https://raw.githubusercontent.com/MiriamLL/R_intro/master/01Exercises.R")
 ```
 
