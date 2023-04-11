@@ -243,13 +243,13 @@ ggplot()+
 ```
 
 
-# 5. Customize raster plot 👩🏾‍🎨
+# 5. Customize  👩🏾‍🎨
 
 The function **geom_sf** allows to plot a raster
 
 Axis labels can be changed using **scale_x_continuous** and **scale_y_continuous**
 
-To see less distracting colors on the background, **theme_minimal** removed the background colors
+To see less distracting colors on the background, **theme_minimal** is a prefered option
 
 ```{r, fig.height=5}
 ggplot()+
@@ -275,7 +275,7 @@ The plot with custom palette arguments consider:<br>
 **limits** to set up minimum and maximum values on the scale<br>
 
 To customize legend:  
-**legend.key** can be uses<br>
+**legend.key** can be used<br>
 
 ```{r, fig.height=5}
 ggplot()+
