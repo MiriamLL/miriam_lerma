@@ -9,8 +9,9 @@ date: 2022-06-30
 preview: blog12.jpg
 categories:
   - R
-  - Tracking
+  - Biologging
   - English
+  - Y2022
 output:
   distill::distill_article:
     toc: true

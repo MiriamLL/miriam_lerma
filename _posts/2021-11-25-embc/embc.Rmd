@@ -11,7 +11,7 @@ categories:
   - R
   - Biologging
   - English
-  - Y2022
+  - Y2021
 output:
   distill::distill_article:
     self_contained: false

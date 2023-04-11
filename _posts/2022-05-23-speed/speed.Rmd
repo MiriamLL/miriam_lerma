@@ -25,7 +25,7 @@ output:
 This post is about how to calculate the speed between points.
 
 This is useful for example when you want to:  
-- Classify behavioural states of the individuals  
+- Classify behavioral states of the individuals  
 - Clean errors in locations  
 See examples on the literature at the bottom of this post.
 

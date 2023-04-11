@@ -9,7 +9,7 @@ date: 2022-04-07
 preview: blog10b.jpg
 categories:
   - R
-  - Tracking
+  - Biologging
   - English
   - Y2022
 output:

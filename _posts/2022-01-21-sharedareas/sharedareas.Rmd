@@ -9,8 +9,9 @@ date: 01-21-2022
 preview: blog7.jpg
 categories:
   - R
-  - Tracking
+  - GIS
   - English
+  - Y2022
 output:
   distill::distill_article:
     self_contained: false
