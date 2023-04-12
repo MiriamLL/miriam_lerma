@@ -23,8 +23,8 @@
   },
   {
     "path": "posts/2023-04-18-intro-to-r/",
-    "title": "Intro-to-R",
-    "description": "First steps into R.",
+    "title": "Intro to R",
+    "description": "First steps into R. Install or update R. Workspace panes. Packages. Directories. Load data. Basics in Rmd",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -33,10 +33,12 @@
     ],
     "date": "2023-04-18",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nFirst steps into R\r\nIntro a R.\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nFirst steps into R\r\nWelcome!\r\nThis material was prepared for FTZ-DDA\r\nThe materials will be updated together with the trainings.\r\nIntro a R.\r\nIn this class:  - Install or update R\r\n- Workspace panes\r\n- Packages\r\n- Directories\r\n- Load data\r\n- Basics in Rmd\r\nUnderconstruction\r\n\r\n\r\n\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nR script containing exercises from the first part. Click here.\r\nCsv file containing penguin data. Click here.\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2023-04-11T19:35:27+02:00",
-    "input_file": "intro-to-r.knit.md"
+    "contents": "\r\n\r\nContents\r\nFirst steps into R\r\nIntro a R.\r\nSlides\r\nDownloads\r\n\r\nData wrangling\r\nPlotting\r\n\r\n\r\n\r\n\r\nFirst steps into R\r\nWelcome!\r\nThis material was prepared for FTZ-DDA\r\nThe materials will be updated together with the training.\r\nIntro a R.\r\nIn this class:  - Install or update R\r\n- Workspace panes\r\n- Packages\r\n- Directories\r\n- Load data\r\n- Basics in Rmd\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nR script containing exercises from the first part. Click here.\r\nCsv file containing penguin data. Click here.\r\nData wrangling\r\nIn this class:  - Basic calculations  - Using objects/vectors\r\n - Look for help  - Rows and columns  - Tidydata  - Pipe\r\noperations  - Count  - Select  - Filter  - Mutate  -\r\nSummarize  - Drop nas  - Join data frames  - Export data\r\nframes \r\nUnderconstruction\r\n\r\n\r\n\r\nPlotting\r\nIn this class:  - Using ggplot\r\n- Dot plots\r\n- Line plots\r\n- Barplots\r\n- Boxplots  - Trajectories  - Maps  - Aesthetics\r\n- Export\r\nUnderconstruction\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "posts/2023-04-18-intro-to-r/000Index.png",
+    "last_modified": "2023-04-12T11:59:09+02:00",
+    "input_file": {},
+    "preview_width": 1225,
+    "preview_height": 919
   },
   {
     "path": "posts/2023-04-06-gridraster/",

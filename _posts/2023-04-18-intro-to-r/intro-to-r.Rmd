@@ -1,12 +1,12 @@
 ---
-title: "Intro-to-R"
+title: "Intro to R"
 description: |
-  First steps into R.
+  First steps into R. Install or update R. Workspace panes. Packages. Directories. Load data. Basics in Rmd  
 author:
   - name: Miriam Lerma
     url: {}
 date: 2023-04-18
-preview: cursoR.png
+preview: 000Index.png
 output:
   distill::distill_article:
     toc: true
@@ -26,9 +26,9 @@ Welcome!
 
 This material was prepared for **FTZ-DDA**
 
-The materials will be updated together with the trainings.
+The materials will be updated together with the training.
 
-## Intro a R.
+# Intro a R.
 In this class: <br>
 - Install or update R  
 - Workspace panes  
@@ -37,17 +37,6 @@ In this class: <br>
 - Load data  
 - Basics in Rmd  
 
-
-
-Underconstruction
-
-<html>
-<body>
-   <left>
-      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:300px"></a>
-   </left>
-</body>
-</html>
 
 ## Slides
 <html>
@@ -86,3 +75,54 @@ To download the files there are several options:
 - Csv file containing penguin data. Click [here]("https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv").
 
 
+# Data wrangling
+
+In this class: <br>
+- Basic calculations <br>
+- Using objects/vectors <br>
+- Look for help <br>
+- Rows and columns <br>
+- Tidydata <br>
+- Pipe operations <br>
+- Count <br>
+- Select <br>
+- Filter <br>
+- Mutate <br>
+- Summarize <br>
+- Drop nas <br>
+- Join data frames <br>
+- Export data frames <br>
+
+Underconstruction
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:50px"></a>
+   </left>
+</body>
+</html>
+
+# Plotting
+
+In this class: <br>
+- Using ggplot  
+- Dot plots  
+- Line plots  
+- Barplots  
+- Boxplots <br>
+- Trajectories <br>
+- Maps <br>
+- Aesthetics  
+- Export  
+
+
+Underconstruction
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:50px"></a>
+   </left>
+</body>
+</html>
