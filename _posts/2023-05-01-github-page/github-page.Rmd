@@ -1,7 +1,7 @@
 ---
-title: "github-page"
+title: "Github page presentations"
 description: |
-  A short description of the post.
+  Publish your slides from a html file
 author:
   - name: Miriam Lerma
     url: {}
@@ -28,11 +28,11 @@ The goal of this post is to:
 
 For the example, a xaringan presentation is to be deployed as github page for easy access
 
-# First step
+## Repository
 
 You need to have a repository, if you are first time creating a reposotory, here are some [instructions](https://miriamll.github.io/git_pres/GitGithubZenodo#11)
 
-# Second
+## Settings
 
 Go to your repository, select **settings**
 
@@ -44,7 +44,7 @@ File<-paste0(here(),"/_posts/2023-05-01-github-page/")
 Imagen2<-paste0(File,"02settings.png")
 knitr::include_graphics(Imagen2)
 ```
-# Github actions
+## Github actions
 
 Look for build and deployment and in source, move from GitHub Actions to **Deploy from branch**
 
@@ -53,7 +53,7 @@ Imagen3<-paste0(File,"03BuildDeployment.png")
 knitr::include_graphics(Imagen3)
 ```
 
-# Branch
+## Branch
 
 The branch depends where the **html** file is, here I have it in the **master** branch
 
@@ -62,7 +62,6 @@ Imagen4<-paste0(File,"04Master.png")
 knitr::include_graphics(Imagen4)
 ```
 
-# Branch
 
 This would depend where you have your **html** file, but here I have it in the **master**
 
@@ -71,7 +70,7 @@ Imagen4<-paste0(File,"04Master.png")
 knitr::include_graphics(Imagen4)
 ```
 
-# Reload
+## Reload
 
 If everything went well **Your site is alive at** will appear
 
@@ -80,7 +79,7 @@ Imagen5<-paste0(File,"05SiteIsAlive.png")
 knitr::include_graphics(Imagen5)
 ```
 
-# Diferent slides
+## Diferent slides
 
 To access specific slides from different presentations, add the html name at the end of the site.
 
@@ -91,7 +90,7 @@ https://miriamll.github.io/R_intro/IntroToR_0604.html#1
 ```
 
 
-# To pdf
+## To pdf
 
 The slides can also be converted to pdf
 
@@ -102,11 +101,11 @@ library(renderthis)
 ```
 
 ```{r, eval=FALSE}
-to_pdf(from="https://miriamll.github.io/R_intro/IntroToR_0604.html")
+to_pdf(from="https://miriamll.github.io/R_intro/IntroToR_1104.html")
 ```
 
 
-# Further reading
+## Further reading
 
 - [Github Pages](https://pages.github.com/)  
 - [renderthis](https://jhelvy.github.io/renderthis/articles/renderthis.html)

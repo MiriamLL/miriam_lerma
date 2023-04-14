@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/2023-05-01-github-page/",
-    "title": "github-page",
-    "description": "A short description of the post.",
+    "title": "Github page presentations",
+    "description": "Publish your slides from a html file",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -16,10 +16,10 @@
       "English",
       "Y2023"
     ],
-    "contents": "\r\n\r\nContents\r\nIntro\r\nFirst step\r\nSecond\r\nGithub actions\r\nBranch\r\nBranch\r\nReload\r\nDiferent slides\r\nTo pdf\r\nFurther reading\r\n\r\nIntro\r\nThe goal of this post is to:\r\nCreate a github page for a presentation\r\nFor the example, a xaringan presentation is to be deployed as github\r\npage for easy access\r\nFirst step\r\nYou need to have a repository, if you are first time creating a\r\nreposotory, here are some instructions\r\nSecond\r\nGo to your repository, select settings\r\nIn the right side of the screen select pages\r\n\r\n\r\n\r\nGithub actions\r\nLook for build and deployment and in source, move from GitHub Actions\r\nto Deploy from branch\r\n\r\n\r\n\r\nBranch\r\nThe branch depends where the html file is, here I\r\nhave it in the master branch\r\n\r\n\r\n\r\nBranch\r\nThis would depend where you have your html file, but\r\nhere I have it in the master\r\n\r\n\r\n\r\nReload\r\nIf everything went well Your site is alive at will\r\nappear\r\n\r\n\r\n\r\nDiferent slides\r\nTo access specific slides from different presentations, add the html\r\nname at the end of the site.\r\nFor example:\r\n\r\nhttps://miriamll.github.io/R_intro/IntroToR_0604.html#1\r\n\r\nTo pdf\r\nThe slides can also be converted to pdf\r\nInstall package using\r\ninstall.packages(“renderthis”)\r\n\r\n\r\nlibrary(renderthis)\r\n\r\n\r\n\r\n\r\nto_pdf(from=\"https://miriamll.github.io/R_intro/IntroToR_0604.html\")\r\n\r\n\r\nFurther reading\r\nGithub Pages\r\nrenderthis\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nIntro\r\nRepository\r\nSettings\r\nGithub actions\r\nBranch\r\nReload\r\nDiferent slides\r\nTo pdf\r\nFurther reading\r\n\r\n\r\nIntro\r\nThe goal of this post is to:\r\nCreate a github page for a presentation\r\nFor the example, a xaringan presentation is to be deployed as github\r\npage for easy access\r\nRepository\r\nYou need to have a repository, if you are first time creating a\r\nreposotory, here are some instructions\r\nSettings\r\nGo to your repository, select settings\r\nIn the right side of the screen select pages\r\n\r\n\r\n\r\nGithub actions\r\nLook for build and deployment and in source, move from GitHub Actions\r\nto Deploy from branch\r\n\r\n\r\n\r\nBranch\r\nThe branch depends where the html file is, here I\r\nhave it in the master branch\r\n\r\n\r\n\r\nThis would depend where you have your html file, but\r\nhere I have it in the master\r\n\r\n\r\n\r\nReload\r\nIf everything went well Your site is alive at will\r\nappear\r\n\r\n\r\n\r\nDiferent slides\r\nTo access specific slides from different presentations, add the html\r\nname at the end of the site.\r\nFor example:\r\n\r\nhttps://miriamll.github.io/R_intro/IntroToR_0604.html#1\r\n\r\nTo pdf\r\nThe slides can also be converted to pdf\r\nInstall package using\r\ninstall.packages(“renderthis”)\r\n\r\n\r\nlibrary(renderthis)\r\n\r\n\r\n\r\n\r\nto_pdf(from=\"https://miriamll.github.io/R_intro/IntroToR_1104.html\")\r\n\r\n\r\nFurther reading\r\nGithub Pages\r\nrenderthis\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-05-01-github-page/blog23.jpg",
-    "last_modified": "2023-04-11T14:46:44+02:00",
-    "input_file": {}
+    "last_modified": "2023-04-14T15:44:30+02:00",
+    "input_file": "github-page.knit.md"
   },
   {
     "path": "posts/2023-04-18-intro-to-r/",
