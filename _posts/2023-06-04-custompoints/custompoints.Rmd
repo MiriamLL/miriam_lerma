@@ -1,0 +1,259 @@
+---
+title: "Custom points in a map"
+description: |
+  Plot different size, color and shape points
+author:
+  - name: Miriam Lerma
+    url: {}
+preview: blog24.jpg
+date: 2023-06-01
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2023
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+Customize your plot using different sizes, shapes and colors in the points from your figures
+
+# Data
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(seamonas)
+```
+
+```{r,echo=FALSE}
+## Create data frame
+density_df<-data.frame(
+             seq=(1:50),
+             survey_id=rep(c(1, 2, 3, 4, 5), each = 10),
+             longitude=c(seq(6, 8, length = 10),
+                         seq(6, 8, length = 10),
+                         seq(6, 8, length = 10),
+                         seq(6, 8, length = 10),
+                         seq(6, 8, length = 10)),
+             latitude=c(seq(55.1,54, length = 10),
+                        seq(55.1+0.1,54+0.1, length = 10),
+                        seq(55.1+0.2,54+0.2, length = 10),
+                        seq(55.1-0.2,54-0.2, length = 10),
+                        seq(55.1-0.1,54-0.1, length = 10)),
+             timestamps=c(
+  head(seq.POSIXt(as.POSIXct("2018-04-01 09:00:00"), as.POSIXct("2018-04-01 18:00:00"), by="min"), 10),
+  head(seq.POSIXt(as.POSIXct("2018-05-01 09:00:00"), as.POSIXct("2018-05-01 18:00:00"), by="min"), 10),
+  head(seq.POSIXt(as.POSIXct("2018-06-01 09:00:00"), as.POSIXct("2018-06-01 18:00:00"), by="min"), 10),
+  head(seq.POSIXt(as.POSIXct("2018-07-01 09:00:00"), as.POSIXct("2018-07-01 18:00:00"), by="min"), 10),
+  head(seq.POSIXt(as.POSIXct("2018-08-01 09:00:00"), as.POSIXct("2018-08-01 18:00:00"), by="min"), 10))
+)
+
+
+density_df$year<-stringr::str_sub(density_df$timestamps, 1, 4)
+density_df$month<-stringr::str_sub(density_df$timestamps, 6, 7)
+density_df$day<-stringr::str_sub(density_df$timestamps, 9, 10)
+density_df$date<-paste0(density_df$year,"-",density_df$month,"-",density_df$day)
+```
+
+Load data
+
+```{r}
+density_df<-density_df
+```
+
+Check data to plot
+
+```{r}
+ggplot()+
+  geom_point(data=density_df,
+          aes(x = longitude,
+              y= latitude))
+```
+
+Check values to plot
+
+```{r,echo=FALSE}
+#values 0 or 1
+random1<-sample(0:1, 50, replace=TRUE)
+
+#values 0 to 5.1
+
+random2<-runif(50, min=0, max=5.1)
+
+#make data frame
+
+random3<-cbind(random1,random2)
+random3<-as.data.frame(random3)
+
+
+#substitute values
+random4<-random3 %>%
+  mutate(random5 = case_when(
+    random1 == 0 ~ 0,
+    random1 != 0 ~ random2,
+    TRUE ~ random2))
+#use as densities
+
+density_df$densities<-as.numeric(random4$random5)
+```
+
+```{r}
+range(density_df$densities)
+```
+
+
+## Classify
+
+Assign cuts
+
+```{r}
+class0<-0
+class1<-1
+class2<-2.5
+class3<-5
+```
+
+Assign factors
+Add new column with classification
+By assigning names to each group,  they are listed in the plot legend in an expected order
+
+```{r}
+density_df<-density_df %>% 
+    mutate(density_class = case_when(
+      densities ==  class0 ~ as.character("group0"),
+      densities >=  class0 & densities <=  class1 ~ as.character("group1"),
+      densities >=  class1 & densities <=  class2 ~ as.character("group2"),
+      densities >=  class2 & densities <=  class3 ~ as.character("group3"),
+      densities >=  class3 ~ as.character("group4"),
+      TRUE~"U"))
+```
+
+Check number of observations
+
+```{r}
+density_df %>%
+  group_by(density_class)%>%
+  tally()
+```
+
+# Plot
+
+## Parameters
+
+define shapes
+
+```{r}
+density_shapes<-c("group0"=3, "group1"=21,"group2"=21, "group3"=21, "group4"=21)
+```
+
+define sizes
+
+```{r}
+density_sizes<-c("group0"=0.5, "group1"=1,"group2"=2, "group3"=3, "group4"=5)
+```
+
+define labels
+
+```{r}
+density_labels<-c('0','> 0-1','> 1-2.5','> 2.5-5','> 5')
+```
+
+## Base plot
+
+Create plot with defined shape, size and labels
+
+```{r}
+ggplot()+
+  geom_point(data=density_df,
+          aes(x = longitude,
+              y= latitude,
+              shape = density_class,
+              size= density_class),
+              fill= "#d00000")+
+  
+  scale_shape_manual(values = density_shapes,labels=density_labels)+
+  scale_size_manual(values =  density_sizes,labels=density_labels)
+```
+
+
+
+## Add map
+
+packages
+
+```{r}
+library(sf)
+library(GermanNorthSea)
+```
+
+parameters
+
+```{r}
+my_CRS<-4326
+Europa<-sf::st_transform(German_land, my_CRS)
+EEZ<-sf::st_transform(German_EEZ, my_CRS)
+color_land='#f7bf54'
+color_water='#3668b4'
+xval<-c(3,9)
+yval<-c(53,56)
+```
+
+plot map
+
+```{r}
+base_plot<-ggplot2::ggplot()+
+    # maps
+    ggplot2::geom_sf(data = EEZ, colour = 'black', fill = color_water)+
+    ggplot2::geom_sf(data = Europa, colour = 'black', fill = color_land)+ 
+    ggplot2::coord_sf(xlim = xval, ylim = yval)+
+
+    NULL
+base_plot
+```
+
+
+
+## Add dots
+
+```{r}
+density_wmap<-base_plot+
+  geom_point(data=density_df,
+          aes(x = longitude,
+              y= latitude,
+              shape = density_class,
+              size= density_class),
+              fill= "#d00000")+
+  
+  scale_shape_manual(values = density_shapes,labels=density_labels)+
+  scale_size_manual(values =  density_sizes,labels=density_labels)
+density_wmap
+```
+
+## Add legend
+
+```{r}
+density_wlegend<-add_legend(
+  plot_wbreaks=density_wmap,
+  legtx=3.0,
+  legty=54.0,
+  legxy=c(0.11, 0.21),
+  xval=xval,
+  yval=yval)+
+  theme(legend.key.size = ggplot2::unit(0.4, "cm"))
+density_wlegend
+```
+
+## Add theme
+
+```{r}
+density_wtheme<-add_theme(plot_wlegend = density_wlegend)
+density_wtheme
+```
+
+The end!
