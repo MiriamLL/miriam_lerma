@@ -2,6 +2,8 @@
 title: "Packages"
 listing:
   posts:
+    - 2023-04-16-seamonas
+    - 2023-04-16-isoseabird
     - 2021-05-14-spheniscus
     - 2021-05-14-sula
 ---

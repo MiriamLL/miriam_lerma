@@ -88,635 +88,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Miriam Lerma: Packages</title>
+  <title>isoseabird</title>
+
+  <meta property="description" itemprop="description" content="A package with stable isotope data from sulids.  | Un paquete con datos de isotopos estables de bobos."/>
 
 
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2023-04-16"/>
+  <meta property="article:created" itemprop="dateCreated" content="2023-04-16"/>
+  <meta name="article:author" content="Miriam Lerma"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Miriam Lerma: Packages"/>
+  <meta property="og:title" content="isoseabird"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A package with stable isotope data from sulids.  | Un paquete con datos de isotopos estables de bobos."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Miriam Lerma"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Miriam Lerma: Packages"/>
+  <meta property="twitter:title" content="isoseabird"/>
+  <meta property="twitter:description" content="A package with stable isotope data from sulids.  | Un paquete con datos de isotopos estables de bobos."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","listing"]}},"value":[{"type":"character","attributes":{},"value":["Packages"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2023-04-16-seamonas","2023-04-16-isoseabird","2021-05-14-spheniscus","2021-05-14-sula"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["isoseabird"]},{"type":"character","attributes":{},"value":["A package with stable isotope data from sulids.  | Un paquete con datos de isotopos estables de bobos. \n"]},{"type":"character","attributes":{},"value":["isoseabirdhex.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]}]}]},{"type":"character","attributes":{},"value":["2023-04-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["isoseabird_files/anchor-4.2.2/anchor.min.js","isoseabird_files/bowser-1.9.3/bowser.min.js","isoseabird_files/distill-2.2.21/template.v2.js","isoseabird_files/figure-html5/unnamed-chunk-11-1.png","isoseabird_files/figure-html5/unnamed-chunk-27-1.png","isoseabird_files/figure-html5/unnamed-chunk-28-1.png","isoseabird_files/figure-html5/unnamed-chunk-29-1.png","isoseabird_files/figure-html5/unnamed-chunk-30-1.png","isoseabird_files/figure-html5/unnamed-chunk-31-1.png","isoseabird_files/figure-html5/unnamed-chunk-32-1.png","isoseabird_files/figure-html5/unnamed-chunk-33-1.png","isoseabird_files/figure-html5/unnamed-chunk-34-1.png","isoseabird_files/figure-html5/unnamed-chunk-35-1.png","isoseabird_files/figure-html5/unnamed-chunk-36-1.png","isoseabird_files/figure-html5/unnamed-chunk-40-1.png","isoseabird_files/figure-html5/unnamed-chunk-41-1.png","isoseabird_files/figure-html5/unnamed-chunk-7-1.png","isoseabird_files/header-attrs-2.20/header-attrs.js","isoseabird_files/jquery-3.6.0/jquery-3.6.0.js","isoseabird_files/jquery-3.6.0/jquery-3.6.0.min.js","isoseabird_files/jquery-3.6.0/jquery-3.6.0.min.map","isoseabird_files/popper-2.6.0/popper.min.js","isoseabird_files/tippy-6.2.7/tippy-bundle.umd.min.js","isoseabird_files/tippy-6.2.7/tippy-light-border.css","isoseabird_files/tippy-6.2.7/tippy.css","isoseabird_files/tippy-6.2.7/tippy.umd.min.js","isoseabird_files/webcomponents-2.0.0/webcomponents.js","isoseabirdhex.png"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2063,634 +1467,488 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </script>
 
-  <style type="text/css">
-  /* base variables */
-
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-
-
-
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      50px;
-    --body-size:       1.06rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
-    --body-color:      rgba(0, 0, 0, 0.8);
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    sans-serif;
-    --mono-font:       monospace;
-    --body-font:       sans-serif;
-    --navbar-font:     sans-serif;  /* websites + blogs only */
-  }
-
-  /*-- ARTICLE METADATA --*/
-  d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   13px;
-  }
-
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-
-  .distill-site-header {
-    --title-size:       18px;
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }
-
-  .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }
-
-  /*-- Additional custom styles --*/
-  /* Add any additional CSS rules below                      */
-  </style>
-  <style type="text/css">
-  /* base variables */
-
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-  @import url('https://fonts.googleapis.com/css2?family=Amiri');
-  @import url('https://fonts.googleapis.com/css2?family=Bitter');
-  @import url('https://fonts.googleapis.com/css2?family=DM+Mono');
-  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@450&display=swap');
-
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      30px;
-    --body-size:       1.03rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #01497c;
-    --header-color:    #012a4a;
-    --body-color:      #013a63;
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    /*-- Cambie el estilo de la letra   --*/
-    --heading-font:    "Raleway", sans-serif;
-    --mono-font:       "Raleway", sans-serif;
-    --body-font:       "Raleway", sans-serif;
-    --navbar-font:     "Raleway", sans-serif;
-  }
-
-  /*-- ARTICLE METADATA --*/
-  d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   10px;
-  }
-
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-
-  .distill-site-header {
-    --title-size:       18px;
-    --text-color:       #edf6f9;
-    --text-size:        15px;
-    --hover-color:      #edf6f9;
-    --bkgd-color:       #22577a;
-  }
-
-  .distill-site-footer {
-    --text-color:       #778da9;
-    --text-size:        10px;
-    --hover-color:      #edf6f9;
-    --bkgd-color:       #22577a;
-  }
-
-  /*-- Additional custom styles --*/
-  /* Add any additional CSS rules below                      */
-
-  /* Change link appearance */
-  a:hover, a:visited, a:link, a:active
-  {
-      text-decoration: none;
-  }
-
-
-  /*-- Agregar encabezado en la pagina --*/
-  .article-banner {
-    width: auto;
-    height: auto;
-    border: 0;
-  }
-
-  img[src="Figuras/Clarion.png"] {
-    border: 0;
-    padding: 0;
-    width: 100%;
-    margin: 100px 25px 0px 0px;
-  }
-
-  /*-- Agregar colores en los botones --*/
-  .icon-link {
-      background-color: transparent;
-      color: #023047;
-      border: 1px solid;
-      border-color: #023047;
-      padding: 5px .4rem 5px .4rem; /*margenes: 4px;*/
-      margin-top: 4px;
-      margin-right: 8px;
-      margin-bottom: 4px;
-      border-radius: 5px; /* Esquinas redondeadas */
-  }
-
-  .icon-link:hover {
-      background-color: #023047;
-      border-color: #023047;
-      color: white;
-  }</style>
-  <style type="text/css">
-  /* base style */
-
-  /* FONT FAMILIES */
-
-  :root {
-    --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-    --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-  }
-
-  body,
-  .posts-list .post-preview p,
-  .posts-list .description p {
-    font-family: var(--body-font), var(--body-default);
-  }
-
-  h1, h2, h3, h4, h5, h6,
-  .posts-list .post-preview h2,
-  .posts-list .description h2 {
-    font-family: var(--heading-font), var(--heading-default);
-  }
-
-  d-article div.sourceCode code,
-  d-article pre code {
-    font-family: var(--mono-font), var(--mono-default);
-  }
-
-
-  /*-- TITLE --*/
-  d-title h1,
-  .posts-list > h1 {
-    color: var(--title-color, black);
-  }
-
-  d-title h1 {
-    font-size: var(--title-size, 50px);
-  }
-
-  /*-- HEADERS --*/
-  d-article h1,
-  d-article h2,
-  d-article h3,
-  d-article h4,
-  d-article h5,
-  d-article h6 {
-    color: var(--header-color, rgba(0, 0, 0, 0.8));
-  }
-
-  /*-- BODY --*/
-  d-article > p,  /* only text inside of <p> tags */
-  d-article > ul, /* lists */
-  d-article > ol {
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-    font-size: var(--body-size, 1.06rem);
-  }
-
-
-  /*-- CODE --*/
-  d-article div.sourceCode code,
-  d-article pre code {
-    font-size: var(--code-size, 14px);
-  }
-
-  /*-- ASIDE --*/
-  d-article aside {
-    font-size: var(--aside-size, 12px);
-    color: var(--aside-color, rgba(0, 0, 0, 0.6));
-  }
-
-  /*-- FIGURE CAPTIONS --*/
-  figure .caption,
-  figure figcaption,
-  .figure .caption {
-    font-size: var(--fig-cap-size, 13px);
-    color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
-  }
-
-  /*-- METADATA --*/
-  d-byline h3 {
-    font-size: var(--heading-size, 0.6rem);
-    color: var(--heading-color, rgba(0, 0, 0, 0.5));
-  }
-
-  d-byline {
-    font-size: var(--body-size, 0.8rem);
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-
-  d-byline a,
-  d-article d-byline a {
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-
-  /*-- TABLE OF CONTENTS --*/
-  .d-contents nav h3 {
-    font-size: var(--heading-size, 18px);
-  }
-
-  .d-contents nav a {
-    font-size: var(--contents-size, 13px);
-  }
-
-  /*-- APPENDIX --*/
-  d-appendix h3 {
-    font-size: var(--heading-size, 15px);
-    color: var(--heading-color, rgba(0, 0, 0, 0.65));
-  }
-
-  d-appendix {
-    font-size: var(--text-size, 0.8em);
-    color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-
-  d-appendix d-footnote-list a.footnote-backlink {
-    color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-
-  /*-- WEBSITE HEADER + FOOTER --*/
-  .distill-site-header .title {
-    font-size: var(--title-size, 18px);
-    font-family: var(--navbar-font), var(--heading-default);
-  }
-
-  .distill-site-header a,
-  .nav-dropdown .nav-dropbtn {
-    font-family: var(--navbar-font), var(--heading-default);
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    color: var(--text-color, rgba(255, 255, 255, 0.8));
-    font-size: var(--text-size, 15px);
-  }
-
-  .distill-site-header a:hover,
-  .nav-dropdown:hover .nav-dropbtn {
-    color: var(--hover-color, white);
-  }
-
-  .distill-site-header {
-    font-size: var(--text-size, 15px);
-    color: var(--text-color, rgba(255, 255, 255, 0.8));
-    background-color: var(--bkgd-color, #0F2E3D);
-  }
-
-  .distill-site-footer {
-    font-size: var(--text-size, 15px);
-    color: var(--text-color, rgba(255, 255, 255, 0.8));
-    background-color: var(--bkgd-color, #0F2E3D);
-  }
-
-  .distill-site-footer a:hover {
-    color: var(--hover-color, white);
-  }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="isoseabird_files/header-attrs-2.20/header-attrs.js"></script>
+  <script src="isoseabird_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="isoseabird_files/popper-2.6.0/popper.min.js"></script>
+  <link href="isoseabird_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="isoseabird_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="isoseabird_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="isoseabird_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="isoseabird_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="isoseabird_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="isoseabird_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Packages","authors":[]}
+{"title":"isoseabird","description":"A package with stable isotope data from sulids.  | Un paquete con datos de isotopos estables de bobos.","authors":[{"author":"Miriam Lerma","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-04-16T00:00:00.000+02:00","citationText":"Lerma, 2023"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Miriam Lerma</a>
-<a href="about.html">About</a>
-<a href="publications.html">Publications</a>
-<a href="teaching.html">Teaching</a>
-<a href="projects.html">Packages</a>
-<a href="blog.html">Blog</a>
-<a href="https://ecoevo.social/@miriamlerma">
-<i class="fab fa-mastodon" aria-hidden="true"></i>
-</a>
-<a href="https://github.com/MiriamLL">
-<i class="fab fa-github" aria-hidden="true"></i>
-</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).on("load", function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      page_category = decodeURIComponent(page_category)
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + decodeURIComponent(window.location.hash) + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-apply-limit l-page">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Packages">Packages</h1>
-<a href="posts/2023-04-16-seamonas/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">April 16, 2023</div>
-<div class="dt-authors">
-<div class="dt-author">Miriam Lerma</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2023-04-16-seamonas/seamonashex.png"/>
-</div>
-<div class="description">
-<h2>seamonas</h2>
-<div class="dt-tags"></div>
-<p>A package to plot maps.  | Un paquete para crear mapas.</p>
-</div>
-</a>
-<a href="posts/2023-04-16-isoseabird/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">April 16, 2023</div>
-<div class="dt-authors">
-<div class="dt-author">Miriam Lerma</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2023-04-16-isoseabird/isoseabirdhex.png"/>
-</div>
-<div class="description">
-<h2>isoseabird</h2>
-<div class="dt-tags"></div>
-<p>A package with stable isotope data from sulids.  | Un paquete con datos de isotopos estables de bobos.</p>
-</div>
-</a>
-<a href="posts/2021-05-14-spheniscus/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 15, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Miriam Lerma</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-05-14-spheniscus/spheniscus-logo.png"/>
-</div>
-<div class="description">
-<h2>spheniscus</h2>
-<div class="dt-tags"></div>
-<p>A package that provides functions to clean the TDR data and to obtain diving parameters from the sampled individuals. | 
-Un paquete para limpiar datos de TDR y calcular parametros de buceo durante los viajes de alimentación.</p>
-</div>
-</a>
-<a href="posts/2021-05-14-sula/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 15, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Miriam Lerma</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-05-14-sula/sula-logo.png"/>
-</div>
-<div class="description">
-<h2>sula</h2>
-<div class="dt-tags"></div>
-<p>Functions to clean your data and calculate the foraging trip parameters of the individuals.  | Un paquete para editar datos de GPS y calcular parámetros de los viajes de alimentación.</p>
-</div>
-</a>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Packages</h1>
+<h1>isoseabird</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>A package with stable isotope data from sulids. | Un paquete con
+datos de isotopos estables de bobos.</p></p>
 </div>
 
+<div class="d-byline">
+  Miriam Lerma  
+  
+<br/>2023-04-16
+</div>
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#intro">Intro</a>
+<ul>
+<li><a href="#install-package">Install package</a></li>
+</ul></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#turner">1. Turner</a></li>
+<li><a href="#siber">2. SIBER</a></li>
+<li><a href="#figures">3. Figures</a></li>
+<li><a href="#overview">4. Overview</a></li>
+<li><a href="#references">5. References</a></li>
+</ul>
+</nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="isoseabirdhex.png" width="40%" /></p>
+</div>
+<h1 id="intro">Intro</h1>
+<p>This package contains:</p>
+<ul>
+<li><p>Data from stable isotopes from red-footed and masked boobies from
+Isla Clarion</p></li>
+<li><p>Eleven functions to organize your data and to calculate Mean
+distance to centroid and Euclidian distance, adapted from Turner et
+al. 2010</p></li>
+<li><p>Four functions to organize, convert objects and calculate
+proportion of overlap using the package SIBER</p></li>
+<li><p>Six functions to plot ellipses using ggplot and to adapt the
+theme</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<a href="https://github.com/MiriamLL/isoseabird" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Github</a>
+</div>
+<h2 id="install-package">Install package</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># install.packages("devtools")</span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://remotes.r-lib.org/reference/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/isoseabird"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Load package</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/MiriamLL/isoseabird'>'isoseabird'</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h1 id="data">Data</h1>
+<p>Contains C and N isotopic blood data from red-footed and masked
+boobies breeding at Clarion Island</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Sula_data</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Sula_data</span><span class='op'>&lt;-</span><span class='va'>Sula_data</span></span></code></pre>
+</div>
+</div>
+<p>Remove outliers</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Dactylatra_clean</span> <span class='op'>&lt;-</span> <span class='va'>Sula_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>'Dactylatra'</span> <span class='op'>&amp;</span> <span class='va'>Nitrogeno</span> <span class='op'>&gt;</span> <span class='fl'>16</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Sula_clean</span><span class='op'>&lt;-</span><span class='va'>Sula_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Species</span> <span class='op'>!=</span> <span class='st'>'Dactylatra'</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Sula_df</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>Dactylatra_clean</span>,<span class='va'>Sula_clean</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h1 id="turner">1. Turner</h1>
+<p>Contains functions from Turner et al 2010<br />
+A general hypothesis-testing framework for stable isotope ratios in
+ecological studies<br />
+Ecology 91(8):2227-33</p>
+<p>Please refer to <a
+href="https://esapubs.org/archive/ecol/E091/157/">Turner et al. 2010</a>
+and find the original script <a
+href="https://esapubs.org/archive/ecol/E091/157/suppl-1.htm">here</a></p>
+<h3 id="organize_for_turner">organize_for_Turner</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_Turner</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/organize_for_Turner.html'>organize_for_Turner</a></span><span class='op'>(</span>SIA_samples<span class='op'>=</span><span class='va'>Sula_df</span>,</span>
+<span>                                column_C<span class='op'>=</span><span class='st'>'Carbon'</span>,</span>
+<span>                                column_N<span class='op'>=</span><span class='st'>'Nitrogeno'</span>,</span>
+<span>                                column_group<span class='op'>=</span><span class='st'>'Species'</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="plot_centroids">plot_centroids</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/plot_centroids.html'>plot_centroids</a></span><span class='op'>(</span>SIA_samples<span class='op'>=</span><span class='va'>Sula_df</span>,</span>
+<span>               column_C<span class='op'>=</span><span class='st'>'Carbon'</span>,</span>
+<span>               column_N<span class='op'>=</span><span class='st'>'Nitrogeno'</span>,</span>
+<span>               column_group<span class='op'>=</span><span class='st'>'Species'</span>,</span>
+<span>               group1<span class='op'>=</span><span class='st'>"SulaSula"</span>,</span>
+<span>               group2<span class='op'>=</span><span class='st'>"Dactylatra"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="isoseabird_files/figure-html5/unnamed-chunk-11-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<h3 id="create_matrix">create_matrix</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_matrix</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/create_matrix.html'>create_matrix</a></span><span class='op'>(</span>SIA_Turner <span class='op'>=</span> <span class='va'>SIA_Turner</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="calculate_residuals">calculate_residuals</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_group</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>Sula_df</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='co'>#Designate groups</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_residuals</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/calculate_residuals.html'>calculate_residuals</a></span><span class='op'>(</span>SIA_matrix<span class='op'>=</span><span class='va'>SIA_matrix</span>,</span>
+<span>                                   SIA_group <span class='op'>=</span> <span class='va'>SIA_group</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="dispersion_measures">dispersion_measures</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_dispersion</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/calculate_dispersion.html'>calculate_dispersion</a></span><span class='op'>(</span>SIA_residuals <span class='op'>=</span> <span class='va'>SIA_residuals</span>,</span>
+<span>                                     SIA_group <span class='op'>=</span> <span class='va'>SIA_group</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="dispersion-statistics">dispersion statistics</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_tabledispersion</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/dispersion_statistics.html'>dispersion_statistics</a></span><span class='op'>(</span>SIA_dispersion<span class='op'>=</span><span class='va'>SIA_dispersion</span>,</span>
+<span>                                           SIA_group<span class='op'>=</span><span class='va'>SIA_group</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_tabledispersion</span></span></code></pre>
+</div>
+<pre><code>              mdc        mnn       ecc
+Group.1 0.2507388 0.05954224 0.7808203
+Group.2 0.1568367 0.06918786 0.2823182</code></pre>
+</div>
+<h3 id="calculate_means">calculate_means</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_means</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/calculate_means.html'>calculate_means</a></span><span class='op'>(</span><span class='va'>SIA_matrix</span>,<span class='va'>SIA_group</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_means</span></span></code></pre>
+</div>
+<pre><code>   column_C column_N
+1 -17.47519 16.69239
+2 -17.57423 15.82836</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_meandif</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>SIA_means</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_meandif</span></span></code></pre>
+</div>
+<pre><code>[1] 0.8696822</code></pre>
+</div>
+<h3 id="contrast_differences">contrast_differences</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_dispersiondif</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/contrast_differences.html'>contrast_differences</a></span><span class='op'>(</span>SIA_tabledispersion <span class='op'>=</span> <span class='va'>SIA_tabledispersion</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_dispersiondif</span></span></code></pre>
+</div>
+<pre><code>$mdc
+       dis 
+0.09390213 
+
+$mnn
+        dis 
+0.009645619 
+
+$ecc
+      dis 
+0.4985022 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_dispersiondif</span><span class='op'>$</span><span class='va'>mdc</span></span></code></pre>
+</div>
+<pre><code>       dis 
+0.09390213 </code></pre>
+</div>
+<h3 id="run_permutation">run_permutation</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_permutation</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/run_permutation.html'>run_permutation</a></span><span class='op'>(</span>SIA_matrix<span class='op'>=</span><span class='va'>SIA_matrix</span>, </span>
+<span>                                 SIA_group<span class='op'>=</span><span class='va'>SIA_group</span>,</span>
+<span>                                 SIA_dispersiondif <span class='op'>=</span> <span class='va'>SIA_dispersiondif</span>,</span>
+<span>                                 permutation_runs<span class='op'>=</span><span class='fl'>999</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="calculate_pvalues">calculate_pvalues</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_pvalue</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/calculate_pvalues.html'>calculate_pvalues</a></span><span class='op'>(</span>SIA_permutation<span class='op'>=</span><span class='va'>SIA_permutation</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_pvalue</span></span></code></pre>
+</div>
+<pre><code> MD.1--2 MDC.1--2 MNN.1--2 ECC.1--2 
+   0.001    0.009    0.698    0.504 </code></pre>
+</div>
+<h3 id="calculate_hotellings">calculate_hotellings</h3>
+<p><em>Hotellings revealed that Euclidian distance between centroids
+differed significantly from zero for contrast between guilds (Turner et
+al. 2010)</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_hotellings</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/calculate_hotellings.html'>calculate_hotellings</a></span><span class='op'>(</span>SIA_means<span class='op'>=</span><span class='va'>SIA_means</span>,</span>
+<span>                               SIA_group<span class='op'>=</span><span class='va'>SIA_group</span>,</span>
+<span>                               SIA_matrix<span class='op'>=</span><span class='va'>SIA_matrix</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_hotellings</span></span></code></pre>
+</div>
+<pre><code>     [,1]
+[1,]    0</code></pre>
+</div>
+<h1 id="siber">2. SIBER</h1>
+<p>Creates work flow to use the package SIBER to calculate ellipses
+overlaps.</p>
+<p>Refer to the paper: <a
+href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x">Jackson
+et al. 2011</a><br />
+Check for updates on: <a
+href="https://cran.r-project.org/web/packages/SIBER/vignettes/Introduction-to-SIBER.html">SIBER
+- last update 2023</a></p>
+<h3 id="organize_for_siber">organize_for_SIBER</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIBER_SIA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/organize_for_SIBER.html'>organize_for_SIBER</a></span><span class='op'>(</span>SIA_samples<span class='op'>=</span><span class='va'>Sula_df</span>,</span>
+<span>                              column_C<span class='op'>=</span><span class='st'>'Carbon'</span>,</span>
+<span>                              column_N<span class='op'>=</span><span class='st'>'Nitrogeno'</span>,</span>
+<span>                              column_group<span class='op'>=</span><span class='st'>'Species'</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="convert_object">convert_object</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIBER_object</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/convert_object.html'>convert_object</a></span><span class='op'>(</span>SIBER_SIA<span class='op'>=</span><span class='va'>SIBER_SIA</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIBER_group</span><span class='op'>&lt;-</span><span class='fu'>SIBER</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/SIBER/man/groupMetricsML.html'>groupMetricsML</a></span><span class='op'>(</span><span class='va'>SIBER_object</span><span class='op'>)</span></span>
+<span><span class='va'>SIBER_group</span></span></code></pre>
+</div>
+<pre><code>     1.Dactylatra 1.SulaSula
+TA     0.34388050 0.17262350
+SEA    0.09699848 0.05164064
+SEAc   0.09985137 0.05422268</code></pre>
+</div>
+<h3 id="overlap_ellipses">overlap_ellipses</h3>
+<p>This function organizes the data and uses the function <a
+href="https://search.r-project.org/CRAN/refmans/SIBER/html/maxLikOverlap.html">maxLikOverlap</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIBER_overlap_50</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/areas_overlap.html'>areas_overlap</a></span><span class='op'>(</span>SIBER_object <span class='op'>=</span> <span class='va'>SIBER_object</span>,</span>
+<span>                              <span class='va'>group1</span><span class='op'>&lt;-</span><span class='st'>'SulaSula'</span>,</span>
+<span>                              <span class='va'>group2</span><span class='op'>&lt;-</span><span class='st'>'Dactylatra'</span>,</span>
+<span>                              overlap <span class='op'>=</span> <span class='fl'>0.50</span><span class='op'>)</span></span>
+<span><span class='va'>SIBER_overlap_50</span></span></code></pre>
+</div>
+<pre><code> area.1  area.2 overlap 
+   0.08    0.14    0.00 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIBER_overlap_95</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/areas_overlap.html'>areas_overlap</a></span><span class='op'>(</span>SIBER_object <span class='op'>=</span> <span class='va'>SIBER_object</span>,</span>
+<span>                              <span class='va'>group1</span><span class='op'>&lt;-</span><span class='st'>'SulaSula'</span>,</span>
+<span>                              <span class='va'>group2</span><span class='op'>&lt;-</span><span class='st'>'Dactylatra'</span>,</span>
+<span>                              overlap <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span></span>
+<span><span class='va'>SIBER_overlap_95</span></span></code></pre>
+</div>
+<pre><code> area.1  area.2 overlap 
+   0.32    0.60    0.00 </code></pre>
+</div>
+<h3 id="prop_overlap">prop_overlap</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>prop_overlap_50</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/proportion_overlap.html'>proportion_overlap</a></span><span class='op'>(</span>area_overlap <span class='op'>=</span> <span class='va'>SIBER_overlap_50</span><span class='op'>)</span></span>
+<span><span class='va'>prop_overlap_50</span></span></code></pre>
+</div>
+<pre><code>overlap 
+      0 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>prop_overlap_95</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/proportion_overlap.html'>proportion_overlap</a></span><span class='op'>(</span>area_overlap <span class='op'>=</span> <span class='va'>SIBER_overlap_95</span><span class='op'>)</span></span>
+<span><span class='va'>prop_overlap_95</span></span></code></pre>
+</div>
+<pre><code>overlap 
+      0 </code></pre>
+</div>
+<h1 id="figures">3. Figures</h1>
+<h3 id="ggplot_ellipses">ggplot_ellipses</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_plot</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/ggplot_ellipse.html'>ggplot_ellipse</a></span><span class='op'>(</span>SIA_samples<span class='op'>=</span><span class='va'>Sula_df</span>,</span>
+<span>                         column_C<span class='op'>=</span><span class='st'>'Carbon'</span>,</span>
+<span>                         column_N<span class='op'>=</span><span class='st'>'Nitrogeno'</span>,</span>
+<span>                         column_group<span class='op'>=</span><span class='st'>'Species'</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_plot</span></span></code></pre>
+</div>
+<p><img src="isoseabird_files/figure-html5/unnamed-chunk-31-1.png" width="624" /></p>
+</div>
+<h3 id="adapt_axis">adapt_axis</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_plot_axis</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/adapt_axis.html'>adapt_axis</a></span><span class='op'>(</span>SIA_plot<span class='op'>=</span><span class='va'>SIA_plot</span>,</span>
+<span>                            C_breaks<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>20</span>,<span class='op'>-</span><span class='fl'>19</span>,<span class='op'>-</span><span class='fl'>18</span>,<span class='op'>-</span><span class='fl'>17</span>,<span class='op'>-</span><span class='fl'>16</span>,<span class='op'>-</span><span class='fl'>15</span>,<span class='op'>-</span><span class='fl'>14</span><span class='op'>)</span>,</span>
+<span>                            C_limits<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>20</span>,<span class='op'>-</span><span class='fl'>14</span><span class='op'>)</span>,</span>
+<span>                            N_breaks<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>14</span>,<span class='fl'>15</span>,<span class='fl'>16</span>,<span class='fl'>17</span>,<span class='fl'>18</span><span class='op'>)</span>,</span>
+<span>                            N_limits<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>13.5</span>,<span class='fl'>18.1</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_plot_axis</span></span></code></pre>
+</div>
+<p><img src="isoseabird_files/figure-html5/unnamed-chunk-32-1.png" width="624" /></p>
+</div>
+<h3 id="adapt_theme">adapt_theme</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_plot_theme</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/adapt_theme.html'>adapt_theme</a></span><span class='op'>(</span>SIA_plot<span class='op'>=</span><span class='va'>SIA_plot_axis</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_plot_theme</span></span></code></pre>
+</div>
+<p><img src="isoseabird_files/figure-html5/unnamed-chunk-33-1.png" width="624" /></p>
+</div>
+<h3 id="adapt_legend">adapt_legend</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_plot_legend</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/adapt_legend.html'>adapt_legend</a></span><span class='op'>(</span>SIA_plot<span class='op'>=</span><span class='va'>SIA_plot_theme</span>,</span>
+<span>                       xlabel_adjust<span class='op'>=</span><span class='op'>-</span><span class='fl'>19.9</span>,</span>
+<span>                       ylabel_adjust<span class='op'>=</span><span class='fl'>17.9</span>,</span>
+<span>                       label1<span class='op'>=</span><span class='st'>'Masked booby'</span>,</span>
+<span>                       label2<span class='op'>=</span><span class='st'>'Red-footed booby'</span>,</span>
+<span>                       color1<span class='op'>=</span><span class='st'>'#233d4d'</span>,</span>
+<span>                       color2<span class='op'>=</span><span class='st'>'#2a9d8f'</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_plot_legend</span></span></code></pre>
+</div>
+<p><img src="isoseabird_files/figure-html5/unnamed-chunk-34-1.png" width="624" /></p>
+</div>
+<h3 id="adapt_colors">adapt_colors</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_plot_colors</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/isoseabird/man/adapt_colors.html'>adapt_colors</a></span><span class='op'>(</span>SIA_plot<span class='op'>=</span><span class='va'>SIA_plot_legend</span>,</span>
+<span>                              color1<span class='op'>=</span><span class='st'>'#233d4d'</span>,</span>
+<span>                              color2<span class='op'>=</span><span class='st'>'#2a9d8f'</span>,</span>
+<span>                              column_group<span class='op'>=</span><span class='st'>'Species'</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_plot_colors</span></span></code></pre>
+</div>
+<p><img src="isoseabird_files/figure-html5/unnamed-chunk-35-1.png" width="624" /></p>
+</div>
+<h1 id="overview">4. Overview</h1>
+<h3 id="mean-distance-to-centroid">Mean distance to centroid</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_dispersiondif</span><span class='op'>$</span><span class='va'>mdc</span></span></code></pre>
+</div>
+<pre><code>       dis 
+0.09390213 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_pvalue</span></span></code></pre>
+</div>
+<pre><code> MD.1--2 MDC.1--2 MNN.1--2 ECC.1--2 
+   0.001    0.009    0.698    0.504 </code></pre>
+</div>
+<h3 id="euclidian-distance">Euclidian distance</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_hotellings</span></span></code></pre>
+</div>
+<pre><code>     [,1]
+[1,]    0</code></pre>
+</div>
+<h3 id="proportion-of-overlap">Proportion of overlap</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>prop_overlap_50</span></span></code></pre>
+</div>
+<pre><code>overlap 
+      0 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>prop_overlap_95</span></span></code></pre>
+</div>
+<pre><code>overlap 
+      0 </code></pre>
+</div>
+<h3 id="figure">Figure</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SIA_plot_colors</span></span></code></pre>
+</div>
+<p><img src="isoseabird_files/figure-html5/unnamed-chunk-40-1.png" width="624" /></p>
+</div>
+<p>Export</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ResultsFolder</span><span class='op'>&lt;-</span><span class='fu'>here</span><span class='fu'>::</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"3Results"</span><span class='op'>)</span></span>
+<span><span class='va'>SIA_plot_colors</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"Fig2.jpg"</span>,</span>
+<span>       path <span class='op'>=</span> <span class='va'>ResultsFolder</span>,</span>
+<span>       width <span class='op'>=</span> <span class='fl'>10</span>, height <span class='op'>=</span> <span class='fl'>10</span>, </span>
+<span>       units <span class='op'>=</span> <span class='st'>"in"</span><span class='op'>)</span> </span></code></pre>
+</div>
+</div>
+<h1 id="references">5. References</h1>
+<ul>
+<li><a
+href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0027104">Hammerschlag-Peyer
+et al. 2011</a></li>
+<li><a href="https://esapubs.org/archive/ecol/E091/157/">Turner et
+al. 2010</a><br />
+</li>
+<li><a href="https://esapubs.org/archive/ecol/E091/157/suppl-1.htm">R
+Files</a></li>
+<li><a
+href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x">Jackson
+et al. 2011</a><br />
+</li>
+<li><a
+href="https://cran.r-project.org/web/packages/SIBER/vignettes/Introduction-to-SIBER.html">SIBER
+- last update 2023</a><br />
+</li>
+<li><a
+href="https://cran.r-project.org/web/packages/SIBER/vignettes/Plot-SIA-ggplot2.html">SIA
+in ggplot2</a></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
