@@ -22,6 +22,25 @@
     "input_file": {}
   },
   {
+    "path": "posts/2023-05-12-data-wrangling/",
+    "title": "Data wrangling",
+    "description": "Basic calculations, tidydata, pipe operations, join and export data frames.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2023-05-12",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nData wrangling\r\nData wrangling\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nData wrangling\r\nIn this class:  - rmd\r\n- load\r\nfiles - basic\r\noperations  - rows\r\nand columns  - tidydata\r\n - count\r\n - select\r\n - filter\r\n - mutate\r\n - summarize\r\n - nas\r\n- join\r\n - export\r\n\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nRmd script containing exercises. Click here\r\nto download .\r\nCsv file containing penguin data. Click here\r\nto download .\r\n\r\n\r\n\r\n",
+    "preview": "posts/2023-05-12-data-wrangling/data-wrangling.png",
+    "last_modified": "2023-04-21T12:44:15+02:00",
+    "input_file": {},
+    "preview_width": 1225,
+    "preview_height": 919
+  },
+  {
     "path": "posts/2023-05-01-github-page/",
     "title": "Github page presentations",
     "description": "Publish your slides from a html file",
@@ -58,26 +77,9 @@
     "contents": "\r\n\r\nContents\r\nFirst steps into R\r\nIntro a R.\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nFirst steps into R\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIntro a R.\r\nIn this class:  - Install\r\nor update R - Workspace\r\npanes - Packages\r\n- Directories\r\n- Load\r\ndata\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files for the exercises there are several\r\noptions:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here.\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S).\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n.\r\nExercise 1\r\nR script containing exercises from the first part. Click here.\r\nCsv file containing penguin data. Click here.\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-04-18-intro-to-r/000Index.png",
     "last_modified": "2023-04-19T12:23:41+02:00",
-    "input_file": "intro-to-r.knit.md",
+    "input_file": {},
     "preview_width": 1225,
     "preview_height": 919
-  },
-  {
-    "path": "posts/2023-05-12-data-wrangling/",
-    "title": "Data wrangling",
-    "description": "Basic calculations, tidydata, pipe operations, join and export data frames.",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2023-04-18",
-    "categories": [],
-    "contents": "\r\n\r\nContents\r\nData wrangling\r\nData wrangling\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nData wrangling\r\nIn this class:  - Basic calculations  - Using objects/vectors\r\n - Look for help  - Rows and columns  - Tidydata  - Pipe\r\noperations  - Count  - Select  - Filter  - Mutate  -\r\nSummarize  - Drop nas  - Join data frames  - Export data\r\nframes \r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\nUnderconstruction\r\n\r\n\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nRmd script containing exercises. Click here\r\nto download .\r\nCsv file containing penguin data. Click here\r\nto download .\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2023-04-21T11:09:26+02:00",
-    "input_file": "data-wrangling.knit.md"
   },
   {
     "path": "posts/2023-04-16-seamonas/",

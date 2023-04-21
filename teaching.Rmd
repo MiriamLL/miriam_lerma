@@ -2,6 +2,7 @@
 title: "Teaching"
 listing:
   posts:
+    - 2023-05-12-data-wrangling
     - 2023-04-18-intro-to-r
     - 2021-03-01-IntroaR
     - 2021-03-29-rmd

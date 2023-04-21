@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-05-12
-preview: 001Index.png
+preview: data-wrangling.png
 output:
   distill::distill_article:
     toc: true
@@ -31,27 +31,26 @@ The materials will be updated together with the training.
 # Data wrangling
 
 In this class: <br>
-- Basic calculations <br>
-- Using objects/vectors <br>
-- Look for help <br>
-- Rows and columns <br>
-- Tidydata <br>
-- Pipe operations <br>
-- Count <br>
-- Select <br>
-- Filter <br>
-- Mutate <br>
-- Summarize <br>
-- Drop nas <br>
-- Join data frames <br>
-- Export data frames <br>
+- [rmd](https://miriamll.github.io/R_intro/DataWrangling_1205.html#6)<br>
+- [load files](https://miriamll.github.io/R_intro/DataWrangling_1205.html#27)<br>
+- [basic operations](https://miriamll.github.io/R_intro/DataWrangling_1205.html#44) <br>
+- [rows and columns](https://miriamll.github.io/R_intro/DataWrangling_1205.html#53) <br>
+- [tidydata](https://miriamll.github.io/R_intro/DataWrangling_1205.html#58) <br>
+- [count](https://miriamll.github.io/R_intro/DataWrangling_1205.html#65) <br>
+- [select](https://miriamll.github.io/R_intro/DataWrangling_1205.html#67) <br>
+- [filter](https://miriamll.github.io/R_intro/DataWrangling_1205.html#68) <br>
+- [mutate](https://miriamll.github.io/R_intro/DataWrangling_1205.html#73) <br>
+- [summarize](https://miriamll.github.io/R_intro/DataWrangling_1205.html#74) <br>
+- [nas](https://miriamll.github.io/R_intro/DataWrangling_1205.html#75)<br>
+- [join](https://miriamll.github.io/R_intro/DataWrangling_1205.html#79) <br>
+- [export](https://miriamll.github.io/R_intro/DataWrangling_1205.html#92) <br>
 
 
 ## Slides
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/DataWrangling_1205.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/001Index.png?raw=true" style="width:400px"></a>
+      <a href="https://miriamll.github.io/R_intro/DataWrangling_1205.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000data-wrangling.png?raw=true" style="width:400px"></a>
    </left>
 </body>
 </html>
@@ -62,20 +61,6 @@ icon_link(icon = "fas fa-images",
           text = "Open",
           url = "https://miriamll.github.io/R_intro/DataWrangling_1205.html#1")
 ```
-
-
-
-
-
-Underconstruction
-
-<html>
-<body>
-   <left>
-      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:50px"></a>
-   </left>
-</body>
-</html>
 
 <br>
 
