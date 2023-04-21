@@ -63,7 +63,7 @@
     "preview_height": 919
   },
   {
-    "path": "posts/2023-04-19-data-wrangling/",
+    "path": "posts/2023-05-12-data-wrangling/",
     "title": "Data wrangling",
     "description": "Basic calculations, tidydata, pipe operations, join and export data frames.",
     "author": [
@@ -74,9 +74,9 @@
     ],
     "date": "2023-04-18",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nData wrangling\r\nData wrangling\r\nSlides\r\n\r\nNext classs\r\nPlotting\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nData wrangling\r\nIn this class:  - Basic calculations  - Using objects/vectors\r\n - Look for help  - Rows and columns  - Tidydata  - Pipe\r\noperations  - Count  - Select  - Filter  - Mutate  -\r\nSummarize  - Drop nas  - Join data frames  - Export data\r\nframes \r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\nNext classs\r\nPlotting\r\nIn this class:  - Using ggplot\r\n- Dot plots\r\n- Line plots\r\n- Barplots\r\n- Boxplots  - Trajectories  - Maps  - Aesthetics\r\n- Export\r\nUnderconstruction\r\n\r\n\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nR script containing exercises from the first part. Click here.\r\nCsv file containing penguin data. Click here.\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nData wrangling\r\nData wrangling\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nData wrangling\r\nIn this class:  - Basic calculations  - Using objects/vectors\r\n - Look for help  - Rows and columns  - Tidydata  - Pipe\r\noperations  - Count  - Select  - Filter  - Mutate  -\r\nSummarize  - Drop nas  - Join data frames  - Export data\r\nframes \r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\nUnderconstruction\r\n\r\n\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nRmd script containing exercises. Click here\r\nto download .\r\nCsv file containing penguin data. Click here\r\nto download .\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2023-04-19T12:25:38+02:00",
+    "last_modified": "2023-04-21T11:09:26+02:00",
     "input_file": "data-wrangling.knit.md"
   },
   {
