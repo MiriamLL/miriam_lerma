@@ -28,7 +28,7 @@ This material was prepared for **DDA-FTZ**
 
 The materials will be updated together with the training.
 
-# Data wrangling
+# Index
 
 In this class: <br>
 - [rmd](https://miriamll.github.io/R_intro/DataWrangling_1205.html#6)<br>
