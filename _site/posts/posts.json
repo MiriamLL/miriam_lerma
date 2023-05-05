@@ -35,8 +35,8 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nData wrangling\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:  - rmd\r\n- load\r\nfiles - basic\r\noperations  - rows\r\nand columns  - tidydata\r\n - count\r\n - select\r\n - filter\r\n - mutate\r\n - summarize\r\n - nas\r\n- join\r\n - export\r\n\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nRmd script containing exercises. Click here\r\nto download .\r\nCsv file containing penguin data. Click here\r\nto download .\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-05-08-data-wrangling/data-wrangling.png",
-    "last_modified": "2023-05-05T19:20:15+02:00",
-    "input_file": "data-wrangling.knit.md",
+    "last_modified": "2023-05-05T19:41:39+02:00",
+    "input_file": {},
     "preview_width": 1225,
     "preview_height": 919
   },
