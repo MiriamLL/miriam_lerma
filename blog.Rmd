@@ -7,6 +7,7 @@ output:
     toc_float: true
 listing:
   posts:
+    - 2023-05-05-github-page
     - 2023-04-06-gridraster
     - 2023-03-04-mapping-in-r
     - psg2023
