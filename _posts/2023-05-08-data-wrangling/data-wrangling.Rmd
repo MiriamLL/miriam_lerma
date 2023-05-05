@@ -76,7 +76,7 @@ To download the files there are several options:
 
 **Exercise 1**
 
-- Rmd script containing exercises. Click [here to download]("https://raw.githubusercontent.com/MiriamLL/R_intro/master/02ExercisesRmd.Rmd") .
+- Rmd script containing exercises. Click [here to download](https://raw.githubusercontent.com/MiriamLL/R_intro/master/02ExercisesRmd.Rmd) .
 
-- Csv file containing penguin data. Click [here to download]("https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv") .
+- Csv file containing penguin data. Click [here to download](https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv) .
 
