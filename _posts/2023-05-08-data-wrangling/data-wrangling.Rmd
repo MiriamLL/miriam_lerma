@@ -34,23 +34,23 @@ In this class: <br>
 - [rmd](https://miriamll.github.io/R_intro/DataWrangling_1205.html#6)<br>
 - [load files](https://miriamll.github.io/R_intro/DataWrangling_1205.html#27)<br>
 - [basic operations](https://miriamll.github.io/R_intro/DataWrangling_1205.html#44) <br>
-- [rows and columns](https://miriamll.github.io/R_intro/DataWrangling_1205.html#53) <br>
-- [tidydata](https://miriamll.github.io/R_intro/DataWrangling_1205.html#58) <br>
-- [count](https://miriamll.github.io/R_intro/DataWrangling_1205.html#65) <br>
-- [select](https://miriamll.github.io/R_intro/DataWrangling_1205.html#67) <br>
-- [filter](https://miriamll.github.io/R_intro/DataWrangling_1205.html#68) <br>
-- [mutate](https://miriamll.github.io/R_intro/DataWrangling_1205.html#73) <br>
-- [summarize](https://miriamll.github.io/R_intro/DataWrangling_1205.html#74) <br>
-- [nas](https://miriamll.github.io/R_intro/DataWrangling_1205.html#75)<br>
-- [join](https://miriamll.github.io/R_intro/DataWrangling_1205.html#79) <br>
-- [export](https://miriamll.github.io/R_intro/DataWrangling_1205.html#92) <br>
+- [rows and columns](https://miriamll.github.io/R_intro/DataWrangling_1205.html#54) <br>
+- [tidydata](https://miriamll.github.io/R_intro/DataWrangling_1205.html#59) <br>
+- [count](https://miriamll.github.io/R_intro/DataWrangling_1205.html#66) <br>
+- [select](https://miriamll.github.io/R_intro/DataWrangling_1205.html#68) <br>
+- [filter](https://miriamll.github.io/R_intro/DataWrangling_1205.html#69) <br>
+- [mutate](https://miriamll.github.io/R_intro/DataWrangling_1205.html#74) <br>
+- [summarize](https://miriamll.github.io/R_intro/DataWrangling_1205.html#75) <br>
+- [nas](https://miriamll.github.io/R_intro/DataWrangling_1205.html#76)<br>
+- [join](https://miriamll.github.io/R_intro/DataWrangling_1205.html#80) <br>
+- [export](https://miriamll.github.io/R_intro/DataWrangling_1205.html#93) <br>
 
 
 ## Slides
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/DataWrangling_1205.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000data-wrangling.png?raw=true" style="width:400px"></a>
+      <a href="https://miriamll.github.io/R_intro/DataWrangling_0805.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000data-wrangling.png?raw=true" style="width:400px"></a>
    </left>
 </body>
 </html>
@@ -59,7 +59,7 @@ In this class: <br>
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Open",
-          url = "https://miriamll.github.io/R_intro/DataWrangling_1205.html#1")
+          url = "https://miriamll.github.io/R_intro/DataWrangling_0805.html#1")
 ```
 
 <br>
