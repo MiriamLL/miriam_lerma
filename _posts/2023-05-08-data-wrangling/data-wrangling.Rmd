@@ -1,7 +1,7 @@
 ---
 title: "Data wrangling"
 description: |
-  Basic calculations, tidydata, pipe operations, join and export data frames.
+  Load data, basic calculations, tidydata, pipe operations, join and export data frames.
 author:
   - name: Miriam Lerma
     url: {}
@@ -31,19 +31,19 @@ The materials will be updated together with the training.
 # Index
 
 In this class: <br>
-- [rmd](https://miriamll.github.io/R_intro/DataWrangling_1205.html#6)<br>
-- [load files](https://miriamll.github.io/R_intro/DataWrangling_1205.html#27)<br>
-- [basic operations](https://miriamll.github.io/R_intro/DataWrangling_1205.html#44) <br>
-- [rows and columns](https://miriamll.github.io/R_intro/DataWrangling_1205.html#54) <br>
-- [tidydata](https://miriamll.github.io/R_intro/DataWrangling_1205.html#59) <br>
-- [count](https://miriamll.github.io/R_intro/DataWrangling_1205.html#66) <br>
-- [select](https://miriamll.github.io/R_intro/DataWrangling_1205.html#68) <br>
-- [filter](https://miriamll.github.io/R_intro/DataWrangling_1205.html#69) <br>
-- [mutate](https://miriamll.github.io/R_intro/DataWrangling_1205.html#74) <br>
-- [summarize](https://miriamll.github.io/R_intro/DataWrangling_1205.html#75) <br>
-- [nas](https://miriamll.github.io/R_intro/DataWrangling_1205.html#76)<br>
-- [join](https://miriamll.github.io/R_intro/DataWrangling_1205.html#80) <br>
-- [export](https://miriamll.github.io/R_intro/DataWrangling_1205.html#93) <br>
+- [rmd](https://miriamll.github.io/R_intro/DataWrangling_0805.html#6)<br>
+- [load files](https://miriamll.github.io/R_intro/DataWrangling_0805.html#27)<br>
+- [basic operations](https://miriamll.github.io/R_intro/DataWrangling_0805.html#44) <br>
+- [rows and columns](https://miriamll.github.io/R_intro/DataWrangling_0805.html#54) <br>
+- [tidydata](https://miriamll.github.io/R_intro/DataWrangling_0805.html#59) <br>
+- [count](https://miriamll.github.io/R_intro/DataWrangling_0805.html#66) <br>
+- [select](https://miriamll.github.io/R_intro/DataWrangling_0805.html#68) <br>
+- [filter](https://miriamll.github.io/R_intro/DataWrangling_0805.html#69) <br>
+- [mutate](https://miriamll.github.io/R_intro/DataWrangling_0805.html#74) <br>
+- [summarize](https://miriamll.github.io/R_intro/DataWrangling_0805.html#75) <br>
+- [nas](https://miriamll.github.io/R_intro/DataWrangling_0805.html#76)<br>
+- [join](https://miriamll.github.io/R_intro/DataWrangling_0805.html#80) <br>
+- [export](https://miriamll.github.io/R_intro/DataWrangling_0805.html#94) <br>
 
 
 ## Slides
