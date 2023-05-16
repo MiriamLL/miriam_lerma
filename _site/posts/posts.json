@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2023-06-06-plotting/",
+    "title": "Plotting",
+    "description": "ggplot, aesthetics, maps, export.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2023-06-06",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nPlotting\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nPlotting\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:\r\n- Using ggplot\r\n- Dot plots \r\n- Line plots\r\n- Barplots\r\n- Boxplots\r\n- Trajectories\r\n- Maps\r\n- Aesthetics\r\n- Export\r\nUnderconstruction\r\n\r\n\r\n\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github , go to file, click on raw, select save as. See video here\r\nIn firefox , open link, click on three lines icon , and select save page as (or control+S)\r\nIn chrome , open the link, and click on the share icon \r\nExercise 1\r\nRmd script containing exercises. Click here to download .\r\nCsv file containing penguin data. Click here to download .\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2023-05-16T10:37:26+02:00",
+    "input_file": "plotting.knit.md"
+  },
+  {
     "path": "posts/2023-06-04-custompoints/",
     "title": "Custom points in a map",
     "description": "Plot different size, color and shape points",

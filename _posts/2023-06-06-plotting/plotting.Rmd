@@ -1,11 +1,11 @@
 ---
-title: "Data wrangling"
+title: "Plotting"
 description: |
-  Basic calculations, tidydata, pipe operations, join and export data frames.
+  ggplot, aesthetics, maps, export.
 author:
   - name: Miriam Lerma
     url: {}
-date: 2023-04-18
+date: 2023-06-06
 preview: 000Index.png
 output:
   distill::distill_article:
@@ -20,7 +20,7 @@ library(emo)
 library(fontawesome)
 ```
 
-# Data wrangling
+# Plotting
 
 Welcome!
 
@@ -28,7 +28,7 @@ This material was prepared for **DDA-FTZ**
 
 The materials will be updated together with the training.
 
-## Plotting
+# Index
 
 In this class:<br>
 - Using ggplot<br>
@@ -46,7 +46,7 @@ Underconstruction
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:50px"></a>
+      <a href="https://miriamll.github.io/R_intro/Plotting_0606.html#1"><img src="https://media.tenor.com/MRCIli40TYoAAAAi/under-construction90s-90s.gif" style="width:50px"></a>
    </left>
 </body>
 </html>
@@ -56,7 +56,7 @@ Underconstruction
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/DataWrangling_1205.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000Index.png?raw=true" style="width:400px"></a>
+      <a href="https://miriamll.github.io/R_intro/Plotting_0606.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000Index.png?raw=true" style="width:400px"></a>
    </left>
 </body>
 </html>
@@ -65,9 +65,8 @@ Underconstruction
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Open",
-          url = "https://miriamll.github.io/R_intro/DataWrangling_1205.html#1")
+          url = "https://miriamll.github.io/R_intro/Plotting_0606.html#1")
 ```
-
 
 
 
