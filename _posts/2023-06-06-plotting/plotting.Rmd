@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-06-06
-preview: 000Index.png
+preview: 000Plotting.png
 output:
   distill::distill_article:
     toc: true
@@ -32,7 +32,7 @@ The materials will be updated together with the training.
 
 In this class:<br>
 - Using ggplot<br>
-- Dot plots <br>
+- Point plots <br>
 - Line plots<br>
 - Barplots<br>
 - Boxplots<br>
@@ -56,7 +56,7 @@ Underconstruction
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/Plotting_0606.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000Index.png?raw=true" style="width:400px"></a>
+      <a href="https://miriamll.github.io/R_intro/Plotting_0606.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000Plotting.png?raw=true" style="width:400px"></a>
    </left>
 </body>
 </html>
