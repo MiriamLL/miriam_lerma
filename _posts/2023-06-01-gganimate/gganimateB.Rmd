@@ -51,10 +51,7 @@ first(Example$DateGMT)
 ```
 
 ```{r}
-Example$date_diff <- as.Date(as.character(Example$tStamp), 
-                             format="%Y-%m-%d")-
-  as.Date(as.character('2017-11-02'), 
-          format="%Y-%m-%d")
+Example$date_diff <- as.Date(as.character(Example$tStamp), format="%Y-%m-%d")-as.Date(as.character('2017-11-02'), format="%Y-%m-%d")
 ```
 
 Create number sequence for animation
@@ -93,9 +90,8 @@ Plot the area of interest
 
 ```{r, fig.height=8, fig.width=8}
 My_map<-ggplot(data=Example)  + 
-  geom_sf(data = Country,colour = "#edf2f4", fill = "#2b2d42",)+
+  geom_sf(data = Country, colour = 'black', fill = '#9a8c98')+
   geom_point(data=Example,aes(x = Longitude, y=Latitude))+
-  geom_path(data=Example,aes(x = Longitude, y=Latitude))+
   coord_sf(xlim = c(-110,-109), ylim = c(-27.5,-26.5))
 My_map
 ```
@@ -104,7 +100,7 @@ My_map
 
 ```{r, fig.height=8, fig.width=8}
 My_map<-My_map+
- theme_bw()+
+  theme_bw()+
 
   theme(
     panel.grid.major = element_blank(), 
@@ -121,7 +117,9 @@ My_map<-My_map+
     legend.position = "none")+
   
     scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
-    scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N"))
+    scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N")) +
+  
+  NULL
 My_map
 ```
 
@@ -141,19 +139,36 @@ Because animations might take some time, I like to use the package **beepr** to 
 library(beepr)
 ```
 
-**transition_reveal** leaves the track on the back ground so you can keep record where it was  
-
-Other arguments are:  
 **transition_time** use the information for the transition is
 **labs** shows the title with time so you can use as a reference  
 **shadow_wake** is the wake behind the points [read more here](https://goodekat.github.io/presentations/2019-isugg-gganimate-spooky/slides.html#48)
 
-```{r animating, fig.height=8, fig.width=8, echo=FALSE, eval=TRUE}
-My_animation<-ggplot(data=Example)  + 
-  geom_sf(data = Country,colour = "#edf2f4", fill = "#2b2d42",)+
-  geom_point(data=Example,aes(x = Longitude, y=Latitude, colour = tStamp))+
-  geom_path(data=Example,aes(x = Longitude, y=Latitude))+
-  coord_sf(xlim = c(-110,-109), ylim = c(-27.5,-26.5))+
+```{r, fig.height=8, fig.width=8, echo=FALSE, eval=TRUE}
+My_animation<-My_map +
+  transition_time(tStamp)+
+  labs(title = "Date and Time: {frame_time}")+
+  shadow_wake(wake_length = 0.1, alpha = FALSE)
+My_animation
+beepr::beep(sound=1,expr=NULL)
+```
+
+
+**transition_reveal** leaves the track on the back ground so you can keep record where it was  
+
+```{r, eval=FALSE}
+My_animation<-My_map+
+  transition_reveal(tStamp) +
+  shadow_trail(distance = 0.01,
+               alpha = 0.5,
+               shape = 1)
+My_animation
+beepr::beep(sound=1,expr=NULL)
+```
+
+```{r}
+
+
+my_animation<-+
   
   theme_bw()+
 
@@ -178,30 +193,26 @@ My_animation<-ggplot(data=Example)  +
   shadow_trail(distance = 0.01,
                alpha = 0.5,
                shape = 1)
-#My_animation
+my_animation
 ```
-
 
 ## 8. Export
 
-The package **animation** allows to save the animation as a file
-
-```{r}
-library(animation)
-```
-
-To export, you can save the animation as gif
-
-```{r include= TRUE, eval=FALSE}
-anim_save("animation.gif",My_animation)
-beep(sound=1,expr=NULL)
-```
-
-Or transform from gif to mp4 using the package **av**
+I use the package **av** and the package **animation** to export
 
 ```{r}
 library(av)
+library(animation)
 ```
+
+To export, I save my plot as gif
+
+```{r include= TRUE, eval=FALSE}
+anim_save("animation.gif",my_animation)
+beep(sound=1,expr=NULL)
+```
+
+I transform my plot from gif to mp4
 
 ```{r include= TRUE, eval=FALSE}
 av::av_encode_video("animation.gif", 
@@ -209,7 +220,6 @@ av::av_encode_video("animation.gif",
                     output = 'animation.mp4')
 beep(sound=1,expr=NULL)
 ```
-
 
 
 # Further reading

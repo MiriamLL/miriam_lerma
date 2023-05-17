@@ -94,7 +94,7 @@ Plot the area of interest
 ```{r, fig.height=8, fig.width=8}
 My_map<-ggplot(data=Example)  + 
   geom_sf(data = Country,colour = "#edf2f4", fill = "#2b2d42",)+
-  geom_point(data=Example,aes(x = Longitude, y=Latitude))+
+  geom_point(data=Example,aes(x = Longitude, y=Latitude, colour = tStamp))+
   geom_path(data=Example,aes(x = Longitude, y=Latitude))+
   coord_sf(xlim = c(-110,-109), ylim = c(-27.5,-26.5))
 My_map
@@ -148,60 +148,34 @@ Other arguments are:
 **labs** shows the title with time so you can use as a reference  
 **shadow_wake** is the wake behind the points [read more here](https://goodekat.github.io/presentations/2019-isugg-gganimate-spooky/slides.html#48)
 
-```{r animating, fig.height=8, fig.width=8, echo=FALSE, eval=TRUE}
-My_animation<-ggplot(data=Example)  + 
-  geom_sf(data = Country,colour = "#edf2f4", fill = "#2b2d42",)+
-  geom_point(data=Example,aes(x = Longitude, y=Latitude, colour = tStamp))+
-  geom_path(data=Example,aes(x = Longitude, y=Latitude))+
-  coord_sf(xlim = c(-110,-109), ylim = c(-27.5,-26.5))+
-  
-  theme_bw()+
-
-  theme(
-    panel.grid.major = element_blank(), 
-    panel.grid.minor = element_blank(),
-    panel.background = element_rect(fill = '#edf2f4'),
-    
-    axis.text.x =  element_text(size=12,color = "black"),
-    axis.text.y =  element_text(size=12,color = "black"),
-    
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.y = element_line(color = "black"),
-    
-    title = element_text(colour = "black"),
-    legend.position = "none")+
-  
-    scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
-    scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N")) +
-  
+```{r, fig.height=8, fig.width=8, echo=FALSE, eval=TRUE}
+My_animation<-My_map+
   transition_reveal(along=tStamp) +
   shadow_trail(distance = 0.01,
                alpha = 0.5,
                shape = 1)
-#My_animation
+My_animation
+beepr::beep(sound=1,expr=NULL)
 ```
 
 
 ## 8. Export
 
-The package **animation** allows to save the animation as a file
-
-```{r}
-library(animation)
-```
-
-To export, you can save the animation as gif
-
-```{r include= TRUE, eval=FALSE}
-anim_save("animation.gif",My_animation)
-beep(sound=1,expr=NULL)
-```
-
-Or transform from gif to mp4 using the package **av**
+I use the package **av** and the package **animation** to export
 
 ```{r}
 library(av)
+library(animation)
 ```
+
+To export, I save my plot as gif
+
+```{r include= TRUE, eval=FALSE}
+anim_save("animation.gif",my_animation)
+beep(sound=1,expr=NULL)
+```
+
+I transform my plot from gif to mp4
 
 ```{r include= TRUE, eval=FALSE}
 av::av_encode_video("animation.gif", 
@@ -209,7 +183,6 @@ av::av_encode_video("animation.gif",
                     output = 'animation.mp4')
 beep(sound=1,expr=NULL)
 ```
-
 
 
 # Further reading
