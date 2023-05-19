@@ -13,8 +13,8 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nPlotting\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nPlotting\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class: - Using ggplot - Point plots  - Line\r\nplots - Barplots - Boxplots - Trajectories - Maps -\r\nAesthetics - Export\r\nUnderconstruction\r\n\r\n\r\n\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercise 1\r\nRmd script containing exercises. Click here\r\nto download.\r\nShapefile of Europa. Click here\r\nto download.\r\nRmd script to export word document. Click here\r\nto download .\r\nRmd script to export html document. Click here\r\nto download .\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-06-06-plotting/000Plotting.png",
-    "last_modified": "2023-05-19T17:48:55+02:00",
-    "input_file": "plotting.knit.md",
+    "last_modified": "2023-05-19T17:48:56+02:00",
+    "input_file": {},
     "preview_width": 816,
     "preview_height": 606
   },
