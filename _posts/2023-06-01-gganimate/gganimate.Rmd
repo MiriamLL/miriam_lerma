@@ -144,7 +144,7 @@ library(beepr)
 **transition_reveal** leaves the track on the back ground so you can keep record where it was  
 
 
-```{r animating, fig.height=8, fig.width=8, echo=FALSE, eval=FALSE}
+```{r animating, fig.height=8, fig.width=8, eval=FALSE}
 My_animation<-ggplot(data=Example)  + 
   geom_sf(data = Country,colour = "#edf2f4", fill = "#2b2d42",)+
   geom_point(data=Example,aes(x = Longitude, y=Latitude, colour = tStamp))+
