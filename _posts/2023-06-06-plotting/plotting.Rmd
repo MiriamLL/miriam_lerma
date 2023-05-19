@@ -84,7 +84,11 @@ To download the files there are several options:
 
 **Exercise 1**
 
-- Rmd script containing exercises. Click [here to download]("https://raw.githubusercontent.com/MiriamLL/R_intro/master/02ExercisesRmd.Rmd") .
+- Rmd script containing exercises. Click [here to download]("https://github.com/MiriamLL/R_intro/blob/master/03ExercisesPlotting.Rmd").
 
-- Csv file containing penguin data. Click [here to download]("https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv") .
+- Shapefile of Europa. Click [here to download]("https://github.com/MiriamLL/R_intro/blob/master/Downloads/Europe.shp").
+
+- Rmd script to export word document. Click [here to download]("https://github.com/MiriamLL/R_intro/blob/master/04PlotWord.Rmd") .
+
+- Rmd script to export html document. Click [here to download]("https://github.com/MiriamLL/R_intro/blob/master/05PlotInteractive.Rmd") .
 

@@ -2,7 +2,7 @@
 title: "seamonas"
 description: |
   A package to plot maps.  | Un paquete para crear mapas.
-preview: seamonashex.png
+preview: seamonashex2.png
 author:
   - name: Miriam Lerma
 date: 2023-04-16
@@ -19,7 +19,7 @@ A package with functions to make maps
 
 ```{r, echo=FALSE, out.width = "40%"}
 library(distilltools)
-knitr::include_graphics("seamonashex.png")
+knitr::include_graphics("seamonashex2.png")
 ```
 
 # 1. Intro
