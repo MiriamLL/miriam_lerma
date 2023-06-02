@@ -34,8 +34,6 @@ In this class: <br>
 - [Workspace panes](https://miriamll.github.io/R_intro/IntroToR_1104html#22)<br>
 - [Packages](https://miriamll.github.io/R_intro/IntroToR_1104.html#51)<br>
 - [Directories](https://miriamll.github.io/R_intro/IntroToR_1104.html#56)<br>
-- [Load data](https://miriamll.github.io/R_intro/IntroToR_1104.html#60)<br>
-
 
 ## Slides
 <html>
