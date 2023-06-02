@@ -1,7 +1,7 @@
 ---
 title: "Grid, Raster, Colors"
 description: |
-  Create a grid, then a raster, and plot them with your custom colors
+  Create a grid, then a raster, and plot them with your custom colors.
 author:
   - name: Miriam Lerma
     url: {}
