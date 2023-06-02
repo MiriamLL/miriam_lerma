@@ -30,8 +30,8 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nPlotting\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nPlotting\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class: - Using\r\nggplot - Scatterplot\r\n- Line\r\nchart - Barplot\r\n- Boxplot\r\n- Trajectory\r\n- Maps\r\n- Shapefiles\r\n- Limits\r\n- Scale\r\n- Arrow\r\n- Aesthetics\r\n- Colors\r\n- Theme\r\n- Axis\r\nlegend - Add\r\ngeometries in a map - Size\r\n- Shape\r\n- Linetype\r\n- Interactive\r\n- Animate\r\n- Export\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercises\r\nRmd script containing exercises. Click here\r\nto download.\r\nShapefile of Europa. Click here\r\nto download.\r\nRmd script to export word document. Click here\r\nto download.\r\nRmd script to export html document. Click here\r\nto download.\r\nPresentation\r\nTo download the presentation as pdf click here.\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-06-06-plotting/000Plotting.png",
-    "last_modified": "2023-06-02T13:44:30+02:00",
-    "input_file": "plotting.knit.md",
+    "last_modified": "2023-06-02T13:44:31+02:00",
+    "input_file": {},
     "preview_width": 816,
     "preview_height": 606
   },
@@ -111,8 +111,8 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nData\r\nwrangling\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:  - rmd\r\n- load\r\nfiles - basic\r\noperations  - rows\r\nand columns  - tidydata\r\n - count\r\n - select\r\n - filter\r\n - mutate\r\n - summarize\r\n - nas\r\n- join\r\n - export\r\n\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercises\r\nRmd script containing exercises. Click here\r\nto download .\r\nCsv file containing penguin data. Click here\r\nto download .\r\nPresentation\r\nTo download the presentation as pdf click here\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-05-08-data-wrangling/data-wrangling.png",
-    "last_modified": "2023-06-02T13:34:13+02:00",
-    "input_file": "data-wrangling.knit.md",
+    "last_modified": "2023-06-02T13:34:14+02:00",
+    "input_file": {},
     "preview_width": 1225,
     "preview_height": 919
   },
@@ -152,8 +152,8 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nFirst\r\nsteps into R\r\nIntro a R.\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nFirst steps into R\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIntro a R.\r\nIn this class:  - Install\r\nor update R - Workspace\r\npanes - Packages\r\n- Directories\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files for the exercises there are several\r\noptions:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here.\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S).\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n.\r\nExercises\r\nR script containing exercises from the first part. Click here.\r\nCsv file containing penguin data. Click here.\r\nPresentation\r\nTo download the presentation as pdf click here\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-04-18-intro-to-r/000Index.png",
-    "last_modified": "2023-06-02T13:35:14+02:00",
-    "input_file": "intro-to-r.knit.md",
+    "last_modified": "2023-06-02T13:35:15+02:00",
+    "input_file": {},
     "preview_width": 1225,
     "preview_height": 919
   },
