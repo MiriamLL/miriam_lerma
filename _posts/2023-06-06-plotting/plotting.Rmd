@@ -1,7 +1,7 @@
 ---
 title: "Plotting"
 description: |
-  ggplot, aesthetics, maps, export.
+  Using ggplot to create plots and maps.
 author:
   - name: Miriam Lerma
     url: {}
@@ -81,7 +81,7 @@ To download the files there are several options:
 
 3. In chrome `r fa("chrome", fill = "#e76f51")`, open the link, and click on the share icon `r fa("share-square", fill = "#ee9b00")`
 
-**Exercise 1**
+**Exercises**
 
 - Rmd script containing exercises. Click [here to download](https://github.com/MiriamLL/R_intro/blob/master/03ExercisesPlotting.Rmd).
 
