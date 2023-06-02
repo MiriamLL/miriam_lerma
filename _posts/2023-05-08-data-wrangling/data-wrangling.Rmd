@@ -74,9 +74,12 @@ To download the files there are several options:
 
 3. In chrome `r fa("chrome", fill = "#e76f51")`, open the link, and click on the share icon `r fa("share-square", fill = "#ee9b00")`
 
-**Exercise 1**
+**Exercises**
 
 - Rmd script containing exercises. Click [here to download](https://raw.githubusercontent.com/MiriamLL/R_intro/master/02ExercisesRmd.Rmd) .
 
 - Csv file containing penguin data. Click [here to download](https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv) .
 
+**Presentation**
+
+To download the presentation as pdf click [here]()
