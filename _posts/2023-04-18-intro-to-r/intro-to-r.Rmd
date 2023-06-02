@@ -65,10 +65,13 @@ To download the files for the exercises there are several options:
 
 3. In chrome `r fa("chrome", fill = "#e76f51")`, open the link, and click on the share icon `r fa("share-square", fill = "#ee9b00")`.
 
-**Exercise 1**
+**Exercises**
 
 - R script containing exercises from the first part. Click [here](https://raw.githubusercontent.com/MiriamLL/R_intro/master/01Exercises.R).
 
 - Csv file containing penguin data. Click [here](https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv).
 
+**Presentation**
+
+To download the presentation as pdf click [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-04-18-intro-to-r/IntroToR.pdf)
 

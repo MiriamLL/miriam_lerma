@@ -82,4 +82,4 @@ To download the files there are several options:
 
 **Presentation**
 
-To download the presentation as pdf click [here]()
+To download the presentation as pdf click [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-05-08-data-wrangling/DataWrangling.pdf)

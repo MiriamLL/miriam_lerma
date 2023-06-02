@@ -94,3 +94,6 @@ To download the files there are several options:
 
 - Rmd script to export html document. Click [here to download](https://github.com/MiriamLL/R_intro/blob/master/05PlotInteractive.Rmd).
 
+**Presentation**
+
+To download the presentation as pdf click [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-plotting/Plotting.pdf).
