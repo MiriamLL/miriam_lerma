@@ -31,25 +31,28 @@ The materials will be updated together with the training.
 # Index
 
 In this class:<br>
-- [Using ggplot](https://miriamll.github.io/R_intro/Plotting_0606.html#10)<br>
-- [Scatterplot](https://miriamll.github.io/R_intro/Plotting_0606.html#26)<br>
-- [Line chart](https://miriamll.github.io/R_intro/Plotting_0606.html#27)<br>
-- [Barplot](https://miriamll.github.io/R_intro/Plotting_0606.html#28)<br>
+- [Using ggplot](https://miriamll.github.io/R_intro/Plotting_0606.html#11)<br>
+- [Scatterplot](https://miriamll.github.io/R_intro/Plotting_0606.html#27)<br>
+- [Line chart](https://miriamll.github.io/R_intro/Plotting_0606.html#28)<br>
+- [Barplot](https://miriamll.github.io/R_intro/Plotting_0606.html#29)<br>
 - [Boxplot](https://miriamll.github.io/R_intro/Plotting_0606.html#31)<br>
-- [Trajectory](https://miriamll.github.io/R_intro/Plotting_0606.html#32)<br>
-- [Maps](https://miriamll.github.io/R_intro/Plotting_0606.html#35)<br>
-- [Shapefiles](https://miriamll.github.io/R_intro/Plotting_0606.html#41)<br>
-- [Limits](https://miriamll.github.io/R_intro/Plotting_0606.html#45)<br>
-- [Scale](https://miriamll.github.io/R_intro/Plotting_0606.html#46)<br>
-- [Arrow](https://miriamll.github.io/R_intro/Plotting_0606.html#47)<br>
-- [Aesthetics](https://miriamll.github.io/R_intro/Plotting_0606.html#54)<br>
-- [Colors](https://miriamll.github.io/R_intro/Plotting_0606.html#57)<br>
-- [Theme](https://miriamll.github.io/R_intro/Plotting_0606.html#62)<br>
-- [Axis legend](https://miriamll.github.io/R_intro/Plotting_0606.html#67)<br>
-- [Add geometries in a map](https://miriamll.github.io/R_intro/Plotting_0606.html#71)<br>
-- [Interactive](https://miriamll.github.io/R_intro/Plotting_0606.html#82)<br>
-- [Animate](https://miriamll.github.io/R_intro/Plotting_0606.html#84)<br>
-- [Export](https://miriamll.github.io/R_intro/Plotting_0606.html#85)<br>
+- [Trajectory](https://miriamll.github.io/R_intro/Plotting_0606.html#33)<br>
+- [Maps](https://miriamll.github.io/R_intro/Plotting_0606.html#36)<br>
+- [Shapefiles](https://miriamll.github.io/R_intro/Plotting_0606.html#42)<br>
+- [Limits](https://miriamll.github.io/R_intro/Plotting_0606.html#46)<br>
+- [Scale](https://miriamll.github.io/R_intro/Plotting_0606.html#47)<br>
+- [Arrow](https://miriamll.github.io/R_intro/Plotting_0606.html#48)<br>
+- [Aesthetics](https://miriamll.github.io/R_intro/Plotting_0606.html#55)<br>
+- [Colors](https://miriamll.github.io/R_intro/Plotting_0606.html#58)<br>
+- [Theme](https://miriamll.github.io/R_intro/Plotting_0606.html#63)<br>
+- [Axis legend](https://miriamll.github.io/R_intro/Plotting_0606.html#68)<br>
+- [Add geometries in a map](https://miriamll.github.io/R_intro/Plotting_0606.html#72)<br>
+- [Size](https://miriamll.github.io/R_intro/Plotting_0606.html#80)<br>
+- [Shape](https://miriamll.github.io/R_intro/Plotting_0606.html#81)<br>
+- [Linetype](https://miriamll.github.io/R_intro/Plotting_0606.html#83)<br>
+- [Interactive](https://miriamll.github.io/R_intro/Plotting_0606.html#86)<br>
+- [Animate](https://miriamll.github.io/R_intro/Plotting_0606.html#88)<br>
+- [Export](https://miriamll.github.io/R_intro/Plotting_0606.html#89)<br>
 
 ## Slides
 <html>
