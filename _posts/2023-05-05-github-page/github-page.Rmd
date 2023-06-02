@@ -1,7 +1,7 @@
 ---
 title: "Github page presentations"
 description: |
-  Publish your slides from a html file
+  Publish your slides from a html file.
 author:
   - name: Miriam Lerma
     url: {}

@@ -1,8 +1,8 @@
 ---
 title: "seamonas"
 description: |
-  A package to plot maps.  | Un paquete para crear mapas.
-preview: seamonashex2.png
+  A package to plot survey and density maps. 
+preview: seamonashexsticker.png
 author:
   - name: Miriam Lerma
 date: 2023-04-16
@@ -19,7 +19,7 @@ A package with functions to make maps
 
 ```{r, echo=FALSE, out.width = "40%"}
 library(distilltools)
-knitr::include_graphics("seamonashex2.png")
+knitr::include_graphics("seamonashexsticker.png")
 ```
 
 # 1. Intro
@@ -52,7 +52,7 @@ library('seamonas')
 
 # 3. Data
 
-```{r}
+```{r, eval=FALSE}
 head(survey_4326)
 ```
 
@@ -64,7 +64,7 @@ Data from a survey including longitude, latitude, timestamp
 survey_4326<-survey_4326
 ```
 
-```{r}
+```{r, fig.height=4}
 ggplot2::ggplot()+
     ggplot2::geom_point(data=survey_4326,
                         ggplot2::aes(x=longitude, y= latitude, color=date),size = 1, shape = 16) 
@@ -129,7 +129,7 @@ grid_surveyed<-subset_grid(survey_grid=grid5x5_3035,
 
 Plot to check grid
 
-```{r}
+```{r, fig.height=4}
 ggplot2::ggplot()+
   ggplot2::geom_sf(data = grid_surveyed, colour = "#42a921", fill= '#bde0fe',alpha=0.9)+
   ggplot2::geom_sf(data = survey_3035)+
@@ -159,14 +159,14 @@ densities_3035<-transform_survey(survey_data=density_survey,
 
 A function to keep only grids with data
 
-```{r,eval=FALSE}
+```{r,eval=FALSE, fig.height=9}
 density_grid<-subset_density(density_survey=densities_3035,column_density='densities',
                              survey_grid=grid_surveyed,grid_identifier='grid_id')
 ```
 
 Check the data
 
-```{r}
+```{r, fig.height=4}
 ggplot2::ggplot()+
   ggplot2::geom_sf(data = density_grid,mapping = ggplot2::aes(fill = mean_density), lwd = 0, colour = NA)
 ```
@@ -190,7 +190,7 @@ yval<-c(3380000,3680000)
 
 Provide density grid and mean densities
 
-```{r}
+```{r, fig.height=4}
 density_plot<-ggplot2::ggplot()+
     # maps
     ggplot2::geom_sf(data = EEZ, colour = 'black', fill = color_water)+
@@ -208,7 +208,7 @@ density_plot
 
 A function to add color palette and breaks in the legend, will vary with the species density estimates
 
-```{r}
+```{r, fig.height=4}
 plot_wbreaks<-add_breaks(density_plot=density_plot,
                      legendbreaks=c(0,0.5,1,1.5,2.0),
                      legendlimits=c(0,2),
@@ -221,7 +221,7 @@ plot_wbreaks
 
 A function to add the legend inside the plot
 
-```{r}
+```{r, fig.height=5}
 plot_wlegend<-add_legend(
   plot_wbreaks=plot_wbreaks,
   legtx=3905000,
@@ -237,7 +237,7 @@ plot_wlegend
 
 A function to define the theme
 
-```{r}
+```{r, fig.height=5}
 plot_wtheme<-add_theme(plot_wlegend = plot_wlegend)
 plot_wtheme
 ```
