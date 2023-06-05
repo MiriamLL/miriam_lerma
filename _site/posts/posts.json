@@ -31,9 +31,11 @@
     "date": "2023-06-06",
     "categories": [],
     "contents": "\r\n\r\nContents\r\nMove\r\nIndex\r\nSlides\r\n\r\n\r\n\r\n\r\nMove\r\nWelcome!\r\nThis material was prepared for FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:\r\nLoad data -From\r\nmovebank -From\r\ncsv\r\nTidy -Select\r\ncolumns -Export\r\nTransform -Converting\r\ntimes\r\nVisualise -Map\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2023-06-05T16:14:31+02:00",
-    "input_file": "tracking.knit.md"
+    "preview": "posts/2023-06-06-tracking/002move.png",
+    "last_modified": "2023-06-05T16:15:48+02:00",
+    "input_file": {},
+    "preview_width": 1171,
+    "preview_height": 878
   },
   {
     "path": "posts/2023-06-02-germannorthsea/",
