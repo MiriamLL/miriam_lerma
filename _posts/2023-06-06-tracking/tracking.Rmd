@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-06-06
-preview: 003move.jpg
+preview: 002move.jpg
 output:
   distill::distill_article:
     toc: true
@@ -33,12 +33,12 @@ The materials will be updated together with the training.
 In this class:<br>
 
 Load data<br>
--[From movebank](https://miriamll.github.io/R_intro/Tracking_0606.html#3)<br>
--[From csv]()<br>
+-[From movebank](https://miriamll.github.io/R_intro/Tracking_0606.html#4)<br>
+-[From csv](https://miriamll.github.io/R_intro/Tracking_0606.html#19)<br>
 
 Tidy<br>
--[Select columns](https://miriamll.github.io/R_intro/Tracking_0606.html#21)<br>
--[Export](https://miriamll.github.io/R_intro/Tracking_0606.html#22)<br>
+-[Select columns](https://miriamll.github.io/R_intro/Tracking_0606.html#29)<br>
+-[Export](https://miriamll.github.io/R_intro/Tracking_0606.html#32)<br>
 
 Transform<br>
 -[Converting times](https://miriamll.github.io/R_intro/Tracking_0606.html#20)<br>
@@ -50,7 +50,7 @@ Visualise<br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-tracking/003move.jpg?raw=true" style="width:350px"></a>
+      <a href="https://miriamll.github.io/R_intro/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-tracking/001move.jpg?raw=true" style="width:350px"></a>
    </left>
 </body>
 </html>
