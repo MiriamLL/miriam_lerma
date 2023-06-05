@@ -20,8 +20,8 @@
   },
   {
     "path": "posts/2023-06-06-tracking/",
-    "title": "Movebank",
-    "description": "Download data from movebank into your workflow.",
+    "title": "Tracking",
+    "description": "Tracking data into a workflow.",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -30,10 +30,10 @@
     ],
     "date": "2023-06-06",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nMove\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nMove\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:\r\n- Downloading data\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github , go to file, click on raw, select save as. See video here\r\nIn firefox , open link, click on three lines icon , and select save page as (or control+S)\r\nIn chrome , open the link, and click on the share icon \r\nExercises\r\nRmd script containing exercises. Click here to download.\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nMove\r\nIndex\r\nSlides\r\n\r\n\r\n\r\n\r\nMove\r\nWelcome!\r\nThis material was prepared for FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:\r\nLoad data -From\r\nmovebank -From csv\r\nTidy -Select\r\ncolumns -Export\r\nTransform -Converting\r\ntimes\r\nVisualise -Map\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-06-06-tracking/003move.jpg",
-    "last_modified": "2023-06-02T09:52:54+02:00",
-    "input_file": {}
+    "last_modified": "2023-06-05T09:39:00+02:00",
+    "input_file": "tracking.knit.md"
   },
   {
     "path": "posts/2023-06-02-germannorthsea/",
