@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-06-06
-preview: 002move.jpg
+preview: 002move.png
 output:
   distill::distill_article:
     toc: true
@@ -50,7 +50,7 @@ Visualise<br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-tracking/001move.jpg?raw=true" style="width:350px"></a>
+      <a href="https://miriamll.github.io/R_intro/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-tracking/002move.png?raw=true" style="width:350px"></a>
    </left>
 </body>
 </html>
