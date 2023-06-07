@@ -35,7 +35,7 @@ I prepared materials for teaching R, a programming language for statistical comp
 <br>  
 
 ###  `r fa("box", fill = "black")` [**Packages**](https://www.miriam-lerma.com/projects.html)  
-I develop R packages that are useful for my work. Instructions are in Spanish, but a link to the English translation at github is provided. A new package is coming soon.
+I develop R packages that are useful for my work. Im often working on new packages so stay tuned. 
 <br>  
 
 ### `r fa("keyboard", fill = "black")` [**Blog**](https://www.miriam-lerma.com/blog.html)  
