@@ -131,8 +131,6 @@ To download the original data go to [GeoSeaPortal](https://www.geoseaportal.de/a
 
 The zip contains several shapefiles including **NatureConservation**
 
-
-
 ```{r}
 German_natura<-GermanNorthSea::German_natura
 ```
@@ -157,6 +155,16 @@ German_SCA<-GermanNorthSea::German_SCA
 
 ```{r}
 ggplot2::ggplot()+ 
+  ggplot2::geom_sf(data = German_SCA, colour = "#3d6d22", fill= '#3d6d22',alpha=0.2, lwd = 1)+
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+```
+
+## SCA + SPA
+
+```{r}
+ggplot2::ggplot()+ 
+  ggplot2::geom_sf(data = German_natura, colour = "#3d6d22", fill= '#3d6d22',alpha=0.2, lwd = 1)+
   ggplot2::geom_sf(data = German_SCA, colour = "#3d6d22", fill= '#3d6d22',alpha=0.2, lwd = 1)+
   ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
