@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 preview: blog24.jpg
-date: 2023-06-01
+date: 2023-07-13
 categories:
   - R
   - ggplot2
@@ -22,7 +22,7 @@ output:
 
 # Intro
 
-Customize your plot using different sizes, shapes and colors in the points from your figures
+Customize your plot using different sizes, shapes and colors in the points of your figures.
 
 # Data
 
@@ -31,41 +31,13 @@ library(tidyverse)
 library(seamonas)
 ```
 
-```{r,echo=FALSE}
-## Create data frame
-density_df<-data.frame(
-             seq=(1:50),
-             survey_id=rep(c(1, 2, 3, 4, 5), each = 10),
-             longitude=c(seq(6, 8, length = 10),
-                         seq(6, 8, length = 10),
-                         seq(6, 8, length = 10),
-                         seq(6, 8, length = 10),
-                         seq(6, 8, length = 10)),
-             latitude=c(seq(55.1,54, length = 10),
-                        seq(55.1+0.1,54+0.1, length = 10),
-                        seq(55.1+0.2,54+0.2, length = 10),
-                        seq(55.1-0.2,54-0.2, length = 10),
-                        seq(55.1-0.1,54-0.1, length = 10)),
-             timestamps=c(
-  head(seq.POSIXt(as.POSIXct("2018-04-01 09:00:00"), as.POSIXct("2018-04-01 18:00:00"), by="min"), 10),
-  head(seq.POSIXt(as.POSIXct("2018-05-01 09:00:00"), as.POSIXct("2018-05-01 18:00:00"), by="min"), 10),
-  head(seq.POSIXt(as.POSIXct("2018-06-01 09:00:00"), as.POSIXct("2018-06-01 18:00:00"), by="min"), 10),
-  head(seq.POSIXt(as.POSIXct("2018-07-01 09:00:00"), as.POSIXct("2018-07-01 18:00:00"), by="min"), 10),
-  head(seq.POSIXt(as.POSIXct("2018-08-01 09:00:00"), as.POSIXct("2018-08-01 18:00:00"), by="min"), 10))
-)
-
-
-density_df$year<-stringr::str_sub(density_df$timestamps, 1, 4)
-density_df$month<-stringr::str_sub(density_df$timestamps, 6, 7)
-density_df$day<-stringr::str_sub(density_df$timestamps, 9, 10)
-density_df$date<-paste0(density_df$year,"-",density_df$month,"-",density_df$day)
-```
 
 Load data
 
-```{r}
+```{r, eval=FALSE}
 density_df<-density_df
 ```
+
 
 Check data to plot
 
@@ -78,31 +50,6 @@ ggplot()+
 
 Check values to plot
 
-```{r,echo=FALSE}
-#values 0 or 1
-random1<-sample(0:1, 50, replace=TRUE)
-
-#values 0 to 5.1
-
-random2<-runif(50, min=0, max=5.1)
-
-#make data frame
-
-random3<-cbind(random1,random2)
-random3<-as.data.frame(random3)
-
-
-#substitute values
-random4<-random3 %>%
-  mutate(random5 = case_when(
-    random1 == 0 ~ 0,
-    random1 != 0 ~ random2,
-    TRUE ~ random2))
-#use as densities
-
-density_df$densities<-as.numeric(random4$random5)
-```
-
 ```{r}
 range(density_df$densities)
 ```
@@ -110,7 +57,7 @@ range(density_df$densities)
 
 ## Classify
 
-Assign cuts
+Define how many classes you want to use and where the cuts will be made
 
 ```{r}
 class0<-0
@@ -119,9 +66,8 @@ class2<-2.5
 class3<-5
 ```
 
-Assign factors  
-Using the function **mutate** form the package **tidyverse** add new column with a classification.  
-By assigning names to each group,  they are listed in the plot legend in an expected order.  
+Using the function **mutate** from the package **tidyverse** add a new column with a classification.  
+Note that using alphanumerical order is important for the order in the legend. 
 
 ```{r}
 density_df<-density_df %>% 
@@ -134,7 +80,7 @@ density_df<-density_df %>%
       TRUE~"U"))
 ```
 
-Check number of observations just to make sure your classification was working and that you have at least one value per group.
+Check number of observations to make sure your classification was working and that you have at least one value per group.
 
 ```{r}
 density_df %>%
@@ -144,31 +90,42 @@ density_df %>%
 
 # Plot
 
-## Parameters
-
-To define shapes create a vector define shapes
+To define shapes, R uses numbers. Here each group is assigned a different shape. 
 
 ```{r}
 density_shapes<-c("group0"=3, "group1"=21,"group2"=21, "group3"=21, "group4"=21)
 ```
 
-define sizes
+For reference on the shape types:
+
+```{r, fig.height=2,echo=FALSE, fig.align='left'}
+knitr::include_graphics("https://github.com/MiriamLL/R_intro/blob/master/Images/320Shapes.png?raw=true")
+```
+
+The sizes are also defined by numbers.
 
 ```{r}
 density_sizes<-c("group0"=0.5, "group1"=1,"group2"=2, "group3"=3, "group4"=5)
 ```
 
-define labels
+
+To add text on the label we can use characters.
 
 ```{r}
 density_labels<-c('0','> 0-1','> 1-2.5','> 2.5-5','> 5')
 ```
 
+```{r}
+class(density_labels)
+```
+
 ## Base plot
 
-Create plot with defined shape, size and labels
+To visualize your data, create a base plot with defined shape, size and labels.  
+To define the shape and size, the argument was added inside the **aes**.  
+To assign the values and labels, fill the arguments **scale_shape_manual** and **scale_size_manual**.  
 
-```{r}
+```{r, fig.height=5}
 ggplot()+
   geom_point(data=density_df,
           aes(x = longitude,
@@ -185,16 +142,21 @@ ggplot()+
 
 ## Add map
 
-packages
+Since we need reference, to add a base map, the package **sf** contains the function **geom_sf** and the package **GermanNorthSea** contains shapefiles from the North Sea that allows to create a base map.
+
+Call (or install) the packages
 
 ```{r}
 library(sf)
 library(GermanNorthSea)
 ```
 
-parameters
+Some parameters need to be adjusted first, such as which CRS to use, and the limits on the map.   
+For more details go to: [Mapping in R](https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/) and [GermanNorthSea](https://www.miriam-lerma.com/posts/2023-06-02-germannorthsea/)
 
-```{r}
+Here the parameters define that we are going to use CRS 4326, color the land in yellow and the water in blue, and define the coordinates to plot.
+
+```{r, fig.height=5}
 my_CRS<-4326
 Europa<-sf::st_transform(German_land, my_CRS)
 EEZ<-sf::st_transform(German_EEZ, my_CRS)
@@ -204,9 +166,9 @@ xval<-c(3,9)
 yval<-c(53,56)
 ```
 
-plot map
+Create a base map.
 
-```{r}
+```{r, fig.height=5}
 base_plot<-ggplot2::ggplot()+
     # maps
     ggplot2::geom_sf(data = EEZ, colour = 'black', fill = color_water)+
@@ -221,7 +183,9 @@ base_plot
 
 ## Add dots
 
-```{r}
+Now add the density data on top of the base map.
+
+```{r, fig.height=5}
 density_wmap<-base_plot+
   geom_point(data=density_df,
           aes(x = longitude,
@@ -235,25 +199,13 @@ density_wmap<-base_plot+
 density_wmap
 ```
 
-## Add legend
 
-```{r}
-density_wlegend<-add_legend(
-  plot_wbreaks=density_wmap,
-  legtx=3.0,
-  legty=54.0,
-  legxy=c(0.11, 0.21),
-  xval=xval,
-  yval=yval)+
-  theme(legend.key.size = ggplot2::unit(0.4, "cm"))
-density_wlegend
-```
+Now you have a base map with density information on different shape and size.
 
-## Add theme
+# Further reading
 
-```{r}
-density_wtheme<-add_theme(plot_wlegend = density_wlegend)
-density_wtheme
-```
+These figures are based on the SAS monitoring program, but note that data was randomly generated and do not correspond to real survey information.
 
-The end!
+See the real maps [here](https://www.researchgate.net/publication/366325582_Monitoring_von_Seevogeln_in_der_deutschen_Nord-_und_Ostsee_2021).
+
+
