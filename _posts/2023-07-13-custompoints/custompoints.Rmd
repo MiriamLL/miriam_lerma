@@ -119,9 +119,9 @@ class2<-2.5
 class3<-5
 ```
 
-Assign factors
-Add new column with classification
-By assigning names to each group,  they are listed in the plot legend in an expected order
+Assign factors  
+Using the function **mutate** form the package **tidyverse** add new column with a classification.  
+By assigning names to each group,  they are listed in the plot legend in an expected order.  
 
 ```{r}
 density_df<-density_df %>% 
@@ -134,7 +134,7 @@ density_df<-density_df %>%
       TRUE~"U"))
 ```
 
-Check number of observations
+Check number of observations just to make sure your classification was working and that you have at least one value per group.
 
 ```{r}
 density_df %>%
@@ -146,7 +146,7 @@ density_df %>%
 
 ## Parameters
 
-define shapes
+To define shapes create a vector define shapes
 
 ```{r}
 density_shapes<-c("group0"=3, "group1"=21,"group2"=21, "group3"=21, "group4"=21)
