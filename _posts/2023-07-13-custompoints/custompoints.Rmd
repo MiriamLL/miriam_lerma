@@ -26,20 +26,38 @@ Customize your plot using different sizes, shapes and colors in the points of yo
 
 # Data
 
+Load or install the package **seamonas** 
+
+```{r, eval=FALSE}
+devtools::install_github("MiriamLL/seamonas")
+```
+
 ```{r, message=FALSE, warning=FALSE}
-library(tidyverse)
 library(seamonas)
 ```
 
 
 Load data
 
+The package contains data from a random generated density data frame.
+
 ```{r, eval=FALSE}
 density_df<-density_df
 ```
 
 
-Check data to plot
+The data frame contains latitude, longitude and density estimations. 
+
+To check the data lets use **ggplot**.
+
+First call the library. 
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+```
+
+
+Then check the data contained on the data frame. 
 
 ```{r}
 ggplot()+
@@ -48,7 +66,7 @@ ggplot()+
               y= latitude))
 ```
 
-Check values to plot
+Each of the dots contains density data, to check the values you can use the function **range** for the minimal and maximal values. 
 
 ```{r}
 range(density_df$densities)
@@ -57,7 +75,7 @@ range(density_df$densities)
 
 ## Classify
 
-Define how many classes you want to use and where the cuts will be made
+Based on the range of the densities, define how many classes you want to use and where the cuts will be made.
 
 ```{r}
 class0<-0
@@ -68,6 +86,10 @@ class3<-5
 
 Using the function **mutate** from the package **tidyverse** add a new column with a classification.  
 Note that using alphanumerical order is important for the order in the legend. 
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
 
 ```{r}
 density_df<-density_df %>% 
@@ -88,28 +110,16 @@ density_df %>%
   tally()
 ```
 
-# Plot
+# Define 
 
-To define shapes, R uses numbers. Here each group is assigned a different shape. 
-
-```{r}
-density_shapes<-c("group0"=3, "group1"=21,"group2"=21, "group3"=21, "group4"=21)
-```
-
-For reference on the shape types:
-
-```{r, fig.height=2,echo=FALSE, fig.align='left'}
-knitr::include_graphics("https://github.com/MiriamLL/R_intro/blob/master/Images/320Shapes.png?raw=true")
-```
-
-The sizes are also defined by numbers.
+To define the sizes, numbers can be used. 
 
 ```{r}
 density_sizes<-c("group0"=0.5, "group1"=1,"group2"=2, "group3"=3, "group4"=5)
 ```
 
 
-To add text on the label we can use characters.
+To define the text on the labels, characters can be used.
 
 ```{r}
 density_labels<-c('0','> 0-1','> 1-2.5','> 2.5-5','> 5')
@@ -117,6 +127,18 @@ density_labels<-c('0','> 0-1','> 1-2.5','> 2.5-5','> 5')
 
 ```{r}
 class(density_labels)
+```
+
+To define shapes, R uses numbers. Here, each group is assigned a different shape. 
+
+```{r}
+density_shapes<-c("group0"=3, "group1"=21,"group2"=21, "group3"=21, "group4"=21)
+```
+
+For reference on the shape types:
+
+```{r, fig.height=2,echo=FALSE, fig.align='left', out.width="50%"}
+knitr::include_graphics("https://github.com/MiriamLL/R_intro/blob/master/Images/320Shapes.png?raw=true")
 ```
 
 ## Base plot
@@ -142,11 +164,11 @@ ggplot()+
 
 ## Add map
 
-Since we need reference, to add a base map, the package **sf** contains the function **geom_sf** and the package **GermanNorthSea** contains shapefiles from the North Sea that allows to create a base map.
+Since we need reference map, the package **sf** contains the function **geom_sf** that allows plotting shapefiles, and the package **GermanNorthSea** contains shapefiles from the North Sea readily available for use.
 
 Call (or install) the packages
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(sf)
 library(GermanNorthSea)
 ```

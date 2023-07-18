@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog24.jpg","custompoints_files/anchor-4.2.2/anchor.min.js","custompoints_files/bowser-1.9.3/bowser.min.js","custompoints_files/distill-2.2.21/template.v2.js","custompoints_files/figure-html5/unnamed-chunk-13-1.png","custompoints_files/figure-html5/unnamed-chunk-14-1.png","custompoints_files/figure-html5/unnamed-chunk-16-1.png","custompoints_files/figure-html5/unnamed-chunk-17-1.png","custompoints_files/figure-html5/unnamed-chunk-18-1.png","custompoints_files/figure-html5/unnamed-chunk-19-1.png","custompoints_files/figure-html5/unnamed-chunk-20-1.png","custompoints_files/figure-html5/unnamed-chunk-21-1.png","custompoints_files/figure-html5/unnamed-chunk-22-1.png","custompoints_files/figure-html5/unnamed-chunk-24-1.png","custompoints_files/figure-html5/unnamed-chunk-25-1.png","custompoints_files/figure-html5/unnamed-chunk-3-1.png","custompoints_files/figure-html5/unnamed-chunk-4-1.png","custompoints_files/header-attrs-2.20/header-attrs.js","custompoints_files/jquery-3.6.0/jquery-3.6.0.js","custompoints_files/jquery-3.6.0/jquery-3.6.0.min.js","custompoints_files/jquery-3.6.0/jquery-3.6.0.min.map","custompoints_files/popper-2.6.0/popper.min.js","custompoints_files/tippy-6.2.7/tippy-bundle.umd.min.js","custompoints_files/tippy-6.2.7/tippy-light-border.css","custompoints_files/tippy-6.2.7/tippy.css","custompoints_files/tippy-6.2.7/tippy.umd.min.js","custompoints_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["blog24.jpg","custompoints_files/anchor-4.2.2/anchor.min.js","custompoints_files/bowser-1.9.3/bowser.min.js","custompoints_files/distill-2.2.21/template.v2.js","custompoints_files/figure-html5/unnamed-chunk-13-1.png","custompoints_files/figure-html5/unnamed-chunk-14-1.png","custompoints_files/figure-html5/unnamed-chunk-16-1.png","custompoints_files/figure-html5/unnamed-chunk-17-1.png","custompoints_files/figure-html5/unnamed-chunk-18-1.png","custompoints_files/figure-html5/unnamed-chunk-19-1.png","custompoints_files/figure-html5/unnamed-chunk-20-1.png","custompoints_files/figure-html5/unnamed-chunk-21-1.png","custompoints_files/figure-html5/unnamed-chunk-22-1.png","custompoints_files/figure-html5/unnamed-chunk-24-1.png","custompoints_files/figure-html5/unnamed-chunk-25-1.png","custompoints_files/figure-html5/unnamed-chunk-3-1.png","custompoints_files/figure-html5/unnamed-chunk-4-1.png","custompoints_files/figure-html5/unnamed-chunk-5-1.png","custompoints_files/header-attrs-2.20/header-attrs.js","custompoints_files/jquery-3.6.0/jquery-3.6.0.js","custompoints_files/jquery-3.6.0/jquery-3.6.0.min.js","custompoints_files/jquery-3.6.0/jquery-3.6.0.min.map","custompoints_files/popper-2.6.0/popper.min.js","custompoints_files/tippy-6.2.7/tippy-bundle.umd.min.js","custompoints_files/tippy-6.2.7/tippy-light-border.css","custompoints_files/tippy-6.2.7/tippy.css","custompoints_files/tippy-6.2.7/tippy.umd.min.js","custompoints_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1527,7 +1527,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#classify" id="toc-classify">Classify</a></li>
 </ul></li>
-<li><a href="#plot" id="toc-plot">Plot</a>
+<li><a href="#define" id="toc-define">Define</a>
 <ul>
 <li><a href="#base-plot" id="toc-base-plot">Base plot</a></li>
 <li><a href="#add-map" id="toc-add-map">Add map</a></li>
@@ -1542,29 +1542,47 @@ reading</a></li>
 <p>Customize your plot using different sizes, shapes and colors in the
 points of your figures.</p>
 <h1 id="data">Data</h1>
+<p>Load or install the package <strong>seamonas</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/MiriamLL/seamonas'>seamonas</a></span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/remotes/man/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/seamonas"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/MiriamLL/seamonas'>seamonas</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Load data</p>
+<p>The package contains data from a random generated density data
+frame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_df</span><span class='op'>&lt;-</span><span class='va'>density_df</span></span></code></pre>
 </div>
 </div>
-<p>Check data to plot</p>
+<p>The data frame contains latitude, longitude and density
+estimations.</p>
+<p>To check the data lets use <strong>ggplot</strong>.</p>
+<p>First call the library.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>density_df</span>,</span>
-<span>          <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>longitude</span>,</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Then check the data contained on the data frame.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>density_df</span>,</span>
+<span>          <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>longitude</span>,</span>
 <span>              y<span class='op'>=</span> <span class='va'>latitude</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="custompoints_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<p><img src="custompoints_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
-<p>Check values to plot</p>
+<p>Each of the dots contains density data, to check the values you can
+use the function <strong>range</strong> for the minimal and maximal
+values.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>density_df</span><span class='op'>$</span><span class='va'>densities</span><span class='op'>)</span></span></code></pre>
@@ -1572,8 +1590,8 @@ points of your figures.</p>
 <pre><code>[1] 0.00000 4.94831</code></pre>
 </div>
 <h2 id="classify">Classify</h2>
-<p>Define how many classes you want to use and where the cuts will be
-made</p>
+<p>Based on the range of the densities, define how many classes you want
+to use and where the cuts will be made.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>class0</span><span class='op'>&lt;-</span><span class='fl'>0</span></span>
@@ -1588,7 +1606,12 @@ Note that using alphanumerical order is important for the order in the
 legend.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_df</span><span class='op'>&lt;-</span><span class='va'>density_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_df</span><span class='op'>&lt;-</span><span class='va'>density_df</span> <span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span> </span>
 <span>    <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>density_class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/case_when.html'>case_when</a></span><span class='op'>(</span></span>
 <span>      <span class='va'>densities</span> <span class='op'>==</span>  <span class='va'>class0</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"group0"</span><span class='op'>)</span>,</span>
 <span>      <span class='va'>densities</span> <span class='op'>&gt;=</span>  <span class='va'>class0</span> <span class='op'>&amp;</span> <span class='va'>densities</span> <span class='op'>&lt;=</span>  <span class='va'>class1</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"group1"</span><span class='op'>)</span>,</span>
@@ -1602,8 +1625,8 @@ legend.</p>
 working and that you have at least one value per group.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>density_class</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_df</span> <span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>density_class</span><span class='op'>)</span><span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>tally</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code># A tibble: 4 × 2
@@ -1614,25 +1637,14 @@ working and that you have at least one value per group.</p>
 3 group2            5
 4 group3           16</code></pre>
 </div>
-<h1 id="plot">Plot</h1>
-<p>To define shapes, R uses numbers. Here each group is assigned a
-different shape.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_shapes</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"group0"</span><span class='op'>=</span><span class='fl'>3</span>, <span class='st'>"group1"</span><span class='op'>=</span><span class='fl'>21</span>,<span class='st'>"group2"</span><span class='op'>=</span><span class='fl'>21</span>, <span class='st'>"group3"</span><span class='op'>=</span><span class='fl'>21</span>, <span class='st'>"group4"</span><span class='op'>=</span><span class='fl'>21</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>For reference on the shape types:</p>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/320Shapes.png?raw=true" style="display: block; margin: auto auto auto 0;" /></p>
-</div>
-<p>The sizes are also defined by numbers.</p>
+<h1 id="define">Define</h1>
+<p>To define the sizes, numbers can be used.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_sizes</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"group0"</span><span class='op'>=</span><span class='fl'>0.5</span>, <span class='st'>"group1"</span><span class='op'>=</span><span class='fl'>1</span>,<span class='st'>"group2"</span><span class='op'>=</span><span class='fl'>2</span>, <span class='st'>"group3"</span><span class='op'>=</span><span class='fl'>3</span>, <span class='st'>"group4"</span><span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>To add text on the label we can use characters.</p>
+<p>To define the text on the labels, characters can be used.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_labels</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'0'</span>,<span class='st'>'&gt; 0-1'</span>,<span class='st'>'&gt; 1-2.5'</span>,<span class='st'>'&gt; 2.5-5'</span>,<span class='st'>'&gt; 5'</span><span class='op'>)</span></span></code></pre>
@@ -1644,6 +1656,17 @@ different shape.</p>
 </div>
 <pre><code>[1] &quot;character&quot;</code></pre>
 </div>
+<p>To define shapes, R uses numbers. Here, each group is assigned a
+different shape.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_shapes</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"group0"</span><span class='op'>=</span><span class='fl'>3</span>, <span class='st'>"group1"</span><span class='op'>=</span><span class='fl'>21</span>,<span class='st'>"group2"</span><span class='op'>=</span><span class='fl'>21</span>, <span class='st'>"group3"</span><span class='op'>=</span><span class='fl'>21</span>, <span class='st'>"group4"</span><span class='op'>=</span><span class='fl'>21</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>For reference on the shape types:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/320Shapes.png?raw=true" width="50%" style="display: block; margin: auto auto auto 0;" /></p>
+</div>
 <h2 id="base-plot">Base plot</h2>
 <p>To visualize your data, create a base plot with defined shape, size
 and labels.<br />
@@ -1654,24 +1677,24 @@ To assign the values and labels, fill the arguments
 <strong>scale_size_manual</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>density_df</span>,</span>
-<span>          <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>longitude</span>,</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>density_df</span>,</span>
+<span>          <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>longitude</span>,</span>
 <span>              y<span class='op'>=</span> <span class='va'>latitude</span>,</span>
 <span>              shape <span class='op'>=</span> <span class='va'>density_class</span>,</span>
 <span>              size<span class='op'>=</span> <span class='va'>density_class</span><span class='op'>)</span>,</span>
 <span>              fill<span class='op'>=</span> <span class='st'>"#d00000"</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_manual.html'>scale_shape_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>density_shapes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span>  <span class='va'>density_sizes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_shape_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>density_shapes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span>  <span class='va'>density_sizes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="custompoints_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+<p><img src="custompoints_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
 </div>
 <h2 id="add-map">Add map</h2>
-<p>Since we need reference, to add a base map, the package
-<strong>sf</strong> contains the function <strong>geom_sf</strong> and
-the package <strong>GermanNorthSea</strong> contains shapefiles from the
-North Sea that allows to create a base map.</p>
+<p>Since we need reference map, the package <strong>sf</strong> contains
+the function <strong>geom_sf</strong> that allows plotting shapefiles,
+and the package <strong>GermanNorthSea</strong> contains shapefiles from
+the North Sea readily available for use.</p>
 <p>Call (or install) the packages</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1702,34 +1725,34 @@ plot.</p>
 <p>Create a base map.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>base_plot</span><span class='op'>&lt;-</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>base_plot</span><span class='op'>&lt;-</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>    <span class='co'># maps</span></span>
-<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>EEZ</span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='va'>color_water</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Europa</span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='va'>color_land</span><span class='op'>)</span><span class='op'>+</span> </span>
-<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='va'>xval</span>, ylim <span class='op'>=</span> <span class='va'>yval</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>EEZ</span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='va'>color_water</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Europa</span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='va'>color_land</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='va'>xval</span>, ylim <span class='op'>=</span> <span class='va'>yval</span><span class='op'>)</span><span class='op'>+</span></span>
 <span></span>
 <span>    <span class='cn'>NULL</span></span>
 <span><span class='va'>base_plot</span></span></code></pre>
 </div>
-<p><img src="custompoints_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
+<p><img src="custompoints_files/figure-html5/unnamed-chunk-19-1.png" width="624" /></p>
 </div>
 <h2 id="add-dots">Add dots</h2>
 <p>Now add the density data on top of the base map.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_wmap</span><span class='op'>&lt;-</span><span class='va'>base_plot</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>density_df</span>,</span>
-<span>          <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>longitude</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>density_df</span>,</span>
+<span>          <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>longitude</span>,</span>
 <span>              y<span class='op'>=</span> <span class='va'>latitude</span>,</span>
 <span>              shape <span class='op'>=</span> <span class='va'>density_class</span>,</span>
 <span>              size<span class='op'>=</span> <span class='va'>density_class</span><span class='op'>)</span>,</span>
 <span>              fill<span class='op'>=</span> <span class='st'>"#d00000"</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_manual.html'>scale_shape_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>density_shapes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span>  <span class='va'>density_sizes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_shape_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>density_shapes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_size_manual</a></span><span class='op'>(</span>values <span class='op'>=</span>  <span class='va'>density_sizes</span>,labels<span class='op'>=</span><span class='va'>density_labels</span><span class='op'>)</span></span>
 <span><span class='va'>density_wmap</span></span></code></pre>
 </div>
-<p><img src="custompoints_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
+<p><img src="custompoints_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
 </div>
 <p>Now you have a base map with density information on different shape
 and size.</p>
