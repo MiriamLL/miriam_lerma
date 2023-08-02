@@ -7,6 +7,7 @@ output:
     toc_float: true
 listing:
   posts:
+    - 2023-08-02-customlegend
     - 2023-07-13-custompoints
     - 2023-06-01-gganimate
     - 2023-05-05-github-page

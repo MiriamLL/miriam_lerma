@@ -24,7 +24,7 @@ output:
 
 Customize the legend of your plot.
 
-# Data
+# Plot
 
 Load or install the package **seamonas** 
 
@@ -39,19 +39,19 @@ library(seamonas)
 
 Load data
 
-The package contains data from a random generated density data frame.
+The package contains data from a random generated density data frame that can be used for the exercise. 
 
-If you want to create this map from scratch visit: [create a map with custom points](https://www.miriam-lerma.com/posts/2023-07-13-custompoints/)
+If you want to create this map from scratch visit: [create a map with custom points](https://www.miriam-lerma.com/posts/2023-07-13-custompoints/).
 
 ```{r, eval=FALSE}
 density_wmap<-density_wmap
 ```
 
-```{r, fig.height=5}
+```{r, fig.height=4}
 density_wmap
 ```
 
-# add_legend
+## add_legend
 
 I create this function to include the legend inside the plot, the function is available on the package **seamonas**.
 
@@ -79,7 +79,7 @@ add_legend<-function(plot_wbreaks=plot_wbreaks,
 Here, the arguments inside legxy are referring to where the legend will appear.
 
 
-```{r, fig.height=5}
+```{r, fig.height=4}
 density_wlegend<-add_legend(
   plot_wbreaks=density_wmap,
   legxy=c(0.11, 0.21))
@@ -87,9 +87,9 @@ density_wlegend
 ```
 
 
-Here is too add the title of the legend. 
+To add the title of the legend, I used the function annotate and a specific expression since I am using superscript.
 
-```{r, fig.height=5, warning=FALSE, message=FALSE}
+```{r, fig.height=4, warning=FALSE, message=FALSE}
 density_wlegend<-density_wlegend+
   ggplot2::theme(legend.key.size = ggplot2::unit(0.4, "cm"))+
   ggplot2::annotate(geom="text",
@@ -103,10 +103,8 @@ density_wlegend
 
 ## add_theme
 
-This function is also available in the package **seamonas**, but I am including it here in case you want to customize it.
-
-It changes the x and y axis legends to Capitalized words and includes the symbol of degree on the plot.
-Removes the gray background and adds a white line on the panel border. 
+This function changes the x and y axis legends to Capitalized words and includes the symbol of degree on the plot.
+Removes the gray background and adds a white line on the panel border. It is also available in the package **seamonas**, but I am including it here in case you want to customize it.
 
 ```{r}
 add_theme<-function(plot_wlegend=plot_wlegend){
@@ -125,7 +123,7 @@ add_theme<-function(plot_wlegend=plot_wlegend){
 }
 ```
 
-To run the function just add your plot following plot_wlegend
+To run the function just add your plot.
 
 ```{r}
 density_wtheme<-add_theme(plot_wlegend = density_wlegend)

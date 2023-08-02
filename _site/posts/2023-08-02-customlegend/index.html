@@ -2507,9 +2507,9 @@ title</p></p>
 <h3>Contents</h3>
 <ul>
 <li><a href="#intro" id="toc-intro">Intro</a></li>
-<li><a href="#data" id="toc-data">Data</a></li>
-<li><a href="#add_legend" id="toc-add_legend">add_legend</a>
+<li><a href="#plot" id="toc-plot">Plot</a>
 <ul>
+<li><a href="#add_legend" id="toc-add_legend">add_legend</a></li>
 <li><a href="#add_theme" id="toc-add_theme">add_theme</a></li>
 </ul></li>
 <li><a href="#keep-learning" id="toc-keep-learning">Keep
@@ -2519,7 +2519,7 @@ learning</a></li>
 </div>
 <h1 id="intro">Intro</h1>
 <p>Customize the legend of your plot.</p>
-<h1 id="data">Data</h1>
+<h1 id="plot">Plot</h1>
 <p>Load or install the package <strong>seamonas</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2532,11 +2532,11 @@ learning</a></li>
 </div>
 </div>
 <p>Load data</p>
-<p>The package contains data from a random generated density data
-frame.</p>
+<p>The package contains data from a random generated density data frame
+that can be used for the exercise.</p>
 <p>If you want to create this map from scratch visit: <a
 href="https://www.miriam-lerma.com/posts/2023-07-13-custompoints/">create
-a map with custom points</a></p>
+a map with custom points</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_wmap</span><span class='op'>&lt;-</span><span class='va'>density_wmap</span></span></code></pre>
@@ -2548,7 +2548,7 @@ a map with custom points</a></p>
 </div>
 <p><img src="customlegend_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
-<h1 id="add_legend">add_legend</h1>
+<h2 id="add_legend">add_legend</h2>
 <p>I create this function to include the legend inside the plot, the
 function is available on the package <strong>seamonas</strong>.</p>
 <p>The function removes the background of the legend making it
@@ -2584,7 +2584,8 @@ will appear.</p>
 </div>
 <p><img src="customlegend_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
-<p>Here is too add the title of the legend.</p>
+<p>To add the title of the legend, I used the function annotate and a
+specific expression since I am using superscript.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_wlegend</span><span class='op'>&lt;-</span><span class='va'>density_wlegend</span><span class='op'>+</span></span>
@@ -2599,12 +2600,11 @@ will appear.</p>
 <p><img src="customlegend_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
 <h2 id="add_theme">add_theme</h2>
-<p>This function is also available in the package
-<strong>seamonas</strong>, but I am including it here in case you want
-to customize it.</p>
-<p>It changes the x and y axis legends to Capitalized words and includes
-the symbol of degree on the plot. Removes the gray background and adds a
-white line on the panel border.</p>
+<p>This function changes the x and y axis legends to Capitalized words
+and includes the symbol of degree on the plot. Removes the gray
+background and adds a white line on the panel border. It is also
+available in the package <strong>seamonas</strong>, but I am including
+it here in case you want to customize it.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>add_theme</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>plot_wlegend</span><span class='op'>=</span><span class='va'>plot_wlegend</span><span class='op'>)</span><span class='op'>{</span></span>
@@ -2623,7 +2623,7 @@ white line on the panel border.</p>
 <span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
-<p>To run the function just add your plot following plot_wlegend</p>
+<p>To run the function just add your plot.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>density_wtheme</span><span class='op'>&lt;-</span><span class='fu'>add_theme</span><span class='op'>(</span>plot_wlegend <span class='op'>=</span> <span class='va'>density_wlegend</span><span class='op'>)</span></span>

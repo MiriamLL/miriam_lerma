@@ -40,9 +40,10 @@ library(fontawesome)
 
 ### `r fa("chevron-circle-down", fill = "black")` About  me
 
-I am a postdoctoral researcher at West Coast Research and Technology Center [FTZ](https://www.ftz.uni-kiel.de/de) in Büsum, Germany and part of the Seevogelmonitoring team at the Dachverband Deutscher Avifaunisten [DDA](https://www.dda-web.de/). 
+I am part of the Seevogelmonitoring team at the Dachverband Deutscher Avifaunisten [DDA](https://www.dda-web.de/). My work entitles analyzing spatial patterns of marine animals.
 
-My work entitles analyzing spatial patterns of marine animals while collaborating on active projects in Mexico and Chile. My focus is coastal and marine animals, in particular shorebirds and seabirds. My research interests include conservation, ecology, physiology, and ecotoxicology. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
+I am also collaborating on active projects between Germany ([FTZ](https://www.ftz.uni-kiel.de/de)), Mexico ([CICESE](https://www.cicese.edu.mx/)) and Chile ([UCN](https://www.ucn.cl/)). 
+My focus is coastal and marine animals, in particular shorebirds and seabirds.  My research interests include conservation, ecology, physiology, and ecotoxicology. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
 
 I am passionate about nature, biology, and outdoor activities (hiking, kayaking, snorkelling).   
 
