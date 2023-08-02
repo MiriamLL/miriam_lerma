@@ -1,0 +1,142 @@
+---
+title: "Custom legends in a map"
+description: |
+  Place the legend inside the map and custom the legend title
+author:
+  - name: Miriam Lerma
+    url: {}
+preview: blog25.jpg
+date: 2023-08-02
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2023
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+# Intro
+
+Customize the legend of your plot.
+
+# Data
+
+Load or install the package **seamonas** 
+
+```{r, eval=FALSE}
+devtools::install_github("MiriamLL/seamonas")
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(seamonas)
+```
+
+
+Load data
+
+The package contains data from a random generated density data frame.
+
+If you want to create this map from scratch visit: [create a map with custom points](https://www.miriam-lerma.com/posts/2023-07-13-custompoints/)
+
+```{r, eval=FALSE}
+density_wmap<-density_wmap
+```
+
+```{r, fig.height=5}
+density_wmap
+```
+
+# add_legend
+
+I create this function to include the legend inside the plot, the function is available on the package **seamonas**.
+
+The function removes the background of the legend making it transparent, and includes the legend inside the plot based on the coordinates provided. 
+
+```{r}
+add_legend<-function(plot_wbreaks=plot_wbreaks,
+                     legxy=legxy){
+  plot_wlegend<-plot_wbreaks+
+    ggplot2::theme(
+      legend.position = legxy,
+      legend.title = ggplot2::element_blank(),
+      legend.text= ggplot2::element_text(size=10,color="#343a40",family='sans'),
+      legend.spacing.y =  ggplot2::unit(0.01, 'cm'),
+      legend.spacing.x =  ggplot2::unit(0.2, 'cm'),
+      legend.background = ggplot2::element_rect(fill='transparent',colour ="transparent"),
+      legend.box.background = ggplot2::element_rect(fill='transparent',colour ="transparent"),
+      legend.key = ggplot2::element_rect(fill = "transparent", colour = "transparent"),
+      legend.key.size =  ggplot2::unit(0.7, 'cm'))
+  return(plot_wlegend)
+}
+```
+
+
+Here, the arguments inside legxy are referring to where the legend will appear.
+
+
+```{r, fig.height=5}
+density_wlegend<-add_legend(
+  plot_wbreaks=density_wmap,
+  legxy=c(0.11, 0.21))
+density_wlegend
+```
+
+
+Here is too add the title of the legend. 
+
+```{r, fig.height=5, warning=FALSE, message=FALSE}
+density_wlegend<-density_wlegend+
+  ggplot2::theme(legend.key.size = ggplot2::unit(0.4, "cm"))+
+  ggplot2::annotate(geom="text",
+                      x=3.0, y=54.0,
+                      label=expression(atop("Density"), paste("[ind/k", m^2,"]")),
+                      color="#343a40",hjust = 0)
+
+density_wlegend
+```
+
+
+## add_theme
+
+This function is also available in the package **seamonas**, but I am including it here in case you want to customize it.
+
+It changes the x and y axis legends to Capitalized words and includes the symbol of degree on the plot.
+Removes the gray background and adds a white line on the panel border. 
+
+```{r}
+add_theme<-function(plot_wlegend=plot_wlegend){
+
+  plot_wtheme<-plot_wlegend+
+    ggplot2::xlab('Longitude')+
+    ggplot2::ylab('Latitude')+
+    ggplot2::scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
+    ggplot2::scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N"))+
+    ggplot2::theme(
+      panel.border = ggplot2::element_rect(colour = "black", fill=NA, linewidth = 1),
+      panel.grid.major = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank(),
+      panel.background = ggplot2::element_blank())
+  return(plot_wtheme)
+}
+```
+
+To run the function just add your plot following plot_wlegend
+
+```{r}
+density_wtheme<-add_theme(plot_wlegend = density_wlegend)
+density_wtheme
+```
+
+
+You can theoretically use the function add_theme with any other map.
+
+
+# Keep learning
+
+- [Seamonas](https://github.com/MiriamLL/seamonas)  
+- [Plotting](https://miriamll.github.io/R_intro/Plotting_0606.html#56)  

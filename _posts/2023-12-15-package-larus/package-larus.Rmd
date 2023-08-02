@@ -452,7 +452,6 @@ Gull_height<-Gull_stopover
 ```
 
 ```{r}
-```{r}
 height_errors<-function(GPS_data=GPS_data,
                         column_group = column_group,
                         column_altitude=column_altitude){
@@ -492,9 +491,6 @@ height_errors<-function(GPS_data=GPS_data,
 return(Group_df)
 }
 ```
-
-```
-
 
 
 
