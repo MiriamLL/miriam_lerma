@@ -1,0 +1,256 @@
+---
+title: "Reference legend multiplots"
+description: |
+  Create a plot to be use as reference legend for multiple plots
+author:
+  - name: Miriam Lerma
+    url: {}
+preview: blog26.jpg
+date: 2023-09-01
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2023
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+
+## Data
+
+For this example, we will use the data provided in the package **sula** <br>
+The data is from tracked masked boobies at Rapa Nui <br>
+The data is already in tidy format <br>
+
+```{r}
+my_data<-(sula::GPS_preparado)
+```
+
+## Grid
+
+The steps on this parts are on "how to create [grid](https://www.miriam-lerma.com/posts/2023-04-06-gridraster/)"
+  
+  
+Packages to use:
+
+```{r, warning=FALSE}
+library(tidyverse)
+library(sf)
+library(ggplot2)
+```
+
+Run to create a reference grid.
+
+```{r}
+my_points<-my_data %>%
+  st_as_sf(coords=c('Longitude','Latitude'),
+           crs=4326,
+           remove=FALSE)
+
+my_grid<-st_make_grid(my_points, 
+                       c(0.05, 0.05), 
+                       what = "polygons",
+                       square = TRUE)
+
+my_grid_sf = st_sf(my_grid) %>%
+  mutate(grid_id = 1:length(lengths(my_grid)))
+
+my_grid_sf$nlocs <- lengths(st_intersects(my_grid_sf, 
+                                          my_points))
+```
+
+
+For the exercices, we want to create plots per individual.  
+
+So lets first check the name of the individuals.  
+
+```{r}
+unique(my_data$IDs)
+```
+
+To count number of locations per grid and add it as a column in the original grid functions from the package **tidyverse** can be used. 
+
+
+```{r}
+GPS01_subset<- my_data %>%
+  filter(IDs=='GPS01')
+
+GPS01_sf<-GPS01_subset %>%
+  st_as_sf(coords=c('Longitude','Latitude'),
+           crs=4326,
+           remove=FALSE)
+
+my_grid_sf$GPS01_nlocs<- lengths(st_intersects(my_grid_sf, 
+                                          GPS01_sf))
+```
+
+
+```{r}
+GPS02_subset<- my_data %>%
+  filter(IDs=='GPS02')
+
+GPS02_sf<-GPS02_subset %>%
+  st_as_sf(coords=c('Longitude','Latitude'),
+           crs=4326,
+           remove=FALSE)
+
+my_grid_sf$GPS02_nlocs<- lengths(st_intersects(my_grid_sf, 
+                                          GPS02_sf))
+```
+
+# Plots
+
+## Custom palette
+
+Now to create a plot, lets select your palette based on the number of locations.
+
+```{r}
+range(my_grid_sf$GPS01_nlocs)
+range(my_grid_sf$GPS02_nlocs)
+```
+
+Because the palette is between 0 and 16, we will manually create the palette using characters. 
+
+```{r}
+my_palette <- c("1" = "#FFCF70",
+                "2" = "#FFC242",
+                "3" = "#FFBE33",
+                "4" = "#F5A300",
+                "5" = "#FD9A21",
+                "6" = "#FA8C02",
+                "7" = "#FF740A",
+                "8" = "#F56A00",
+                "9" = "#CEA7EE",
+                "10" = "#C698EB",
+                "11" = "#B376E5",
+                "12" = "#9D4EDD",
+                "13" = "#9643DB",
+                "14" = "#72369D",
+                "15" = "#6E3498",
+                "16" = "#3B194D")
+
+```
+
+
+To create the plot:   
+1. Subset only to grids with data  
+2. Convert the locations into character  
+3. Add palette in scale_fill_manual  
+4. Remove legend  
+
+```{r}
+GPS01_plot<-ggplot()+
+  geom_sf(data=subset(my_grid_sf,GPS01_nlocs != 0),
+                      aes(fill=as.character(GPS01_nlocs)))+
+  theme_bw()+
+  scale_fill_manual(name = "no.locs",values = my_palette)+
+  theme(legend.position = 'none')+
+  coord_sf(xlim = c(-110, -108),ylim = c(-28, -26))+  
+  scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
+  scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N"))
+GPS01_plot
+```
+
+```{r}
+GPS02_plot<-ggplot()+
+  geom_sf(data=subset(my_grid_sf,GPS02_nlocs != 0),
+                      aes(fill=as.character(GPS02_nlocs)))+
+  theme_bw()+
+  scale_fill_manual(name = "no.locs",values = my_palette)+
+  theme(legend.position = 'none')+
+  coord_sf(xlim = c(-110, -108),ylim = c(-28, -26))+  
+  scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
+  scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N"))
+GPS02_plot
+```
+
+# Legend
+
+Now to create the legend, the information on the number of locations is also relevant as we will create a data frame with the number of locations and assign a color.   
+
+To create the data frame:  
+
+```{r}
+this_legend <- data.frame(id = rep(1, 16), no.locations = 1:16)
+```
+
+To assign a color:  
+
+```{r}
+my_legend_palette <- c(my_palette[[1]],  
+                          my_palette[[2]],
+                          my_palette[[3]],  
+                          my_palette[[4]],
+                          my_palette[[5]], 
+                          my_palette[[6]],
+                          my_palette[[7]],
+                          my_palette[[8]],
+                          my_palette[[9]],
+                          my_palette[[10]],
+                          my_palette[[11]],
+                          my_palette[[12]],
+                          my_palette[[13]],
+                          my_palette[[14]],
+                          my_palette[[15]],
+                          my_palette[[16]])
+```
+
+To create the plot, we will use the geometry **geom_tile**.
+
+We can duplicate it just to make the plot thicker.  
+
+```{r}
+plot_tracks_legend<-ggplot(this_legend) +
+  geom_tile(aes(x = 0.5, y=no.locations, fill = as.factor(no.locations))) +
+  geom_tile(aes(x = 1, y=no.locations, fill = as.factor(no.locations))) + 
+  scale_x_continuous(expand = c(0, 0),limits=c(0,5))+
+  scale_y_continuous(name="no.locations",breaks=seq(0, 16, 2),expand = c(0, 0))+
+  theme_bw()+
+  scale_fill_manual(values=my_palette)+
+  theme(legend.position='none',
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        panel.border = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+        )
+plot_tracks_legend
+```
+
+
+
+# Patchwork
+
+The package **patchwork** is very useful to create multiplots, a layout of several plots. 
+
+```{r}
+library(patchwork)
+```
+
+The arguments to create our layout will include:  
+- An empty plot (**plot_spacer**)  
+- ncols is the number of columns  
+- widths are the widths of each of the columns, here the plot is larger (5) and the legend thinner (1)  
+- heights are to create equal height line of plots  
+
+```{r, fig.height=6,fig.width=5}
+(GPS01_plot+plot_spacer()+
+   GPS02_plot+plot_tracks_legend)+
+  plot_layout(ncol = 2,
+              widths = c(5,1), 
+              heights=c(1,1))
+```
+
+
+Although you have the option of plot_layout(guides = "collect") in the package **patchwork**. Sometimes not all plots have all the categories, and therefore it makes sense to create your own customize legend that fits all .
+
+
+# Further reading
+
+[Patchwork](https://patchwork.data-imaginist.com/)
