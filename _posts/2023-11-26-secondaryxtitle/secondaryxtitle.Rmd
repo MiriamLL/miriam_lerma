@@ -23,7 +23,7 @@ The data includes two species, two subsets and some values.
 ```{r}
 my_data<-data.frame(my_species=c('a','a','a','a','a','b','b','b','b','b'),
                     my_subset=c('f','m','f','m','f','m','f','m','f','m'),
-                    my_values=c(24.70000,15.92571,22.11500,24.57800,31.63200,24.51800,29.39000,26.97833,79.66500,21.65000)
+                    my_values=c(24,15,22,24,31,24,29,26,79,21)
                     )
 ```
 
