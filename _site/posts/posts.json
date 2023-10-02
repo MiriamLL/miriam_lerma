@@ -1,24 +1,5 @@
 [
   {
-    "path": "posts/2023-11-26-secondaryxtitle/",
-    "title": "secondary x title",
-    "description": "This post is on how to articially create a secondary x title.",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2023-11-01",
-    "categories": [],
-    "contents": "\r\nThis post is to show how to create a secondary x title in a\r\nggplot\r\nData\r\nFor this example we will create data.\r\nThe data includes two species, two subsets and some values.\r\n\r\n\r\nmy_data<-data.frame(my_species=c('a','a','a','a','a','b','b','b','b','b'),\r\n                    my_subset=c('f','m','f','m','f','m','f','m','f','m'),\r\n                    my_values=c(24,15,22,24,31,24,29,26,79,21)\r\n                    )\r\n\r\n\r\nThen, we will create a artificial groupping.\r\n\r\n\r\nmy_data$my_groups<-paste(my_data$my_species,my_data$my_subset)\r\n\r\n\r\nPlot\r\nLets create a plot using ggplot.\r\n\r\n\r\nlibrary(ggplot2)\r\n\r\n\r\nHere, I use a geom_violin but the type of the plot is irrelevant for\r\nthis exercise.\r\nFocus on the x axis.\r\n\r\n\r\nplot_a<-ggplot(my_data, aes(y=my_values,x=my_groups, color=my_groups, fill=my_groups)) +\r\n  geom_violin(alpha=0.6)+\r\n  geom_point(color='black')+\r\n  theme_bw()\r\nplot_a\r\n\r\n\r\n\r\nTheme\r\nNow lets remove the legend and the title of the x axis.\r\nLets also replace the text in the x axis.\r\n\r\n\r\nplot_b<-plot_a+\r\n  theme(legend.position = \"none\",\r\n        axis.title.x = element_blank())+\r\n  scale_x_discrete(labels=  c(\"F\", \"M\", \"F\", \"M\"))\r\nplot_b\r\n\r\n\r\n\r\nIncrease coord\r\nNow, the purpose of the exercise is to add a secondary axis.\r\nTo do this, we will expand the space on the y axis.\r\nBy doing so we will have more space for the secondary text. Note that\r\nit might be difficult to see at first grasp, but there is some empty\r\nspace.\r\nThe arguments to increase the space are:\r\n- coord_cartesian and clip off\r\n- considering the y limit\r\n- change the plot.margin\r\n\r\n\r\nplot_c<-plot_b+\r\n  coord_cartesian(clip = \"off\",ylim = c(10, 80))+\r\n  scale_y_continuous(breaks=c(20,40,60,80), \r\n                     limits=c(-10,80))+\r\n  theme(plot.margin=unit(c(0,0.1,2,0.2),\"cm\"))\r\nplot_c\r\n\r\n\r\n\r\nAdd segments and text\r\nNow in the space created under the y axis, we can add the subtitles\r\nusing the annotation arguments.\r\n\r\n\r\nplot_c+\r\n  annotate(geom = \"text\",x = 1.5,y = -5, label = \"Group 1\",size = 4)+\r\n  annotate(\"segment\",y = 0, yend = 0,x = 1, xend = 2,colour = \"black\")+\r\n  \r\n  annotate(geom = \"text\",x = 3.5,y = -5, label = \"Group 2\",size = 4)+\r\n  annotate(\"segment\",y = 0, yend = 0,x = 3, xend = 4,colour = \"black\")\r\n\r\n\r\n\r\nThat was it, I hope it helped :)\r\n\r\n\r\n\r\n",
-    "preview": "posts/2023-11-26-secondaryxtitle/secondaryxtitle_files/figure-html5/unnamed-chunk-4-1.png",
-    "last_modified": "2023-09-06T15:38:43+02:00",
-    "input_file": {},
-    "preview_width": 1248,
-    "preview_height": 768
-  },
-  {
     "path": "posts/2023-12-06-calendar/",
     "title": "create a calendar",
     "description": "This post is to create a calendar.",
@@ -36,6 +17,25 @@
     "input_file": {},
     "preview_width": 1171,
     "preview_height": 921
+  },
+  {
+    "path": "posts/2023-11-26-secondaryxtitle/",
+    "title": "secondary x title",
+    "description": "This post is on how to articially create a secondary x title.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2023-11-01",
+    "categories": [],
+    "contents": "\r\nThis post is to show how to create a secondary x title in a\r\nggplot\r\nData\r\nFor this example we will create data.\r\nThe data includes two species, two subsets and some values.\r\n\r\n\r\nmy_data<-data.frame(my_species=c('a','a','a','a','a','b','b','b','b','b'),\r\n                    my_subset=c('f','m','f','m','f','m','f','m','f','m'),\r\n                    my_values=c(24,15,22,24,31,24,29,26,79,21)\r\n                    )\r\n\r\n\r\nThen, we will create a artificial groupping.\r\n\r\n\r\nmy_data$my_groups<-paste(my_data$my_species,my_data$my_subset)\r\n\r\n\r\nPlot\r\nLets create a plot using ggplot.\r\n\r\n\r\nlibrary(ggplot2)\r\n\r\n\r\nHere, I use a geom_violin but the type of the plot is irrelevant for\r\nthis exercise.\r\nFocus on the x axis.\r\n\r\n\r\nplot_a<-ggplot(my_data, aes(y=my_values,x=my_groups, color=my_groups, fill=my_groups)) +\r\n  geom_violin(alpha=0.6)+\r\n  geom_point(color='black')+\r\n  theme_bw()\r\nplot_a\r\n\r\n\r\n\r\nTheme\r\nNow lets remove the legend and the title of the x axis.\r\nLets also replace the text in the x axis.\r\n\r\n\r\nplot_b<-plot_a+\r\n  theme(legend.position = \"none\",\r\n        axis.title.x = element_blank())+\r\n  scale_x_discrete(labels=  c(\"F\", \"M\", \"F\", \"M\"))\r\nplot_b\r\n\r\n\r\n\r\nIncrease coord\r\nNow, the purpose of the exercise is to add a secondary axis.\r\nTo do this, we will expand the space on the y axis.\r\nBy doing so we will have more space for the secondary text. Note that\r\nit might be difficult to see at first grasp, but there is some empty\r\nspace.\r\nThe arguments to increase the space are:\r\n- coord_cartesian and clip off\r\n- considering the y limit\r\n- change the plot.margin\r\n\r\n\r\nplot_c<-plot_b+\r\n  coord_cartesian(clip = \"off\",ylim = c(10, 80))+\r\n  scale_y_continuous(breaks=c(20,40,60,80), \r\n                     limits=c(-10,80))+\r\n  theme(plot.margin=unit(c(0,0.1,2,0.2),\"cm\"))\r\nplot_c\r\n\r\n\r\n\r\nAdd segments and text\r\nNow in the space created under the y axis, we can add the subtitles\r\nusing the annotation arguments.\r\n\r\n\r\nplot_c+\r\n  annotate(geom = \"text\",x = 1.5,y = -5, label = \"Group 1\",size = 4)+\r\n  annotate(\"segment\",y = 0, yend = 0,x = 1, xend = 2,colour = \"black\")+\r\n  \r\n  annotate(geom = \"text\",x = 3.5,y = -5, label = \"Group 2\",size = 4)+\r\n  annotate(\"segment\",y = 0, yend = 0,x = 3, xend = 4,colour = \"black\")\r\n\r\n\r\n\r\nThat was it, I hope it helped :)\r\n\r\n\r\n\r\n",
+    "preview": "posts/2023-11-26-secondaryxtitle/secondaryxtitle_files/figure-html5/unnamed-chunk-4-1.png",
+    "last_modified": "2023-10-02T10:38:50+02:00",
+    "input_file": "secondaryxtitle.knit.md",
+    "preview_width": 1248,
+    "preview_height": 768
   },
   {
     "path": "posts/2023-10-02-inside-legend/",
