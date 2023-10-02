@@ -9,12 +9,12 @@
         "url": {}
       }
     ],
-    "date": "2023-11-01",
+    "date": "2023-12-01",
     "categories": [],
     "contents": "\r\nIntro\r\nThis post is to create a calendar to check when some events were more\r\nlikely to occur.\r\nPackages\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\nData\r\nCreate a data frame with a sequence of days\r\n\r\n\r\nfirstday<- as.Date(\"2020-05-01\")\r\nlastday <- as.Date(\"2020-08-31\")\r\ndays_seq <- seq(firstday, lastday, by = \"day\")\r\ndays_df<-as.data.frame(days_seq)\r\n\r\n\r\nSeparate months and days\r\n\r\n\r\ndays_df$month<-substr(days_df$days, start = 6, stop = 7)\r\ndays_df$day<-substr(days_df$days, start = 9, stop = 10)\r\n\r\n\r\nAdd values\r\n\r\n\r\nmy_values<-sample(1:7, 123, replace=TRUE)\r\ndays_df$events<-as.factor(my_values[1:123])\r\n\r\n\r\nSeparate months\r\n\r\n\r\nmay<-days_df %>%\r\n  filter(month=='05')\r\n\r\n\r\nCreate x and y axis\r\n\r\n\r\ncalen_xs<-rep(c(1:7), times = 5)\r\ncalen_ys<-rep(c(5:1), each = 7)\r\n\r\n\r\n\r\n\r\nmay$calen_xs<-calen_xs[1:31]\r\nmay$calen_ys<-calen_ys[1:31]\r\n\r\n\r\nSelect color palette\r\n\r\n\r\nmy_palette <- c(\"1\" = '#577590', \r\n                \"2\" = '#43aa8b', \r\n                \"3\" = '#90be6d', \r\n                \"4\" = \"#f9c74f\", \r\n                \"5\" = \"#f8961e\", \r\n                \"6\" = \"#f3722c\", \r\n                \"7\" = \"#f94144\") \r\n\r\n\r\nPlot\r\n\r\n\r\nggplot(may,aes(x=calen_xs,y=calen_ys,color=events))+\r\n  geom_point(size=25,shape=15)+\r\n\r\n  scale_x_continuous(limits=c(0.5,7.5))+\r\n  scale_y_continuous(limits=c(0.5,5.5))+\r\n  \r\n  # remove background colors\r\n  theme_void()+\r\n  \r\n  # adds texts\r\n  geom_text(aes(label=day),color='white') +\r\n  \r\n  # sets the legend below\r\n  theme(legend.position = 'top')+\r\n   \r\n  # lines the legend\r\n  guides(colour = guide_legend(override.aes = list(size=6),nrow = 1))+\r\n  \r\n  # uses palette\r\n  scale_color_manual(name = \"May events\",values = my_palette)\r\n\r\n\r\n\r\nThats it!\r\n\r\n\r\n\r\n",
     "preview": "posts/2023-12-06-calendar/calendar_files/figure-html5/unnamed-chunk-9-1.png",
-    "last_modified": "2023-09-06T16:16:43+02:00",
-    "input_file": {},
+    "last_modified": "2023-10-02T11:12:06+02:00",
+    "input_file": "calendar.knit.md",
     "preview_width": 1171,
     "preview_height": 921
   },
@@ -31,11 +31,9 @@
     "date": "2023-11-01",
     "categories": [],
     "contents": "\r\nThis post is to show how to create a secondary x title in a\r\nggplot\r\nData\r\nFor this example we will create data.\r\nThe data includes two species, two subsets and some values.\r\n\r\n\r\nmy_data<-data.frame(my_species=c('a','a','a','a','a','b','b','b','b','b'),\r\n                    my_subset=c('f','m','f','m','f','m','f','m','f','m'),\r\n                    my_values=c(24,15,22,24,31,24,29,26,79,21)\r\n                    )\r\n\r\n\r\nThen, we will create a artificial groupping.\r\n\r\n\r\nmy_data$my_groups<-paste(my_data$my_species,my_data$my_subset)\r\n\r\n\r\nPlot\r\nLets create a plot using ggplot.\r\n\r\n\r\nlibrary(ggplot2)\r\n\r\n\r\nHere, I use a geom_violin but the type of the plot is irrelevant for\r\nthis exercise.\r\nFocus on the x axis.\r\n\r\n\r\nplot_a<-ggplot(my_data, aes(y=my_values,x=my_groups, color=my_groups, fill=my_groups)) +\r\n  geom_violin(alpha=0.6)+\r\n  geom_point(color='black')+\r\n  theme_bw()\r\nplot_a\r\n\r\n\r\n\r\nTheme\r\nNow lets remove the legend and the title of the x axis.\r\nLets also replace the text in the x axis.\r\n\r\n\r\nplot_b<-plot_a+\r\n  theme(legend.position = \"none\",\r\n        axis.title.x = element_blank())+\r\n  scale_x_discrete(labels=  c(\"F\", \"M\", \"F\", \"M\"))\r\nplot_b\r\n\r\n\r\n\r\nIncrease coord\r\nNow, the purpose of the exercise is to add a secondary axis.\r\nTo do this, we will expand the space on the y axis.\r\nBy doing so we will have more space for the secondary text. Note that\r\nit might be difficult to see at first grasp, but there is some empty\r\nspace.\r\nThe arguments to increase the space are:\r\n- coord_cartesian and clip off\r\n- considering the y limit\r\n- change the plot.margin\r\n\r\n\r\nplot_c<-plot_b+\r\n  coord_cartesian(clip = \"off\",ylim = c(10, 80))+\r\n  scale_y_continuous(breaks=c(20,40,60,80), \r\n                     limits=c(-10,80))+\r\n  theme(plot.margin=unit(c(0,0.1,2,0.2),\"cm\"))\r\nplot_c\r\n\r\n\r\n\r\nAdd segments and text\r\nNow in the space created under the y axis, we can add the subtitles\r\nusing the annotation arguments.\r\n\r\n\r\nplot_c+\r\n  annotate(geom = \"text\",x = 1.5,y = -5, label = \"Group 1\",size = 4)+\r\n  annotate(\"segment\",y = 0, yend = 0,x = 1, xend = 2,colour = \"black\")+\r\n  \r\n  annotate(geom = \"text\",x = 3.5,y = -5, label = \"Group 2\",size = 4)+\r\n  annotate(\"segment\",y = 0, yend = 0,x = 3, xend = 4,colour = \"black\")\r\n\r\n\r\n\r\nThat was it, I hope it helped :)\r\n\r\n\r\n\r\n",
-    "preview": "posts/2023-11-26-secondaryxtitle/secondaryxtitle_files/figure-html5/unnamed-chunk-4-1.png",
-    "last_modified": "2023-10-02T10:38:50+02:00",
-    "input_file": "secondaryxtitle.knit.md",
-    "preview_width": 1248,
-    "preview_height": 768
+    "preview": "posts/2023-11-26-secondaryxtitle/2023-11-blog27.jpg",
+    "last_modified": "2023-10-02T11:11:35+02:00",
+    "input_file": "secondaryxtitle.knit.md"
   },
   {
     "path": "posts/2023-10-02-inside-legend/",
