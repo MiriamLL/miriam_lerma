@@ -7,6 +7,7 @@ output:
     toc_float: true
 listing:
   posts:
+    - 2023-11-02-secondaryxtitle
     - 2023-10-02-inside-legend
     - 2023-09-01-patchwork-legend
     - 2023-08-02-customlegend
