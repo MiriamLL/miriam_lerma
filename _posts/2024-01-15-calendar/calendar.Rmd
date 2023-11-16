@@ -102,7 +102,7 @@ ggplot(may,aes(x=calen_xs,y=calen_ys,color=events))+
   guides(colour = guide_legend(override.aes = list(size=6),nrow = 1))+
   
   # uses palette
-  scale_color_manual(name = "May events",values = my_palette)
+  scale_color_manual(name = "May no. events",values = my_palette)
 ```
 
 # Thats it!

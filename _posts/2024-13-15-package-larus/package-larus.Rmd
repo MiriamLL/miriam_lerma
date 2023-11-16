@@ -46,6 +46,7 @@ library(tidyverse)
 ```
 
 ## Load data
+
 ```{r}
 Gull_original<-read_csv(paste0(DataFolder,'/Gull_data.csv'))
 ```
