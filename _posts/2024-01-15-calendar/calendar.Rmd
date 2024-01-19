@@ -5,8 +5,8 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 2023-12-01
-preview: 2023-11-blog28.jpg
+date: 2023-01-15
+preview: blog29.jpg
 output:
   distill::distill_article:
     self_contained: false
