@@ -1,7 +1,7 @@
 ---
-title: "download and map environmental variables"
+title: "environmental variables"
 description: |
-  Download data from CHL and SST from a specific period.
+  Download and plot SST data from a specific period.
 author:
   - name: Miriam Lerma
     url: {}
