@@ -1,0 +1,171 @@
+---
+title: "download and map environmental variables"
+description: |
+  Download data from CHL and SST from a specific period.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-02-06
+preview: 2024-02-blog30.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+This post is to create a map with environmental variables.
+
+1. Identify the data you want to download
+2. Download data from the server
+3. Create a basic map with the values
+
+
+# Define 
+
+Define the area you want to download the data from.
+
+```{r}
+xlim1<--125.
+xlim2<--88.
+ylim1<-14.
+ylim2<-35.
+```
+
+Define also the time frame you are interested in.
+
+```{r}
+time1<-'2017-03-01T00:00:00Z'
+time2<-'2017-03-30T00:00:00Z'
+```
+
+## Load data
+
+Load the package *rerddap*
+
+```{r}
+library("rerddap")
+```
+
+Check the list of available servers.
+
+For the example, we are interested in the  Pacific Ocean, therefore I would use NOAA. 
+
+```{r, eval=FALSE}
+servers()
+```
+
+I want to download sea surface temperature (SST) data, therefore I will use *erdMH1sstdmday*
+
+```{r}
+sstInfo <- info('erdMH1sstdmday')
+```
+
+To check the specifications use *browse*
+
+```{r, eval=FALSE}
+browse('erdMH1sstdmday') 
+```
+
+It takes some time to download.
+
+```{r}
+SST03.2017<-griddap(sstInfo, latitude = c(ylim1, ylim2), longitude = c(xlim1, xlim2), time = c(time1,time2), fields = 'sst')
+```
+To use ggplot, the format in dataframe works better.
+
+```{r}
+SST03.2017dt<-SST03.2017$data
+```
+
+Clear NaNs
+
+```{r, warning=FALSE}
+library(tidyverse)
+```
+
+```{r}
+SST03.2017dt_clean<-SST03.2017dt %>%
+  filter(sst!='NaN')
+```
+
+Create plot
+
+```{r}
+ggplot(SST03.2017dt_clean) +
+ geom_raster(aes(x=lon, y=lat, fill = sst))+ 
+  scale_fill_viridis_c(option = "H")
+```
+
+
+## Add land for reference
+
+Load the package *rworldmap* this includes shapefiles of countries
+
+```{r}
+library(rworldmap)
+```
+
+The function *getMap()* loads the map in your environment
+
+```{r}
+worldMap <- getMap()
+```
+
+Load the package tidyverse
+
+Use the function *fortify* to be able to plot the map using ggplot
+
+```{r}
+world.points <- fortify(worldMap)
+```
+
+To plot using ggplot a data frame is recommended
+
+```{r}
+world.points$region <- world.points$id
+world.df <- world.points[,c("long","lat","group", "region")]
+```
+
+Create plot using ggplot
+
+```{r}
+ggplot(SST03.2017dt) +
+  geom_raster(aes(x=lon, y=lat, fill = sst))+
+  geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
+  theme(
+    axis.title = element_blank(),
+    panel.border = element_rect(colour = "#495057", fill=NA, size=1),
+    panel.grid = element_blank(), 
+    panel.spacing = unit(0, "lines"), 
+    plot.background = element_blank())+
+    coord_sf(xlim = c(xlim1+2,xlim2-2), 
+             ylim = c(ylim1+2,ylim2-2))+ 
+  scale_fill_viridis_c(option = "H")
+```
+
+
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+ggsave(ggplot(SST03.2017dt) +
+  geom_raster(aes(x=lon, y=lat, fill = sst))+
+  geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
+  theme(
+    axis.title = element_blank(),
+    panel.border = element_rect(colour = "#495057", fill=NA, size=1),
+    panel.grid = element_blank(), 
+    panel.spacing = unit(0, "lines"), 
+    plot.background = element_blank())+
+    coord_sf(xlim = c(xlim1+2,xlim2-2), 
+             ylim = c(ylim1+2,ylim2-2))+ 
+  scale_fill_viridis_c(option = "H"), 
+       filename = paste0(here(),"/_posts/2024-02-06-environmentalvariables/blogfig30.jpg"),
+       width = 8, 
+       height = 8, 
+       units = "in",
+       dpi = 300)
+```
+
+# There you go!

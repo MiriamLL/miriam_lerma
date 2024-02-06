@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2024-02-06-environmentalvariables/",
+    "title": "download and map environmental variables",
+    "description": "Download data from CHL and SST from a specific period.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2024-02-06",
+    "categories": [],
+    "contents": "\r\nIntro\r\nThis post is to create a map with environmental variables.\r\nIdentify the data you want to download\r\nDownload data from the server\r\nCreate a basic map with the values\r\nDefine\r\nDefine the area you want to download the data from.\r\n\r\n\r\nxlim1<--125.\r\nxlim2<--88.\r\nylim1<-14.\r\nylim2<-35.\r\n\r\n\r\nDefine also the time frame you are interested in.\r\n\r\n\r\ntime1<-'2017-03-01T00:00:00Z'\r\ntime2<-'2017-03-30T00:00:00Z'\r\n\r\n\r\nLoad data\r\nLoad the package rerddap\r\n\r\n\r\nlibrary(\"rerddap\")\r\n\r\n\r\nCheck the list of available servers.\r\nFor the example, we are interested in the Pacific Ocean, therefore I\r\nwould use NOAA.\r\n\r\n\r\nservers()\r\n\r\n\r\nI want to download sea surface temperature (SST) data, therefore I\r\nwill use erdMH1sstdmday\r\n\r\n\r\nsstInfo <- info('erdMH1sstdmday')\r\n\r\n\r\nTo check the specifications use browse\r\n\r\n\r\nbrowse('erdMH1sstdmday') \r\n\r\n\r\nIt takes some time to download.\r\n\r\n\r\nSST03.2017<-griddap(sstInfo, latitude = c(ylim1, ylim2), longitude = c(xlim1, xlim2), time = c(time1,time2), fields = 'sst')\r\n\r\n\r\nTo use ggplot, the format in dataframe works better.\r\n\r\n\r\nSST03.2017dt<-SST03.2017$data\r\n\r\n\r\nClear NaNs\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\n\r\nSST03.2017dt_clean<-SST03.2017dt %>%\r\n  filter(sst!='NaN')\r\n\r\n\r\nCreate plot\r\n\r\n\r\nggplot(SST03.2017dt_clean) +\r\n geom_raster(aes(x=lon, y=lat, fill = sst))+ \r\n  scale_fill_viridis_c(option = \"H\")\r\n\r\n\r\n\r\nAdd land for reference\r\nLoad the package rworldmap this includes shapefiles of\r\ncountries\r\n\r\n\r\nlibrary(rworldmap)\r\n\r\n\r\nThe function getMap() loads the map in your environment\r\n\r\n\r\nworldMap <- getMap()\r\n\r\n\r\nLoad the package tidyverse\r\nUse the function fortify to be able to plot the map using\r\nggplot\r\n\r\n\r\nworld.points <- fortify(worldMap)\r\n\r\n\r\nTo plot using ggplot a data frame is recommended\r\n\r\n\r\nworld.points$region <- world.points$id\r\nworld.df <- world.points[,c(\"long\",\"lat\",\"group\", \"region\")]\r\n\r\n\r\nCreate plot using ggplot\r\n\r\n\r\nggplot(SST03.2017dt) +\r\n  geom_raster(aes(x=lon, y=lat, fill = sst))+\r\n  geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = \"#e5e5e5\") +\r\n  theme(\r\n    axis.title = element_blank(),\r\n    panel.border = element_rect(colour = \"#495057\", fill=NA, size=1),\r\n    panel.grid = element_blank(), \r\n    panel.spacing = unit(0, \"lines\"), \r\n    plot.background = element_blank())+\r\n    coord_sf(xlim = c(xlim1+2,xlim2-2), \r\n             ylim = c(ylim1+2,ylim2-2))+ \r\n  scale_fill_viridis_c(option = \"H\")\r\n\r\n\r\n\r\n\r\n\r\n\r\nThere you go!\r\n\r\n\r\n\r\n",
+    "preview": "posts/2024-02-06-environmentalvariables/2024-02-blog30.jpg",
+    "last_modified": "2024-02-06T14:14:36+01:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2023-12-04-arrows/",
     "title": "using arrows",
     "description": "This post is on how to use arrows in a plot.",
