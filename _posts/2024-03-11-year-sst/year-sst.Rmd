@@ -1,0 +1,466 @@
+---
+title: "year-sst"
+description: |
+  Create a secondary-axis plot from SST and CHL.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-03-11
+preview: blog31a.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+# Intro
+
+This post is to create a plot with environmental variables, in one axis the sea surface temperature and in the other axis the chlorophyll-a concentration.
+
+1. Download data from the server
+2. Calculate average values
+3. Create a secondary-axis plot with the values
+
+# Load data
+
+Load the package **rerddap**
+
+```{r}
+library("rerddap")
+```
+
+**SST: sea surface temperature**
+
+For obtaining data, download sea surface temperature (SST) from **erdMW1sstd1day** ([link here](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWsstd1day.graph?sst%5B(2024-02-17T12:00:00Z)%5D%5B(0.0)%5D%5B(22.0):(51.0)%5D%5B(205.0):(255.0)%5D&.draw=surface&.vars=longitude%7Clatitude%7Csst&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff&.click=?302,181))
+
+```{r}
+sstInfo <- info('erdMWsstd1day')
+```
+
+To subset the data select the coordinates of a smaller area. 
+
+```{r}
+lonmin<-245
+lonmax<-252
+latmin<-25
+latmax<-26
+```
+
+To download, provide the parameters such as the server, the coordinates and the time frame. It takes some time to download.
+
+```{r}
+SST03.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-03-01T00:00:00Z','2023-03-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST04.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-04-01T00:00:00Z','2023-04-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST05.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-05-01T00:00:00Z','2023-05-30T00:00:00Z'),
+                    fields = 'sst')
+
+SST06.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-06-01T00:00:00Z','2023-06-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST07.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-07-01T00:00:00Z','2023-07-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST08.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-08-01T00:00:00Z','2023-08-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST09.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-09-01T00:00:00Z','2023-09-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST10.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-10-01T00:00:00Z','2023-10-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST11.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-11-01T00:00:00Z','2023-11-30T00:00:00Z'), 
+                    fields = 'sst')
+
+SST12.2023<-griddap(sstInfo, 
+                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-12-01T00:00:00Z','2023-12-30T00:00:00Z'), 
+                    fields = 'sst')
+```
+
+
+**CHL: chlorophyll-a concentration**
+
+To download chlorophyll concentration (CHL) data, connect to **erdMW1CHLd1day** (here the [link](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWcflh3day.graph))
+
+```{r}
+CHLInfo <- info('erdMWchlamday_LonPM180')
+```
+
+To subset the data select the coordinates of a smaller area.  
+
+```{r}
+lonmin<--111
+lonmax<--109
+latmin<-23
+latmax<-27
+```
+
+To download, provide the parameters such as the server, the coordinates and the time frame. It takes some time to download.
+
+```{r}
+CHL03.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-03-01T00:00:00Z','2023-03-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+
+CHL04.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-04-01T00:00:00Z','2023-04-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+
+CHL05.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-05-01T00:00:00Z','2023-05-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+CHL06.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-06-01T00:00:00Z','2023-06-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+
+CHL07.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-07-01T00:00:00Z','2023-07-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+
+CHL08.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-08-01T00:00:00Z','2023-08-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+
+CHL09.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-09-01T00:00:00Z','2023-09-30T00:00:00Z'), 
+                    fields ='chlorophyll')
+
+CHL10.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-10-01T00:00:00Z','2023-10-30T00:00:00Z'), 
+                    fields ='chlorophyll')
+
+CHL11.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-11-01T00:00:00Z','2023-11-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+
+CHL12.2023<-griddap(CHLInfo, 
+                    latitude = c(latmin, latmax), longitude = c(lonmin, lonmax), 
+                    time = c('2023-12-01T00:00:00Z','2023-12-30T00:00:00Z'), 
+                    fields = 'chlorophyll')
+```
+
+# Average values
+
+For the average use functions from the package **tidyverse**
+
+```{r}
+library(tidyverse)
+```
+
+**SST: sea surface temperature**
+
+To calculate average values the best is to transform the data into a data frame.
+
+```{r}
+SST03.2023dt<-SST03.2023$data
+SST04.2023dt<-SST04.2023$data
+SST05.2023dt<-SST05.2023$data
+SST06.2023dt<-SST06.2023$data
+SST07.2023dt<-SST07.2023$data
+SST08.2023dt<-SST08.2023$data
+SST09.2023dt<-SST09.2023$data
+SST10.2023dt<-SST10.2023$data
+SST11.2023dt<-SST11.2023$data
+SST12.2023dt<-SST12.2023$data
+```
+
+Functions from the package tidyverse can be used to calculate the **mean** values.  
+The xaxis would be in numeric value for the plot. 
+
+```{r}
+SST03.2023dt_clean<-SST03.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='03/2023', xaxis=1)
+
+SST04.2023dt_clean<-SST04.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='04/2023', xaxis=2)
+
+SST05.2023dt_clean<-SST05.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='05/2023', xaxis=3)
+
+SST06.2023dt_clean<-SST06.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='06/2023', xaxis=4)
+
+SST07.2023dt_clean<-SST07.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='07/2023', xaxis=5)
+
+SST08.2023dt_clean<-SST08.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='08/2023', xaxis=6)
+
+SST09.2023dt_clean<-SST09.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='09/2023', xaxis=7)
+
+SST10.2023dt_clean<-SST10.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='10/2023', xaxis=8)
+
+SST11.2023dt_clean<-SST11.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='11/2023', xaxis=9)
+
+SST12.2023dt_clean<-SST12.2023dt %>%  drop_na(sst) %>% 
+  summarise(mean_sst=mean(sst),sd_sst=sd(sst))%>% 
+  mutate(month='12/2023', xaxis=10)
+```
+
+Now join into a single data frame.
+
+```{r}
+SST_months<-rbind(SST03.2023dt_clean,
+      SST04.2023dt_clean,
+      SST05.2023dt_clean,
+      SST06.2023dt_clean,
+      SST07.2023dt_clean,
+      SST08.2023dt_clean,
+      SST09.2023dt_clean,
+      SST10.2023dt_clean,
+      SST11.2023dt_clean,
+      SST12.2023dt_clean
+      )
+```
+
+**chlorophyll-a concentration**
+
+The same procedure with CHL.
+
+Convert to data frame.
+
+```{r}
+CHL03.2023dt<-CHL03.2023$data
+CHL04.2023dt<-CHL04.2023$data
+CHL05.2023dt<-CHL05.2023$data
+CHL06.2023dt<-CHL06.2023$data
+CHL07.2023dt<-CHL07.2023$data
+CHL08.2023dt<-CHL08.2023$data
+CHL09.2023dt<-CHL09.2023$data
+CHL10.2023dt<-CHL10.2023$data
+CHL11.2023dt<-CHL11.2023$data
+CHL12.2023dt<-CHL12.2023$data
+```
+
+Calculate the mean values. Include the xaxis.
+
+```{r}
+CHL03.2023dt_clean<-CHL03.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%  
+  mutate(month='03/2023', xaxis=1)
+
+CHL04.2023dt_clean<-CHL04.2023dt %>%  drop_na(chlorophyll) %>%
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='04/2023', xaxis=2)
+
+CHL05.2023dt_clean<-CHL05.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='05/2023', xaxis=3)
+
+CHL06.2023dt_clean<-CHL06.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='06/2023', xaxis=4)
+
+CHL07.2023dt_clean<-CHL07.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='07/2023', xaxis=5)
+
+CHL08.2023dt_clean<-CHL08.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='08/2023', xaxis=6)
+
+CHL09.2023dt_clean<-CHL09.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='09/2023', xaxis=7)
+
+CHL10.2023dt_clean<-CHL10.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='10/2023', xaxis=8)
+CHL11.2023dt_clean<-CHL11.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='11/2023', xaxis=9)
+
+CHL12.2023dt_clean<-CHL12.2023dt %>%  drop_na(chlorophyll) %>% 
+  summarise(mean_CHL=mean(chlorophyll),sd_CHL=sd(chlorophyll))%>%
+  mutate(month='12/2023', xaxis=10)
+```
+
+Create a data frame with all the values.
+
+```{r}
+CHL_months<-rbind(CHL03.2023dt_clean,
+      CHL04.2023dt_clean,
+      CHL05.2023dt_clean,
+      CHL06.2023dt_clean,
+      CHL07.2023dt_clean,
+      CHL08.2023dt_clean,
+      CHL09.2023dt_clean,
+      CHL10.2023dt_clean,
+      CHL11.2023dt_clean,
+      CHL12.2023dt_clean
+      )
+```
+
+# Two-axis plot
+
+```{r, eval=FALSE, echo=FALSE}
+ggplot(SST_months, aes(x=month, y=mean_sst)) + 
+  geom_line() +
+  geom_point()+
+  geom_errorbar(aes(ymin=mean_sst-sd_sst, ymax=mean_sst+sd_sst), width=.2,
+                 position=position_dodge(0.05))
+ggplot(CHL_months, aes(x=month, y=mean_CHL)) + 
+  geom_line() +
+  geom_point()+
+  geom_errorbar(aes(ymin=mean_CHL-sd_CHL, ymax=mean_CHL+sd_CHL), width=.2,
+                 position=position_dodge(0.05))
+```
+
+**SST: sea surface temperature**
+
+Create a plot using **geom_line** using functions from the package ggplot.
+
+```{r, fig.height=4, fig.width=6}
+plot_SST<-ggplot(SST_months) +
+  geom_line(aes(x = xaxis, y = mean_sst),color='red', size=1)+ 
+  scale_y_continuous(("Sea Surface Temperature (°C)"),limits=c(8.5,35.5),expand=c(0, 0))+
+    scale_x_continuous("Months",breaks=c(1,2,3,4,5,6,7,8,9,10),labels=c('Mar','Apr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dec'))+
+  theme_bw()+#dejar lineas de las orillas
+  theme(axis.title.x = element_text(size=13),
+        axis.text.x = element_text(size=10),
+        axis.title.y=element_text(size=13),
+        axis.text.y=element_text(size=10),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank())+
+  NULL
+plot_SST
+```
+
+**CHL: chlorophyll-a concentration**
+
+Create your second plot with functions from the package ggplot. 
+
+For this plot, as it would be on top of the other, the panel background, border, and plot background should be transparent.
+
+```{r, fig.height=4, fig.width=6}
+plot_CHL<-ggplot(CHL_months) +
+  geom_line(aes(x = xaxis, y = mean_CHL),color='blue', size=1) +
+  scale_y_continuous(("Chlorophyll-a concentration (mg m-3 )"),limits=c(0.05,3.0),breaks=c(0.5,1,1.5,2,2.5),expand=c(0, 0),position = "right")+
+  scale_x_continuous("Months",breaks=c(1,2,3,4,5,6,7,8,9,10),labels=c('Mar','Apr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dec'))+
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.y = element_text(size = 13, vjust=6), 
+        axis.text.y = element_text(size = 10),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill='transparent'),
+        panel.border = element_rect(colour = "black", fill='transparent', size=1),
+        plot.background = element_rect(fill = 'transparent',colour = 'transparent',linewidth = 1))
+plot_CHL
+```
+
+
+## Add legend
+
+Using **annotate** the legend would be included inside the plot.
+
+```{r, fig.height=4, fig.width=6}
+plot_SST_wlegend<-plot_SST+
+  annotate("text", x = c(1.9), y = c(34), label = c("SST") , color="black", size=5)+ 
+  annotate("segment", x = 1.0, xend = 1.4, y = 34, yend = 34, colour = "red", size=1, alpha=1)+
+  
+  annotate("text", x = c(1.9), y = c(32), label = c("CHL") , color="black", size=5)+ 
+  annotate("segment", x = 1.0, xend = 1.4, y = 32, yend = 32, colour = "blue", size=1, alpha=1)+
+  NULL
+plot_SST_wlegend
+```
+
+
+# Join graphs
+
+Using functions from the package **patchwork** both plots would be merge into one. 
+
+```{r}
+library(patchwork)
+```
+
+To further learn how to change the layout [click here](https://patchwork.data-imaginist.com/articles/guides/layout.html).
+
+```{r, fig.height=4, fig.width=6}
+plot_SST_wlegend + plot_CHL+
+  plot_layout(design = c(area(t = 1, l = 1, b = 5, r = 4),
+            area(t = 1, l = 1, b = 5, r = 4)))
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+ggsave(plot_SST_wlegend + plot_CHL+
+  plot_layout(design = c(area(t = 1, l = 1, b = 5, r = 4),
+            area(t = 1, l = 1, b = 5, r = 4))), 
+       filename = paste0(here(),"/_posts/2024-03-10-year-sst/blog31.jpg"),
+       width = 6, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+```{r option2, echo=FALSE, eval=FALSE}
+library(gtable);library(grid)
+#UNIR GRAFICOS
+g1<-ggplot_gtable(ggplot_build(plot_CHL))
+g2<-ggplot_gtable(ggplot_build(plot_SST))
+
+pp<-c(subset(g1$layout,name=="panel",se=t:r))
+g<-gtable_add_grob(g1, g2$grobs[[which(g2$layout$name=="panel")]],pp$t,pp$l,pp$b,pp$l)
+
+ia<-which(g2$layout$name=="axis-l")
+ga <- g2$grobs[[ia]]
+ax <- ga$children[[2]]
+ax$widths <- rev(ax$widths)
+ax$grobs <- rev(ax$grobs)
+ax$grobs[[1]]$x <- ax$grobs[[1]]$x - unit(1, "npc") + unit(0.15, "cm")
+g <- gtable_add_cols(g, g2$widths[g2$layout[ia, ]$l], length(g$widths) - 1)
+g <- gtable_add_grob(g, ax, pp$t, length(g$widths) - 1, pp$b)
+(grid.draw(g))
+```
+
+
+
+End of document

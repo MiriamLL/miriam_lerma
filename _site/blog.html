@@ -107,7 +107,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2024-02-06-environmentalvariables","2024-01-15-calendar","2023-12-04-arrows","2023-11-02-secondaryxtitle","2023-10-02-inside-legend","2023-09-01-patchwork-legend","2023-08-02-customlegend","2023-07-13-custompoints","2023-06-01-gganimate","2023-05-05-github-page","2023-04-06-gridraster","2023-03-04-mapping-in-r","psg2023","2023-02-04-subset-shapefile","2023-01-27-qgispolygon","2022-12-04-day-night","2022-11-20-mastodon","2022-10-04-identify-gaps","2022-09-13-hr-considerations","2022-08-17-count-days","2022-07-01-nestlocation","2022-06-30-time-formats","2022-05-23-speed","2022-04-07-land-or-not","2022-03-22-interpolation","2022-02-24-timeoverlaps","2022-01-21-sharedareas","2021-11-25-embc","2021-10-27-gitgithub","bls7","2021-09-24-home-range-adehabitathr","2021-07-05-GIScolores","2021-06-03-paquetes","2021-06-03-vitae","2021-06-03-paginadistill"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2024-03-11-year-sst","2024-02-06-environmentalvariables","2024-01-15-calendar","2023-12-04-arrows","2023-11-02-secondaryxtitle","2023-10-02-inside-legend","2023-09-01-patchwork-legend","2023-08-02-customlegend","2023-07-13-custompoints","2023-06-01-gganimate","2023-05-05-github-page","2023-04-06-gridraster","2023-03-04-mapping-in-r","psg2023","2023-02-04-subset-shapefile","2023-01-27-qgispolygon","2022-12-04-day-night","2022-11-20-mastodon","2022-10-04-identify-gaps","2022-09-13-hr-considerations","2022-08-17-count-days","2022-07-01-nestlocation","2022-06-30-time-formats","2022-05-23-speed","2022-04-07-land-or-not","2022-03-22-interpolation","2022-02-24-timeoverlaps","2022-01-21-sharedareas","2021-11-25-embc","2021-10-27-gitgithub","bls7","2021-09-24-home-range-adehabitathr","2021-07-05-GIScolores","2021-06-03-paquetes","2021-06-03-vitae","2021-06-03-paginadistill"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2605,6 +2605,23 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Blog">Blog</h1>
+<a href="posts/2024-03-11-year-sst/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<div class="metadata">
+<div class="publishedDate">March 11, 2024</div>
+<div class="dt-authors">
+<div class="dt-author">Miriam Lerma</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="posts/2024-03-11-year-sst/blog31a.jpg"/>
+</div>
+<div class="description">
+<h2>year-sst</h2>
+<div class="dt-tags"></div>
+<p>Create a secondary-axis plot from SST and CHL.</p>
+</div>
+</a>
 <a href="posts/2024-02-06-environmentalvariables/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":[]}</script>
 <div class="metadata">
@@ -2617,9 +2634,9 @@ function init_posts_list() {
 <img src="posts/2024-02-06-environmentalvariables/2024-02-blog30.jpg"/>
 </div>
 <div class="description">
-<h2>download and map environmental variables</h2>
+<h2>environmental variables</h2>
 <div class="dt-tags"></div>
-<p>Download data from CHL and SST from a specific period.</p>
+<p>Download and plot SST data from a specific period.</p>
 </div>
 </a>
 <a href="posts/2024-01-15-calendar/" class="post-preview">
@@ -2692,7 +2709,7 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2023-10-02-inside-legend/blog27.jpg"/>
+<img data-src="posts/2023-10-02-inside-legend/blog27.jpg"/>
 </div>
 <div class="description">
 <h2>Inside legend</h2>
@@ -3363,7 +3380,7 @@ function init_posts_list() {
 <ul>
 <li>
 <a href="#category:Articles">Articles</a>
-<span class="category-count">(35)</span>
+<span class="category-count">(36)</span>
 </li>
 <li>
 <a href="#category:Biologging">Biologging</a>
