@@ -1,5 +1,5 @@
 ---
-title: "environmental variables"
+title: "Environmental variables"
 description: |
   Download and plot SST data from a specific period.
 author:

@@ -1,5 +1,5 @@
 ---
-title: "create a calendar"
+title: "Create a calendar"
 description: |
   This post is to create a calendar.
 author:
