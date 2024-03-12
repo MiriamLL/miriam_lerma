@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 preview: blog22.jpg
-date: 06-01-2023
+date: 2023-06-01
 categories:
   - R
   - ggplot2
