@@ -1,5 +1,5 @@
 ---
-title: "year-sst"
+title: "Secondary-axis environmental plot"
 description: |
   Create a secondary-axis plot from SST and CHL.
 author:
@@ -10,6 +10,11 @@ preview: blog31a.jpg
 output:
   distill::distill_article:
     self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2024
 ---
 
 
@@ -31,19 +36,23 @@ library("rerddap")
 
 **SST: sea surface temperature**
 
-For obtaining data, download sea surface temperature (SST) from **erdMW1sstd1day** ([link here](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWsstd1day.graph?sst%5B(2024-02-17T12:00:00Z)%5D%5B(0.0)%5D%5B(22.0):(51.0)%5D%5B(205.0):(255.0)%5D&.draw=surface&.vars=longitude%7Clatitude%7Csst&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff&.click=?302,181))
+For obtaining data, download sea surface temperature (SST) from **erdMWsstd1day_LonPM180** ([link here](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWsstd1day_LonPM180.graph?sst%5B(2024-03-10T12:00:00Z)%5D%5B(0.0)%5D%5B(23):(27)%5D%5B(-111):(-109)%5D&.draw=surface&.vars=longitude%7Clatitude%7Csst&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff)).
+
+Another option is **erdMW1sstd1day** ([link here](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWsstd1day.graph?sst%5B(2024-02-17T12:00:00Z)%5D%5B(0.0)%5D%5B(22.0):(51.0)%5D%5B(205.0):(255.0)%5D&.draw=surface&.vars=longitude%7Clatitude%7Csst&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff&.click=?302,181)).
+
+To search other options [here](https://upwell.pfeg.noaa.gov/erddap/index.html).
 
 ```{r}
-sstInfo <- info('erdMWsstd1day')
+sstInfo <- info('erdMWsstd1day_LonPM180')
 ```
 
 To subset the data select the coordinates of a smaller area. 
 
 ```{r}
-lonmin<-245
-lonmax<-252
-latmin<-25
-latmax<-26
+lonmin<--111
+lonmax<--109
+latmin<-23
+latmax<-27
 ```
 
 To download, provide the parameters such as the server, the coordinates and the time frame. It takes some time to download.
@@ -103,20 +112,15 @@ SST12.2023<-griddap(sstInfo,
 
 **CHL: chlorophyll-a concentration**
 
-To download chlorophyll concentration (CHL) data, connect to **erdMW1CHLd1day** (here the [link](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWcflh3day.graph))
+To download chlorophyll concentration (CHL) data, connect to **erdMWchlamday_LonPM180** (here the [link](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWchlamday_LonPM180.html).
+
+Another option is **erdMW1CHLd1day** (here the [link](https://upwell.pfeg.noaa.gov/erddap/griddap/erdMWcflh3day.graph))
 
 ```{r}
 CHLInfo <- info('erdMWchlamday_LonPM180')
 ```
 
 To subset the data select the coordinates of a smaller area.  
-
-```{r}
-lonmin<--111
-lonmax<--109
-latmin<-23
-latmax<-27
-```
 
 To download, provide the parameters such as the server, the coordinates and the time frame. It takes some time to download.
 
@@ -173,7 +177,7 @@ CHL12.2023<-griddap(CHLInfo,
 
 # Average values
 
-For the average use functions from the package **tidyverse**
+Load the package **tidyverse**.
 
 ```{r}
 library(tidyverse)
@@ -257,9 +261,9 @@ SST_months<-rbind(SST03.2023dt_clean,
       )
 ```
 
-**chlorophyll-a concentration**
+**CHL: chlorophyll-a concentration**
 
-The same procedure with CHL.
+The same procedure used with SST, would be used with CHL.
 
 Convert to data frame.
 

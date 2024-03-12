@@ -10,6 +10,11 @@ preview: blog29.jpg
 output:
   distill::distill_article:
     self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2024
 ---
 
 # Intro
