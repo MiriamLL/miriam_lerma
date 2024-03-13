@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["buffer_files/figure-html5/unnamed-chunk-22-1.png","buffer_files/figure-html5/unnamed-chunk-28-1.png","buffer_files/figure-html5/unnamed-chunk-9-1.png"]}
+  {"type":"character","attributes":{},"value":["blog32.jpg","buffer_files/anchor-4.2.2/anchor.min.js","buffer_files/bowser-1.9.3/bowser.min.js","buffer_files/distill-2.2.21/template.v2.js","buffer_files/figure-html5/unnamed-chunk-12-1.png","buffer_files/figure-html5/unnamed-chunk-19-1.png","buffer_files/figure-html5/unnamed-chunk-22-1.png","buffer_files/figure-html5/unnamed-chunk-24-1.png","buffer_files/figure-html5/unnamed-chunk-28-1.png","buffer_files/figure-html5/unnamed-chunk-9-1.png","buffer_files/header-attrs-2.25/header-attrs.js","buffer_files/jquery-3.6.0/jquery-3.6.0.js","buffer_files/jquery-3.6.0/jquery-3.6.0.min.js","buffer_files/jquery-3.6.0/jquery-3.6.0.min.map","buffer_files/popper-2.6.0/popper.min.js","buffer_files/tippy-6.2.7/tippy-bundle.umd.min.js","buffer_files/tippy-6.2.7/tippy-light-border.css","buffer_files/tippy-6.2.7/tippy.css","buffer_files/tippy-6.2.7/tippy.umd.min.js","buffer_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1520,6 +1520,8 @@ point.</p></p>
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
+<p>In this blog, a buffer subseting environmental data would be created
+and the average values within the buffer calculated.</p>
 <h1 id="download-data">1. Download data</h1>
 <p>Load the package <strong>rerddap</strong></p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1551,11 +1553,13 @@ coordinates and the time frame. It takes some time to download.</p>
 <span>                    fields <span class='op'>=</span> <span class='st'>'sst'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>To acces the data as data frame, extract the data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_df</span><span class='op'>&lt;-</span><span class='va'>SST_values</span><span class='op'>$</span><span class='va'>data</span></span></code></pre>
 </div>
 </div>
+<p>Using functions from the package tidyverse, remove all NAs.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
@@ -1563,37 +1567,63 @@ coordinates and the time frame. It takes some time to download.</p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_dfclean</span><span class='op'>&lt;-</span><span class='va'>SST_df</span> <span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_dfclean</span><span class='op'>&lt;-</span><span class='va'>SST_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sst</span><span class='op'>!=</span><span class='st'>'NaN'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Create plot</p>
+<h2 id="map">Map</h2>
+<p>Check data downloaded using ggplot.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>First, download data from land from the package
+<strong>rworldmap</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>SST_dfclean</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_raster</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>, y<span class='op'>=</span><span class='va'>lat</span>, fill <span class='op'>=</span> <span class='va'>sst</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_c</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"H"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/AndySouth/rworldmap/'>rworldmap</a></span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="buffer_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<p>The function <em>getMap()</em> loads the map in your environment.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>world_map</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rworldmap/man/getMap.html'>getMap</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>To plot using ggplot a data frame is recommended. Use the function
+<em>fortify</em> to be able to plot the map using ggplot.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>world_points</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>fortify</a></span><span class='op'>(</span><span class='va'>world_map</span><span class='op'>)</span></span>
+<span><span class='va'>world_points</span><span class='op'>$</span><span class='va'>region</span> <span class='op'>&lt;-</span> <span class='va'>world_points</span><span class='op'>$</span><span class='va'>id</span></span>
+<span><span class='va'>world_df</span> <span class='op'>&lt;-</span><span class='va'>world_points</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"long"</span>,<span class='st'>"lat"</span>,<span class='st'>"group"</span>, <span class='st'>"region"</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
+</div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>SST_dfclean</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_raster</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>SST_dfclean</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>, y<span class='op'>=</span><span class='va'>lat</span>, fill <span class='op'>=</span> <span class='va'>sst</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_c</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"H"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>world_df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>'#403d39'</span>, fill <span class='op'>=</span> <span class='st'>"#e5e5e5"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>109.7</span>,<span class='op'>-</span><span class='fl'>109.1</span><span class='op'>)</span>,ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>24.6</span>,<span class='fl'>25.2</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<p><img src="buffer_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
 <h1 id="create-buffer">2. Create buffer</h1>
-<p>Create buffer from point</p>
+<p>Load package <strong>sp</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>This_point</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>110.33979846296234</span>,Latitude<span class='op'>=</span><span class='fl'>24.28728834326802</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/edzer/sp/'>sp</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>Give coordinates from point.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>This_point</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.37728617302638</span>,Latitude<span class='op'>=</span><span class='fl'>24.92572600240793</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>This function is a custom function, that is also included in my
+package <strong>larus</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>create_buffer</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>central_point</span><span class='op'>=</span><span class='va'>central_point</span>, <span class='va'>buffer_km</span><span class='op'>=</span><span class='va'>buffer_km</span><span class='op'>)</span><span class='op'>{</span></span>
@@ -1606,24 +1636,14 @@ coordinates and the time frame. It takes some time to download.</p>
 <span>  <span class='op'>}</span></span></code></pre>
 </div>
 </div>
+<p>The arguments needed are the point, and the kilometers.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>This_buffer</span><span class='op'>&lt;-</span><span class='fu'>create_buffer</span><span class='op'>(</span>central_point<span class='op'>=</span><span class='va'>This_point</span>,buffer_km<span class='op'>=</span><span class='fl'>50</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>This_buffer</span><span class='op'>&lt;-</span><span class='fu'>create_buffer</span><span class='op'>(</span>central_point<span class='op'>=</span><span class='va'>This_point</span>,buffer_km<span class='op'>=</span><span class='fl'>20</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>This_buffer</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;SpatialPolygons&quot;
-attr(,&quot;package&quot;)
-[1] &quot;sp&quot;</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/edzer/sp/'>sp</a></span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
+<p>Then, I use the projection to convert it to SpatialPolygons, and
+ready for the next step.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>polygon_proj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span><span class='op'>(</span><span class='va'>This_buffer</span><span class='op'>)</span></span></code></pre>
@@ -1637,47 +1657,22 @@ attr(,&quot;package&quot;)
 attr(,&quot;package&quot;)
 [1] &quot;sp&quot;</code></pre>
 </div>
-<h2 id="map">Map</h2>
-<p>The function <em>getMap()</em> loads the map in your environment</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/AndySouth/rworldmap/'>rworldmap</a></span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>worldMap</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rworldmap/man/getMap.html'>getMap</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>Load the package tidyverse</p>
-<p>Use the function <em>fortify</em> to be able to plot the map using
-ggplot</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>world.points</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/fortify.html'>fortify</a></span><span class='op'>(</span><span class='va'>worldMap</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>To plot using ggplot a data frame is recommended</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>world.points</span><span class='op'>$</span><span class='va'>region</span> <span class='op'>&lt;-</span> <span class='va'>world.points</span><span class='op'>$</span><span class='va'>id</span></span>
-<span><span class='va'>world.df</span> <span class='op'>&lt;-</span> <span class='va'>world.points</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"long"</span>,<span class='st'>"lat"</span>,<span class='st'>"group"</span>, <span class='st'>"region"</span><span class='op'>)</span><span class='op'>]</span></span></code></pre>
-</div>
-</div>
+<h2 id="map-1">Map</h2>
+<p>Make sure that they are in the same coordinate system.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_raster</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>SST_dfclean</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>, y<span class='op'>=</span><span class='va'>lat</span>, fill <span class='op'>=</span> <span class='va'>sst</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> </span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_c</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"H"</span><span class='op'>)</span><span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>world.df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>'#403d39'</span>, fill <span class='op'>=</span> <span class='st'>"transparent"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_buffer</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>,colour<span class='op'>=</span><span class='st'>'red'</span>, fill<span class='op'>=</span><span class='st'>'transparent'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_point</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"black"</span>, size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span><span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>110.9</span>,<span class='op'>-</span><span class='fl'>109.8</span><span class='op'>)</span>, </span>
-<span>          ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>23.5</span>,<span class='fl'>25</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_raster</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>SST_dfclean</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>, y<span class='op'>=</span><span class='va'>lat</span>, fill <span class='op'>=</span> <span class='va'>sst</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_c</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"H"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>world_df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>'#403d39'</span>, fill <span class='op'>=</span> <span class='st'>"#e5e5e5"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>109.7</span>,<span class='op'>-</span><span class='fl'>109.1</span><span class='op'>)</span>,ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>24.6</span>,<span class='fl'>25.2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_buffer</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>,colour<span class='op'>=</span><span class='st'>'black'</span>, fill<span class='op'>=</span><span class='st'>'transparent'</span>, linetype<span class='op'>=</span><span class='st'>'dashed'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_point</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"black"</span>, size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="buffer_files/figure-html5/unnamed-chunk-22-1.png" width="624" /></p>
+<p><img src="buffer_files/figure-html5/unnamed-chunk-19-1.png" width="624" /></p>
 </div>
 <h1 id="extract-information">3. Extract information</h1>
+<p>Now that we have our buffer and our SST, lets convert the SST from
+data frame to SpatialPointsDataFrame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_sp</span> <span class='op'>&lt;-</span> <span class='va'>SST_dfclean</span></span>
@@ -1685,25 +1680,25 @@ ggplot</p>
 <span><span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span><span class='op'>(</span><span class='va'>SST_sp</span><span class='op'>)</span> <span class='op'>=</span> <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span><span class='op'>(</span><span class='st'>"+init=epsg:4326"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>Use the function <strong>over</strong> from the package
+<strong>sp</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_buffer</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/over.html'>over</a></span><span class='op'>(</span><span class='va'>SST_sp</span>,<span class='va'>This_buffer</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>Now we have information on those values that fall inside the buffer.
+Add this information to the data frame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_values</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>SST_buffer</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_dfclean</span><span class='op'>$</span><span class='va'>sst_inside</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>SST_buffer</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>Now, subset to only keep the data inside the buffer.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_dfclean</span><span class='op'>$</span><span class='va'>sst_inside</span> <span class='op'>&lt;-</span> <span class='va'>SST_values</span></span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_inside</span><span class='op'>&lt;-</span><span class='va'>SST_dfclean</span> <span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sst_inside</span><span class='op'>==</span><span class='fl'>1</span><span class='op'>)</span><span class='op'><a href='https://rdrr.io/pkg/magrittr/man/pipe.html'>%&gt;%</a></span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>SST_inside</span><span class='op'>&lt;-</span><span class='va'>SST_dfclean</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sst_inside</span><span class='op'>==</span><span class='fl'>1</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='va'>sst</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
@@ -1711,29 +1706,21 @@ ggplot</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_raster</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>SST_inside</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>, y<span class='op'>=</span><span class='va'>lat</span>, fill <span class='op'>=</span> <span class='va'>sst</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> </span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_c</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"H"</span><span class='op'>)</span><span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>world.df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>'#403d39'</span>, fill <span class='op'>=</span> <span class='st'>"transparent"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_buffer</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>,colour<span class='op'>=</span><span class='st'>'red'</span>, fill<span class='op'>=</span><span class='st'>'transparent'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_point</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"black"</span>, size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span><span class='op'>+</span></span>
-<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>110.9</span>,<span class='op'>-</span><span class='fl'>109.8</span><span class='op'>)</span>, </span>
-<span>          ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>23</span>,<span class='fl'>25</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_raster</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>SST_inside</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>, y<span class='op'>=</span><span class='va'>lat</span>, fill <span class='op'>=</span> <span class='va'>sst</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_c</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"H"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>world_df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>'#403d39'</span>, fill <span class='op'>=</span> <span class='st'>"#e5e5e5"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>109.7</span>,<span class='op'>-</span><span class='fl'>109.1</span><span class='op'>)</span>,ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>24.6</span>,<span class='fl'>25.2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_polygon.html'>geom_polygon</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_buffer</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>long</span>, y <span class='op'>=</span> <span class='va'>lat</span>, group <span class='op'>=</span> <span class='va'>group</span><span class='op'>)</span>,colour<span class='op'>=</span><span class='st'>'black'</span>, fill<span class='op'>=</span><span class='st'>'transparent'</span>, linetype<span class='op'>=</span><span class='st'>'dashed'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>This_point</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span><span class='op'>)</span>, colour <span class='op'>=</span> <span class='st'>"black"</span>, size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>        panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>'transparent'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="buffer_files/figure-html5/unnamed-chunk-28-1.png" width="624" /></p>
+<p><img src="buffer_files/figure-html5/unnamed-chunk-24-1.png" width="624" /></p>
 </div>
-<h2 id="calculate-mean">Calculate mean</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>SST_inside</span><span class='op'>$</span><span class='va'>sst</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>[1] 21.52629</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>SST_inside</span><span class='op'>$</span><span class='va'>sst</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>[1] 1.347747</code></pre>
+
 </div>
 <p>End of document</p>
-<div class="sourceCode" id="cb6"><pre
+<div class="sourceCode" id="cb2"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

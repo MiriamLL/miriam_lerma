@@ -20,6 +20,8 @@ categories:
 
 # Intro
 
+In this blog, a buffer subseting environmental data would be created and the average values within the buffer calculated.
+
 # 1. Download data
 
 Load the package **rerddap**
@@ -49,10 +51,13 @@ SST_values<-griddap(SST_info,
                     time = c('2023-03-01T00:00:00Z','2023-03-30T00:00:00Z'), 
                     fields = 'sst')
 ```
+To acces the data as data frame, extract the data. 
 
 ```{r}
 SST_df<-SST_values$data
 ```
+
+Using functions from the package tidyverse, remove all NAs.
 
 ```{r, warning=FALSE}
 library(tidyverse)
@@ -63,30 +68,58 @@ SST_dfclean<-SST_df %>%
   filter(sst!='NaN')
 ```
 
-Create plot
+## Map 
+
+Check data downloaded using ggplot. 
 
 ```{r}
 library(ggplot2)
 ```
 
+First, download data from land from the package **rworldmap**.
+
 ```{r}
-ggplot(SST_dfclean) +
- geom_raster(aes(x=lon, y=lat, fill = sst))+ 
-  scale_fill_viridis_c(option = "H")
+library(rworldmap)
+```
+
+The function *getMap()* loads the map in your environment.
+
+```{r}
+world_map <- getMap()
+```
+
+To plot using ggplot a data frame is recommended. Use the function *fortify* to be able to plot the map using ggplot.
+
+```{r}
+world_points <- fortify(world_map)
+world_points$region <- world_points$id
+world_df <-world_points[,c("long","lat","group", "region")]
+```
+
+```{r, fig.height=4}
+ggplot() +
+ geom_raster(data=SST_dfclean,aes(x=lon, y=lat, fill = sst))+ scale_fill_viridis_c(option = "H")+
+ geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
+ coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))
 ```
 
 
-```{r}
-class(SST_dfclean)
-```
 
 # 2. Create buffer
 
-Create buffer from point
+Load package **sp**.
 
 ```{r}
-This_point<-data.frame(Longitude=-110.33979846296234,Latitude=24.28728834326802)
+library(sp)
 ```
+
+Give coordinates from point. 
+
+```{r}
+This_point<-data.frame(Longitude=-109.37728617302638,Latitude=24.92572600240793)
+```
+
+This function is a custom function, that is also included in my package **larus**.
 
 ```{r}
 create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
@@ -99,16 +132,12 @@ create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
   }
 ```
 
-```{r}
-This_buffer<-create_buffer(central_point=This_point,buffer_km=50)
-```
+The arguments needed are the point, and the kilometers.
 
 ```{r}
-class(This_buffer)
+This_buffer<-create_buffer(central_point=This_point,buffer_km=20)
 ```
-```{r}
-library(sp)
-```
+Then, I use the projection to convert it to SpatialPolygons, and ready for the next step.
 
 ```{r}
 polygon_proj <- proj4string(This_buffer)
@@ -120,44 +149,22 @@ class(This_buffer)
 
 ## Map
 
-The function *getMap()* loads the map in your environment
+Make sure that they are in the same coordinate system. 
 
-```{r}
-library(rworldmap)
-```
-
-```{r}
-worldMap <- getMap()
-```
-
-Load the package tidyverse
-
-Use the function *fortify* to be able to plot the map using ggplot
-
-```{r}
-world.points <- fortify(worldMap)
-```
-
-To plot using ggplot a data frame is recommended
-
-```{r}
-world.points$region <- world.points$id
-world.df <- world.points[,c("long","lat","group", "region")]
-```
-
-```{r}
+```{r, fig.height=4}
 ggplot() +
- geom_raster(data=SST_dfclean,aes(x=lon, y=lat, fill = sst))+ 
- scale_fill_viridis_c(option = "H")+
- geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "transparent") +
- geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='red', fill='transparent')+
- geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)+
- coord_sf(xlim = c(-110.9,-109.8), 
-          ylim = c(23.5,25))
+ geom_raster(data=SST_dfclean,aes(x=lon, y=lat, fill = sst))+ scale_fill_viridis_c(option = "H")+
+ geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
+ coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+
+ geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='black', fill='transparent', linetype='dashed')+
+ geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)
 ```
+
 
 
 # 3. Extract information
+
+Now that we have our buffer and our SST, lets convert the SST from data frame to SpatialPointsDataFrame. 
 
 ```{r}
 SST_sp <- SST_dfclean
@@ -165,17 +172,19 @@ sp::coordinates(SST_sp) <- ~lon + lat
 sp::proj4string(SST_sp) = sp::CRS("+init=epsg:4326")
 ```
 
+Use the function **over** from the package **sp**. 
+
 ```{r}
 SST_buffer<- over(SST_sp,This_buffer)
 ```
 
-```{r}
-SST_values<-as.numeric(SST_buffer)
-```
+Now we have information on those values that fall inside the buffer. Add this information to the data frame. 
 
 ```{r}
-SST_dfclean$sst_inside <- SST_values
+SST_dfclean$sst_inside <- as.numeric(SST_buffer)
 ```
+
+Now, subset to only keep the data inside the buffer. 
 
 ```{r}
 SST_inside<-SST_dfclean %>%
@@ -186,23 +195,33 @@ SST_inside<-SST_dfclean %>%
 
 ## Subset
 
-```{r}
+```{r, fig.height=4}
 ggplot() +
- geom_raster(data=SST_inside,aes(x=lon, y=lat, fill = sst))+ 
- scale_fill_viridis_c(option = "H")+
- geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "transparent") +
- geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='red', fill='transparent')+
- geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)+
- coord_sf(xlim = c(-110.9,-109.8), 
-          ylim = c(23,25))
+  geom_raster(data=SST_inside,aes(x=lon, y=lat, fill = sst))+ scale_fill_viridis_c(option = "H")+
+  geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
+  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+
+  geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='black', fill='transparent', linetype='dashed')+
+  geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)+
+  theme(panel.background = element_blank(),
+        panel.border = element_rect(colour = "black", fill='transparent'))
 ```
 
-## Calculate mean
-
-```{r}
-mean(SST_inside$sst)
-sd(SST_inside$sst)
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+ggsave(ggplot() +
+  geom_raster(data=SST_inside,aes(x=lon, y=lat, fill = sst))+ scale_fill_viridis_c(option = "H")+
+  geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
+  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+
+  geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='black', fill='transparent', linetype='dashed')+
+  geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)+
+  theme(panel.background = element_blank(),
+        panel.border = element_rect(colour = "black", fill='transparent')), 
+       filename = paste0(here(),"/_posts/2024-04-11-buffer/blog32.jpg"),
+       width = 6, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
 ```
-
 
 End of document
