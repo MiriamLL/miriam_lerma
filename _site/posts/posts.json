@@ -22,6 +22,30 @@
     "input_file": {}
   },
   {
+    "path": "posts/2024-04-11-buffer/",
+    "title": "Create a buffer",
+    "description": "This post is about how to create a spatial buffer of 1 km around a point.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2024-03-11",
+    "categories": [
+      "R",
+      "ggplot2",
+      "English",
+      "Y2024"
+    ],
+    "contents": "\r\nIntro\r\n1. Download data\r\nLoad the package rerddap\r\n\r\n\r\nlibrary(\"rerddap\")\r\n\r\n\r\n\r\n\r\nSST_info <- info('erdMWsstd1day_LonPM180')\r\n\r\n\r\nTo subset the data select the coordinates of a smaller area.\r\n\r\n\r\nlonmin<--111\r\nlonmax<--109\r\nlatmin<-23\r\nlatmax<-27\r\n\r\n\r\nTo download, provide the parameters such as the server, the\r\ncoordinates and the time frame. It takes some time to download.\r\n\r\n\r\nSST_values<-griddap(SST_info, \r\n                    latitude= c(latmin, latmax), longitude = c(lonmin, lonmax), \r\n                    time = c('2023-03-01T00:00:00Z','2023-03-30T00:00:00Z'), \r\n                    fields = 'sst')\r\n\r\n\r\n\r\n\r\nSST_df<-SST_values$data\r\n\r\n\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\n\r\nSST_dfclean<-SST_df %>%\r\n  filter(sst!='NaN')\r\n\r\n\r\nCreate plot\r\n\r\n\r\nlibrary(ggplot2)\r\n\r\n\r\n\r\n\r\nggplot(SST_dfclean) +\r\n geom_raster(aes(x=lon, y=lat, fill = sst))+ \r\n  scale_fill_viridis_c(option = \"H\")\r\n\r\n\r\n\r\n\r\n\r\nclass(SST_dfclean)\r\n\r\n[1] \"data.frame\"\r\n\r\n2. Create buffer\r\nCreate buffer from point\r\n\r\n\r\nThis_point<-data.frame(Longitude=-110.33979846296234,Latitude=24.28728834326802)\r\n\r\n\r\n\r\n\r\ncreate_buffer<-function(central_point=central_point, buffer_km=buffer_km){\r\n  central_spatial<- sp::SpatialPoints(cbind(central_point$Longitude,central_point$Latitude)) \r\n  sp::proj4string(central_spatial)= sp::CRS(\"+init=epsg:4326\") \r\n  central_spatial <- sp::spTransform(central_spatial, sp::CRS(\"+init=epsg:4326\"))\r\n  buffer_dist<-buffer_km/100\r\n  central_buffer<-rgeos::gBuffer(central_spatial, width=1*buffer_dist)\r\n  return(central_buffer)\r\n  }\r\n\r\n\r\n\r\n\r\nThis_buffer<-create_buffer(central_point=This_point,buffer_km=50)\r\n\r\n\r\n\r\n\r\nclass(This_buffer)\r\n\r\n[1] \"SpatialPolygons\"\r\nattr(,\"package\")\r\n[1] \"sp\"\r\n\r\n\r\n\r\nlibrary(sp)\r\n\r\n\r\n\r\n\r\npolygon_proj <- proj4string(This_buffer)\r\n\r\n\r\n\r\n\r\nclass(This_buffer)\r\n\r\n[1] \"SpatialPolygons\"\r\nattr(,\"package\")\r\n[1] \"sp\"\r\n\r\nMap\r\nThe function getMap() loads the map in your environment\r\n\r\n\r\nlibrary(rworldmap)\r\n\r\n\r\n\r\n\r\nworldMap <- getMap()\r\n\r\n\r\nLoad the package tidyverse\r\nUse the function fortify to be able to plot the map using\r\nggplot\r\n\r\n\r\nworld.points <- fortify(worldMap)\r\n\r\n\r\nTo plot using ggplot a data frame is recommended\r\n\r\n\r\nworld.points$region <- world.points$id\r\nworld.df <- world.points[,c(\"long\",\"lat\",\"group\", \"region\")]\r\n\r\n\r\n\r\n\r\nggplot() +\r\n geom_raster(data=SST_dfclean,aes(x=lon, y=lat, fill = sst))+ \r\n scale_fill_viridis_c(option = \"H\")+\r\n geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = \"transparent\") +\r\n geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='red', fill='transparent')+\r\n geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = \"black\", size = 4)+\r\n coord_sf(xlim = c(-110.9,-109.8), \r\n          ylim = c(23.5,25))\r\n\r\n\r\n\r\n3. Extract information\r\n\r\n\r\nSST_sp <- SST_dfclean\r\nsp::coordinates(SST_sp) <- ~lon + lat\r\nsp::proj4string(SST_sp) = sp::CRS(\"+init=epsg:4326\")\r\n\r\n\r\n\r\n\r\nSST_buffer<- over(SST_sp,This_buffer)\r\n\r\n\r\n\r\n\r\nSST_values<-as.numeric(SST_buffer)\r\n\r\n\r\n\r\n\r\nSST_dfclean$sst_inside <- SST_values\r\n\r\n\r\n\r\n\r\nSST_inside<-SST_dfclean %>%\r\n  filter(sst_inside==1)%>%\r\n  drop_na(sst)\r\n\r\n\r\nSubset\r\n\r\n\r\nggplot() +\r\n geom_raster(data=SST_inside,aes(x=lon, y=lat, fill = sst))+ \r\n scale_fill_viridis_c(option = \"H\")+\r\n geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = \"transparent\") +\r\n geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='red', fill='transparent')+\r\n geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = \"black\", size = 4)+\r\n coord_sf(xlim = c(-110.9,-109.8), \r\n          ylim = c(23,25))\r\n\r\n\r\n\r\nCalculate mean\r\n\r\n\r\nmean(SST_inside$sst)\r\n\r\n[1] 21.52629\r\n\r\nsd(SST_inside$sst)\r\n\r\n[1] 1.347747\r\n\r\nEnd of document\r\n\r\n\r\n\r\n",
+    "preview": "posts/2024-04-11-buffer/buffer_files/figure-html5/unnamed-chunk-9-1.png",
+    "last_modified": "2024-03-13T11:33:05+01:00",
+    "input_file": "buffer.knit.md",
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2024-02-06-environmentalvariables/",
     "title": "Environmental variables",
     "description": "Download and plot SST data from a specific period.",
