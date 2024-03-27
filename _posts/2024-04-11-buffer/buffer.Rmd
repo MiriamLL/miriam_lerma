@@ -5,8 +5,8 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 2024-03-11
-preview: blog32a.jpg
+date: 2024-04-03
+preview: blog32_portada.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -20,7 +20,7 @@ categories:
 
 # Intro
 
-In this blog, a buffer subseting environmental data would be created and the average values within the buffer calculated.
+In this blog, a buffer subsetting environmental data would be created and the average values within the buffer calculated.
 
 # 1. Download data
 
@@ -76,7 +76,7 @@ Check data downloaded using ggplot.
 library(ggplot2)
 ```
 
-First, download data from land from the package **rworldmap**.
+Download data from land from the package **rworldmap**.
 
 ```{r}
 library(rworldmap)
@@ -88,7 +88,7 @@ The function *getMap()* loads the map in your environment.
 world_map <- getMap()
 ```
 
-To plot using ggplot a data frame is recommended. Use the function *fortify* to be able to plot the map using ggplot.
+To plot using ggplot a data frame is recommended. Use the function *fortify* to be able to get the data in a data frame format. 
 
 ```{r}
 world_points <- fortify(world_map)
@@ -113,13 +113,13 @@ Load package **sp**.
 library(sp)
 ```
 
-Give coordinates from point. 
+Give coordinates from the central point. 
 
 ```{r}
 This_point<-data.frame(Longitude=-109.37728617302638,Latitude=24.92572600240793)
 ```
 
-This function is a custom function, that is also included in my package **larus**.
+Use this custom function to create a buffer. Note that it uses epsg 4236, adjust if necessary. 
 
 ```{r}
 create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
@@ -132,16 +132,18 @@ create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
   }
 ```
 
-The arguments needed are the point, and the kilometers.
+The central point and the kilometers are the arguments needed. 
 
 ```{r}
 This_buffer<-create_buffer(central_point=This_point,buffer_km=20)
 ```
-Then, I use the projection to convert it to SpatialPolygons, and ready for the next step.
+Use the projection to convert the buffer into a SpatialPolygons.
 
 ```{r}
 polygon_proj <- proj4string(This_buffer)
 ```
+
+Confirm that the buffer is not a SpatialPolygons.
 
 ```{r}
 class(This_buffer)
@@ -149,7 +151,11 @@ class(This_buffer)
 
 ## Map
 
-Make sure that they are in the same coordinate system. 
+Use ggplot to create the map.  
+Use the functions **geom_raster** to plot the SST data.  
+The function **geom_polygon** to plot the base maps data.  
+The function **geom_polygon** to plot the buffer.  
+Adjust to your corresponding area on the **coord_sf**.  
 
 ```{r, fig.height=4}
 ggplot() +
@@ -164,7 +170,8 @@ ggplot() +
 
 # 3. Extract information
 
-Now that we have our buffer and our SST, lets convert the SST from data frame to SpatialPointsDataFrame. 
+Convert the SST data into a SpatialPointsDataFrame.
+
 
 ```{r}
 SST_sp <- SST_dfclean
@@ -172,19 +179,20 @@ sp::coordinates(SST_sp) <- ~lon + lat
 sp::proj4string(SST_sp) = sp::CRS("+init=epsg:4326")
 ```
 
-Use the function **over** from the package **sp**. 
+Use the function **over** from the package **sp** to extract the SST data using the buffer.
 
 ```{r}
 SST_buffer<- over(SST_sp,This_buffer)
 ```
 
-Now we have information on those values that fall inside the buffer. Add this information to the data frame. 
+The SST values that fall inside the buffer are now added as a column named **sst_inside** in the data frame.
 
 ```{r}
 SST_dfclean$sst_inside <- as.numeric(SST_buffer)
 ```
 
-Now, subset to only keep the data inside the buffer. 
+The values that fall inside the buffer are shown as **1**.  
+To keep only the data inside the buffer select only those rows with values inside the buffer using the function **filter**.
 
 ```{r}
 SST_inside<-SST_dfclean %>%
@@ -194,6 +202,8 @@ SST_inside<-SST_dfclean %>%
 
 
 ## Subset
+
+To plot the SST data, select the information from the new data frame **SST_inside** and the function **geom_raster** to plot the information. 
 
 ```{r, fig.height=4}
 ggplot() +
@@ -223,5 +233,13 @@ ggsave(ggplot() +
        units = "in",
        dpi = 300)
 ```
+
+Use the values inside the buffer to calculate the average SST
+
+```{r}
+mean(SST_inside$sst)
+sd(SST_inside$sst)
+```
+
 
 End of document

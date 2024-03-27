@@ -1,0 +1,173 @@
+---
+title: "Add text on images using R"
+description: |
+  A short description of the post.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-05-02
+preview: blog33_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - magick
+  - English
+  - Y2024
+---
+
+# Intro
+
+This post is to edit images in R.  
+
+Using R assures that your image would not be compress as happens when you open it with some other programs. 
+
+The blog consist of two parts:  
+1. Add letter to a picture and export  
+2. Merge two pictures into one and export  
+
+## 1. Add letter to a picture and export
+
+### Packages
+
+Use the package **magick** to process images in R.  
+
+For more information: https://docs.ropensci.org/magick/articles/intro.html#read-and-write
+
+To install the package
+
+```{r, eval=FALSE}
+install.packages("magick")
+```
+
+To call the package
+
+```{r}
+library(magick)
+```
+
+### Data
+
+Give the file path as **My_directory**.  
+Check if you gave the correct path by using the function **list.files**.  
+It should show the images you want to use.  
+
+```{r, echo=FALSE}
+library(here)
+My_directory<-here('C://Users//lerma//OneDrive//Documents//03Academico//02Proyectos-Postdoc//2024//1Programming//1Distill//Distill//_posts//2024-05-02-imagesforpublication')
+```
+
+```{r, eval=FALSE}
+list.files(My_directory)
+```
+
+Read images using the function **image_read**. 
+
+```{r}
+Fig1_original<- image_read(paste0(My_directory,"\\MABO.JPG"))
+```
+
+The function **image_draw** will show the picture in the Viewer.  
+Moreover, it gives information on the width and height of the picture.  
+
+```{r}
+Fig1_draw<-image_draw(Fig1_original)
+Fig1_draw
+```
+
+## Add text
+
+To add text use the function **image_annotate** 
+
+To add the text in the right bottom use the information from the dimensions above to define the xaxis and yaxis. 
+
+```{r}
+Fig1_text<-image_annotate(Fig1_draw, "(a)",  location = "+1199+999", font = 'Arial', size = 100, color='white')
+```
+
+```{r, eval=TRUE, echo=FALSE}
+image_write(Fig1_text, path = paste0(My_directory,"/Fig1_rb.png"), format = "png")
+```
+
+```{r, fig.height=4,echo=FALSE, fig.align='left'}
+#list.files(My_directory)
+Fig1A_rb<-paste0(My_directory,"/Fig1_rb.png")
+knitr::include_graphics(Fig1A_rb)
+```
+
+To add the text in the left top part you can use define the xaxis and yaxis as 100.
+
+```{r}
+Fig1_text<-image_annotate(Fig1_draw, "(a)",  location = "+50+50", font = 'Arial', size = 100, color='white')
+```
+
+```{r, eval=FALSE, echo=FALSE}
+image_write(Fig1_text, path = paste0(My_directory,"/Fig1_lt.png"), format = "png")
+```
+
+```{r, fig.height=4,echo=FALSE, fig.align='left'}
+#list.files(My_directory)
+Fig1A_lt<-paste0(My_directory,"/Fig1_lt.png")
+knitr::include_graphics(Fig1A_lt)
+```
+
+
+
+ 
+
+## Export
+
+Use the function **image_write** to export.
+
+```{r, eval=FALSE}
+image_write(Fig1_text, path = paste0(My_directory,"/Fig1_tl.png"), format = "png")
+```
+
+# 2. Merge two pictures into one and export
+
+Follow the same steps as above, but with a second picture.
+
+```{r}
+Fig2_original<- image_read(paste0(My_directory,"\\RFBO.JPG"))
+Fig2_draw<-image_draw(Fig2_original)
+Fig2_text<-image_annotate(Fig2_draw, "(b)",  location = "+50+50", font = 'Arial', size = 100, color='white')
+image_write(Fig2_text, path = paste0(My_directory,"/Fig2_lt.png"), format = "png")
+```
+
+## Combine
+
+Read the two modified pictures. 
+
+## Add border
+
+Use the function **image_border** to add some space between the pictures. 
+
+```{r}
+Fig1_border<-image_border(image_background(Fig1_text, "transparent"), "white", "40x10")
+Fig1_border
+```
+
+```{r}
+Fig2_border<-image_border(image_background(Fig2_text, "transparent"), "white", "40x10")
+Fig2_border
+```
+
+
+
+Use the function **image_append** to have both pictures side by side.  
+
+```{r}
+image_append(c(Fig1_border,Fig2_border))
+```
+
+## Export
+
+Use the function **image_write** to export the picture.
+
+```{r, eval=FALSE}
+image_write(image_append(c(Fig1_border,Fig2_border)), path = paste0(My_directory,"/Fig1_append.png"), format = "png")
+```
+
+End of document
+
