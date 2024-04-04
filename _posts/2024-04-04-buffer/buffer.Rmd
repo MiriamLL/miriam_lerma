@@ -5,7 +5,7 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 2024-04-03
+date: 2024-04-04
 preview: blog32_portada.jpg
 output:
   distill::distill_article:
@@ -51,7 +51,8 @@ SST_values<-griddap(SST_info,
                     time = c('2023-03-01T00:00:00Z','2023-03-30T00:00:00Z'), 
                     fields = 'sst')
 ```
-To acces the data as data frame, extract the data. 
+
+To access the data as data frame, extract the data. 
 
 ```{r}
 SST_df<-SST_values$data
@@ -90,7 +91,7 @@ world_map <- getMap()
 
 To plot using ggplot a data frame is recommended. Use the function *fortify* to be able to get the data in a data frame format. 
 
-```{r}
+```{r, warning=FALSE}
 world_points <- fortify(world_map)
 world_points$region <- world_points$id
 world_df <-world_points[,c("long","lat","group", "region")]
@@ -98,7 +99,7 @@ world_df <-world_points[,c("long","lat","group", "region")]
 
 ```{r, fig.height=4}
 ggplot() +
- geom_raster(data=SST_dfclean,aes(x=lon, y=lat, fill = sst))+ scale_fill_viridis_c(option = "H")+
+ geom_raster(data=SST_dfclean,aes(x=longitude, y=latitude, fill = sst))+ scale_fill_viridis_c(option = "H")+
  geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))
 ```
@@ -134,7 +135,7 @@ create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
 
 The central point and the kilometers are the arguments needed. 
 
-```{r}
+```{r, warning=FALSE}
 This_buffer<-create_buffer(central_point=This_point,buffer_km=20)
 ```
 Use the projection to convert the buffer into a SpatialPolygons.
@@ -157,9 +158,9 @@ The function **geom_polygon** to plot the base maps data.
 The function **geom_polygon** to plot the buffer.  
 Adjust to your corresponding area on the **coord_sf**.  
 
-```{r, fig.height=4}
+```{r, fig.height=4, warning=FALSE}
 ggplot() +
- geom_raster(data=SST_dfclean,aes(x=lon, y=lat, fill = sst))+ scale_fill_viridis_c(option = "H")+
+ geom_raster(data=SST_dfclean,aes(x=longitude, y=latitude, fill = sst))+ scale_fill_viridis_c(option = "H")+
  geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+
  geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='black', fill='transparent', linetype='dashed')+
@@ -172,10 +173,9 @@ ggplot() +
 
 Convert the SST data into a SpatialPointsDataFrame.
 
-
 ```{r}
 SST_sp <- SST_dfclean
-sp::coordinates(SST_sp) <- ~lon + lat
+sp::coordinates(SST_sp) <- ~longitude + latitude
 sp::proj4string(SST_sp) = sp::CRS("+init=epsg:4326")
 ```
 
@@ -207,7 +207,7 @@ To plot the SST data, select the information from the new data frame **SST_insid
 
 ```{r, fig.height=4}
 ggplot() +
-  geom_raster(data=SST_inside,aes(x=lon, y=lat, fill = sst))+ scale_fill_viridis_c(option = "H")+
+  geom_raster(data=SST_inside,aes(x=longitude, y=latitude, fill = sst))+ scale_fill_viridis_c(option = "H")+
   geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
   coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+
   geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='black', fill='transparent', linetype='dashed')+

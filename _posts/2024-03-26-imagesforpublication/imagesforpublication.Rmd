@@ -1,0 +1,122 @@
+---
+title: "images_for_publication"
+description: |
+  A short description of the post.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-03-26
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+This post is to edit images in R.
+
+Using R assures that your image would not be compress as happends when you open it with some other programs. 
+
+# Packages
+
+To edit images in R, the package that I use is magick.
+
+Here all the information: https://docs.ropensci.org/magick/articles/intro.html#read-and-write
+
+To install the packages
+
+```{r}
+library(magick)
+```
+
+To call the package
+
+
+# Data
+
+Here I have two images.
+
+## Directory
+
+```{r}
+library(here)
+Image_directory<-paste0(here(),'/_post/2024-03-26_imagesforpublication')
+Image_directory
+list.files(Image_directory)
+```
+
+
+## MABO
+
+
+```{r}
+MABO<- image_read(paste0(ImageFolder,"\\MABO.JPG"))
+MABO1<-image_draw(MABO)
+MABO1
+```
+
+#### Add text
+```{r}
+textoB<-expression(paste("(b)"))
+# Derecha abajo
+# text(3008-100,  2000-100, label=textoB, cex=10, col='white')
+# Izquierda arriba
+text(100, 
+     100, 
+     label=textoB, cex=10, col='white')
+```
+
+
+#### Export
+```{r}
+ResultsFolder<-here::here("3Results")
+image_write(MABO1, path = paste0(ResultsFolder,"/Fig1B.png"), format = "png")
+```
+
+### RFBO
+```{r}
+ImageFolder<-here::here("1Data/FotosSula")
+RFBO<- image_read(paste0(ImageFolder,"\\Publication_RFBO.jpg"))
+RFBO1<-image_draw(RFBO)
+RFBO1
+textoA<-expression(paste("(a)"))
+text(100, 
+     100, 
+     label=textoA, cex=10, col='white')
+ResultsFolder<-here::here("3Results")
+image_write(RFBO1, path = paste0(ResultsFolder,"/Fig1A.png"), format = "png")
+```
+
+# Combine
+
+```{r}
+RFBO2<- image_read(paste0(ResultsFolder,"\\Fig1A.png"))
+MABO2<- image_read(paste0(ResultsFolder,"\\Fig1B.png"))
+```
+
+```{r}
+image_blank(1000, 1000, color = 'white') %>%
+  image_composite(MABO2, offset = '+100+100')  %>%
+  image_composite(RFBO2,  offset = '+100+100', gravity = 'northeast')  
+```
+## Add border
+```{r}
+RFBO3<-image_border(image_background(RFBO2, "transparent"), "white", "40x10")
+RFBO3
+```
+
+```{r}
+MABO3<-image_border(image_background(MABO2, "transparent"), "white", "40x10")
+MABO3
+```
+
+## Image append
+
+```{r}
+image_append(c(RFBO3,MABO3))
+```
+## Export
+
+```{r}
+image_write(image_append(c(RFBO3,MABO3)), path = paste0(ResultsFolder,"/Fig1AB.png"), format = "png")
+```
