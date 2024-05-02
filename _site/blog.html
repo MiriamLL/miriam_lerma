@@ -107,7 +107,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2024-04-04-buffer","2024-03-11-year-sst","2024-02-06-environmentalvariables","2024-01-15-calendar","2023-12-04-arrows","2023-11-02-secondaryxtitle","2023-10-02-inside-legend","2023-09-01-patchwork-legend","2023-08-02-customlegend","2023-07-13-custompoints","2023-06-01-gganimate","2023-05-05-github-page","2023-04-06-gridraster","2023-03-04-mapping-in-r","psg2023","2023-02-04-subset-shapefile","2023-01-27-qgispolygon","2022-12-04-day-night","2022-11-20-mastodon","2022-10-04-identify-gaps","2022-09-13-hr-considerations","2022-08-17-count-days","2022-07-01-nestlocation","2022-06-30-time-formats","2022-05-23-speed","2022-04-07-land-or-not","2022-03-22-interpolation","2022-02-24-timeoverlaps","2022-01-21-sharedareas","2021-11-25-embc","2021-10-27-gitgithub","bls7","2021-09-24-home-range-adehabitathr","2021-07-05-GIScolores","2021-06-03-paquetes","2021-06-03-vitae","2021-06-03-paginadistill"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2024-05-02-imagesforpublication","2024-04-04-buffer","2024-03-11-year-sst","2024-02-06-environmentalvariables","2024-01-15-calendar","2023-12-04-arrows","2023-11-02-secondaryxtitle","2023-10-02-inside-legend","2023-09-01-patchwork-legend","2023-08-02-customlegend","2023-07-13-custompoints","2023-06-01-gganimate","2023-05-05-github-page","2023-04-06-gridraster","2023-03-04-mapping-in-r","psg2023","2023-02-04-subset-shapefile","2023-01-27-qgispolygon","2022-12-04-day-night","2022-11-20-mastodon","2022-10-04-identify-gaps","2022-09-13-hr-considerations","2022-08-17-count-days","2022-07-01-nestlocation","2022-06-30-time-formats","2022-05-23-speed","2022-04-07-land-or-not","2022-03-22-interpolation","2022-02-24-timeoverlaps","2022-01-21-sharedareas","2021-11-25-embc","2021-10-27-gitgithub","bls7","2021-09-24-home-range-adehabitathr","2021-07-05-GIScolores","2021-06-03-paquetes","2021-06-03-vitae","2021-06-03-paginadistill"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -455,8 +455,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -785,7 +785,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1858,21 +1857,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2426,7 +2419,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2612,6 +2605,28 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Blog">Blog</h1>
+<a href="posts/2024-05-02-imagesforpublication/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["R","magick","English","Y2024"]}</script>
+<div class="metadata">
+<div class="publishedDate">May 2, 2024</div>
+<div class="dt-authors">
+<div class="dt-author">Miriam Lerma</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="posts/2024-05-02-imagesforpublication/blog33_portada.jpg"/>
+</div>
+<div class="description">
+<h2>Add text on images using R</h2>
+<div class="dt-tags">
+<div class="dt-tag">R</div>
+<div class="dt-tag">magick</div>
+<div class="dt-tag">English</div>
+<div class="dt-tag">Y2024</div>
+</div>
+<p>A short description of the post.</p>
+</div>
+</a>
 <a href="posts/2024-04-04-buffer/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["R","ggplot2","English","Y2024"]}</script>
 <div class="metadata">
@@ -2709,7 +2724,7 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2023-12-04-arrows/blog28.jpg"/>
+<img data-src="posts/2023-12-04-arrows/blog28.jpg"/>
 </div>
 <div class="description">
 <h2>using arrows</h2>
@@ -3425,7 +3440,7 @@ function init_posts_list() {
 <ul>
 <li>
 <a href="#category:Articles">Articles</a>
-<span class="category-count">(37)</span>
+<span class="category-count">(38)</span>
 </li>
 <li>
 <a href="#category:Biologging">Biologging</a>
@@ -3433,7 +3448,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:English">English</a>
-<span class="category-count">(32)</span>
+<span class="category-count">(33)</span>
 </li>
 <li>
 <a href="#category:Español">Español</a>
@@ -3452,6 +3467,10 @@ function init_posts_list() {
 <span class="category-count">(2)</span>
 </li>
 <li>
+<a href="#category:magick">magick</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
 <a href="#category:Package">Package</a>
 <span class="category-count">(1)</span>
 </li>
@@ -3465,7 +3484,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:R">R</a>
-<span class="category-count">(33)</span>
+<span class="category-count">(34)</span>
 </li>
 <li>
 <a href="#category:shapefiles">shapefiles</a>
@@ -3489,7 +3508,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:Y2024">Y2024</a>
-<span class="category-count">(4)</span>
+<span class="category-count">(5)</span>
 </li>
 </ul>
 </div>
@@ -3509,7 +3528,8 @@ function init_posts_list() {
 
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
