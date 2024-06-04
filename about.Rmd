@@ -42,12 +42,14 @@ library(fontawesome)
 
 I am part of the Seevogelmonitoring team at the Dachverband Deutscher Avifaunisten [DDA](https://www.dda-web.de/). My work entitles analyzing spatial patterns of marine animals.
 
-I am also collaborating on active projects between Germany ([FTZ](https://www.ftz.uni-kiel.de/de)), Mexico ([CICESE](https://www.cicese.edu.mx/)) and Chile ([UCN](https://www.ucn.cl/)). 
-My focus is coastal and marine animals, in particular shorebirds and seabirds.  My research interests include conservation, ecology, physiology, and ecotoxicology. You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
+I am also collaborating on active tracking projects for Germany ([FTZ](https://www.ftz.uni-kiel.de/de)), Mexico ([CICESE](https://www.cicese.edu.mx/)) and Chile ([UCN](https://www.ucn.cl/)). 
 
-I am passionate about nature, biology, and outdoor activities (hiking, kayaking, snorkelling).   
+My research interests include conservation, ecology, physiology, and ecotoxicology. 
 
-If you are interested in a collaboration, or have any questions, please feel free to email me. 
+I recently started to do freelance work. I assist on fieldwork, data analyses and visualizations. I am currently available for hire.
+
+You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/Curriculum/master/CV/CV-Lerma.pdf). 
+
 
 ### `r fa("envelope", fill = "black")` Contact
 **Dr. rer. nat. Miriam Lerma** <br>
