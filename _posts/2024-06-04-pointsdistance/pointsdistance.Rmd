@@ -232,5 +232,5 @@ ggsave(letters_plot,
 
 Alternatively using the package [nngeo](https://cran.r-project.org/web/packages/nngeo/index.html)  
 Check my package [GermanNorthSea](https://www.miriam-lerma.com/posts/2023-06-02-germannorthsea/)  
-How to make mapes in R [blogpost](https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/)
+How to make maps in R [blogpost](https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/)
 
