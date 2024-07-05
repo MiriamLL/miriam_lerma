@@ -1,0 +1,154 @@
+---
+title: "Remove small trips"
+description: |
+  Identify trips with large gaps and remove them.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-07-05
+preview: blog36_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2024
+---
+
+# Intro
+
+This post is to identify gaps between points and remove trips that have large gaps.  
+
+# Data 
+
+For the exercises, test data is from masked boobies. <br>
+To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+library(sula)
+GPS_01trips<-GPS01_trips %>%
+  mutate(dt=paste(DateGMT,TimeGMT))%>%
+  mutate(dt=as.POSIXct(strptime(dt, "%d/%m/%Y %H:%M:%S")))
+```
+
+Create an artificial gap
+
+```{r}
+GPS_02trips<-GPS_01trips %>%
+  filter(dt >= 10 & Hour <= 11)
+```
+
+```{r, fig.width=4, fig.height=4}
+ggplot()+
+  geom_path(data = GPS_02trips,
+            aes(x=Longitude,y = Latitude),color='red')+
+  geom_point(data = GPS_02trips,
+            aes(x=Longitude,y = Latitude),color='blue')+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )
+```
+
+# Calculate gaps
+
+The gaps can be calculated using the function **lag** and **difftime**, but to make it precisely is better to separate trip. Particularly if you have already removed the nest locations.  
+For this I create a function **calculate_gaps** in a package **larus**.  
+
+You can either adjust the function or download it from github. 
+
+```{r}
+#devtools::install_github("MiriamLL/larus")
+larus::calculate_gaps
+```
+
+but if you have already separated by trips and remove nest locations the best is to make a loop. 
+
+```{r}
+GPS01_03gaps<-calculate_gaps(GPS_data = GPS_02trips,
+                           column_datetime = 'dt',
+                           column_tripnumber = 'trip_number')
+```
+
+
+Here you can see that in the majority of the locations there are gaps < 20 minutes, but at least one trip has a gap of 120 minutes.
+
+```{r}
+hist(GPS01_gaps$timedif_min)
+```
+
+# X
+
+## remove_incomplete
+
+```{r}
+remove_incomplete<-function(data=data,gap=gap){
+  
+  realgaps<-data %>%
+    filter(timedif_min>gap)
+  
+  realgaps$ID_trip<-paste0(realgaps$ID,realgaps$trip_number)
+  
+  tripstoremove<-unique(realgaps$ID_trip)
+  
+  data$ID_trip<-paste0(data$ID,data$trip_number)
+  
+  clean<-data %>%
+    filter(!ID_trip %in% tripstoremove)
+  
+  return(clean)
+}
+```
+
+# Where?
+
+Where did the gap occurred?
+
+```{r}
+library(ggplot2)
+```
+
+Each circle is the locations, the size of the circle is the gap between locations
+
+```{r}
+ID01_nest<-data.frame(Longitude=-109.4531,Latitude=-27.20097)
+```
+
+```{r}
+checar_intervalos<-function(data=data){
+  
+  data_list <- split(data, data$ID)
+  for (i in seq_along(data_list)) {
+  data_individual <- data_list[[i]]
+  data_gaps<-calculate_gaps(GPS_data = data_individual,
+                          column_datetime = 'dt',
+                          column_tripnumber = 'trip_number')
+  data_list[[i]] <- data_gaps
+
+  }
+
+    data_clean<-do.call("rbind",data_list)
+    rownames(data_clean)<-NULL
+  
+  return(data_clean)
+}
+```
+
+
+
+
+
+
+
+# Further reading
+
+https://www.miriam-lerma.com/posts/2022-10-04-identify-gaps/
+
