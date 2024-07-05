@@ -1,0 +1,217 @@
+---
+title: "Interpolate a path"
+description: |
+  Doing a linear interpolation of tracks of animals.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-07-05
+preview: blog35_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2024
+---
+
+# Intro
+
+This post is about how to linear interpolate points from a trip
+
+
+# Data
+
+Download my package **sula** to have access to test data and the function **interpolate_trips**. 
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+library(sula)
+```
+
+Inside the package, there is data from a tracked individual from Rapa Nui, Chile
+
+```{r, include=FALSE}
+ID01_track<-sula::GPS01_trips
+```
+
+The data contains Latitude, Longitude, Date, Time, ID and trip_number
+
+```{r}
+head(ID01_track)
+```
+
+Plot the data using **ggplot** to see whats inside.
+
+```{r}
+library(ggplot2)
+```
+
+Add the central location for reference.
+
+```{r}
+ID01_nest<-data.frame(Longitude=-109.4531,Latitude=-27.20097)
+```
+
+In the figure, the original points recorded are presented. Each color represents a different individual, the black dot is the colony. 
+
+```{r, fig.width=4, fig.height=4}
+Original_track<-ggplot(ID01_track, aes(x=Longitude, y=Latitude, color=trip_number)) + 
+  geom_point()+
+  theme_bw()+
+  ggtitle('Original tracking data')+
+  theme_bw()+
+  theme(legend.position='none')+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )+
+  geom_point(data=ID01_nest,aes(x = Longitude,y= Latitude), 
+             color="black", fill="black",shape=16,size=5,stroke=1.5)
+Original_track
+```
+
+# Interpolations
+
+For the function, provide the following information:  
+1. trip_number, this would separate the trips and interpolate them using a loop. This is important to prevent that locations inside the nest are interpolated.  
+2. column_lat, and column_lon, need to be provided with the name of your columns. Here, Latitude and Longitude were the names of my columns. I am providing the Latitude and Longitude in degrees.  
+3. column_date, column_time and datetime_format should also be fitting your provided data.  
+4. interval, please give the interval in seconds. This interval would depend on the type of data you are providing. Because this is a linear interpolation, be careful to not have large gaps. If you do, I would suggest to remove trips with large gaps before doing the interpolation. 
+
+## Interpolate to 1 minute
+
+```{r}
+ID01_interpolated1m<-interpolate_trips(GPS_data=ID01_track,
+                                     interval='60 sec',
+                                     column_date='DateGMT',
+                                     column_time='TimeGMT',
+                                     column_trip='trip_number',
+                                     column_lat='Latitude',
+                                     column_lon='Longitude',
+                                     datetime_format<-"%d/%m/%Y %H:%M:%S")
+```
+
+You can see that after the function you have more data points.  
+This is because the original data was collected every 5 minutes, and the interpolation added locations every one minute.  
+
+```{r}
+nrow(ID01_track)
+nrow(ID01_interpolated1m)
+```
+
+Plot the interpolated data set to see the difference. 
+
+```{r, fig.width=4, fig.height=4}
+Interpolated_1m<-ggplot(ID01_interpolated1m, aes(x=Longitude, y=Latitude, color=trip_number)) + 
+  geom_point()+
+  ggtitle('Interpolated to 1 min')+
+  theme_bw()+
+  theme(legend.position='none')+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )+
+  geom_point(data=ID01_nest,aes(x = Longitude,y= Latitude), 
+             color="black", fill="black",shape=16,size=5,stroke=1.5)
+Interpolated_1m
+```
+
+## Interpolate to 15 minutes
+
+To interpolate to 15 minutes, change the interval to 900 sec.
+
+```{r}
+ID01_interpolated15m<-interpolate_trips(GPS_data=ID01_track,
+                                     column_trip='trip_number',
+                                     column_lat='Latitude',
+                                     column_lon='Longitude',
+                                     column_date='DateGMT',
+                                     column_time='TimeGMT',
+                                     datetime_format<-"%d/%m/%Y %H:%M:%S",
+                                     interval='900 sec')
+```
+
+You can see that after the function you have less data points.  
+This is because the original data was collected every 5 minutes, and the interpolation added locations every 15 minutes.  
+
+```{r}
+nrow(ID01_track)
+nrow(ID01_interpolated15m)
+```
+
+Plot to see the difference.
+
+```{r, fig.width=4, fig.height=4}
+Interpolated_15m<-ggplot(ID01_interpolated15m, aes(x=Longitude, y=Latitude, color=trip_number)) + 
+  geom_point()+
+  theme_bw()+
+  ggtitle('Interpolated to 15 mins')+
+  theme_bw()+
+  theme(legend.position='none')+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )+
+  geom_point(data=ID01_nest,aes(x = Longitude,y= Latitude), 
+             color="black", fill="black",shape=16,size=5,stroke=1.5)
+Interpolated_15m
+```
+
+
+# Compare
+
+Using the package **patchwork** we can see the difference side by side.
+
+```{r}
+library(patchwork)
+```
+
+```{r, fig.width=10, fig.height=4}
+Original_track+Interpolated_1m+Interpolated_15m
+```
+ 
+Select the interpolation interval that fits better your data.
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+ggsave(Original_track+Interpolated_1m+Interpolated_15m,
+       filename = paste0(here(),"/_posts/2024-07-05-interpolate/blog35.jpg"),
+       width = 10, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+ 
+ 
+# Further reading
+
+To follow instructions from raw data to interpolation [check this blogpost](https://www.miriam-lerma.com/posts/2022-03-22-interpolation/).  
+To access the function click [here](https://github.com/MiriamLL/sula/blob/main/R/interpolate_trips.R). You could copy and adjust the function to your data.  
+
+If you want to give it a try, there are other packages to interpolate data:  
+- [crawl](https://cran.r-project.org/web/packages/crawl/crawl.pdf)  
+- [adehabitatLT](https://cran.r-project.org/web/packages/adehabitatLT/adehabitatLT.pdf)  
+- [trip](https://cran.r-project.org/web/packages/trip/trip.pdf)  
+- [pastecs](https://cran.r-project.org/web/packages/pastecs/index.html)  
+
+
+ 
