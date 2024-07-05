@@ -1,9 +1,9 @@
 ---
 title: "Miriam Lerma"
-image: "images/LermaCircular.jpg"
+image: "images/Miriam_Lerma-6622_circular.jpg"
 links:
-  - label: '<i class="fab fa-mastodon"></i> Mastodon'
-    url: "https://tinyurl.com/47d4fvnx"
+  - label: '<i class="fa-brands fa-linkedin-in"></i> Linkedin'
+    url: "https://www.linkedin.com/in/miriam-lerma/"
   - label: '<i class="fab fa-github"></i> GitHub'
     url: "https://github.com/MiriamLL"
   - label: '<i class="fas fa-envelope"></i> Email'
