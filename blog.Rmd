@@ -7,6 +7,7 @@ output:
     toc_float: true
 listing:
   posts:
+    - 2024-07-05-interpolate
     - 2024-06-04-pointsdistance
     - 2024-05-02-imagesforpublication
     - 2024-04-04-buffer

@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -785,6 +785,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -825,9 +826,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display: none !important;
   }
 
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
+    border-top: none;
   }
 
   d-appendix {
@@ -922,6 +935,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
   }
 
   d-article pre {
@@ -1683,6 +1701,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // create d-title
     $('.d-title').changeElementType('d-title');
 
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
@@ -1760,8 +1784,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('.distill-force-highlighting-css').parent().remove();
 
     // remove empty line numbers inserted by pandoc when using a
-    // custom syntax highlighting theme
-    $('code.sourceCode a:empty').remove();
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
     // load distill framework
     load_distill_framework();
@@ -1787,12 +1812,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
         if (orcid_id) {
           var a = $('<a></a>');
           a.attr('href', 'https://orcid.org/' + orcid_id);
           var img = $('<img></img>');
           img.addClass('orcid-id');
-          img.attr('alt', 'ORCID ID');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
           img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
           a.append(img);
           $(this).append(a);
@@ -1857,15 +1883,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2419,7 +2451,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2472,6 +2504,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-title">
 <h1>My list of publications</h1>
+
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2485,85 +2518,33 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#section" id="toc-section">2024</a>
 <ul>
-<li><a
-href="#variations-in-interspecific-and-sexrelated-niche-partitioning-in-pelagic-boobies-during-their-annual-cycle"
-id="toc-variations-in-interspecific-and-sexrelated-niche-partitioning-in-pelagic-boobies-during-their-annual-cycle">12.
-Variations in inter‐specific and sex‐related niche partitioning in
-pelagic boobies during their annual cycle</a></li>
+<li><a href="#variations-in-interspecific-and-sexrelated-niche-partitioning-in-pelagic-boobies-during-their-annual-cycle" id="toc-variations-in-interspecific-and-sexrelated-niche-partitioning-in-pelagic-boobies-during-their-annual-cycle">12. Variations in inter‐specific and sex‐related niche partitioning in pelagic boobies during their annual cycle</a></li>
 </ul></li>
 <li><a href="#section-1" id="toc-section-1">2023</a>
 <ul>
-<li><a
-href="#corticosterone-levels-leukocyte-profiles-and-foraging-and-diving-behaviours-of-humboldt-penguins-during-chick-rearing-in-northern-chile"
-id="toc-corticosterone-levels-leukocyte-profiles-and-foraging-and-diving-behaviours-of-humboldt-penguins-during-chick-rearing-in-northern-chile">11.
-Corticosterone levels, leukocyte profiles, and foraging and diving
-behaviours of Humboldt penguins during chick rearing in Northern
-Chile</a></li>
-<li><a
-href="#seabird-morphology-determines-operational-wind-speeds-tolerable-maxima-and-responses-to-extremes"
-id="toc-seabird-morphology-determines-operational-wind-speeds-tolerable-maxima-and-responses-to-extremes">10.
-Seabird morphology determines operational wind speeds, tolerable maxima,
-and responses to extremes</a></li>
+<li><a href="#corticosterone-levels-leukocyte-profiles-and-foraging-and-diving-behaviours-of-humboldt-penguins-during-chick-rearing-in-northern-chile" id="toc-corticosterone-levels-leukocyte-profiles-and-foraging-and-diving-behaviours-of-humboldt-penguins-during-chick-rearing-in-northern-chile">11. Corticosterone levels, leukocyte profiles, and foraging and diving behaviours of Humboldt penguins during chick rearing in Northern Chile</a></li>
+<li><a href="#seabird-morphology-determines-operational-wind-speeds-tolerable-maxima-and-responses-to-extremes" id="toc-seabird-morphology-determines-operational-wind-speeds-tolerable-maxima-and-responses-to-extremes">10. Seabird morphology determines operational wind speeds, tolerable maxima, and responses to extremes</a></li>
 </ul></li>
 <li><a href="#section-2" id="toc-section-2">2022</a>
 <ul>
-<li><a
-href="#nutritional-state-variations-in-a-tropical-seabird-throughout-its-breeding-season"
-id="toc-nutritional-state-variations-in-a-tropical-seabird-throughout-its-breeding-season">9.
-Nutritional state variations in a tropical seabird throughout its
-breeding season</a></li>
+<li><a href="#nutritional-state-variations-in-a-tropical-seabird-throughout-its-breeding-season" id="toc-nutritional-state-variations-in-a-tropical-seabird-throughout-its-breeding-season">9. Nutritional state variations in a tropical seabird throughout its breeding season</a></li>
 </ul></li>
 <li><a href="#section-3" id="toc-section-3">2020</a>
 <ul>
-<li><a
-href="#breeding-stage-not-sex-affects-foraging-characteristics-in-masked-boobies-at-rapa-nui"
-id="toc-breeding-stage-not-sex-affects-foraging-characteristics-in-masked-boobies-at-rapa-nui">8.
-Breeding stage, not sex, affects foraging characteristics in masked
-boobies at Rapa Nui</a></li>
-<li><a
-href="#foraging-ranges-of-humboldt-penguins-spheniscus-humboldti-from-tilgo-island-the-critical-need-for-protecting-a-unique-marine-habitat"
-id="toc-foraging-ranges-of-humboldt-penguins-spheniscus-humboldti-from-tilgo-island-the-critical-need-for-protecting-a-unique-marine-habitat">7.
-Foraging ranges of Humboldt penguins <em>Spheniscus humboldti</em> from
-Tilgo island: the critical need for protecting a unique marine
-habitat</a></li>
-<li><a
-href="#foraging-ecology-of-a-marine-top-predator-in-the-eastern-tropical-pacific-over-3-years-with-different-enso-phases"
-id="toc-foraging-ecology-of-a-marine-top-predator-in-the-eastern-tropical-pacific-over-3-years-with-different-enso-phases">6.
-Foraging ecology of a marine top predator in the Eastern Tropical
-Pacific over 3 years with different ENSO phases</a></li>
-<li><a
-href="#foraging-ecology-of-masked-boobies-sula-dactylatra-in-the-worlds-largest-oceanic-desert"
-id="toc-foraging-ecology-of-masked-boobies-sula-dactylatra-in-the-worlds-largest-oceanic-desert">5.
-Foraging ecology of masked boobies (<em>Sula dactylatra</em>) in the
-world’s largest ‘oceanic desert’</a></li>
-<li><a
-href="#zinc-concentrations-in-blue-footed-booby-sula-nebouxii-eggs-nestlings-and-adults"
-id="toc-zinc-concentrations-in-blue-footed-booby-sula-nebouxii-eggs-nestlings-and-adults">4.
-Zinc concentrations in Blue-footed booby (<em>Sula nebouxii</em>) eggs,
-nestlings, and adults</a></li>
+<li><a href="#breeding-stage-not-sex-affects-foraging-characteristics-in-masked-boobies-at-rapa-nui" id="toc-breeding-stage-not-sex-affects-foraging-characteristics-in-masked-boobies-at-rapa-nui">8. Breeding stage, not sex, affects foraging characteristics in masked boobies at Rapa Nui</a></li>
+<li><a href="#foraging-ranges-of-humboldt-penguins-spheniscus-humboldti-from-tilgo-island-the-critical-need-for-protecting-a-unique-marine-habitat" id="toc-foraging-ranges-of-humboldt-penguins-spheniscus-humboldti-from-tilgo-island-the-critical-need-for-protecting-a-unique-marine-habitat">7. Foraging ranges of Humboldt penguins <em>Spheniscus humboldti</em> from Tilgo island: the critical need for protecting a unique marine habitat</a></li>
+<li><a href="#foraging-ecology-of-a-marine-top-predator-in-the-eastern-tropical-pacific-over-3-years-with-different-enso-phases" id="toc-foraging-ecology-of-a-marine-top-predator-in-the-eastern-tropical-pacific-over-3-years-with-different-enso-phases">6. Foraging ecology of a marine top predator in the Eastern Tropical Pacific over 3 years with different ENSO phases</a></li>
+<li><a href="#foraging-ecology-of-masked-boobies-sula-dactylatra-in-the-worlds-largest-oceanic-desert" id="toc-foraging-ecology-of-masked-boobies-sula-dactylatra-in-the-worlds-largest-oceanic-desert">5. Foraging ecology of masked boobies (<em>Sula dactylatra</em>) in the world’s largest ‘oceanic desert’</a></li>
+<li><a href="#zinc-concentrations-in-blue-footed-booby-sula-nebouxii-eggs-nestlings-and-adults" id="toc-zinc-concentrations-in-blue-footed-booby-sula-nebouxii-eggs-nestlings-and-adults">4. Zinc concentrations in Blue-footed booby (<em>Sula nebouxii</em>) eggs, nestlings, and adults</a></li>
 </ul></li>
 <li><a href="#section-4" id="toc-section-4">2017</a>
 <ul>
-<li><a
-href="#non-breeding-distribution-abundance-and-roosting-habitat-use-of-the-american-oystercatcher-haematopus-palliatus-frazari-in-sinaloa-mexico"
-id="toc-non-breeding-distribution-abundance-and-roosting-habitat-use-of-the-american-oystercatcher-haematopus-palliatus-frazari-in-sinaloa-mexico">3.
-Non-Breeding Distribution, Abundance, and Roosting Habitat Use of the
-American Oystercatcher (<em>Haematopus palliatus frazari</em>) in
-Sinaloa, Mexico</a></li>
-<li><a
-href="#lead-cadmium-and-mercury-in-the-blood-of-the-blue-footed-booby-sula-nebouxii-from-the-coast-of-sinaloa-gulf-of-california-mexico"
-id="toc-lead-cadmium-and-mercury-in-the-blood-of-the-blue-footed-booby-sula-nebouxii-from-the-coast-of-sinaloa-gulf-of-california-mexico">2.
-Lead, cadmium and mercury in the blood of the blue-footed booby
-(<em>Sula nebouxii</em>) from the coast of Sinaloa, Gulf of California,
-Mexico</a></li>
+<li><a href="#non-breeding-distribution-abundance-and-roosting-habitat-use-of-the-american-oystercatcher-haematopus-palliatus-frazari-in-sinaloa-mexico" id="toc-non-breeding-distribution-abundance-and-roosting-habitat-use-of-the-american-oystercatcher-haematopus-palliatus-frazari-in-sinaloa-mexico">3. Non-Breeding Distribution, Abundance, and Roosting Habitat Use of the American Oystercatcher (<em>Haematopus palliatus frazari</em>) in Sinaloa, Mexico</a></li>
+<li><a href="#lead-cadmium-and-mercury-in-the-blood-of-the-blue-footed-booby-sula-nebouxii-from-the-coast-of-sinaloa-gulf-of-california-mexico" id="toc-lead-cadmium-and-mercury-in-the-blood-of-the-blue-footed-booby-sula-nebouxii-from-the-coast-of-sinaloa-gulf-of-california-mexico">2. Lead, cadmium and mercury in the blood of the blue-footed booby (<em>Sula nebouxii</em>) from the coast of Sinaloa, Gulf of California, Mexico</a></li>
 </ul></li>
 <li><a href="#section-5" id="toc-section-5">2016</a>
 <ul>
-<li><a
-href="#environmentally-mediated-flexible-foraging-strategies-in-brown-boobies-in-the-gulf-of-california"
-id="toc-environmentally-mediated-flexible-foraging-strategies-in-brown-boobies-in-the-gulf-of-california">1.
-Environmentally-mediated flexible foraging strategies in Brown Boobies
-in the Gulf of California</a></li>
+<li><a href="#environmentally-mediated-flexible-foraging-strategies-in-brown-boobies-in-the-gulf-of-california" id="toc-environmentally-mediated-flexible-foraging-strategies-in-brown-boobies-in-the-gulf-of-california">1. Environmentally-mediated flexible foraging strategies in Brown Boobies in the Gulf of California</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2574,399 +2555,63 @@ in the Gulf of California</a></li>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>You can also find me on <a
-href="https://scholar.google.de/citations?hl=es&amp;user=uG2XdQcAAAAJ">GoogleScholar</a>
-and <a
-href="https://www.researchgate.net/profile/Miriam-Lerma">ResearchGate</a>.</p>
-<p>My ORCID is <a
-href="https://orcid.org/0000-0002-7632-9289">0000-0002-7632-9289</a>.</p>
+<p>You can also find me on <a href="https://scholar.google.de/citations?hl=es&amp;user=uG2XdQcAAAAJ">GoogleScholar</a> and <a href="https://www.researchgate.net/profile/Miriam-Lerma">ResearchGate</a>.</p>
+<p>My ORCID is <a href="https://orcid.org/0000-0002-7632-9289">0000-0002-7632-9289</a>.</p>
 <h1 id="section">2024</h1>
-<h3
-id="variations-in-interspecific-and-sexrelated-niche-partitioning-in-pelagic-boobies-during-their-annual-cycle">12.
-Variations in inter‐specific and sex‐related niche partitioning in
-pelagic boobies during their annual cycle</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Dehnhard N,
-Castillo-Guerrero JA, Hernandez-Vazquez S, Voigt CC, Garthe S<br />
-<strong>Abstract</strong> Animals that co-occur in a region (sympatry)
-may share the same environment (syntopy), and niche differentiation is
-expected among closely related species competing for resources. The
-masked booby (<em>Sula dactylatra</em>) and smaller congeneric
-red-footed booby (<em>Sula sula</em>) share breeding grounds. In
-addition to the inter-specific size difference, females of both species
-are also larger than the respective males (reversed sexual size
-dimorphism). Although both boobies consume similar prey, sometimes in
-mixed-species flocks, each species and sex may specialize in terms of
-their diet or foraging habitats. We examined inter- and intra-specific
-differences in isotopic values (δ13C and δ15N) in these pelagically
-feeding booby species during the incubation period at Clarion Island,
-Mexico, to quantify the degrees of inter- and intra-specific niche
-partitioning throughout the annual cycle. During incubation, both
-species preyed mainly on flyingfish and squid, but masked boobies had
-heavier food loads than red-footed boobies. There was no overlap in
-isotopic niches between masked and red-footed boobies during breeding
-(determined from whole blood), but there was slight overlap during the
-non-breeding period (determined from body feathers). Female masked
-boobies had a higher trophic position than conspecific males during
-breeding; however, no such pattern was detected in red-footed boobies.
-These results provide evidence of inter- and intra-specific niche
-partitioning in these tropical seabird species, particularly during the
-breeding period and in the more-dimorphic species. Our results suggest
-that these closely related species use different strategies to cope with
-the same tropical marine environment.<br />
-<strong>Read more:</strong> <a
-href="https://onlinelibrary.wiley.com/doi/10.1002/ece3.11255">Link to
-publication</a></p>
+<h3 id="variations-in-interspecific-and-sexrelated-niche-partitioning-in-pelagic-boobies-during-their-annual-cycle">12. Variations in inter‐specific and sex‐related niche partitioning in pelagic boobies during their annual cycle</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Dehnhard N, Castillo-Guerrero JA, Hernandez-Vazquez S, Voigt CC, Garthe S<br />
+<strong>Abstract</strong> Animals that co-occur in a region (sympatry) may share the same environment (syntopy), and niche differentiation is expected among closely related species competing for resources. The masked booby (<em>Sula dactylatra</em>) and smaller congeneric red-footed booby (<em>Sula sula</em>) share breeding grounds. In addition to the inter-specific size difference, females of both species are also larger than the respective males (reversed sexual size dimorphism). Although both boobies consume similar prey, sometimes in mixed-species flocks, each species and sex may specialize in terms of their diet or foraging habitats. We examined inter- and intra-specific differences in isotopic values (δ13C and δ15N) in these pelagically feeding booby species during the incubation period at Clarion Island, Mexico, to quantify the degrees of inter- and intra-specific niche partitioning throughout the annual cycle. During incubation, both species preyed mainly on flyingfish and squid, but masked boobies had heavier food loads than red-footed boobies. There was no overlap in isotopic niches between masked and red-footed boobies during breeding (determined from whole blood), but there was slight overlap during the non-breeding period (determined from body feathers). Female masked boobies had a higher trophic position than conspecific males during breeding; however, no such pattern was detected in red-footed boobies. These results provide evidence of inter- and intra-specific niche partitioning in these tropical seabird species, particularly during the breeding period and in the more-dimorphic species. Our results suggest that these closely related species use different strategies to cope with the same tropical marine environment.<br />
+<strong>Read more:</strong> <a href="https://onlinelibrary.wiley.com/doi/10.1002/ece3.11255">Link to publication</a></p>
 <h1 id="section-1">2023</h1>
-<h3
-id="corticosterone-levels-leukocyte-profiles-and-foraging-and-diving-behaviours-of-humboldt-penguins-during-chick-rearing-in-northern-chile">11.
-Corticosterone levels, leukocyte profiles, and foraging and diving
-behaviours of Humboldt penguins during chick rearing in Northern
-Chile</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Villavicencio CP,
-Luna N, Portflitt-Toro M, Serratosa J, Luna-Jorquera G, Garthe S, Quispe
-R<br />
-<strong>Abstract</strong> Understanding the physiology of stress in wild
-animals is essential for the conservation of species subject to
-anthropogenic perturbations. Humboldt penguins (<em>Spheniscus
-humboldti</em>) are exposed to increasing anthropogenic impacts in their
-natural habitat. In this species, females are typically smaller and dive
-less deep than males. In related species, the more limited foraging
-habitat of females and their reduced resiliency due to their smaller
-size were associated with higher mortality. We hypothesise that
-potential sex-specific differences in the foraging behaviour of Humboldt
-penguins may also relate to differences in their physiological stress.
-Here, we studied sex-specific foraging and diving behaviours and
-variations in plasma corticosterone levels and leukocyte profiles of
-Humboldt penguins during the chick-rearing period in Northern Chile. We
-report no evidence of sex-related differences in most foraging
-parameters, except that males dived significantly deeper than females.
-We found that plasma corticosterone levels and leukocyte profiles showed
-no significant differences between the sexes. Furthermore, there was no
-clear relationship between an individual’s foraging behaviour and its
-plasma corticosterone level or leukocyte profile. In summary, we found
-no support for sex-related differences in physiological stress levels of
-Humboldt penguins, and no link between their foraging behaviour and
-their physiological stress. However, we acknowledge that our sample size
-is small and that more studies are needed. This study contributes with
-information on the physiological stress and foraging behaviours of
-Humboldt penguins in Northern Chile. This information can help to
-understand context-dependent differences in physiological parameters and
-foraging behaviours for the species.<br />
-<strong>Read more:</strong> <a
-href="https://www.tandfonline.com/doi/abs/10.1080/01584197.2022.2153699?journalCode=temu20">Link
-to publication</a></p>
-<h3
-id="seabird-morphology-determines-operational-wind-speeds-tolerable-maxima-and-responses-to-extremes">10.
-Seabird morphology determines operational wind speeds, tolerable maxima,
-and responses to extremes</h3>
-<p><strong>Authors</strong>: Nourani E, Kamran S, de Grissac S, Anderson
-D, Cole NC, Gremillet D, Lempidakis E, <strong>Lerma M</strong>, McKee
-JL, Pichegru :, Provost P, Rattenbourg NC, Ryan P, Santos CD, Schoombie
-S, Tatayah V, Weimerskirch H, Wikelski M, Shepard ELC<br />
-<strong>Abstract</strong> Storms can cause widespread seabird stranding
-and wrecking, yet little is known about the maximum wind speeds that
-birds are able to tolerate or the conditions they avoid. We analyzed
-&gt;300,000 h of tracking data from 18 seabird species, including
-flapping and soaring fliers, to assess how flight morphology affects
-wind selectivity, both at fine scales (hourly movement steps) and across
-the breeding season. We found no general preference or avoidance of
-particular wind speeds within foraging tracks. This suggests seabird
-flight morphology is adapted to a “wind niche,” with higher wing loading
-being selected in windier environments. In support of this, wing loading
-was positively related to the median wind speeds on the breeding
-grounds, as well as the maximum wind speeds in which birds flew. Yet
-globally, the highest wind speeds occur in the tropics (in association
-with tropical cyclones) where birds are morphologically adapted to low
-median wind speeds. Tropical species must therefore show behavioral
-responses to extreme winds, including long-range avoidance of wind
-speeds that can be twice their operable maxima. By contrast,
-Procellariiformes flew in almost all wind speeds they encountered at a
-seasonal scale. Despite this, we describe a small number of cases where
-albatrosses avoided strong winds at close range, including by flying
-into the eye of the storm. Extreme winds appear to pose
-context-dependent risks to seabirds, and more information is needed on
-the factors that determine the hierarchy of risk, given the impact of
-global change on storm intensity.<br />
-<strong>Read more:</strong> <a
-href="https://www.sciencedirect.com/science/article/pii/S0960982223001379">Link
-to publication</a></p>
+<h3 id="corticosterone-levels-leukocyte-profiles-and-foraging-and-diving-behaviours-of-humboldt-penguins-during-chick-rearing-in-northern-chile">11. Corticosterone levels, leukocyte profiles, and foraging and diving behaviours of Humboldt penguins during chick rearing in Northern Chile</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Villavicencio CP, Luna N, Portflitt-Toro M, Serratosa J, Luna-Jorquera G, Garthe S, Quispe R<br />
+<strong>Abstract</strong> Understanding the physiology of stress in wild animals is essential for the conservation of species subject to anthropogenic perturbations. Humboldt penguins (<em>Spheniscus humboldti</em>) are exposed to increasing anthropogenic impacts in their natural habitat. In this species, females are typically smaller and dive less deep than males. In related species, the more limited foraging habitat of females and their reduced resiliency due to their smaller size were associated with higher mortality. We hypothesise that potential sex-specific differences in the foraging behaviour of Humboldt penguins may also relate to differences in their physiological stress. Here, we studied sex-specific foraging and diving behaviours and variations in plasma corticosterone levels and leukocyte profiles of Humboldt penguins during the chick-rearing period in Northern Chile. We report no evidence of sex-related differences in most foraging parameters, except that males dived significantly deeper than females. We found that plasma corticosterone levels and leukocyte profiles showed no significant differences between the sexes. Furthermore, there was no clear relationship between an individual’s foraging behaviour and its plasma corticosterone level or leukocyte profile. In summary, we found no support for sex-related differences in physiological stress levels of Humboldt penguins, and no link between their foraging behaviour and their physiological stress. However, we acknowledge that our sample size is small and that more studies are needed. This study contributes with information on the physiological stress and foraging behaviours of Humboldt penguins in Northern Chile. This information can help to understand context-dependent differences in physiological parameters and foraging behaviours for the species.<br />
+<strong>Read more:</strong> <a href="https://www.tandfonline.com/doi/abs/10.1080/01584197.2022.2153699?journalCode=temu20">Link to publication</a></p>
+<h3 id="seabird-morphology-determines-operational-wind-speeds-tolerable-maxima-and-responses-to-extremes">10. Seabird morphology determines operational wind speeds, tolerable maxima, and responses to extremes</h3>
+<p><strong>Authors</strong>: Nourani E, Kamran S, de Grissac S, Anderson D, Cole NC, Gremillet D, Lempidakis E, <strong>Lerma M</strong>, McKee JL, Pichegru :, Provost P, Rattenbourg NC, Ryan P, Santos CD, Schoombie S, Tatayah V, Weimerskirch H, Wikelski M, Shepard ELC<br />
+<strong>Abstract</strong> Storms can cause widespread seabird stranding and wrecking, yet little is known about the maximum wind speeds that birds are able to tolerate or the conditions they avoid. We analyzed &gt;300,000 h of tracking data from 18 seabird species, including flapping and soaring fliers, to assess how flight morphology affects wind selectivity, both at fine scales (hourly movement steps) and across the breeding season. We found no general preference or avoidance of particular wind speeds within foraging tracks. This suggests seabird flight morphology is adapted to a “wind niche,” with higher wing loading being selected in windier environments. In support of this, wing loading was positively related to the median wind speeds on the breeding grounds, as well as the maximum wind speeds in which birds flew. Yet globally, the highest wind speeds occur in the tropics (in association with tropical cyclones) where birds are morphologically adapted to low median wind speeds. Tropical species must therefore show behavioral responses to extreme winds, including long-range avoidance of wind speeds that can be twice their operable maxima. By contrast, Procellariiformes flew in almost all wind speeds they encountered at a seasonal scale. Despite this, we describe a small number of cases where albatrosses avoided strong winds at close range, including by flying into the eye of the storm. Extreme winds appear to pose context-dependent risks to seabirds, and more information is needed on the factors that determine the hierarchy of risk, given the impact of global change on storm intensity.<br />
+<strong>Read more:</strong> <a href="https://www.sciencedirect.com/science/article/pii/S0960982223001379">Link to publication</a></p>
 <h1 id="section-2">2022</h1>
-<h3
-id="nutritional-state-variations-in-a-tropical-seabird-throughout-its-breeding-season">9.
-Nutritional state variations in a tropical seabird throughout its
-breeding season</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Dehnhard N,
-Castillo-Guerrero JA, Fernandez G<br />
-<strong>Abstract</strong> Individual body condition is frequently used
-to explain differences in foraging and breeding ecology in seabirds.
-However, little is known about the covariations of body mass with the
-nutritional state of animals as measured through plasma metabolites and
-how these different measures vary between and within individuals during
-breeding. Here, we assessed intra-individual variations of plasma
-metabolites (triglycerides, cholesterol, protein, and ß-hydroxybutyrate
-concentrations) and in body mass of Blue-footed boobies (<em>Sula
-nebouxii</em>) throughout their breeding season 2011–2012 in Isla El
-Rancho, Mexico. We found breeding-stage and sex-specific variations in
-individuals’ plasma metabolite concentrations, but these did not mirror
-variations in body mass. Before egg-laying, females had higher
-triglycerides, cholesterol, and protein concentrations than males. In
-contrast, males used their nutritional reserves (higher
-ß-hydroxybutyrate concentrations) more than females during the breeding
-season (except for early chick-rearing). At the individual level, males
-gained weight during the breeding season, whereas females lost weight.
-We also found that between-individual differences in plasma metabolite
-concentrations and changes in body mass were not consistent throughout
-the breeding season, while individual body mass was significantly
-repeatable. This study contributes to a better understanding of seabird
-breeding ecology and physiology by showing that sex-specific breeding
-roles might highly influence the nutritional state. Similar patterns
-might occur in other seabird species, helping to explain why we can find
-stage- and sex-specific foraging behaviors even in monomorphic
-species.<br />
-<strong>Read more:</strong> <a
-href="https://link.springer.com/article/10.1007/s00360-022-01456-3">Full
-publication</a></p>
+<h3 id="nutritional-state-variations-in-a-tropical-seabird-throughout-its-breeding-season">9. Nutritional state variations in a tropical seabird throughout its breeding season</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Dehnhard N, Castillo-Guerrero JA, Fernandez G<br />
+<strong>Abstract</strong> Individual body condition is frequently used to explain differences in foraging and breeding ecology in seabirds. However, little is known about the covariations of body mass with the nutritional state of animals as measured through plasma metabolites and how these different measures vary between and within individuals during breeding. Here, we assessed intra-individual variations of plasma metabolites (triglycerides, cholesterol, protein, and ß-hydroxybutyrate concentrations) and in body mass of Blue-footed boobies (<em>Sula nebouxii</em>) throughout their breeding season 2011–2012 in Isla El Rancho, Mexico. We found breeding-stage and sex-specific variations in individuals’ plasma metabolite concentrations, but these did not mirror variations in body mass. Before egg-laying, females had higher triglycerides, cholesterol, and protein concentrations than males. In contrast, males used their nutritional reserves (higher ß-hydroxybutyrate concentrations) more than females during the breeding season (except for early chick-rearing). At the individual level, males gained weight during the breeding season, whereas females lost weight. We also found that between-individual differences in plasma metabolite concentrations and changes in body mass were not consistent throughout the breeding season, while individual body mass was significantly repeatable. This study contributes to a better understanding of seabird breeding ecology and physiology by showing that sex-specific breeding roles might highly influence the nutritional state. Similar patterns might occur in other seabird species, helping to explain why we can find stage- and sex-specific foraging behaviors even in monomorphic species.<br />
+<strong>Read more:</strong> <a href="https://link.springer.com/article/10.1007/s00360-022-01456-3">Full publication</a></p>
 <h1 id="section-3">2020</h1>
-<h3
-id="breeding-stage-not-sex-affects-foraging-characteristics-in-masked-boobies-at-rapa-nui">8.
-Breeding stage, not sex, affects foraging characteristics in masked
-boobies at Rapa Nui</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Dehnhard N,
-Luna-Jorquera G, Voigt CC, Garthe S<br />
-<strong>Abstract</strong> Sexual segregation in foraging occurs in some
-species and populations of boobies (Sulidae), but it is not a general
-pattern. Sexual segregation in foraging may occur to avoid competition
-for food, and this competition may intensify during specific stages of
-breeding. We examined sexual segregation in foraging in relation to
-breeding stage in masked boobies <em>Sula dactylatra</em> at Rapa Nui by
-tracking simultaneously incubating and chick-rearing birds using GPS
-recorders (n = 18) and collected a total of 11 regurgitate samples.
-Stable isotope analyses (δ13C and δ15N) of whole blood samples were
-carried out in 20 birds. There were no differences in foraging trip
-parameters or diet between females and males. Both sexes traveled
-farther and for longer while incubating than while rearing chicks.
-Isotopic niches (δ13C and δ15N) overlapped to some degree among all
-groups at all times, but the lowest overlap between sexes occurred
-during incubation. While preying on ephemerally distributed flying fish,
-vertical or horizontal competition avoidance may be almost impossible,
-and thus females and males share their foraging grounds. Since birds
-were tracked simultaneously, shorter foraging trips of chick-rearing
-birds must be an effect of the constraints of provisioning the chick.
-Differences observed in δ15N and δ13C values between sexes may be caused
-by subtle differences in their foraging behaviors, or by differences in
-physiology linked to breeding. Our findings suggest that local
-oceanography and its inherent food distribution are determinants for
-sexual segregation in foraging patterns in masked boobies and possibly
-also other booby species.<br />
-<strong>Read more:</strong> <a
-href="https://link.springer.com/article/10.1007/s00265-020-02921-1">Full
-publication</a></p>
-<h3
-id="foraging-ranges-of-humboldt-penguins-spheniscus-humboldti-from-tilgo-island-the-critical-need-for-protecting-a-unique-marine-habitat">7.
-Foraging ranges of Humboldt penguins <em>Spheniscus humboldti</em> from
-Tilgo island: the critical need for protecting a unique marine
-habitat</h3>
-<p><strong>Authors</strong>: Quispe R, <strong>Lerma M</strong>, Luna N,
-Portflitt-Toro M, Serratosa J, Luna-Jorquera<br />
-<strong>Abstract</strong> The largest population of Humboldt Penguins
-resides in a fertile archipelago of the north-central coast of Chile,
-formed by eight islands in proximity to upwelling centers of the
-Humboldt Current System. However, five of these islands lack legal
-protection. Here, we report the results of breeding Humboldt Penguins
-tracked while foraging from Tilgo Island. The average and maximum
-foraging radii around the colony were 22 km and 43 km, respectively. Our
-data indicate that trip ranges overlap areas proposed for industrial
-projects. Because Humboldt Penguins are sentinels of local ecosystem
-health, this underscores the value of expanding conservation zones in
-this unique marine location.<br />
-<strong>Read more:</strong> <a
-href="https://www.marineornithology.org/PDF/48_2/48_2_205-208.pdf">Full
-publication</a></p>
-<h3
-id="foraging-ecology-of-a-marine-top-predator-in-the-eastern-tropical-pacific-over-3-years-with-different-enso-phases">6.
-Foraging ecology of a marine top predator in the Eastern Tropical
-Pacific over 3 years with different ENSO phases</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero
-JA Hernandez-Vazquez S, Garthe S<br />
-<strong>Abstract</strong> The El Niño Southern Oscillation (ENSO) is a
-recurrent climatic pattern with important ecological consequences for
-seabirds due to its impacts on the abundance and distribution of food
-resources. We investigated the effects of ENSO phases on the foraging
-ecology of a marine top predator at Clarion Island in the Eastern
-Tropical Pacific using GPS and time-depth recorder data and regurgitates
-from incubating masked boobies (<em>Sula dactylatra</em>) during 3
-consecutive years. Foraging locations were recorded in 2016 (El Niño,
-one female, three males), 2017 (neutral; six females, nine males), and
-2018 (La Niña; eight females, ten males). Local sea surface temperature
-(SST) and chlorophyll-a concentration (CHL) within the birds’ foraging
-range were compared among the 3 years. Regurgitates were collected
-opportunistically from 25 and 31 incubating adults in 2017 and 2018,
-respectively. Average local CHL and SST were similar among years (mean
-SST 25 °C; mean CHL 0.10 and of 0.09 mg m−3 in January and March,
-respectively). Masked boobies travelled a maximum of 66 ± 34 km from the
-colony. The maximum trip duration was 7.7 ± 3.4 h and total distance
-travelled during a foraging trip was 164 ± 73 km, with no sex- or
-year-related differences. Masked boobies mainly caught flying fish, but
-their diet also included one squid and six other fish families. In
-contrast to previously reported changes in foraging ecology of seabirds,
-masked boobies at Clarion Island seemed to be unaffected during El Niño,
-because the local oceanography was relatively unperturbed by ENSO
-oscillations.<br />
-<strong>Read more:</strong> <a
-href="https://doi.org/10.1007/s00227-020-03699-6">Full
-publication</a></p>
-<h3
-id="foraging-ecology-of-masked-boobies-sula-dactylatra-in-the-worlds-largest-oceanic-desert">5.
-Foraging ecology of masked boobies (<em>Sula dactylatra</em>) in the
-world’s largest ‘oceanic desert’</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Serratosa J,
-Luna-Jorquera G, Garthe S<br />
-<strong>Abstract</strong> The South Pacific Gyre has the most
-hyper-oligotrophic waters in the world and is considered the largest
-“oceanic desert.” Rapa Nui (Easter Island), located within the South
-Pacific Gyre, is a breeding ground for masked boobies (<em>Sula
-dactylatra</em>), which are seabirds with a foraging range that
-effectively confines them within the gyre. The foraging ecology of this
-species in the gyre was examined by attaching GPS and time-depth devices
-to chick-rearing adult birds (9 and 14 birds in 2016 and 2017,
-respectively) and by collecting regurgitates (18 and 15 samples in 2016
-and 2017, respectively). In addition, the birds’ foraging ecology
-between years was compared. Masked boobies traveled in various
-directions, dived at unspecific locations, and explored areas &lt; 110
-km from the colony. Local environmental conditions were not
-significantly different between years, and differences in foraging
-parameters (maximum foraging range, trip duration, and dive depth) were
-greater among individuals than between years. The foraging
-characteristics of masked boobies suggest that resources were
-ephemerally distributed around the colony, with similar abundances
-across years. Under these conditions, traveling to unspecific locations
-may increase the area covered and the probability of prey encounter. The
-spatial and temporal consistencies in environmental conditions explain
-the uniformity of foraging parameters between years. The ability of
-masked boobies to exploit ephemerally distributed resources in seascapes
-like Rapa Nui may help explain its pantropical distribution.<br />
-<strong>Read more:</strong> <a
-href="https://link.springer.com/article/10.1007/s00227-020-03700-2">Full
-publication</a></p>
-<h3
-id="zinc-concentrations-in-blue-footed-booby-sula-nebouxii-eggs-nestlings-and-adults">4.
-Zinc concentrations in Blue-footed booby (<em>Sula nebouxii</em>) eggs,
-nestlings, and adults</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero
-JA, Garcia-Hernandez J, Fernandez G<br />
-<strong>Abstract</strong> Zinc is essential for animal metabolism, but
-the variation in Zn concentrations within seabird populations has been
-seldom explored. We collected Blue-footed booby (<em>Sula nebouxii</em>)
-eggs during 2012 and 2013 and blood samples from nestlings and adults
-during 2011 and 2012 in Sinaloa, Mexico, to evaluate differences in Zn
-concentrations among years, ages, sexes, and breeding stages. Zinc
-concentrations in eggs ranged between 27.3 and 64.9 ppm (dry weight),
-whereas Zn levels in the blood of nestlings and adults ranged between
-16.1 and 53.1 ppm (dry weight). Egg Zn concentrations did not differ due
-to developmental stage, although Zn concentrations were significantly
-higher in 2013 than in 2012. Nestling Zn concentrations differed between
-years and decreased gradually with age. Chicks had significantly higher
-Zn concentrations than those of adults. Once nestlings stopped growing,
-females presented higher Zn concentrations than males. Adult Zn
-concentrations were higher during the pre-laying period than during the
-other breeding stages. Our results suggest that growth, sex, and
-breeding stage affect blood Zn concentrations, which may be due to
-stage-specific requirements. When compared with those of other seabird
-species, the Zn concentrations reported here are intermediate, and we
-did not detect adverse effects on either nestlings or adults.<br />
-<strong>Read more:</strong> <a
-href="https://doi.org/10.1016/j.seares.2020.101952">Full
-publication</a></p>
+<h3 id="breeding-stage-not-sex-affects-foraging-characteristics-in-masked-boobies-at-rapa-nui">8. Breeding stage, not sex, affects foraging characteristics in masked boobies at Rapa Nui</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Dehnhard N, Luna-Jorquera G, Voigt CC, Garthe S<br />
+<strong>Abstract</strong> Sexual segregation in foraging occurs in some species and populations of boobies (Sulidae), but it is not a general pattern. Sexual segregation in foraging may occur to avoid competition for food, and this competition may intensify during specific stages of breeding. We examined sexual segregation in foraging in relation to breeding stage in masked boobies <em>Sula dactylatra</em> at Rapa Nui by tracking simultaneously incubating and chick-rearing birds using GPS recorders (n = 18) and collected a total of 11 regurgitate samples. Stable isotope analyses (δ13C and δ15N) of whole blood samples were carried out in 20 birds. There were no differences in foraging trip parameters or diet between females and males. Both sexes traveled farther and for longer while incubating than while rearing chicks. Isotopic niches (δ13C and δ15N) overlapped to some degree among all groups at all times, but the lowest overlap between sexes occurred during incubation. While preying on ephemerally distributed flying fish, vertical or horizontal competition avoidance may be almost impossible, and thus females and males share their foraging grounds. Since birds were tracked simultaneously, shorter foraging trips of chick-rearing birds must be an effect of the constraints of provisioning the chick. Differences observed in δ15N and δ13C values between sexes may be caused by subtle differences in their foraging behaviors, or by differences in physiology linked to breeding. Our findings suggest that local oceanography and its inherent food distribution are determinants for sexual segregation in foraging patterns in masked boobies and possibly also other booby species.<br />
+<strong>Read more:</strong> <a href="https://link.springer.com/article/10.1007/s00265-020-02921-1">Full publication</a></p>
+<h3 id="foraging-ranges-of-humboldt-penguins-spheniscus-humboldti-from-tilgo-island-the-critical-need-for-protecting-a-unique-marine-habitat">7. Foraging ranges of Humboldt penguins <em>Spheniscus humboldti</em> from Tilgo island: the critical need for protecting a unique marine habitat</h3>
+<p><strong>Authors</strong>: Quispe R, <strong>Lerma M</strong>, Luna N, Portflitt-Toro M, Serratosa J, Luna-Jorquera<br />
+<strong>Abstract</strong> The largest population of Humboldt Penguins resides in a fertile archipelago of the north-central coast of Chile, formed by eight islands in proximity to upwelling centers of the Humboldt Current System. However, five of these islands lack legal protection. Here, we report the results of breeding Humboldt Penguins tracked while foraging from Tilgo Island. The average and maximum foraging radii around the colony were 22 km and 43 km, respectively. Our data indicate that trip ranges overlap areas proposed for industrial projects. Because Humboldt Penguins are sentinels of local ecosystem health, this underscores the value of expanding conservation zones in this unique marine location.<br />
+<strong>Read more:</strong> <a href="https://www.marineornithology.org/PDF/48_2/48_2_205-208.pdf">Full publication</a></p>
+<h3 id="foraging-ecology-of-a-marine-top-predator-in-the-eastern-tropical-pacific-over-3-years-with-different-enso-phases">6. Foraging ecology of a marine top predator in the Eastern Tropical Pacific over 3 years with different ENSO phases</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero JA Hernandez-Vazquez S, Garthe S<br />
+<strong>Abstract</strong> The El Niño Southern Oscillation (ENSO) is a recurrent climatic pattern with important ecological consequences for seabirds due to its impacts on the abundance and distribution of food resources. We investigated the effects of ENSO phases on the foraging ecology of a marine top predator at Clarion Island in the Eastern Tropical Pacific using GPS and time-depth recorder data and regurgitates from incubating masked boobies (<em>Sula dactylatra</em>) during 3 consecutive years. Foraging locations were recorded in 2016 (El Niño, one female, three males), 2017 (neutral; six females, nine males), and 2018 (La Niña; eight females, ten males). Local sea surface temperature (SST) and chlorophyll-a concentration (CHL) within the birds’ foraging range were compared among the 3 years. Regurgitates were collected opportunistically from 25 and 31 incubating adults in 2017 and 2018, respectively. Average local CHL and SST were similar among years (mean SST 25 °C; mean CHL 0.10 and of 0.09 mg m−3 in January and March, respectively). Masked boobies travelled a maximum of 66 ± 34 km from the colony. The maximum trip duration was 7.7 ± 3.4 h and total distance travelled during a foraging trip was 164 ± 73 km, with no sex- or year-related differences. Masked boobies mainly caught flying fish, but their diet also included one squid and six other fish families. In contrast to previously reported changes in foraging ecology of seabirds, masked boobies at Clarion Island seemed to be unaffected during El Niño, because the local oceanography was relatively unperturbed by ENSO oscillations.<br />
+<strong>Read more:</strong> <a href="https://doi.org/10.1007/s00227-020-03699-6">Full publication</a></p>
+<h3 id="foraging-ecology-of-masked-boobies-sula-dactylatra-in-the-worlds-largest-oceanic-desert">5. Foraging ecology of masked boobies (<em>Sula dactylatra</em>) in the world’s largest ‘oceanic desert’</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Serratosa J, Luna-Jorquera G, Garthe S<br />
+<strong>Abstract</strong> The South Pacific Gyre has the most hyper-oligotrophic waters in the world and is considered the largest “oceanic desert.” Rapa Nui (Easter Island), located within the South Pacific Gyre, is a breeding ground for masked boobies (<em>Sula dactylatra</em>), which are seabirds with a foraging range that effectively confines them within the gyre. The foraging ecology of this species in the gyre was examined by attaching GPS and time-depth devices to chick-rearing adult birds (9 and 14 birds in 2016 and 2017, respectively) and by collecting regurgitates (18 and 15 samples in 2016 and 2017, respectively). In addition, the birds’ foraging ecology between years was compared. Masked boobies traveled in various directions, dived at unspecific locations, and explored areas &lt; 110 km from the colony. Local environmental conditions were not significantly different between years, and differences in foraging parameters (maximum foraging range, trip duration, and dive depth) were greater among individuals than between years. The foraging characteristics of masked boobies suggest that resources were ephemerally distributed around the colony, with similar abundances across years. Under these conditions, traveling to unspecific locations may increase the area covered and the probability of prey encounter. The spatial and temporal consistencies in environmental conditions explain the uniformity of foraging parameters between years. The ability of masked boobies to exploit ephemerally distributed resources in seascapes like Rapa Nui may help explain its pantropical distribution.<br />
+<strong>Read more:</strong> <a href="https://link.springer.com/article/10.1007/s00227-020-03700-2">Full publication</a></p>
+<h3 id="zinc-concentrations-in-blue-footed-booby-sula-nebouxii-eggs-nestlings-and-adults">4. Zinc concentrations in Blue-footed booby (<em>Sula nebouxii</em>) eggs, nestlings, and adults</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero JA, Garcia-Hernandez J, Fernandez G<br />
+<strong>Abstract</strong> Zinc is essential for animal metabolism, but the variation in Zn concentrations within seabird populations has been seldom explored. We collected Blue-footed booby (<em>Sula nebouxii</em>) eggs during 2012 and 2013 and blood samples from nestlings and adults during 2011 and 2012 in Sinaloa, Mexico, to evaluate differences in Zn concentrations among years, ages, sexes, and breeding stages. Zinc concentrations in eggs ranged between 27.3 and 64.9 ppm (dry weight), whereas Zn levels in the blood of nestlings and adults ranged between 16.1 and 53.1 ppm (dry weight). Egg Zn concentrations did not differ due to developmental stage, although Zn concentrations were significantly higher in 2013 than in 2012. Nestling Zn concentrations differed between years and decreased gradually with age. Chicks had significantly higher Zn concentrations than those of adults. Once nestlings stopped growing, females presented higher Zn concentrations than males. Adult Zn concentrations were higher during the pre-laying period than during the other breeding stages. Our results suggest that growth, sex, and breeding stage affect blood Zn concentrations, which may be due to stage-specific requirements. When compared with those of other seabird species, the Zn concentrations reported here are intermediate, and we did not detect adverse effects on either nestlings or adults.<br />
+<strong>Read more:</strong> <a href="https://doi.org/10.1016/j.seares.2020.101952">Full publication</a></p>
 <h1 id="section-4">2017</h1>
-<h3
-id="non-breeding-distribution-abundance-and-roosting-habitat-use-of-the-american-oystercatcher-haematopus-palliatus-frazari-in-sinaloa-mexico">3.
-Non-Breeding Distribution, Abundance, and Roosting Habitat Use of the
-American Oystercatcher (<em>Haematopus palliatus frazari</em>) in
-Sinaloa, Mexico</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero
-JA, Palacios E<br />
-<strong>Abstract</strong> The American Oystercatcher (<em>Haematopus
-palliatus frazari</em>) is federally listed as endangered in Mexico due
-to habitat loss and small population size. Recent surveys indicate that
-the State of Sinaloa supports about half of the breeding population in
-Mexico. However, no information is available about the non-breeding
-ecology in Mexico. To assess American Oystercatcher distribution,
-abundance, and roosting habitat use during the nonbreeding season (3
-August 2014-23 January 2015), six bays were surveyed in Sinaloa. A total
-of 1,351 American Oystercatchers were detected using this area based on
-maximum count per roosting site at or near high tide. American
-Oystercatchers roosted in flocks of variable size (3–253 individuals per
-flock) with Bahía Santa María hosting the main roosting sites in
-Sinaloa. Mangrove islands and mudflats had larger numbers of individuals
-than expected relative to the availability of those habitats. The
-non-breeding Sinaloa population comprised approximately 45.0% of the
-total H. p. frazari population estimate (n = 3,000 individuals). Bahía
-Santa María represented 74.6% of the non-breeding population observed in
-Sinaloa. Thus, Sinaloa, and particularly Bahía Santa María, stand out as
-critical sites for the conservation of this subspecies. Hypothesized
-threats to American Oystercatchers were predators, livestock, and human
-activities.<br />
-<strong>Read more:</strong> <a
-href="https://doi.org/10.1675/063.040.sp111">Full Publication</a></p>
-<h3
-id="lead-cadmium-and-mercury-in-the-blood-of-the-blue-footed-booby-sula-nebouxii-from-the-coast-of-sinaloa-gulf-of-california-mexico">2.
-Lead, cadmium and mercury in the blood of the blue-footed booby
-(<em>Sula nebouxii</em>) from the coast of Sinaloa, Gulf of California,
-Mexico</h3>
-<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero
-JA, Ruelas-Inzunza J, Fernandez, G<br />
-<strong>Abstract</strong> We used blood samples of the Blue-footed
-Booby, considering sex (female and male) and age-class (adult and chick)
-of individuals at different breeding stages during two breeding seasons
-(2010–2011 and 2011–2012) in Isla El Rancho, Sinaloa, to determine lead,
-cadmium, and mercury concentrations. Lead and cadmium concentrations
-were below our detection limit (0.05 and 0.36 ppm, respectively). A
-higher concentration of mercury was found in early stages of breeding,
-likely related to changes in mercury environmental availability. Mercury
-concentrations in adults did not relate with their breeding output.
-Males and adults had higher mercury concentration than females and
-chicks. We provide information of temporal, sex and age-related
-variations in the concentrations of mercury in blood of the Blue-footed
-Booby.<br />
-<strong>Read more:</strong> <a
-href="https://doi.org/10.1016/j.marpolbul.2016.06.049">Full
-Publication</a></p>
+<h3 id="non-breeding-distribution-abundance-and-roosting-habitat-use-of-the-american-oystercatcher-haematopus-palliatus-frazari-in-sinaloa-mexico">3. Non-Breeding Distribution, Abundance, and Roosting Habitat Use of the American Oystercatcher (<em>Haematopus palliatus frazari</em>) in Sinaloa, Mexico</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero JA, Palacios E<br />
+<strong>Abstract</strong> The American Oystercatcher (<em>Haematopus palliatus frazari</em>) is federally listed as endangered in Mexico due to habitat loss and small population size. Recent surveys indicate that the State of Sinaloa supports about half of the breeding population in Mexico. However, no information is available about the non-breeding ecology in Mexico. To assess American Oystercatcher distribution, abundance, and roosting habitat use during the nonbreeding season (3 August 2014-23 January 2015), six bays were surveyed in Sinaloa. A total of 1,351 American Oystercatchers were detected using this area based on maximum count per roosting site at or near high tide. American Oystercatchers roosted in flocks of variable size (3–253 individuals per flock) with Bahía Santa María hosting the main roosting sites in Sinaloa. Mangrove islands and mudflats had larger numbers of individuals than expected relative to the availability of those habitats. The non-breeding Sinaloa population comprised approximately 45.0% of the total H. p. frazari population estimate (n = 3,000 individuals). Bahía Santa María represented 74.6% of the non-breeding population observed in Sinaloa. Thus, Sinaloa, and particularly Bahía Santa María, stand out as critical sites for the conservation of this subspecies. Hypothesized threats to American Oystercatchers were predators, livestock, and human activities.<br />
+<strong>Read more:</strong> <a href="https://doi.org/10.1675/063.040.sp111">Full Publication</a></p>
+<h3 id="lead-cadmium-and-mercury-in-the-blood-of-the-blue-footed-booby-sula-nebouxii-from-the-coast-of-sinaloa-gulf-of-california-mexico">2. Lead, cadmium and mercury in the blood of the blue-footed booby (<em>Sula nebouxii</em>) from the coast of Sinaloa, Gulf of California, Mexico</h3>
+<p><strong>Authors</strong>: <strong>Lerma M</strong>, Castillo-Guerrero JA, Ruelas-Inzunza J, Fernandez, G<br />
+<strong>Abstract</strong> We used blood samples of the Blue-footed Booby, considering sex (female and male) and age-class (adult and chick) of individuals at different breeding stages during two breeding seasons (2010–2011 and 2011–2012) in Isla El Rancho, Sinaloa, to determine lead, cadmium, and mercury concentrations. Lead and cadmium concentrations were below our detection limit (0.05 and 0.36 ppm, respectively). A higher concentration of mercury was found in early stages of breeding, likely related to changes in mercury environmental availability. Mercury concentrations in adults did not relate with their breeding output. Males and adults had higher mercury concentration than females and chicks. We provide information of temporal, sex and age-related variations in the concentrations of mercury in blood of the Blue-footed Booby.<br />
+<strong>Read more:</strong> <a href="https://doi.org/10.1016/j.marpolbul.2016.06.049">Full Publication</a></p>
 <h1 id="section-5">2016</h1>
-<h3
-id="environmentally-mediated-flexible-foraging-strategies-in-brown-boobies-in-the-gulf-of-california">1.
-Environmentally-mediated flexible foraging strategies in Brown Boobies
-in the Gulf of California</h3>
-<p><strong>Authors</strong>: Castillo-Guerrero JA, <strong>Lerma
-M</strong>, Mellink E, Suazo-Guillén E, Peñaloza-Padilla EA<br />
-<strong>Abstract</strong> The Brown Booby <em>Sula leucogaster</em> is a
-seabird with a pantropical distribution across a wide variety of oceanic
-environments. Sexual size dimorphism in Brown Boobies has been proposed
-as an explanation for intersexual differences in foraging, but results
-have been inconsistent. We investigated whether there is
-context-dependent foraging behaviour driven by local environmental
-conditions. In this study, we evaluated (1) inter-sex differences in
-foraging behaviour (by capillary tubes, temperature and depth recorders,
-and diet) at two colonies in the Gulf of California: Isla San Jorge
-(ISJ) and Farallón de San Ignacio (FSI) and, (2) intercolonial and
-interannual differences in foraging behaviour, and (at ISJ) their
-relationship with local-scale environmental variation, using 5-day
-composite images of sea surface temperature (SST) and primary
-productivity (PP) as proxies. Inter-sex differences were few and
-inconsistent between years, and smaller than overall differences between
-years and localities. At ISJ, Brown Boobies included more prey species
-in their diet (27 vs. 19 spp.) and dove shallower (2.3 vs. 3.14 m) than
-at FSI. At ISJ, Brown Boobies exhibited adjustments in diving depth and
-prey size as a function of environmental variation: shallower plunge
-dives and smaller prey items were related with lower SST and higher PP
-values, whereas deeper dives and larger prey items were related with
-higher SST and lower PP values. Our results confirmed that the Brown
-Booby is highly plastic in its foraging ecology, which explains its
-ability to live in places with large-scale environmental variation
-(intercolony and interannual), such as tropical areas worldwide.<br />
-<strong>Read more:</strong> <a
-href="https://doi.org/10.5253/arde.v104i1.a3">Full Publication</a></p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="environmentally-mediated-flexible-foraging-strategies-in-brown-boobies-in-the-gulf-of-california">1. Environmentally-mediated flexible foraging strategies in Brown Boobies in the Gulf of California</h3>
+<p><strong>Authors</strong>: Castillo-Guerrero JA, <strong>Lerma M</strong>, Mellink E, Suazo-Guillén E, Peñaloza-Padilla EA<br />
+<strong>Abstract</strong> The Brown Booby <em>Sula leucogaster</em> is a seabird with a pantropical distribution across a wide variety of oceanic environments. Sexual size dimorphism in Brown Boobies has been proposed as an explanation for intersexual differences in foraging, but results have been inconsistent. We investigated whether there is context-dependent foraging behaviour driven by local environmental conditions. In this study, we evaluated (1) inter-sex differences in foraging behaviour (by capillary tubes, temperature and depth recorders, and diet) at two colonies in the Gulf of California: Isla San Jorge (ISJ) and Farallón de San Ignacio (FSI) and, (2) intercolonial and interannual differences in foraging behaviour, and (at ISJ) their relationship with local-scale environmental variation, using 5-day composite images of sea surface temperature (SST) and primary productivity (PP) as proxies. Inter-sex differences were few and inconsistent between years, and smaller than overall differences between years and localities. At ISJ, Brown Boobies included more prey species in their diet (27 vs. 19 spp.) and dove shallower (2.3 vs. 3.14 m) than at FSI. At ISJ, Brown Boobies exhibited adjustments in diving depth and prey size as a function of environmental variation: shallower plunge dives and smaller prey items were related with lower SST and higher PP values, whereas deeper dives and larger prey items were related with higher SST and lower PP values. Our results confirmed that the Brown Booby is highly plastic in its foraging ecology, which explains its ability to live in places with large-scale environmental variation (intercolony and interannual), such as tropical areas worldwide.<br />
+<strong>Read more:</strong> <a href="https://doi.org/10.5253/arde.v104i1.a3">Full Publication</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
