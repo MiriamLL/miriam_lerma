@@ -1,0 +1,232 @@
+---
+title: "Remove undesired locations"
+description: |
+  Create a buffer to remove locations.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-08-01
+preview: blog36_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2024
+---
+
+# Intro
+
+When studying animals using GPSs, we often need to remove their central location.
+Here, I am sharing a function I created to eliminate all the locations within an area.
+
+# Data 
+
+For the exercises, test data is from masked boobies. <br>
+To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+library(sula)
+```
+
+This data frame contains data from 10 individuals.
+
+```{r}
+unique(sula::GPS_raw$IDs)
+```
+
+To load it into the environment.
+
+```{r}
+GPS_ten<-GPS_raw
+```
+
+Plot your data
+
+```{r}
+library(tidyverse)
+```
+
+Here you can see all the recorded locations using the GPSs.
+
+```{r, fig.width=4, fig.height=4}
+Original_plot<-ggplot()+
+  geom_point(data = GPS_ten,
+            aes(x=Longitude,y = Latitude),color='red', size=0.5)+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )
+Original_plot
+```
+
+
+# Create a buffer
+
+Select a location
+
+```{r}
+This_point<-data.frame(Longitude=-109.99,Latitude=-27.02)
+```
+
+Create a buffer
+
+I created this function to create a buffer around a point
+
+```{r}
+create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
+  central_spatial<- sp::SpatialPoints(cbind(central_point$Longitude,central_point$Latitude)) 
+  sp::proj4string(central_spatial)= sp::CRS("+init=epsg:4326") 
+  central_spatial <- sp::spTransform(central_spatial, sp::CRS("+init=epsg:4326"))
+  central_spatial<-sf::st_as_sf(central_spatial)
+  buffer_dist<-buffer_km*1000
+  central_buffer<-sf::st_buffer(central_spatial, buffer_dist)
+  return(central_buffer)
+  }
+```
+
+The parameters to give are the kilometers and the central point
+
+```{r, warning=FALSE}
+This_buffer<-create_buffer(central_point=This_point,buffer_km=20)
+```
+
+```{r}
+class(This_buffer)
+```
+
+
+Here you can see the buffer you created using the point (or central location)
+
+```{r, fig.width=4, fig.height=4}
+Buffer_plot<-ggplot()+
+  geom_point(data = GPS_ten,
+            aes(x=Longitude,y = Latitude),color='red',size=0.5)+
+  geom_point(data=This_point,
+             aes(x=Longitude,y=Latitude),color='blue')+
+  geom_sf(data=This_buffer,colour='blue', fill='transparent', linetype='dashed')+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )
+Buffer_plot
+```
+
+
+
+Using the function from the package **sp** you can create an spatial object using your GPS data
+
+```{r}
+GPS_sp <- GPS_ten
+sp::coordinates(GPS_sp) <- ~Longitude + Latitude
+sp::proj4string(GPS_sp) = sp::CRS("+init=epsg:4326")
+GPS_sp<-sf::st_as_sf(GPS_sp)
+```
+
+```{r}
+class(GPS_sp)
+class(This_buffer)
+```
+
+Here the function over allows for identifying which location intersect with the buffer
+To identify if the locations are in or out you can create a column
+
+```{r}
+GPS_over<-sapply(sf::st_intersects(GPS_sp,This_buffer), function(z) if (length(z)==0) NA_integer_ else z[1])
+```
+
+```{r}
+GPS_ten$In_or_out <- as.numeric(GPS_over)
+```
+
+To remove the locations that were within the buffer you can use the function **filter** and **is.na** from the package **tidyverse**
+
+```{r}
+GPS_without <- GPS_ten %>%
+  filter(is.na(In_or_out)==TRUE)
+```
+
+Here you can see that the locations inside the buffer were eliminated
+
+```{r, fig.width=4, fig.height=4}
+Filtered_plot<-ggplot()+
+  geom_point(data = GPS_without,
+            aes(x=Longitude,y = Latitude),color='red',size=0.5)+
+  geom_point(data=This_point,
+             aes(x=Longitude,y=Latitude),color='blue')+
+  geom_sf(data=This_buffer,colour='blue', fill='transparent', linetype='dashed')+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )
+Filtered_plot
+```
+
+
+This function can be used to remove all the nest locations within a distance buffer.
+You could also replace the polygon (here the buffer) for some land shapefiles.
+
+
+# Compare
+
+Using the package **patchwork** we can see the difference side by side.
+
+```{r}
+library(patchwork)
+```
+
+```{r, fig.width=10, fig.height=4}
+Original_plot+Buffer_plot+Filtered_plot
+```
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+ggsave(Original_plot+Buffer_plot+Filtered_plot,
+       filename = paste0(here(),"/_posts/2024-07-19-removelocs/blog36.jpg"),
+       width = 10, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+# Further reading
+
+Other functions that did the job:   
+gBuffer from rgeos [deprecated](https://cran.r-project.org/web/packages/rgeos/index.html)  
+Read more about [package migration](https://github.com/r-spatial/sf/wiki/migrating)
+
+
+
+```{r, echo=FALSE, eval=FALSE}
+create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
+  central_spatial<- sp::SpatialPoints(cbind(central_point$Longitude,central_point$Latitude)) 
+  sp::proj4string(central_spatial)= sp::CRS("+init=epsg:4326") 
+  central_spatial <- sp::spTransform(central_spatial, sp::CRS("+init=epsg:4326"))
+  buffer_dist<-buffer_km/100
+  central_buffer<-rgeos::gBuffer(central_spatial, width=1*buffer_dist)
+  return(central_buffer)
+}
+GPS_ten$In_or_out <- as.numeric(sp::over(GPS_sp,This_buffer))
+```
+
+
+
