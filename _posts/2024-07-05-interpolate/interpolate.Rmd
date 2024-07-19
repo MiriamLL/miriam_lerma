@@ -33,7 +33,7 @@ library(sula)
 
 Inside the package, there is data from a tracked individual from Rapa Nui, Chile
 
-```{r, include=FALSE}
+```{r}
 ID01_track<-sula::GPS01_trips
 ```
 
