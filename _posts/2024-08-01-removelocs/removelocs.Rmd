@@ -74,7 +74,7 @@ Original_plot
 Select a location
 
 ```{r}
-This_point<-data.frame(Longitude=-109.99,Latitude=-27.02)
+This_point<-data.frame(Longitude=-109.5,Latitude=-27.2)
 ```
 
 Create a buffer
@@ -193,7 +193,7 @@ Using the package **patchwork** we can see the difference side by side.
 library(patchwork)
 ```
 
-```{r, fig.width=10, fig.height=4}
+```{r, fig.width=9, fig.height=4}
 Original_plot+Buffer_plot+Filtered_plot
 ```
 
@@ -201,8 +201,8 @@ Original_plot+Buffer_plot+Filtered_plot
 library(here)
 here()
 ggsave(Original_plot+Buffer_plot+Filtered_plot,
-       filename = paste0(here(),"/_posts/2024-07-19-removelocs/blog36.jpg"),
-       width = 10, 
+       filename = paste0(here(),"/_posts/2024-08-01-removelocs/blog36.jpg"),
+       width = 9, 
        height = 4, 
        units = "in",
        dpi = 300)
@@ -213,7 +213,6 @@ ggsave(Original_plot+Buffer_plot+Filtered_plot,
 Other functions that did the job:   
 gBuffer from rgeos [deprecated](https://cran.r-project.org/web/packages/rgeos/index.html)  
 Read more about [package migration](https://github.com/r-spatial/sf/wiki/migrating)
-
 
 
 ```{r, echo=FALSE, eval=FALSE}
