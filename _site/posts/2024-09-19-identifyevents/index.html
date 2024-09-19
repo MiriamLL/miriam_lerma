@@ -104,9 +104,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Assign a number to each event."/>
 <meta property="og:url" content="https://miriamlerma.netlify.app/posts/2024-09-19-identifyevents/"/>
-<meta property="og:image" content="https://miriamlerma.netlify.app/posts/2024-09-19-identifyevents/identifyevents_files/figure-html5/unnamed-chunk-7-1.png"/>
-<meta property="og:image:width" content="1248"/>
-<meta property="og:image:height" content="768"/>
+<meta property="og:image" content="https://miriamlerma.netlify.app/posts/2024-09-19-identifyevents/blog37_portada.jpg"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Miriam Lerma"/>
 
@@ -115,9 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="twitter:title" content="Miriam Lerma: Identify events"/>
 <meta property="twitter:description" content="Assign a number to each event."/>
 <meta property="twitter:url" content="https://miriamlerma.netlify.app/posts/2024-09-19-identifyevents/"/>
-<meta property="twitter:image" content="https://miriamlerma.netlify.app/posts/2024-09-19-identifyevents/identifyevents_files/figure-html5/unnamed-chunk-7-1.png"/>
-<meta property="twitter:image:width" content="1248"/>
-<meta property="twitter:image:height" content="768"/>
+<meta property="twitter:image" content="https://miriamlerma.netlify.app/posts/2024-09-19-identifyevents/blog37_portada.jpg"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
@@ -128,7 +124,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog37.jpg","identifyevents_files/figure-html5/unnamed-chunk-22-1.png","identifyevents_files/figure-html5/unnamed-chunk-7-1.png","portadas_2024.jpg"]}
+  {"type":"character","attributes":{},"value":["blog37.jpg","blog37_portada.jpg","identifyevents_files/anchor-4.2.2/anchor.min.js","identifyevents_files/bowser-1.9.3/bowser.min.js","identifyevents_files/distill-2.2.21/template.v2.js","identifyevents_files/figure-html5/unnamed-chunk-18-1.png","identifyevents_files/figure-html5/unnamed-chunk-22-1.png","identifyevents_files/figure-html5/unnamed-chunk-6-1.png","identifyevents_files/figure-html5/unnamed-chunk-7-1.png","identifyevents_files/header-attrs-2.27/header-attrs.js","identifyevents_files/jquery-3.6.0/jquery-3.6.0.js","identifyevents_files/jquery-3.6.0/jquery-3.6.0.min.js","identifyevents_files/jquery-3.6.0/jquery-3.6.0.min.map","identifyevents_files/popper-2.6.0/popper.min.js","identifyevents_files/tippy-6.2.7/tippy-bundle.umd.min.js","identifyevents_files/tippy-6.2.7/tippy-light-border.css","identifyevents_files/tippy-6.2.7/tippy.css","identifyevents_files/tippy-6.2.7/tippy.umd.min.js","identifyevents_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2539,11 +2535,11 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p>To identify between different events assigning an ID is essential.
-In this post we would see how to assign a trip number to locations of an animals.</p>
+<p>To identify between different events assigning an ID is essential.<br />
+This post shows an option to assign a trip number to locations of animals.</p>
 <h1 id="data">Data</h1>
 <p>For the exercises, test data is from Masked boobies. <br>
-To access the data you have to install the package <strong>sula</strong>: devtools::install_github(“MiriamLL/sula”)</p>
+To access the data the package <strong>sula</strong> needs to be installed: devtools::install_github(“MiriamLL/sula”)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#devtools::install_github("MiriamLL/sula")</span></span>
@@ -2558,13 +2554,7 @@ To access the data you have to install the package <strong>sula</strong>: devtoo
 <pre><code> [1] &quot;GPS01&quot; &quot;GPS02&quot; &quot;GPS03&quot; &quot;GPS04&quot; &quot;GPS05&quot; &quot;GPS06&quot; &quot;GPS07&quot; &quot;GPS08&quot;
  [9] &quot;GPS09&quot; &quot;GPS10&quot;</code></pre>
 </div>
-<p>To load it into the environment.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span></span></code></pre>
-</div>
-</div>
-<p>Using functions from the package <em>tidyverse</em>, filter the data select only one individual.</p>
+<p>Using functions from the package <strong>tidyverse</strong>, one of the individuals can be selected.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
@@ -2575,43 +2565,40 @@ To access the data you have to install the package <strong>sula</strong>: devtoo
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_one</span><span class='op'>&lt;-</span><span class='va'>GPS_raw</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS08'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Using functions from the package <em>ggplot2</em> see the data provided.</p>
+<p>The original data can be checked using functions from the package <strong>ggplot2</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Here we can see all the locations without knowning is there is one or more trips.</p>
+<p>All locations are presented, but events can not be identify yet.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_original</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>GPS_one</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Tracking data'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'none'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>x</span>, <span class='st'>'\u00B0'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>x</span>, <span class='st'>'\u00B0'</span><span class='op'>)</span><span class='op'>)</span>  <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>'Longitude'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>'Latitude'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'Tracking data'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>'Longitude'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>'Latitude'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
+<span>    legend.position<span class='op'>=</span><span class='st'>'none'</span>,</span>
 <span>    panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'#edf2f4'</span><span class='op'>)</span>,</span>
 <span>    panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>    panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,legend.position<span class='op'>=</span><span class='st'>'none'</span>,</span>
-<span>    panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span></span>
+<span>    panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>    panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>Plot_original</span></span></code></pre>
 </div>
-<p><img src="identifyevents_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+<p><img src="identifyevents_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <h1 id="remove-central-locations">Remove central locations</h1>
-<p>Here, an event would be defined as each time the animal leaves its central location.<br />
-Therefore, the first step would consist on identify the central location.</p>
+<p>Here, an event would be defined as each time the animal leaves its central location.</p>
+<p>Provide information of the central location</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Central_location</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Longitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>109.4531</span>, Latitude<span class='op'>=</span><span class='op'>-</span><span class='fl'>27.20097</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>To make the spatial analyses, data should be transformed spatial data.</p>
+<p>Transform the locations into spatial data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_spatial</span> <span class='op'>&lt;-</span> <span class='va'>GPS_one</span></span>
@@ -2620,7 +2607,10 @@ Therefore, the first step would consist on identify the central location.</p>
 <span><span class='va'>GPS_spatial</span><span class='op'>&lt;-</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>GPS_spatial</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>The buffer function is explained in the previous <a href="https://www.miriam-lerma.com/posts/2024-08-01-removelocs/">post</a>.</p>
+<p>The buffer function is explained in the previous <a href="https://www.miriam-lerma.com/posts/2024-08-01-removelocs/">post</a>.<br />
+The function uses the central location to create a buffer.<br />
+A number “1” shows that the location is inside the buffer and an NA that is outside the buffer.<br />
+The information is added on a column in the data frame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>create_buffer</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>central_point</span><span class='op'>=</span><span class='va'>central_point</span>, <span class='va'>buffer_km</span><span class='op'>=</span><span class='va'>buffer_km</span><span class='op'>)</span><span class='op'>{</span></span>
@@ -2631,34 +2621,19 @@ Therefore, the first step would consist on identify the central location.</p>
 <span>  <span class='va'>buffer_dist</span><span class='op'>&lt;-</span><span class='va'>buffer_km</span><span class='op'>*</span><span class='fl'>1000</span></span>
 <span>  <span class='va'>central_buffer</span><span class='op'>&lt;-</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_unary.html'>st_buffer</a></span><span class='op'>(</span><span class='va'>central_spatial</span>, <span class='va'>buffer_dist</span><span class='op'>)</span></span>
 <span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>central_buffer</span><span class='op'>)</span></span>
-<span>  <span class='op'>}</span></span></code></pre>
+<span>  <span class='op'>}</span></span>
+<span><span class='va'>This_buffer</span><span class='op'>&lt;-</span><span class='fu'>create_buffer</span><span class='op'>(</span>central_point<span class='op'>=</span><span class='va'>Central_location</span>,buffer_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span><span class='va'>GPS_over</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_pred.html'>st_intersects</a></span><span class='op'>(</span><span class='va'>GPS_spatial</span>,<span class='va'>This_buffer</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span> <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>)</span> <span class='cn'>NA_integer_</span> <span class='kw'>else</span> <span class='va'>z</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span></span>
+<span><span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>trip</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>GPS_over</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>To run the function provide the central location.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>This_buffer</span><span class='op'>&lt;-</span><span class='fu'>create_buffer</span><span class='op'>(</span>central_point<span class='op'>=</span><span class='va'>Central_location</span>,buffer_km<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>Now this function <em>st_intersects</em> allows to identify which locations correspond to the central location and which ones correspond to a trip.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_over</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_pred.html'>st_intersects</a></span><span class='op'>(</span><span class='va'>GPS_spatial</span>,<span class='va'>This_buffer</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span> <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>)</span> <span class='cn'>NA_integer_</span> <span class='kw'>else</span> <span class='va'>z</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>Add this information into your original data frame.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>trip</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>GPS_over</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>Replace the NAs for a 0. This is not strictly necessary but might facilitate the intrerpretation of the column.</p>
+<p>Replace the NAs (when the animal is outside the buffer) for a 0. This is not strictly necessary but might facilitate the interpretation of the column.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>trip</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>trip</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>0</span></span></code></pre>
 </div>
 </div>
-<p>Alternatively, the numbers can be replace by characters.</p>
+<p>Alternatively, the numbers can be replaced by characters.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>trip</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"At_central_locations"</span>, <span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>trip</span><span class='op'>)</span></span>
@@ -2666,37 +2641,37 @@ Therefore, the first step would consist on identify the central location.</p>
 </div>
 </div>
 <h1 id="assign-trip-number">Assign trip number</h1>
-<p>Assign a sequential number to a column</p>
+<p>Add a new column with a sequential number.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>sequential_number</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>GPS_one</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Now remove all the locations of the central location, leaving only trip information.</p>
+<p>Remove the locations inside the central locations using the function <strong>subset</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>GPS_one</span>, <span class='va'>GPS_one</span><span class='op'>$</span><span class='va'>trip</span> <span class='op'>==</span> <span class='st'>"At_trip"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Using the sequential number column, we can add a number of event.</p>
+<p>Add a number of event everytime that the sequence is broken.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_trips</span><span class='op'>$</span><span class='va'>trip_number</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1L</span>, <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='va'>GPS_trips</span><span class='op'>$</span><span class='va'>sequential_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>!=</span> <span class='fl'>1L</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span> <span class='fl'>1</span></span></code></pre>
 </div>
 </div>
-<p>If there are more than 10 trips, you can also add more zeros to the number.</p>
+<p>Add more zeros using the function <strong>str_pad</strong> if there are more than ten trips.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_trips</span><span class='op'>$</span><span class='va'>trip_number</span> <span class='op'>&lt;-</span> <span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_pad.html'>str_pad</a></span><span class='op'>(</span><span class='va'>GPS_trips</span><span class='op'>$</span><span class='va'>trip_number</span> ,  <span class='fl'>2</span>, pad <span class='op'>=</span> <span class='st'>"0"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Additionally we can add text.</p>
+<p>Add text for easier interpretation.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_trips</span><span class='op'>$</span><span class='va'>trip_number</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Trip_"</span>, <span class='va'>GPS_trips</span><span class='op'>$</span><span class='va'>trip_number</span> <span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Using the function <em>unique</em> we can see that there are five different trips.</p>
+<p>Check the number of events (or trips) using the function <strong>unique</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>GPS_trips</span><span class='op'>$</span><span class='va'>trip_number</span><span class='op'>)</span></span></code></pre>
@@ -2704,7 +2679,7 @@ Therefore, the first step would consist on identify the central location.</p>
 <pre><code>[1] &quot;Trip_01&quot; &quot;Trip_02&quot; &quot;Trip_03&quot; &quot;Trip_04&quot; &quot;Trip_05&quot; &quot;Trip_06&quot;</code></pre>
 </div>
 <h1 id="plot">Plot</h1>
-<p>Here we can see the trips separated by name and by color.</p>
+<p>By adding the argument <strong>color=trip_number</strong>, the different events can now be easily observed.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Plot_trips</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>GPS_trips</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Longitude</span>, y<span class='op'>=</span><span class='va'>Latitude</span>, color<span class='op'>=</span><span class='va'>trip_number</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
@@ -2724,13 +2699,13 @@ Therefore, the first step would consist on identify the central location.</p>
 <span>    legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.12</span>,<span class='fl'>0.75</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>Plot_trips</span></span></code></pre>
 </div>
-<p><img src="identifyevents_files/figure-html5/unnamed-chunk-22-1.png" width="624" /></p>
+<p><img src="identifyevents_files/figure-html5/unnamed-chunk-18-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <h1 id="further-reading">Further reading</h1>
-<p>Functions <em>count_trips</em> from the package sula.</p>
+<p>Functions <strong>count_trips</strong> from the package sula can be used to run loops.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
