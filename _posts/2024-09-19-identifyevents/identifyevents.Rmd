@@ -1,0 +1,225 @@
+---
+title: "Identify events"
+description: |
+  Assign a number to each event.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-09-23
+preview: blog37_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2024
+---
+
+# Intro
+
+To identify between different events assigning an ID is essential.
+In this post we would see how to assign a trip number to locations of an animals. 
+
+# Data 
+
+For the exercises, test data is from Masked boobies. <br>
+To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
+
+```{r}
+#devtools::install_github("MiriamLL/sula")
+library(sula)
+```
+
+This data frame contains data from 10 individuals.
+
+```{r}
+unique(sula::GPS_raw$IDs)
+```
+
+To load it into the environment.
+
+```{r}
+GPS_raw<-GPS_raw
+```
+
+Using functions from the package *tidyverse*, filter the data select only one individual. 
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+GPS_one<-GPS_raw %>% filter(IDs=='GPS08')
+```
+
+Using functions from the package *ggplot2* see the data provided.
+
+```{r}
+library(ggplot2)
+```
+
+Here we can see all the locations without knowning is there is one or more trips.
+
+```{r}
+Plot_original<-ggplot(GPS_one, aes(x=Longitude, y=Latitude)) + 
+  geom_point()+
+  theme_bw()+
+  ggtitle('Tracking data')+
+  theme_bw()+
+  theme(legend.position='none')+
+  scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  xlab('Longitude')+ylab('Latitude')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),legend.position='none',
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5)
+  )
+Plot_original
+```
+
+
+# Remove central locations
+
+Here, an event would be defined as each time the animal leaves its central location.  
+Therefore, the first step would consist on identify the central location. 
+
+```{r}
+Central_location<-data.frame(Longitude=-109.4531, Latitude=-27.20097)
+```
+
+To make the spatial analyses, data should be transformed spatial data.
+
+```{r}
+GPS_spatial <- GPS_one
+sp::coordinates(GPS_spatial) <- ~Longitude + Latitude
+sp::proj4string(GPS_spatial) = sp::CRS("+init=epsg:4326")
+GPS_spatial<-sf::st_as_sf(GPS_spatial)
+```
+
+The buffer function is explained in the previous [post](https://www.miriam-lerma.com/posts/2024-08-01-removelocs/).
+
+```{r}
+create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
+  central_spatial<- sp::SpatialPoints(cbind(central_point$Longitude,central_point$Latitude)) 
+  sp::proj4string(central_spatial)= sp::CRS("+init=epsg:4326") 
+  central_spatial <- sp::spTransform(central_spatial, sp::CRS("+init=epsg:4326"))
+  central_spatial<-sf::st_as_sf(central_spatial)
+  buffer_dist<-buffer_km*1000
+  central_buffer<-sf::st_buffer(central_spatial, buffer_dist)
+  return(central_buffer)
+  }
+```
+
+To run the function provide the central location.
+
+```{r}
+This_buffer<-create_buffer(central_point=Central_location,buffer_km=1)
+```
+
+Now this function *st_intersects* allows to identify which locations correspond to the central location and which ones correspond to a trip. 
+
+```{r}
+GPS_over<-sapply(sf::st_intersects(GPS_spatial,This_buffer), function(z) if (length(z)==0) NA_integer_ else z[1])
+```
+
+Add this information into your original data frame.
+
+```{r}
+GPS_one$trip <- as.numeric(GPS_over)
+```
+
+Replace the NAs for a 0. This is not strictly necessary but might facilitate the intrerpretation of the column.
+
+```{r}
+GPS_one$trip[is.na(GPS_one$trip)] <- 0
+```
+
+Alternatively, the numbers can be replace by characters.
+
+```{r}    
+GPS_one$trip <- gsub("1", "At_central_locations", GPS_one$trip)
+GPS_one$trip <- gsub("0", "At_trip", GPS_one$trip)
+```
+
+# Assign trip number
+
+Assign a sequential number to a column 
+
+```{r}
+GPS_one$sequential_number<-as.integer(paste(seq(1:as.numeric(nrow(GPS_one)))))
+```
+
+Now remove all the locations of the central location, leaving only trip information.
+
+```{r}
+GPS_trips<-subset(GPS_one, GPS_one$trip == "At_trip")
+```
+
+Using the sequential number column, we can add a number of event. 
+
+```{r}
+GPS_trips$trip_number <- (cumsum(c(1L, diff(GPS_trips$sequential_number)) != 1L))+ 1
+```
+
+If there are more than 10 trips, you can also add more zeros to the number.
+
+```{r}
+GPS_trips$trip_number <- stringr::str_pad(GPS_trips$trip_number ,  2, pad = "0")
+```
+
+Additionally we can add text.
+
+```{r}
+GPS_trips$trip_number<-paste0("Trip_", GPS_trips$trip_number )
+```
+
+Using the function *unique* we can see that there are five different trips.
+
+```{r}
+unique(GPS_trips$trip_number)
+```
+
+# Plot
+
+Here we can see the trips separated by name and by color.
+
+```{r}
+Plot_trips<-ggplot(GPS_trips, aes(x=Longitude, y=Latitude, color=trip_number)) + 
+  geom_point()+
+  geom_point(data=Central_location,aes(x = Longitude,y= Latitude), 
+             color="black", fill="black",shape=16,size=5,stroke=1.5)+
+  theme_bw()+
+  scale_x_continuous(limits=c(-109.7,-108.9),labels = function(x) paste0(-x, '\u00B0')) +
+  scale_y_continuous(labels = function(x) paste0(-x, '\u00B0'))  +
+  ggtitle('Trip number')+xlab('Longitude')+ylab('Latitude')+labs(color='')+
+  theme(
+    panel.background = element_rect(fill = '#edf2f4'),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+    legend.background = element_rect(colour = "transparent", fill = "transparent"),
+    legend.position = c(0.12,0.75))
+Plot_trips
+```
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+library(patchwork)
+here()
+ggsave(Plot_original+Plot_trips,
+       filename = paste0(here(),"/_posts/2024-09-19-identifyevents/blog37.jpg"),
+       width = 9, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+# Further reading
+
+Functions *count_trips* from the package sula.  
+
+
+
