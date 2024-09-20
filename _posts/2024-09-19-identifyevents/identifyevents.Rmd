@@ -5,7 +5,7 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 2024-09-23
+date: 2024-09-19
 preview: blog37_portada.jpg
 output:
   distill::distill_article:
@@ -19,13 +19,12 @@ categories:
 
 # Intro
 
-To identify between different events assigning an ID is essential.  
-This post shows an option to assign a trip number to locations of animals. 
+This post shows an option to assign a trip number to locations of animals.  
+This same method could be use to identify events on spatial data.  
 
 # Data 
 
 For the exercises, test data is from Masked boobies. <br>
-To access the data the package **sula** needs to be installed: devtools::install_github("MiriamLL/sula")
 
 ```{r}
 #devtools::install_github("MiriamLL/sula")
@@ -53,7 +52,7 @@ The original data can be checked using functions from the package **ggplot2**.
 library(ggplot2)
 ```
 
-All locations are presented, but events can not be identify yet. 
+In the plot all locations are presented, but events can not be identify yet. 
 
 ```{r}
 Plot_original<-ggplot(GPS_one, aes(x=Longitude, y=Latitude)) + 
@@ -74,15 +73,15 @@ Plot_original
 
 # Remove central locations
 
-Here, an event would be defined as each time the animal leaves its central location.  
+An event would be defined as each time the animal leaves its central location.  
 
-Provide information of the central location
+The information about the central location is needed. 
 
 ```{r}
 Central_location<-data.frame(Longitude=-109.4531, Latitude=-27.20097)
 ```
 
-Transform the locations into spatial data.
+The locations are to be transform into spatial data.
 
 ```{r}
 GPS_spatial <- GPS_one
@@ -93,7 +92,7 @@ GPS_spatial<-sf::st_as_sf(GPS_spatial)
 
 The buffer function is explained in the previous [post](https://www.miriam-lerma.com/posts/2024-08-01-removelocs/).  
 The function uses the central location to create a buffer.  
-A number "1" shows that the location is inside the buffer and an NA that is outside the buffer.   
+A number "1" shows that the location is inside the 1 km buffer and an NA that is outside the buffer.   
 The information is added on a column in the data frame.  
 
 ```{r}
@@ -111,13 +110,14 @@ GPS_over<-sapply(sf::st_intersects(GPS_spatial,This_buffer), function(z) if (len
 GPS_one$trip <- as.numeric(GPS_over)
 ```
 
-Replace the NAs (when the animal is outside the buffer) for a 0. This is not strictly necessary but might facilitate the interpretation of the column.
+The NAs (when the animal is outside the buffer) can be replaced for a 0.  
+This is not strictly necessary but facilitates the interpretation of the column.
 
 ```{r}
 GPS_one$trip[is.na(GPS_one$trip)] <- 0
 ```
 
-Alternatively, the numbers can be replaced by characters.
+Alternatively, text can be added.  
 
 ```{r}    
 GPS_one$trip <- gsub("1", "At_central_locations", GPS_one$trip)
@@ -126,37 +126,38 @@ GPS_one$trip <- gsub("0", "At_trip", GPS_one$trip)
 
 # Assign trip number
 
-Add a new column with a sequential number.
+To assign the trip number, the first step was adding a new column with a sequential number.
 
 ```{r}
 GPS_one$sequential_number<-as.integer(paste(seq(1:as.numeric(nrow(GPS_one)))))
 ```
 
-Remove the locations inside the central locations using the function **subset**
+Afterwards, all the locations inside the central locations were removed.  
 
 ```{r}
 GPS_trips<-subset(GPS_one, GPS_one$trip == "At_trip")
 ```
 
-Add a number of event everytime that the sequence is broken. 
+By removing the locations inside the central locations, we end up with gaps in the sequence number.  
+Here, I added a number of event everytime that the sequence was broken. 
 
 ```{r}
 GPS_trips$trip_number <- (cumsum(c(1L, diff(GPS_trips$sequential_number)) != 1L))+ 1
 ```
 
-Add more zeros using the function **str_pad** if there are more than ten trips. 
+In case there might be more than ten trips, adding more zeros using the function **str_pad** might be useful.  
 
 ```{r}
 GPS_trips$trip_number <- stringr::str_pad(GPS_trips$trip_number ,  2, pad = "0")
 ```
 
-Add text for easier interpretation. 
+For easier interpretation, text can be added. 
 
 ```{r}
 GPS_trips$trip_number<-paste0("Trip_", GPS_trips$trip_number )
 ```
 
-Check the number of events (or trips) using the function **unique**.
+Using the function **unique** the number of events (or trips) can be checked.  
 
 ```{r}
 unique(GPS_trips$trip_number)
@@ -164,7 +165,7 @@ unique(GPS_trips$trip_number)
 
 # Plot
 
-By adding the argument **color=trip_number**, the different events can now be easily observed. 
+The different events can now be easily observed by adding the argument **color=trip_number** in the plot. 
 
 ```{r}
 Plot_trips<-ggplot(GPS_trips, aes(x=Longitude, y=Latitude, color=trip_number)) + 
@@ -196,6 +197,7 @@ ggsave(Plot_original+Plot_trips,
        units = "in",
        dpi = 300)
 ```
+
 # Further reading
 
 Functions **count_trips** from the package sula can be used to run loops. 

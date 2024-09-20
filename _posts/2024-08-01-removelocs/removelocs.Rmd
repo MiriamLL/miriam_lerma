@@ -141,12 +141,13 @@ class(GPS_sp)
 class(This_buffer)
 ```
 
-Here the function over allows for identifying which location intersect with the buffer
-To identify if the locations are in or out you can create a column
+Here the function over identifies which location intersect with the buffer.  
 
 ```{r}
 GPS_over<-sapply(sf::st_intersects(GPS_sp,This_buffer), function(z) if (length(z)==0) NA_integer_ else z[1])
 ```
+
+This information can be added as a column in the data frame. 
 
 ```{r}
 GPS_ten$In_or_out <- as.numeric(GPS_over)
@@ -159,7 +160,7 @@ GPS_without <- GPS_ten %>%
   filter(is.na(In_or_out)==TRUE)
 ```
 
-Here you can see that the locations inside the buffer were eliminated
+Here you can see that the locations inside the buffer were removed. 
 
 ```{r, fig.width=4, fig.height=4}
 Filtered_plot<-ggplot()+
@@ -212,7 +213,7 @@ ggsave(Original_plot+Buffer_plot+Filtered_plot,
 
 Other functions that did the job:   
 gBuffer from rgeos [deprecated](https://cran.r-project.org/web/packages/rgeos/index.html)  
-Read more about [package migration](https://github.com/r-spatial/sf/wiki/migrating)
+Read more about [package sf](https://github.com/r-spatial/sf/wiki/migrating)
 
 
 ```{r, echo=FALSE, eval=FALSE}
