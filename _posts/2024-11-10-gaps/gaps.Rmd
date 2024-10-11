@@ -130,19 +130,15 @@ calculate_gaps<-function (this_data = this_data,
   # to standardize the column names
   this_data$column_separator<- this_data[[column_separator]]
   this_data$column_datetime <- this_data[[column_datetime]]
-  
   trips_list <- split(this_data, this_data$column_separator)
     gaps_list <- list()
     for (i in seq_along(trips_list)) {
         trip_df <- trips_list[[i]]
-        
         trip_df<-trip_df %>%
           mutate(times_lag=lag(dt))%>%
           mutate(time_dif=as.numeric(difftime(dt, times_lag, units = "mins")))%>%
           mutate(time_dif_mins = round(time_dif,2))
-        
-        gaps_list[[i]] <- trip_df
-    }
+        gaps_list[[i]] <- trip_df}
     gaps_df <- do.call("rbind", gaps_list)
     return(gaps_df)
 }
@@ -158,7 +154,9 @@ Data_5uniqueIds <- Data_4withgap %>%
 To run the function, provide the data frame, the information for separating, and the name of the column where the date and time are provided. 
 
 ```{r}
-Data_6uniqueIds<-calculate_gaps(this_data=Data_5uniqueIds,column_separator='unique_id',column_datetime='dt')
+Data_6uniqueIds<-calculate_gaps(this_data=Data_5uniqueIds,
+                                column_separator='unique_id',
+                                column_datetime='dt')
 ```
 
 # Complete or incomplete
