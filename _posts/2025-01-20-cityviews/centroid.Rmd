@@ -1,0 +1,176 @@
+---
+title: "Density map"
+description: |
+  Calculate number of animals per grid and then plot as points.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-10-08
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+Plot density maps
+
+# Create grid
+
+```{r}
+library(sf)
+```
+
+```{r}
+create_grid<-function(x){
+  # Create limits
+  ## it has to be calculated in 3035 because of the precision
+  my_limits<-data.frame(Longitude=c(3750000,4400000),
+                        Latitude=c(3350000,4000000))
+  # Transform to CRS
+  my_points<-my_limits %>%
+    st_as_sf(coords=c('Longitude','Latitude'),
+           crs=3035,
+           remove=FALSE)
+  my_grid<-st_make_grid(my_points, 
+                       c(25000, 25000), 
+                       what = "polygons",
+                       square = TRUE)
+  # Add id per grid
+  my_grid = st_sf(my_grid) %>%
+  dplyr::mutate(grid_id = 1:length(lengths(my_grid)))
+  # Other CRS
+  my_grid_ll<-st_transform(my_grid,4326)
+  return(my_grid_ll)
+}
+```
+
+```{r}
+grid_original<-create_grid(x)
+```
+
+```{r}
+this_grid5x5_3035<-st_transform(grid_original, 3035)
+```
+
+
+## This data
+
+```{r}
+this_data<-seamonas::density_df
+head(this_data)
+```
+```{r}
+library(tidyverse)
+```
+
+```{r}
+this_data<-this_data  %>%
+  rename(Latitude=latitude,
+         Longitude=longitude) %>%
+  mutate(number=seq)
+```
+
+```{r sp1_basespatial, echo=FALSE}
+this_spatial<-seamonas::transform_survey(this_data,
+                 column_latitude='Latitude',
+                 column_longitude='Longitude',
+                 from_CRS=4326,
+                 to_CRS=3035)
+```
+
+```{r}
+Raw_plot<-ggplot()+
+    geom_point(data=this_data,
+          aes(x = Longitude,
+              y= Latitude))
+Raw_plot
+```
+
+### Count per grid
+
+
+```{r}
+grid_surveyed<-this_grid5x5_3035
+```
+
+```{r}
+count_birds_per_grid<-function(survey_grid=survey_grid,
+                    survey_data=survey_data,
+                    grid_identifier=grid_identifier){
+  grid_subset <- sf::st_intersection(survey_data,grid_surveyed)
+  grid_subset$grid_identifier<-grid_subset[[grid_identifier]]
+  grid_subset <- sf::st_intersection(survey_data,survey_grid)
+  grid_subset$grid_identifier<-grid_subset[[grid_identifier]]
+  which_sp <- grid_subset %>%
+    group_by(grid_id)%>% 
+    summarise(raw_abundance=sum(number))
+  grid_sp_abundance<-which_sp %>% sf::st_drop_geometry()
+  return(grid_sp_abundance)
+}
+```
+
+```{r}
+this_much<-count_birds_per_grid(survey_data=this_spatial,survey_grid=this_grid5x5_3035,grid_identifier='grid_id')
+beepr::beep(sound=1)
+```
+
+```{r}
+head(this_much)
+```
+
+
+```{r}
+this_much_pergrid <- this_much %>%
+    group_by(grid_id)%>%
+    summarise(raw_abundance=sum(raw_abundance))
+```
+
+```{r}
+this_much_spatial<-merge(this_grid5x5_3035,this_much_pergrid, by='grid_id', all=TRUE)
+```
+
+```{r}
+this_much_spatial<- this_much_spatial %>%
+  drop_na()
+```
+
+```{r}
+This_grid<-ggplot()+
+  geom_sf(data= this_much_spatial, aes(fill = raw_abundance), alpha=0.9)+
+  theme(legend.position='none')
+This_grid
+```
+
+# Centroid
+
+```{r}
+this_grid<- this_much_spatial
+class(this_grid)
+this_centroids<-st_centroid(this_grid)
+data_centroids<-this_centroids %>%
+  dplyr::mutate(Latitude = sf::st_coordinates(this_centroids$my_grid)[,1]) %>%
+  dplyr::mutate(Longitude = sf::st_coordinates(this_centroids$my_grid)[,2]) 
+data_centroids
+```
+
+```{r}
+This_plot<-ggplot(this_much_spatial)+
+  geom_sf(data= this_much_spatial,fill = 'transparent',color='transparent')+
+    geom_point(data=data_centroids,
+          aes(y = Longitude,
+              x = Latitude,
+              size=raw_abundance))
+This_plot
+```
+
+# Compare
+
+```{r}
+library(patchwork)
+```
+
+```{r,fig.height=10}
+Raw_plot+This_grid+This_plot
+```
+

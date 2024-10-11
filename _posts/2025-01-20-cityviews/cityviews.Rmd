@@ -1,0 +1,38 @@
+---
+title: "cityviews"
+description: |
+  A short description of the post.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-10-08
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+remotes::install_github("koenderks/rcityviews", dependencies = TRUE)
+```
+
+```{r}
+library(rcityviews)
+```
+
+```{r}
+list_cities(match = "Ams")
+```
+
+```{r}
+city <- new_city(name = "Lagos", country = "Portugal", lat = 37.10, long = -8.68)
+```
+
+```{r}
+p <- cityview(name = "Amsterdam", zoom = 1)
+```
+
+
+# Further reading
+
+[Rcityviews-repository github](https://github.com/koenderks/rcityviews/)

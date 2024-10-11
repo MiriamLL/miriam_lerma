@@ -1,0 +1,66 @@
+---
+title: "mapgl"
+output: html_document
+date: "2024-10-08"
+---
+
+```{r}
+install.packages("mapgl")
+```
+
+
+```{r}
+library(mapgl)
+library(tidyverse)
+library(sf)
+library(tigris)
+```
+
+
+```{r}
+intox <- read_csv("https://raw.githubusercontent.com/walkerke/geog30323/refs/heads/master/intoxication.csv") %>%
+  na.omit() %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  st_jitter(factor = 0.0001)
+
+ft_worth <- places(cb = TRUE, year = 2023) |> 
+  filter(NAME == "Fort Worth")
+
+ggplot() + 
+  geom_sf(data = ft_worth, fill = "navy", alpha = 0.2) + 
+  geom_sf(data = intox, color = "red") + 
+  theme_void()
+```
+
+
+```{r}
+ftw_map <- maplibre(
+  style = maptiler_style("openstreetmap"), 
+  bounds = ft_worth
+) |>
+  add_fill_layer(
+    id = "city",
+    source = ft_worth,
+    fill_color = "navy",
+    fill_opacity = 0.2
+  ) 
+
+ftw_map |> 
+  add_circle_layer(
+    id = "circles",
+    source = intox,
+    circle_color = "red",
+    circle_stroke_color = "white",
+    circle_stroke_width = 1
+  ) 
+```
+
+
+# Further reading
+
+```{r}
+https://walker-data.com/posts/mapgl-dots/
+```
+
+
+# End
