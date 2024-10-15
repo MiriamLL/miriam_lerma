@@ -1,0 +1,143 @@
+---
+title: "tmap"
+description: |
+  Create an interactive map to explore your data. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2024-12-04
+preview: blog40_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - tmap
+  - English
+  - Y2024
+---
+
+# Intro
+
+This post is to overview your locations in a interactive map.
+
+# Data 
+
+For the exercises, test data is from masked boobies. <br>
+To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
+
+```{r}
+library(sula)
+```
+
+```{r}
+Data_1original<-GPS_preparado 
+```
+
+## Transform
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+Data_2fortify<-fortify(Data_1original)
+```
+
+Make sure your lat and lon are numerical
+
+```{r}
+Data_2fortify$lat<-as.numeric(Data_2fortify$Latitude)
+Data_2fortify$lon<-as.numeric(Data_2fortify$Longitude)
+```
+
+Transform to spatial
+
+```{r}
+library(sf)
+```
+Select which CRS you will like to use
+
+```{r}
+Data_3spatial <- st_as_sf(Data_2fortify, coords = c("lon", "lat"),crs = 4326, agr = "constant")
+```
+
+Select the columns that are of interest
+
+```{r}
+Data_4info<-Data_3spatial[,c("IDs","trip_number","dia_hora")]
+```
+
+
+# Map
+
+Install the package **tmap**.
+
+This packages allows you to create interactive maps. 
+
+```{r}
+library(tmap)
+```
+
+For making the map interactive, the mode **view** should be declared. 
+
+```{r}
+tmap_mode("view") 
+```
+
+To create your map with points you can use the arguments **tm_shape** and **tm_dots**
+
+```{r}
+tm_shape(Data_4info)+
+   tm_dots()
+```
+
+
+To rename the information that shows, you can add the argument **popup.vars**
+
+```{r}
+tm_shape(Data_4info)+
+   tm_dots(id = "IDs",col="yellow",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))
+```
+
+
+To separate between individuals you can also include them as separated layers. 
+
+```{r}
+tm_shape(subset(Data_4info,Data_4info$ID=='GPS01'))+
+   tm_dots(id = "IDs",col="yellow",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))+
+  tm_shape(subset(Data_4info,Data_4info$ID=='GPS03'))+
+   tm_dots(id = "IDs",col="red",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))
+```
+
+
+Interact with you map
+
+```{r, echo=FALSE}
+library(fontawesome)
+```
+
+Using `r fa("plus", fill = 'black')` you can **zoom-in** to see the points.  
+Using `r fa("minus", fill = 'black')` you can **zoom-out** to see the points.  
+
+Using `r fa("layer-group", fill = 'black')` you can select which **layers** to show.  
+
+Put the cursor on top of the dot `r fa("mouse-pointer", fill = 'black')`, when `r fa("hand-point-up", fill = 'black')` appears click on it and you should be able to see the ID, trip number and dt and time of the point. 
+
+```{r}
+tm_shape(subset(Data_4info,Data_4info$ID=='GPS01'))+
+   tm_dots(id = "IDs",col="yellow",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))+
+  tm_shape(subset(Data_4info,Data_4info$ID=='GPS03'))+
+   tm_dots(id = "IDs",col="red",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))
+```
+
+
+Using tmap might save you the step to export your dataframe, and the import it into another program, particularly if you want to check a particular point and particular information associated to that point.
+
+
+# Further reading
+
+- [tmap](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)  
+- [examples of use](https://r-tmap.github.io/tmap/index.html)
+
+
