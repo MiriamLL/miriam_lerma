@@ -1,5 +1,29 @@
 [
   {
+    "path": "posts/2024-10-15-distancetocoast/",
+    "title": "Plot distance to coast in R",
+    "description": "Create a map with distance to coast information in R.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2025-02-10",
+    "categories": [
+      "R",
+      "ggplot2",
+      "English",
+      "Y2025"
+    ],
+    "contents": "\r\nIntro\r\nDistance to coast gives us information on the meters from one point to the nearest coast.\r\nThis post includes:\r\n- Download raster data\r\n- Read and subset raster data\r\n- Plot raster data\r\nDistance to coast\r\nTo download:\r\n- Access OceanColor NASA\r\n- Select the interpolated 0.01-degree GeoTiff packed together with a brief description file.\r\n- Unzip information.\r\nRead and subset\r\nTo read from file.\r\nSelect the directory where the information is.\r\n\r\n\r\nlibrary(here)\r\nhere()\r\nthis_folder<-paste0(here(),\"/data\")\r\nthis_file<-paste0(this_folder,\"/GMT_intermediate_coast_distance_01d.tif\")\r\n\r\n\r\nUse the package terra to use the function rast.\r\nThen convert to data frame.\r\n\r\n\r\nlibrary(terra)\r\nDistCoast_file<-rast(this_file)\r\nDistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)\r\nbeepr::beep(sound=1)\r\n\r\n\r\nThe file is quite large, so I recommend to subset the data to the area of interest.\r\nHere I select the area close to the German North Sea.\r\n\r\n\r\nlibrary(tidyverse)\r\nDistCoast_dataframe_sub <-DistCoast_dataframe  %>%\r\n  filter(x > 2 & x < 10)%>%\r\n  filter(y > 52 & y < 57)%>%\r\n  rename(Dist=3) %>%\r\n  mutate(Dist = as.numeric(Dist))\r\nbeepr::beep(sound=1)\r\n\r\n\r\nTo save as rda would make the reading a lot faster.\r\n\r\n\r\nGerman_distancecoast<-DistCoast_dataframe_sub\r\nsave(German_distancecoast, file=\"German_distancecoast.rda\")\r\n\r\n\r\nFrom the package.\r\nAlternatively, access the information from the package GermanNorthSea.\r\n\r\n\r\nlibrary(GermanNorthSea)\r\n\r\n\r\n\r\n\r\nDistCoast_dataframe<-GermanNorthSea::German_distancecoast\r\n\r\n\r\nPlot\r\nTo plot adding land.\r\n\r\n\r\nlibrary(sf)\r\n\r\n\r\nMake sure is in the same CRS.\r\n\r\n\r\nGerman_land<-st_transform(GermanNorthSea::German_land, 4326)\r\n\r\n\r\nTo exclude information on land.\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\n\r\nDistCoast_dataframe_sub<-DistCoast_dataframe %>%\r\n  filter(Dist > -20)\r\n\r\n\r\nUse ggplot to create your plot.\r\n\r\n\r\nPlot_distance<-ggplot() +\r\n  geom_raster(data = DistCoast_dataframe_sub, aes(x = x, y = y, fill = Dist)) +\r\n  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+\r\n  scale_fill_viridis_c(option = \"rocket\")+\r\n  theme_void()+\r\n  theme(legend.position='bottom')+\r\n  xlab('Longitude')+ylab('Latitude')+\r\n  coord_sf(xlim = c(3,9), ylim = c(53,56),\r\n                    label_axes = list(top = \"E\", left = \"N\", bottom = 'E', right='N'))\r\nPlot_distance+\r\n  guides(fill=guide_legend(title=\"Distance to coast\"))\r\n\r\n\r\n\r\n\r\n\r\n\r\nFurther reading\r\nPackage GermanNorthSea\r\nPackage terra\r\nPackage sf\r\nOceanColor NASA\r\n\r\n\r\n\r\n",
+    "preview": "posts/2024-10-15-distancetocoast/distancetocoast_files/figure-html5/unnamed-chunk-11-1.png",
+    "last_modified": "2024-10-15T18:09:59+02:00",
+    "input_file": "distancetocoast.knit.md",
+    "preview_width": 768,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2025-01-15-bathymetry/",
     "title": "Plot bathymetry in R",
     "description": "Create a map with batrymetry information in R.",
@@ -44,25 +68,6 @@
     "preview": "posts/2024-10-08-distancepoints/blog38_portada.jpg",
     "last_modified": "2024-10-08T09:29:27+02:00",
     "input_file": {}
-  },
-  {
-    "path": "posts/2025-01-20-cityviews/",
-    "title": "Density map",
-    "description": "Calculate number of animals per grid and then plot as points.",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2024-10-08",
-    "categories": [],
-    "contents": "\r\nIntro\r\nPlot density maps\r\nCreate grid\r\n\r\n\r\nlibrary(sf)\r\n\r\n\r\n\r\n\r\ncreate_grid<-function(x){\r\n  # Create limits\r\n  ## it has to be calculated in 3035 because of the precision\r\n  my_limits<-data.frame(Longitude=c(3750000,4400000),\r\n                        Latitude=c(3350000,4000000))\r\n  # Transform to CRS\r\n  my_points<-my_limits %>%\r\n    st_as_sf(coords=c('Longitude','Latitude'),\r\n           crs=3035,\r\n           remove=FALSE)\r\n  my_grid<-st_make_grid(my_points, \r\n                       c(25000, 25000), \r\n                       what = \"polygons\",\r\n                       square = TRUE)\r\n  # Add id per grid\r\n  my_grid = st_sf(my_grid) %>%\r\n  dplyr::mutate(grid_id = 1:length(lengths(my_grid)))\r\n  # Other CRS\r\n  my_grid_ll<-st_transform(my_grid,4326)\r\n  return(my_grid_ll)\r\n}\r\n\r\n\r\n\r\n\r\ngrid_original<-create_grid(x)\r\n\r\n\r\n\r\n\r\nthis_grid5x5_3035<-st_transform(grid_original, 3035)\r\n\r\n\r\nThis data\r\n\r\n\r\nthis_data<-seamonas::density_df\r\nhead(this_data)\r\n\r\n  seq survey_id longitude latitude          timestamps year month day\r\n1   1         1  6.000000 55.10000 2018-04-01 09:00:00 2018    04  01\r\n2   2         1  6.222222 54.97778 2018-04-01 09:01:00 2018    04  01\r\n3   3         1  6.444444 54.85556 2018-04-01 09:02:00 2018    04  01\r\n4   4         1  6.666667 54.73333 2018-04-01 09:03:00 2018    04  01\r\n5   5         1  6.888889 54.61111 2018-04-01 09:04:00 2018    04  01\r\n6   6         1  7.111111 54.48889 2018-04-01 09:05:00 2018    04  01\r\n        date densities\r\n1 2018-04-01 3.4434922\r\n2 2018-04-01 4.0819041\r\n3 2018-04-01 0.0000000\r\n4 2018-04-01 0.1747424\r\n5 2018-04-01 0.0000000\r\n6 2018-04-01 1.5826213\r\n\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\n\r\nthis_data<-this_data  %>%\r\n  rename(Latitude=latitude,\r\n         Longitude=longitude) %>%\r\n  mutate(number=seq)\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nRaw_plot<-ggplot()+\r\n    geom_point(data=this_data,\r\n          aes(x = Longitude,\r\n              y= Latitude))\r\nRaw_plot\r\n\r\n\r\n\r\nCount per grid\r\n\r\n\r\ngrid_surveyed<-this_grid5x5_3035\r\n\r\n\r\n\r\n\r\ncount_birds_per_grid<-function(survey_grid=survey_grid,\r\n                    survey_data=survey_data,\r\n                    grid_identifier=grid_identifier){\r\n  grid_subset <- sf::st_intersection(survey_data,grid_surveyed)\r\n  grid_subset$grid_identifier<-grid_subset[[grid_identifier]]\r\n  grid_subset <- sf::st_intersection(survey_data,survey_grid)\r\n  grid_subset$grid_identifier<-grid_subset[[grid_identifier]]\r\n  which_sp <- grid_subset %>%\r\n    group_by(grid_id)%>% \r\n    summarise(raw_abundance=sum(number))\r\n  grid_sp_abundance<-which_sp %>% sf::st_drop_geometry()\r\n  return(grid_sp_abundance)\r\n}\r\n\r\n\r\n\r\n\r\nthis_much<-count_birds_per_grid(survey_data=this_spatial,survey_grid=this_grid5x5_3035,grid_identifier='grid_id')\r\nbeepr::beep(sound=1)\r\n\r\n\r\n\r\n\r\nhead(this_much)\r\n\r\n# A tibble: 6 × 2\r\n  grid_id raw_abundance\r\n    <int>         <int>\r\n1      70            90\r\n2      95            38\r\n3      96           127\r\n4     120           120\r\n5     121            74\r\n6     122            78\r\n\r\n\r\n\r\nthis_much_pergrid <- this_much %>%\r\n    group_by(grid_id)%>%\r\n    summarise(raw_abundance=sum(raw_abundance))\r\n\r\n\r\n\r\n\r\nthis_much_spatial<-merge(this_grid5x5_3035,this_much_pergrid, by='grid_id', all=TRUE)\r\n\r\n\r\n\r\n\r\nthis_much_spatial<- this_much_spatial %>%\r\n  drop_na()\r\n\r\n\r\n\r\n\r\nThis_grid<-ggplot()+\r\n  geom_sf(data= this_much_spatial, aes(fill = raw_abundance), alpha=0.9)+\r\n  theme(legend.position='none')\r\nThis_grid\r\n\r\n\r\n\r\nCentroid\r\n\r\n\r\nthis_grid<- this_much_spatial\r\nclass(this_grid)\r\n\r\n[1] \"sf\"         \"data.frame\"\r\n\r\nthis_centroids<-st_centroid(this_grid)\r\ndata_centroids<-this_centroids %>%\r\n  dplyr::mutate(Latitude = sf::st_coordinates(this_centroids$my_grid)[,1]) %>%\r\n  dplyr::mutate(Longitude = sf::st_coordinates(this_centroids$my_grid)[,2]) \r\ndata_centroids\r\n\r\nSimple feature collection with 18 features and 4 fields\r\nGeometry type: POINT\r\nDimension:     XY\r\nBounding box:  xmin: 4062500 ymin: 3412500 xmax: 4187500 ymax: 3587500\r\nProjected CRS: ETRS89-extended / LAEA Europe\r\nFirst 10 features:\r\n   grid_id raw_abundance                 my_grid Latitude Longitude\r\n1       70            90 POINT (4187500 3412500)  4187500   3412500\r\n2       95            38 POINT (4162500 3437500)  4162500   3437500\r\n3       96           127 POINT (4187500 3437500)  4187500   3437500\r\n4      120           120 POINT (4137500 3462500)  4137500   3462500\r\n5      121            74 POINT (4162500 3462500)  4162500   3462500\r\n6      122            78 POINT (4187500 3462500)  4187500   3462500\r\n7      145           114 POINT (4112500 3487500)  4112500   3487500\r\n8      146           103 POINT (4137500 3487500)  4137500   3487500\r\n9      147            28 POINT (4162500 3487500)  4162500   3487500\r\n10     170            76 POINT (4087500 3512500)  4087500   3512500\r\n\r\n\r\n\r\nThis_plot<-ggplot(this_much_spatial)+\r\n  geom_sf(data= this_much_spatial,fill = 'transparent',color='transparent')+\r\n    geom_point(data=data_centroids,\r\n          aes(y = Longitude,\r\n              x = Latitude,\r\n              size=raw_abundance))\r\nThis_plot\r\n\r\n\r\n\r\nCompare\r\n\r\n\r\nlibrary(patchwork)\r\n\r\n\r\n\r\n\r\nRaw_plot+This_grid+This_plot\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-    "preview": "posts/2025-01-20-cityviews/centroid_files/figure-html5/unnamed-chunk-8-1.png",
-    "last_modified": "2024-10-11T14:45:02+02:00",
-    "input_file": "centroid.knit.md",
-    "preview_width": 1248,
-    "preview_height": 768
   },
   {
     "path": "posts/2024-09-19-identifyevents/",

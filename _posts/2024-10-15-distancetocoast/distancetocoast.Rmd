@@ -1,0 +1,152 @@
+---
+title: "Plot distance to coast in R"
+description: |
+  Create a map with distance to coast information in R.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-02-10
+preview: blog42_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2025
+---
+
+# Intro
+
+Distance to coast gives us information on the meters from one point to the nearest coast.
+
+This post includes:  
+- Download raster data   
+- Read and subset raster data  
+- Plot raster data  
+
+# Distance to coast
+
+To download:   
+- Access [OceanColor NASA](https://oceancolor.gsfc.nasa.gov/resources/docs/distfromcoast/)  
+- Select **the interpolated 0.01-degree GeoTiff packed together with a brief description file.**  
+- Unzip information.  
+
+# Read and subset
+
+To read from file.
+
+Select the directory where the information is.
+
+```{r, eval=FALSE}
+library(here)
+here()
+this_folder<-paste0(here(),"/data")
+this_file<-paste0(this_folder,"/GMT_intermediate_coast_distance_01d.tif")
+```
+
+Use the package **terra** to use the function **rast**.  
+Then convert to data frame.  
+
+```{r, eval=FALSE}
+library(terra)
+DistCoast_file<-rast(this_file)
+DistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)
+beepr::beep(sound=1)
+```
+
+The file is quite large, so I recommend to subset the data to the area of interest.  
+
+Here I select the area close to the German North Sea. 
+
+```{r, eval=FALSE}
+library(tidyverse)
+DistCoast_dataframe_sub <-DistCoast_dataframe  %>%
+  filter(x > 2 & x < 10)%>%
+  filter(y > 52 & y < 57)%>%
+  rename(Dist=3) %>%
+  mutate(Dist = as.numeric(Dist))
+beepr::beep(sound=1)
+```
+
+To save as rda would make the reading a lot faster.
+
+```{r,eval=FALSE}
+German_distancecoast<-DistCoast_dataframe_sub
+save(German_distancecoast, file="German_distancecoast.rda")
+```
+
+From the package.  
+
+Alternatively, access the information from the package **GermanNorthSea**.
+
+```{r}
+library(GermanNorthSea)
+```
+
+```{r}
+DistCoast_dataframe<-GermanNorthSea::German_distancecoast
+```
+
+# Plot
+
+To plot adding land.
+
+```{r}
+library(sf)
+```
+
+Make sure is in the same CRS. 
+
+```{r}
+German_land<-st_transform(GermanNorthSea::German_land, 4326)
+```
+
+To exclude information on land. 
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+DistCoast_dataframe_sub<-DistCoast_dataframe %>%
+  filter(Dist > -20)
+```
+
+Use **ggplot** to create your plot. 
+
+```{r, fig.width=4, fig.height=4}
+Plot_distance<-ggplot() +
+  geom_raster(data = DistCoast_dataframe_sub, aes(x = x, y = y, fill = Dist)) +
+  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
+  scale_fill_viridis_c(option = "rocket")+
+  theme_void()+
+  theme(legend.position='bottom')+
+  xlab('Longitude')+ylab('Latitude')+
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+Plot_distance+
+  guides(fill=guide_legend(title="Distance to coast"))
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+this_folder<-paste0(here(),"/_posts/2024-10-15-distancetocoast")
+ggsave(Plot_distance,
+       filename = paste0(this_folder,"/blog42.jpg"),
+       width = 4, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+# Further reading
+
+- [Package GermanNorthSea](https://github.com/MiriamLL/GermanNorthSea)
+- [Package terra](https://rspatial.github.io/terra/) 
+- [Package sf](https://r-spatial.github.io/sf/)
+- [OceanColor NASA](https://oceancolor.gsfc.nasa.gov/resources/docs/distfromcoast/) 
+
