@@ -1,0 +1,5 @@
+name,colony_lat,colony_long
+Ailsa Craig,55.25,-5.12
+Barra Head,56.78,-7.64
+Bass Rock,56.08,-2.64
+Bempton Cliff,54.15,-0.17

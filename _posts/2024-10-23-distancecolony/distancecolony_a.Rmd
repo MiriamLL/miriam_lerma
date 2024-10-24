@@ -1,0 +1,264 @@
+---
+title: "Raster Dist Colony"
+description: |
+  Create a raster using information from distance to colonies. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-04-10
+preview: blog44_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2025
+---
+
+
+# Data
+
+```{r}
+colonies_sub<-data.frame(
+  name=c("Ailsa Craig","Barra Head","Bass Rock","Bempton Cliff","Bull Rock","Clare Island", "Fair Isle", "Flannan Isles","Foula","Grassholm Island","Great Saltee", "Helgoland" , "Hermaness", "Ireland’s Eye", "Lambay", "Les Etac/Alderrney","Little Skellig","Mykinesholmur","Noss" ,"Ortac","Rouzic Island","Scar Rocks","St. Kilda","Sula sgeir","Sule Skerry","Sule Stack","Troup Head","Westray"),
+  
+colony_lat=c(55.25,56.78,56.08,54.15,51.59,53.80,59.54,58.29,60.13,51.73,52.12,54.18,60.71,53.40,53.49,49.70,51.78,62.10,60.14,49.72,48.90,54.67,57.81,59.10,59.08,59.02,57.69,59.29),
+
+colony_long=c(-5.12,-7.64,-2.64,-0.17,-10.27,-10.00,-1.63,-7.59,-2.07,-5.48,-6.62,7.89,-0.88,-6.06,-6.02,-2.24,-10.51,-7.68,-1.02,-2.29,-3.44,-4.70,-8.56,-6.16,-4.41,-4.51,-2.29,-2.98))
+
+```
+
+```{r}
+head(colonies_sub)
+```
+
+
+
+```{r}
+#https://stackoverflow.com/questions/77614574/how-do-i-create-a-raster-of-distance-to-nearest-feature-using-the-terra-sf-r-pac
+s1 <- rbind(c(0,3),c(0,4),c(1,5),c(2,5))
+s2 <- rbind(c(0.2,3), c(0.2,4), c(1,4.8), c(2,4.8))
+s3 <- rbind(c(0,4.4), c(0.6,5))
+
+library(terra)
+v <- vect(list(s1,s2,s3), "lines", crs="local") |> aggregate()
+
+r <- rast(v, res = 0.01)
+r <- rasterize(v, r)
+d <- distance(r)
+
+plot(d)
+```
+
+```{r}
+library(terra)
+```
+
+```{r}
+longitude <- colonies_sub$colony_lon
+latitude <- colonies_sub$colony_lat
+lonlat <- cbind(longitude, latitude)
+```
+
+```{r}
+pts <- vect(lonlat)
+```
+
+```{r}
+pts
+```
+
+```{r}
+geom(pts)
+```
+
+```{r}
+crdref <- "+proj=longlat +datum=WGS84"
+pts <- vect(lonlat, crs=crdref)
+pts
+```
+
+https://rspatial.org/spatial/3-vectordata.html
+
+
+```{r}
+r <- rast(pts, res = 0.01)
+```
+
+```{r}
+plot(r)
+```
+
+
+```{r}
+r <- rasterize(r)
+```
+
+
+```{r}
+d <- distance(r)
+```
+
+
+```{r}
+plot(d)
+```
+
+
+```{r}
+library(terra)
+library(geodata)
+```
+
+
+```{r}
+# get a shapefile of a country 
+gabon <- geodata::gadm('GAB', level = 0, path = getwd())    
+canvas <- terra::rast(gabon, resolution = 0.08, vals=0)
+m <- mask(canvas, gabon, inverse=TRUE)
+d <- distance(m)
+plot(d)
+```
+
+```{r}
+library(terra)
+library(geodata)
+library(ggplot2)
+library(scales)
+library(RColorBrewer)
+
+# get a shapefile of a country 
+gabon <- geodata::gadm('GAB', level = 0, path = getwd())    
+canvas <- terra::rast(xmin = ext(gabon)[1], 
+                      xmax = ext(gabon)[2], 
+                      ymin = ext(gabon)[3], 
+                      ymax = ext(gabon)[4],
+                      resolution = 0.08,
+                      crs = crs(gabon),
+                      vals = 0)
+pts <- as.points(canvas)    
+pts <- terra::crop(pts, gabon) # extract the points in the limits of Gabon    
+
+plot(pts)
+plot(gabon, border = "blue", add = T)    
+
+gabon_lines <- terra::as.lines(gabon)
+
+
+#### 
+# reproject pts & gabon lines to this new crs:
+new_crs <- "+proj=tmerc +lat_0=0 +lon_0=12 +k=0.9996 +x_0=500000 +y_0=500000 +datum=WGS84 +units=m +no_defs +type=crs"
+
+pts2 <- terra::project(pts, new_crs)
+gabon_lines2 <- terra::project(gabon_lines, new_crs)
+
+# calculation of the distance between the boundary and points
+dis_pts <- terra::distance(pts2, gabon_lines2, pairwise = FALSE, unit="km")
+range(dis_pts)
+## Now from 1 to about 180 km
+## a quick check on google maps & the interior of Gabon is ~180km from the nearest border
+
+dat <- data.frame(dist = as.vector(dis_pts), 
+                  crds(pts))
+
+col_dist <- brewer.pal(11, "RdGy")
+
+## Not much change from the plot before, but lat & lon degrees are approximately the same near the equator
+ggplot(dat, aes(x, y, fill = dist)) + #variables
+  geom_tile() + #geometry
+  scale_fill_gradientn(colours = rev(col_dist))+ # colors for plotting the distance
+  labs(fill = "Distance (km)")+ #legend name
+  theme_void()+ #map theme
+  theme(legend.position = "bottom") #legend position
+```
+
+```{r}
+library(sf)
+
+st_as_sf(dat, coords = c("x", "y")) %>% 
+  ggplot() + 
+    geom_sf(aes(color = dist)) + 
+    scale_color_gradientn(colours = rev(col_dist)) 
+```
+## distance
+
+https://github.com/rspatial/terra/issues/567
+
+```{r}
+library(terra)
+r <- rast(ncols=36, nrows=18, crs="+proj=longlat +datum=WGS84")
+r[500] <- 1
+p1 <- vect(rbind(c(0,0), c(90,30), c(-90,-30)), crs="+proj=longlat +datum=WGS84")
+dp <- distance(r, p1)
+plot(dp)
+plot(p1,add=T)
+```
+
+```{r}
+class(dp)
+```
+
+```{r}
+dp_tibble<-tibble::as_tibble(dp, na.rm = TRUE)
+dp_tibble
+```
+
+```{r}
+dp_tibble<-tibble::as_tibble(dp, xy = TRUE)
+dp_tibble
+```
+
+# second try
+
+```{r}
+library(terra)
+r <- rast(ncols=36, nrows=18, crs="+proj=longlat +datum=WGS84")
+r[500] <- 1
+```
+
+```{r}
+colony1<-c(colonies_sub[1,3],colonies_sub[1,2])
+colony1
+colony2<-c(colonies_sub[2,3],colonies_sub[2,2])
+colony2
+colony3<-c(colonies_sub[3,3],colonies_sub[3,2])
+colony3
+```
+
+```{r}
+p1 <- vect(rbind(colony1, 
+                 colony2, 
+                 colony3), 
+           crs="+proj=longlat +datum=WGS84")
+```
+
+```{r}
+dp <- distance(r, p1)
+plot(dp)
+plot(p1,add=T)
+```
+
+
+```{r}
+r <- rast(ncols=36, nrows=18, crs="+proj=longlat +datum=WGS84")
+r[500] <- 0.1
+plot(r)
+```
+
+```{r}
+dp <- distance(r, p1)
+plot(dp)
+plot(p1,add=T)
+```
+
+# Further reading
+
+This could be use also with distance to the nearest boat, for gulls for example.
+
+
+
+
+
+# End of document
