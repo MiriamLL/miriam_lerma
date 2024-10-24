@@ -105,6 +105,7 @@ Check ranges
 mean(this_layers$kms)
 range(this_layers$kms)
 ```
+
 Plot using ggplot
 
 ```{r}
@@ -185,6 +186,7 @@ ggplot(data = this_layers) +
   
   NULL
 ```
+
 # Crop
 
 Crop the raster to have a more adequate legend
@@ -257,6 +259,7 @@ mask_df$kms<-mask_df$lyr.1/1000
 mean(mask_df$kms)
 range(mask_df$kms)
 ```
+
 Substitute the data, now it would not include the land. 
 
 ```{r, fig.height=6, fig.width=6}
