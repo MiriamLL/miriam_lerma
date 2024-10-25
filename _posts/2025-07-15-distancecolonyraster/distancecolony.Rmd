@@ -1,0 +1,374 @@
+---
+title: "Raster Dist Colony"
+description: |
+  Create a raster using information from distance to colonies. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-04-10
+preview: blog44_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - raster
+  - English
+  - Y2025
+---
+
+# Intro
+
+In this post, we would create a raster using distance from other colonies.
+
+# Data
+
+The data corresponds to colonies of gannets.
+
+```{r}
+colony_lat=c(55.25,56.78,56.08,54.15,51.59,
+             53.80,59.54,58.29,60.13,51.73,
+             52.12,54.18,60.71,53.40,53.49,
+             49.70,51.78,62.10,60.14,49.72,
+             48.90,54.67,57.81,59.10,59.08,
+             59.02,57.69,59.29)
+colony_long=c(-5.12,-7.64,-2.64,-0.17,-10.27,
+              -10.00,-1.63,-7.59,-2.07,-5.48,
+              -6.62,7.89,-0.88,-6.06,-6.02,
+              -2.24,-10.51,-7.68,-1.02,-2.29,
+              -3.44,-4.70,-8.56,-6.16,-4.41,
+              -4.51,-2.29,-2.98)
+```
+
+Use the data to create a matrix using **cbind**
+
+```{r}
+this_colonies<-cbind(colony_long,colony_lat)
+```
+
+Transform to vector using the package **terra**
+
+```{r}
+library(terra)
+```
+
+Provide CRS
+
+```{r}
+this_vector <- vect(this_colonies, 
+                    crs="+proj=longlat +datum=WGS84")
+```
+
+Identify limits
+
+```{r, include=FALSE}
+min(colony_lat)
+max(colony_lat)
+min(colony_long)
+max(colony_long)
+```
+
+Create raster using the function **rast**  
+This function creates a raster from scratch  
+Use the same crs as in the vector  
+
+```{r}
+this_raster <- rast(ncols=200, nrows=200, 
+                    crs="+proj=longlat +datum=WGS84",
+                    xmin = -15, xmax = 15, 
+                    ymin = 40, ymax = 70)
+this_raster[500] <- 1
+```
+
+# Distance
+
+Calculate distance using the function **distance** from the package terra  
+
+```{r}
+this_calculation <- distance(this_raster, this_vector)
+```
+To access the data use **as.data.frame**  
+
+```{r}
+this_layers<-as.data.frame(this_calculation, xy = TRUE)
+```
+
+Transform from meters to kilometers
+
+```{r}
+this_layers$kms<-this_layers$lyr.1/1000
+```
+
+Check ranges
+
+```{r}
+mean(this_layers$kms)
+range(this_layers$kms)
+```
+
+Plot using ggplot
+
+```{r}
+library(ggplot2)
+```
+
+Use the **geom_raster**  
+
+```{r, fig.height=6, fig.width=6}
+ggplot(data = this_layers) +
+    geom_raster(aes(x = x, y = y, fill = kms)) +
+    scale_fill_viridis_c() +
+    theme_void() +
+    theme(legend.position = "bottom")
+```
+
+Create data frame with the information from the colonies  
+
+```{r}
+colonies_sub<-data.frame(
+  name=c("Ailsa Craig","Barra Head","Bass Rock","Bempton Cliff","Bull Rock","Clare Island", "Fair Isle", "Flannan Isles","Foula","Grassholm Island","Great Saltee", "Helgoland" , "Hermaness", "Ireland’s Eye", "Lambay", "Les Etac/Alderrney","Little Skellig","Mykinesholmur","Noss" ,"Ortac","Rouzic Island","Scar Rocks","St. Kilda","Sula sgeir","Sule Skerry","Sule Stack","Troup Head","Westray"),
+colony_lat=colony_lat,
+colony_long=colony_long)
+```
+
+Include in the plot using **geom_point**  
+
+```{r, fig.height=6, fig.width=6}
+ggplot(data = this_layers) +
+    geom_raster(aes(x = x, y = y, fill = kms)) +
+    scale_fill_viridis_c() +
+    theme_void() +
+    theme(legend.position = "bottom")+
+  geom_point(data=colonies_sub,aes(x=colony_long,y=colony_lat),color='white')
+```
+
+Add land for a better reference
+
+```{r}
+library(sf)
+```
+
+Transform the CRS
+
+```{r}
+Land_europe<-GermanNorthSea::German_land
+Land_europe<-st_transform(Land_europe,4326)
+```
+
+Include as **geom_sf** 
+
+```{r, fig.height=6, fig.width=6}
+ggplot(data = this_layers) +
+  geom_raster(aes(x = x, y = y, fill = kms)) +
+  scale_fill_viridis_c() +
+  
+  geom_sf(data=Land_europe, colour = '#283618', fill = 'transparent') +
+  geom_point(data=colonies_sub,aes(x=colony_long,y=colony_lat),color='#c1121f')+
+  
+  theme_bw()+
+  
+  theme(
+  panel.background = element_rect(fill = '#edf2f4'),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),legend.position='none',
+  panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+  
+  axis.text.x = element_text(color='#283618',size=10,vjust = 10),
+  axis.text.y = element_text(color='#283618',size=10,margin = margin(0,-1.00,0,1, unit = 'cm')),
+  axis.title = element_blank(),
+  axis.ticks.length=unit(-0.20, "cm"))+
+  
+  coord_sf(xlim = c(-12, 10),ylim = c(48, 63))+
+  scale_x_continuous(breaks = c(-10,-5,0,5,10,20,30),labels = function(x) paste0(x, '\u00B0')) +
+  scale_y_continuous(breaks = c(45,50,55,60,65,70,75),labels = function(x) paste0(x, '\u00B0')) +
+  
+  theme(legend.position='bottom')+
+  
+  NULL
+```
+
+# Crop
+
+Crop the raster to have a more adequate legend
+
+```{r}
+crop_extention<-ext(-15, 12, 45, 65)
+crop_calculation<-crop(this_calculation,crop_extention)
+```
+
+Transform to data frame to acces the info
+
+```{r}
+crop_df<-as.data.frame(crop_calculation, xy = TRUE)
+crop_df$kms<-crop_df$lyr.1/1000
+```
+
+```{r}
+mean(crop_df$kms)
+range(crop_df$kms)
+```
+
+Substitute the data used
+
+```{r, fig.height=6, fig.width=6}
+ggplot(data = crop_df) +
+  geom_raster(aes(x = x, y = y, fill = kms)) +
+  scale_fill_viridis_c() +
+  
+  geom_sf(data=Land_europe, colour = '#283618', fill = 'transparent') +
+  geom_point(data=colonies_sub,aes(x=colony_long,y=colony_lat),color='#c1121f')+
+  
+  theme_bw()+
+  
+  theme(
+  panel.background = element_rect(fill = '#edf2f4'),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),legend.position='none',
+  panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+  
+  axis.text.x = element_text(color='#283618',size=10,vjust = 10),
+  axis.text.y = element_text(color='#283618',size=10,margin = margin(0,-1.00,0,1, unit = 'cm')),
+  axis.title = element_blank(),
+  axis.ticks.length=unit(-0.20, "cm"))+
+  
+  coord_sf(xlim = c(-12, 10),ylim = c(48, 63))+
+  scale_x_continuous(breaks = c(-10,-5,0,5,10,20,30),labels = function(x) paste0(x, '\u00B0')) +
+  scale_y_continuous(breaks = c(45,50,55,60,65,70,75),labels = function(x) paste0(x, '\u00B0')) +
+  
+  theme(legend.position='bottom')+
+  
+  NULL
+```
+
+# Mask
+
+To remove the land information use the function **mask** 
+
+```{r}
+mask_calculation <- mask(crop_calculation, Land_europe, inverse = TRUE)
+```
+
+Again check the data frame
+
+```{r}
+mask_df<-as.data.frame(mask_calculation, xy = TRUE)
+mask_df$kms<-mask_df$lyr.1/1000
+```
+
+```{r}
+mean(mask_df$kms)
+range(mask_df$kms)
+```
+
+Substitute the data, now it would not include the land. 
+
+```{r, fig.height=6, fig.width=6}
+ggplot(data = mask_df) +
+  geom_raster(aes(x = x, y = y, fill = kms)) +
+  scale_fill_viridis_c() +
+  
+  #geom_sf(data=Land_europe, colour = '#283618', fill = 'transparent') +
+  geom_point(data=colonies_sub,aes(x=colony_long,y=colony_lat),color='#c1121f')+
+  
+  theme_bw()+
+  
+  theme(
+  panel.background = element_rect(fill = '#edf2f4'),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),legend.position='none',
+  panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+  
+  axis.text.x = element_text(color='#283618',size=10,vjust = 10),
+  axis.text.y = element_text(color='#283618',size=10,margin = margin(0,-1.00,0,1, unit = 'cm')),
+  axis.title = element_blank(),
+  axis.ticks.length=unit(-0.20, "cm"))+
+  
+  coord_sf(xlim = c(-12, 10),ylim = c(48, 63))+
+  scale_x_continuous(breaks = c(-10,-5,0,5,10,20,30),labels = function(x) paste0(x, '\u00B0')) +
+  scale_y_continuous(breaks = c(45,50,55,60,65,70,75),labels = function(x) paste0(x, '\u00B0')) +
+  
+  theme(legend.position='bottom')+
+  
+  NULL
+```
+
+
+
+
+# Export
+
+Select export folder
+
+```{r, eval=TRUE, echo=FALSE}
+library(here)
+this_folder<-paste0(here(),"/_posts/2024-10-23-distancecolony")
+```
+
+```{r, eval=FALSE}
+this_folder
+```
+
+Select export raster file
+
+```{r eval=FALSE}
+writeRaster(this_calculation, filename=file.path(this_folder, "distance_colonies_raster2.tif"))
+```
+
+```{r, eval=FALSE, echo=FALSE}
+write_csv(colonies_sub,paste0(this_folder,"/colonies3.txt"))
+```
+
+```{r, eval=FALSE, echo=FALSE}
+Plot_crop<-ggplot(data = crop_df) +
+  geom_raster(aes(x = x, y = y, fill = kms)) +
+  scale_fill_viridis_c() +
+  
+  geom_sf(data=Land_europe, colour = '#283618', fill = 'transparent') +
+  geom_point(data=colonies_sub,aes(x=colony_long,y=colony_lat),color='#c1121f')+
+  
+  theme_bw()+
+  
+  theme(
+  panel.background = element_rect(fill = '#edf2f4'),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),legend.position='none',
+  panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+  
+  axis.text.x = element_text(color='#283618',size=10,vjust = 10),
+  axis.text.y = element_text(color='#283618',size=10,margin = margin(0,-1.00,0,1, unit = 'cm')),
+  axis.title = element_blank(),
+  axis.ticks.length=unit(-0.20, "cm"))+
+  
+  coord_sf(xlim = c(-12, 10),ylim = c(48, 63))+
+  scale_x_continuous(breaks = c(-10,-5,0,5,10,20,30),labels = function(x) paste0(x, '\u00B0')) +
+  scale_y_continuous(breaks = c(45,50,55,60,65,70,75),labels = function(x) paste0(x, '\u00B0')) +
+  
+  theme(legend.position='none')+
+  
+  NULL
+Plot_crop
+```
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+ggsave(Plot_crop,
+       filename = paste0(this_folder,"/blog43.jpg"),
+       width = 4, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+# Further reading
+
+- [distance](https://github.com/rspatial/terra/issues/567)
+- [crop](https://rspatial.github.io/terra/reference/crop.html?q=crop#null)
+- [mask](https://rspatial.github.io/terra/reference/mask.html?q=mask#null)
+
+
+
+Other uses could be use include distance to the nearest boat, for gulls for example.
+
+
+# End of document
