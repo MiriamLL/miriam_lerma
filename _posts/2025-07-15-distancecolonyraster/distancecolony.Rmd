@@ -87,6 +87,7 @@ Calculate distance using the function **distance** from the package terra
 ```{r}
 this_calculation <- distance(this_raster, this_vector)
 ```
+
 To access the data use **as.data.frame**  
 
 ```{r}
