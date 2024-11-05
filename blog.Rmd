@@ -7,6 +7,7 @@ output:
     toc_float: true
 listing:
   posts:
+    - 2024-11-05-completeorincomplete
     - 2024-10-08-distancepoints
     - 2024-09-19-identifyevents
     - 2024-08-01-removelocs
