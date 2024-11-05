@@ -302,7 +302,7 @@ Select export folder
 
 ```{r, eval=TRUE, echo=FALSE}
 library(here)
-this_folder<-paste0(here(),"/_posts/2024-10-23-distancecolony")
+this_folder<-paste0(here(),"/_posts/2025-07-15-distancecolonyraster")
 ```
 
 ```{r, eval=FALSE}
@@ -312,11 +312,12 @@ this_folder
 Select export raster file
 
 ```{r eval=FALSE}
-writeRaster(this_calculation, filename=file.path(this_folder, "distance_colonies_raster2.tif"))
+writeRaster(this_calculation, filename=file.path(this_folder, "distance_colonies_raster.tif"))
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
-write_csv(colonies_sub,paste0(this_folder,"/colonies3.txt"))
+library(tidyverse)
+write_csv(colonies_sub,paste0(this_folder,"/colonies.txt"))
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
@@ -354,7 +355,7 @@ Plot_crop
 library(here)
 here()
 ggsave(Plot_crop,
-       filename = paste0(this_folder,"/blog43.jpg"),
+       filename = paste0(this_folder,"/blog57.jpg"),
        width = 4, 
        height = 4, 
        units = "in",
