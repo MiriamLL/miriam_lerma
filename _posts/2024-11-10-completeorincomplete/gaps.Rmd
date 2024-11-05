@@ -19,6 +19,14 @@ categories:
 
 # Intro
 
+When tracking animals, there may be times when they enter areas with no reception.
+
+If a large part of a trip takes place in such areas, you should consider whether to include this data in your calculations.
+
+For instance, long gaps could lead to an underestimation of the actual distance traveled by the animal.
+
+In this post, I'll walk you through the steps I used to determine whether trips are complete or incomplete.
+
 This post has three parts:  
 - Create a gap  
 - Calculate gaps  
