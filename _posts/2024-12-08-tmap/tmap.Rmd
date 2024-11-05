@@ -19,7 +19,8 @@ categories:
 
 # Intro
 
-This post is to overview your locations in a interactive map.
+When analyzing tracking data in R, you may want to explore the locations. One option is to export the cleaned dataset as a CSV and open it in QGIS. However, R also offers interactive mapping features. In this post, I’ll walk you through the steps I used to create interactive maps with my GPS data.
+
 
 # Data 
 
@@ -36,6 +37,8 @@ Data_1original<-GPS_preparado
 
 ## Transform
 
+The function **fortify** turns a map into a data frame that can more easily be plotted.
+
 ```{r}
 library(tidyverse)
 ```
@@ -51,23 +54,23 @@ Data_2fortify$lat<-as.numeric(Data_2fortify$Latitude)
 Data_2fortify$lon<-as.numeric(Data_2fortify$Longitude)
 ```
 
-Transform to spatial
+Transform to spatial.
 
 ```{r}
 library(sf)
 ```
-Select which CRS you will like to use
+
+Select which CRS you will like to use.
 
 ```{r}
 Data_3spatial <- st_as_sf(Data_2fortify, coords = c("lon", "lat"),crs = 4326, agr = "constant")
 ```
 
-Select the columns that are of interest
+Select the columns that are of interest.
 
 ```{r}
 Data_4info<-Data_3spatial[,c("IDs","trip_number","dia_hora")]
 ```
-
 
 # Map
 
@@ -92,14 +95,12 @@ tm_shape(Data_4info)+
    tm_dots()
 ```
 
-
 To rename the information that shows, you can add the argument **popup.vars**
 
 ```{r}
 tm_shape(Data_4info)+
    tm_dots(id = "IDs",col="yellow",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))
 ```
-
 
 To separate between individuals you can also include them as separated layers. 
 
@@ -109,7 +110,6 @@ tm_shape(subset(Data_4info,Data_4info$ID=='GPS01'))+
   tm_shape(subset(Data_4info,Data_4info$ID=='GPS03'))+
    tm_dots(id = "IDs",col="red",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))
 ```
-
 
 Interact with you map
 
@@ -136,7 +136,7 @@ Using tmap might save you the step to export your dataframe, and the import it i
 
 # Further reading
 
-- [tmap](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)  
+- [tmap vignette](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)  
 - [examples of use](https://r-tmap.github.io/tmap/index.html)  
-- [book](https://r-tmap.github.io/tmap-book/index.html)  
-- [geocomputation with R](https://r.geocompx.org/adv-map)
+- [book: Elegant and informative maps with tmap](https://r-tmap.github.io/tmap-book/index.html)  
+- [book: geocomputation with R](https://r.geocompx.org/adv-map)
