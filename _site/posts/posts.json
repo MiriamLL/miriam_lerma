@@ -118,6 +118,23 @@
     "input_file": "tmap.knit.md"
   },
   {
+    "path": "posts/2024-11-19-tracking/",
+    "title": "Animal tracking",
+    "description": "A a curated collection of my blog posts focused on animal tracking analysis.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2024-11-19",
+    "categories": [],
+    "contents": "\r\nIntro\r\nIn this post, you’ll find a curated collection of my blog posts focused on tracking analysis. Each entry delves into different aspects of tracking, from data collection to interpretation, providing valuable insights and practical tips for anyone looking to enhance their tracking techniques and understanding.\r\nLoad data\r\n- From movebank\r\n- From csv\r\nData preparation\r\n- Usage of time formats\r\n- Converting times\r\n- Time overlap between individuals\r\n- Locate the animals central location\r\n- Include Julian days\r\n- Identify Day or night\r\n- Calculate speed\r\n- Behaviour classification\r\nClean\r\n- Select columns\r\n- Remove undesired locations\r\n- Identify gaps\r\n- Complete or incomplete\r\n- Export clean data frame\r\nTrip parameters\r\n- Number of trips: Identify events\r\n- Maximum distance: Distance from point\r\n- Total length path: Distance between points\r\nHome range\r\n- Kernel UD considerations\r\n- Interpolate a path\r\n- Calculate UD and export shapefiles\r\n- Calculate shared areas\r\nHabitat use\r\n- In land or not\r\nVisualizations\r\n- Plot basics\r\n- Create a base map in R\r\n- Inside plot legend\r\n- Animations\r\nFurther reading\r\nBelow, you’ll find a list of recommended sources to explore. These selected materials offer valuable insights and information on a variety of topics, providing a solid foundation for further learning.\r\nNote that technology is advancing rapidly, and some of the scripts rely on functions that are already deprecated.\r\nMoreover, new packages are being developed each year.\r\n2006\r\n- The package “adehabitat” for the R software: A tool for the analysis of space and habitat use by animals\r\nby C Calenge\r\n2016\r\n- Shared R script for calculating trip parameters by BG Lascelles\r\n2019\r\n- A compilation of R packages made by R Joo\r\n2021\r\n- Detailed description of the movebank system by R Kays\r\n- A guide to pre-processing animal tracking data by P Gupte\r\n- The package track2KBA by M Beal\r\n- My package sula\r\n2023\r\n- My teaching materials\r\n2024\r\n- ExMove: An open-source toolkit for processing and exploring animal-tracking data by L Langley\r\n- move2: R package for processing movement data by K Kranstauber\r\nFinal notes\r\nI personally enjoy creating my own scripts, especially when I need to address specific questions. If you require assistance or custom scripts, don’t hesitate to get in touch with me.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2024-11-19T15:03:08+01:00",
+    "input_file": "tracking.knit.md"
+  },
+  {
     "path": "posts/2024-11-05-completeorincomplete/",
     "title": "Complete or incomplete trips",
     "description": "Identify trips with large gaps and classify the trip as complete or incomplete.",
