@@ -19,7 +19,7 @@ categories:
 
 # Intro
 
-When analyzing tracking data in R, you may want to explore the locations. One option is to export the cleaned dataset as a CSV and open it in QGIS. However, R also offers interactive mapping features. In this post, I’ll walk you through the steps I used to create interactive maps with my GPS data.
+When analyzing tracking data in R, you may want to explore the locations. One option is to export the cleaned data set and open it a GIS program.   However, R also offers interactive mapping features. In this post, I’ll walk you through the steps I used to create interactive maps with my GPS data.
 
 
 # Data 
@@ -37,7 +37,7 @@ Data_1original<-GPS_preparado
 
 ## Transform
 
-The function **fortify** turns a map into a data frame that can more easily be plotted.
+The function **fortify** helps the data frame to be more easily be plotted.
 
 ```{r}
 library(tidyverse)
@@ -76,7 +76,7 @@ Data_4info<-Data_3spatial[,c("IDs","trip_number","dia_hora")]
 
 Install the package **tmap**.
 
-This packages allows you to create interactive maps. 
+This package allows you to create interactive maps. 
 
 ```{r}
 library(tmap)
@@ -111,7 +111,7 @@ tm_shape(subset(Data_4info,Data_4info$ID=='GPS01'))+
    tm_dots(id = "IDs",col="red",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))
 ```
 
-Interact with you map
+# Interact with you map
 
 ```{r, echo=FALSE}
 library(fontawesome)
