@@ -16,7 +16,7 @@ output:
 
 # Intro
 
-In this post, you'll find a curated collection of my blog posts focused on tracking analysis from loading the data and data cleaning to visualizations.
+There are numerous tools available for analyzing tracking data. In this post, I share a curated collection of my blog entries that focus specifically on movement analysis, covering from data loading and cleaning to visualizations. Additionally, I’ve included a brief list of papers that can serve as guidance when embarking on tracking studies.
 
 **Load data**  
 - [From movebank](https://miriamll.github.io/R_intro/Tracking_0606.html#4)  
@@ -87,11 +87,7 @@ I keep the list concise, though there are certainly many other resources availab
 - ExMove: An open-source toolkit for processing and exploring animal-tracking data by [L Langley](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.14111)  
 - move2: R package for processing movement data by [K Kranstauber](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14383)
 
-Note that technology is advancing rapidly, and some of the scripts rely on functions that are already deprecated.  
-
-# Final notes
-
-I hope to be able to compile a comprehensive list of resources in the future.
+Note that technology is advancing rapidly, and some of the scripts rely on functions that might already being deprecated.  
 
 Even though there are a lot of resources out there, I prefer to write my own scripts, particularly when addressing specific questions. 
 If you need help or a custom script, feel free to reach out to me.
