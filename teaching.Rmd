@@ -2,6 +2,7 @@
 title: "Teaching"
 listing:
   posts:
+    - 2024-12-06-tracking
     - 2023-06-06-tracking
     - 2023-06-06-plotting
     - 2023-05-08-data-wrangling
