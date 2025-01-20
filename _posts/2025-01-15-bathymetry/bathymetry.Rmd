@@ -1,7 +1,7 @@
 ---
 title: "Plot bathymetry in R"
 description: |
-  Create a map with batrymetry information in R.
+  Create a map with bathymetry information in R.
 author:
   - name: Miriam Lerma
     url: {}
@@ -26,16 +26,7 @@ This post includes:
 - Read and subset raster data  
 - Plot raster data  
 
-# Data
-
-For this examples, I will use some shapefiles included in my package **GermanNorthSea**
-
-```{r}
-##devtools::install_github("MiriamLL/GermanNorthSea")
-library(GermanNorthSea)
-```
-
-## Download raster data
+# Download raster data
 
 GEBCO: General Bathymetry Chart of the Oceans provides information from bathymetry in the ocean.
 
@@ -44,11 +35,19 @@ To download [visit webpage](https://www.gebco.net/data_and_products/gridded_bath
 Go to:  
 - Download data for user-defined areas  
 - [Use the application](https://download.gebco.net/)  
-- Add your coordinates here I use 1 to 10 and 50 to 60  
+- Add your coordinates -here I use 1 to 10 and 50 to 60-  
 - Add to basket and download
 
+# Load raster data
 
-Read raster data from a file
+Once you had download the information, give the direction of the file. For example:
+
+```{r, eval=FALSE}
+library(here)
+here()
+this_folder<-paste0(here(),"this_directory")
+this_file<-paste0(this_folder,"this_file")
+```
 
 ```{r, include=FALSE}
 library(here)
@@ -80,13 +79,16 @@ Change to data frame
 Bath_dataframe <- as.data.frame(Bath_file, xy = TRUE)
 ```
 
-Alternatively, download the data directly from the package **GermanNorthSea**
+Alternatively, use the test information included in the package **GermanNorthSea**
+
+```{r}
+##devtools::install_github("MiriamLL/GermanNorthSea")
+library(GermanNorthSea)
+```
 
 ```{r}
 Bath_dataframe<-GermanNorthSea::German_bath
 ```
-
-# Subset raster data
 
 Load the package **tidyverse** 
 
@@ -155,6 +157,7 @@ Plot_bath<-ggplot() +
 Plot_bath
 ```
 
+More details about how to add features to a map [here](https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/)
 
 ```{r, echo=FALSE, eval=FALSE}
 ggsave(Plot_bath,
@@ -172,4 +175,3 @@ ggsave(Plot_bath,
 - [Package sf](https://r-spatial.github.io/sf/)
 - [GEBCO download](https://download.gebco.net/)
 
-# End of document
