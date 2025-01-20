@@ -129,7 +129,6 @@ ggplot() +
 
 ```
 
-Add land for reference
 
 Load the package **sf**
 
