@@ -1,0 +1,179 @@
+---
+title: "Plot bathymetry in R"
+description: |
+  Create a map with bathymetry information in R.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-01-10
+preview: blog41_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2025
+---
+
+# Intro
+
+Bathymetry gives us information on the water depth around an area.
+
+This post includes:  
+- Download raster data   
+- Read and subset raster data  
+- Plot raster data  
+
+## Download raster data
+
+GEBCO: General Bathymetry Chart of the Oceans provides information from bathymetry in the ocean.
+
+To download [visit webpage](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#area)
+
+Go to:  
+- Download data for user-defined areas  
+- [Use the application](https://download.gebco.net/)  
+- Add your coordinates -here I use 1 to 10 and 50 to 60-  
+- Add to basket and download
+
+Once you had download the information, give the direction of the file.
+
+```{r, eval=FALSE}
+library(here)
+here()
+this_folder<-paste0(here(),"this_directory")
+this_file<-paste0(this_folder,"this_file")
+```
+
+```{r, include=FALSE}
+library(here)
+here()
+this_folder<-paste0(here(),"/_posts/2025-01-15-bathymetry")
+list.files(this_folder)
+```
+
+```{r, include=FALSE}
+this_file<-paste0(this_folder,"/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif")
+this_file
+```
+
+Load the [terra package](https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure.html) for reading raster data
+
+```{r}
+library(terra)
+```
+
+The function **rast** helps to read raster data - replacing package raster
+
+```{r}
+Bath_file<-rast(this_file)
+```
+
+Change to data frame
+
+```{r}
+Bath_dataframe <- as.data.frame(Bath_file, xy = TRUE)
+```
+
+Alternatively, download the data directly from the package **GermanNorthSea**
+
+Use the test information included in the package **GermanNorthSea**
+
+```{r}
+##devtools::install_github("MiriamLL/GermanNorthSea")
+library(GermanNorthSea)
+```
+
+```{r}
+Bath_dataframe<-GermanNorthSea::German_bath
+```
+
+# Subset raster data
+
+Load the package **tidyverse** 
+
+```{r}
+library(tidyverse)
+```
+
+Use **filter** to subset your data 
+
+```{r}
+Bath_dataframe_sub <-Bath_dataframe  %>%
+  filter(x > 2 & x < 10)%>%
+  filter(y > 52 & y < 57)%>%
+  rename(Bathymetry=3) %>%
+  filter(Bathymetry < 10)
+```
+
+
+# Plot
+
+Load the package **ggplot2** 
+
+```{r}
+library(ggplot2)
+```
+
+Plot your data using **geom_raster**
+
+```{r, fig.width=4, fig.height=4}
+ggplot() +
+  geom_raster(data = Bath_dataframe_sub , aes(x = x, y = y, fill = Bathymetry)) +
+  scale_fill_viridis_c(option = "mako")+
+  theme_void()+
+  theme(legend.position='bottom')+
+  xlab('Longitude')+ylab('Latitude')+
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+
+```
+
+Add land for reference
+
+Load the package **sf**
+
+```{r}
+library(sf)
+```
+Use the function **st_transform** to convert to the same CRS
+
+```{r}
+German_land<-st_transform(GermanNorthSea::German_land, 4326)
+```
+
+Add the land to the plot using **geom_sf**
+
+```{r, fig.width=4, fig.height=4}
+Plot_bath<-ggplot() +
+  geom_raster(data = Bath_dataframe_sub , aes(x = x, y = y, fill = Bathymetry)) +
+  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
+  scale_fill_viridis_c(option = "mako")+
+  theme_void()+
+  theme(legend.position='bottom')+
+  xlab('Longitude')+ylab('Latitude')+
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+Plot_bath
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+ggsave(Plot_bath,
+       filename = paste0(this_folder,"/blog41.jpg"),
+       width = 4, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+# Further reading
+
+- [Package GermanNorthSea](https://github.com/MiriamLL/GermanNorthSea)
+- [Package terra](https://rspatial.github.io/terra/) 
+- [Package sf](https://r-spatial.github.io/sf/)
+- [GEBCO download](https://download.gebco.net/)
+
+# End of document
