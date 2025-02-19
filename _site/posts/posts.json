@@ -48,6 +48,23 @@
     "preview_height": 768
   },
   {
+    "path": "posts/2025-02-19-ai-tools/",
+    "title": "AI-tools",
+    "description": "Compilation of AI-tools and implications in research.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2025-02-19",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nAI-tools\r\n\r\n\r\n\r\n\r\nAI-tools\r\nThis materials was compiled by Dagmar Cimiotti and Miriam Lerma.\r\nThe include a compilation of AI-tools.\r\nExamples of use.\r\nSome implications in research.\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\n\r\n Download\r\n\r\n\r\n\r\n\r\n",
+    "preview": "posts/2025-02-19-ai-tools/AI-tools_portada.jpg",
+    "last_modified": "2025-02-19T13:49:49+01:00",
+    "input_file": "ai-tools.knit.md"
+  },
+  {
     "path": "posts/2025-02-15-distancetocoast/",
     "title": "Plot distance to coast in R",
     "description": "Create a map with distance to coast information in R.",

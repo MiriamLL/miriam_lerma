@@ -1,0 +1,47 @@
+---
+title: "AI-tools"
+description: |
+  Compilation of AI-tools and implications in research.
+authors:
+  - name: Miriam Lerma
+preview: AI-tools_portada.jpg
+date: '2025-02-19'
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+```{r libraries, echo=FALSE}
+library(distilltools)
+```
+
+# AI-tools
+
+This materials was compiled by Dagmar Cimiotti and Miriam Lerma.  
+The include a compilation of AI-tools.  
+Examples of use.  
+Some implications in research.  
+
+<html>
+<body>
+   <left>
+      <a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" style="width:300px"></a>
+   </left>
+</body>
+</html>
+
+```{r icon-links1,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Open",
+          url = "https://miriamll.github.io/Curso_CIAD/Clase1")
+```
+
+-
+
+```{r icon-links2,echo=FALSE}
+icon_link(icon = "fas fa-download",
+          text = "Download",
+          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf")
+```
