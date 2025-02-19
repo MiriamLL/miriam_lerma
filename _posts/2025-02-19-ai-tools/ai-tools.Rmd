@@ -1,5 +1,5 @@
 ---
-title: "AI-tools"
+title: "AI Tools in Research"
 description: |
   Compilation of AI-tools and implications in research.
 authors:
@@ -17,31 +17,23 @@ output:
 library(distilltools)
 ```
 
-# AI-tools
+**AI Tools in Research**
 
-This materials was compiled by Dagmar Cimiotti and Miriam Lerma.  
-The include a compilation of AI-tools.  
-Examples of use.  
-Some implications in research.  
+This collection of materials has been compiled by Dagmar Cimiotti and Miriam Lerma, presenting a curated selection of AI tools that are reshaping research. It includes not only an curated list of tools but also practical examples of how these tools can be used. 
+
+In addition to the tools themselves, implications of AI in research are presented. The goal is to open the discussion on how these technologies can impact the efficiency and integrity of scientific research. Moreover, with the rise of AI in research there are implications from the journals, reviewers and the authors point-of-view by using this technology. 
+
+This resource goal is to be a guide for those looking to start using AI while considering the broader impact these tools may have on the future of academia and the environment. 
+
+**Click on the image to open the pdf**
 
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" style="width:300px"></a>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-02-19-ai-tools/AI-tools_1902.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-02-19-ai-tools/AI-tools_portada.jpg?raw=true" style="width:450px"></a>
    </left>
 </body>
 </html>
 
-```{r icon-links1,echo=FALSE}
-icon_link(icon = "fas fa-images",
-          text = "Open",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase1")
-```
 
--
 
-```{r icon-links2,echo=FALSE}
-icon_link(icon = "fas fa-download",
-          text = "Download",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf")
-```
