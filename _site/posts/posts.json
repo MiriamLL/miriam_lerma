@@ -50,7 +50,7 @@
   {
     "path": "posts/2025-02-19-ai-tools/",
     "title": "AI Tools in Research",
-    "description": "Compilation of AI-tools and implications in research.",
+    "description": "Compilation of AI Tools and implications in research.",
     "author": [
       {
         "name": "Miriam Lerma",
@@ -61,7 +61,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nAI Tools in Research\r\nThis collection of materials has been compiled by Dagmar Cimiotti and Miriam Lerma, presenting a curated selection of AI tools that are reshaping research. It includes not only an curated list of tools but also practical examples of how these tools can be used.\r\nIn addition to the tools themselves, implications of AI in research are presented. The goal is to open the discussion on how these technologies can impact the efficiency and integrity of scientific research. Moreover, with the rise of AI in research there are implications from the journals, reviewers and the authors point-of-view by using this technology.\r\nThis resource goal is to be a guide for those looking to start using AI while considering the broader impact these tools may have on the future of academia and the environment.\r\nClick on the image to open the pdf\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-19-ai-tools/AI-tools_portada.jpg",
-    "last_modified": "2025-02-19T14:13:51+01:00",
+    "last_modified": "2025-02-19T14:15:32+01:00",
     "input_file": "ai-tools.knit.md"
   },
   {

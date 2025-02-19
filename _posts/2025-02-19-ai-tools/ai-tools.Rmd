@@ -1,7 +1,7 @@
 ---
 title: "AI Tools in Research"
 description: |
-  Compilation of AI-tools and implications in research.
+  Compilation of AI Tools and implications in research.
 authors:
   - name: Miriam Lerma
 preview: AI-tools_portada.jpg
