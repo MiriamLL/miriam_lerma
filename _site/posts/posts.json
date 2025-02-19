@@ -48,6 +48,28 @@
     "preview_height": 768
   },
   {
+    "path": "posts/2025-02-15-distancetocoast/",
+    "title": "Plot distance to coast in R",
+    "description": "Create a map with distance to coast information in R.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2025-02-20",
+    "categories": [
+      "R",
+      "ggplot2",
+      "English",
+      "Y2025"
+    ],
+    "contents": "\r\nIntro\r\nDistance to coast gives us information on the distance (in meters) from one point at sea to the nearest coast.\r\nThis post includes:\r\n- Download raster data\r\n- Read and subset raster data\r\n- Plot raster data\r\nDistance to coast\r\nTo download:\r\n- Access OceanColor NASA\r\n- Select the interpolated 0.01-degree GeoTiff packed together with a brief description file.\r\n- Unzip information.\r\nRead and subset\r\nTo read from file.\r\nSelect the directory where the information is.\r\n\r\n\r\nlibrary(here)\r\nhere()\r\nthis_folder<-paste0(here(),\"/data\")\r\nthis_file<-paste0(this_folder,\"/GMT_intermediate_coast_distance_01d.tif\")\r\n\r\n\r\nUse the package terra to use the function rast.\r\nThen convert to data frame.\r\n\r\n\r\nlibrary(terra)\r\nDistCoast_file<-rast(this_file)\r\nDistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)\r\nbeepr::beep(sound=1)\r\n\r\n\r\nThe file is quite large, so I recommend to subset the data to the area of interest.\r\nHere I select the area close to the German North Sea.\r\n\r\n\r\nlibrary(tidyverse)\r\nDistCoast_dataframe_sub <-DistCoast_dataframe  %>%\r\n  filter(x > 2 & x < 10)%>%\r\n  filter(y > 52 & y < 57)%>%\r\n  rename(Dist=3) %>%\r\n  mutate(Dist = as.numeric(Dist))\r\nbeepr::beep(sound=1)\r\n\r\n\r\nTo save as rda would make the reading a lot faster.\r\n\r\n\r\nGerman_distancecoast<-DistCoast_dataframe_sub\r\nsave(German_distancecoast, file=\"German_distancecoast.rda\")\r\n\r\n\r\nFrom the package.\r\nAlternatively, access the information from the package GermanNorthSea.\r\n\r\n\r\nlibrary(GermanNorthSea)\r\n\r\n\r\n\r\n\r\nDistCoast_dataframe<-GermanNorthSea::German_distancecoast\r\n\r\n\r\nPlot\r\nTo plot adding land.\r\n\r\n\r\nlibrary(sf)\r\n\r\n\r\nMake sure is in the same CRS.\r\n\r\n\r\nGerman_land<-st_transform(GermanNorthSea::German_land, 4326)\r\n\r\n\r\nTo exclude information on land.\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\n\r\nDistCoast_dataframe_sub<-DistCoast_dataframe %>%\r\n  filter(Dist > -20)\r\n\r\n\r\nUse ggplot to create your plot.\r\n\r\n\r\nPlot_distance<-ggplot() +\r\n  geom_raster(data = DistCoast_dataframe_sub, aes(x = x, y = y, fill = Dist)) +\r\n  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+\r\n  scale_fill_viridis_c(option = \"rocket\")+\r\n  theme_void()+\r\n  theme(legend.position='bottom')+\r\n  xlab('Longitude')+ylab('Latitude')+\r\n  coord_sf(xlim = c(3,9), ylim = c(53,56),\r\n                    label_axes = list(top = \"E\", left = \"N\", bottom = 'E', right='N'))\r\nPlot_distance+\r\n  guides(fill=guide_legend(title=\"Distance to coast\"))\r\n\r\n\r\n\r\n\r\n\r\n\r\nFurther reading\r\nPackage GermanNorthSea\r\nPackage terra\r\nPackage sf\r\nOceanColor NASA\r\n\r\n\r\n\r\n",
+    "preview": "posts/2025-02-15-distancetocoast/blog42_portadas.jpg",
+    "last_modified": "2025-02-19T15:49:26+01:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2025-02-19-ai-tools/",
     "title": "AI Tools in Research",
     "description": "Compilation of AI Tools and implications in research.",
@@ -62,31 +84,7 @@
     "contents": "\r\n\r\n\r\n\r\nAI Tools in Research\r\nThis collection of materials has been compiled by Dagmar Cimiotti and Miriam Lerma, presenting a curated selection of AI tools that are reshaping research. It includes not only an curated list of tools but also practical examples of how these tools can be used.\r\nIn addition to the tools themselves, implications of AI in research are presented. The goal is to open the discussion on how these technologies can impact the efficiency and integrity of scientific research. Moreover, with the rise of AI in research there are implications from the journals, reviewers and the authors point-of-view by using this technology.\r\nThis resource goal is to be a guide for those looking to start using AI while considering the broader impact these tools may have on the future of academia and the environment.\r\nClick on the image to open the pdf\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-19-ai-tools/AI-tools_portada.jpg",
     "last_modified": "2025-02-19T14:15:32+01:00",
-    "input_file": "ai-tools.knit.md"
-  },
-  {
-    "path": "posts/2025-02-15-distancetocoast/",
-    "title": "Plot distance to coast in R",
-    "description": "Create a map with distance to coast information in R.",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2025-02-10",
-    "categories": [
-      "R",
-      "ggplot2",
-      "English",
-      "Y2025"
-    ],
-    "contents": "\r\nIntro\r\nDistance to coast gives us information on the meters from one point to the nearest coast.\r\nThis post includes:\r\n- Download raster data\r\n- Read and subset raster data\r\n- Plot raster data\r\nDistance to coast\r\nTo download:\r\n- Access OceanColor NASA\r\n- Select the interpolated 0.01-degree GeoTiff packed together with a brief description file.\r\n- Unzip information.\r\nRead and subset\r\nTo read from file.\r\nSelect the directory where the information is.\r\n\r\n\r\nlibrary(here)\r\nhere()\r\nthis_folder<-paste0(here(),\"/data\")\r\nthis_file<-paste0(this_folder,\"/GMT_intermediate_coast_distance_01d.tif\")\r\n\r\n\r\nUse the package terra to use the function rast.\r\nThen convert to data frame.\r\n\r\n\r\nlibrary(terra)\r\nDistCoast_file<-rast(this_file)\r\nDistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)\r\nbeepr::beep(sound=1)\r\n\r\n\r\nThe file is quite large, so I recommend to subset the data to the area of interest.\r\nHere I select the area close to the German North Sea.\r\n\r\n\r\nlibrary(tidyverse)\r\nDistCoast_dataframe_sub <-DistCoast_dataframe  %>%\r\n  filter(x > 2 & x < 10)%>%\r\n  filter(y > 52 & y < 57)%>%\r\n  rename(Dist=3) %>%\r\n  mutate(Dist = as.numeric(Dist))\r\nbeepr::beep(sound=1)\r\n\r\n\r\nTo save as rda would make the reading a lot faster.\r\n\r\n\r\nGerman_distancecoast<-DistCoast_dataframe_sub\r\nsave(German_distancecoast, file=\"German_distancecoast.rda\")\r\n\r\n\r\nFrom the package.\r\nAlternatively, access the information from the package GermanNorthSea.\r\n\r\n\r\nlibrary(GermanNorthSea)\r\n\r\n\r\n\r\n\r\nDistCoast_dataframe<-GermanNorthSea::German_distancecoast\r\n\r\n\r\nPlot\r\nTo plot adding land.\r\n\r\n\r\nlibrary(sf)\r\n\r\n\r\nMake sure is in the same CRS.\r\n\r\n\r\nGerman_land<-st_transform(GermanNorthSea::German_land, 4326)\r\n\r\n\r\nTo exclude information on land.\r\n\r\n\r\nlibrary(tidyverse)\r\n\r\n\r\n\r\n\r\nDistCoast_dataframe_sub<-DistCoast_dataframe %>%\r\n  filter(Dist > -20)\r\n\r\n\r\nUse ggplot to create your plot.\r\n\r\n\r\nPlot_distance<-ggplot() +\r\n  geom_raster(data = DistCoast_dataframe_sub, aes(x = x, y = y, fill = Dist)) +\r\n  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+\r\n  scale_fill_viridis_c(option = \"rocket\")+\r\n  theme_void()+\r\n  theme(legend.position='bottom')+\r\n  xlab('Longitude')+ylab('Latitude')+\r\n  coord_sf(xlim = c(3,9), ylim = c(53,56),\r\n                    label_axes = list(top = \"E\", left = \"N\", bottom = 'E', right='N'))\r\nPlot_distance+\r\n  guides(fill=guide_legend(title=\"Distance to coast\"))\r\n\r\n\r\n\r\n\r\n\r\n\r\nFurther reading\r\nPackage GermanNorthSea\r\nPackage terra\r\nPackage sf\r\nOceanColor NASA\r\n\r\n\r\n\r\n",
-    "preview": "posts/2025-02-15-distancetocoast/distancetocoast_files/figure-html5/unnamed-chunk-11-1.png",
-    "last_modified": "2024-10-15T18:10:00+02:00",
-    "input_file": {},
-    "preview_width": 768,
-    "preview_height": 768
+    "input_file": {}
   },
   {
     "path": "posts/2025-01-15-bathymetry/",

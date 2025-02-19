@@ -5,8 +5,8 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 2025-02-10
-preview: blog42_portada.jpg
+date: 2025-02-20
+preview: blog42_portadas.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -19,7 +19,7 @@ categories:
 
 # Intro
 
-Distance to coast gives us information on the meters from one point to the nearest coast.
+Distance to coast gives us information on the distance (in meters) from one point at sea to the nearest coast.
 
 This post includes:  
 - Download raster data   
