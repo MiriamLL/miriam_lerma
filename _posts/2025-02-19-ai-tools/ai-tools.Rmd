@@ -15,7 +15,20 @@ output:
 
 ```{r libraries, echo=FALSE}
 library(distilltools)
+library(slidex)
+library(here)
 ```
+
+```{r,echo=FALSE}
+here()
+list.files(here("_posts/2025-02-19-ai-tools"))
+this_directory<-here("_posts/2025-02-19-ai-tools/")
+this_file<-"AI-tools_2002.pptx"
+this_pptx <- paste0(this_directory,'/',this_file)
+this_pptx
+convert_pptx(path = this_pptx, author = "Miriam Lerma")
+```
+
 
 **AI Tools in Research**
 
