@@ -26,7 +26,7 @@ This resource goal is to be a guide for those looking to submit their first pape
 <html>
 <body>
    <left>
-      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-02-24-journals/WhereToPublish_2402.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-02-24-journals/WhereToPublish_2402.jpg?raw=true" style="width:450px"></a>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-02-24-journals/WhereToPublish_2402.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-02-24-journals/WhereToPublish_2402.jpg?raw=true" style="width:500px"></a>
    </left>
 </body>
 </html>
