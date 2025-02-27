@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-03-03
-preview: Y2025_apr_portada.jpg
+preview: Y2025_mar.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -67,6 +67,7 @@ Check that you have properly read the data.
 ```{r}
 class(Fishing_tif)
 ```
+
 ### Plot 
 
 Load (or install) package tidyterra to use the function **geom_spatraster** in ggplot.
@@ -103,13 +104,13 @@ head(Fishing_df)
 
 ### Subset 
 
-To subset the data we can use the function **filter** from the package tidyverse.
+To subset the data use the function **filter** from the package tidyverse.
 
 ```{r}
 library(tidyverse)
 ```
 
-Here I define longitude and latitude limits of my interest.
+Define longitude and latitude limits of interest.
 
 ```{r}
 Fishing_sub <-Fishing_df  %>%
@@ -118,7 +119,7 @@ Fishing_sub <-Fishing_df  %>%
   rename(FishingEffort=3) 
 ```
 
-Here I check briefly the average Fishing Effort for the area. 
+Check briefly the average Fishing Effort for the area. 
 
 ```{r}
 mean(Fishing_sub$FishingEffort)
@@ -148,8 +149,8 @@ Each dot is a value of fishing effort.
 ```{r, fig.width=8, fig.height=8}
 Fishing_plot<-ggplot() +
   geom_tile(data = Fishing_sub, aes(x = x, y = y, fill = FishingEffort)) +
-  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
   geom_sf(data = German_EEZ, colour = 'black', fill = 'transparent')+
+  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
   geom_sf(data = German_SCA, colour = "#3d6d22", fill = '#3d6d22',alpha=0.3)+
   geom_sf(data = German_natura, colour = "#3d6d22", fill = '#3d6d22',alpha=0.3)+
   theme_bw()+
@@ -159,6 +160,34 @@ Fishing_plot<-ggplot() +
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
 Fishing_plot
 ```
+
+Change style
+
+```{r}
+Fishing_plot<-ggplot() +
+  geom_tile(data = Fishing_sub, aes(x = x, y = y, fill = FishingEffort)) +
+  geom_sf(data = German_EEZ, colour = 'black', fill = 'transparent')+
+  geom_sf(data = German_land, colour = 'black', fill = '#edede9')+
+  geom_sf(data = German_natura, colour = 'transparent', fill = '#3d6d22',alpha=0.2)+
+  theme_void()+
+  xlab('Longitude')+ylab('Latitude')+
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  geom_tile(data = Fishing_sub, aes(x = x, y = y, fill = FishingEffort)) +
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.30,0.30),
+        panel.background = element_rect(fill = '#edf2f4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  scale_fill_gradient(low = "#fcbf49", high = "#d62828")+ 
+  guides(fill=guide_legend(title="GFW \nFishing effort \nApr May 2018"))
+Fishing_plot
+```
+
+
+
+## Notes
 
 This data is part of an exercise using information from the platform, and the details provided have not been verified or checked for accuracy. The figures and patterns observed are based on the data from Global Fishing Watch, but they may not represent the final, validated insights. 
 
@@ -171,6 +200,7 @@ The fishing effort information includes information on Time Range, Flag, GearTyp
 ```{r, echo=FALSE, include=FALSE}
 list.files(paste0(your_folder,"/layer-activity-data-0"))
 ```
+
 To load, select your folder and file.
 
 ```{r}
