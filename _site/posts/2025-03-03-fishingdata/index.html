@@ -2539,38 +2539,17 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p><a href="https://globalfishingwatch.org/datasets-and-code/">Global fishing watch</a></p>
-<p>The Global Fishing Watch map is the first open-access online tool for visualization and analysis of vessel-based human activity at sea. Anyone with an internet connection can access the map to monitor global fishing activity from 2012 to the present for more than 65,000 commercial fishing vessels that are responsible for a significant part of global seafood catch.</p>
-<p>We use data that is broadcast using the automatic identification system (AIS) and collected via satellites and terrestrial receivers. We then combine this information with vessel monitoring system data provided by our partner countries. We apply our fishing detection algorithm to determine “apparent fishing effort” based on changes in vessel speed and direction. The heat map grid cell colors show how much fishing happened in that area, allowing for precise comparison.</p>
-<p>Login using your email.</p>
-<p><a href="https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ">Fishing effort</a></p>
-<p>Tif is missing gear type data
-Csv is missing lat and long</p>
+<p><a href="https://globalfishingwatch.org/datasets-and-code/">Global Fishing Watch</a> map is a open-access online tool designed for the visualization and analysis of vessel-based human activity at sea. It allows anyone with an internet connection to access the map and monitor global fishing activity from 2012 to the present. The map tracks more than 65,000 commercial fishing vessels, which are responsible for a significant portion of the global seafood catch.</p>
+<p>The data is broadcast through the automatic identification system (AIS) and collected via satellites and terrestrial receivers. This information is then combined with vessel monitoring system data provided by partner countries. A fishing detection algorithm is applied to determine the “apparent fishing effort” based on changes in vessel speed and direction. The heat map grid cell colors indicate the level of fishing activity in each area, allowing for precise comparisons.</p>
 <h1 id="data">Data</h1>
-<p>I want data of apparent fishing effort (AIC)
-To use the data, you need to register (is free of use).
-My first step is to limit the data to April and May of 2018.
-<a href="https://www.youtube.com/watch?v=iWkgapKbJWg">Video</a></p>
-<h1 id="raster">Raster</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2024/1Programming/miriamlerma_&quot;</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>your_folder</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"/_posts/2025-03-03-fishingdata"</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='va'>your_folder</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;blog54.jpg&quot;                                                                                     
-[2] &quot;fishingdata.html&quot;                                                                               
-[3] &quot;fishingdata.Rmd&quot;                                                                                
-[4] &quot;fishingdata_files&quot;                                                                              
-[5] &quot;Global Fishing Watch - Considerations when using automatic identification system (AIS) data.pdf&quot;
-[6] &quot;layer-activity-data-0&quot;                                                                          
-[7] &quot;layer-activity-data-1&quot;                                                                          
-[8] &quot;public-global-fishing-effort-v3.0.tif&quot;                                                          </code></pre>
-</div>
+<p>To download the data, you need to log in using your <a href="https://globalfishingwatch.org/datasets-and-code/">email</a>.</p>
+<h2 id="fishing-effort">Fishing Effort</h2>
+<p>For a test data we will see the apparent <a href="https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ">fishing effort</a> (AIC).</p>
+<p>Global Fishing Watch’s “fishing effort” refers to the measure of human activity related to fishing that is detected and analyzed from data provided by commercial fishing vessels.</p>
+<p><a href="https://www.youtube.com/watch?v=iWkgapKbJWg">Explanatory video from GFW to download data</a></p>
+<p>Fishing effort data is provided in <strong>tif</strong> format.<br />
+The example data is limited to April and May of 2018.</p>
+<p>To read the raster data define the folder.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>your_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>your_folder</span>,<span class='st'>"/public-global-fishing-effort-v3.0.tif"</span><span class='op'>)</span></span></code></pre>
@@ -2587,6 +2566,7 @@ My first step is to limit the data to April and May of 2018.
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_tif</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rspatial.github.io/terra/reference/rast.html'>rast</a></span><span class='op'>(</span><span class='va'>your_file</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>Check that you have properly read the data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>Fishing_tif</span><span class='op'>)</span></span></code></pre>
@@ -2595,8 +2575,8 @@ My first step is to limit the data to April and May of 2018.
 attr(,&quot;package&quot;)
 [1] &quot;terra&quot;</code></pre>
 </div>
-<h3 id="plot-tif-data">Plot tif data</h3>
-<p>Install package tidyterra</p>
+<h3 id="plot">Plot</h3>
+<p>Load (or install) package tidyterra to use the function <strong>geom_spatraster</strong> in ggplot.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dieghernan.github.io/tidyterra/'>tidyterra</a></span><span class='op'>)</span></span></code></pre>
@@ -2607,6 +2587,7 @@ attr(,&quot;package&quot;)
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>Here is an example of how the raw data looks.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -2617,11 +2598,10 @@ attr(,&quot;package&quot;)
 <p><img src="fishingdata_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <h3 id="tif-to-data-frame">Tif To data frame</h3>
-<p>Then convert to data frame.</p>
+<p>To manipulate raster data converting it to data frame would facilitate the process.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_df</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>Fishing_tif</span>, xy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span><span class='fu'>beepr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/beepr/man/beep.html'>beep</a></span><span class='op'>(</span>sound<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_df</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>Fishing_tif</span>, xy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2637,12 +2617,13 @@ attr(,&quot;package&quot;)
 2230 3.61 55.83                          0.819167</code></pre>
 </div>
 <h3 id="subset">Subset</h3>
+<p>To subset the data we can use the function <strong>filter</strong> from the package tidyverse.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Use <strong>filter</strong> to subset your data</p>
+<p>Here I define longitude and latitude limits of my interest.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_sub</span> <span class='op'>&lt;-</span><span class='va'>Fishing_df</span>  <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
@@ -2651,58 +2632,66 @@ attr(,&quot;package&quot;)
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>FishingEffort<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span> </span></code></pre>
 </div>
 </div>
+<p>Here I check briefly the average Fishing Effort for the area.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rspatial.github.io/terra/reference/summarize-generics.html'>mean</a></span><span class='op'>(</span><span class='va'>Fishing_sub</span><span class='op'>$</span><span class='va'>FishingEffort</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 5.90465</code></pre>
 </div>
-<h2 id="plot">Plot</h2>
+<h2 id="plot-1">Plot</h2>
+<p>Shapefiles of the German North Sea are accessible in my package GermanNorthSea.<br />
+The package sf helps to convert the CRS.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>To transform to the correct CRS, use the function <strong>st_transform</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>German_land</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, <span class='fl'>4326</span><span class='op'>)</span></span>
-<span><span class='va'>German_EEZ</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_EEZ.html'>German_EEZ</a></span>, <span class='fl'>4326</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>German_EEZ</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_EEZ.html'>German_EEZ</a></span>, <span class='fl'>4326</span><span class='op'>)</span></span>
+<span><span class='va'>German_SCA</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_SCA.html'>German_SCA</a></span>, <span class='fl'>4326</span><span class='op'>)</span></span>
+<span><span class='va'>German_natura</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_natura.html'>German_natura</a></span>, <span class='fl'>4326</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Use <strong>ggplot</strong> to create your plot.</p>
+<p>Use <strong>ggplot</strong> to create your plot.
+Each dot is a value of fishing effort.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_plot</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_tile</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Fishing_sub</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, fill <span class='op'>=</span> <span class='va'>FishingEffort</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_land</span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#ffffbe'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'transparent'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_SCA</span>, colour <span class='op'>=</span> <span class='st'>"#3d6d22"</span>, fill <span class='op'>=</span> <span class='st'>'#3d6d22'</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_natura</span>, colour <span class='op'>=</span> <span class='st'>"#3d6d22"</span>, fill <span class='op'>=</span> <span class='st'>'#3d6d22'</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'bottom'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position<span class='op'>=</span><span class='st'>'top'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>'Longitude'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>'Latitude'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56</span><span class='op'>)</span>,</span>
 <span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>Fishing_plot</span></span></code></pre>
 </div>
-<p><img src="fishingdata_files/figure-html5/unnamed-chunk-16-1.png" width="384" /></p>
+<p><img src="fishingdata_files/figure-html5/unnamed-chunk-16-1.png" width="768" /></p>
 </div>
-<h1 id="csv">Csv</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>your_folder</span>,<span class='st'>"/layer-activity-data-0"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;public-global-fishing-effort-v3.0.csv&quot;      
-[2] &quot;readme_public-global-fishing-effort-v3.0.md&quot;</code></pre>
-</div>
+<p>This data is part of an exercise using information from the platform, and the details provided have not been verified or checked for accuracy. The figures and patterns observed are based on the data from Global Fishing Watch, but they may not represent the final, validated insights.</p>
+<p>No guarantee is made regarding the accuracy or reliability of this data.</p>
+<h1 id="fishing-effort-1">Fishing effort</h1>
+<p>The fishing effort information includes information on Time Range, Flag, GearType and Apparent Fishing Hours.</p>
+<p>To load, select your folder and file.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>csv_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>your_folder</span>,<span class='st'>"/layer-activity-data-0"</span>,<span class='st'>"/public-global-fishing-effort-v3.0.csv"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>To read a csv use the function <strong>read_csv</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_csv</span><span class='op'>&lt;-</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='va'>csv_file</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>To check the data provided, you can briefly check the contents of the dataframe.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_csv</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
@@ -2724,6 +2713,7 @@ attr(,&quot;package&quot;)
 # ℹ 40 more rows
 # ℹ abbreviated name: ¹​`Apparent Fishing Hours`</code></pre>
 </div>
+<p>For this exercise, we will only be having an overview of the GearType.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_csv</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
@@ -2743,15 +2733,20 @@ attr(,&quot;package&quot;)
 8 set_longlines      1
 9 trawlers          15</code></pre>
 </div>
-<h1 id="export">Export</h1>
+<p>Read more here about <a href="https://globalfishingwatch.org/datasets-and-code-vessel-identity/">vessel identity</a>.</p>
+<p>This information may not be conclusive, but it provides a solid overview of the types of gear primarily used in this area.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <h1 id="further-read">Further read</h1>
-<p><a href="https://globalfishingwatch.org/data/downloadable-public-data-in-r/#">Working with public data</a>
-<a href="https://github.com/GlobalFishingWatch/paper-global-footprint-of-fisheries/blob/master/data_documentation/fishing_effort_byvessel.md">GitHub with outdate instructions</a>
-<a href="https://www.science.org/doi/10.1126/science.aao5646">Tracking the global footprint of fisheries</a></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><a href="https://www.science.org/doi/10.1126/science.aao5646">Tracking the global footprint of fisheries</a></p>
+<p><strong>Examples of publications using data from Global Fishing Watch</strong>:<br />
+Seabirds: <a href="https://www.pnas.org/doi/10.1073/pnas.1915499117">Ocean sentinel albatrosses locate illegal vessels and provide the first estimate of the extent of nondeclared fishing</a><br />
+Fish: <a href="https://www.pnas.org/doi/10.1073/pnas.2117440119">Global collision-risk hotspots of marine traffic and the world’s largest fish, the whale shark</a></p>
+<p>Other resources to download GFW data:<br />
+<a href="https://globalfishingwatch.org/data/downloadable-public-data-in-r/#">Working with public data</a><br />
+<a href="https://github.com/GlobalFishingWatch/paper-global-footprint-of-fisheries/blob/master/data_documentation/fishing_effort_byvessel.md">GitHub with outdate instructions</a></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
