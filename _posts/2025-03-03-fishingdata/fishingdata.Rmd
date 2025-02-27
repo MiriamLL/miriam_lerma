@@ -22,29 +22,26 @@ categories:
 
 [Global fishing watch](https://globalfishingwatch.org/datasets-and-code/)
 
-The Global Fishing Watch map is the first open-access online tool for visualization and analysis of vessel-based human activity at sea. Anyone with an internet connection can access the map to monitor global fishing activity from 2012 to the present for more than 65,000 commercial fishing vessels that are responsible for a significant part of global seafood catch.
+The Global Fishing Watch map is the first open-access online tool designed for the visualization and analysis of vessel-based human activity at sea. It allows anyone with an internet connection to access the map and monitor global fishing activity from 2012 to the present. The map tracks more than 65,000 commercial fishing vessels, which are responsible for a significant portion of the global seafood catch.
 
-We use data that is broadcast using the automatic identification system (AIS) and collected via satellites and terrestrial receivers. We then combine this information with vessel monitoring system data provided by our partner countries. We apply our fishing detection algorithm to determine “apparent fishing effort” based on changes in vessel speed and direction. The heat map grid cell colors show how much fishing happened in that area, allowing for precise comparison.
-
-
-Login using your email.
-
-[Fishing effort](https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ)
-
-
-Tif is missing gear type data
-Csv is missing lat and long
+The data is broadcast through the automatic identification system (AIS) and collected via satellites and terrestrial receivers. This information is then combined with vessel monitoring system data provided by partner countries. A fishing detection algorithm is applied to determine the "apparent fishing effort" based on changes in vessel speed and direction. The heat map grid cell colors indicate the level of fishing activity in each area, allowing for precise comparisons.
 
 # Data
 
-I want data of apparent fishing effort (AIC)
-To use the data, you need to register (is free of use).
-My first step is to limit the data to April and May of 2018.
-[Video](https://www.youtube.com/watch?v=iWkgapKbJWg)
+To download the data, you need to log in using your email. 
+
+See here: [fishing effort](https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ)
+
+For a test data we will see the apparent fishing effort (AIC).
+This data is limited to April and May of 2018.
+
+[Explanatory video from GFW to download data](https://www.youtube.com/watch?v=iWkgapKbJWg)
 
 # Raster
 
-```{r}
+Check the test data.
+
+```{r, echo=FALSE}
 library(here)
 here()
 your_folder<-paste0(here(),"/_posts/2025-03-03-fishingdata")
