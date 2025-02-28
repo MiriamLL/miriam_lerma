@@ -1,7 +1,7 @@
 ---
 title: "Fishing effort in the German North Sea"
 description: |
-  Create a map with sst information from Global fishing watch in R. 
+  Create a map with fishing information from Global fishing watch in R. 
 author:
   - name: Miriam Lerma
     url: {}
@@ -28,7 +28,7 @@ The data is broadcast through the automatic identification system (AIS) and coll
 
 To download the data, you need to log in using your [email](https://globalfishingwatch.org/datasets-and-code/). 
 
-## Fishing Effort
+# Fishing Effort
 
 For a test data we will see the apparent [fishing effort](https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ) (AIC).
 
@@ -37,6 +37,7 @@ Global Fishing Watch's "fishing effort" refers to the measure of human activity 
 [Explanatory video from GFW to download data](https://www.youtube.com/watch?v=iWkgapKbJWg)
 
 Fishing effort data is provided in **tif** format.  
+To download test data in tif format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-03-03-fishingdata/public-global-fishing-effort-v3.0.tif).  
 The example data is limited to April and May of 2018.
 
 To read the raster data define the folder. 
@@ -134,7 +135,7 @@ The package sf helps to convert the CRS.
 library(sf)
 ```
 
-To transform to the correct CRS, use the function **st_transform**.  
+To transform to the appropriate CRS, use the function **st_transform**.  
 
 ```{r}
 German_land<-st_transform(GermanNorthSea::German_land, 4326)
@@ -146,22 +147,16 @@ German_natura<-st_transform(GermanNorthSea::German_natura, 4326)
 Use **ggplot** to create your plot. 
 Each dot is a value of fishing effort.
 
-```{r, fig.width=8, fig.height=8}
+```{r, fig.width=8, fig.height=8,eval=FALSE}
 Fishing_plot<-ggplot() +
   geom_tile(data = Fishing_sub, aes(x = x, y = y, fill = FishingEffort)) +
-  geom_sf(data = German_EEZ, colour = 'black', fill = 'transparent')+
-  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
-  geom_sf(data = German_SCA, colour = "#3d6d22", fill = '#3d6d22',alpha=0.3)+
-  geom_sf(data = German_natura, colour = "#3d6d22", fill = '#3d6d22',alpha=0.3)+
   theme_bw()+
-  theme(legend.position='top')+
-  xlab('Longitude')+ylab('Latitude')+
   coord_sf(xlim = c(3,9), ylim = c(53,56),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
 Fishing_plot
 ```
 
-Change style
+Change plot style
 
 ```{r}
 Fishing_plot<-ggplot() +
@@ -187,15 +182,17 @@ Fishing_plot
 
 
 
-## Notes
+### Notes
 
 This data is part of an exercise using information from the platform, and the details provided have not been verified or checked for accuracy. The figures and patterns observed are based on the data from Global Fishing Watch, but they may not represent the final, validated insights. 
 
 No guarantee is made regarding the accuracy or reliability of this data.
 
-# Fishing effort
+# Activity data
 
 The fishing effort information includes information on Time Range, Flag, GearType and Apparent Fishing Hours.
+
+To download test data in csv format [here](https://raw.githubusercontent.com/MiriamLL/miriamlerma_/refs/heads/main/_posts/2025-03-03-fishingdata/layer-activity-data-0/public-global-fishing-effort-v3.0.csv) or [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-03-03-fishingdata/layer-activity-data-0/public-global-fishing-effort-v3.0.csv).
 
 ```{r, echo=FALSE, include=FALSE}
 list.files(paste0(your_folder,"/layer-activity-data-0"))
@@ -207,30 +204,44 @@ To load, select your folder and file.
 csv_file<-paste0(your_folder,"/layer-activity-data-0","/public-global-fishing-effort-v3.0.csv")
 ```
 
+### Read csv
+
 To read a csv use the function **read_csv**
 
 ```{r}
 Fishing_csv<-read_csv(csv_file)
 ```
+There is no clear way to link this data and the previous map.
 
-To check the data provided, you can briefly check the contents of the dataframe. 
+### Gear Type
 
-```{r}
-Fishing_csv %>%
-  distinct_all()
-```
+For an overview of the GearType. This information may not be conclusive, but it provides a solid overview of the types of gear primarily registred.
 
-For this exercise, we will only be having an overview of the GearType. 
-
-```{r}
+```{r, eval=FALSE}
 Fishing_csv %>%
   group_by(Geartype)%>%
-  tally()
+  tally()%>%
+  arrange(-n)
 ```
+
+```{r KnitTableSightings, echo=FALSE}
+knitr::kable(Fishing_csv %>%
+  group_by(Geartype)%>%
+  tally()%>%
+    arrange(-n))
+```
+
+The vessel registry database is used to identify vessels in the AIS data that have a known vessel class. A convolutional neural network—a cutting-edge form of machine learning model—is then trained to identify other vessels in the AIS data that behave in a similar fashion.
 
 Read more here about [vessel identity](https://globalfishingwatch.org/datasets-and-code-vessel-identity/).
 
-This information may not be conclusive, but it provides a solid overview of the types of gear primarily used in this area.
+<html>
+<body>
+   <left>
+      <a href="https://globalfishingwatch.org/wp-content/uploads/anaimated_track_example_larger-resize.gif"><img src="https://globalfishingwatch.org/wp-content/uploads/anaimated_track_example_larger-resize.gif" style="width:450px"></a>
+   </left>
+</body>
+</html>
 
 ```{r, echo=FALSE, eval=FALSE}
 library(here)
@@ -247,7 +258,9 @@ ggsave(Fishing_plot,
 
 # Further read
 
-[Tracking the global footprint of fisheries](https://www.science.org/doi/10.1126/science.aao5646)
+Global fishing watch: [Tracking the global footprint of fisheries](https://www.science.org/doi/10.1126/science.aao5646)
+
+Fisheries in the German North Sea: [Mapping fisheries in the German exclusive economic zone with special reference to offshore Natura 2000 sites](https://www.sciencedirect.com/science/article/abs/pii/S0308597X08001930)
 
 **Examples of publications using data from Global Fishing Watch**:   
 Seabirds: [Ocean sentinel albatrosses locate illegal vessels and provide the first estimate of the extent of nondeclared fishing](https://www.pnas.org/doi/10.1073/pnas.1915499117)  
@@ -257,3 +270,4 @@ Other resources to download GFW data:
 [Working with public data](https://globalfishingwatch.org/data/downloadable-public-data-in-r/#)  
 [GitHub with outdate instructions](https://github.com/GlobalFishingWatch/paper-global-footprint-of-fisheries/blob/master/data_documentation/fishing_effort_byvessel.md)  
 
+Citation: Global Fishing Watch. 2022, updated daily. Vessel presence and apparent fishing effort v20201001, [Apr 01 2018 00:00 UTC May 31 2018 00:00 UTC]. Data set accessed at https://globalfishingwatch.org/map
