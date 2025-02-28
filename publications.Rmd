@@ -63,7 +63,7 @@ My ORCID is [0000-0002-7632-9289](https://orcid.org/0000-0002-7632-9289).
 ### 7. Foraging ranges of Humboldt penguins _Spheniscus humboldti_ from Tilgo island: the critical need for protecting a unique marine habitat
 **Authors**: Quispe R, **Lerma M**, Luna N, Portflitt-Toro M, Serratosa J, Luna-Jorquera  
 **Abstract** The largest population of Humboldt Penguins resides in a fertile archipelago of the north-central coast of Chile, formed by eight islands in proximity to upwelling centers of the Humboldt Current System. However, five of these islands lack legal protection. Here, we report the results of breeding Humboldt Penguins tracked while foraging from Tilgo Island. The average and maximum foraging radii around the colony were 22 km and 43 km, respectively. Our data indicate that trip ranges overlap areas proposed for industrial projects. Because Humboldt Penguins are sentinels of local ecosystem health, this underscores the value of expanding conservation zones in this unique marine location.  
-**Read more:** [Full publication](https://www.marineornithology.org/PDF/48_2/48_2_205-208.pdf)
+**Read more:** [Full publication](http://marineornithology.org/PDF/48_2/48_2_205-208.pdf)
 
 ### 6. Foraging ecology of a marine top predator in the Eastern Tropical Pacific over 3 years with different ENSO phases
 **Authors**: **Lerma M**, Castillo-Guerrero JA Hernandez-Vazquez S, Garthe S  
