@@ -24,18 +24,15 @@ categories:
 
 The data is broadcast through the automatic identification system (AIS) and collected via satellites and terrestrial receivers. This information is then combined with vessel monitoring system data provided by partner countries. A fishing detection algorithm is applied to determine the "apparent fishing effort" based on changes in vessel speed and direction. The heat map grid cell colors indicate the level of fishing activity in each area, allowing for precise comparisons.
 
-# Data
-
-To download the data, you need to log in using your [email](https://globalfishingwatch.org/datasets-and-code/). 
-
 # Fishing Effort
-
-For a test data we will see the apparent [fishing effort](https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ) (AIC).
 
 Global Fishing Watch's "fishing effort" refers to the measure of human activity related to fishing that is detected and analyzed from data provided by commercial fishing vessels. 
 
 [Explanatory video from GFW to download data](https://www.youtube.com/watch?v=iWkgapKbJWg)
 
+To download the data, you need to log in using your [email](https://globalfishingwatch.org/datasets-and-code/). 
+
+For a test data we will see the apparent [fishing effort](https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ) (AIC).  
 Fishing effort data is provided in **tif** format.  
 To download test data in tif format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-03-03-fishingdata/public-global-fishing-effort-v3.0.tif).  
 The example data is limited to April and May of 2018.
@@ -92,7 +89,7 @@ ggplot() +
 
 ### Tif To data frame
 
-To manipulate raster data converting it to data frame would facilitate the process.  
+To manipulate raster data converting it to data frame facilitates the process.  
 
 ```{r}
 Fishing_df<- as.data.frame(Fishing_tif, xy = TRUE)

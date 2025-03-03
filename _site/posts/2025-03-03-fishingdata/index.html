@@ -2537,13 +2537,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1 id="intro">Intro</h1>
 <p><a href="https://globalfishingwatch.org/datasets-and-code/">Global Fishing Watch</a> map is a open-access online tool designed for the visualization and analysis of vessel-based human activity at sea. It allows anyone with an internet connection to access the map and monitor global fishing activity from 2012 to the present. The map tracks more than 65,000 commercial fishing vessels, which are responsible for a significant portion of the global seafood catch.</p>
 <p>The data is broadcast through the automatic identification system (AIS) and collected via satellites and terrestrial receivers. This information is then combined with vessel monitoring system data provided by partner countries. A fishing detection algorithm is applied to determine the “apparent fishing effort” based on changes in vessel speed and direction. The heat map grid cell colors indicate the level of fishing activity in each area, allowing for precise comparisons.</p>
-<h1 id="data">Data</h1>
-<p>To download the data, you need to log in using your <a href="https://globalfishingwatch.org/datasets-and-code/">email</a>.</p>
 <h1 id="fishing-effort">Fishing Effort</h1>
-<p>For a test data we will see the apparent <a href="https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ">fishing effort</a> (AIC).</p>
 <p>Global Fishing Watch’s “fishing effort” refers to the measure of human activity related to fishing that is detected and analyzed from data provided by commercial fishing vessels.</p>
 <p><a href="https://www.youtube.com/watch?v=iWkgapKbJWg">Explanatory video from GFW to download data</a></p>
-<p>Fishing effort data is provided in <strong>tif</strong> format.<br />
+<p>To download the data, you need to log in using your <a href="https://globalfishingwatch.org/datasets-and-code/">email</a>.</p>
+<p>For a test data we will see the apparent <a href="https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ">fishing effort</a> (AIC).<br />
+Fishing effort data is provided in <strong>tif</strong> format.<br />
 To download test data in tif format <a href="https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-03-03-fishingdata/public-global-fishing-effort-v3.0.tif">click here</a>.<br />
 The example data is limited to April and May of 2018.</p>
 <p>To read the raster data define the folder.</p>
@@ -2595,7 +2594,7 @@ attr(,&quot;package&quot;)
 <p><img src="fishingdata_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <h3 id="tif-to-data-frame">Tif To data frame</h3>
-<p>To manipulate raster data converting it to data frame would facilitate the process.</p>
+<p>To manipulate raster data converting it to data frame facilitates the process.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fishing_df</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>Fishing_tif</span>, xy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span></code></pre>
