@@ -19,7 +19,7 @@ library(slidex)
 library(here)
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, eval=FALSE}
 here()
 list.files(here("_posts/2025-02-19-ai-tools"))
 this_directory<-here("_posts/2025-02-19-ai-tools/")
