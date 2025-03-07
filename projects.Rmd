@@ -2,6 +2,7 @@
 title: "Packages"
 listing:
   posts:
+    - 2025-07-03-larus
     - 2023-06-02-germannorthsea
     - 2023-04-16-seamonas
     - 2021-05-14-spheniscus
