@@ -280,27 +280,30 @@ Trips must have at least three locations.
 Remove small trips
 
 ```{r}
-short_trips<-Params_03criteria %>%
-  group_by(trip_id)%>%
+Path_01locs<-as.data.frame(Locs_02class)
+```
+
+```{r}
+short_trips<-Path_01locs %>%
+  group_by(trip_number)%>%
   tally()%>%
   arrange(-n)%>%
-  filter(n>3)
-length(short_trips$trip_id)
+  filter(n<3)
+length(short_trips$trip_number)
 ```
 ### Subset to keep only trips with more than 3 locations
 
 ```{r}
-Path_trips<-Locs_02class %>%
-  dplyr::filter(!trip_number %in% unique(short_trips$trip_id))
+Path_02locs<-Path_01locs %>%
+  dplyr::filter(!trip_number %in% unique(short_trips$trip_number))
 ```
-
 
 ### Calculate distances per trip
 
 Might take some time
 
 ```{r}
-Path_distances<-distances_per_trip(my_df=Path_trips,
+Path_03distances<-distances_per_trip(my_df=Path_02locs,
                                    my_divider='trip_number')
 beepr::beep(sound=1)
 ```
@@ -308,13 +311,13 @@ beepr::beep(sound=1)
 Check if values are plausible
 
 ```{r, eval=FALSE}
-range(Path_distances$pointsdist_km,na.rm=TRUE)
+range(Path_03distances$pointsdist_km,na.rm=TRUE)
 ```
 
 ### Calculate parameters
 
 ```{r}
-Path_params<-Path_distances %>% 
+Path_04params<-Path_03distances %>% 
   group_by(trip_number)%>%
   summarise(path_lenght_km=sum(pointsdist_km,na.rm=TRUE))%>%
   mutate(trip_id=trip_number)
@@ -324,7 +327,7 @@ Path_params<-Path_distances %>%
 
 ```{r}
 Params_path<-merge(Params_03criteria,
-                   Path_params,
+                   Path_04params,
                    by='trip_id')
 ```
 
@@ -388,7 +391,7 @@ plot_trips(my_locs=Path_trips %>%
 ### Check speed
 
 ```{r}
-Path_speed<-Path_distances %>%
+Path_04speed<-Path_03distances %>%
   mutate(speed_if_directly_flying=pointsdist_km/gaps_min*60)%>%
   select(ID,trip_number,num_seq,
          #countday,season,month,
@@ -404,19 +407,20 @@ Path_speed<-Path_distances %>%
 ```
 
 ```{r}
-Path_speed %>%
-  filter(speed_if_directly_flying > 70)%>%
-  arrange(-speed_if_directly_flying)
+Path_04speed %>%
+  #filter(speed_if_directly_flying > 70)%>%
+  arrange(-speed_if_directly_flying)%>%
+  relocate(trip_number,speed_if_directly_flying)
 ```
 
 In case there is a trip exceeding speed:
 
 ```{r}
-exceeds_speed<-'trip_00521'
+exceeds_speed<-'trip_00070'
 ```
 
 ```{r}
-plot_trips(my_locs=Path_speed %>%
+plot_trips(my_locs=Path_04speed %>%
   filter(trip_number==exceeds_speed),my_central_location=nest_central_location)+
   ggtitle('If the speed is >70 km, \n remove that trip or reevaluate it')
 ```
@@ -428,7 +432,7 @@ So remove it from the list if its difficult to find the central location
 Params_wpath<-Params_wpath %>%
   filter(trip_number!=exceeds_speed)%>%
   rename(trip_id=trip_number)
-Path_speed<-Path_speed %>%
+Path_speed<-Path_04speed %>%
   filter(trip_number!=exceeds_speed)
 ```
 
