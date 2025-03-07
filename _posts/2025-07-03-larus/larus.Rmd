@@ -2,7 +2,7 @@
 title: "larus"
 description: |
   Functions to work on GSM data. 
-preview: larus-logo.png
+preview: logo-larus.jpg
 author:
   - name: Miriam Lerma
 date: 2025-03-07
@@ -15,7 +15,7 @@ output:
 
 ```{r, echo=FALSE, out.width = "40%"}
 library(distilltools)
-knitr::include_graphics("https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-07-03-larus/larus-logo.png?raw=true")#man/figures/logo.png
+knitr::include_graphics("https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-07-03-larus/logo-larus.jpg?raw=true")#man/figures/logo.png
 ```
 
 # Intro
