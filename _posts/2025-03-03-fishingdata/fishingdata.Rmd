@@ -1,5 +1,5 @@
 ---
-title: "Fishing effort in the German North Sea"
+title: "Plot Fishing effort in R"
 description: |
   Create a map with fishing information from Global fishing watch in R. 
 author:

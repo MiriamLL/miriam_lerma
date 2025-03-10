@@ -1,12 +1,12 @@
 ---
-title: "Sea surface temperature German North Sea in R"
+title: "Plot sea surface temperature in R"
 description: |
   Create a map with sst information from Copernicus in R.
 author:
   - name: Miriam Lerma
     url: {}
-date: 2025-03-15
-preview: blog46_portada.jpg
+date: 2025-04-07
+preview: sst_portada.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -21,7 +21,7 @@ categories:
 
 # Intro
 
-Sea surface temperatures gives us information on Celsius around an area.
+Sea surface temperature (SST) refers to the temperature of the uppermost layer of the ocean, typically measured at the surface of the sea. 
 
 This post includes:  
 - Download raster data   
@@ -30,34 +30,35 @@ This post includes:
 
 # Data
 
-Download raster data
+To download raster data: 
+[Copernicus Marine Data Store](https://marine.copernicus.eu/about)
 
-Copernicus Marine Data Store
+*"The Copernicus Marine Service (or Copernicus Marine Environment Monitoring Service) is the marine component of the Copernicus Programme of the European Union. It provides free, regular and systematic authoritative information on the state of the Blue (physical), White (sea ice) and Green (biogeochemical) ocean,  on a global and regional scale.   It is funded by the European Commission (EC) and implemented by Mercator Ocean International. It is designed to serve EU policies and International legal Commitments related to Ocean Governance, to cater for the needs of society at large for global ocean knowledge and to boost the Blue Economy across all maritime sectors by providing free-of-charge state-of-the-art  ocean data and information."*
 
-To download [visit webpage](https://data.marine.copernicus.eu/products)  
-You need to register first  
+To download data [visit webpage](https://data.marine.copernicus.eu/products)  
+You need to register to be able to download data
 
-Go to:  
-- Click on the icon of download  
+For downloading the data:  
 - [Click on download](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)  
-- Here I selected Sea water potential temperaturethetao [°C]  
-- Add your coordinates here I use 1 to 10 and 50 to 60    
-- Add you time scale here I use April and May 2018  
-- I select the depths form 0 to 60 because I am using birds data  
+- For this exercise:  
+Download sea water potential temperaturethetao [°C]  
+Based on the coordinates 1 to 10 and 50 to 60    
+For the time frame of April and May 2018  
+From the depths 0 to 60 m
 
+## Read data
 
-Read raster data from a file
+To read the data give the direction of your file.  
 
 ```{r, include=FALSE}
 library(here)
 here()
-this_folder<-paste0(here(),"/_posts/2024-10-24-copernicus-sst")
+this_folder<-paste0(here(),"/_posts/2025-04-15-copernicus-sst")
 list.files(this_folder)
 ```
 
-```{r, include=FALSE}
+```{r, message=FALSE}
 this_file<-paste0(this_folder,"/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc")
-this_file
 ```
 
 Load the [terra package](https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html) for reading raster data
@@ -72,13 +73,13 @@ The function **rast** helps to read raster data - replacing package raster
 SST_file<-rast(this_file)
 ```
 
-Change to data frame
+## Subset raster data
+
+Change to data frame for data wrangling
 
 ```{r}
 SST_dataframe <- as.data.frame(SST_file, xy = TRUE)
 ```
-
-# Subset raster data
 
 Load the package **tidyverse** 
 
@@ -86,7 +87,7 @@ Load the package **tidyverse**
 library(tidyverse)
 ```
 
-Use **filter** to subset your data to your geographical area
+Use **filter** to subset the data to a specific geographical area
 
 ```{r}
 SST_sub <-SST_dataframe  %>%
@@ -94,28 +95,29 @@ SST_sub <-SST_dataframe  %>%
   filter(y > 52 & y < 57)
 ```
 
-## SST info
+**Obtain mean values per latitude and longitude**
 
-Data was collected almost every meter
-
-Therefore there are many columns with data per depth
+There are many columns with data per depth, as data was collected almost every meter
 
 ```{r}
 ncol(SST_sub)
 ```
-Keep columns with the depth area
+
+To keep columns with the depth area use the functions **select** and **starts_with**
 
 ```{r}
 SST_depth<-SST_sub %>%
   select(starts_with("thetao"))
 ```
 
-The SST data is collected almost for every meter
+Check the depths were the data was collected
 
 ```{r}
 Depths<-colnames(SST_depth)
 head(Depths)
 ```
+
+Using functions from tidyverse such as **rowwise**, summarise the information per depth.
 
 ```{r}
 SST_depth_perloc<-SST_depth %>%
@@ -126,25 +128,24 @@ SST_depth_perloc<-SST_depth %>%
   relocate(mean_SST,min_SST,max_SST)
 ```
 
-## Check
+The function **arrange** from the package tidyverse allows to see the columns of interest first.
 
 ```{r}
 first_column<-SST_depth[1,]
-
 long_values<-first_column %>% 
   pivot_longer(
     cols = 1:228, 
     names_to = "type",
     values_to = "value"
 )
-
 arrange_values<-arrange(long_values, desc(value))
-
-head(arrange_values)
 ```
 
+```{r KnitTableSightings, echo=FALSE}
+knitr::kable(head(arrange_values))
+```
 
-## Mean values
+Now there is a value per latitude and longitude of the sea surface temperature, summarizing the first 60 m of the water column.  
 
 ```{r}
 SST_sub$SST<-SST_depth_perloc$mean_SST
@@ -164,9 +165,26 @@ library(ggplot2)
 
 Plot your data using **geom_raster**
 
-Select [palette](https://ggplot2-book.org/scales-colour)
+```{r, fig.width=6}
+ggplot() +
+  geom_raster(data = SST_sub , aes(x = x, y = y, fill = SST)) +
+  theme_void()+
+  theme(legend.position='bottom')+
+  coord_sf(xlim = c(3,9), ylim = c(53,56))
+```
 
-```{r, fig.width=6, fig.height=4}
+
+To select different palettes explore [ggplot2 book](https://ggplot2-book.org/scales-colour)  
+
+Here are some of the palette options
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics("https://ggplot2-book.org/scales-colour_files/figure-html/unnamed-chunk-23-1.png")
+```
+
+To add the palette use **scale_fill_distiller**
+
+```{r, fig.width=6}
 ggplot() +
   geom_raster(data = SST_sub , aes(x = x, y = y, fill = SST)) +
   scale_fill_distiller(palette = "YlOrBr")+
@@ -178,7 +196,7 @@ ggplot() +
 
 ```
 
-Add land for reference
+For reference, add land shapefiles
 
 Load the package **sf**
 
@@ -186,7 +204,8 @@ Load the package **sf**
 library(sf)
 ```
 
-Use the function **st_transform** to convert to the same CRS
+Use the function **st_transform** to convert to the same CRS  
+For the exercise, use the shapefiles from the package **GermanNorthSea**  
 
 ```{r}
 German_land<-st_transform(GermanNorthSea::German_land, 4326)
@@ -194,23 +213,44 @@ German_land<-st_transform(GermanNorthSea::German_land, 4326)
 
 Add the land to the plot using **geom_sf**
 
-```{r, fig.width=6, fig.height=6}
+```{r, fig.width=6}
 Plot_sst<-ggplot() +
   geom_tile(data = SST_sub , aes(x = x, y = y, fill = SST)) +
-  scale_fill_distiller(palette = "YlOrBr")+
-  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
-  theme_void()+
-  theme(legend.position='left')+
-  xlab('Longitude')+ylab('Latitude')+
+  scale_fill_distiller(name="Sea surface temperature (°C) \nFrom 0 to 60 m depth\n(April and May montly composites)",
+                       palette = "Spectral")+
+  geom_sf(data = German_land, colour = 'black', fill = '#d5bdaf')+
   coord_sf(xlim = c(3,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
-Plot_sst+ ggtitle('Sea surface temperature from 0 to 60 m depth \n in the German North Sea in \n spring (April and May montly composites)')
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme_void()
+Plot_sst
 ```
 
+Change a little bit the design using arguments in the **theme**
 
+```{r}
+Plot_sst +
+  theme_void()+
+  xlab('Longitude')+ylab('Latitude')+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.30),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  NULL
+```
 
 ```{r, echo=FALSE, eval=FALSE}
-ggsave(Plot_sst,
+ggsave(Plot_sst +
+  theme_void()+
+  xlab('Longitude')+ylab('Latitude')+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.30),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  NULL,
        filename = paste0(this_folder,"/sst_GermanNorthSea.jpg"),
        width = 4, 
        height = 4, 
@@ -220,17 +260,12 @@ ggsave(Plot_sst,
 
 # Further reading
 
+- [Examples from Copernicus](https://marine.copernicus.eu/services/user-learning-services/using-r-work-copernicus-marine-data)
+- [How to download Copernicus marine products](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)
+- [Video Tutorials from Copernicus](https://events.marine.copernicus.eu/dataviz-webinar-series/content/replays-presentations?iw_mailid=97e89e1f-a0f9-ef11-90cb-6045bdf3a630&iw_scope=Event)
+- Comparing with other studies palettes: [SST in the German North Sea from 2004](https://www.researchgate.net/publication/222406095_Defining_habitats_suitable_for_larval_fish_in_the_German_Bight_southern_North_Sea_An_IBM_approach_using_spatially-_and_temporally-resolved_size-structured_prey_fields)
 - [Package GermanNorthSea](https://github.com/MiriamLL/GermanNorthSea)
 - [Package terra](https://rspatial.github.io/terra/) 
 - [Package sf](https://r-spatial.github.io/sf/)
 
-- [Examples](https://marine.copernicus.eu/services/user-learning-services/using-r-work-copernicus-marine-data)
-- [How to download copernicus marine products](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)
 
-
-Comparing with other studies seems to fit
-
-SST [from 2004](https://www.researchgate.net/publication/222406095_Defining_habitats_suitable_for_larval_fish_in_the_German_Bight_southern_North_Sea_An_IBM_approach_using_spatially-_and_temporally-resolved_size-structured_prey_fields)
-
-
-# End of document
