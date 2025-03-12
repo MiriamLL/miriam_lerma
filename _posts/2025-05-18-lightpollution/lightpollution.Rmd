@@ -1,12 +1,12 @@
 ---
 title: "Light pollution"
 description: |
-  Create a map including light pollution.
+  Create a map using radiance information from VIIRS.
 author:
   - name: Miriam Lerma
     url: {}
-date: 2025-02-10
-preview: blog42_portada.jpg
+date: 2025-05-10
+preview: radiance_portada.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -17,242 +17,245 @@ categories:
   - Y2025
 ---
 
+# Intro
+
+The Visible Infrared Imaging Radiometer Suite (VIIRS) is aboard the joint NASA/NOAA Suomi National Polar-orbiting Partnership (Suomi NPP) and NOAA-platforms. VIIRS collects visible and infrared imagery along with global observations of Earth's land, atmosphere, cryosphere, and ocean. 
+
 # Data
 
-Download data from [Light pollution map](https://www.lightpollutionmap.info/#zoom=3.32&lat=48.8875&lon=2.7774&state=eyJiYXNlbWFwIjoiTGF5ZXJCaW5nUm9hZCIsIm92ZXJsYXkiOiJ2aWlyc18yMDE3Iiwib3ZlcmxheWNvbG9yIjpmYWxzZSwib3ZlcmxheW9wYWNpdHkiOjYwLCJmZWF0dXJlc29wYWNpdHkiOjg1fQ==)
-- By selecting the tools, then the square.  
+Download data are available at [Light pollution map](https://www.lightpollutionmap.info/#zoom=3.32&lat=48.8875&lon=2.7774&state=eyJiYXNlbWFwIjoiTGF5ZXJCaW5nUm9hZCIsIm92ZXJsYXkiOiJ2aWlyc18yMDE3Iiwib3ZlcmxheWNvbG9yIjpmYWxzZSwib3ZlcmxheW9wYWNpdHkiOjYwLCJmZWF0dXJlc29wYWNpdHkiOjg1fQ==)  
+- By selecting the icons of the tools, then the square.  
 - Create square in the area of interest and wait until information appears, then click in the download icon.  
 
 To read from file.
 
 Select the directory where the information is.
 
-```{r, eval=FALSE}
+```{r, message=FALSE}
 library(here)
-here()
-your_folder<-paste0(here(),"/_posts/2024-10-18-lightpollution")
+your_folder<-paste0(here(),"/_posts/2025-05-18-lightpollution")
+#your_folder
 list.files(your_folder)
 ```
 
-```{r, eval=FALSE}
+```{r}
 your_file<-paste0(your_folder,"/viirs_npp_202300b.tif")
 ```
 
 Use the package **terra** to use the function **rast**.  
 
-```{r, eval=FALSE}
+```{r, message=FALSE}
 library(terra)
 ```
 
-```{r, eval=FALSE}
+The function rast reads your file as a formal class SpatRaster
+
+```{r}
 Light_pollution<-rast(your_file)
 ```
 
-Then convert to data frame. 
+Use **ggplot2** and **tidyterra** to create your plot. 
 
-```{r, eval=FALSE}
+```{r}
+library(ggplot2)
+library(tidyterra)
+```
+
+```{r}
+ggplot() +
+  geom_spatraster(data = Light_pollution) +
+  scale_fill_gradient(limits = c(0,1),low = 'black', high = '#f9c74f', 
+                      na.value = "grey93", 
+                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.87)
+                      )+
+  NULL
+```
+
+
+To manipulate convert to data frame. 
+
+```{r}
 Light_pollution_df <- as.data.frame(Light_pollution, xy = TRUE)
 beepr::beep(sound=1)
 ```
 
-```{r}
-library(tidyverse)
-```
+The function rename, allows to change the name of the column. The radiance information is in the third column.
 
 ```{r}
-Light_pollution_df<-Light_pollution_df %>%
+Light_pollution_radiance<-Light_pollution_df %>%
   rename(radiance=3)
 ```
 
-```{r}
-range(Light_pollution_df$radiance)
-```
+Check if the radiance values are plausible.
 
 ```{r}
-Light_pollution_df<-Light_pollution_df %>%
-  mutate(radiance=radiance/1000)
-```
-
-```{r}
-range(Light_pollution_df$radiance)
+range(Light_pollution_radiance$radiance)
 ```
 
 # Plot
 
-## Basic plot
+### Basic plot
 
-Use **ggplot** to create your plot. 
+Use the function **geom_raster** to plot the radiance data.
 
-```{r}
-library(ggplot2)
+```{r, fig.width=8, fig.height=6}
+ggplot() +
+  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
+  xlab('Longitude')+ylab('Latitude')+
+  scale_fill_gradient(limits = c(0,1),
+                      low = 'black', high = '#f9c74f', 
+                      na.value = "grey93", 
+                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
+                      )+
+  coord_sf(xlim = c(4.5,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  NULL
 ```
 
+
+
+### Change theme
+
+Change the arguments inside **theme** to adjust the looks of your plot. 
+
 ```{r, fig.height=6, fig.width=6}
-Plot_light<-ggplot() +
-  geom_raster(data = Light_pollution_df, aes(x = x, y = y, fill = radiance)) +
-  geom_sf(data = German_land, colour = 'black', fill = '#335c67', alpha=0.05)+
-  scale_fill_distiller(palette = "Spectral")+
+ggplot() +
+  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
+  xlab('Longitude')+ylab('Latitude')+
+  scale_fill_gradient(name='Light pollution \n in the North Sea \n Radiance ',
+                      limits = c(0,1),
+                      low = 'black', high = '#f9c74f', 
+                      na.value = "grey93", 
+                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
+                      )+
+  coord_sf(xlim = c(4.5,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
   theme_void()+
-  theme(legend.position='bottom')+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.60),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='#f9c74f',size=12),
+        legend.title=element_text(color='#f9c74f',size=12))+
+  NULL
+```
+
+
+### Change fill
+
+Select some colors create a color palette.
+
+```{r}
+color_NA <-"#000000"
+color_K <-"#ffff3f"
+color_J <-"#eeef20"
+color_I <-"#dddf00"
+color_H <-"#d4d700"
+color_G <-"#bfd200"
+color_F <-"#aacc00"
+color_E <-"#80b918"
+color_D <-"#55a630"
+color_C <-"#2b9348"
+color_B <-"#007f5f"
+color_A <-"#548c2f"
+your_palette<-c(color_NA,color_A,color_B,color_C,color_D,color_E,color_F,color_G,color_H,color_I,color_J,color_K)
+```
+
+Include **scale_fill_gradientn** to use the color palette.
+
+```{r}
+ggplot() +
+  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
   xlab('Longitude')+ylab('Latitude')+
-  coord_sf(xlim = c(3,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
-Plot_light+
-  guides(fill=guide_legend(title="Radiance"))
+  scale_fill_gradientn(name='Light pollution \n in the North Sea \n Radiance ',
+                      limits = c(0,1),
+                      colours = your_palette,
+                      na.value = "grey93", 
+                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
+                      )+
+  coord_sf(xlim = c(5,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.60),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='#f9c74f',size=12),
+        legend.title=element_text(color='#f9c74f',size=12))+
+  NULL
 ```
 
-## Adjust fill
+### Add text
+
+Add text using the function **annotate** for reference. 
 
 ```{r}
-range(Light_pollution_df$radiance)
-```
-
-```{r}
-hist(Light_pollution_df$radiance)
-```
-
-Include **scale_fill_gradientn** note the n for continuous variables
-
-```{r, eval=FALSE, echo=FALSE}
-color_A <-"#000000"
-color_B <-"#051637"
-color_C <-"#20998F"
-color_D <-"#10BA47"
-color_E <-"#55E700"
-color_F <-"#AAF300"
-color_G <-"#FFFF00"
-color_H <-"#F9DF06"
-color_I <-"#F3C00C"
-color_J <-"#C2523C"
-color_K <-"#B92927"
-color_L <-"#B00012"
-your_palette<-c(color_A,color_B,color_C,color_D,color_E,color_F,color_G,color_H,color_I,color_J,color_K,color_L)
-```
-
-
-```{r, fig.height=6, fig.width=6, eval=FALSE, echo=FALSE}
 ggplot() +
-  geom_raster(data = Light_pollution_df, aes(x = x, y = y, fill = radiance)) +
-  scale_fill_gradientn(
-    colours = your_palette,
-    limits  = c(0, 2.2),
-    values  = scales::rescale(c(0,0.10,0.25,0.30,0.35,1.50,2.00,3.00,6.00,15.0,30.0,40.0,65.0,80.0,150)))
-```
-
-## Add breaks
-
-```{r, fig.height=6, fig.width=6, eval=FALSE, echo=FALSE}
-ggplot() +
-  geom_raster(data = Light_pollution_df, aes(x = x, y = y, fill = radiance)) +
-  scale_fill_gradientn(
-    colours = your_palette,
-    limits  = c(0, 2.2),
-    values  = scales::rescale(c(0,0.10,0.25,0.30,0.35,1.50,2.00,3.00,6.00,15.0,30.0,40.0,65.0,80.0,150)),
-    breaks = c(0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.2)
-    )
-```
-
-## Legend 
-
-```{r, fig.height=6, fig.width=6, eval=FALSE, echo=FALSE}
-ggplot() +
-  geom_raster(data = Light_pollution_df, aes(x = x, y = y, fill = radiance)) +
-  scale_fill_gradientn(
-    colours = your_palette,
-    limits  = c(0, 2.2),
-    values  = scales::rescale(c(0,0.10,0.25,0.30,0.35,1.50,2.00,3.00,6.00,15.0,30.0,40.0,65.0,80.0,150)),
-    breaks = c(0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.2)
-    )+
-  theme(legend.position='bottom',
-        legend.key.size = unit(1.8, "cm"))
-```
-
-
-## Guide
-
-Add guide= legend
-
-Now the values are discrete values
-
-```{r, eval=FALSE, echo=FALSE}
-ggplot() +
-  geom_raster(data = Light_pollution_df, aes(x = x, y = y, fill = radiance)) +
-  scale_fill_gradientn(
-    colours = your_palette,
-    limits  = c(0, 2.2),
-    values  = scales::rescale(c(0,0.10,0.25,0.30,0.35,1.50,2.00,3.00,6.00,15.0,30.0,40.0,65.0,80.0,150)),
-    breaks = c(0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.2),
-    guide="legend"
-    )+
-  theme(legend.position='bottom')+ guides(fill = guide_legend(nrow = 1))
-```
-
-
-
-## Add land
-
-Read package German North Sea for extra shapefiles
-
-```{r}
-library(GermanNorthSea)
-```
-
-Use the package sf for adjusting the CRSs
-
-```{r}
-library(sf)
-```
-
-Make sure is in the same CRS. 
-
-```{r}
-German_land<-st_transform(GermanNorthSea::German_land, 4326)
-```
-
-```{r, fig.height=6, fig.width=6}
-ggplot() +
-  geom_raster(data = Light_pollution_df, aes(x = x, y = y, fill = radiance)) +
-  geom_sf(data = German_land, colour = 'black', fill = '#e5e5e5', alpha=0.05)+
-  scale_fill_gradientn(
-    colours = your_palette,
-    limits  = c(0, 2.2),
-    values  = scales::rescale(c(0,0.10,0.25,0.30,0.35,1.50,2.00,3.00,6.00,15.0,30.0,40.0,65.0,80.0,150)),
-    breaks = c(0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.2)
-    )+
-  coord_sf(xlim = c(4,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
-```
-
-
-## Other colors
-
-```{r, fig.height=6, fig.width=6}
-ggplot() +
-  geom_raster(data = Light_pollution_df, aes(x = x, y = y, fill = radiance)) +
-  geom_sf(data = German_land, colour = 'black', fill = '#e5e5e5', alpha=0.08)+
-  scale_fill_gradientn(
-    name= "Radiance",
-    colours = c("#000000","#051637","#20998F","#10BA47","#AAF300","#FFFF00","#F9DF06","#F3C00C","#C2523C","#B92927","#B00012"),
-    limits  = c(0, 2.2),
-    values  = scales::rescale(c(0,0.10,0.25,0.30,0.35,1.50,2.00,3.00,6.00,15.0,30.0,40.0,65.0,80.0,150)),
-    breaks = c(0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.2)
-    )+
+  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
   xlab('Longitude')+ylab('Latitude')+
-  coord_sf(xlim = c(4,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+  scale_fill_gradientn(name='Light pollution \n in the North Sea \n Radiance ',
+                      limits = c(0,1),
+                      colours = your_palette,
+                      na.value = "grey93", 
+                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
+                      )+
+  coord_sf(xlim = c(5,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.60),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='#f9c74f',size=12),
+        legend.title=element_text(color='#f9c74f',size=12))+
+  annotate("text", x = 7.885143539318454+0.06, y = 54.181291760152874,
+           label = "Helgoland",size=5,color='#d6d6d6',hjust = 0)
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+ggsave(ggplot() +
+  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
+  xlab('Longitude')+ylab('Latitude')+
+  scale_fill_gradientn(name='Light pollution \n in the North Sea \n Radiance ',
+                      limits = c(0,1),
+                      colours = your_palette,
+                      na.value = "grey93", 
+                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
+                      )+
+  coord_sf(xlim = c(5,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.60),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='#f9c74f',size=12),
+        legend.title=element_text(color='#f9c74f',size=12))+
+  annotate("text", x = 7.885143539318454+0.06, y = 54.181291760152874,
+           label = "Helgoland",size=5,color='#d6d6d6',hjust = 0)+
+  NULL,
+       filename = paste0(your_folder,"/radiance_GermanNorthSea.jpg"),
+       width = 4, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
 
 # Further read
 
-[Viirs](https://www.sciencedirect.com/topics/earth-and-planetary-sciences/viirs)
-[Virrs Mission](https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/viirs/)
-
-Mostly at land
-[Dark Sky](https://darksky.org/news/eyes-in-the-sky-exploring-global-light-pollution-with-satellite-maps/)
-[Blue MArble](https://blue-marble.de/nightlights/)
-
-At Sea
-[Global atlas of artifical light](https://online.ucpress.edu/elementa/article/9/1/00049/119144/A-global-atlas-of-artificial-light-at-night-under)
+- Package [Tidyterra](https://dieghernan.r-universe.dev/articles/tidyterra/welcome.html)  
+- [Viirs](https://www.sciencedirect.com/topics/earth-and-planetary-sciences/viirs)  
+- [Virrs Mission](https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/viirs/)  
+- [Dark Sky](https://darksky.org/news/eyes-in-the-sky-exploring-global-light-pollution-with-satellite-maps/)  
+- [Blue Marble](https://blue-marble.de/nightlights/)  
+- [Global atlas of artifical light](https://online.ucpress.edu/elementa/article/9/1/00049/119144/A-global-atlas-of-artificial-light-at-night-under)
 
 

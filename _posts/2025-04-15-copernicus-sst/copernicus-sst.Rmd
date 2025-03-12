@@ -18,10 +18,11 @@ categories:
 ---
 
 
-
 # Intro
 
-Sea surface temperature (SST) refers to the temperature of the uppermost layer of the ocean, typically measured at the surface of the sea. 
+The Copernicus Marine Service (CMS), also known as the Copernicus Marine Environment Monitoring Service, is the marine component of the European Union's Copernicus Programme.   
+It delivers free, regular, and systematic information on the state of the ocean, encompassing the Blue (physical), White (sea ice), and Green (biogeochemical) components, both globally and regionally.  
+Funded by the European Commission (EC) and implemented by Mercator Ocean International, the service is designed to support EU policies and international legal commitments related to Ocean Governance. It also addresses the global need for ocean knowledge and fosters the Blue Economy across all maritime sectors by providing cutting-edge ocean data and information at no cost.
 
 This post includes:  
 - Download raster data   
@@ -33,13 +34,14 @@ This post includes:
 To download raster data: 
 [Copernicus Marine Data Store](https://marine.copernicus.eu/about)
 
-*"The Copernicus Marine Service (or Copernicus Marine Environment Monitoring Service) is the marine component of the Copernicus Programme of the European Union. It provides free, regular and systematic authoritative information on the state of the Blue (physical), White (sea ice) and Green (biogeochemical) ocean,  on a global and regional scale.   It is funded by the European Commission (EC) and implemented by Mercator Ocean International. It is designed to serve EU policies and International legal Commitments related to Ocean Governance, to cater for the needs of society at large for global ocean knowledge and to boost the Blue Economy across all maritime sectors by providing free-of-charge state-of-the-art  ocean data and information."*
-
 To download data [visit webpage](https://data.marine.copernicus.eu/products)  
 You need to register to be able to download data
 
+Sea surface temperature (SST) refers to the temperature of the uppermost layer of the ocean, typically measured at the surface of the sea.
+
 For downloading the data:  
 - [Click on download](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)  
+
 - For this exercise:  
 Download sea water potential temperaturethetao [°C]  
 Based on the coordinates 1 to 10 and 50 to 60    
