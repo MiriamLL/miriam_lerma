@@ -1,11 +1,11 @@
 ---
 title: "Choosing a journal"
 description: |
-  A decision tree that might help you choose the most suitable journal for publishing your research.
+  A file with a decision tree that might help you choose the most suitable journal for publishing your research. Links to journals are included. 
 authors:
   - name: Miriam Lerma
-preview: WhereToPublish_2402.jpg
-date: '2025-03-10'
+preview: journals_portada
+date: '2025-04-07'
 output:
   distill::distill_article:
     toc: true
