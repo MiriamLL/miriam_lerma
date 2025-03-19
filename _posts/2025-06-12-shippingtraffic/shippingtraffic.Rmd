@@ -1,0 +1,101 @@
+---
+title: "shippingtraffic"
+description: |
+  A short description of the post.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-03-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+The data set contains the spatial designations of the maritime spatial plan published on 1 September 2021 as an additional information service. The planning scale is 1: 400,000. The binding documents are available at https://www.bsh.de/DE/THEMEN/Offshore/Meeresraumplanung/Raumordnungsplan_2021/raumordnungsplan-2021_node.html
+
+To download: go to GeoSeaPortal (https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1) The zip contains several shapefiles including Shipping
+
+```{r}
+library(GermanNorthSea)
+```
+
+```{r}
+German_Shipping<-GermanNorthSea::German_Shipping
+```
+
+# Plot
+
+```{r}
+ggplot2::ggplot()+ 
+  ggplot2::geom_sf(data = German_Shipping, colour = "blue", fill= 'blue',alpha=0.2, lwd = 1)+
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+```
+    
+    
+```{r}
+ggplot(German_Shipping)+ 
+  geom_sf(data = German_EEZ,colour = "red", fill= NA,alpha=0.9, lwd = 0.5)+
+  geom_sf(data = German_coast,colour = "red", fill= '#bde0fe',alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
+  geom_sf(data = German_natura, colour = "#3d6d22", fill= '#3d6d22',alpha=0.2, lwd = 0.5)+
+  geom_sf(data = German_Shipping, aes(fill= Type), colour = "grey",alpha=0.9, size=0.5)+
+  scale_fill_manual(values = c("#E7F7C6", "#77D7B3", "#00BEBE"))+
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme(legend.position = 'bottom')
+```
+
+# Other CRS
+
+```{r}
+library(sf)
+```
+
+```{r}
+German_EEZ<-st_transform(German_EEZ, 4326)
+German_coast<-st_transform(German_coast, 4326)
+German_land<-st_transform(German_land, 4326)
+German_Shipping<-st_transform(German_Shipping, 4326)
+```
+
+```{r, fig.height=5}
+ggplot()+
+  geom_sf(data = German_EEZ, colour = "white", fill= NA,alpha=0.9, lwd = 0.5)+
+  geom_sf(data = German_coast, colour = "white", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = '#858585', fill = '#C8C8C8')+
+  
+  geom_sf(data = German_Shipping, aes(fill= Type), color='transparent',alpha=0.7)+
+  
+  theme_bw()+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        panel.background = element_rect(fill = '#009BC4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.text=element_text(color="white",size=12),
+        legend.title=element_text(color="white",size=12),
+        axis.text.y.right=element_blank(),
+        axis.ticks.y.right=element_blank(),
+        axis.text.x.top=element_blank(),
+        axis.ticks.x.top=element_blank(),
+        panel.border = element_rect(colour = '#005AAA', fill=NA, size=1.5))+
+  
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  
+   scale_fill_manual(name='Shipping lanes',
+                     values = c("#E7F7C6", "#77D7B3", "#00BEBE"))+
+  theme(legend.position = c(0.30,0.30))
+```
+
+# Further reading:
+
+[Womersley 2022](https://www.pnas.org/doi/10.1073/pnas.2117440119)
+
+We used AIS data to assess marine traffic patterns. Gridded products were purchased from Exact Earth (https://www.exactearth.com) for the years of 2011 to 2014 at 0.25° × 0.25° grid cell resolution, coverage that matched the majority of shark tracking data. (https://spire.com/maritime/?utm_campaign=maritime_2022_exactearth_redirect&utm_source=exactearth&utm_medium=website&utm_content=homepage)
+
+# end of document
+
+               

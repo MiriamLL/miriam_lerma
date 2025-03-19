@@ -31,22 +31,23 @@ This post includes:
 
 # Data
 
-To download raster data: 
+Raster data is available at: 
 [Copernicus Marine Data Store](https://marine.copernicus.eu/about)
 
-To download data [visit webpage](https://data.marine.copernicus.eu/products)  
+To access the [products](https://data.marine.copernicus.eu/products). 
 You need to register to be able to download data
 
 Sea surface temperature (SST) refers to the temperature of the uppermost layer of the ocean, typically measured at the surface of the sea.
 
-For downloading the data:  
-- [Click on download](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)  
+For downloading the data:  [follow this instructions.](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)  
 
 - For this exercise:  
 Download sea water potential temperaturethetao [°C]  
 Based on the coordinates 1 to 10 and 50 to 60    
 For the time frame of April and May 2018  
 From the depths 0 to 60 m
+
+To download test data in nc format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-04-15-copernicus-sst/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc).  
 
 ## Read data
 
@@ -63,13 +64,13 @@ list.files(this_folder)
 this_file<-paste0(this_folder,"/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc")
 ```
 
-Load the [terra package](https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html) for reading raster data
+Load the [terra package](https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html) for reading raster data.
 
 ```{r}
 library(terra)
 ```
 
-The function **rast** helps to read raster data - replacing package raster
+The function **rast** helps to read raster data - replacing package raster.
 
 ```{r}
 SST_file<-rast(this_file)
@@ -77,19 +78,19 @@ SST_file<-rast(this_file)
 
 ## Subset raster data
 
-Change to data frame for data wrangling
+Change to data frame for data wrangling.
 
 ```{r}
 SST_dataframe <- as.data.frame(SST_file, xy = TRUE)
 ```
 
-Load the package **tidyverse** 
+Load the package **tidyverse**. 
 
 ```{r}
 library(tidyverse)
 ```
 
-Use **filter** to subset the data to a specific geographical area
+Use **filter** to subset the data to a specific geographical area.
 
 ```{r}
 SST_sub <-SST_dataframe  %>%
@@ -99,20 +100,20 @@ SST_sub <-SST_dataframe  %>%
 
 **Obtain mean values per latitude and longitude**
 
-There are many columns with data per depth, as data was collected almost every meter
+There are many columns with data per depth, as data was collected almost every meter.
 
 ```{r}
 ncol(SST_sub)
 ```
 
-To keep columns with the depth area use the functions **select** and **starts_with**
+To keep columns with the depth area use the functions **select** and **starts_with**.
 
 ```{r}
 SST_depth<-SST_sub %>%
   select(starts_with("thetao"))
 ```
 
-Check the depths were the data was collected
+Check the depths were the data was collected.
 
 ```{r}
 Depths<-colnames(SST_depth)
@@ -176,15 +177,13 @@ ggplot() +
 ```
 
 
-To select different palettes explore [ggplot2 book](https://ggplot2-book.org/scales-colour)  
-
-Here are some of the palette options
+To select different palettes explore [ggplot2 book](https://ggplot2-book.org/scales-colour). Here are some of the palette options. 
 
 ```{r, echo=FALSE, out.width = "80%"}
-knitr::include_graphics("https://ggplot2-book.org/scales-colour_files/figure-html/unnamed-chunk-23-1.png")
+knitr::include_graphics("https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-04-15-copernicus-sst/color_palettes.png?raw=true")
 ```
 
-To add the palette use **scale_fill_distiller**
+To change the color palette use **scale_fill_distiller**.
 
 ```{r, fig.width=6}
 ggplot() +
@@ -198,22 +197,20 @@ ggplot() +
 
 ```
 
-For reference, add land shapefiles
-
-Load the package **sf**
+Add land shapefiles to complete the map. To add shapefiles load the package **sf**.  
 
 ```{r}
 library(sf)
 ```
 
-Use the function **st_transform** to convert to the same CRS  
+Use the function **st_transform** to convert to the same CRS.  
 For the exercise, use the shapefiles from the package **GermanNorthSea**  
 
 ```{r}
 German_land<-st_transform(GermanNorthSea::German_land, 4326)
 ```
 
-Add the land to the plot using **geom_sf**
+Add the land to the plot using **geom_sf**.
 
 ```{r, fig.width=6}
 Plot_sst<-ggplot() +
@@ -227,7 +224,7 @@ Plot_sst<-ggplot() +
 Plot_sst
 ```
 
-Change a little bit the design using arguments in the **theme**
+Change a little bit the design using arguments in the **theme**.
 
 ```{r}
 Plot_sst +

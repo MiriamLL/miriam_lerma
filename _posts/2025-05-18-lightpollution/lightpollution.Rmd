@@ -23,19 +23,18 @@ The Visible Infrared Imaging Radiometer Suite (VIIRS) is aboard the joint NASA/N
 
 # Data
 
-Download data are available at [Light pollution map](https://www.lightpollutionmap.info/#zoom=3.32&lat=48.8875&lon=2.7774&state=eyJiYXNlbWFwIjoiTGF5ZXJCaW5nUm9hZCIsIm92ZXJsYXkiOiJ2aWlyc18yMDE3Iiwib3ZlcmxheWNvbG9yIjpmYWxzZSwib3ZlcmxheW9wYWNpdHkiOjYwLCJmZWF0dXJlc29wYWNpdHkiOjg1fQ==)  
-- By selecting the icons of the tools, then the square.  
-- Create square in the area of interest and wait until information appears, then click in the download icon.  
+Data are available at [Light pollution map](https://www.lightpollutionmap.info/#zoom=3.32&lat=48.8875&lon=2.7774&state=eyJiYXNlbWFwIjoiTGF5ZXJCaW5nUm9hZCIsIm92ZXJsYXkiOiJ2aWlyc18yMDE3Iiwib3ZlcmxheWNvbG9yIjpmYWxzZSwib3ZlcmxheW9wYWNpdHkiOjYwLCJmZWF0dXJlc29wYWNpdHkiOjg1fQ==).  
+- The data can be downloaded by selecting the icons of the tools, then the square, wait until information appears, then click in the download icon.  
 
-To read from file.
+To download test data in tif format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-05-18-lightpollution//viirs_npp_202300b.tif).  
 
-Select the directory where the information is.
+Select the directory where the information is stored.
 
 ```{r, message=FALSE}
 library(here)
 your_folder<-paste0(here(),"/_posts/2025-05-18-lightpollution")
 #your_folder
-list.files(your_folder)
+#list.files(your_folder)
 ```
 
 ```{r}
@@ -48,7 +47,7 @@ Use the package **terra** to use the function **rast**.
 library(terra)
 ```
 
-The function rast reads your file as a formal class SpatRaster
+The function **rast** reads your file as a formal class SpatRaster
 
 ```{r}
 Light_pollution<-rast(your_file)
@@ -93,6 +92,10 @@ range(Light_pollution_radiance$radiance)
 ```
 
 # Plot
+
+```{r}
+class(Light_pollution_radiance)
+```
 
 ### Basic plot
 
