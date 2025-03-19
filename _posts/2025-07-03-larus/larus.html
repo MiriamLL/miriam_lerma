@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["GullLogo.png","larus_files/anchor-4.2.2/anchor.min.js","larus_files/bowser-1.9.3/bowser.min.js","larus_files/distill-2.2.21/template.v2.js","larus_files/figure-html5/unnamed-chunk-12-1.png","larus_files/figure-html5/unnamed-chunk-15-1.png","larus_files/figure-html5/unnamed-chunk-21-1.png","larus_files/figure-html5/unnamed-chunk-23-1.png","larus_files/figure-html5/unnamed-chunk-54-1.png","larus_files/figure-html5/unnamed-chunk-55-1.png","larus_files/figure-html5/unnamed-chunk-57-1.png","larus_files/figure-html5/unnamed-chunk-58-1.png","larus_files/figure-html5/unnamed-chunk-59-1.png","larus_files/figure-html5/unnamed-chunk-7-1.png","larus_files/header-attrs-2.28/header-attrs.js","larus_files/jquery-3.6.0/jquery-3.6.0.js","larus_files/jquery-3.6.0/jquery-3.6.0.min.js","larus_files/jquery-3.6.0/jquery-3.6.0.min.map","larus_files/popper-2.6.0/popper.min.js","larus_files/tippy-6.2.7/tippy-bundle.umd.min.js","larus_files/tippy-6.2.7/tippy-light-border.css","larus_files/tippy-6.2.7/tippy.css","larus_files/tippy-6.2.7/tippy.umd.min.js","larus_files/webcomponents-2.0.0/webcomponents.js","logo-larus.jpg","logo_larus_png.png"]}
+  {"type":"character","attributes":{},"value":["GullLogo.png","larus_files/anchor-4.2.2/anchor.min.js","larus_files/bowser-1.9.3/bowser.min.js","larus_files/distill-2.2.21/template.v2.js","larus_files/figure-html5/unnamed-chunk-12-1.png","larus_files/figure-html5/unnamed-chunk-14-1.png","larus_files/figure-html5/unnamed-chunk-15-1.png","larus_files/figure-html5/unnamed-chunk-17-1.png","larus_files/figure-html5/unnamed-chunk-21-1.png","larus_files/figure-html5/unnamed-chunk-23-1.png","larus_files/figure-html5/unnamed-chunk-25-1.png","larus_files/figure-html5/unnamed-chunk-5-1.png","larus_files/figure-html5/unnamed-chunk-54-1.png","larus_files/figure-html5/unnamed-chunk-55-1.png","larus_files/figure-html5/unnamed-chunk-57-1.png","larus_files/figure-html5/unnamed-chunk-58-1.png","larus_files/figure-html5/unnamed-chunk-59-1.png","larus_files/figure-html5/unnamed-chunk-7-1.png","larus_files/figure-html5/unnamed-chunk-9-1.png","larus_files/header-attrs-2.28/header-attrs.js","larus_files/jquery-3.6.0/jquery-3.6.0.js","larus_files/jquery-3.6.0/jquery-3.6.0.min.js","larus_files/jquery-3.6.0/jquery-3.6.0.min.map","larus_files/popper-2.6.0/popper.min.js","larus_files/tippy-6.2.7/tippy-bundle.umd.min.js","larus_files/tippy-6.2.7/tippy-light-border.css","larus_files/tippy-6.2.7/tippy.css","larus_files/tippy-6.2.7/tippy.umd.min.js","larus_files/webcomponents-2.0.0/webcomponents.js","logo-larus.jpg","logo_larus_png.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1553,12 +1553,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#install" id="toc-install">Install</a></li>
 </ul></li>
-<li><a href="#identify-trips" id="toc-identify-trips">1. Identify trips</a></li>
-<li><a href="#reevaluate" id="toc-reevaluate">2. Reevaluate</a></li>
-<li><a href="#classify-criteria" id="toc-classify-criteria">3. Classify criteria</a></li>
-<li><a href="#path-lenght" id="toc-path-lenght">4. Path lenght</a></li>
-<li><a href="#maxdistance" id="toc-maxdistance">5. Maxdistance</a></li>
-<li><a href="#interpolate" id="toc-interpolate">6. Interpolate</a>
+<li><a href="#battery-checks" id="toc-battery-checks">1. Battery checks</a></li>
+<li><a href="#identify-trips" id="toc-identify-trips">2. Identify trips</a></li>
+<li><a href="#reevaluate" id="toc-reevaluate">3. Reevaluate</a></li>
+<li><a href="#classify-criteria" id="toc-classify-criteria">4. Classify criteria</a></li>
+<li><a href="#path-lenght" id="toc-path-lenght">5. Path lenght</a></li>
+<li><a href="#maxdistance" id="toc-maxdistance">6. Maxdistance</a></li>
+<li><a href="#interpolate" id="toc-interpolate">7. Interpolate</a>
 <ul>
 <li><a href="#interpolate-trips" id="toc-interpolate-trips">Interpolate trips</a></li>
 </ul></li>
@@ -1570,7 +1571,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-07-03-larus/GullLogo.png?raw=true" width="40%" /></p>
 </div>
 <h1 id="intro">Intro</h1>
-<p>This package is work in progress.</p>
 <p>There are three key issues in determining the foraging trips in <strong>GSMs</strong> attached to <strong>gulls</strong>:</p>
 <ul>
 <li>Battery charge and gaps (intervals) in the data.<br />
@@ -1589,11 +1589,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Load packages</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/MiriamLL/larus'>larus</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<a href="https://github.com/MiriamLL/larus" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> To github</a>
+</div>
+<h1 id="battery-checks">1. Battery checks</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/MiriamLL/larus'>larus</a></span><span class='op'>)</span></span></code></pre>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://scales.r-lib.org'>scales</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h1 id="identify-trips">1. Identify trips</h1>
+<p>Plot to see changes in battery charge over time.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>GSM_battery</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>daytime</span>, y<span class='op'>=</span><span class='va'>battery_charge</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_datetime</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'><a href='https://scales.r-lib.org/reference/date_format.html'>date_format</a></span><span class='op'>(</span><span class='st'>"%b"</span><span class='op'>)</span>,date_breaks <span class='op'>=</span> <span class='st'>"1 month"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>''</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="larus_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<h1 id="identify-trips">2. Identify trips</h1>
 <p>Separating by month makes it more easy to observe</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1616,7 +1637,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/larus/man/plot_check.html'>plot_check</a></span><span class='op'>(</span>my_locs<span class='op'>=</span><span class='va'>Trips_01locs</span>,my_central_location<span class='op'>=</span><span class='va'>nest_central_location</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="larus_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+<p><img src="larus_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
 <h3 id="identify-trips-1">Identify trips</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -1651,7 +1672,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/larus/man/plot_trips.html'>plot_trips</a></span><span class='op'>(</span>my_locs<span class='op'>=</span><span class='va'>Trips_03trips</span>,my_central_location<span class='op'>=</span><span class='va'>nest_central_location</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="larus_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+<p><img src="larus_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
 </div>
 <h3 id="calculate-parameters">Calculate parameters</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -1675,7 +1696,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>Trips_04params</span><span class='op'>$</span><span class='va'>duration</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="larus_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+<p><img src="larus_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1698,8 +1719,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre><code>[1] &quot;There are 156 trips in locations, and 156 in parameters&quot;
 [1] &quot;There are 0 trips missing in locations, and 0 in parameters&quot;</code></pre>
 </div>
-<h1 id="reevaluate">2. Reevaluate</h1>
+<h1 id="reevaluate">3. Reevaluate</h1>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Trips_05params</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>duration</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>trip_id</span>,<span class='va'>duration</span><span class='op'>)</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
 <table>
 <thead>
 <tr class="header">
@@ -1746,7 +1772,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>                                       new_central_location<span class='op'>=</span><span class='va'>rest_central_location</span>,</span>
 <span>                                       old_central_location<span class='op'>=</span><span class='va'>nest_central_location</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="larus_files/figure-html5/unnamed-chunk-21-1.png" width="624" /></p>
+<p><img src="larus_files/figure-html5/unnamed-chunk-23-1.png" width="624" /></p>
 </div>
 <h3 id="identify-trips-reevaluation">Identify trips reevaluation</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -1763,7 +1789,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/larus/man/plot_trips.html'>plot_trips</a></span><span class='op'>(</span>my_locs<span class='op'>=</span><span class='va'>Reevaluate_02trips</span>,my_central_location<span class='op'>=</span><span class='va'>rest_central_location</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="larus_files/figure-html5/unnamed-chunk-23-1.png" width="624" /></p>
+<p><img src="larus_files/figure-html5/unnamed-chunk-25-1.png" width="624" /></p>
 </div>
 <h3 id="calculate-parameters-1">Calculate parameters</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -1830,7 +1856,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre><code>[1] &quot;There are 173 trips in locations, and 173 in parameters&quot;
 [1] &quot;There are 0 trips missing in locations, and 0 in parameters&quot;</code></pre>
 </div>
-<h1 id="classify-criteria">3. Classify criteria</h1>
+<h1 id="classify-criteria">4. Classify criteria</h1>
 <h3 id="classify-parameters">Classify parameters</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1890,7 +1916,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>resolution</span> <span class='op'>==</span> <span class='st'>'ok_resolution_gaps_less_60_mins'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h1 id="path-lenght">4. Path lenght</h1>
+<h1 id="path-lenght">5. Path lenght</h1>
 <p>Trips must have at least three locations.
 Remove small trips</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1997,6 +2023,11 @@ Remove small trips</p>
 </div>
 <p>Check if there are outliers</p>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Params_wpath</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>                    <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>sum_path_lenght</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>                    <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>trip_month_id</span>,<span class='va'>sum_path_lenght</span><span class='op'>)</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
 <table>
 <thead>
 <tr class="header">
@@ -2047,6 +2078,12 @@ Remove small trips</p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Path_04speed</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='co'>#filter(speed_if_directly_flying &gt; 70)%&gt;%</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>speed_if_directly_flying</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>trip_number</span>,<span class='va'>speed_if_directly_flying</span><span class='op'>)</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
 <table>
 <thead>
 <tr class="header">
@@ -2096,7 +2133,7 @@ Remove small trips</p>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>trip_number</span><span class='op'>==</span><span class='va'>exceeds_speed</span><span class='op'>)</span>,my_central_location<span class='op'>=</span><span class='va'>nest_central_location</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span><span class='st'>'If the speed is &gt;70 km, \n remove that trip or reevaluate it'</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="larus_files/figure-html5/unnamed-chunk-57-1.png" width="624" /></p>
+<p><img src="larus_files/figure-html5/unnamed-chunk-59-1.png" width="624" /></p>
 </div>
 <p>And remember gulls do whatever they want<br />
 So remove it from the list if its difficult to find the central location</p>
@@ -2116,7 +2153,7 @@ So remove it from the list if its difficult to find the central location</p>
 <pre><code>[1] &quot;There are 47 trips in locations, and 47 in parameters&quot;
 [1] &quot;There are 0 trips missing in locations, and 0 in parameters&quot;</code></pre>
 </div>
-<h1 id="maxdistance">5. Maxdistance</h1>
+<h1 id="maxdistance">6. Maxdistance</h1>
 <h3 id="calculate-maximum-distance-per-trip">Calculate maximum distance per trip</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2126,6 +2163,9 @@ So remove it from the list if its difficult to find the central location</p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Maxdist_params</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
 <table>
 <thead>
 <tr class="header">
@@ -2166,6 +2206,9 @@ So remove it from the list if its difficult to find the central location</p>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Params_final</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
 <table>
 <thead>
 <tr class="header">
@@ -2209,8 +2252,9 @@ So remove it from the list if its difficult to find the central location</p>
 </tbody>
 </table>
 </div>
-<h1 id="interpolate">6. Interpolate</h1>
+<h1 id="interpolate">7. Interpolate</h1>
 <h2 id="interpolate-trips">Interpolate trips</h2>
+<p>This function interpolate trips to a similar resolution. Here using ‘900 sec’.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Interpolation_trips</span><span class='op'>&lt;-</span><span class='va'>Interpolation_trips</span></span>
@@ -2226,9 +2270,6 @@ So remove it from the list if its difficult to find the central location</p>
 </div>
 <h1 id="citation">Citation</h1>
 <p>Lerma, M. 2025. R package ‘larus’. <a href="https://github.com/MiriamLL/larus" class="uri">https://github.com/MiriamLL/larus</a></p>
-<div class="layout-chunk" data-layout="l-body">
-<a href="https://github.com/MiriamLL/larus" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> In detail</a>
-</div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

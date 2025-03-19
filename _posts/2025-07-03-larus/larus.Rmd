@@ -20,8 +20,6 @@ knitr::include_graphics("https://github.com/MiriamLL/miriamlerma_/blob/main/_pos
 
 # Intro
 
-This package is work in progress.
-
 There are three key issues in determining the foraging trips in **GSMs** attached to **gulls**:
 
 - Battery charge and gaps (intervals) in the data.  
@@ -40,11 +38,36 @@ devtools::install_github("MiriamLL/larus")
 Load packages
 
 ```{r}
-library(tidyverse)
 library(larus)
 ```
 
-# 1. Identify trips
+```{r icon-links1,echo=FALSE}
+icon_link(icon = "fas fa-external-link-alt",
+          text = "To github",
+          url = "https://github.com/MiriamLL/larus")
+```
+
+
+
+# 1. Battery checks
+
+```{r}
+library(tidyverse)
+library(scales)
+library(ggplot2)
+```
+
+Plot to see changes in battery charge over time. 
+
+```{r}
+ggplot(GSM_battery, aes(x=daytime, y=battery_charge)) +
+  geom_line() +
+  scale_x_datetime(labels = date_format("%b"),date_breaks = "1 month")+
+  theme_bw()+
+  xlab('')
+```
+
+# 2. Identify trips
 
 Separating by month makes it more easy to observe
 
@@ -131,9 +154,9 @@ Trips_04trips<-Trips_03trips %>%
 compare_notrips(my_params=Trips_05params,my_locs=Trips_04trips)
 ```
 
-# 2. Reevaluate
+# 3. Reevaluate
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 knitr::kable(head(Trips_05params %>%
    arrange(-duration)%>%
    select(trip_id,duration),5))
@@ -220,7 +243,7 @@ Locs_02trips<-Locs_01trips %>%
 compare_notrips(my_params=Params_02params,my_locs=Locs_02trips)
 ```
 
-# 3. Classify criteria
+# 4. Classify criteria
 
 ### Classify parameters
 
@@ -273,7 +296,7 @@ Locs_02class<-Locs_01class %>%
   dplyr::filter(resolution == 'ok_resolution_gaps_less_60_mins')
 ```
 
-# 4. Path lenght
+# 5. Path lenght
 
 Trips must have at least three locations.
 Remove small trips
@@ -377,7 +400,7 @@ Params_wpath<-Params_sumpaths %>%
 
 Check if there are outliers
 
-```{r tableerror, echo=FALSE}
+```{r tableerror, echo=TRUE}
 knitr::kable(head(Params_wpath %>%
                     dplyr::arrange(-sum_path_lenght)%>%
                     dplyr::select(trip_month_id,sum_path_lenght),5))
@@ -401,7 +424,7 @@ Path_04speed<-Path_03distances %>%
          )
 ```
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 knitr::kable(head(Path_04speed %>%
   #filter(speed_if_directly_flying > 70)%>%
   arrange(-speed_if_directly_flying)%>%
@@ -435,7 +458,7 @@ Path_speed<-Path_04speed %>%
 compare_notrips(my_params=Params_wpath,my_locs=Path_speed)
 ```
 
-# 5. Maxdistance
+# 6. Maxdistance
 
 ### Calculate maximum distance per trip
 
@@ -445,7 +468,7 @@ Maxdist_params<-calculate_maxdist(my_data = Locs_02class,
                                     divider="trip_number")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 knitr::kable(head(Maxdist_params,5))
 ```
 
@@ -457,14 +480,16 @@ Params_final<-Params_wpath %>%
 
 ```
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 knitr::kable(head(Params_final,5))
 ```
 
 
-# 6. Interpolate
+# 7. Interpolate
 
 ## Interpolate trips
+
+This function interpolate trips to a similar resolution. Here using '900 sec'.
 
 ```{r}
 Interpolation_trips<-Interpolation_trips
@@ -482,10 +507,4 @@ Interpolated_locs<-interpolate_trips(my_df=Interpolation_trips,
 # Citation
 
 Lerma, M. 2025. R package 'larus'. https://github.com/MiriamLL/larus
-
-```{r icon-links1,echo=FALSE}
-icon_link(icon = "fas fa-external-link-alt",
-          text = "In detail",
-          url = "https://github.com/MiriamLL/larus")
-```
 
