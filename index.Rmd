@@ -31,11 +31,11 @@ You can find abstracts and links to my publications. If you can't access a publi
 <br>  
 
 ### `r fa("school", fill = "black")` [**Teaching**](https://www.miriam-lerma.com/teaching.html)  
-I prepared materials for teaching R, a programming language for statistical computing and graphics. If you are interested in accessing the materials, you can locate them here. 
+In this section, you will find a variety of topics that you might find interesting, such as AI tools, tracking functions, and selecting the right journal, among others. I've also prepared materials for teaching R, a programming language for statistical computing and graphics. If you're interested in accessing these resources, you can locate them here.
 <br>  
 
 ###  `r fa("box", fill = "black")` [**Packages**](https://www.miriam-lerma.com/projects.html)  
-I develop R packages that are useful for my work. Im often working on new packages so stay tuned. 
+I develop R packages that are useful for my work. I'm often working on new packages so stay tuned. 
 <br>  
 
 ### `r fa("keyboard", fill = "black")` [**Blog**](https://www.miriam-lerma.com/blog.html)  

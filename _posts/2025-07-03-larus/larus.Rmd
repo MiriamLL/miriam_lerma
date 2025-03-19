@@ -49,8 +49,8 @@ library(larus)
 Separating by month makes it more easy to observe
 
 ```{r}
-This_month<-'08'
-This_month_text<-'Ago'
+This_month<-'06'
+This_month_text<-'Jun'
 ```
 
 ```{r}
@@ -133,10 +133,10 @@ compare_notrips(my_params=Trips_05params,my_locs=Trips_04trips)
 
 # 2. Reevaluate
 
-```{r}
-Trips_05params %>%
-  filter(duration>24)%>%
-  arrange(-duration)
+```{r, echo=FALSE}
+knitr::kable(head(Trips_05params %>%
+   arrange(-duration)%>%
+   select(trip_id,duration),5))
 ```
 
 ### Subset locations
@@ -144,11 +144,11 @@ Trips_05params %>%
 Subset locations using parameters information, check plot, orange triangle should be on top of cluster of locations
 
 ```{r}
-reevaluate_tripid<-'trip_00102'
+reevaluate_tripid<-'trip_00136'
 ```
 
 ```{r}
-rest_central_location<-data.frame(Longitude=-110.325,Latitude=24.17-0.01)
+rest_central_location<-data.frame(Longitude=-110.325-0.001,Latitude=24.17-0.013)
 Reevaluate_01locs<-subset_reevaluation(my_tripid=reevaluate_tripid,
                                        my_trip=Trips_03trips,
                                        new_central_location=rest_central_location,
@@ -174,7 +174,6 @@ Reevaluate_03params<-calculate_params(my_locs=Reevaluate_02trips,
                                       my_units="hours",
                                       my_divider="trip_number",
                                       my_gaps="gaps_min")
-head(Reevaluate_03params)
 ```
 
 ```{r}
@@ -340,7 +339,8 @@ range(Params_path$path_lenght_km)
 ### Calculate leaving and returning distances
 
 ```{r}
-Params_leaving_returning<-calculate_leaving_returning(my_locs=Path_trips,
+nest_central_location<-data.frame(Longitude=-110.33979846296234,Latitude=24.28728834326802)
+Params_leaving_returning<-calculate_leaving_returning(my_locs=Path_03distances,
                                                       my_central_location=nest_central_location)
 ```
 
@@ -356,7 +356,7 @@ Identify central location, if is from the nest it add leaving and returning, if 
 
 ```{r}
 Params_sumpaths<-Params_sumpath %>%
-  dplyr::rename(central_location=central_location.y)%>%
+  dplyr::rename(central_location=central_location.x)%>%
   mutate(sum_path_lenght=case_when(central_location == "colony" ~ path_lenght_km + leaving_distance_km + returning_distance_km,
                                                  central_location != "colony" ~ path_lenght_km))
 ```
@@ -377,15 +377,10 @@ Params_wpath<-Params_sumpaths %>%
 
 Check if there are outliers
 
-```{r}
-Params_wpath %>%
-  dplyr::arrange(-sum_path_lenght)
-```
-
-```{r}
-plot_trips(my_locs=Path_trips %>%
-  dplyr::filter(trip_number=='trip_00002'),my_central_location=nest_central_location)+
-  ggplot2::ggtitle('This trip leaving location was far from the colony, \nmeaning returning and leaving were not included')
+```{r tableerror, echo=FALSE}
+knitr::kable(head(Params_wpath %>%
+                    dplyr::arrange(-sum_path_lenght)%>%
+                    dplyr::select(trip_month_id,sum_path_lenght),5))
 ```
 
 ### Check speed
@@ -406,17 +401,17 @@ Path_04speed<-Path_03distances %>%
          )
 ```
 
-```{r}
-Path_04speed %>%
+```{r, echo=FALSE}
+knitr::kable(head(Path_04speed %>%
   #filter(speed_if_directly_flying > 70)%>%
   arrange(-speed_if_directly_flying)%>%
-  relocate(trip_number,speed_if_directly_flying)
+  select(trip_number,speed_if_directly_flying),5))
 ```
 
 In case there is a trip exceeding speed:
 
 ```{r}
-exceeds_speed<-'trip_00070'
+exceeds_speed<-'trip_00009'
 ```
 
 ```{r}
@@ -450,17 +445,39 @@ Maxdist_params<-calculate_maxdist(my_data = Locs_02class,
                                     divider="trip_number")
 ```
 
-```{r}
-head(Maxdist_params)
+```{r, echo=FALSE}
+knitr::kable(head(Maxdist_params,5))
 ```
 
 ```{r}
 Params_final<-Params_wpath %>%
   right_join(Maxdist_params, by='trip_id')%>%
   select(trip_id,
-         duration,sum_path_lenght,maxdist_km,)
-head(Params_final)
+         duration,sum_path_lenght,maxdist_km)
+
 ```
+
+```{r, echo=FALSE}
+knitr::kable(head(Params_final,5))
+```
+
+
+# 6. Interpolate
+
+## Interpolate trips
+
+```{r}
+Interpolation_trips<-Interpolation_trips
+
+Interpolated_locs<-interpolate_trips(my_df=Interpolation_trips,
+                                    interval='900 sec',
+                                    column_datetime='daytime',
+                                    column_trip='trip_number',
+                                    column_lat='Latitude',
+                                    column_lon='Longitude',
+                                    datetime_format="%Y-%m-%d %H:%M:%S")
+```
+
 
 # Citation
 
