@@ -2,7 +2,7 @@
 title: "larus"
 description: |
   An R package designed for working with GSM data. It offers tools for data manipulation, trip identification, and calculation of trip parameters like duration, maximum distance, and path length. Additionally, it supports trip interpolation.
-preview: logo_larus_png.png
+preview: GullLogo.png
 author:
   - name: Miriam Lerma
 date: 2025-03-07
