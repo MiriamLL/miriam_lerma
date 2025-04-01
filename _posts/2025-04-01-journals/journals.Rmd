@@ -27,7 +27,7 @@ The goal is to be a guide for those looking to submit papers into an ornithologi
 <html>
 <body>
    <left>
-      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-02-24-journals/WhereToPublish_2402.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-04-01-journals/journals_portada.jpg?raw=true" style="width:500px"></a>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-04-01-journals/journals_0104.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-04-01-journals/journals_portada.jpg?raw=true" style="width:500px"></a>
    </left>
 </body>
 </html>
