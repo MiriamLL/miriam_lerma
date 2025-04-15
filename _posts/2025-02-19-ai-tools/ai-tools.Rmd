@@ -48,5 +48,46 @@ This resource goal is to be a guide for those looking to start using AI while co
 </body>
 </html>
 
+  
+**Links to AI tools**
 
+```{r,echo=FALSE}
+Names<-data.frame(Tools=c(
+'ChatGPT',
+'perplexity',
+'scite',
+'connectedpapers',
+'quillbot',
+'Grammarly',
+'deepl',
+'MistralAI',
+'AlephAlpha'
+))
+```
 
+```{r,echo=FALSE}
+Links<-data.frame(Link=c(
+'https://chatgpt.com/',
+'https://www.perplexity.ai/',
+'https://scite.ai/',
+'https://www.connectedpapers.com/',
+'https://quillbot.com/',
+'https://app.grammarly.com/',
+'https://www.deepl.com/',
+'https://mistral.ai/',
+'https://aleph-alpha.com/'
+))
+```
+
+```{r,echo=FALSE}
+List<-cbind(Names,Links)
+```
+
+```{r,echo=FALSE}
+List<-List[order(List$Tools),]
+rownames(List) <- NULL
+```
+
+```{r KnitTableSightings, echo=FALSE}
+knitr::kable(List)
+```

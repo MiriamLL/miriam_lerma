@@ -159,10 +159,10 @@
     ],
     "date": "2025-02-19",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\nAI Tools in Research\r\nThis collection of materials has been compiled by Dagmar Cimiotti and Miriam Lerma, presenting a curated selection of AI tools that are reshaping research. It includes not only an curated list of tools but also practical examples of how these tools can be used.\r\nIn addition to the tools themselves, implications of AI in research are presented. The goal is to open the discussion on how these technologies can impact the efficiency and integrity of scientific research. Moreover, with the rise of AI in research there are implications from the journals, reviewers and the authors point-of-view by using this technology.\r\nThis resource goal is to be a guide for those looking to start using AI while considering the broader impact these tools may have on the future of academia and the environment.\r\nClick on the image to open the pdf\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\nAI Tools in Research\r\nThis collection of materials has been compiled by Dagmar Cimiotti and Miriam Lerma, presenting a curated selection of AI tools that are reshaping research. It includes not only an curated list of tools but also practical examples of how these tools can be used.\r\nIn addition to the tools themselves, implications of AI in research are presented. The goal is to open the discussion on how these technologies can impact the efficiency and integrity of scientific research. Moreover, with the rise of AI in research there are implications from the journals, reviewers and the authors point-of-view by using this technology.\r\nThis resource goal is to be a guide for those looking to start using AI while considering the broader impact these tools may have on the future of academia and the environment.\r\nClick on the image to open the pdf\r\n\r\n\r\n\r\nLinks to AI tools\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nTools\r\nLink\r\nAlephAlpha\r\nhttps://aleph-alpha.com/\r\nChatGPT\r\nhttps://chatgpt.com/\r\nconnectedpapers\r\nhttps://www.connectedpapers.com/\r\ndeepl\r\nhttps://www.deepl.com/\r\nGrammarly\r\nhttps://app.grammarly.com/\r\nMistralAI\r\nhttps://mistral.ai/\r\nperplexity\r\nhttps://www.perplexity.ai/\r\nquillbot\r\nhttps://quillbot.com/\r\nscite\r\nhttps://scite.ai/\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2025-02-19-ai-tools/AI-tools_portada.jpg",
-    "last_modified": "2025-03-13T12:43:29+01:00",
-    "input_file": {}
+    "last_modified": "2025-04-15T13:34:19+02:00",
+    "input_file": "ai-tools.knit.md"
   },
   {
     "path": "posts/2025-01-15-bathymetry/",
