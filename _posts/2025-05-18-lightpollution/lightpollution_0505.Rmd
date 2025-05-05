@@ -98,52 +98,48 @@ range(Light_pollution_radiance$radiance)
 
 ### Basic plot
 
-Use the function **geom_raster** to plot the radiance data.  
-Select [CRS: Coordinate Reference System](https://www.crs-geo.eu/crs-national.htm).  EPSG(European Petroleum Survey Group)[]
-
-
-```{r, fig.width=8, fig.height=6}
-ggplot() +
-  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
-  xlab('Longitude')+ylab('Latitude')+
-  scale_fill_gradient(limits = c(0,1),
-                      low = 'black', high = '#f9c74f', 
-                      na.value = "grey93", 
-                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
-                      )+
-  coord_sf(xlim = c(4.5,9), ylim = c(53,56),
-           label_axes = list(top = "E", left = "N", bottom = 'E', right='N'),
-           default_crs = sf::st_crs(4326))+
-  ggtitle('CRS=4326')
-```
-
-
-### Change theme
-
-Change the arguments inside **theme** to adjust the looks of your plot. 
+Use the function **geom_spatraster** to plot the radiance data.  
 
 ```{r, fig.height=6, fig.width=6}
 ggplot() +
-  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
-  xlab('Longitude')+ylab('Latitude')+
+  geom_spatraster(data = Light_pollution) +
+  
+  coord_sf(xlim = c(4.5,9), ylim = c(53,56),
+           label_axes = list(top = "E", left = "N", bottom = 'E', right='N'),
+           default_crs = sf::st_crs(4326))+
   scale_fill_gradient(name='Light pollution \n in the North Sea \n Radiance ',
                       limits = c(0,1),
                       low = 'black', high = '#f9c74f', 
                       na.value = "grey93", 
                       breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
                       )+
-  coord_sf(xlim = c(4.5,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  NULL
+```
+### Change theme
+
+Change the arguments inside **theme** to adjust the looks of your plot. 
+
+```{r, fig.height=6, fig.width=6}
+ggplot() +
+  geom_spatraster(data = Light_pollution) +
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+           label_axes = list(top = "E", left = "N", bottom = 'E', right='N'),
+           default_crs = sf::st_crs(4326))+
+  scale_fill_gradient(name='Light pollution \n in the North Sea \n Radiance ',
+                      limits = c(0,1),
+                      low = 'black', high = '#f9c74f', 
+                      na.value = "grey93", 
+                      breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
+                      )+
   theme_void()+
     theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.40,0.60),
-        panel.background = element_rect(fill = '#edede9'),
+        legend.position = c(0.20,0.30),
+        panel.background = element_rect(fill = 'black'),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_rect(colour = "black", fill=NA, size=1.5),
         legend.text=element_text(color='#f9c74f',size=12),
         legend.title=element_text(color='#f9c74f',size=12))+ 
-  coord_sf(default_crs = sf::st_crs(32612))+
   NULL
 ```
 
@@ -172,25 +168,28 @@ Include **scale_fill_gradientn** to use the color palette.
 
 ```{r}
 ggplot() +
-  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
-  xlab('Longitude')+ylab('Latitude')+
+  geom_spatraster(data = Light_pollution) +
+ 
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+           label_axes = list(top = "E", left = "N", bottom = 'E', right='N'),
+           default_crs = sf::st_crs(4326))+
+ 
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.20,0.30),
+        panel.background = element_rect(fill = 'black'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='#f9c74f',size=12),
+        legend.title=element_text(color='#f9c74f',size=12))+
+  
   scale_fill_gradientn(name='Light pollution \n in the North Sea \n Radiance ',
                       limits = c(0,1),
                       colours = your_palette,
                       na.value = "grey93", 
                       breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
                       )+
-  coord_sf(xlim = c(5,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.40,0.60),
-        panel.background = element_rect(fill = '#edede9'),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='#f9c74f',size=12),
-        legend.title=element_text(color='#f9c74f',size=12))+
   NULL
 ```
 
@@ -198,55 +197,60 @@ ggplot() +
 
 Add text using the function **annotate** for reference. 
 
-```{r}
+```{r, fig.height=4, fig.width=4}
 ggplot() +
-  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
-  xlab('Longitude')+ylab('Latitude')+
+  geom_spatraster(data = Light_pollution) +
+ 
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+           label_axes = list(top = "E", left = "N", bottom = 'E', right='N'),
+           default_crs = sf::st_crs(4326))+
+ 
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.20,0.30),
+        panel.background = element_rect(fill = 'black'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='#f9c74f',size=12),
+        legend.title=element_text(color='#f9c74f',size=12))+
+  
   scale_fill_gradientn(name='Light pollution \n in the North Sea \n Radiance ',
                       limits = c(0,1),
                       colours = your_palette,
                       na.value = "grey93", 
                       breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
                       )+
-  coord_sf(xlim = c(5,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.40,0.60),
-        panel.background = element_rect(fill = '#edede9'),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='#f9c74f',size=12),
-        legend.title=element_text(color='#f9c74f',size=12))+
-  annotate("text", x = 7.885143539318454+0.06, y = 54.181291760152874,
+annotate("text", x = 7.885143539318454-1.6, y = 54.181291760152874,
            label = "Helgoland",size=5,color='#d6d6d6',hjust = 0)
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
 ggsave(ggplot() +
-  geom_raster(data = Light_pollution_radiance, aes(x = x, y = y, fill = radiance)) +
-  xlab('Longitude')+ylab('Latitude')+
+  geom_spatraster(data = Light_pollution) +
+ 
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+           label_axes = list(top = "E", left = "N", bottom = 'E', right='N'),
+           default_crs = sf::st_crs(4326))+
+ 
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.20,0.30),
+        panel.background = element_rect(fill = 'black'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='#f9c74f',size=12),
+        legend.title=element_text(color='#f9c74f',size=12))+
+  
   scale_fill_gradientn(name='Light pollution \n in the North Sea \n Radiance ',
                       limits = c(0,1),
                       colours = your_palette,
                       na.value = "grey93", 
                       breaks = c(0.02,0.20, 0.40, 0.60,0.75, 0.90)
                       )+
-  coord_sf(xlim = c(5,9), ylim = c(53,56),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.40,0.60),
-        panel.background = element_rect(fill = '#edede9'),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='#f9c74f',size=12),
-        legend.title=element_text(color='#f9c74f',size=12))+
-  annotate("text", x = 7.885143539318454+0.06, y = 54.181291760152874,
-           label = "Helgoland",size=5,color='#d6d6d6',hjust = 0)+
-  NULL,
+  annotate("text", x = 7.885143539318454-1.6, y = 54.181291760152874,
+           label = "Helgoland",size=5,color='#d6d6d6',hjust = 0),
        filename = paste0(your_folder,"/radiance_GermanNorthSea.jpg"),
        width = 4, 
        height = 4, 
