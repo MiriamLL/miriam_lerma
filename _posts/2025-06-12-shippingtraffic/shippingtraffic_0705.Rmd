@@ -6,9 +6,15 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-06-12
+preview: shipping_portada.jpg
 output:
   distill::distill_article:
     self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2025
 ---
 
 # Intro
@@ -42,6 +48,8 @@ writeRaster(ShippingTraffic_crop, "ShippingTraffic_crop.tif")
 ```
 
 ## Load
+
+To download test data in tif format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-06-12-shippingtraffic//ShippingTraffic_crop.tif).  
 
 Use the package **terra** to use the function **rast**.  
 
@@ -96,7 +104,7 @@ ShippingTraffic_df <- as.data.frame(ShippingTraffic_mask, xy = TRUE)
 beepr::beep(sound=1)
 ```
 
-The function rename, allows to change the name of the column. The radiance information is in the third column.
+The function rename, allows to change the name of the column. The density information is in the third column.
 
 ```{r}
 ShippingTraffic_df<-ShippingTraffic_df %>%
@@ -116,9 +124,7 @@ hist(ShippingTraffic_df$vessel_density)
 ```
 
 
-Classification
-
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 ShippingTraffic_class<-ShippingTraffic_df %>%
  mutate(
     density_class = case_when(
@@ -144,12 +150,11 @@ ShippingTraffic_class<-ShippingTraffic_df %>%
 
 The majority of values are close to 0
 
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 ShippingTraffic_class %>%
   group_by(density_class)%>%
   tally()
 ```
-
 
 ## Select area
 
@@ -164,412 +169,208 @@ ggplot() +
   geom_spatraster(data = ShippingTraffic_mask)
 ```
 
-## Change fill
-
-The largest differences are noticeable on the lowest densities.
-
-```{r, fig.height=5, fig.width=5}
-ggplot() +
-  geom_spatraster(data = ShippingTraffic_mask) +
-  scale_fill_gradient(low = "#00BEBE", 
-                      high = "#E7F7C6", 
-                      na.value = "grey93", 
-                      limits = c(0,5),
-                      breaks = c(0,1,2,3,4,5,6,7,8,9,10),
-                      )+
-  NULL
-```
-
-
 ## Land
 
-Add land for reference.
+Add land for reference using **geom_sf** and the package **GermanNorthSea**.
 
 ```{r, fig.height=5, fig.width=5}
 ggplot() +
   geom_spatraster(data = ShippingTraffic_mask) +
-
   geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
   geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  
-  scale_fill_gradient(low = "#00BEBE", 
-                      high = "#E7F7C6", 
-                      na.value = "grey93", 
-                      limits = c(0,5),
-                      breaks = c(0,1,2,3,4,5,6,7,8,9,10),
-                      )
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
 ```
 
 
 ## Theme
 
-Change background colors
+Change background colors using the arguments on theme.
 
 ```{r, fig.height=5, fig.width=5}
 ggplot() +
   geom_spatraster(data = ShippingTraffic_mask) +
-
   geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
   geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
   
-    scale_fill_gradient(low = "#00BEBE", 
-                      high = "#E7F7C6", 
-                      na.value = "transparent", 
-                      limits = c(0,5),
-                      breaks = c(0,1,2,3,4,5,6,7,8,9,10),
-                      )+
+  theme_void()+
+    theme(panel.background = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_rect(colour = "black", fill=NA, size=1.5))
+```
+
+
+## Gradient colors
+
+Low traffic 
+
+```{r, fig.height=5, fig.width=5}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic_mask) +
+  geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
+  geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+
    
   theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.20,0.30),
-        panel.background = element_blank(),
+    theme(panel.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='black',size=12),
-        legend.title=element_text(color='black',size=16))
-```
-
-
-# Shipping Lanes and Traffic
-
-## Low traffic 
-
-```{r}
-color_K <-"#007f5f"
-color_J <-"#2b9348"
-color_I <-"#55a630"
-color_H <-"#80b918"
-color_G <-"#aacc00"
-color_F <-"#bfd200"
-color_E <-"#d4d700"
-color_D <-"#dddf00"
-color_C <-"#eeef20"
-color_B <-"#ffff3f"
-palette_yellow<-c(color_B,color_C,color_D,color_E,color_F,color_G,color_H,color_I,color_J,color_K)
-```
-
-```{r, fig.height=5, fig.width=5}
-ggplot() +
-  geom_spatraster(data = ShippingTraffic_mask) +
-
-  geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
   
-  geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
-  
-  geom_sf(data = GermanNorthSea::German_Shipping, color='grey',fill='transparent',alpha=0.1, linetype = "dotted")+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  
-  scale_fill_gradientn(name='Vessel density \n Dec 2023',
+    
+  scale_fill_gradientn(name='Low Vessel density \n Dec 2023',
                       na.value = "transparent", 
-                      colours = palette_yellow,
+                      colours = palette_yellow<-c("#ffff3f","#eeef20","#dddf00","#d4d700","#bfd200","#aacc00","#80b918","#55a630","#2b9348","#007f5f"),
                       limits = c(0.00001,10),
                       breaks = c(2,4,6,8,10),
-                      )+
-   
-  theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.20,0.30),
-        panel.background = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='black',size=12),
-        legend.title=element_text(color='black',size=16))
+                      )
 ```
 
-
-## Medium traffic 
-
-```{r}
-color_I <-"#081c15"
-color_H <-"#1b4332"
-color_G <-"#2d6a4f"
-color_F <-"#40916c"
-color_E <-"#52b788"
-color_D <-"#74c69d"
-color_C <-"#95d5b2"
-color_B <-"#b7e4c7"
-color_A <-"#d8f3dc"
-palette_green<-c(color_A,color_B,color_C,color_D,color_E,color_F,color_G,color_H,color_I)
-```
-
+Medium traffic
 
 ```{r, fig.height=5, fig.width=5}
 ggplot() +
   geom_spatraster(data = ShippingTraffic_mask) +
-
   geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
   geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
-  
-  geom_sf(data = GermanNorthSea::German_Shipping, color='grey',fill='transparent',alpha=0.1, linetype = "dotted")+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme_void()+
+    theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
   
-  scale_fill_gradientn(name='Vessel density \n Dec 2023',
+    scale_fill_gradientn(name='Medium Vessel density \n Dec 2023',
                       na.value = "transparent", 
-                      colours = palette_green,
+                      colours = palette_green<-c("#d8f3dc","#b7e4c7","#95d5b2","#74c69d","#52b788","#40916c","#2d6a4f","#1b4332","#081c15"),
                       limits = c(5,100),
                       breaks = c(5,20,40,60,80,100),
-                      )+
-   
-  theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.20,0.30),
-        panel.background = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='black',size=12),
-        legend.title=element_text(color='black',size=16))
+                      )
+  
 ```
 
-
-## High traffic 
-
-```{r}
-color_A <-"#e01e37"
-color_B <-"#da1e37"
-color_C <-"#c71f37"
-color_D <-"#bd1f36"
-color_E <-"#b21e35"
-color_F <-"#a71e34"
-color_G <-"#a11d33"
-color_H <-"#85182a"
-color_I <-"#6e1423"
-color_J <-"#641220"
-palette_red<-c(color_A,color_B,color_C,color_D,color_E,color_F,color_G,color_H,color_I,color_J)
-```
+High traffic
 
 ```{r, fig.height=5, fig.width=5}
 ggplot() +
   geom_spatraster(data = ShippingTraffic_mask) +
-
   geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
   geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
-  
-  geom_sf(data = GermanNorthSea::German_Shipping, color='grey',fill='transparent',alpha=0.1, linetype = "dotted")+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  
-  scale_fill_gradientn(name='Vessel density \n Dec 2023 \n (hrs per km2)',
-                      na.value = "transparent", 
-                      colours = palette_red,
-                      limits = c(100,30000),
-                      breaks = c(0,1000,10000,20000,30000),
-                      )+
-   
   theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.20,0.30),
+    theme(
         panel.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='black',size=12),
-        legend.title=element_text(color='black',size=16))
+        )+
+  scale_fill_gradientn(name='High Vessel density \n Dec 2023 \n (hrs per km2)',
+                      na.value = "transparent", 
+                      colours = palette_red<-c("#e01e37","#da1e37","#c71f37","#bd1f36","#b21e35","#a71e34","#a11d33","#85182a","#6e1423","#641220"),
+                      limits = c(100,30000),
+                      breaks = c(0,1000,10000,20000,30000),
+                      )
 ```
-
-# Export
 
 ## Palette
 
 ```{r}
-your_palette<-c("transparent",
-                "#d8f3dc",
-                "#b7e4c7",
-                "#95d5b2",
-                "#74c69d",
-                "#52b788",
-                "#aacc00",
-                "#bfd200",
-                "#d4d700",
-                "#dddf00",
-                "#eeef20",
-                "#ffff3f",
-                "#e01e37",
-                "#da1e37",
-                "#c71f37",
-                "#bd1f36",
-                "#b21e35",
-                "#a71e34",
-                "#a11d33",
-                "#85182a",
-                "#6e1423",
-                "#641220")
+your_palette<-c("transparent", "#d8f3dc",
+                "#b7e4c7","#95d5b2","#74c69d","#52b788","#aacc00",
+                "#bfd200","#d4d700","#dddf00","#eeef20","#ffff3f", 
+                "#e01e37","#da1e37","#c71f37", "#bd1f36","#b21e35",
+                "#a71e34","#a11d33","#85182a","#6e1423","#641220")
 ```
 
-## Legend
-
-Use **scale_fill_gradientn** to adjust the palette
+Use **scale_fill_gradientn** and **rescale** to adjust the palette and the legend
 
 ```{r, fig.height=5, fig.width=5}
 ggplot() +
   geom_spatraster(data = ShippingTraffic_mask) +
-
   geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
   geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
   
-  geom_sf(data = GermanNorthSea::German_Shipping, color='grey',fill='transparent',alpha=0.1, linetype = "dotted")+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  
-  scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
-                      na.value = "transparent", 
-                      colours = your_palette,
-                      limits = c(0,30000),
-                      breaks = c(0,100,30000),
-                      values = scales::rescale(c(0,1,2,2,3,5,10,100,1000,10000,30000)))+
-   
   theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.20,0.50),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='black',size=12),
-        legend.title=element_text(color='black',size=16))+
-    theme(legend.key.height = unit(12, "mm"))
-```
-
-Use **rescale** to adjust the legend
-
-```{r}
-ggplot() +
-  geom_spatraster(data = ShippingTraffic_mask) +
-
-  geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
-  geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
-  
-  geom_sf(data = GermanNorthSea::German_Shipping, color='grey',fill='transparent',alpha=0.1, linetype = "dotted")+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
-                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
-  
-  scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
-                      na.value = "transparent", 
-                      colours = your_palette,
-                      limits = c(0,30000),
-                      breaks = c(
-                                 0.05,
-                                 0.1,
-                                 0.2,
-                                 0.5,
-                                 2,
-                                 5,
-                                 10,
-                                 20,
-                                 100,
-                                 1000),
-                     
-                      values = scales::rescale(c(0,
-                                                 0.01,
-                                                 0.05,
-                                                 0.1,
-                                                 0.2,
-                                                 0.5,
-                                                 2,
-                                                 5,
-                                                 10,
-                                                 20,
-                                                 100,
-                                                 1000)), 
-                      guide = "legend"
-                      )+
-   
-  theme_void()+
-    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
-        legend.position = c(0.15,0.50),
+    theme(
         panel.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
-        legend.text=element_text(color='black',size=12),
-        legend.title=element_text(color='black',size=16))+
-    theme(legend.key.height = unit(8, "mm"))
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  
+  scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
+                      na.value = "transparent", 
+                      colours = your_palette,
+                      limits = c(0,30000),
+                      breaks = c(0.05,0.1,0.2,0.5,2,5,10,20,100,1000),
+                      values = scales::rescale(c(0,0.01,0.05,0.1,0.2,0.5,2,5,10,20,100,1000)), 
+                      guide = "legend"
+                      )
 ```
 
 Use **labels** to make the legend more legible
 
-```{r}
+```{r, fig.height=5, fig.width=5}
 ggplot() +
   geom_spatraster(data = ShippingTraffic_mask) +
-
   geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
   geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
   
-  geom_sf(data = GermanNorthSea::German_Shipping, color='grey',fill='transparent',alpha=0.1, linetype = "dotted")+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme_void()+
+    theme(
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
   
   scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
                       na.value = "transparent", 
                       colours = your_palette,
                       limits = c(0,30000),
-                      breaks = c(
-                                 0.05,
-                                 0.1,
-                                 0.2,
-                                 0.5,
-                                 2,
-                                 5,
-                                 10,
-                                 20,
-                                 100,
-                                 1000),
-                      values = scales::rescale(c(0,
-                                                 0.01,
-                                                 0.05,
-                                                 0.1,
-                                                 0.2,
-                                                 0.5,
-                                                 2,
-                                                 5,
-                                                 10,
-                                                 20,
-                                                 100,
-                                                 1000)), 
-                      labels = c(
-                                 "0 - 0.05",
-                                 "> 0.1",
-                                 "> 0.2",
-                                 "> 0.5",
-                                 "> 2",
-                                 "> 5",
-                                 "> 10",
-                                 "> 20",
-                                 "> 100",
-                                 "> 1,000"),
-                      guide = "legend"
-                      )+
-   
+                      breaks = c(0.05,0.1,0.2,0.5,2,5,10,20,100,1000),
+                      values = scales::rescale(c(0,0.01,0.05,0.1,0.2,0.5,2,5,10,20,100,1000)), 
+                      guide = "legend",
+                      labels = c("0 - 0.05","> 0.1","> 0.2","> 0.5","> 2","> 5","> 10","> 20", "> 100","> 1,000") )
+```
+
+
+Include the legend inside the plot and change the theme, also change panel.background
+
+```{r, fig.height=10, fig.width=10}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic_mask) +
+  geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
+  geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
+  
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
   theme_void()+
     theme(
-          panel.background = element_rect(fill = '#009BC4'),
-          panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(),
-          panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+        panel.background = element_rect(fill = '#009BC4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
   
-    theme(legend.position = c(0.15,0.50),
+  scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
+                      na.value = "transparent", 
+                      colours = your_palette,
+                      limits = c(0,30000),
+                      breaks = c(0.05,0.1,0.2,0.5,2,5,10,20,100,1000),
+                      values = scales::rescale(c(0,0.01,0.05,0.1,0.2,0.5,2,5,10,20,100,1000)), 
+                      guide = "legend",
+                      labels = c("0 - 0.05","> 0.1","> 0.2","> 0.5","> 2","> 5","> 10","> 20", "> 100","> 1,000"))+
+  
+  theme(legend.position = c(0.15,0.50),
           legend.background = element_rect(colour = FALSE, fill = FALSE),
           legend.title=element_text(color='white',size=16),
           legend.text=element_text(color='white',size=12),
@@ -577,68 +378,33 @@ ggplot() +
           legend.key.height = unit(8, "mm"))
 ```
 
+
+
 ```{r, echo=FALSE, eval=FALSE}
 ggsave(ggplot() +
   geom_spatraster(data = ShippingTraffic_mask) +
-
   geom_sf(data = German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
-  
   geom_sf(data = GermanNorthSea::German_land, colour = 'black', fill = '#e5e5e5')+
   
-  #geom_sf(data = GermanNorthSea::German_Shipping, color='grey',fill='transparent',alpha=0.1, linetype = "dotted")+
-  
-  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme_void()+
+    theme(
+        panel.background = element_rect(fill = '#009BC4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
   
   scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
                       na.value = "transparent", 
                       colours = your_palette,
                       limits = c(0,30000),
-                      breaks = c(
-                                 0.05,
-                                 0.1,
-                                 0.2,
-                                 0.5,
-                                 2,
-                                 5,
-                                 10,
-                                 20,
-                                 100,
-                                 1000),
-                      values = scales::rescale(c(0,
-                                                 0.01,
-                                                 0.05,
-                                                 0.1,
-                                                 0.2,
-                                                 0.5,
-                                                 2,
-                                                 5,
-                                                 10,
-                                                 20,
-                                                 100,
-                                                 1000)), 
-                      labels = c(
-                                 "0 - 0.05",
-                                 "> 0.1",
-                                 "> 0.2",
-                                 "> 0.5",
-                                 "> 2",
-                                 "> 5",
-                                 "> 10",
-                                 "> 20",
-                                 "> 100",
-                                 "> 1,000"),
-                      guide = "legend"
-                      )+
-   
-  theme_void()+
-    theme(
-          panel.background = element_rect(fill = '#009BC4'),
-          panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(),
-          panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+                      breaks = c(0.05,0.1,0.2,0.5,2,5,10,20,100,1000),
+                      values = scales::rescale(c(0,0.01,0.05,0.1,0.2,0.5,2,5,10,20,100,1000)), 
+                      guide = "legend",
+                      labels = c("0 - 0.05","> 0.1","> 0.2","> 0.5","> 2","> 5","> 10","> 20", "> 100","> 1,000"))+
   
-    theme(legend.position = c(0.15,0.50),
+  theme(legend.position = c(0.15,0.50),
           legend.background = element_rect(colour = FALSE, fill = FALSE),
           legend.title=element_text(color='white',size=16),
           legend.text=element_text(color='white',size=12),
@@ -656,14 +422,11 @@ ggsave(ggplot() +
 
 Another potential way to evaluate shipping traffic is to obtain information from vessel traffic density such as in [Womersley 2022](https://www.pnas.org/doi/10.1073/pnas.2117440119). In this paper, gridded products were **purchased** from Exact Earth (https://www.exactearth.com) for the years of 2011 to 2014 at 0.25° × 0.25° grid cell resolution.
 
-[Spire maritime](https://spire.com/maritime/?utm_campaign=maritime_2022_exactearth_redirect&utm_source=exactearth&utm_medium=website&utm_content=homepage) also provides this information if **purchased**(https://spire.com/maritime/use-cases/environmental-protection/).
+[Spire maritime](https://spire.com/maritime/?utm_campaign=maritime_2022_exactearth_redirect&utm_source=exactearth&utm_medium=website&utm_content=homepage) also provides this information if [purchased](https://spire.com/maritime/use-cases/environmental-protection/).
 
-[Marine traffic](marinetraffic.com)
+[Marine traffic](marinetraffic.com) is also an interesting page to visit.
 
-For the legend use: [Global Marine Traffic](https://globalmaritimetraffic.org/gmtds.html)
-
-Example in [publication](https://www.researchgate.net/publication/341642158_Potential_impact_of_wash_water_effluents_from_scrubbers_on_water_acidification_in_the_southern_North_Sea)
-
+For the legend inspiration comes from [Global Marine Traffic](https://globalmaritimetraffic.org/gmtds.html).
 
 
 
