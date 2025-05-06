@@ -124,7 +124,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["legend.png","lightpollution_0505_files/figure-html5/unnamed-chunk-11-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-12-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-14-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-15-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-7-1.png","radiance_GermanNorthSea.jpg","radiance_portada.jpg","viirs_npp_202300.tif","viirs_npp_202300b.tif"]}
+  {"type":"character","attributes":{},"value":["legend.png","lightpollution_0505_files/anchor-4.2.2/anchor.min.js","lightpollution_0505_files/bowser-1.9.3/bowser.min.js","lightpollution_0505_files/distill-2.2.21/template.v2.js","lightpollution_0505_files/figure-html5/unnamed-chunk-11-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-12-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-14-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-15-1.png","lightpollution_0505_files/figure-html5/unnamed-chunk-7-1.png","lightpollution_0505_files/header-attrs-2.28/header-attrs.js","lightpollution_0505_files/jquery-3.6.0/jquery-3.6.0.js","lightpollution_0505_files/jquery-3.6.0/jquery-3.6.0.min.js","lightpollution_0505_files/jquery-3.6.0/jquery-3.6.0.min.map","lightpollution_0505_files/popper-2.6.0/popper.min.js","lightpollution_0505_files/tippy-6.2.7/tippy-bundle.umd.min.js","lightpollution_0505_files/tippy-6.2.7/tippy-light-border.css","lightpollution_0505_files/tippy-6.2.7/tippy.css","lightpollution_0505_files/tippy-6.2.7/tippy.umd.min.js","lightpollution_0505_files/webcomponents-2.0.0/webcomponents.js","radiance_GermanNorthSea.jpg","radiance_portada.jpg","viirs_npp_202300.tif","viirs_npp_202300b.tif"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2539,12 +2539,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1 id="data">Data</h1>
 <p>Data are available at <a href="https://www.lightpollutionmap.info/#zoom=3.32&amp;lat=48.8875&amp;lon=2.7774&amp;state=eyJiYXNlbWFwIjoiTGF5ZXJCaW5nUm9hZCIsIm92ZXJsYXkiOiJ2aWlyc18yMDE3Iiwib3ZlcmxheWNvbG9yIjpmYWxzZSwib3ZlcmxheW9wYWNpdHkiOjYwLCJmZWF0dXJlc29wYWNpdHkiOjg1fQ==">Light pollution map</a>.<br />
 - The data can be downloaded by selecting the icons of the tools, then the square, wait until information appears, then click in the download icon.</p>
-<p>To download test data in tif format <a href="https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-05-18-lightpollution//viirs_npp_202300b.tif">click here</a>.</p>
+<p>To download test data in tif format <a href="https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-05-05-lightpollution//viirs_npp_202300b.tif">click here</a>.</p>
 <p>Select the directory where the information is stored.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span></span>
-<span><span class='va'>your_folder</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"/_posts/2025-05-18-lightpollution"</span><span class='op'>)</span></span>
+<span><span class='va'>your_folder</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"/_posts/2025-05-05-lightpollution"</span><span class='op'>)</span></span>
 <span><span class='co'>#your_folder</span></span>
 <span><span class='co'>#list.files(your_folder)</span></span></code></pre>
 </div>
@@ -2570,7 +2570,6 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rspatial.github.io/terra/reference/crs.html'>crs</a></span><span class='op'>(</span><span class='va'>Light_pollution</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] &quot;GEOGCRS[\&quot;WGS 84\&quot;,\n    ENSEMBLE[\&quot;World Geodetic System 1984 ensemble\&quot;,\n        MEMBER[\&quot;World Geodetic System 1984 (Transit)\&quot;],\n        MEMBER[\&quot;World Geodetic System 1984 (G730)\&quot;],\n        MEMBER[\&quot;World Geodetic System 1984 (G873)\&quot;],\n        MEMBER[\&quot;World Geodetic System 1984 (G1150)\&quot;],\n        MEMBER[\&quot;World Geodetic System 1984 (G1674)\&quot;],\n        MEMBER[\&quot;World Geodetic System 1984 (G1762)\&quot;],\n        MEMBER[\&quot;World Geodetic System 1984 (G2139)\&quot;],\n        ELLIPSOID[\&quot;WGS 84\&quot;,6378137,298.257223563,\n            LENGTHUNIT[\&quot;metre\&quot;,1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\&quot;Greenwich\&quot;,0,\n        ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\&quot;geodetic latitude (Lat)\&quot;,north,\n            ORDER[1],\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433]],\n        AXIS[\&quot;geodetic longitude (Lon)\&quot;,east,\n            ORDER[2],\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433]],\n    USAGE[\n        SCOPE[\&quot;Horizontal component of 3D system.\&quot;],\n        AREA[\&quot;World.\&quot;],\n        BBOX[-90,-180,90,180]],\n    ID[\&quot;EPSG\&quot;,4326]]&quot;</code></pre>
 </div>
 <p>Use <strong>ggplot2</strong> and <strong>tidyterra</strong> to create your plot.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2759,7 +2758,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 </li>
 <li><a href="https://online.ucpress.edu/elementa/article/9/1/00049/119144/A-global-atlas-of-artificial-light-at-night-under">Global atlas of artifical light</a></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
