@@ -1,0 +1,454 @@
+---
+title: "shippingtraffic"
+description: |
+  A short description of the post.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-06-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+# Data
+
+The data set contains the spatial designations of the maritime spatial plan published on 1 September 2021 as an additional information service. The planning scale is 1: 400,000. The binding documents are available at [BSH](https://www.bsh.de/DE/THEMEN/Offshore/Meeresraumplanung/Raumordnungsplan_2021/raumordnungsplan-2021_node.html)
+
+To download: go to [GeoSeaPortal](https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1) The zip contains several shapefiles including Shipping
+
+Alternatively, the data shapefile is available in the package GermanNorthSea.
+
+```{r}
+library(GermanNorthSea)
+```
+
+```{r}
+German_Shipping<-GermanNorthSea::German_Shipping
+```
+
+Use **geom_sf** to view the German Shipping Lines
+
+```{r}
+ggplot2::ggplot()+ 
+  ggplot2::geom_sf(data = German_Shipping, colour = "blue", fill= 'blue',alpha=0.2, lwd = 1)+
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+```
+    
+To have reference of the area, include the land, coast and natural protected areas. These shapefiles are also available in the packagfe **GermanNorthSea**. 
+
+```{r}
+ggplot(German_Shipping)+ 
+  geom_sf(data = German_EEZ,colour = "red", fill= NA,alpha=0.9, lwd = 0.5)+
+  geom_sf(data = German_coast,colour = "red", fill= '#bde0fe',alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
+  geom_sf(data = German_natura, colour = "#3d6d22", fill= '#3d6d22',alpha=0.2, lwd = 0.5)+
+  geom_sf(data = German_Shipping, aes(fill= Type), colour = "grey",alpha=0.9, size=0.5)+
+  scale_fill_manual(values = c("#E7F7C6", "#77D7B3", "#00BEBE"))+
+  coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  theme(legend.position = 'bottom')
+```
+
+Change CRS to 4326 if preferred, using the function **st_transform** from the package **sf**.
+
+```{r}
+library(sf)
+```
+
+```{r}
+German_EEZ<-st_transform(German_EEZ, 4326)
+German_coast<-st_transform(German_coast, 4326)
+German_land<-st_transform(German_land, 4326)
+German_Shipping<-st_transform(German_Shipping, 4326)
+```
+
+# Definitions
+
+In the national MSP plans, countries have designated certain areas as priority areas for shipping. This means that shipping is prioritized in these areas before other types of activities when planning for use and management of the area. However, other activities may take place as long as they do not interfere with shipping. Countries surrounding the North Sea have applied different criteria for designating priority areas for shipping. Below is a description of the basis on which the different countries designation priority shipping areas, as well as maps that shows where these areas are located. [Read more](https://northsearegion.eu/northsee/s-hipping/nationally-designated-priority-areas-for-shipping/)
+
+Germany uses three types of zoning for the implementation of its spatial plans. These include “priority areas” where one use (for example shipping, pipelines, etc.) is granted priority over all other spatially significant uses; “reservation areas” where one use is given special consideration in a comparative evaluation with other spatially significant planning tasks, measures and projects; and “marine protected areas” where measures are applicable for the reduction of impacts (e.g., through pollution) on the marine environment.
+
+```{r, fig.height=5}
+ggplot()+
+  geom_sf(data = German_EEZ, colour = "white", fill= NA,alpha=0.9, lwd = 0.5)+
+  geom_sf(data = German_coast, colour = "white", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = '#858585', fill = '#C8C8C8')+
+  
+  geom_sf(data = German_Shipping,
+          aes(fill= Type), color='transparent',alpha=0.7)+
+  
+  theme_bw()+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        panel.background = element_rect(fill = '#009BC4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.text=element_text(color="white",size=12),
+        legend.title=element_text(color="white",size=12),
+        axis.text.y.right=element_blank(),
+        axis.ticks.y.right=element_blank(),
+        axis.text.x.top=element_blank(),
+        axis.ticks.x.top=element_blank(),
+        panel.border = element_rect(colour = '#005AAA', fill=NA, size=1.5))+
+  
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  
+   scale_fill_manual(name='Shipping lanes',
+                     values = c("#E7F7C6", "#77D7B3", "#00BEBE"))+
+  theme(legend.position = c(0.30,0.30))
+```
+
+## Priority area
+
+The lines on the map are designated priority shipping. This implies that activities that have the potential to interfere with shipping cannot occur in these areas, but does not mean that these areas are exclusive to shipping.
+
+The designation of these corridors is mainly based on AIS records. The spatial distribution of corridors often highlights the importance of good accessibility to the ports. Consideration was given to the economic implications for the ports if ships divert from their traditional routes as a result of obstructions such as offshore wind farms.
+
+```{r, fig.height=5}
+ggplot()+
+  geom_sf(data = German_EEZ, colour = "white", fill= NA,alpha=0.9, lwd = 0.5)+
+  geom_sf(data = German_coast, colour = "white", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = '#858585', fill = '#C8C8C8')+
+  
+  geom_sf(data = subset(German_Shipping,German_Shipping$Type=='priority area'),
+                        aes(fill= Type), color='transparent',alpha=0.7)+
+  
+  theme_bw()+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        panel.background = element_rect(fill = '#009BC4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.text=element_text(color="white",size=12),
+        legend.title=element_text(color="white",size=12),
+        axis.text.y.right=element_blank(),
+        axis.ticks.y.right=element_blank(),
+        axis.text.x.top=element_blank(),
+        axis.ticks.x.top=element_blank(),
+        panel.border = element_rect(colour = '#005AAA', fill=NA, size=1.5))+
+  
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  
+   scale_fill_manual(name='Shipping lanes',
+                     values = c("#E7F7C6"))+
+  theme(legend.position = c(0.30,0.30))
+```
+
+## Temporary priority area
+
+A temporary priority area is a zone temporarily designated to prioritize certain maritime activities due to specific needs or circumstances. For example, during periods of high traffic or special events, certain areas may be temporarily designated as priority zones to manage congestion and ensure the smooth flow of maritime operations.
+
+```{r, fig.height=5}
+ggplot()+
+  geom_sf(data = German_EEZ, colour = "white", fill= NA,alpha=0.9, lwd = 0.5)+
+  geom_sf(data = German_coast, colour = "white", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = '#858585', fill = '#C8C8C8')+
+  
+  geom_sf(data = subset(German_Shipping,German_Shipping$Type=='temporary priority area'),
+          aes(fill= Type), color='transparent',alpha=0.7)+
+  
+  theme_bw()+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        panel.background = element_rect(fill = '#009BC4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.text=element_text(color="white",size=12),
+        legend.title=element_text(color="white",size=12),
+        axis.text.y.right=element_blank(),
+        axis.ticks.y.right=element_blank(),
+        axis.text.x.top=element_blank(),
+        axis.ticks.x.top=element_blank(),
+        panel.border = element_rect(colour = '#005AAA', fill=NA, size=1.5))+
+  
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  
+   scale_fill_manual(name='Shipping lanes',
+                     values = c("#77D7B3"))+
+  theme(legend.position = c(0.30,0.30))
+```
+
+## Temporary reservation area
+
+“Reservation areas” are where one use is given special consideration in a comparative evaluation with other spatially significant planning tasks.
+
+A temporary reservation area refers to a space set aside for a specific purpose for a limited time. In the context of port operations, this could involve designating an area for vessels to wait before docking or for specific cargo handling needs. Such reservations help in managing port congestion and ensuring efficient operations.
+
+```{r, fig.height=5}
+ggplot()+
+  geom_sf(data = German_EEZ, colour = "white", fill= NA,alpha=0.9, lwd = 0.5)+
+  geom_sf(data = German_coast, colour = "white", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = '#858585', fill = '#C8C8C8')+
+  
+  geom_sf(data = subset(German_Shipping,German_Shipping$Type=='temporary reservation area'),
+          aes(fill= Type), color='transparent',alpha=0.7)+
+  
+  theme_bw()+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        panel.background = element_rect(fill = '#009BC4'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.text=element_text(color="white",size=12),
+        legend.title=element_text(color="white",size=12),
+        axis.text.y.right=element_blank(),
+        axis.ticks.y.right=element_blank(),
+        axis.text.x.top=element_blank(),
+        axis.ticks.x.top=element_blank(),
+        panel.border = element_rect(colour = '#005AAA', fill=NA, size=1.5))+
+  
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  
+   scale_fill_manual(name='Shipping lanes',
+                     values = c("#00BEBE"))+
+  theme(legend.position = c(0.30,0.30))
+```
+
+
+# Vessel density
+
+## EMODnet
+
+The Vessel Density maps in the EU are created since the 2019 by Cogea for the European Marine Observation and Data Network [EMODnet](https://emodnet.ec.europa.eu/geoviewer/#!/). The dataset is updated every year and is available for viewing and download on EMODnet Human Activities web portal (https://emodnet.ec.europa.eu/en/human-activities). The maps are based on AIS data yearly purchased from Collecte Localisation Satellites (CLS) and ORBCOMM. The maps, GeoTIFF format, show shipping density in 1x1km cells of a grid covering all EU waters and some neighbouring areas. Density is expressed as hours per square kilometre per month. The following ship types are available:0 Other, 1 Fishing, 2 Service, 3 Dredging or underwater ops, 4 Sailing, 5 Pleasure Craft, 6 High speed craft, 7 Tug and towing, 8 Passenger, 9 Cargo, 10 Tanker, 11 Military and Law Enforcement, 12 Unknown and All ship types. Data are available by month of year. Yearly averages are also available.
+
+```{r, message=FALSE}
+library(here)
+your_folder<-paste0(here(),"/_posts/2025-06-12-shippingtraffic")
+#your_folder
+list.files(your_folder)
+```
+
+Data from 2023 December 01 Year composite
+
+```{r}
+your_file<-paste0(your_folder,"/vesseldensity_all_20231201.tif")
+```
+
+Use the package **terra** to use the function **rast**.  
+
+```{r, message=FALSE}
+library(terra)
+```
+
+The function **rast** reads your file as a formal class SpatRaster
+
+```{r}
+ShippingTraffic<-rast(your_file)
+```
+
+```{r, eval=FALSE}
+crs(ShippingTraffic)
+```
+
+```{r}
+ShippingTraffic_df <- as.data.frame(ShippingTraffic, xy = TRUE)
+beepr::beep(sound=1)
+```
+
+The function rename, allows to change the name of the column. The radiance information is in the third column.
+
+```{r}
+ShippingTrafficDensity<-ShippingTraffic_df %>%
+  rename(vessel_density=3)
+```
+
+Check if the radiance values are plausible.
+
+```{r}
+range(ShippingTrafficDensity$vessel_density)
+```
+
+Values distribution
+
+```{r}
+hist(ShippingTrafficDensity$vessel_density)
+```
+
+
+# Plot
+
+Use **ggplot2** and **tidyterra** to create your plot. 
+
+```{r}
+library(ggplot2)
+library(tidyterra)
+```
+
+```{r}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic) +
+  NULL
+```
+
+### Select area
+
+Use the function **geom_spatraster** to plot the radiance data.  
+
+```{r, fig.height=10, fig.width=10}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic) +
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+```
+
+### Change fill
+
+```{r, fig.height=10, fig.width=10}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic) +
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  scale_fill_gradient(name='Vessel density ',
+                      low = "#00BEBE", 
+                      high = "#E7F7C6", 
+                      na.value = "grey93", 
+                      limits = c(0,100),
+                      breaks = c(0,10,20,30,40,50,60,70,80,90,100)
+                      )+
+  NULL
+```
+
+## Land
+
+```{r, fig.height=10, fig.width=10}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic) +
+  geom_sf(data = German_land, colour = 'black', fill = '#d5bdaf')+
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  scale_fill_gradient(name='Vessel density ',
+                      low = "#00BEBE", 
+                      high = "#E7F7C6", 
+                      na.value = "transparent", 
+                      limits = c(0,100),
+                      breaks = c(0,10,20,30,40,50,60,70,80,90,100)
+                      )+
+   
+  NULL
+```
+
+
+## Theme
+
+```{r, fig.height=6, fig.width=6}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic) +
+  geom_sf(data = German_land, colour = 'black', fill = '#d5bdaf')+
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  
+  scale_fill_gradient(name='Vessel density ',
+                      low = "#00BEBE", 
+                      high = "#E7F7C6", 
+                      na.value = "transparent", 
+                      limits = c(0,150),
+                      breaks = c(0,5,10,50,150)
+                      )+
+   
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.20,0.60),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='black',size=18),
+        legend.title=element_text(color='black',size=18))
+```
+
+## Palette
+
+```{r}
+color_NA <-"transparent"
+color_K <-"#ffff3f"
+color_J <-"#eeef20"
+color_I <-"#dddf00"
+color_H <-"#d4d700"
+color_G <-"#bfd200"
+color_F <-"#aacc00"
+color_E <-"#80b918"
+color_D <-"#55a630"
+color_C <-"#2b9348"
+color_B <-"#007f5f"
+color_A <-"#548c2f"
+your_palette<-c(color_NA,color_A,color_B,color_C,color_D,color_E,color_F,color_G,color_H,color_I,color_J,color_K)
+```
+
+
+**scale_fill_grandientn** 
+
+```{r}
+ggplot() +
+  geom_spatraster(data = ShippingTraffic) +
+  geom_sf(data = German_land, colour = 'black', fill = '#d5bdaf')+
+  ggplot2::coord_sf(xlim = c(3790000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))+
+  
+  scale_fill_gradientn(name='Vessel density ',
+                      na.value = "transparent", 
+                      colours = your_palette,
+                      #limits = c(0,150),
+                      breaks = c(0,1,2,3,4,5,6,7,8,9,10,25,50,150),
+                      )+
+   
+  theme_void()+
+    theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.20,0.60),
+        panel.background = element_rect(fill = '#edede9'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5),
+        legend.text=element_text(color='black',size=18),
+        legend.title=element_text(color='black',size=18))
+```
+
+
+
+
+
+
+
+
+## Export
+
+```{r, echo=FALSE, eval=FALSE}
+ggsave(ggplot() +
+,
+       filename = paste0(your_folder,"/VesselDensity_GermanNorthSea.jpg"),
+       width = 4, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+# Further reading:
+
+Another potential way to evaluate shipping traffic is to obtain information from vessel traffic density such as in [Womersley 2022](https://www.pnas.org/doi/10.1073/pnas.2117440119)
+
+However, note that in this paper, gridded products were **purchased** from Exact Earth (https://www.exactearth.com) for the years of 2011 to 2014 at 0.25° × 0.25° grid cell resolution.
+
+[Spire maritime](https://spire.com/maritime/?utm_campaign=maritime_2022_exactearth_redirect&utm_source=exactearth&utm_medium=website&utm_content=homepage) also provides this information if **purchased**(https://spire.com/maritime/use-cases/environmental-protection/).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
