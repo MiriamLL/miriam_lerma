@@ -42,16 +42,25 @@ Select the directory where the information is.
 ```{r, eval=FALSE}
 library(here)
 here()
-this_folder<-paste0(here(),"/data")
+this_folder<-paste0(here(),"/_posts/2025-02-15-distancetocoast")
 this_file<-paste0(this_folder,"/GMT_intermediate_coast_distance_01d.tif")
 ```
 
 Use the package **terra** to use the function **rast**.  
 Then convert to data frame.  
 
+
 ```{r, eval=FALSE}
 library(terra)
 DistCoast_file<-rast(this_file)
+```
+
+```{r}
+
+```
+
+
+```{r, eval=FALSE}
 DistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)
 beepr::beep(sound=1)
 ```
@@ -128,6 +137,12 @@ Plot_distance<-ggplot() +
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
 Plot_distance+
   guides(fill=guide_legend(title="Distance to coast"))
+```
+
+```{r,echo=FALSE}
+# Crop
+
+writeRaster(ShippingTraffic_crop, "ShippingTraffic_crop.tif")
 ```
 
 

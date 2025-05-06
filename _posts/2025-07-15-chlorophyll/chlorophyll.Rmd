@@ -51,7 +51,7 @@ Read raster data from a file
 ```{r, include=FALSE}
 library(here)
 here()
-this_folder<-paste0(here(),"/_posts/2025-06-15-chlorophyll")
+this_folder<-paste0(here(),"/_posts/2025-07-15-chlorophyll")
 list.files(this_folder)
 ```
 
