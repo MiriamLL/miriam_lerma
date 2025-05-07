@@ -128,7 +128,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["chl_GermanNorthSea.jpg","chlorophyll_0705_files/figure-html5/unnamed-chunk-18-1.png","chlorophyll_0705_files/figure-html5/unnamed-chunk-21-1.png","chlorophyll_0705_files/figure-html5/unnamed-chunk-22-1.png","cmems_mod_arc_bgc_my_ecosmo_P1M_1729862405550.nc","os-20-1247-2024.pdf"]}
+  {"type":"character","attributes":{},"value":["chl_GermanNorthSea.jpg","chlorophyll.html","chlorophyll_0705_files/anchor-4.2.2/anchor.min.js","chlorophyll_0705_files/bowser-1.9.3/bowser.min.js","chlorophyll_0705_files/distill-2.2.21/template.v2.js","chlorophyll_0705_files/figure-html5/unnamed-chunk-18-1.png","chlorophyll_0705_files/figure-html5/unnamed-chunk-21-1.png","chlorophyll_0705_files/figure-html5/unnamed-chunk-22-1.png","chlorophyll_0705_files/header-attrs-2.28/header-attrs.js","chlorophyll_0705_files/jquery-3.6.0/jquery-3.6.0.js","chlorophyll_0705_files/jquery-3.6.0/jquery-3.6.0.min.js","chlorophyll_0705_files/jquery-3.6.0/jquery-3.6.0.min.map","chlorophyll_0705_files/popper-2.6.0/popper.min.js","chlorophyll_0705_files/tippy-6.2.7/tippy-bundle.umd.min.js","chlorophyll_0705_files/tippy-6.2.7/tippy-light-border.css","chlorophyll_0705_files/tippy-6.2.7/tippy.css","chlorophyll_0705_files/tippy-6.2.7/tippy.umd.min.js","chlorophyll_0705_files/webcomponents-2.0.0/webcomponents.js","chlorophyll_files/anchor-4.2.2/anchor.min.js","chlorophyll_files/bowser-1.9.3/bowser.min.js","chlorophyll_files/distill-2.2.21/template.v2.js","chlorophyll_files/figure-html5/unnamed-chunk-18-1.png","chlorophyll_files/figure-html5/unnamed-chunk-21-1.png","chlorophyll_files/header-attrs-2.28/header-attrs.js","chlorophyll_files/jquery-3.6.0/jquery-3.6.0.js","chlorophyll_files/jquery-3.6.0/jquery-3.6.0.min.js","chlorophyll_files/jquery-3.6.0/jquery-3.6.0.min.map","chlorophyll_files/popper-2.6.0/popper.min.js","chlorophyll_files/tippy-6.2.7/tippy-bundle.umd.min.js","chlorophyll_files/tippy-6.2.7/tippy-light-border.css","chlorophyll_files/tippy-6.2.7/tippy.css","chlorophyll_files/tippy-6.2.7/tippy.umd.min.js","chlorophyll_files/webcomponents-2.0.0/webcomponents.js","cmems_mod_arc_bgc_my_ecosmo_P1M_1729862405550.nc","os-20-1247-2024.pdf"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2539,7 +2539,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p>Sea surface temperatures gives us information on Celsius around an area.</p>
+<p>Chlorophyll gives us information on mg/m³ (milligrams per cubic meter) around an area.</p>
 <p>This post includes:<br />
 - Download raster data<br />
 - Read and subset raster data<br />
@@ -2554,8 +2554,7 @@ You need to register first</p>
 - <a href="https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750">Click on download</a><br />
 - Here I selected Mass concentration of chlorophyll a in sea water
 - Add your coordinates here I use 1 to 10 and 50 to 60<br />
-- Add you time scale here I use April and May 2018<br />
-- I select the depths form 0 to 60 because I am using birds data</p>
+- Add you time scale here I use April and May 2018</p>
 <p>Read raster data from a file</p>
 <p>Load the <a href="https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html">terra package</a> for reading raster data</p>
 <div class="layout-chunk" data-layout="l-body">

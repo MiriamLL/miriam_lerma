@@ -1,0 +1,259 @@
+---
+title: "OWF"
+description: |
+  Mapping Offshore Wind Farms in the German North Sea. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-03-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Packages
+
+```{r}
+library(here)
+library(ggplot2)
+library(ggspatial)
+library(plotly)
+library(tidyverse)
+```
+
+
+```{r}
+#devtools::install_github("MiriamLL/GermanNorthSea")
+library(GermanNorthSea)
+```
+
+# Data
+
+BfN
+
+To download the original data go to GeoSeaPortal(https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1.. The zip contains several shapefiles including ‘OffshoreWindEnergy’
+To download the original data go to EMODnet (https://www.emodnet-humanactivities.eu/view-data.php). Select human activities (https://www.emodnet-humanactivities.eu/search-results.php?dataname=Wind+Farms+%28Polygons%29).
+
+# Shapefiles
+
+## Germany
+
+```{r}
+German_only<-Germany
+```
+
+## Wind farms
+```{r}
+OWF_EMODnet<-GermanNorthSea::OWF_EMODnet
+```
+
+```{r}
+unique(OWF_EMODnet$STATUS)
+```
+
+```{r}
+WindFarms<-OWF_EMODnet%>%
+  filter(STATUS == 'Production')
+```
+
+```{r}
+WindFarms$YEAR<-as.numeric(WindFarms$YEAR)
+```
+
+```{r}
+WindFarms2016<-WindFarms %>%
+  filter(YEAR <= 2016)
+```
+
+Area covered
+```{r}
+length(unique(WindFarms2016$NAME))
+```
+
+```{r}
+sum(WindFarms2016$AREA_SQKM)
+```
+
+```{r}
+WindFarms2016$Label<-paste0(WindFarms2016$NAME,'-',WindFarms2016$YEAR)
+```
+
+## Plot
+
+```{r, fig.height=8, fig.width=8}
+Germany_plot<-ggplot(WindFarms) + # Gives CRS
+  
+  # Fill colors
+  geom_sf(data = German_EEZ, colour = "black", fill= '#56C1D5', lwd = 0.5)+
+  
+  geom_sf(data = German_natura, colour = "#3d6d22", fill= '#84a98c', alpha=0.5,lwd = 0.5)+
+  geom_sf(data = German_SCA, colour = "#3d6d22", fill= '#84a98c', alpha=0.5,lwd = 0.5)+
+ 
+  # Line colors
+  geom_sf(data = German_EEZ, colour = "black", fill= NA, lwd = 0.5)+
+  geom_sf(data = German_coast, colour = "black", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_land, colour = '#9a8c98', fill = '#9a8c98')+
+  
+  # Line colors
+  geom_sf(data = German_coast, colour = "black", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  geom_sf(data = German_natura, colour = "#3d6d22", fill= '#84a98c', alpha=0.5,lwd = 0.5)+
+
+  ## OWF
+  geom_sf(data = WindFarms,  colour = NA,fill= "white",alpha=1, size=1,linetype="dashed")+  
+  geom_sf(data = WindFarms,  colour = NA,fill= "#bb3e03",alpha=0.9, size=1,linetype="dashed")+  
+  
+  geom_sf(data = WindFarms2016,  colour = "#ffb703",fill= "#ffb703",alpha=0.9, size=1)+ 
+  
+   geom_sf(data = German_coast, colour = "black", fill= NA,alpha=0.9, lwd = 0.5,linetype="dashed")+
+  
+  # Annotations
+  annotation_north_arrow(location ="bl", which_north = "true", 
+        pad_x = unit(0.05, "in"), 
+        pad_y = unit(0.05, "in"),
+        
+        style = north_arrow_fancy_orienteering)+
+  
+  
+  theme(
+  legend.position='none',
+  legend.spacing.y = unit(0.05, 'cm'),
+  legend.text=element_text(size=10),
+  legend.background = element_rect(fill='transparent',colour ="transparent"),
+  legend.box.background = element_rect(fill='transparent',colour ="transparent"),
+  legend.key = element_rect(fill = "transparent", colour = "transparent"),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  panel.background = element_rect(fill = '#AFDEE8'))+
+  
+  xlab('Longitude')+ylab('Latitude')+
+  
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  
+  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(left = "N", bottom = 'E'))
+
+Germany_plot
+```
+
+## Add names
+
+```{r}
+OWF_etiquetas<-function(x){
+   x+
+  annotate("text", x = 3900000+50000+50000+10000, y = 3350000+100000+25000+4000, label = "BARD",size=3)+
+  annotate("segment", x = 3900000+50000+50000+1000+2000+4000+10000+2000+1000, xend = 3900000+50000+50000+10000+30000+15000, 
+           y = 3350000+100000+25000+4000, yend = 3350000+100000+25000+4000,
+           colour = "black")+
+  
+  annotate("text", x = 3900000+50000+50000+10000, y = 3489000+5000, label = "GTI",size=3)+
+  annotate("segment", x = 3900000+50000+50000+1000+2000+4000+10000+1000, xend = 3900000+50000+50000+10000+30000+15000+26000, 
+           y = 3489000+5000, yend = 3489000+5000,
+           colour = "black")+
+  
+  #Dan Tysk
+  annotate("text", x = 4148000-7000, 
+           y = 3574000+31000, label = "DT",size=3)+
+  annotate("segment", x = 4148000-7000, 
+           xend = 4148000-7000, 
+           y = 3574000+4000, 
+           yend = 3574000+20000,
+           colour = "black")+
+  
+  #Butendiek
+  annotate("text", x = 4148000-7000+40000-2000, 
+           y = 3574000+31000-10000-10000, label = "BT",size=3)+
+  annotate("segment", x = 4148000-7000+40000-2000, 
+           xend = 4148000-7000+40000-2000, 
+           y = 3574000+4000-10000-10000, 
+           yend = 3574000+20000-10000-10000,
+           colour = "black")+
+  
+#Amrum bank west
+  annotate("text", x = 4081000+40000+90000, 
+           y = 3494000+2000-2000-2000-2000-2000+6000, label = "AMW",size=3)+
+  annotate("segment", 
+           x = 4018000+120000+30000+10000, xend = 4081000+80000+2000+30000+4000+4000, 
+           y = 3494000-2000, yend = 3494000-2000,
+           colour = "black")+
+  
+   annotate("text", x = 4081000+40000+90000, 
+           y = 3494000-10000-2000-2000+6000, label = "NSO",size=3)+
+  annotate("segment", 
+           x = 4018000+120000+30000+9000, xend = 4081000+80000+2000+30000+4000+4000, 
+           y = 3494000-10000+2000, yend = 3494000-10000+2000,
+           colour = "black")+
+  
+  annotate("text", x = 4081000+40000+90000, 
+           y = 3494000-10000-10000-2000+2000+2000-2000-2000+6000, label = "MSO",size=3)+
+  annotate("segment", 
+           x = 4018000+120000+30000+10000, xend = 4081000+80000+2000+30000+4000+4000, 
+           y = 3494000-10000-9000+2000+2000, yend = 3494000-10000-9000+2000+2000,
+           colour = "black")+
+    
+    #TRI
+  annotate("text", 
+           x = 4e+06+10000, 
+           y = 3479000-20000-20000+5000+7000-1000-1000, label = "TRI",size=3)+
+  annotate("segment", 
+           x = 4020000, 
+           xend = 4055000+28000, 
+           y = 3479000-20000-20000+5000, 
+           yend = 3479000-20000-20000+5000,
+           colour = "black")+
+  
+  annotate("text", 
+           x = 4e+06+10000, 
+           y = 3479000-20000-20000, label = "AV",size=3)+
+  annotate("segment", 
+           x = 4020000, 
+           xend = 4055000+30000+12000, 
+           y = 3479000-20000-20000, 
+           yend = 3479000-20000-20000,
+           colour = "black")+
+  
+  annotate("text", 
+           x = 4e+06+10000, 
+           y = 3479000-20000-20000-4000-8000+1000+1000, label = "BR",size=3)+
+  annotate("segment", 
+           x = 4020000, 
+           xend = 4055000+30000+6000-2000, 
+           y = 3479000-20000-20000-4000, 
+           yend = 3479000-20000-20000-4000,
+           colour = "black")+
+  
+  annotate("text", 
+           x = 4e+06+10000, 
+           y = 3479000-20000-20000-4000-8000-22000, label = "RG",size=3)+
+  annotate("segment", 
+           x = 4020000, 
+           xend = 4055000+22000+8000, 
+           y = 3405000, 
+           yend = 3405000,
+           colour = "black")
+}
+```
+
+```{r, fig.height=6, fig.width=8}
+FigureUses<-OWF_etiquetas(x=Germany_plot)
+FigureUses
+```
+
+
+
+
+```{r}
+library(here)
+here()
+My_directory<-"C:/Users/lerma/OneDrive/Documents/04Laboral/2024/Overlaps/01Ene/"
+ggsave(filename = paste0(My_directory,"/Fig1Uses.jpeg"),
+       width = 8, 
+       height = 6)
+```
+
+# References
+
+https://www.bsh.de/EN/TOPICS/Offshore/Maritime_spatial_planning/maritime_spatial_planning_node.html
+
+https://map.4coffshore.com/offshorewind/
+
+https://commons.wikimedia.org/wiki/File:Karte_Offshore-Windkraftanlagen_in_der_Deutschen_Bucht.png

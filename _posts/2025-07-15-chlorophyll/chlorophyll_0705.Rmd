@@ -260,4 +260,3 @@ Comparing with other studies seems to fit
 - [OSPAR](https://oap.ospar.org/en/ospar-assessments/intermediate-assessment-2017/pressures-human-activities/eutrophication/chlorophyll-concentrations/)
 - [Copernicus](https://os.copernicus.org/articles/20/1247/2024/)
 
-# End of document
