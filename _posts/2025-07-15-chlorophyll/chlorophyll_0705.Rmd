@@ -1,0 +1,263 @@
+---
+title: "CHL German North Sea in R"
+description: |
+  Create a map with sst information from Copernicus in R.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-07-15
+preview: blog56_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - R
+  - ggplot2
+  - English
+  - Y2025
+---
+
+
+
+# Intro
+
+Chlorophyll gives us information on mg/m³ (milligrams per cubic meter) around an area.
+
+This post includes:  
+- Download raster data   
+- Read and subset raster data  
+- Plot raster data  
+
+# Data
+
+Download raster data
+
+Copernicus Marine Data Store
+
+To download [visit webpage](https://data.marine.copernicus.eu/products)  
+You need to register first  
+
+Go to:  
+- Click on the icon of download  
+- [Click on download](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)  
+- Here I selected Mass concentration of chlorophyll a in sea water
+- Add your coordinates here I use 1 to 10 and 50 to 60    
+- Add you time scale here I use April and May 2018  
+
+
+Read raster data from a file
+
+```{r, include=FALSE}
+library(here)
+here()
+this_folder<-paste0(here(),"/_posts/2025-07-15-chlorophyll")
+list.files(this_folder)
+```
+
+```{r, include=FALSE}
+this_file<-paste0(this_folder,"/cmems_mod_arc_bgc_my_ecosmo_P1M_1729862405550.nc")
+this_file
+```
+
+Load the [terra package](https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html) for reading raster data
+
+```{r}
+library(terra)
+```
+
+The function **rast** helps to read raster data - replacing package raster
+
+```{r}
+CHL_file<-rast(this_file)
+```
+
+Change to data frame
+
+```{r}
+CHL_dataframe <- as.data.frame(CHL_file, xy = TRUE)
+```
+
+# Subset raster data
+
+Load the package **tidyverse** 
+
+```{r}
+library(tidyverse)
+```
+
+Use **filter** to subset your data to your geographical area
+
+```{r}
+CHL_sub <-CHL_dataframe  %>%
+  filter(x > 2 & x < 10)%>%
+  filter(y > 52 & y < 57)
+```
+
+## CHL info
+
+Data was collected almost every meter
+
+Therefore there are many columns with data per depth
+
+```{r}
+ncol(CHL_sub)
+```
+
+Keep columns with the depth area
+
+```{r}
+CHL_depth<-CHL_sub %>%
+  select(starts_with("chl"))
+```
+
+The CHL data is collected almost for every meter
+
+```{r}
+Depths<-colnames(CHL_depth)
+head(Depths)
+```
+
+```{r}
+CHL_depth_perloc<-CHL_depth %>%
+  rowwise()%>%
+  mutate(mean_CHL = mean(c_across(where(is.numeric)),na.rm=TRUE),
+         min_CHL = min(c_across(where(is.numeric)),na.rm=TRUE),
+         max_CHL = max(c_across(where(is.numeric))),na.rm=TRUE)%>%
+  relocate(mean_CHL,min_CHL,max_CHL)
+```
+
+## Check
+
+```{r}
+first_column<-CHL_depth[1,]
+number_cols<-ncol(first_column)
+number_cols
+```
+
+```{r, warning=FALSE, eval=FALSE}
+long_values<-first_column %>% 
+  pivot_longer(cols = 1:number_cols, 
+               names_to = "type",
+               values_to = "value")
+```
+
+```{r, eval=FALSE}
+arrange_values<-arrange(long_values, desc(value))
+head(arrange_values)
+```
+
+
+## Mean values
+
+```{r}
+CHL_sub$CHL<-CHL_depth_perloc$mean_CHL
+```
+
+```{r}
+mean(CHL_sub$CHL)
+```
+
+# Plot
+
+Load the package **ggplot2** 
+
+```{r}
+library(ggplot2)
+```
+
+Plot your data using **geom_raster**
+
+Select [palette](https://ggplot2-book.org/scales-colour)
+
+```{r, fig.width=6, fig.height=4}
+ggplot() +
+  geom_raster(data = CHL_sub , aes(x = x, y = y, fill = CHL)) +
+  scale_fill_distiller(palette = "PiYG")+
+  theme_void()+
+  theme(legend.position='bottom')+
+  xlab('Longitude')+ylab('Latitude')+
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+
+```
+
+Add land for reference
+
+Load the package **sf**
+
+```{r}
+library(sf)
+```
+
+Use the function **st_transform** to convert to the same CRS
+
+```{r}
+German_land<-st_transform(GermanNorthSea::German_land, 4326)
+```
+
+Add the land to the plot using **geom_sf**
+
+```{r, fig.width=6, fig.height=6}
+Plot_chl<-ggplot() +
+  geom_tile(data = CHL_sub , aes(x = x, y = y, fill = CHL)) +
+  scale_fill_distiller(palette = "PRGn",
+                       name='Chlorophyll concentration from 0 to 13 m depth \n in the German North Sea in \n spring (April and May montly composites)')+
+  geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
+  theme_void()+
+  theme(legend.position='left')+
+  xlab('Longitude')+ylab('Latitude')+
+  coord_sf(xlim = c(3,9), ylim = c(53,56),
+                    label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
+Plot_chl
+```
+
+
+Change a little bit the design using arguments in the **theme**.
+
+```{r}
+Plot_chl + 
+  theme_void()+
+  xlab('Longitude')+ylab('Latitude')+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.60),
+        panel.background = element_rect(colour = "transparent", fill = "transparent"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  NULL
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+ggsave(Plot_chl + 
+  theme_void()+
+  xlab('Longitude')+ylab('Latitude')+
+  theme(legend.background = element_rect(colour = "transparent", fill = "transparent"),
+        legend.position = c(0.40,0.60),
+        panel.background = element_rect(colour = "transparent", fill = "transparent"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  NULL,
+       filename = paste0(this_folder,"/chl_GermanNorthSea.jpg"),
+       width = 8, 
+       height = 8, 
+       units = "in",
+       dpi = 300)
+```
+
+# Further reading
+
+- [Package GermanNorthSea](https://github.com/MiriamLL/GermanNorthSea)
+- [Package terra](https://rspatial.github.io/terra/) 
+- [Package sf](https://r-spatial.github.io/sf/)
+
+- [Examples](https://marine.copernicus.eu/services/user-learning-services/using-r-work-copernicus-marine-data)
+- [How to download copernicus marine products](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)
+
+Comparing with other studies seems to fit
+
+- [OSPAR](https://oap.ospar.org/en/ospar-assessments/intermediate-assessment-2017/pressures-human-activities/eutrophication/chlorophyll-concentrations/)
+- [Copernicus](https://os.copernicus.org/articles/20/1247/2024/)
+
+# End of document
