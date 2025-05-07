@@ -223,10 +223,20 @@ bathymetry_file<-paste0(bathymetry_folder,"/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif
 bathymetry<-read_stars(bathymetry_file)
 ```
 
+```{r}
+class(bathymetry)
+# Crop
+polygon_crop <- GermanNorthSea::German_EEZ
+bathymetry_crs<-st_transform(bathymetry, crs(polygon_crop))
+bathymetry_wrap <- st_warp(bathymetry_crs, crs = crs(polygon_crop))
+bathymetry_crop <- st_crop(bathymetry_wrap, polygon_crop)
+plot(bathymetry_crop)
+```
+
 ```{r BaseMap,echo=TRUE}
-Map07<-Map02 +
+Map07<-Map01 +
 # Bathymetry
-tm_shape(bathymetry) +
+tm_shape(bathymetry_crop) +
   tm_raster("gebco_2024_n60.0_s50.0_w1.0_e9.0.tif", palette = "Blues") 
 Map07
 ```
@@ -240,22 +250,23 @@ sst_file<-paste0(sst_folder,"/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_17
 sst<-read_stars(sst_file)
 ```
 
-### How to read nc?
-
 ```{r}
 class(sst)
 ```
 
 ```{r}
-sst
+# Crop
+polygon_crop <- GermanNorthSea::German_EEZ
+sst_crs<- st_transform(sst, crs(polygon_crop))
+sst_wrap <- st_warp(sst_crs, crs = crs(polygon_crop))
+sst_crop <- st_crop(sst_wrap, polygon_crop)
+plot(sst_crop)
+beepr::beep(sound=1)
 ```
 
 ```{r}
-plot(sst)
-```
-
-```{r}
-tm_shape(sst) +
+Map01 +
+  tm_shape(sst) +
   tm_raster("depth", palette = "YlOrRd") 
 ```
 
@@ -267,19 +278,25 @@ chl_file<-paste0(chl_folder,"/cmems_mod_arc_bgc_my_ecosmo_P1M_1729862405550.nc")
 chl<-read_stars(chl_file)
 ```
 
+```{r}
+Map01 +
+  tm_shape(chl) +
+  tm_raster("depth", palette = "YlOrRd") 
+```
+
 ## Distance to coast
 
 ```{r}
-coast_folder<-paste0(here(),"/data")
+coast_folder<-paste0(here(),"/_posts/2025-02-15-distancetocoast")
 coast_file<-paste0(coast_folder,"/GMT_intermediate_coast_distance_01d.tif")
 distance_coast<-read_stars(coast_file)
 ```
 
 ```{r}
-Map07+
-# Coas
-tm_shape(bathymetry) +
-  tm_raster("gebco_2024_n60.0_s50.0_w1.0_e9.0.tif", palette = "Blues")
+Map01+
+# Coast
+tm_shape(distance_coast) +
+  tm_raster("GMT_intermediate_coast_distance_01d.tif", palette = "Blues")
 ```
 
 
@@ -299,8 +316,8 @@ library(tmap)
 tmap_mode("view") #interactive tmap_mode("view")
 ```
 
-```{r BaseMap,echo=TRUE}
-Map06
+```{r map-anthro,echo=TRUE}
+Map04
 ```
 
 
