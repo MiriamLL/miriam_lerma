@@ -1,0 +1,315 @@
+---
+title: "tmap"
+description: |
+  Layers of different activities at sea using tmap.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-03-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+Worldwide there is an increase in the intensity and diversity of human activities at sea (Pedersen et al. 2009), and the German North Sea is no exception (Emeis et al. 2015, Akhtar et al. 2021, Bildstein et al. 2017). Direct anthropogenic impacts in the North Sea include heavy shipping traffic and offshore constructions, as well as fisheries, among others (Emeis et al. 2015). In the case of shipping, it is known to be a growing threat to a large number of marine megafauna worldwide (Sequeira et al. 2019; Womersley et al. 2022) by displacing marine top predators from their original areas (Schwemmer et al. 2011, Hermannsen et al. 2014, Wisniewska et al. 2018, Fliessbach et al. 2019). Offshore wind farms are also a growing threat, known to cause diverse adverse effects on marine mammals (Dähne et al. 2013, Kastelein et al. 2016, Brandt et al. 2018), and birds (Drewitt and Langston 2006, Dierschke et al. 2016, Garthe et al. 2023). The European Union biodiversity strategy aims to strictly protect 10% of the EU sea by 2030 and to reduce pressure from human activities on habitats and species (European Commission 2020). 
+
+# Land and EEZ
+
+For shapefiles use **GermanNorthSea** for manipulating shapefiles use **sf**.
+
+```{r pacakges}
+library(here)
+library(GermanNorthSea)
+library(sf) #shapefiles
+library(stars) #rasters
+```
+
+Focusing on the German North Sea.
+
+```{r subset}
+German_land<-st_transform(GermanNorthSea::German_land, 4326)%>%
+  subset(NAME %in% c('Germany','Denmark'))
+German_EEZ<-st_transform(GermanNorthSea::German_EEZ, 4326)
+```
+
+The geometries need to be valid.
+
+```{r stvalid}
+st_is_valid(German_land, reason = TRUE)
+st_is_valid(German_EEZ, reason = TRUE)
+```
+For this exercise, we will be using **tmap**.
+
+```{r tmap}
+library(tmap)
+```
+
+The argument **tm_shape** for plotting shapefiles/polygons. 
+
+```{r basemap,, fig.width=10, fig.height=10}
+Map01<-tm_shape(German_EEZ)+  
+  tm_polygons(col='black')+
+  
+tm_shape(German_land)+  
+  tm_polygons(col='grey')
+Map01
+```
+
+
+# Human activities
+
+Direct anthropogenic impacts in the North Sea include heavy shipping traffic and offshore constructions, as well as fisheries, among others (Emeis et al. 2015). In the case of shipping, it is known to be a growing threat to a large number of marine megafauna worldwide (Sequeira et al. 2019; Womersley et al. 2022) by displacing marine top predators from their original areas (Schwemmer et al. 2011, Hermannsen et al. 2014, Wisniewska et al. 2018, Fliessbach et al. 2019).
+
+## Shipping Traffic
+
+The Vessel Density maps in the EU are created since the 2019 by Cogea for the European Marine Observation and Data Network [EMODnet](https://emodnet.ec.europa.eu/geoviewer/#!/)
+
+```{r shippingdata, message=FALSE}
+shipping_folder<-paste0(here::here(),"/_posts/2025-06-12-shippingtraffic")
+shipping_file<-paste0(shipping_folder,"/ShippingTraffic_crop.tif")
+shipping_traffic <- read_stars(shipping_file)
+```
+Preview data
+
+```{r mapshipping, fig.width=10, fig.height=10}
+Map01 +
+# Shipping traffic
+tm_shape(shipping_traffic) +
+  tm_raster("ShippingTraffic_crop.tif", palette = terrain.colors(8)) 
+```
+
+To select different palettes explore [ggplot2 book](https://ggplot2-book.org/scales-colour). Here are some of the palette options. 
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics("https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-04-15-copernicus-sst/color_palettes.png?raw=true")
+```
+
+Crop
+
+```{r cropshipping, fig.width=5, fig.height=5}
+library(raster)
+German_EEZ<-GermanNorthSea::German_EEZ
+polygon_crop <- German_EEZ
+shipping_traffic_crop <- st_crop(shipping_traffic, polygon_crop)
+plot(shipping_traffic_crop)
+```
+
+```{r mapshipping, fig.width=10, fig.height=10}
+Map02<-Map01 +
+# Shipping traffic
+tm_shape(shipping_traffic_crop) +
+  tm_raster("ShippingTraffic_crop.tif", title='Vessel density', palette = terrain.colors(8), midpoint = 1) +
+  tm_layout(legend.position = c("left", "bottom"))
+Map02
+```
+
+Shipping lanes
+
+```{r}
+shipping_lanes<-st_transform(GermanNorthSea::German_Shipping, 4326)
+```
+
+```{r mapshippinglane, fig.width=10, fig.height=10}
+Map02<-Map01 +
+# Shipping traffic
+tm_shape(shipping_traffic_crop) +
+  tm_raster("ShippingTraffic_crop.tif", title='Vessel density', palette = terrain.colors(8), midpoint = 1) +
+  tm_layout(legend.position = c("left", "bottom"))+
+# Shipping lanes
+tm_shape(shipping_lanes)+  
+  tm_polygons(col='darkblue')
+Map02
+```
+
+## Offshore Wind farms
+
+Offshore wind farms are also a growing threat, known to cause diverse adverse effects on marine mammals (Dähne et al. 2013, Kastelein et al. 2016, Brandt et al. 2018), and birds (Drewitt and Langston 2006, Dierschke et al. 2016, Garthe et al. 2023).
+
+```{r owfdata}
+wind_farms <- GermanNorthSea::OWF_EMODnet
+```
+
+```{r mapowf, echo=TRUE, fig.width=10, fig.height=10}
+Map03<-Map02 +
+tm_shape(wind_farms)+  
+  tm_polygons(col='darkred')
+Map03
+```
+
+## Fishing effort
+
+```{r fishingdata}
+fishing_folder<-paste0(here(),"/_posts/2025-03-03-fishingdata")
+fishing_file<-paste0(fishing_folder,"/public-global-fishing-effort-v3.0.tif")
+fishing_effort<-read_stars(fishing_file)
+```
+
+```{r mapfishing,echo=TRUE, fig.width=10, fig.height=10}
+Map04<-Map03 +
+# Fishing effort
+tm_shape(fishing_effort) +
+  tm_raster("public-global-fishing-effort-v3.0.tif", palette = "YlOrRd") 
+Map04
+```
+
+
+## Light pollution
+
+```{r, eval=FALSE}
+light_folder<-paste0(here(),"/_posts/2025-05-05-lightpollution")
+light_file<-paste0(light_folder,"/viirs_npp_202300b.tif")
+light_pollution <- read_stars(light_file)
+# CRS
+polygon_crop <- German_EEZ
+light_pollution_crs<-st_transform(light_pollution, crs(polygon_crop))
+light_pollution_wrap <- st_warp(light_pollution_crs, crs = crs(polygon_crop))
+plot(light_pollution_wrap)
+# Crop
+light_pollution_crop <- st_crop(light_pollution_wrap, polygon_crop)
+beepr::beep(sound=1)
+plot(light_pollution_crop)
+
+#Export
+class(light_pollution_crop)
+write_stars(light_pollution_crop, "light_pollution_crop.tif")
+```
+
+```{r, echo=FALSE}
+light_folder<-paste0(here::here(),"/_posts/2025-12-12-tmap")
+light_file<-paste0(your_folder,"/light_pollution_crop.tif")
+light_eez<-read_stars(light_file)
+```
+
+
+```{r BaseMap,echo=TRUE}
+Map05<-Map04 +
+# Light pollution 
+tm_shape(light_eez) +
+  tm_raster("light_pollution_crop.tif", palette = "YlGn") 
+Map05
+```
+
+
+There are also marine protected areas
+
+## Protected areas
+
+```{r}
+German_SCA<-st_transform(GermanNorthSea::German_SCA, 4326)
+German_natura<-st_transform(GermanNorthSea::German_natura, 4326)
+```
+
+```{r BaseMap,echo=TRUE}
+Map06<-Map04 +
+
+tm_shape(German_SCA)+  
+  tm_polygons(col='green', alpha=0.5)+
+  
+tm_shape(German_natura)+  
+  tm_polygons(col='darkgreen', alpha=0.5)+
+  tm_layout(legend.position = c("right", "bottom"))
+Map06
+```
+
+# Environmental conditions
+
+## Bathymetry
+
+```{r}
+bathymetry_folder<-paste0(here(),"/_posts/2025-01-15-bathymetry")
+bathymetry_file<-paste0(bathymetry_folder,"/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif")
+bathymetry<-read_stars(bathymetry_file)
+```
+
+```{r BaseMap,echo=TRUE}
+Map07<-Map02 +
+# Bathymetry
+tm_shape(bathymetry) +
+  tm_raster("gebco_2024_n60.0_s50.0_w1.0_e9.0.tif", palette = "Blues") 
+Map07
+```
+
+
+## Sea surface temperature
+
+```{r}
+sst_folder<-paste0(here(),"/_posts/2025-04-15-copernicus-sst")
+sst_file<-paste0(sst_folder,"/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc")
+sst<-read_stars(sst_file)
+```
+
+### How to read nc?
+
+```{r}
+class(sst)
+```
+
+```{r}
+sst
+```
+
+```{r}
+plot(sst)
+```
+
+```{r}
+tm_shape(sst) +
+  tm_raster("depth", palette = "YlOrRd") 
+```
+
+## Chorophyll-a 
+
+```{r}
+chl_folder<-paste0(here(),"/_posts/2025-07-15-chlorophyll")
+chl_file<-paste0(chl_folder,"/cmems_mod_arc_bgc_my_ecosmo_P1M_1729862405550.nc")
+chl<-read_stars(chl_file)
+```
+
+## Distance to coast
+
+```{r}
+coast_folder<-paste0(here(),"/data")
+coast_file<-paste0(coast_folder,"/GMT_intermediate_coast_distance_01d.tif")
+distance_coast<-read_stars(coast_file)
+```
+
+```{r}
+Map07+
+# Coas
+tm_shape(bathymetry) +
+  tm_raster("gebco_2024_n60.0_s50.0_w1.0_e9.0.tif", palette = "Blues")
+```
+
+
+
+# Interactive map
+
+Using `r fa("layer-group", fill = 'black')` you can **select and unselect** taxonomic groups.  
+Using `r fa("plus", fill = 'black')` you can **zoom-in** to see the points.   
+Using `r fa("minus", fill = 'black')` you can **zoom-out** to see the points.  
+If you click on the dot `r fa("mouse-pointer", fill = 'black')` you should be able to see the species.  
+
+```{r}
+library(tmap)
+```
+
+```{r BaseMapView, echo=FALSE, include=FALSE, eval=TRUE}
+tmap_mode("view") #interactive tmap_mode("view")
+```
+
+```{r BaseMap,echo=TRUE}
+Map06
+```
+
+
+
+
+
+# Further reading
+
+[tmap](https://r-tmap.github.io/tmap-book/tmshape.html)
+
+# End of document
+
