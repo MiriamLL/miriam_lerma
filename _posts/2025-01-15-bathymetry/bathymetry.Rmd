@@ -49,14 +49,14 @@ this_folder<-paste0(here(),"this_directory")
 this_file<-paste0(this_folder,"this_file")
 ```
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 library(here)
 here()
 this_folder<-paste0(here(),"/_posts/2025-01-15-bathymetry")
 list.files(this_folder)
 ```
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 this_file<-paste0(this_folder,"/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif")
 this_file
 ```
@@ -69,13 +69,13 @@ library(terra)
 
 The function **rast** helps to read raster data - replacing package raster
 
-```{r}
+```{r, eval=FALSE}
 Bath_file<-rast(this_file)
 ```
 
 Change to data frame
 
-```{r}
+```{r, eval=FALSE}
 Bath_dataframe <- as.data.frame(Bath_file, xy = TRUE)
 ```
 

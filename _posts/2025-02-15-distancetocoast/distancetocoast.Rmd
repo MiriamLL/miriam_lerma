@@ -55,11 +55,6 @@ library(terra)
 DistCoast_file<-rast(this_file)
 ```
 
-```{r}
-
-```
-
-
 ```{r, eval=FALSE}
 DistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)
 beepr::beep(sound=1)
@@ -85,8 +80,6 @@ To save as rda would make the reading a lot faster.
 German_distancecoast<-DistCoast_dataframe_sub
 save(German_distancecoast, file="German_distancecoast.rda")
 ```
-
-From the package.  
 
 Alternatively, access the information from the package **GermanNorthSea**.
 
@@ -138,13 +131,6 @@ Plot_distance<-ggplot() +
 Plot_distance+
   guides(fill=guide_legend(title="Distance to coast"))
 ```
-
-```{r,echo=FALSE}
-# Crop
-
-writeRaster(ShippingTraffic_crop, "ShippingTraffic_crop.tif")
-```
-
 
 ```{r, echo=FALSE, eval=FALSE}
 library(here)
