@@ -7,6 +7,7 @@ output:
     toc_float: true
 listing:
   posts:
+    - 2025-06-02-shippingtraffic
     - 2025-05-05-lightpollution
     - 2025-04-15-copernicus-sst
     - 2025-03-03-fishingdata
