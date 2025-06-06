@@ -21,8 +21,9 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -49,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -72,11 +74,11 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -84,10 +86,11 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
 <title>Miriam Lerma: Shared Areas</title>
 
-<meta property="description" itemprop="description" content="Calculate area per polygon, their intersection and the shared areas"/>
+<meta property="description" itemprop="description" content="Calculate area per polygon, their intersection and the shared areas."/>
 
 <link rel="canonical" href="https://miriamlerma.netlify.app/posts/2022-01-21-sharedareas/"/>
 
@@ -99,7 +102,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Miriam Lerma: Shared Areas"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Calculate area per polygon, their intersection and the shared areas"/>
+<meta property="og:description" content="Calculate area per polygon, their intersection and the shared areas."/>
 <meta property="og:url" content="https://miriamlerma.netlify.app/posts/2022-01-21-sharedareas/"/>
 <meta property="og:image" content="https://miriamlerma.netlify.app/posts/2022-01-21-sharedareas/blog7.jpg"/>
 <meta property="og:locale" content="en_US"/>
@@ -108,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="Miriam Lerma: Shared Areas"/>
-<meta property="twitter:description" content="Calculate area per polygon, their intersection and the shared areas"/>
+<meta property="twitter:description" content="Calculate area per polygon, their intersection and the shared areas."/>
 <meta property="twitter:url" content="https://miriamlerma.netlify.app/posts/2022-01-21-sharedareas/"/>
 <meta property="twitter:image" content="https://miriamlerma.netlify.app/posts/2022-01-21-sharedareas/blog7.jpg"/>
 
@@ -116,12 +119,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Shared Areas"]},{"type":"character","attributes":{},"value":["Calculate area per polygon, their intersection and the shared areas"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["01-21-2022"]},{"type":"character","attributes":{},"value":["blog7.jpg"]},{"type":"character","attributes":{},"value":["R","spatial","shapefiles","English"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2022-01-21-sharedareas/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Shared Areas"]},{"type":"character","attributes":{},"value":["Calculate area per polygon, their intersection and the shared areas."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["01-21-2022"]},{"type":"character","attributes":{},"value":["blog7.jpg"]},{"type":"character","attributes":{},"value":["R","English","Y2022"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2022-01-21-sharedareas/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog7.jpg","sharedareas_files/anchor-4.2.2/anchor.min.js","sharedareas_files/bowser-1.9.3/bowser.min.js","sharedareas_files/distill-2.2.21/template.v2.js","sharedareas_files/figure-html5/unnamed-chunk-12-1.png","sharedareas_files/header-attrs-2.9/header-attrs.js","sharedareas_files/jquery-1.11.3/jquery.min.js","sharedareas_files/popper-2.6.0/popper.min.js","sharedareas_files/tippy-6.2.7/tippy-bundle.umd.min.js","sharedareas_files/tippy-6.2.7/tippy-light-border.css","sharedareas_files/tippy-6.2.7/tippy.css","sharedareas_files/tippy-6.2.7/tippy.umd.min.js","sharedareas_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["blog7.jpg","sharedareas_files/anchor-4.2.2/anchor.min.js","sharedareas_files/bowser-1.9.3/bowser.min.js","sharedareas_files/distill-2.2.21/template.v2.js","sharedareas_files/figure-html5/unnamed-chunk-12-1.png","sharedareas_files/figure-html5/unnamed-chunk-13-1.png","sharedareas_files/header-attrs-2.28/header-attrs.js","sharedareas_files/header-attrs-2.9/header-attrs.js","sharedareas_files/jquery-1.11.3/jquery.min.js","sharedareas_files/jquery-3.6.0/jquery-3.6.0.js","sharedareas_files/jquery-3.6.0/jquery-3.6.0.min.js","sharedareas_files/jquery-3.6.0/jquery-3.6.0.min.map","sharedareas_files/popper-2.6.0/popper.min.js","sharedareas_files/tippy-6.2.7/tippy-bundle.umd.min.js","sharedareas_files/tippy-6.2.7/tippy-light-border.css","sharedareas_files/tippy-6.2.7/tippy.css","sharedareas_files/tippy-6.2.7/tippy.umd.min.js","sharedareas_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2464,8 +2467,8 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.28/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2485,7 +2488,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Shared Areas","description":"Calculate area per polygon, their intersection and the shared areas","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-01-21T00:00:00.000+01:00","citationText":"Lerma, 2022"}
+{"title":"Shared Areas","description":"Calculate area per polygon, their intersection and the shared areas.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-01-21T00:00:00.000+01:00","citationText":"Lerma, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2518,9 +2521,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-title">
 <h1>Shared Areas</h1>
+
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Calculate area per polygon, their intersection and the shared areas</p></p>
+<p><p>Calculate area per polygon, their intersection and the shared areas.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2539,133 +2543,127 @@ d-appendix d-footnote-list a.footnote-backlink {
 <li><p>Creating a table with the shared areas between two polygons</p></li>
 </ul>
 <h1 id="data">Data</h1>
-<p>To replicate the exercise, load data from the package ‘sula’. For accessing the data, you need to have the package installed.</p>
+<p>To replicate the exercise, load data from the package ‘sula’.
+For accessing the data, you need to have the package installed.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#devtools::install_github("MiriamLL/sula")</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#devtools::install_github("MiriamLL/sula")</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>sula</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>The data is from 10 tracked individuals.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS_raw</span><span class='op'>&lt;-</span><span class='op'>(</span><span class='va'>GPS_raw</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="create-polygons">Create polygons</h1>
 <p>Select which individuals you want to compare</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>GPS_raw</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span>
-<span class='va'>GPS02</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>GPS_raw</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS02'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS01</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>GPS_raw</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS01'</span><span class='op'>)</span></span>
+<span><span class='va'>GPS02</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>GPS_raw</span>,<span class='va'>GPS_raw</span><span class='op'>$</span><span class='va'>IDs</span><span class='op'>==</span><span class='st'>'GPS02'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>With the following function you can create the polygon of the individual using an specific value.</p>
 <p>Your need to provide the name of the column that contains the latitude, the name of the column that contains the longitude, and the value you want to calculate (E.g. core=50, general=95).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>create_polygon</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>Data</span><span class='op'>=</span><span class='va'>Data</span>, <span class='va'>lon_col</span><span class='op'>=</span><span class='va'>lon_col</span>,<span class='va'>lat_col</span><span class='op'>=</span><span class='va'>lat_col</span>,<span class='va'>value</span><span class='op'>=</span><span class='va'>value</span><span class='op'>)</span><span class='op'>{</span>
-  
-  <span class='va'>Data</span><span class='op'>&lt;-</span><span class='va'>Data</span>
-  <span class='va'>Data</span><span class='op'>$</span><span class='va'>Longitude</span><span class='op'>&lt;-</span><span class='va'>Data</span><span class='op'>[[</span><span class='va'>lon_col</span><span class='op'>]</span><span class='op'>]</span>
-  <span class='va'>Data</span><span class='op'>$</span><span class='va'>Latitude</span><span class='op'>&lt;-</span><span class='va'>Data</span><span class='op'>[[</span><span class='va'>lat_col</span><span class='op'>]</span><span class='op'>]</span>
-    
-  <span class='co'>#convert to spatial</span>
-  <span class='va'>DataSp</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>Data</span><span class='op'>)</span>
-  <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span><span class='op'>(</span><span class='va'>DataSp</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Longitude"</span>, <span class='st'>"Latitude"</span><span class='op'>)</span>
-  <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span><span class='op'>(</span><span class='va'>DataSp</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span><span class='op'>(</span><span class='st'>"+init=epsg:4326"</span><span class='op'>)</span>
-  
-  <span class='co'>#create polygon</span>
-  <span class='va'>DataSp</span><span class='op'>&lt;-</span><span class='fu'>adehabitatHR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/adehabitatHR/man/kernelUD.html'>kernelUD</a></span><span class='op'>(</span><span class='va'>DataSp</span>,h<span class='op'>=</span><span class='st'>"href"</span><span class='op'>)</span> <span class='co'># Using reference</span>
-  <span class='va'>Data_50</span><span class='op'>&lt;-</span><span class='fu'>adehabitatHR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/adehabitatHR/man/getverticeshr.html'>getverticeshr</a></span><span class='op'>(</span><span class='va'>DataSp</span>,percent<span class='op'>=</span><span class='va'>value</span><span class='op'>)</span>
-  
-  <span class='va'>Data_sf_50</span><span class='op'>&lt;-</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>Data_50</span><span class='op'>)</span>
-  
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>Data_sf_50</span><span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>create_polygon</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>Data</span><span class='op'>=</span><span class='va'>Data</span>, <span class='va'>lon_col</span><span class='op'>=</span><span class='va'>lon_col</span>,<span class='va'>lat_col</span><span class='op'>=</span><span class='va'>lat_col</span>,<span class='va'>value</span><span class='op'>=</span><span class='va'>value</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  </span>
+<span>  <span class='va'>Data</span><span class='op'>&lt;-</span><span class='va'>Data</span></span>
+<span>  <span class='va'>Data</span><span class='op'>$</span><span class='va'>Longitude</span><span class='op'>&lt;-</span><span class='va'>Data</span><span class='op'>[[</span><span class='va'>lon_col</span><span class='op'>]</span><span class='op'>]</span></span>
+<span>  <span class='va'>Data</span><span class='op'>$</span><span class='va'>Latitude</span><span class='op'>&lt;-</span><span class='va'>Data</span><span class='op'>[[</span><span class='va'>lat_col</span><span class='op'>]</span><span class='op'>]</span></span>
+<span>    </span>
+<span>  <span class='co'>#convert to spatial</span></span>
+<span>  <span class='va'>DataSp</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>Data</span><span class='op'>)</span></span>
+<span>  <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://edzer.github.io/sp/reference/coordinates.html'>coordinates</a></span><span class='op'>(</span><span class='va'>DataSp</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Longitude"</span>, <span class='st'>"Latitude"</span><span class='op'>)</span></span>
+<span>  <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://edzer.github.io/sp/reference/is.projected.html'>proj4string</a></span><span class='op'>(</span><span class='va'>DataSp</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://edzer.github.io/sp/reference/CRS-class.html'>CRS</a></span><span class='op'>(</span><span class='st'>"+init=epsg:4326"</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='co'>#create polygon</span></span>
+<span>  <span class='va'>DataSp</span><span class='op'>&lt;-</span><span class='fu'>adehabitatHR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/adehabitatHR/man/kernelUD.html'>kernelUD</a></span><span class='op'>(</span><span class='va'>DataSp</span>,h<span class='op'>=</span><span class='st'>"href"</span><span class='op'>)</span> <span class='co'># Using reference</span></span>
+<span>  <span class='va'>Data_50</span><span class='op'>&lt;-</span><span class='fu'>adehabitatHR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/adehabitatHR/man/getverticeshr.html'>getverticeshr</a></span><span class='op'>(</span><span class='va'>DataSp</span>,percent<span class='op'>=</span><span class='va'>value</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='va'>Data_sf_50</span><span class='op'>&lt;-</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>Data_50</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>Data_sf_50</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <p>Calculate polygons of 50%.<br />
 Some warnings may appear</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_50</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS01</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>50</span><span class='op'>)</span>
-<span class='va'>GPS02_50</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS02</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>50</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS01_50</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS01</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>50</span><span class='op'>)</span></span>
+<span><span class='va'>GPS02_50</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS02</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>50</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Calculate polygons of 95%.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>GPS01_95</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS01</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>95</span><span class='op'>)</span>
-<span class='va'>GPS02_95</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS02</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>95</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>GPS01_95</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS01</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>95</span><span class='op'>)</span></span>
+<span><span class='va'>GPS02_95</span><span class='op'>&lt;-</span><span class='fu'>create_polygon</span><span class='op'>(</span>Data<span class='op'>=</span><span class='va'>GPS02</span>,lat_col<span class='op'>=</span><span class='st'>"Latitude"</span>,lon_col<span class='op'>=</span><span class='st'>"Longitude"</span>,value<span class='op'>=</span><span class='fl'>95</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="compare">Compare</h1>
 <p>With the function <strong>intersection</strong> of the package <strong>sf</strong> you can obtain the area where both polygons intersect</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span></span></code></pre>
 </div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="https://geocompr.robinlovelace.net/05-geometry-operations_files/figure-html/circle-intersection-1.png" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 <p><a href="https://geocompr.robinlovelace.net/05-geometry-operations_files/figure-html/circle-intersection-1.png">Source: Geocompr</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Intersection_95</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_ops.html'>st_intersection</a></span><span class='op'>(</span><span class='va'>GPS01_95</span>,<span class='va'>GPS02_95</span><span class='op'>)</span>
-<span class='va'>Intersection_50</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_ops.html'>st_intersection</a></span><span class='op'>(</span><span class='va'>GPS01_50</span>,<span class='va'>GPS02_50</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/s2.html'>sf_use_s2</a></span><span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Intersection_95</span><span class='op'>&lt;-</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_ops.html'>st_intersection</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>GPS01_95</span><span class='op'>)</span>,</span>
+<span>                                     <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>GPS02_95</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>Intersection_50</span><span class='op'>&lt;-</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_binary_ops.html'>st_intersection</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>GPS01_50</span><span class='op'>)</span>,</span>
+<span>                                     <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='va'>GPS02_50</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="plot">Plot</h1>
 <p>Using the following function <strong>plot_overlaps</strong> and the package ggplot, you can visualize where the intersection is occurring</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>plot_overlaps</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>ID1_95</span><span class='op'>=</span><span class='va'>ID1_95</span>,<span class='va'>ID1_50</span><span class='op'>=</span><span class='va'>ID1_50</span>,<span class='va'>ID2_95</span><span class='op'>=</span><span class='va'>ID2_95</span>,<span class='va'>ID2_50</span><span class='op'>=</span><span class='va'>ID2_50</span><span class='op'>)</span><span class='op'>{</span>
-  
-  <span class='va'>Plot</span><span class='op'>&lt;-</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID1_95</span>,color<span class='op'>=</span><span class='st'>'#d00000'</span>,fill <span class='op'>=</span> <span class='st'>"#d00000"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span> 
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID2_95</span>,color<span class='op'>=</span><span class='st'>'#3f88c5'</span>,fill <span class='op'>=</span> <span class='st'>"#3f88c5"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Intersection_95</span>,  color<span class='op'>=</span><span class='st'>'#ffba08'</span>, fill <span class='op'>=</span> <span class='st'>"#ffba08"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span>
-    
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID1_50</span>,color<span class='op'>=</span><span class='st'>'#d00000'</span>,fill <span class='op'>=</span> <span class='st'>"#d00000"</span>,alpha<span class='op'>=</span><span class='fl'>0.7</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span>
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID2_50</span>,color<span class='op'>=</span><span class='st'>'#3f88c5'</span>, fill <span class='op'>=</span> <span class='st'>"#3f88c5"</span>,alpha<span class='op'>=</span><span class='fl'>0.7</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span> 
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Intersection_50</span>,  color<span class='op'>=</span><span class='st'>'#ffba08'</span>, fill <span class='op'>=</span> <span class='st'>"#ffba08"</span>,alpha<span class='op'>=</span><span class='fl'>0.7</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span>
-    
-    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Longitude"</span>, y<span class='op'>=</span><span class='st'>"Latitude"</span><span class='op'>)</span><span class='op'>+</span>
-    
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>
-  
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>Plot</span><span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>plot_overlaps</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>ID1_95</span><span class='op'>=</span><span class='va'>ID1_95</span>,<span class='va'>ID1_50</span><span class='op'>=</span><span class='va'>ID1_50</span>,<span class='va'>ID2_95</span><span class='op'>=</span><span class='va'>ID2_95</span>,<span class='va'>ID2_50</span><span class='op'>=</span><span class='va'>ID2_50</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  </span>
+<span>  <span class='va'>Plot</span><span class='op'>&lt;-</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID1_95</span>,color<span class='op'>=</span><span class='st'>'#d00000'</span>,fill <span class='op'>=</span> <span class='st'>"#d00000"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID2_95</span>,color<span class='op'>=</span><span class='st'>'#3f88c5'</span>,fill <span class='op'>=</span> <span class='st'>"#3f88c5"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Intersection_95</span>,  color<span class='op'>=</span><span class='st'>'#ffba08'</span>, fill <span class='op'>=</span> <span class='st'>"#ffba08"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    </span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID1_50</span>,color<span class='op'>=</span><span class='st'>'#d00000'</span>,fill <span class='op'>=</span> <span class='st'>"#d00000"</span>,alpha<span class='op'>=</span><span class='fl'>0.7</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ID2_50</span>,color<span class='op'>=</span><span class='st'>'#3f88c5'</span>, fill <span class='op'>=</span> <span class='st'>"#3f88c5"</span>,alpha<span class='op'>=</span><span class='fl'>0.7</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Intersection_50</span>,  color<span class='op'>=</span><span class='st'>'#ffba08'</span>, fill <span class='op'>=</span> <span class='st'>"#ffba08"</span>,alpha<span class='op'>=</span><span class='fl'>0.7</span>,size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    </span>
+<span>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Longitude"</span>, y<span class='op'>=</span><span class='st'>"Latitude"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>    </span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>Plot</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <p>It would show a map with your polygons</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>overlap_plot</span><span class='op'>&lt;-</span><span class='fu'>plot_overlaps</span><span class='op'>(</span>ID1_95<span class='op'>=</span><span class='va'>GPS01_95</span>,
-                            ID1_50<span class='op'>=</span><span class='va'>GPS01_50</span>,
-                            ID2_95<span class='op'>=</span><span class='va'>GPS02_95</span>,
-                            ID2_50<span class='op'>=</span><span class='va'>GPS02_50</span><span class='op'>)</span>
-  
-<span class='va'>overlap_plot</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>overlap_plot</span><span class='op'>&lt;-</span><span class='fu'>plot_overlaps</span><span class='op'>(</span>ID1_95<span class='op'>=</span><span class='va'>GPS01_95</span>,</span>
+<span>                            ID1_50<span class='op'>=</span><span class='va'>GPS01_50</span>,</span>
+<span>                            ID2_95<span class='op'>=</span><span class='va'>GPS02_95</span>,</span>
+<span>                            ID2_50<span class='op'>=</span><span class='va'>GPS02_50</span><span class='op'>)</span></span>
+<span>  </span>
+<span><span class='va'>overlap_plot</span></span></code></pre>
 </div>
 <p><img src="sharedareas_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
@@ -2674,54 +2672,57 @@ Some warnings may appear</p>
 <p>To calculate the shared area, the function follows the formula as in <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194389#sec002">Hedd et al. 2014</a> and <a href="https://www.int-res.com/articles/meps2013/472/m472p287.pdf">McFarlane Tranquila et al. 2013</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>table_areas</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>ID1_50</span><span class='op'>=</span><span class='va'>ID1_50</span>,
-                      <span class='va'>ID2_50</span><span class='op'>=</span><span class='va'>ID2_50</span>,
-                      <span class='va'>ID1_95</span><span class='op'>=</span><span class='va'>ID1_95</span>,
-                      <span class='va'>ID2_95</span><span class='op'>=</span><span class='va'>ID2_95</span>,
-                      <span class='va'>Intersection_50</span><span class='op'>=</span><span class='va'>Intersection_50</span>,
-                      <span class='va'>Intersection_95</span><span class='op'>=</span><span class='va'>Intersection_95</span><span class='op'>)</span><span class='op'>{</span>
-  
-  <span class='va'>Tabla</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
-  UDs<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"50"</span>,<span class='st'>"95"</span><span class='op'>)</span>,
-  
-  ID1_area_km2<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID1_50</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span>,
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID1_95</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-    <span class='op'>)</span>,
-  
-  ID2_area_km2<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID2_50</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID2_95</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-    <span class='op'>)</span>,
-  
-  intersection_area_km2<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>Intersection_50</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>Intersection_95</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='op'>)</span>
-  <span class='op'>)</span>
-  
-  <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>shared_area_percent</span><span class='op'>&lt;-</span>
-  <span class='op'>(</span><span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span><span class='op'>/</span>
-    <span class='op'>(</span>
-      <span class='op'>(</span><span class='va'>Tabla</span><span class='op'>$</span><span class='va'>ID1_area_km2</span> <span class='op'>-</span> <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span> <span class='op'>+</span> 
-       <span class='op'>(</span><span class='va'>Tabla</span><span class='op'>$</span><span class='va'>ID2_area_km2</span> <span class='op'>-</span> <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span> <span class='op'>+</span> 
-       <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span>
-  
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>Tabla</span><span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>table_areas</span><span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>ID1_50</span><span class='op'>=</span><span class='va'>ID1_50</span>,</span>
+<span>                      <span class='va'>ID2_50</span><span class='op'>=</span><span class='va'>ID2_50</span>,</span>
+<span>                      <span class='va'>ID1_95</span><span class='op'>=</span><span class='va'>ID1_95</span>,</span>
+<span>                      <span class='va'>ID2_95</span><span class='op'>=</span><span class='va'>ID2_95</span>,</span>
+<span>                      <span class='va'>Intersection_50</span><span class='op'>=</span><span class='va'>Intersection_50</span>,</span>
+<span>                      <span class='va'>Intersection_95</span><span class='op'>=</span><span class='va'>Intersection_95</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  </span>
+<span>  <span class='va'>Tabla</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span>  UDs<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"50"</span>,<span class='st'>"95"</span><span class='op'>)</span>,</span>
+<span>  </span>
+<span>  ID1_area_km2<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://r-quantities.github.io/units/reference/units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID1_50</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span>,</span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://r-quantities.github.io/units/reference/units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID1_95</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>    <span class='op'>)</span>,</span>
+<span>  </span>
+<span>  ID2_area_km2<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://r-quantities.github.io/units/reference/units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID2_50</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://r-quantities.github.io/units/reference/units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>ID2_95</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>    <span class='op'>)</span>,</span>
+<span>  </span>
+<span>  intersection_area_km2<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://r-quantities.github.io/units/reference/units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>Intersection_50</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://r-quantities.github.io/units/reference/units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>Intersection_95</span><span class='op'>)</span>,<span class='va'>km</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='op'>)</span></span>
+<span>  <span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>shared_area_percent</span><span class='op'>&lt;-</span></span>
+<span>  <span class='op'>(</span><span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span><span class='op'>/</span></span>
+<span>    <span class='op'>(</span></span>
+<span>      <span class='op'>(</span><span class='va'>Tabla</span><span class='op'>$</span><span class='va'>ID1_area_km2</span> <span class='op'>-</span> <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>       <span class='op'>(</span><span class='va'>Tabla</span><span class='op'>$</span><span class='va'>ID2_area_km2</span> <span class='op'>-</span> <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>       <span class='va'>Tabla</span><span class='op'>$</span><span class='va'>intersection_area_km2</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>Tabla</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <p>The table contains the area of each polygon, the intersection and the shared areas</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>areas_table</span><span class='op'>&lt;-</span><span class='fu'>table_areas</span><span class='op'>(</span>ID1_50<span class='op'>=</span><span class='va'>GPS01_50</span>,
-                      ID2_50<span class='op'>=</span><span class='va'>GPS02_50</span>,
-                      ID1_95<span class='op'>=</span><span class='va'>GPS01_95</span>,
-                      ID2_95<span class='op'>=</span><span class='va'>GPS02_95</span>,
-                      Intersection_50<span class='op'>=</span><span class='va'>Intersection_50</span>,
-                      Intersection_95<span class='op'>=</span><span class='va'>Intersection_95</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>areas_table</span><span class='op'>&lt;-</span><span class='fu'>table_areas</span><span class='op'>(</span>ID1_50<span class='op'>=</span><span class='va'>GPS01_50</span>,</span>
+<span>                      ID2_50<span class='op'>=</span><span class='va'>GPS02_50</span>,</span>
+<span>                      ID1_95<span class='op'>=</span><span class='va'>GPS01_95</span>,</span>
+<span>                      ID2_95<span class='op'>=</span><span class='va'>GPS02_95</span>,</span>
+<span>                      Intersection_50<span class='op'>=</span><span class='va'>Intersection_50</span>,</span>
+<span>                      Intersection_95<span class='op'>=</span><span class='va'>Intersection_95</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>areas_table</span><span class='op'>$</span><span class='va'>shared_area_percent</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>areas_table</span><span class='op'>$</span><span class='va'>shared_area_percent</span><span class='op'>*</span><span class='fl'>100</span>,<span class='fl'>2</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>It should return a table as the following:</p>
@@ -2761,7 +2762,7 @@ shared_area_percent
 5
 </td>
 <td style="text-align:right;">
-0.4761905
+47.62
 </td>
 </tr>
 <tr>
@@ -2778,7 +2779,7 @@ shared_area_percent
 215
 </td>
 <td style="text-align:right;">
-0.3023910
+30.24
 </td>
 </tr>
 </tbody>
@@ -2788,21 +2789,19 @@ shared_area_percent
 <p>To export the table as csv:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>write_csv</span><span class='op'>(</span><span class='va'>areas_table</span>,<span class='st'>'areas_table.csv'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>write_csv</span><span class='op'>(</span><span class='va'>areas_table</span>,<span class='st'>'areas_table.csv'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>To export the polygons as shapefiles:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS01_50</span>, <span class='st'>"GPS01_50.shp"</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS02_50</span>, <span class='st'>"GPS02_95.shp"</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>Intersection_50</span>, <span class='st'>"Intersection_50.shp"</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS01_95</span>, <span class='st'>"GPS01_95.shp"</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS02_95</span>, <span class='st'>"GPS02_95.shp"</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>Intersection_95</span>, <span class='st'>"Intersection_95.shp"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS01_50</span>, <span class='st'>"GPS01_50.shp"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS02_50</span>, <span class='st'>"GPS02_95.shp"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>Intersection_50</span>, <span class='st'>"Intersection_50.shp"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS01_95</span>, <span class='st'>"GPS01_95.shp"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>GPS02_95</span>, <span class='st'>"GPS02_95.shp"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='va'>Intersection_95</span>, <span class='st'>"Intersection_95.shp"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="recommended-literature">Recommended literature</h2>

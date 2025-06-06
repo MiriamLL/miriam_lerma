@@ -9,7 +9,6 @@ date: 01-21-2022
 preview: blog7.jpg
 categories:
   - R
-  - GIS
   - English
   - Y2022
 output:
@@ -28,8 +27,6 @@ Here, some steps for:
 - Plotting polygons and their intersection
 
 - Creating a table with the shared areas between two polygons 
-
-
 
 # Data
 
@@ -105,15 +102,17 @@ With the function **intersection** of the package **sf** you can obtain the area
 library(sf)
 ```
 
-```{r, fig.height=2,echo=FALSE, fig.align='left'}
-knitr::include_graphics("https://geocompr.robinlovelace.net/05-geometry-operations_files/figure-html/circle-intersection-1.png")
-```
 [Source: Geocompr](https://geocompr.robinlovelace.net/05-geometry-operations_files/figure-html/circle-intersection-1.png)
 
+```{r}
+sf_use_s2(FALSE)
+```
 
 ```{r, warning=FALSE}
-Intersection_95<-st_intersection(GPS01_95,GPS02_95)
-Intersection_50<-st_intersection(GPS01_50,GPS02_50)
+Intersection_95<-sf::st_intersection(st_as_sf(GPS01_95),
+                                     st_as_sf(GPS02_95))
+Intersection_50<-sf::st_intersection(st_as_sf(GPS01_50),
+                                     st_as_sf(GPS02_50))
 ```
 
 # Plot
@@ -210,6 +209,10 @@ areas_table<-table_areas(ID1_50=GPS01_50,
                       ID2_95=GPS02_95,
                       Intersection_50=Intersection_50,
                       Intersection_95=Intersection_95)
+```
+
+```{r}
+areas_table$shared_area_percent<-round(areas_table$shared_area_percent*100,2)
 ```
 
 It should return a table as the following:

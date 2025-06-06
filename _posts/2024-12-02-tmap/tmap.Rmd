@@ -12,7 +12,6 @@ output:
     self_contained: false
 categories:
   - R
-  - tmap
   - English
   - Y2024
 ---
