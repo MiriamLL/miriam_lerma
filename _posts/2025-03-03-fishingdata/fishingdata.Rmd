@@ -34,20 +34,13 @@ To download the data, you need to log in using your [email](https://globalfishin
 
 For a test data we will see the apparent [fishing effort](https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ) (AIC).  
 Fishing effort data is provided in **tif** format.  
-To download test data in tif format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-03-03-fishingdata/public-global-fishing-effort-v3.0.tif).  
+To download test data in tif format [click here](https://github.com/MiriamLL/TestData/blob/main/public-global-fishing-effort-v3.0.tif).  
 The example data is limited to April and May of 2018.
 
-To read the raster data define the folder. 
-
-```{r, echo=FALSE, include=FALSE}
-library(here)
-here()
-your_folder<-paste0(here(),"/_posts/2025-03-03-fishingdata")
-list.files(your_folder)
-```
+To read the raster data define the folder, or as here, use the data directly form the repository. 
 
 ```{r}
-your_file<-paste0(your_folder,"/public-global-fishing-effort-v3.0.tif")
+Fishing_tif<-"https://github.com/MiriamLL/TestData/raw/refs/heads/main/public-global-fishing-effort-v3.0.tif"
 ```
 
 Use the package **terra** to use the function **rast**.  
@@ -57,13 +50,13 @@ library(terra)
 ```
 
 ```{r}
-Fishing_tif<-rast(your_file)
+Fishing_rast<-rast(Fishing_tif)
 ```
 
 Check that you have properly read the data.
 
 ```{r}
-class(Fishing_tif)
+class(Fishing_rast)
 ```
 
 ### Plot 
@@ -82,7 +75,7 @@ Here is an example of how the raw data looks.
 
 ```{r}
 ggplot() +
-  geom_spatraster(data = Fishing_tif) +
+  geom_spatraster(data = Fishing_rast) +
   facet_wrap(~lyr, ncol = 2)+
   theme_bw()
 ```
@@ -92,7 +85,7 @@ ggplot() +
 To manipulate raster data converting it to data frame facilitates the process.  
 
 ```{r}
-Fishing_df<- as.data.frame(Fishing_tif, xy = TRUE)
+Fishing_df<- as.data.frame(Fishing_rast, xy = TRUE)
 ```
 
 ```{r}
@@ -126,6 +119,13 @@ mean(Fishing_sub$FishingEffort)
 ## Plot
 
 Shapefiles of the German North Sea are accessible in my package GermanNorthSea.  
+
+```{r, echo=TRUE, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("MiriamLL/GermanNorthSea")
+library(GermanNorthSea)
+```
+
 The package sf helps to convert the CRS.
 
 ```{r}
@@ -189,16 +189,12 @@ No guarantee is made regarding the accuracy or reliability of this data.
 
 The fishing effort information includes information on Time Range, Flag, GearType and Apparent Fishing Hours.
 
-To download test data in csv format [here](https://raw.githubusercontent.com/MiriamLL/miriamlerma_/refs/heads/main/_posts/2025-03-03-fishingdata/layer-activity-data-0/public-global-fishing-effort-v3.0.csv) or [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-03-03-fishingdata/layer-activity-data-0/public-global-fishing-effort-v3.0.csv).
-
-```{r, echo=FALSE, include=FALSE}
-list.files(paste0(your_folder,"/layer-activity-data-0"))
-```
+To download test data in csv format [here](https://raw.githubusercontent.com/MiriamLL/miriamlerma_/refs/heads/main/_posts/2025-03-03-fishingdata/layer-activity-data-0/public-global-fishing-effort-v3.0.csv) or [here]https://github.com/MiriamLL/TestData/tree/main/layer-activity-data-0).
 
 To load, select your folder and file.
 
 ```{r}
-csv_file<-paste0(your_folder,"/layer-activity-data-0","/public-global-fishing-effort-v3.0.csv")
+Fishing_csv<-"https://github.com/MiriamLL/TestData/raw/refs/heads/main/layer-activity-data-0/public-global-fishing-effort-v3.0.csv"
 ```
 
 ### Read csv
@@ -206,8 +202,9 @@ csv_file<-paste0(your_folder,"/layer-activity-data-0","/public-global-fishing-ef
 To read a csv use the function **read_csv**
 
 ```{r}
-Fishing_csv<-read_csv(csv_file)
+Fishing_csv<-read_csv(Fishing_csv)
 ```
+
 There is no clear way to link this data and the previous map.
 
 ### Gear Type
