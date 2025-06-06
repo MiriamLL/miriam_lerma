@@ -124,7 +124,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Map_inspo.png","shipping_portada.jpg","shippingtraffic_0206_files/figure-html5/unnamed-chunk-13-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-17-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-18-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-19-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-20-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-21-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-22-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-24-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-25-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-26-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-6-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-8-1.png","ShippingTraffic_crop.tif","VesselDensity_GermanNorthSea.jpg"]}
+  {"type":"character","attributes":{},"value":["Map_inspo.png","shipping_portada.jpg","shippingtraffic_0206_files/anchor-4.2.2/anchor.min.js","shippingtraffic_0206_files/bowser-1.9.3/bowser.min.js","shippingtraffic_0206_files/distill-2.2.21/template.v2.js","shippingtraffic_0206_files/figure-html5/unnamed-chunk-10-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-13-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-14-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-16-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-17-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-18-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-19-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-20-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-21-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-22-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-23-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-24-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-25-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-26-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-5-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-6-1.png","shippingtraffic_0206_files/figure-html5/unnamed-chunk-8-1.png","shippingtraffic_0206_files/header-attrs-2.28/header-attrs.js","shippingtraffic_0206_files/jquery-3.6.0/jquery-3.6.0.js","shippingtraffic_0206_files/jquery-3.6.0/jquery-3.6.0.min.js","shippingtraffic_0206_files/jquery-3.6.0/jquery-3.6.0.min.map","shippingtraffic_0206_files/popper-2.6.0/popper.min.js","shippingtraffic_0206_files/tippy-6.2.7/tippy-bundle.umd.min.js","shippingtraffic_0206_files/tippy-6.2.7/tippy-light-border.css","shippingtraffic_0206_files/tippy-6.2.7/tippy.css","shippingtraffic_0206_files/tippy-6.2.7/tippy.umd.min.js","shippingtraffic_0206_files/webcomponents-2.0.0/webcomponents.js","VesselDensity_GermanNorthSea.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2542,28 +2542,23 @@ Data are available by month of year. Yearly averages are also available.</p>
 <h2 id="data">Data</h2>
 <p>To download go to <a href="https://emodnet.ec.europa.eu/geoviewer/">EMODnet Map Viewer</a> &gt; Catalogue &gt; EMODnet Human Activities &gt; Vessel density &gt; Monthly totals 2017-2023 &gt; All Types &gt; Click on the “i” icon &gt; Select Download.</p>
 <p>A zip file named “EMODnet_HA_Vessel_Density_all_2017-2023 would be downloaded. For the period of December 2023, the raster information is under <strong>vesseldensity_all_20231201.tif</strong>.</p>
-<p>The original file includes information from a larger area, to focus on a specific, the function <strong>crop</strong> can be used. <a href="https://search.r-project.org/CRAN/refmans/raster/html/crop.html">Crop</a> returns a geographic subset of an object as specified by an Extent object (or object from which an extent object can be extracted/created). If x is a Raster* object, the Extent is aligned to x. Areas included in y but outside the extent of x are ignored (see extend if you want a larger area).</p>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
 <h2 id="load">Load</h2>
-<p>To download test data in tif format <a href="https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-06-12-shippingtraffic//ShippingTraffic_crop.tif">click here</a>.</p>
+<p>To download test data in tif format <a href="https://github.com/MiriamLL/TestData/blob/main/ShippingTraffic_crop.tif">click here</a>.</p>
 <p>Use the package <strong>terra</strong> to use the function <strong>rast</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/'>terra</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>The function <strong>rast</strong> reads your file as a formal class SpatRaster</p>
+<p>The function <strong>rast</strong> reads your file as a formal class SpatRaster. Here I am using the file directly from the repository.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>your_folder</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'>here</span><span class='fu'>::</span><span class='fu'><a href='https://here.r-lib.org/reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"/_posts/2025-06-02-shippingtraffic"</span><span class='op'>)</span></span>
-<span><span class='va'>your_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>your_folder</span>,<span class='st'>"/ShippingTraffic_crop.tif"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_tif</span><span class='op'>&lt;-</span><span class='st'>'https://github.com/MiriamLL/TestData/raw/refs/heads/main/ShippingTraffic_crop.tif'</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rspatial.github.io/terra/reference/rast.html'>rast</a></span><span class='op'>(</span><span class='va'>your_file</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rspatial.github.io/terra/reference/rast.html'>rast</a></span><span class='op'>(</span><span class='va'>ShippingTraffic_tif</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2577,23 +2572,7 @@ Data are available by month of year. Yearly averages are also available.</p>
 <span>  <span class='fu'>tidyterra</span><span class='fu'>::</span><span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='cn'>NULL</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-6-1.png" width="480" /></p>
-</div>
-<h2 id="crop-and-mask">Crop and Mask</h2>
-<p>Select only values inside the EEZ</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>German_EEZ</span><span class='op'>&lt;-</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_EEZ.html'>German_EEZ</a></span></span>
-<span><span class='va'>polygon_crop</span> <span class='op'>&lt;-</span> <span class='va'>German_EEZ</span></span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_crop</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/crop.html'>crop</a></span><span class='op'>(</span><span class='va'>ShippingTraffic</span>, <span class='va'>polygon_crop</span><span class='op'>)</span></span>
-<span><span class='va'>ShippingTraffic_mask</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/mask.html'>mask</a></span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>ShippingTraffic_crop</span>, mask<span class='op'>=</span><span class='va'>polygon_crop</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rspatial.github.io/terra/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>ShippingTraffic_mask</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-8-1.png" width="480" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-5-1.png" width="480" /></p>
 </div>
 <h2 id="data-frame">Data frame</h2>
 <div class="layout-chunk" data-layout="l-body">
@@ -2603,7 +2582,7 @@ Data are available by month of year. Yearly averages are also available.</p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>ShippingTraffic_mask</span>, xy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>ShippingTraffic</span>, xy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
 <span><span class='fu'>beepr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/beepr/man/beep.html'>beep</a></span><span class='op'>(</span>sound<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
@@ -2619,19 +2598,41 @@ Data are available by month of year. Yearly averages are also available.</p>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>ShippingTraffic_df</span><span class='op'>$</span><span class='va'>vessel_density</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1]     0.00 22721.23</code></pre>
+<pre><code>[1]     0.00 26050.14</code></pre>
 </div>
 <p>Values distribution</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rspatial.github.io/terra/reference/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>ShippingTraffic_df</span><span class='op'>$</span><span class='va'>vessel_density</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-13-1.png" width="480" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-10-1.png" width="480" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_class</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    density_class <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&lt;=</span> <span class='fl'>0</span>  <span class='op'>~</span> <span class='st'>"class_A_0"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>0</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"class_A_0_1"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>1</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>"class_A_1_2"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>2</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>"class_A_2_3"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>3</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>"class_A_3_4"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>"class_A_4_5"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>5</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>6</span> <span class='op'>~</span> <span class='st'>"class_A_5_6"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>6</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>7</span> <span class='op'>~</span> <span class='st'>"class_A_6_7"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>7</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>8</span> <span class='op'>~</span> <span class='st'>"class_A_7_8"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>8</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>9</span> <span class='op'>~</span> <span class='st'>"class_A_8_9"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;</span> <span class='fl'>9</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>10</span> <span class='op'>~</span> <span class='st'>"class_A_9_10"</span>,</span>
+<span>      </span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;=</span> <span class='fl'>10</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>100</span> <span class='op'>~</span> <span class='st'>"class_B_10_100"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;=</span> <span class='fl'>100</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>1000</span> <span class='op'>~</span> <span class='st'>"class_C_100_1000"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;=</span> <span class='fl'>1000</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>10000</span> <span class='op'>~</span> <span class='st'>"class_D_1000_10000"</span>,</span>
+<span>      <span class='va'>vessel_density</span> <span class='op'>&gt;=</span> <span class='fl'>10000</span> <span class='op'>&amp;</span>  <span class='va'>vessel_density</span> <span class='op'>&lt;</span> <span class='fl'>100000</span> <span class='op'>~</span> <span class='st'>"class_E_10000_100000"</span>,</span>
+<span>      <span class='cn'>TRUE</span>  <span class='op'>~</span> <span class='st'>"unknown"</span></span>
+<span>    <span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p>The majority of values are close to 1</p>
+</div>
+<p>The majority of values are between 0 and 1</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2645,118 +2646,89 @@ Data are available by month of year. Yearly averages are also available.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-17-1.png" width="480" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-14-1.png" width="480" /></p>
 </div>
 <h2 id="land">Land</h2>
 <p>Add land for reference using <strong>geom_sf</strong> and the package <strong>GermanNorthSea</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"devtools"</span><span class='op'>)</span></span>
+<span><span class='fu'>devtools</span><span class='fu'>::</span><span class='fu'><a href='https://remotes.r-lib.org/reference/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"MiriamLL/GermanNorthSea"</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>GermanNorthSea</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-18-1.png" width="480" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_01plot</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_EEZ.html'>German_EEZ</a></span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3820000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3370000</span>,<span class='fl'>3660000</span><span class='op'>)</span>,</span>
+<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>ShippingTraffic_01plot</span></span></code></pre>
+</div>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-16-1.png" width="480" /></p>
 </div>
 <h2 id="theme">Theme</h2>
 <p>Change background colors using the arguments on theme.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_02plot</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_01plot</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span>          panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span>          panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>          panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>          panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>ShippingTraffic_02plot</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-19-1.png" width="480" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-17-1.png" width="480" /></p>
 </div>
 <h2 id="gradient-colors">Gradient colors</h2>
 <p>Low traffic</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span></span>
-<span>   </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>LowShippingTraffic_03plot</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_02plot</span><span class='op'>+</span></span>
 <span>    </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>'Low Vessel density \n Dec 2023'</span>,</span>
 <span>                      na.value <span class='op'>=</span> <span class='st'>"transparent"</span>, </span>
 <span>                      colours <span class='op'>=</span> <span class='va'>palette_yellow</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#ffff3f"</span>,<span class='st'>"#eeef20"</span>,<span class='st'>"#dddf00"</span>,<span class='st'>"#d4d700"</span>,<span class='st'>"#bfd200"</span>,<span class='st'>"#aacc00"</span>,<span class='st'>"#80b918"</span>,<span class='st'>"#55a630"</span>,<span class='st'>"#2b9348"</span>,<span class='st'>"#007f5f"</span><span class='op'>)</span>,</span>
 <span>                      limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.00001</span>,<span class='fl'>10</span><span class='op'>)</span>,</span>
 <span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>6</span>,<span class='fl'>8</span>,<span class='fl'>10</span><span class='op'>)</span>,</span>
-<span>                      <span class='op'>)</span></span></code></pre>
+<span>                      <span class='op'>)</span></span>
+<span><span class='va'>LowShippingTraffic_03plot</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-20-1.png" width="480" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-18-1.png" width="480" /></p>
 </div>
 <p>Medium traffic</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>MediumShippingTraffic_04plot</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_02plot</span><span class='op'>+</span></span>
 <span>  </span>
 <span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>'Medium Vessel density \n Dec 2023'</span>,</span>
 <span>                      na.value <span class='op'>=</span> <span class='st'>"transparent"</span>, </span>
 <span>                      colours <span class='op'>=</span> <span class='va'>palette_green</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#d8f3dc"</span>,<span class='st'>"#b7e4c7"</span>,<span class='st'>"#95d5b2"</span>,<span class='st'>"#74c69d"</span>,<span class='st'>"#52b788"</span>,<span class='st'>"#40916c"</span>,<span class='st'>"#2d6a4f"</span>,<span class='st'>"#1b4332"</span>,<span class='st'>"#081c15"</span><span class='op'>)</span>,</span>
 <span>                      limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>,<span class='fl'>100</span><span class='op'>)</span>,</span>
 <span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>,<span class='fl'>20</span>,<span class='fl'>40</span>,<span class='fl'>60</span>,<span class='fl'>80</span>,<span class='fl'>100</span><span class='op'>)</span>,</span>
-<span>                      <span class='op'>)</span></span></code></pre>
+<span>                      <span class='op'>)</span></span>
+<span><span class='va'>MediumShippingTraffic_04plot</span>  </span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-21-1.png" width="480" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-19-1.png" width="480" /></p>
 </div>
 <p>High traffic</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
-<span>        panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span>,</span>
-<span>        <span class='op'>)</span><span class='op'>+</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>HighShippingTraffic_06plot</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_02plot</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>'High Vessel density \n Dec 2023 \n (hrs per km2)'</span>,</span>
 <span>                      na.value <span class='op'>=</span> <span class='st'>"transparent"</span>, </span>
 <span>                      colours <span class='op'>=</span> <span class='va'>palette_red</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#e01e37"</span>,<span class='st'>"#da1e37"</span>,<span class='st'>"#c71f37"</span>,<span class='st'>"#bd1f36"</span>,<span class='st'>"#b21e35"</span>,<span class='st'>"#a71e34"</span>,<span class='st'>"#a11d33"</span>,<span class='st'>"#85182a"</span>,<span class='st'>"#6e1423"</span>,<span class='st'>"#641220"</span><span class='op'>)</span>,</span>
 <span>                      limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>,<span class='fl'>30000</span><span class='op'>)</span>,</span>
 <span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1000</span>,<span class='fl'>10000</span>,<span class='fl'>20000</span>,<span class='fl'>30000</span><span class='op'>)</span>,</span>
-<span>                      <span class='op'>)</span></span></code></pre>
+<span>                      <span class='op'>)</span></span>
+<span><span class='va'>HighShippingTraffic_06plot</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-22-1.png" width="480" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-20-1.png" width="480" /></p>
 </div>
 <h2 id="palette">Palette</h2>
 <div class="layout-chunk" data-layout="l-body">
@@ -2771,19 +2743,7 @@ Data are available by month of year. Yearly averages are also available.</p>
 <p>Use <strong>scale_fill_gradientn</strong> and <strong>rescale</strong> to adjust the palette and the legend</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
-<span>        panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_07plot</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_02plot</span><span class='op'>+</span></span>
 <span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>'Vessel density \n Dec 2023 \n hrs per km2'</span>,</span>
 <span>                      na.value <span class='op'>=</span> <span class='st'>"transparent"</span>, </span>
@@ -2792,19 +2752,54 @@ Data are available by month of year. Yearly averages are also available.</p>
 <span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.1</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>100</span>,<span class='fl'>1000</span><span class='op'>)</span>,</span>
 <span>                      values <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/rescale.html'>rescale</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0.01</span>,<span class='fl'>0.05</span>,<span class='fl'>0.1</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>100</span>,<span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span>, </span>
 <span>                      guide <span class='op'>=</span> <span class='st'>"legend"</span></span>
-<span>                      <span class='op'>)</span></span></code></pre>
+<span>                      <span class='op'>)</span></span>
+<span><span class='va'>ShippingTraffic_07plot</span></span></code></pre>
+</div>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-22-1.png" width="480" /></p>
+</div>
+<p>Use <strong>labels</strong> inside scale_fill_gradient to make the legend more legible</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_08plot</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_02plot</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>'Vessel density \n Dec 2023 \n hrs per km2'</span>,</span>
+<span>                      na.value <span class='op'>=</span> <span class='st'>"transparent"</span>, </span>
+<span>                      colours <span class='op'>=</span> <span class='va'>your_palette</span>,</span>
+<span>                      limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>30000</span><span class='op'>)</span>,</span>
+<span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.1</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>100</span>,<span class='fl'>1000</span><span class='op'>)</span>,</span>
+<span>                      values <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/rescale.html'>rescale</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0.01</span>,<span class='fl'>0.05</span>,<span class='fl'>0.1</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>100</span>,<span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span>, </span>
+<span>                      guide <span class='op'>=</span> <span class='st'>"legend"</span>,</span>
+<span>                      labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"0 - 0.05"</span>,<span class='st'>"&gt; 0.1"</span>,<span class='st'>"&gt; 0.2"</span>,<span class='st'>"&gt; 0.5"</span>,<span class='st'>"&gt; 2"</span>,<span class='st'>"&gt; 5"</span>,<span class='st'>"&gt; 10"</span>,<span class='st'>"&gt; 20"</span>, <span class='st'>"&gt; 100"</span>,<span class='st'>"&gt; 1,000"</span><span class='op'>)</span> <span class='op'>)</span></span>
+<span><span class='va'>ShippingTraffic_08plot</span></span></code></pre>
+</div>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-23-1.png" width="480" /></p>
+</div>
+<p>Include the legend inside the plot and change the theme, also change panel.background</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ShippingTraffic_09plot</span><span class='op'>&lt;-</span><span class='va'>ShippingTraffic_08plot</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.20</span>,<span class='fl'>0.50</span><span class='op'>)</span>,</span>
+<span>          legend.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='cn'>FALSE</span>, fill <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,</span>
+<span>          legend.title<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'black'</span>,size<span class='op'>=</span><span class='fl'>16</span><span class='op'>)</span>,</span>
+<span>          legend.text<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'black'</span>,size<span class='op'>=</span><span class='fl'>12</span><span class='op'>)</span>,</span>
+<span>          legend.key <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>'transparent'</span>, fill <span class='op'>=</span> <span class='st'>'transparent'</span><span class='op'>)</span>,</span>
+<span>          legend.key.height <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='st'>"mm"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>ShippingTraffic_09plot</span></span></code></pre>
 </div>
 <p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-24-1.png" width="480" /></p>
 </div>
-<p>Use <strong>labels</strong> to make the legend more legible</p>
+<h1 id="overall">Overall</h1>
+<p>All steps together, and additionally adding protected areas.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_EEZ.html'>German_EEZ</a></span>, color<span class='op'>=</span><span class='st'>'black'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linewidth<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_SCA.html'>German_SCA</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>"transparent"</span>, linewidth<span class='op'>=</span><span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_natura.html'>German_natura</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>"transparent"</span>, linewidth<span class='op'>=</span><span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3820000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3370000</span>,<span class='fl'>3660000</span><span class='op'>)</span>,</span>
 <span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
@@ -2813,35 +2808,7 @@ Data are available by month of year. Yearly averages are also available.</p>
 <span>        panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span>        panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>'Vessel density \n Dec 2023 \n hrs per km2'</span>,</span>
-<span>                      na.value <span class='op'>=</span> <span class='st'>"transparent"</span>, </span>
-<span>                      colours <span class='op'>=</span> <span class='va'>your_palette</span>,</span>
-<span>                      limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>30000</span><span class='op'>)</span>,</span>
-<span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.1</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>100</span>,<span class='fl'>1000</span><span class='op'>)</span>,</span>
-<span>                      values <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/rescale.html'>rescale</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0.01</span>,<span class='fl'>0.05</span>,<span class='fl'>0.1</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>100</span>,<span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span>, </span>
-<span>                      guide <span class='op'>=</span> <span class='st'>"legend"</span>,</span>
-<span>                      labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"0 - 0.05"</span>,<span class='st'>"&gt; 0.1"</span>,<span class='st'>"&gt; 0.2"</span>,<span class='st'>"&gt; 0.5"</span>,<span class='st'>"&gt; 2"</span>,<span class='st'>"&gt; 5"</span>,<span class='st'>"&gt; 10"</span>,<span class='st'>"&gt; 20"</span>, <span class='st'>"&gt; 100"</span>,<span class='st'>"&gt; 1,000"</span><span class='op'>)</span> <span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-25-1.png" width="480" /></p>
-</div>
-<p>Include the legend inside the plot and change the theme, also change panel.background</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://dieghernan.github.io/tidyterra/reference/geom_spatraster.html'>geom_spatraster</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ShippingTraffic_mask</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'grey'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'#e5e5e5'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3790000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
-<span>        panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'#009BC4'</span><span class='op'>)</span>,</span>
-<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>        panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, size<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>'Vessel density \n Dec 2023 \n hrs per km2'</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_fill_gradientn</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>"Vessel density \n Inside Germany's EEZ \n Dec 2023 \n hrs per km2"</span>,</span>
 <span>                      na.value <span class='op'>=</span> <span class='st'>"transparent"</span>, </span>
 <span>                      colours <span class='op'>=</span> <span class='va'>your_palette</span>,</span>
 <span>                      limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>30000</span><span class='op'>)</span>,</span>
@@ -2852,12 +2819,21 @@ Data are available by month of year. Yearly averages are also available.</p>
 <span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.15</span>,<span class='fl'>0.50</span><span class='op'>)</span>,</span>
 <span>          legend.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='cn'>FALSE</span>, fill <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,</span>
-<span>          legend.title<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'white'</span>,size<span class='op'>=</span><span class='fl'>16</span><span class='op'>)</span>,</span>
-<span>          legend.text<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'white'</span>,size<span class='op'>=</span><span class='fl'>12</span><span class='op'>)</span>,</span>
+<span>          legend.title<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'black'</span>,size<span class='op'>=</span><span class='fl'>16</span><span class='op'>)</span>,</span>
+<span>          legend.text<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'black'</span>,size<span class='op'>=</span><span class='fl'>14</span><span class='op'>)</span>,</span>
 <span>          legend.key <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>'transparent'</span>, fill <span class='op'>=</span> <span class='st'>'transparent'</span><span class='op'>)</span>,</span>
-<span>          legend.key.height <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>8</span>, <span class='st'>"mm"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>          legend.key.height <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>8</span>, <span class='st'>"mm"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"segment"</span>, x <span class='op'>=</span> <span class='fl'>3812000</span>, xend <span class='op'>=</span> <span class='fl'>3833000</span>,y <span class='op'>=</span> <span class='fl'>3400000</span>, yend <span class='op'>=</span> <span class='fl'>3400000</span>, </span>
+<span>           colour <span class='op'>=</span> <span class='st'>"black"</span>, size<span class='op'>=</span><span class='fl'>0.8</span>, linetype <span class='op'>=</span> <span class='st'>"solid"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"text"</span>, x <span class='op'>=</span> <span class='fl'>3835000</span>, y <span class='op'>=</span> <span class='fl'>3400000</span>, colour <span class='op'>=</span> <span class='st'>"black"</span>, label <span class='op'>=</span> <span class='st'>"Economic Exclusive Zone (EEZ)"</span>, size<span class='op'>=</span><span class='fl'>6</span>, hjust<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>+</span></span>
+<span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"segment"</span>, x <span class='op'>=</span> <span class='fl'>3812000</span>, xend <span class='op'>=</span> <span class='fl'>3833000</span>,y <span class='op'>=</span> <span class='fl'>3380000</span>, yend <span class='op'>=</span> <span class='fl'>3380000</span>, </span>
+<span>           colour <span class='op'>=</span> <span class='st'>"black"</span>, size<span class='op'>=</span><span class='fl'>0.8</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"text"</span>, x <span class='op'>=</span> <span class='fl'>3835000</span>, y <span class='op'>=</span> <span class='fl'>3380000</span>, colour <span class='op'>=</span> <span class='st'>"black"</span>, label <span class='op'>=</span> <span class='st'>"Protected Areas"</span>, size<span class='op'>=</span><span class='fl'>6</span>, hjust<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='cn'>NULL</span></span></code></pre>
 </div>
-<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-26-1.png" width="960" /></p>
+<p><img src="shippingtraffic_0206_files/figure-html5/unnamed-chunk-25-1.png" width="960" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
