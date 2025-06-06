@@ -92,7 +92,7 @@ Values distribution
 hist(ShippingTraffic_df$vessel_density)
 ```
 
-```{r, echo=TRUE, eval=FALSE}
+```{r, echo=TRUE, eval=TRUE}
 ShippingTraffic_class<-ShippingTraffic_df %>%
  mutate(
     density_class = case_when(
@@ -118,10 +118,10 @@ ShippingTraffic_class<-ShippingTraffic_df %>%
 
 The majority of values are between 0 and 1
 
-```{r, echo=FALSE, eval=FALSE}
-ShippingTraffic_class %>%
+```{r KnitTableSightings, echo=FALSE}
+knitr::kable(ShippingTraffic_class %>%
   group_by(density_class)%>%
-  tally()
+  tally())
 ```
 
 ## Select area
