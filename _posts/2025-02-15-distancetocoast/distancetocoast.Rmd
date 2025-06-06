@@ -1,5 +1,5 @@
 ---
-title: "Plot distance to coast in R"
+title: "Distance to coast"
 description: |
   In this blog post, I share a step-by-step guide on how to use raster data from distance to the coast. I walk you through the steps I used using the North German Sea as an example.
 author:

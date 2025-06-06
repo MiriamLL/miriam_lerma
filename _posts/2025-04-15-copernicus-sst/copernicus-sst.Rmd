@@ -1,5 +1,5 @@
 ---
-title: "Plot sea surface temperature in R"
+title: "Sea surface temperature"
 description: |
   In this blog post, I walk you through the process of visualizing sea surface temperature in R. From downloading the dataset to reading it and creating a map using ggplot.
 author:

@@ -1,5 +1,5 @@
 ---
-title: "shipping traffic"
+title: "Shipping traffic"
 description: |
  In this blog post, I demonstrate how to visualize shipping traffic data using R. The tutorial covers downloading the dataset from EMODnet, performing exploratory data analysis, and creating a map using ggplot2.
 author:
