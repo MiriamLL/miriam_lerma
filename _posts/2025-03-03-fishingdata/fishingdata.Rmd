@@ -1,7 +1,7 @@
 ---
 title: "Plot fishing effort in R"
 description: |
-  Create a map with fishing information from Global fishing watch in R. 
+  In this blog post, I walk you through the process of visualizing Global Fishing Watch data in R, covering from downloading the dataset to reading it and creating a map using ggplot.
 author:
   - name: Miriam Lerma
     url: {}

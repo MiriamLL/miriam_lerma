@@ -1,7 +1,7 @@
 ---
 title: "Plot sea surface temperature in R"
 description: |
-  Create a map with sst information from Copernicus in R.
+  In this blog post, I walk you through the process of visualizing sea surface temperature in R. From downloading the dataset to reading it and creating a map using ggplot.
 author:
   - name: Miriam Lerma
     url: {}

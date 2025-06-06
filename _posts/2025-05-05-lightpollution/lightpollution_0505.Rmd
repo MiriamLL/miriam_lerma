@@ -1,7 +1,7 @@
 ---
 title: "Light pollution"
 description: |
-  Create a map using radiance information from VIIRS.
+  In this month's post, I’ll show you how to create a map using radiance data, often associated with light pollution, collected by the Visible Infrared Imaging Radiometer Suite (VIIRS).
 author:
   - name: Miriam Lerma
     url: {}

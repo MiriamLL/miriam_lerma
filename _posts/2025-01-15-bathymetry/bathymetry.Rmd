@@ -1,7 +1,7 @@
 ---
 title: "Plot bathymetry in R"
 description: |
-  Create a map with bathymetry information in R.
+  Here are the steps I used for creating a bathymetric map in R. From where to download bathymetric data to how to read it and plot it in R. 
 author:
   - name: Miriam Lerma
     url: {}
