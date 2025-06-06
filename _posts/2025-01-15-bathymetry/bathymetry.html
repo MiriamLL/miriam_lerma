@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["bathymetry_files/anchor-4.2.2/anchor.min.js","bathymetry_files/bowser-1.9.3/bowser.min.js","bathymetry_files/distill-2.2.21/template.v2.js","bathymetry_files/figure-html5/unnamed-chunk-12-1.png","bathymetry_files/figure-html5/unnamed-chunk-15-1.png","bathymetry_files/header-attrs-2.28/header-attrs.js","bathymetry_files/jquery-3.6.0/jquery-3.6.0.js","bathymetry_files/jquery-3.6.0/jquery-3.6.0.min.js","bathymetry_files/jquery-3.6.0/jquery-3.6.0.min.map","bathymetry_files/popper-2.6.0/popper.min.js","bathymetry_files/tippy-6.2.7/tippy-bundle.umd.min.js","bathymetry_files/tippy-6.2.7/tippy-light-border.css","bathymetry_files/tippy-6.2.7/tippy.css","bathymetry_files/tippy-6.2.7/tippy.umd.min.js","bathymetry_files/webcomponents-2.0.0/webcomponents.js","blog41.jpg","blog41_portadas.jpg"]}
+  {"type":"character","attributes":{},"value":["bathymetry_files/anchor-4.2.2/anchor.min.js","bathymetry_files/bowser-1.9.3/bowser.min.js","bathymetry_files/distill-2.2.21/template.v2.js","bathymetry_files/figure-html5/unnamed-chunk-10-1.png","bathymetry_files/figure-html5/unnamed-chunk-12-1.png","bathymetry_files/figure-html5/unnamed-chunk-13-1.png","bathymetry_files/figure-html5/unnamed-chunk-15-1.png","bathymetry_files/header-attrs-2.28/header-attrs.js","bathymetry_files/jquery-3.6.0/jquery-3.6.0.js","bathymetry_files/jquery-3.6.0/jquery-3.6.0.min.js","bathymetry_files/jquery-3.6.0/jquery-3.6.0.min.map","bathymetry_files/popper-2.6.0/popper.min.js","bathymetry_files/tippy-6.2.7/tippy-bundle.umd.min.js","bathymetry_files/tippy-6.2.7/tippy-light-border.css","bathymetry_files/tippy-6.2.7/tippy.css","bathymetry_files/tippy-6.2.7/tippy.umd.min.js","bathymetry_files/webcomponents-2.0.0/webcomponents.js","blog41.jpg","blog41_portadas.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1565,14 +1565,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 - <a href="https://download.gebco.net/">Use the application</a><br />
 - Add your coordinates -here I use 1 to 10 and 50 to 60-<br />
 - Add to basket and download</p>
-<h1 id="load-raster-data">Load raster data</h1>
-<p>Once you had download the information, give the direction of the file. For example:</p>
+<h1 id="load">Load</h1>
+<p>To download test data in tif format <a href="https://github.com/MiriamLL/TestData/blob/main/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif">click here</a>.</p>
+<p>Select the directory where the information is stored, or as here, use the data directly form the repository.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://here.r-lib.org/reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span><span class='va'>this_folder</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org/reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"this_directory"</span><span class='op'>)</span></span>
-<span><span class='va'>this_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>this_folder</span>,<span class='st'>"this_file"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Bath_tif</span><span class='op'>&lt;-</span><span class='st'>'https://github.com/MiriamLL/TestData/raw/refs/heads/main/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif'</span></span></code></pre>
 </div>
 </div>
 <p>Load the <a href="https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure.html">terra package</a> for reading raster data</p>
@@ -1584,7 +1582,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>The function <strong>rast</strong> helps to read raster data - replacing package raster</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Bath_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rspatial.github.io/terra/reference/rast.html'>rast</a></span><span class='op'>(</span><span class='va'>this_file</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Bath_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rspatial.github.io/terra/reference/rast.html'>rast</a></span><span class='op'>(</span><span class='va'>Bath_tif</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Change to data frame</p>
@@ -1640,7 +1638,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56</span><span class='op'>)</span>,</span>
 <span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="bathymetry_files/figure-html5/unnamed-chunk-12-1.png" width="384" /></p>
+<p><img src="bathymetry_files/figure-html5/unnamed-chunk-10-1.png" width="384" /></p>
 </div>
 <p>Load the package <strong>sf</strong></p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1668,7 +1666,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>top <span class='op'>=</span> <span class='st'>"E"</span>, left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span>, right<span class='op'>=</span><span class='st'>'N'</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>Plot_bath</span></span></code></pre>
 </div>
-<p><img src="bathymetry_files/figure-html5/unnamed-chunk-15-1.png" width="384" /></p>
+<p><img src="bathymetry_files/figure-html5/unnamed-chunk-13-1.png" width="384" /></p>
 </div>
 <p>More details about how to add features to a map <a href="https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/">here</a></p>
 <div class="layout-chunk" data-layout="l-body">

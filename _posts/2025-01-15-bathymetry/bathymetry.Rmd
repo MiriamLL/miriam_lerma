@@ -38,28 +38,16 @@ Go to:
 - Add your coordinates -here I use 1 to 10 and 50 to 60-  
 - Add to basket and download
 
-# Load raster data
+# Load 
 
-Once you had download the information, give the direction of the file. For example:
+To download test data in tif format [click here](https://github.com/MiriamLL/TestData/blob/main/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif).  
 
-```{r, eval=FALSE}
-library(here)
-here()
-this_folder<-paste0(here(),"this_directory")
-this_file<-paste0(this_folder,"this_file")
+Select the directory where the information is stored, or as here, use the data directly form the repository. 
+
+```{r}
+Bath_tif<-'https://github.com/MiriamLL/TestData/raw/refs/heads/main/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif'
 ```
 
-```{r, include=FALSE, eval=FALSE}
-library(here)
-here()
-this_folder<-paste0(here(),"/_posts/2025-01-15-bathymetry")
-list.files(this_folder)
-```
-
-```{r, include=FALSE, eval=FALSE}
-this_file<-paste0(this_folder,"/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif")
-this_file
-```
 
 Load the [terra package](https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure.html) for reading raster data
 
@@ -70,7 +58,7 @@ library(terra)
 The function **rast** helps to read raster data - replacing package raster
 
 ```{r, eval=FALSE}
-Bath_file<-rast(this_file)
+Bath_file<-rast(Bath_tif)
 ```
 
 Change to data frame
