@@ -47,21 +47,14 @@ Based on the coordinates 1 to 10 and 50 to 60
 For the time frame of April and May 2018  
 From the depths 0 to 60 m
 
-To download test data in nc format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-04-15-copernicus-sst/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc).  
+To download test data in nc format [click here](https://github.com/MiriamLL/TestData/blob/main/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc).  
 
 ## Read data
 
-To read the data give the direction of your file.  
+Select the directory where the information is stored, or as here, use the data directly form the repository. 
 
-```{r, include=FALSE}
-library(here)
-here()
-this_folder<-paste0(here(),"/_posts/2025-04-15-copernicus-sst")
-list.files(this_folder)
-```
-
-```{r, message=FALSE}
-this_file<-paste0(this_folder,"/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc")
+```{r}
+SST_nc<-"https://github.com/MiriamLL/TestData/raw/refs/heads/main/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc"
 ```
 
 Load the [terra package](https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html) for reading raster data.
@@ -73,7 +66,7 @@ library(terra)
 The function **rast** helps to read raster data - replacing package raster.
 
 ```{r}
-SST_file<-rast(this_file)
+SST_file<-rast(SST_nc)
 ```
 
 ## Subset raster data
