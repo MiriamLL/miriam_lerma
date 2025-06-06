@@ -12,7 +12,6 @@ output:
     self_contained: false
 categories:
   - R
-  - magick
   - English
   - Y2024
 ---
@@ -51,27 +50,26 @@ library(magick)
 
 Select your directory. In the example, as **My_directory**.  
 
-```{r, echo=FALSE}
-library(here)
-My_directory<-here('C://Users//lerma//OneDrive//Documents//03Academico//02Proyectos-Postdoc//2024//1Programming//1Distill//Distill//_posts//2024-05-02-imagesforpublication')
-```
-
 ```{r, eval=FALSE}
 library(here)
 My_directory<-here()
 ```
 
+```{r, echo=FALSE}
+My_directory<-('https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2024-05-02-imagesforpublication')
+```
+
 Check if you gave the correct path by using the function **list.files**.  
 It should show the images you want to use.  
 
-```{r, eval=FALSE}
-list.files(My_directory)
-```
-
 Read images using the function **image_read**. 
 
-```{r}
-Fig1_original<- image_read(paste0(My_directory,"\\MABO.JPG"))
+```{r, eval=FALSE}
+Fig1_original<- image_read(paste0(My_directory,'/MABO.JPG'))
+```
+
+```{r,echo=FALSE}
+Fig1_original<- image_read(paste0(My_directory,'/MABO.JPG?raw=TRUE'))
 ```
 
 The function **image_draw** will show the picture in the Viewer.  
@@ -90,6 +88,11 @@ To add the text in the right bottom use the information from the dimensions abov
 
 ```{r}
 Fig1_text<-image_annotate(Fig1_draw, "(a)",  location = "+1199+999", font = 'Arial', size = 100, color='white')
+```
+
+```{r, eval=TRUE, echo=FALSE}
+library(here)
+My_directory<-here()
 ```
 
 ```{r, eval=TRUE, echo=FALSE}
@@ -134,8 +137,16 @@ image_write(Fig1_text, path = paste0(My_directory,"/Fig1_tl.png"), format = "png
 
 Follow the same steps as above, but with a second picture.
 
-```{r}
+```{r,eval=FALSE}
 Fig2_original<- image_read(paste0(My_directory,"\\RFBO.JPG"))
+```
+
+```{r,echo=FALSE}
+My_directory<-('https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2024-05-02-imagesforpublication')
+Fig2_original<- image_read(paste0(My_directory,'/RFBO.JPG?raw=TRUE'))
+```
+
+```{r}
 Fig2_draw<-image_draw(Fig2_original)
 Fig2_text<-image_annotate(Fig2_draw, "(b)",  location = "+50+50", font = 'Arial', size = 100, color='white')
 ```
@@ -165,6 +176,11 @@ image_append(c(Fig1_border,Fig2_border))
 ## Export
 
 Use the function **image_write** to export the picture.
+
+```{r, eval=TRUE, echo=FALSE}
+library(here)
+My_directory<-here()
+```
 
 ```{r, eval=FALSE}
 image_write(image_append(c(Fig1_border,Fig2_border)), path = paste0(My_directory,"/Fig1_append.png"), format = "png")

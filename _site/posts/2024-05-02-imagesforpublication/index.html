@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -88,9 +88,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Miriam Lerma: Add text on images using R</title>
+<title>Miriam Lerma: Read images using R</title>
 
-<meta property="description" itemprop="description" content="A short description of the post."/>
+<meta property="description" itemprop="description" content="Add text and margins on images."/>
 
 <link rel="canonical" href="https://miriamlerma.netlify.app/posts/2024-05-02-imagesforpublication/"/>
 
@@ -100,9 +100,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Miriam Lerma"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Miriam Lerma: Add text on images using R"/>
+<meta property="og:title" content="Miriam Lerma: Read images using R"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="A short description of the post."/>
+<meta property="og:description" content="Add text and margins on images."/>
 <meta property="og:url" content="https://miriamlerma.netlify.app/posts/2024-05-02-imagesforpublication/"/>
 <meta property="og:image" content="https://miriamlerma.netlify.app/posts/2024-05-02-imagesforpublication/blog33_portada.jpg"/>
 <meta property="og:locale" content="en_US"/>
@@ -110,8 +110,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:title" content="Miriam Lerma: Add text on images using R"/>
-<meta property="twitter:description" content="A short description of the post."/>
+<meta property="twitter:title" content="Miriam Lerma: Read images using R"/>
+<meta property="twitter:description" content="Add text and margins on images."/>
 <meta property="twitter:url" content="https://miriamlerma.netlify.app/posts/2024-05-02-imagesforpublication/"/>
 <meta property="twitter:image" content="https://miriamlerma.netlify.app/posts/2024-05-02-imagesforpublication/blog33_portada.jpg"/>
 
@@ -119,12 +119,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","output","categories","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Add text on images using R"]},{"type":"character","attributes":{},"value":["A short description of the post."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2024-05-02"]},{"type":"character","attributes":{},"value":["blog33_portada.jpg"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["R","magick","English","Y2024"]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2024-05-02-imagesforpublication/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","output","categories","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Read images using R"]},{"type":"character","attributes":{},"value":["Add text and margins on images."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2024-05-02"]},{"type":"character","attributes":{},"value":["blog33_portada.jpg"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["R","English","Y2024"]},{"type":"character","attributes":{},"value":["https://miriamlerma.netlify.app/posts/2024-05-02-imagesforpublication/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog33_portada.jpg","Fig1_append.png","Fig1_lt.png","Fig1_rb.png","Fig1_tl.png","Fig2_lt.png","imagesforpublication_files/anchor-4.2.2/anchor.min.js","imagesforpublication_files/bowser-1.9.3/bowser.min.js","imagesforpublication_files/distill-2.2.21/template.v2.js","imagesforpublication_files/figure-html5/unnamed-chunk-15-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-16-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-17-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-18-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-6-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-7-1.png","imagesforpublication_files/header-attrs-2.25/header-attrs.js","imagesforpublication_files/jquery-3.6.0/jquery-3.6.0.js","imagesforpublication_files/jquery-3.6.0/jquery-3.6.0.min.js","imagesforpublication_files/jquery-3.6.0/jquery-3.6.0.min.map","imagesforpublication_files/popper-2.6.0/popper.min.js","imagesforpublication_files/tippy-6.2.7/tippy-bundle.umd.min.js","imagesforpublication_files/tippy-6.2.7/tippy-light-border.css","imagesforpublication_files/tippy-6.2.7/tippy.css","imagesforpublication_files/tippy-6.2.7/tippy.umd.min.js","imagesforpublication_files/webcomponents-2.0.0/webcomponents.js","MABO.JPG","RFBO.JPG"]}
+  {"type":"character","attributes":{},"value":["blog33_portada.jpg","Fig1_append.png","Fig1_lt.png","Fig1_rb.png","Fig1_tl.png","Fig2_lt.png","imagesforpublication_files/anchor-4.2.2/anchor.min.js","imagesforpublication_files/bowser-1.9.3/bowser.min.js","imagesforpublication_files/distill-2.2.21/template.v2.js","imagesforpublication_files/figure-html5/unnamed-chunk-15-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-16-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-17-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-18-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-19-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-20-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-21-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-6-1.png","imagesforpublication_files/figure-html5/unnamed-chunk-7-1.png","imagesforpublication_files/header-attrs-2.25/header-attrs.js","imagesforpublication_files/jquery-3.6.0/jquery-3.6.0.js","imagesforpublication_files/jquery-3.6.0/jquery-3.6.0.min.js","imagesforpublication_files/jquery-3.6.0/jquery-3.6.0.min.map","imagesforpublication_files/popper-2.6.0/popper.min.js","imagesforpublication_files/tippy-6.2.7/tippy-bundle.umd.min.js","imagesforpublication_files/tippy-6.2.7/tippy-light-border.css","imagesforpublication_files/tippy-6.2.7/tippy.css","imagesforpublication_files/tippy-6.2.7/tippy.umd.min.js","imagesforpublication_files/webcomponents-2.0.0/webcomponents.js","MABO.JPG","RFBO.JPG"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2467,7 +2467,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.25/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.28/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2488,7 +2488,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Add text on images using R","description":"A short description of the post.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2024-05-02T00:00:00.000+02:00","citationText":"Lerma, 2024"}
+{"title":"Read images using R","description":"Add text and margins on images.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2024-05-02T00:00:00.000+02:00","citationText":"Lerma, 2024"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2520,10 +2520,11 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Add text on images using R</h1>
+<h1>Read images using R</h1>
+
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A short description of the post.</p></p>
+<p><p>Add text and margins on images.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2534,19 +2535,15 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p>This post is to edit images in R.</p>
-<p>Using R assures that your image would not be compress as happens when
-you open it with some other programs.</p>
+<p>This post is to read and edit images in R.</p>
+<p>Using R assures that your image would not be compress as happens when you open it with some other programs.</p>
 <p>The blog consist of two parts:<br />
 1. Add letter to a picture and export<br />
 2. Merge two pictures into one and export</p>
-<h2 id="add-letter-to-a-picture-and-export">1. Add letter to a picture
-and export</h2>
+<h2 id="add-letter-to-a-picture-and-export">1. Add letter to a picture and export</h2>
 <h3 id="packages">Packages</h3>
 <p>Use the package <strong>magick</strong> to process images in R.</p>
-<p>For more information: <a
-href="https://docs.ropensci.org/magick/articles/intro.html#read-and-write"
-class="uri">https://docs.ropensci.org/magick/articles/intro.html#read-and-write</a></p>
+<p>For more information: <a href="https://docs.ropensci.org/magick/articles/intro.html#read-and-write" class="uri">https://docs.ropensci.org/magick/articles/intro.html#read-and-write</a></p>
 <p>To install the package</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2560,35 +2557,29 @@ class="uri">https://docs.ropensci.org/magick/articles/intro.html#read-and-write<
 </div>
 </div>
 <h3 id="data">Data</h3>
-<p>Select your directory. In the example, as
-<strong>My_directory</strong>.</p>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
+<p>Select your directory. In the example, as <strong>My_directory</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span></span>
-<span><span class='va'>My_directory</span><span class='op'>&lt;-</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>My_directory</span><span class='op'>&lt;-</span><span class='fu'><a href='https://here.r-lib.org/reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Check if you gave the correct path by using the function
-<strong>list.files</strong>.<br />
-It should show the images you want to use.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='va'>My_directory</span><span class='op'>)</span></span></code></pre>
+
 </div>
-</div>
+<p>Check if you gave the correct path by using the function <strong>list.files</strong>.<br />
+It should show the images you want to use.</p>
 <p>Read images using the function <strong>image_read</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig1_original</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>My_directory</span>,<span class='st'>"\\MABO.JPG"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig1_original</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>My_directory</span>,<span class='st'>'/MABO.JPG'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>The function <strong>image_draw</strong> will show the picture in the
-Viewer.<br />
-Moreover, it gives information on the width and height of the
-picture.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>The function <strong>image_draw</strong> will show the picture in the Viewer.<br />
+Moreover, it gives information on the width and height of the picture.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig1_draw</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_draw</a></span><span class='op'>(</span><span class='va'>Fig1_original</span><span class='op'>)</span></span>
@@ -2598,8 +2589,7 @@ picture.</p>
 </div>
 <h2 id="add-text">Add text</h2>
 <p>To add text use the function <strong>image_annotate</strong></p>
-<p>To add the text in the right bottom use the information from the
-dimensions above to define the xaxis and yaxis.</p>
+<p>To add the text in the right bottom use the information from the dimensions above to define the xaxis and yaxis.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig1_text</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/painting.html'>image_annotate</a></span><span class='op'>(</span><span class='va'>Fig1_draw</span>, <span class='st'>"(a)"</span>,  location <span class='op'>=</span> <span class='st'>"+1199+999"</span>, font <span class='op'>=</span> <span class='st'>'Arial'</span>, size <span class='op'>=</span> <span class='fl'>100</span>, color<span class='op'>=</span><span class='st'>'white'</span><span class='op'>)</span></span></code></pre>
@@ -2609,10 +2599,12 @@ dimensions above to define the xaxis and yaxis.</p>
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="Fig1_rb.png" width="700" style="display: block; margin: auto auto auto 0;" /></p>
+
 </div>
-<p>To add the text in the left top part you can use define the xaxis and
-yaxis as 100.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../Fig1_rb.png" width="700" style="display: block; margin: auto auto auto 0;" /></p>
+</div>
+<p>To add the text in the left top part you can use define the xaxis and yaxis as 100.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig1_text</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/painting.html'>image_annotate</a></span><span class='op'>(</span><span class='va'>Fig1_draw</span>, <span class='st'>"(a)"</span>,  location <span class='op'>=</span> <span class='st'>"+50+50"</span>, font <span class='op'>=</span> <span class='st'>'Arial'</span>, size <span class='op'>=</span> <span class='fl'>100</span>, color<span class='op'>=</span><span class='st'>'white'</span><span class='op'>)</span></span></code></pre>
@@ -2622,7 +2614,7 @@ yaxis as 100.</p>
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="Fig1_lt.png" width="700" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img src="../../Fig1_lt.png" width="700" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 <h2 id="export">Export</h2>
 <p>Use the function <strong>image_write</strong> to export.</p>
@@ -2631,54 +2623,58 @@ yaxis as 100.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_write</a></span><span class='op'>(</span><span class='va'>Fig1_text</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>My_directory</span>,<span class='st'>"/Fig1_tl.png"</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h1 id="merge-two-pictures-into-one-and-export">2. Merge two pictures
-into one and export</h1>
+<h1 id="merge-two-pictures-into-one-and-export">2. Merge two pictures into one and export</h1>
 <p>Follow the same steps as above, but with a second picture.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig2_original</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>My_directory</span>,<span class='st'>"\\RFBO.JPG"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='va'>Fig2_draw</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_draw</a></span><span class='op'>(</span><span class='va'>Fig2_original</span><span class='op'>)</span></span>
-<span><span class='va'>Fig2_text</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/painting.html'>image_annotate</a></span><span class='op'>(</span><span class='va'>Fig2_draw</span>, <span class='st'>"(b)"</span>,  location <span class='op'>=</span> <span class='st'>"+50+50"</span>, font <span class='op'>=</span> <span class='st'>'Arial'</span>, size <span class='op'>=</span> <span class='fl'>100</span>, color<span class='op'>=</span><span class='st'>'white'</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_write</a></span><span class='op'>(</span><span class='va'>Fig2_text</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>My_directory</span>,<span class='st'>"/Fig2_lt.png"</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig2_original</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>My_directory</span>,<span class='st'>"\\RFBO.JPG"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig2_draw</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_draw</a></span><span class='op'>(</span><span class='va'>Fig2_original</span><span class='op'>)</span></span>
+<span><span class='va'>Fig2_text</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/painting.html'>image_annotate</a></span><span class='op'>(</span><span class='va'>Fig2_draw</span>, <span class='st'>"(b)"</span>,  location <span class='op'>=</span> <span class='st'>"+50+50"</span>, font <span class='op'>=</span> <span class='st'>'Arial'</span>, size <span class='op'>=</span> <span class='fl'>100</span>, color<span class='op'>=</span><span class='st'>'white'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="add-border">Add border</h2>
-<p>Use the function <strong>image_border</strong> to add some space
-between the pictures.</p>
+<p>Use the function <strong>image_border</strong> to add some space between the pictures.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig1_border</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_border</a></span><span class='op'>(</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/color.html'>image_background</a></span><span class='op'>(</span><span class='va'>Fig1_text</span>, <span class='st'>"transparent"</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"40x10"</span><span class='op'>)</span></span>
 <span><span class='va'>Fig1_border</span></span></code></pre>
 </div>
-<p><img src="imagesforpublication_files/figure-html5/unnamed-chunk-16-1.png" width="740" /></p>
+<p><img src="imagesforpublication_files/figure-html5/unnamed-chunk-19-1.png" width="740" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Fig2_border</span><span class='op'>&lt;-</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_border</a></span><span class='op'>(</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/color.html'>image_background</a></span><span class='op'>(</span><span class='va'>Fig2_text</span>, <span class='st'>"transparent"</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"40x10"</span><span class='op'>)</span></span>
 <span><span class='va'>Fig2_border</span></span></code></pre>
 </div>
-<p><img src="imagesforpublication_files/figure-html5/unnamed-chunk-17-1.png" width="740" /></p>
+<p><img src="imagesforpublication_files/figure-html5/unnamed-chunk-20-1.png" width="740" /></p>
 </div>
 <h2 id="combine">Combine</h2>
-<p>Use the function <strong>image_append</strong> to have both pictures
-side by side.</p>
+<p>Use the function <strong>image_append</strong> to have both pictures side by side.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/animation.html'>image_append</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>Fig1_border</span>,<span class='va'>Fig2_border</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="imagesforpublication_files/figure-html5/unnamed-chunk-18-1.png" width="1479" /></p>
+<p><img src="imagesforpublication_files/figure-html5/unnamed-chunk-21-1.png" width="1479" /></p>
 </div>
 <h2 id="export-1">Export</h2>
-<p>Use the function <strong>image_write</strong> to export the
-picture.</p>
+<p>Use the function <strong>image_write</strong> to export the picture.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_write</a></span><span class='op'>(</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/animation.html'>image_append</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>Fig1_border</span>,<span class='va'>Fig2_border</span><span class='op'>)</span><span class='op'>)</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>My_directory</span>,<span class='st'>"/Fig1_append.png"</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>End of document</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

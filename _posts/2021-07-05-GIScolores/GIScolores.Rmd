@@ -7,7 +7,7 @@ author:
   - name: Miriam Lerma
 date: 2021-07-05
 categories:
-  - GIS
+  - QGIS
   - R
   - Español
   - Y2021
@@ -22,7 +22,6 @@ output:
 # Intro
 
 ```{r setup, echo=FALSE}
-library(emo)
 library(fontawesome)
 ColorEnlace<-'#7209B7'
 ColorEnlaceInverso<-"#4cc9f0"
@@ -58,7 +57,7 @@ Lo primero seria descargar los datos usando la función getData. <br>
 Una vez cargados los datos, podemos hacer una selección de los estados que nos interesen. <br>
 
 ```{r}
-Mexico<- getData('GADM', country='Mexico', level=1) %>% st_as_sf()
+Mexico<- geodata::gadm('GADM', country='Mexico', level=1) %>% st_as_sf()
 Queretaro <- Mexico[Mexico$NAME_1 == "Querétaro",]
 Guanajuato <- Mexico[Mexico$NAME_1 == "Guanajuato",]
 ```
