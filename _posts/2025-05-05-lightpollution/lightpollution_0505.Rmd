@@ -26,19 +26,12 @@ The Visible Infrared Imaging Radiometer Suite (VIIRS) is aboard the joint NASA/N
 Data are available at [Light pollution map](https://www.lightpollutionmap.info/#zoom=3.32&lat=48.8875&lon=2.7774&state=eyJiYXNlbWFwIjoiTGF5ZXJCaW5nUm9hZCIsIm92ZXJsYXkiOiJ2aWlyc18yMDE3Iiwib3ZlcmxheWNvbG9yIjpmYWxzZSwib3ZlcmxheW9wYWNpdHkiOjYwLCJmZWF0dXJlc29wYWNpdHkiOjg1fQ==).  
 - The data can be downloaded by selecting the icons of the tools, then the square, wait until information appears, then click in the download icon.  
 
-To download test data in tif format [click here](https://github.com/MiriamLL/miriamlerma_/raw/refs/heads/main/_posts/2025-05-05-lightpollution//viirs_npp_202300b.tif).  
+To download test data in tif format [click here](https://github.com/MiriamLL/TestData/blob/main/viirs_npp_202300b.tif).  
 
-Select the directory where the information is stored.
-
-```{r, message=FALSE}
-library(here)
-your_folder<-paste0(here(),"/_posts/2025-05-05-lightpollution")
-#your_folder
-#list.files(your_folder)
-```
+Select the directory where the information is stored, or as here, use the data directly form the repository. 
 
 ```{r}
-your_file<-paste0(your_folder,"/viirs_npp_202300b.tif")
+Light_pollution_tif<-'https://github.com/MiriamLL/TestData/raw/refs/heads/main/viirs_npp_202300b.tif'
 ```
 
 Use the package **terra** to use the function **rast**.  
@@ -50,7 +43,7 @@ library(terra)
 The function **rast** reads your file as a formal class SpatRaster
 
 ```{r}
-Light_pollution<-rast(your_file)
+Light_pollution<-rast(Light_pollution_tif)
 ```
 
 ```{r, eval=FALSE}
@@ -115,6 +108,7 @@ ggplot() +
                       )+
   NULL
 ```
+
 ### Change theme
 
 Change the arguments inside **theme** to adjust the looks of your plot. 
