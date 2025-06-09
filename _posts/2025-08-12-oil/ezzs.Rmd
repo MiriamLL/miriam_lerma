@@ -12,6 +12,10 @@ output:
 ---
 
 
+The dataset on offshore installations for Oil and Gas exploitation and exploration activities was created in 2015 by Cogea for the European Marine Observation and Data Network (EMODnet). It is the result of the aggregation and harmonization of datasets provided by several EU and non-EU sources. It is updated every year, and is available for viewing and download on EMODnet Human Activities web portal (https://emodnet.ec.europa.eu/en/human-activities). It contains points representing offshore installations and where available each point has the following attributes: ID, name, country, location block, operator, production start year, primary production, current status, category and function of the installation, sub-structure and topside weights (tonnes), water depth (metres), distance to coast (metres) and notes. The OSPAR commission source covers data for Germany, Ireland, Spain (Atlantic Sea), while for Italy data have been collected and harmonized from the Italian Ministry of Economic Development, for Denmark from the Danish Energy Agency, for the Netherlands from the TNO - Geological Survey of the Netherlands, for Croatia from the Croatian Hydrocarbon Agency, for Norway from the Norwegian Petroleum Directorate, for the UK from the Oil and Gas Authority (surface infrastructures), for Polish and Russian installations in the Baltic Sea from Marine Traffic and Helcom, finally from Marine Traffic come the data for Bulgarian, Russian and Ukrainian installations in the Black Sea and for Lybian and Spanish installations in the Mediterranean Sea. Compared with the previous version this new version has been updated for all countries.
+
+EMODnet Human Activities
+
 # EZZ and protected areas
 
 # Packages
