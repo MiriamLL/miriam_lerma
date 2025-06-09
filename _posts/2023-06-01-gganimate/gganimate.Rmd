@@ -180,7 +180,7 @@ My_animation
 ```
 
 ```{r, echo=FALSE, out.height=350}
-knitr::include_graphics('https://github.com/MiriamLL/miriamlerma_/blob/main/animation.gif?raw=true')
+knitr::include_graphics('https://raw.githubusercontent.com/MiriamLL/miriamlerma_/refs/heads/main/_posts/2023-06-01-gganimate/animation.gif')
 ```
 
 Other arguments are:  
@@ -199,8 +199,8 @@ library(animation)
 To export, you can save the animation as gif
 
 ```{r include= TRUE, eval=FALSE}
-anim_save("animation.gif",My_animation)
-beep(sound=1,expr=NULL)
+# anim_save("animation.gif",My_animation)
+# beep(sound=1,expr=NULL)
 ```
 
 Or transform from gif to mp4 using the package **av**
@@ -210,10 +210,10 @@ library(av)
 ```
 
 ```{r include= TRUE, eval=FALSE}
-av::av_encode_video("animation.gif", 
-                    framerate = 5 ,
-                    output = 'animation.mp4')
-beep(sound=1,expr=NULL)
+# av::av_encode_video("animation.gif", 
+#                     framerate = 5 ,
+#                     output = 'animation.mp4')
+# beep(sound=1,expr=NULL)
 ```
 
 
