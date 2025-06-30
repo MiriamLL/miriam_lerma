@@ -1,11 +1,11 @@
 ---
 title: "Offshore Wind Farms"
 description: |
-  This blog post shows how to visualize data on offshore wind farms in the German North Sea using R. It covers downloading the dataset from EMODnet, exploring the data, and creating a map with ggplot2. In addition, it shows an example on how to calculate the area developed before 2016, highlight the rapid growth of offshore wind farms (OWFs), and share references on their potential impacts on marine animals.
+  This blog post shows how to visualize data on offshore wind farms in the German North Sea using R. It covers downloading the dataset from EMODnet, exploring the data, and creating a map with ggplot2. In addition, it shows an example on how to calculate the area developed before 2016, highlighting the rapid growth of offshore wind farms (OWFs). Moreover, it includes some references on their potential impacts on marine animals.
 author:
   - name: Miriam Lerma
     url: {}
-date: 2025-07-15
+date: 2025-07-01
 preview: owf_portada.jpg
 output:
   distill::distill_article:
@@ -18,17 +18,24 @@ An Offshore Wind Farm (OWF) is defined as a group of wind turbines placed in the
 - Wind turbines are installed on foundations anchored to the seabed (or floating, in deeper waters).  
 - Blades spin when the wind blows, turning a generator.  
 - The electricity generated is sent back to land through underwater power cables.   
-- Offshore wind farms have high upfront costs and engineering complexity, produce visual and noise problems, and might have an impact on marine ecosystems and birds.
+- Offshore wind farms have high upfront costs and engineering complexity, produce visual and noise problems, and might have an impact on marine ecosystems and birds. 
+
+<html>
+<body>
+   <left>
+      <a href="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-07-01-owf/Alpha_Ventus_Windmills_wikipedia.JPG?raw=true"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-07-01-owf/Alpha_Ventus_Windmills_wikipedia.JPG?raw=true" style="width:450px"></a>
+   </left>
+</body>
+</html>
+
+Alpha Ventus Windmills  
+Source: Wikipedia
 
 # Data
 
 **EMODnet** is a European initiative that provides free, open-access data on the marine environment of Europe. It’s designed to support marine research, policy-making, and sustainable ocean development by making reliable marine data easily available.
 
 To download the original data go to [EMODnet](https://www.emodnet-humanactivities.eu/view-data.php). Select [human activities](https://www.emodnet-humanactivities.eu/search-results.php?dataname=Wind+Farms+%28Polygons%29).
-
-**GeoSeaPortal** is a comprehensive geodata infrastructure that provides both internal and external users with access to spatial data related to Germany's seas and coasts. The platform integrates data from various sources into a geo-object-relational database, ensuring harmonisation and facilitating efficient data retrieval and visualisation. 
-
-To download the original data go to [GeoSeaPortal](https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de). The zip contains several shapefiles including ‘OffshoreWindEnergy’
 
 # Packages
 
@@ -150,7 +157,7 @@ OWF_1plot
 
 ## Names
 
-Include names of the OWF using **annotation**
+There is an option using [ggrepel](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html), but here I manually include names of the OWF using **annotation**.
 
 ```{r}
 Labels<-data.frame(text_x=c(4010000,4010000,4141000,4179000,4211000,4211000,4211000,4010000,4010000,4010000,4010000),
@@ -321,7 +328,7 @@ In just four years, more area was developed for offshore wind farms than in the 
 - [4C Offshore](https://map.4coffshore.com/offshorewind/)
 - [Wikimedia](https://upload.wikimedia.org/wikipedia/commons/a/a1/Map_of_the_offshore_wind_power_farms_in_the_German_Bight.png)
 
-Publications: 
+**Publications**: 
 
 Brandt, M. J., Dragon, A. C., Diederichs, A., Bellmann, M. A., Wahl, V., Piper, W., Nabe-Nielsen, J. and Nehls, G. 2018. Disturbance of harbour porpoises during construction of the first seven offshore wind farms in Germany. – Mar. Ecol. Prog. Ser. 596: 213–232. [Link](https://doi.org/10.3354/meps12560)
 
@@ -338,4 +345,11 @@ Garthe, S., Schwemmer, H., Peschko, V., Markones, N., Müller, S., Schwemmer, P.
 Kastelein, R. A., Helder-Hoek, L., Covi, J. and Gransier, R. 2016.  Pile driving playback sounds and temporary threshold shift in harbor porpoises (Phocoena phocoena): Effect of exposure duration . – J. Acoust. Soc. Am. 139: 2842–2851. [Link](http://dx.doi.org/10.1121/1.4948571)
 
 
+**Alternative data sources** <br>
 
+**GeoSeaPortal** is a comprehensive geodata infrastructure that provides both internal and external users with access to spatial data related to Germany's seas and coasts. The platform integrates data from various sources into a geo-object-relational database, ensuring harmonisation and facilitating efficient data retrieval and visualisation. 
+
+To download the original data go to [GeoSeaPortal](https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de). The zip contains several shapefiles including ‘OffshoreWindEnergy’
+
+**Further reading** <br>
+[IUCN](https://portals.iucn.org/library/sites/library/files/documents/2024-037-En_0.pdf)
