@@ -1,7 +1,7 @@
 ---
 title: "Offshore Wind Farms"
 description: |
-  This blog post shows how to visualize data on offshore wind farms in the German North Sea using R. It covers downloading the dataset from EMODnet, exploring the data, and creating a map with ggplot2. In addition, we calculate the area developed before 2016, highlight the rapid growth of offshore wind farms (OWFs), and share references on their potential impacts on marine animals.
+  This blog post shows how to visualize data on offshore wind farms in the German North Sea using R. It covers downloading the dataset from EMODnet, exploring the data, and creating a map with ggplot2. In addition, it shows an example on how to calculate the area developed before 2016, highlight the rapid growth of offshore wind farms (OWFs), and share references on their potential impacts on marine animals.
 author:
   - name: Miriam Lerma
     url: {}
@@ -18,7 +18,7 @@ An Offshore Wind Farm (OWF) is defined as a group of wind turbines placed in the
 - Wind turbines are installed on foundations anchored to the seabed (or floating, in deeper waters).  
 - Blades spin when the wind blows, turning a generator.  
 - The electricity generated is sent back to land through underwater power cables.   
-- Offshore wind farms don't take up land space, but have an impact on marine ecosystems and birds, produce visual and noise problems, and they have high upfront costs and engineering complexity.
+- Offshore wind farms have high upfront costs and engineering complexity, produce visual and noise problems, and might have an impact on marine ecosystems and birds.
 
 # Data
 
@@ -62,7 +62,7 @@ ggplot(OWF_EMODnet)+
   geom_sf(data = OWF_EMODnet,  colour = NA,fill= "black",alpha=1, size=1,linetype="dashed")
 ```
 
-Add other layers to have reference. The additional shapes are also part of the package GermanNorthSea.  
+Add other layers to have a reference. The additional shapes are also part of the package GermanNorthSea.  
 
 ```{r}
 ggplot(OWF_EMODnet) + # Gives CRS
