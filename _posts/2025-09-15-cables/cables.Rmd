@@ -1,0 +1,211 @@
+---
+title: "Oil and Gas Offshore Installations"
+description: |
+  In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-08-15
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+Underwater (submarine) cables can affect marine life, but current evidence suggests these impacts are generally localized and limited in scale.
+- Habitat Disruption: The primary impact of submarine cables is the disturbance of the seabed during installation, which can temporarily disrupt benthic (seafloor) communities, particularly in shallow or sensitive areas like coral reefs and seagrass meadows. However, these impacts are usually small in scale and short-lived, with many affected habitats showing resilience and recovery within months to a few years
+- Artificial Reef Effect: Once installed, cables can act as artificial reef structures, providing new habitats for marine organisms such as anemones, corals, and various invertebrates. This can increase local biodiversity, although it may also alter the natural species composition.
+- Electromagnetic Fields (EMFs): Power cables emit EMFs, which may affect species sensitive to magnetic fields, such as some echinoderms and migratory animals. Most studies indicate these effects are minimal or species-specific, and ongoing research continues to monitor potential long-term impacts
+
+While submarine cables do have environmental impacts—mainly during installation—these are typically localized, short-term, and manageable with modern mitigation practices. The long-term presence of cables can even provide new ecological opportunities for some marine species, though careful monitoring and management remain important.
+
+<html>
+<body>
+   <left>
+      <a href="https://energyindustryreview.com/wp-content/uploads/2022/03/submarin-cable-layout.jpg"><img src="https://energyindustryreview.com/wp-content/uploads/2022/03/submarin-cable-layout.jpg" style="width:450px"></a>
+   </left>
+</body>
+</html>
+Germany Mecklenburg-Western Pomerania Baltic Sea – undersea cable to Hiddensee island. | PHOTOGRAPH BY JENS KÖHLER—ULLSTEIN BILD/GETTY IMAGES
+
+# Shapefiles
+
+Prepare to read shapefiles, by providing the folder where the data is stored.
+
+```{r}
+library(here)
+library(sf)
+```
+
+```{r, echo=TRUE}
+This_directory<-here()
+```
+
+```{r,echo=FALSE, include=FALSE}
+This_directory<-"C:\\Users\\lerma\\OneDrive\\Documents\\03Academico\\02Proyectos-Postdoc\\2025\\1Programming\\2Packages\\TestData\\Cables\\"
+list.files(This_directory)
+```
+
+## Telecommunication
+
+The dataset on subsea telecommunication cables in the European waters was created in 2014 by Cogea for the European Marine Observation and Data Network (EMODnet). It is the result of the aggregation of datasets provided by several EU and non-EU sources. It is updated every year, and is available for viewing and download on the EMODnet web portal (Human Activities, https://emodnet.ec.europa.eu/en/human-activities). The dataset contain lines representing actual cable routes locations. Compared with the previous version, this version includes an update of the German cables
+
+```{r, echo=TRUE}
+Germany_telecommunications<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_Data_CablesLine.shp"))
+France_telecommunications<-st_read(paste0(This_directory,"/FR_SIGCables_Submarine_Cables_Routes.shp"))
+Netherlands_telecommunications<-st_read(paste0(This_directory,"/NL_Rijkswaterstaat_Telecom_kabels_noordzee.shp"))
+```
+
+## Power
+
+The dataset on subsea power cables in the European waters was created in 2014 by Cogea for the European Marine Observation and Data Network (EMODnet). It is the result of the aggregation of datasets provided by several EU and non-EU sources. It is updated every year, and is available for viewing and download on the EMODnet web portal (Human Activities, https://emodnet.ec.europa.eu/en/human-activities). The dataset contain lines representing actual cable routes locations. Compared with the previous version, this version now includes the German high voltage cables.
+
+```{r, echo=TRUE}
+Germany_voltage<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_High_Voltage_CablesLine.shp"))
+Netherlands_voltage<-st_read(paste0(This_directory,"/NL_Rijkswaterstaat_Electra_kabels_noordzee.shp"))
+Norway_voltage<-st_read(paste0(This_directory,"/NO_NVE_Sjokabel.shp"))
+```
+
+# Base Map
+
+```{r}
+library(ggplot2)
+```
+
+Create a base map using shapefiles from the package GermanNorthSea
+
+```{r}
+library(GermanNorthSea)
+```
+
+Add the attributes and the theme to your base map.
+
+```{r, fig.height=6, fig.width=8}
+Base_map<-ggplot() + 
+  # Fill colors
+  geom_sf(data = GermanNorthSea::German_EEZ, color='#43585E',fill='transparent',alpha=0.1, linewidth = 1)+
+  geom_sf(data = German_land, colour = '#43585E', fill = '#43585E')+
+  
+  geom_sf(data = GermanNorthSea::German_SCA, colour = '#43585E', fill = NA, 
+          linewidth=0.1, linetype = "dashed",alpha=0.3)+
+  geom_sf(data = GermanNorthSea::German_natura, colour = '#43585E', fill = NA, 
+          linewidth=0.1, linetype = "dashed",alpha=0.3)+
+  
+  scale_x_continuous(breaks = c(4,6,8),labels = function(x) paste0(x, '\u00B0')) +
+  scale_y_continuous(breaks = c(53.5,54.5,55.5),labels = function(x) paste0(x, '\u00B0'))  +
+  
+  theme(
+  axis.text.x = element_text(size=10,vjust = 12,color='#3d5a80'),
+  axis.text.y = element_text(color='#3d5a80',size=10,margin = margin(0,-1.30,0,1, unit = 'cm')),
+  axis.title = element_blank(),
+  axis.ticks.length=unit(-0.20, "cm"),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  panel.background = element_rect(fill = '#F2F2F2'))+
+  
+  xlab('Longitude')+ylab('Latitude')+
+  
+  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth=1.5))
+```
+
+
+## Telecommunications
+
+99% of the internet network runs through submarine cables. It is estimated that over USD 10,000 billion in financial transactions run today through these “seabed highways”. 
+
+```{r}
+Base_map +
+  geom_sf(data = Netherlands_telecommunications,color='green')+
+  geom_sf(data = France_telecommunications,color='blue')+
+  geom_sf(data = Germany_telecommunications, color='red')+
+  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(left = "N", bottom = 'E'))
+```
+
+## Power
+
+
+
+```{r}
+Base_map +
+  geom_sf(data = Netherlands_voltage,color='green')+
+  geom_sf(data = Norway_voltage,color='blue')+
+  geom_sf(data = Germany_voltage, color='red')+
+  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(left = "N", bottom = 'E'))
+```
+
+Note than in Germany, many of the cables connected to OWF
+
+```{r}
+Base_map +
+  geom_sf(data = Netherlands_voltage,color='green')+
+  geom_sf(data = Norway_voltage,color='blue')+
+  geom_sf(data = Germany_voltage, color='red')+
+  geom_sf(data = GermanNorthSea::OWF_EMODnet, color='orange')+
+  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(left = "N", bottom = 'E'))
+```
+
+## Add title
+
+The package ggtext allows to add colors into labels.
+
+```{r}
+library(ggtext)
+```
+
+Add the title on the map.
+
+```{r, fig.height=6, fig.width=8}
+Base_map+
+  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(left = "N", bottom = 'E'))+
+  
+  geom_richtext(aes(x =  3891000, y = 3419000,
+  label = "Cables for<br>
+  <span style='color:#ffb400'>Telecommunications</span>
+  <br>and
+  <span style='color:#bb3e03'>Power</span>
+  in the <br>German North Sea"), 
+  size = 5, 
+  fill = NA, 
+  label.color = NA, # remove background and outline
+  hjust = 0,
+  vjust= 0,
+  inherit.aes = TRUE
+  )+
+  NULL
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+# Export
+library(here)
+here()
+My_directory<-paste0(here(),"/_posts/2025-08-12-oil")
+ggsave(Oil_1plot +
+  geom_richtext(aes(x =  3891000, y = 3419000,
+  label = "Offshore installations for<br>
+  <span style='color:#ffb400'>Oil</span>
+  and
+  <span style='color:#bb3e03'>Gas</span>
+  exploitation <br>and exploration  in the <br>German North Sea"), 
+  size = 5, 
+  fill = NA, 
+  label.color = NA, # remove background and outline
+  hjust = 0,
+  vjust= 0,
+  inherit.aes = TRUE
+  )+
+  NULL,filename = paste0(My_directory,"/oil.jpeg"),
+       width = 8, 
+       height = 6)
+```
+
+# References
+
+- [Video](https://youtu.be/Gg1aFmsKQgk)
+
+
