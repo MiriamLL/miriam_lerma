@@ -1618,9 +1618,9 @@ Source: Wikipedia</p>
 </div>
 <h2 id="status">Status</h2>
 <p>In the context of Offshore Wind Farms (OWF), the terms “Production”, “Approved”, and “Planned” refer to the development status or stage of a wind farm project.<br />
-Production is when the wind farm is fully built and actively generating electricity;<br />
-Approved is when the wind farm project has received all the necessary legal and environmental permits from authorities but construction has not yet started; and<br />
-Planned is when the wind farm is in the early stages of development, often proposed or under review, but not yet approved.</p>
+- Production is when the wind farm is fully built and actively generating electricity;<br />
+- Approved is when the wind farm project has received all the necessary legal and environmental permits from authorities but construction has not yet started; and<br />
+- Planned is when the wind farm is in the early stages of development, often proposed or under review, but not yet approved.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>OWF_EMODnet</span><span class='op'>$</span><span class='va'>STATUS</span><span class='op'>)</span></span></code></pre>
@@ -1672,7 +1672,6 @@ Here, we can see that data includes OWF from 2009 to 2020.</p>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_land.html'>German_land</a></span>, colour <span class='op'>=</span> <span class='st'>'#9a8c98'</span>, fill <span class='op'>=</span> <span class='st'>'#9a8c98'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span></span>
 <span>  <span class='co'>## OWF</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>OWF_After2016</span>,  colour <span class='op'>=</span> <span class='cn'>NA</span>,fill<span class='op'>=</span> <span class='st'>"white"</span>,alpha<span class='op'>=</span><span class='fl'>1</span>, size<span class='op'>=</span><span class='fl'>1</span>,linetype<span class='op'>=</span><span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>+</span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>OWF_After2016</span>,  colour <span class='op'>=</span> <span class='cn'>NA</span>,fill<span class='op'>=</span> <span class='st'>"#bb3e03"</span>,alpha<span class='op'>=</span><span class='fl'>0.9</span>, size<span class='op'>=</span><span class='fl'>1</span>,linetype<span class='op'>=</span><span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>+</span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>OWF_Before2016</span>,  colour <span class='op'>=</span> <span class='st'>"#ffb703"</span>,fill<span class='op'>=</span> <span class='st'>"#ffb703"</span>,alpha<span class='op'>=</span><span class='fl'>0.9</span>, size<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span> </span>
 <span>  </span>
@@ -1685,6 +1684,7 @@ Here, we can see that data includes OWF from 2009 to 2020.</p>
 </div>
 <h2 id="names">Names</h2>
 <p>There is an option using <a href="https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html">ggrepel</a>, but here I manually include names of the OWF using <strong>annotation</strong>.</p>
+<p>First, create a data frame with the coordinates and the segment.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Labels</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>text_x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4010000</span>,<span class='fl'>4010000</span>,<span class='fl'>4141000</span>,<span class='fl'>4179000</span>,<span class='fl'>4211000</span>,<span class='fl'>4211000</span>,<span class='fl'>4211000</span>,<span class='fl'>4010000</span>,<span class='fl'>4010000</span>,<span class='fl'>4010000</span>,<span class='fl'>4010000</span><span class='op'>)</span>,</span>
@@ -1697,6 +1697,7 @@ Here, we can see that data includes OWF from 2009 to 2020.</p>
 <span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p>Then add it one by one to the plot. You can skip this step if you dont need the names.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>OWF_2plot</span><span class='op'>&lt;-</span><span class='va'>OWF_1plot</span> <span class='op'>+</span> </span>
@@ -1833,7 +1834,11 @@ Here, we can see that data includes OWF from 2009 to 2020.</p>
 </div>
 <pre><code>[1] 50.41517</code></pre>
 </div>
-<h1 id="references">References</h1>
+<h1 id="additional-information">Additional information</h1>
+<p><strong>Alternative data sources</strong> <br></p>
+<p><strong>GeoSeaPortal</strong> is a platform that gives people access to maps and data about Germany’s seas and coasts. It brings together information from different sources into one system, making it easier to find, view, and use the data.</p>
+<p>To download the original data go to <a href="https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de">GeoSeaPortal</a>. The zip contains several shapefiles including ‘OffshoreWindEnergy’</p>
+<p><strong>References</strong>:</p>
 <ul>
 <li><a href="https://www.bsh.de/EN/TOPICS/Offshore/Maritime_spatial_planning/maritime_spatial_planning_node.html">Maritime spatial planning</a></li>
 <li><a href="https://map.4coffshore.com/offshorewind/">4C Offshore</a></li>
@@ -1847,11 +1852,6 @@ Here, we can see that data includes OWF from 2009 to 2020.</p>
 <p>Emeis, K. C., van Beusekom, J., Callies, U., Ebinghaus, R., Kannen, A., Kraus, G., Kröncke, I., Lenhart, H., Lorkowski, I., Matthias, V., Möllmann, C., Pätsch, J., Scharfe, M., Thomas, H., Weisse, R. and Zorita, E. 2015. The North Sea - A shelf sea in the Anthropocene. – J. Mar. Syst. 141: 18–33. <a href="http://dx.doi.org/10.1016/j.jmarsys.2014.03.012">Link</a></p>
 <p>Garthe, S., Schwemmer, H., Peschko, V., Markones, N., Müller, S., Schwemmer, P. and Mercker, M. 2023. Large-scale effects of offshore wind farms on seabirds of high conservation concern. – Sci. Rep. 13: 4779. <a href="https://doi.org/10.1038/s41598-023-31601-z">Link</a></p>
 <p>Kastelein, R. A., Helder-Hoek, L., Covi, J. and Gransier, R. 2016. Pile driving playback sounds and temporary threshold shift in harbor porpoises (Phocoena phocoena): Effect of exposure duration . – J. Acoust. Soc. Am. 139: 2842–2851. <a href="http://dx.doi.org/10.1121/1.4948571">Link</a></p>
-<p><strong>Alternative data sources</strong> <br></p>
-<p><strong>GeoSeaPortal</strong> is a comprehensive geodata infrastructure that provides both internal and external users with access to spatial data related to Germany’s seas and coasts. The platform integrates data from various sources into a geo-object-relational database, ensuring harmonisation and facilitating efficient data retrieval and visualisation.</p>
-<p>To download the original data go to <a href="https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de">GeoSeaPortal</a>. The zip contains several shapefiles including ‘OffshoreWindEnergy’</p>
-<p><strong>Further reading</strong> <br>
-<a href="https://portals.iucn.org/library/sites/library/files/documents/2024-037-En_0.pdf">IUCN</a></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

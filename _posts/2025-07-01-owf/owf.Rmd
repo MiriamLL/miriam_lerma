@@ -94,9 +94,9 @@ ggplot(OWF_EMODnet) + # Gives CRS
 ## Status
 
 In the context of Offshore Wind Farms (OWF), the terms “Production”, “Approved”, and “Planned” refer to the development status or stage of a wind farm project.  
-Production is when the wind farm is fully built and actively generating electricity;  
-Approved is when the wind farm project has received all the necessary legal and environmental permits from authorities but construction has not yet started; and  
-Planned is when the wind farm is in the early stages of development, often proposed or under review, but not yet approved.
+- Production is when the wind farm is fully built and actively generating electricity;  
+- Approved is when the wind farm project has received all the necessary legal and environmental permits from authorities but construction has not yet started; and  
+- Planned is when the wind farm is in the early stages of development, often proposed or under review, but not yet approved.
 
 ```{r}
 unique(OWF_EMODnet$STATUS)
@@ -144,7 +144,6 @@ OWF_1plot<-ggplot(OWF_EMODnet) + # Gives CRS
   geom_sf(data = GermanNorthSea::German_land, colour = '#9a8c98', fill = '#9a8c98')+
 
   ## OWF
-  geom_sf(data = OWF_After2016,  colour = NA,fill= "white",alpha=1, size=1,linetype="dashed")+  
   geom_sf(data = OWF_After2016,  colour = NA,fill= "#bb3e03",alpha=0.9, size=1,linetype="dashed")+  
   geom_sf(data = OWF_Before2016,  colour = "#ffb703",fill= "#ffb703",alpha=0.9, size=1)+ 
   
@@ -159,6 +158,8 @@ OWF_1plot
 
 There is an option using [ggrepel](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html), but here I manually include names of the OWF using **annotation**.
 
+First, create a data frame with the coordinates and the segment. 
+
 ```{r}
 Labels<-data.frame(text_x=c(4010000,4010000,4141000,4179000,4211000,4211000,4211000,4010000,4010000,4010000,4010000),
            text_y= c(3479000,3494000,3605000,3585000,3494000,3486000,3478000,3449000,3439000,3429000,3405000),
@@ -169,6 +170,8 @@ Labels<-data.frame(text_x=c(4010000,4010000,4141000,4179000,4211000,4211000,4211
            segment_yend=c(3479000,3494000,3594000,3574000,3492000,3486000,3479000,3444000,3439000,3435000,3405000)
 )
 ```
+
+Then add it one by one to the plot. You can skip this step if you dont need the names. 
 
 ```{r, fig.height=6, fig.width=8}
 OWF_2plot<-OWF_1plot + 
@@ -322,7 +325,15 @@ In just four years, more area was developed for offshore wind farms than in the 
 (sum(OWF_After2016$AREA_SQKM)*100)/(sum(OWF_Before2016$AREA_SQKM,OWF_After2016$AREA_SQKM))
 ```
 
-# References
+# Additional information
+
+**Alternative data sources** <br>
+
+**GeoSeaPortal**  is a platform that gives people access to maps and data about Germany’s seas and coasts. It brings together information from different sources into one system, making it easier to find, view, and use the data.
+
+To download the original data go to [GeoSeaPortal](https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de). The zip contains several shapefiles including ‘OffshoreWindEnergy’
+
+**References**: 
 
 - [Maritime spatial planning](https://www.bsh.de/EN/TOPICS/Offshore/Maritime_spatial_planning/maritime_spatial_planning_node.html)
 - [4C Offshore](https://map.4coffshore.com/offshorewind/)
@@ -345,11 +356,4 @@ Garthe, S., Schwemmer, H., Peschko, V., Markones, N., Müller, S., Schwemmer, P.
 Kastelein, R. A., Helder-Hoek, L., Covi, J. and Gransier, R. 2016.  Pile driving playback sounds and temporary threshold shift in harbor porpoises (Phocoena phocoena): Effect of exposure duration . – J. Acoust. Soc. Am. 139: 2842–2851. [Link](http://dx.doi.org/10.1121/1.4948571)
 
 
-**Alternative data sources** <br>
 
-**GeoSeaPortal** is a comprehensive geodata infrastructure that provides both internal and external users with access to spatial data related to Germany's seas and coasts. The platform integrates data from various sources into a geo-object-relational database, ensuring harmonisation and facilitating efficient data retrieval and visualisation. 
-
-To download the original data go to [GeoSeaPortal](https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de). The zip contains several shapefiles including ‘OffshoreWindEnergy’
-
-**Further reading** <br>
-[IUCN](https://portals.iucn.org/library/sites/library/files/documents/2024-037-En_0.pdf)
