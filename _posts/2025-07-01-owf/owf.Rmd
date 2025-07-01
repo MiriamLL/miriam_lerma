@@ -331,8 +331,9 @@ In just four years, more area was developed for offshore wind farms than in the 
 **Alternative data sources** <br>
 
 **GeoSeaPortal**  is a platform that gives people access to maps and data about Germany’s seas and coasts. It brings together information from different sources into one system, making it easier to find, view, and use the data.
-
 To download the original data go to [GeoSeaPortal](https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de). The zip contains several shapefiles including ‘OffshoreWindEnergy’
+
+**OSPAR** also makes shapefiles [easily accesible](https://odims.ospar.org/en/submissions/ospar_offshore_installations_2021_02/)
 
 **References**: 
 
