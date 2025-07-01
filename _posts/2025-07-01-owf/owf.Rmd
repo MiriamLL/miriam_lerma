@@ -1,7 +1,7 @@
 ---
 title: "Offshore Wind Farms"
 description: |
-  This blog post shows how to visualize data on offshore wind farms in the German North Sea using R. It covers downloading the dataset from EMODnet, exploring the data, and creating a map with ggplot2. In addition, it shows an example on how to calculate the area developed before 2016, highlighting the rapid growth of offshore wind farms (OWFs). Moreover, it includes some references on their potential impacts on marine animals.
+  This blog post demonstrates how to visualize offshore wind farm data in the German North Sea using R. It covers data download, exploration, mapping with ggplot2, and calculating areas developed before 2016.
 author:
   - name: Miriam Lerma
     url: {}
@@ -322,7 +322,8 @@ sum(OWF_After2016$AREA_SQKM)
 In just four years, more area was developed for offshore wind farms than in the whole seven years before.
 
 ```{r}
-(sum(OWF_After2016$AREA_SQKM)*100)/(sum(OWF_Before2016$AREA_SQKM,OWF_After2016$AREA_SQKM))
+(sum(OWF_After2016$AREA_SQKM)*100)/
+  (sum(OWF_Before2016$AREA_SQKM,OWF_After2016$AREA_SQKM))
 ```
 
 # Additional information
