@@ -26,6 +26,8 @@ Although limited impacts have been found, the disturbance of the seabed during i
 </html>
 Source: [Sa-word](https://www.sa-world.com/blog/ztt-has-concluded-installing-the-gode-wind-3-submarine-cable-in-the-german-north-sea.html)
 
+- [Cable instalation](https://oceannews.com/news/subsea-cable/jan-de-nul-to-install-inter-array-cables-for-wind-farms-german-north-sea/)
+
 # Data
 
 There are two  main installations: telecommunications (which for example provide internet access) and power (transporting energy, for example from wind farms to land)
@@ -142,6 +144,16 @@ Base_map +
                     label_axes = list(left = "N", bottom = 'E'))
 ```
 
+Some connecting Uk, Netherlands, Germany, Denmark and Norway. 
+
+- [Submarine networks](https://www.submarinenetworks.com/en/systems/intra-europe/ioema/ioema-fibre-to-build-submarine-cable-connecting-five-northern-european-markets)
+
+- [Submarine cable map](https://www.submarinecablemap.com/)
+
+- Atlantic Crossing-1
+- IOEMA 
+- Cobra Cable
+
 ## Power
 
 ```{r}
@@ -165,6 +177,7 @@ Base_map +
   coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
                     label_axes = list(left = "N", bottom = 'E'))
 ```
+
 <html>
 <body>
    <left>
@@ -175,6 +188,9 @@ Base_map +
 
 Source: [Offshore mag](https://www.offshore-mag.com/renewable-energy/article/14305254/prysmian-supplying-cables-for-two-german-offshore-wind-farms)
 
+Some connecting with Norway. 
+
+- [KFW](https://www.kfw.de/stories/environment/renewable-energy/nordlink/)
 
 ```{r, echo=FALSE, eval=FALSE}
 # Export
@@ -189,7 +205,7 @@ ggsave(Plot_cables,
 
 # References
 
-- [Video](https://youtu.be/Gg1aFmsKQgk)
+- [How do they get installed - Video](https://youtu.be/Gg1aFmsKQgk)
 - [Buck et al 2024](https://www.researchgate.net/publication/235938669_Extensive_open_ocean_aquaculture_development_within_wind_farms_in_Germany_The_prospect_of_offshore_co-management_and_legal_constraints)
-
+- [Submarine cable map](https://www.submarinecablemap.com/)
 

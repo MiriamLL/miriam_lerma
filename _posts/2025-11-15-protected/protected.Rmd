@@ -1,0 +1,219 @@
+---
+title: "Protected"
+description: |
+  In this blog post, we'll explore maritime protected areas, walking through the process of downloading the data and visualizing it.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-10-15
+preview: protected_portada.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Intro
+
+Marine Protected Areas (MPAs) are sections of the ocean where human activities are regulated or restricted to conserve marine biodiversity, ecosystems, and cultural resources. They aim to protect habitats, species, and natural processes from threats like overfishing, pollution, and habitat destruction. MPAs vary in size, purpose, and level of protection, ranging from fully protected no-take zones to areas allowing sustainable use.
+
+# Data
+
+## SPAs 
+Special Protection Areas (SPAs) at sea are marine zones designated under the European Union's Birds Directive to protect habitats critical for wild bird species, particularly those that are rare, threatened, or migratory. In Germany, these areas form part of the Natura 2000 network and often overlap with Marine Protected Areas (MPAs) under other environmental directives, such as the Habitats Directive. 
+
+To download data from the EEZ and territorial waters from Germany: go to [GeoSeaPortal](https://gdi.bsh.de/mapapps/?lang=en&stateId=78de7a7c-92d7-4867-9e7a-7c92d7d867f2)>In the theme gallery>move to [Seegrenzen](https://gdi.bsh.de/mapapps/resources/apps/seegrenzen/index.html?lang=de).  
+
+To download: go to [GeoSeaPortal](https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1.) The zip contains several shapefiles including NatureConservation
+
+Other option is [eea](https://www.eea.europa.eu/data-and-maps/data/natura-13)
+
+## SCAs
+
+Special Areas of Conservation (SACs), sometimes referred to as SCAs in Germany, are protected sites designated under the EU Habitats Directive to conserve important natural habitats and species (excluding birds). In marine areas, they help protect features like reefs, sandbanks, and marine mammals, forming part of the Natura 2000 network alongside Special Protection Areas (SPAs).
+
+Other option is [Europen Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-14) This file contains a more complete data from the natura 2000 sites.
+
+For using the SCA (Special Conservation Areas) in Germany
+
+
+# Read
+
+Prepare to read shapefiles, by loading the packages and providing the folder where the data is stored.
+
+```{r}
+library(here)
+library(sf)
+```
+
+```{r, echo=TRUE}
+This_directory<-here()
+```
+
+```{r,echo=FALSE, include=FALSE}
+This_directory<-"C:\\Users\\lerma\\OneDrive\\Documents\\03Academico\\02Proyectos-Postdoc\\2025\\1Programming\\2Packages\\TestData\\EEZ\\"
+list.files(This_directory)
+Germany_eez<-st_read(paste0(This_directory,"/MaritimeBoundaryAWZ.shp"))
+Germany_mts<-st_read(paste0(This_directory,"/MaritimeBoundaryTerritorialSea.shp"))
+```
+
+Load the corresponding shapefiles. Now they should be in your R environment. 
+
+```{r, echo=TRUE, message=FALSE, eval=FALSE}
+Germany_eez<-st_read(paste0(This_directory,"/MaritimeBoundaryAWZ.shp"))
+Germany_mts<-st_read(paste0(This_directory,"/MaritimeBoundaryTerritorialSea.shp"))
+```
+
+# Base Map
+
+Load the package ggplot2 to create plots.
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+library(GermanNorthSea)
+```
+
+Use the function geom_sf to visualize the shapefiles. 
+
+```{r}
+Map_protected<-ggplot() + 
+  geom_sf(data = GermanNorthSea::German_natura, colour = 'transparent', fill= '#84a98c', alpha=0.5,lwd = 0.5)+
+  geom_sf(data = GermanNorthSea::German_SCA, colour = 'transparent', fill= '#84a98c', alpha=0.5,lwd = 0.5)
+Map_protected
+```
+
+Use the package GermanNorthSea to add the land.
+
+```{r}
+library(GermanNorthSea)
+```
+
+```{r, fig.height=6, fig.width=8, message=FALSE}
+Map_protected<- Map_protected + 
+  geom_sf(data = GermanNorthSea::German_EEZ, colour = '#43585E', fill = 'transparent')+
+  geom_sf(data = GermanNorthSea::German_land, colour = '#43585E', fill = '#43585E')+  
+  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+                    label_axes = list(left = "N", bottom = 'E'))
+Map_protected
+```
+
+Add the attributes and the theme to your base map.
+
+```{r, fig.height=6, fig.width=8}
+Map_protected<- Map_protected + 
+  theme(
+  axis.text.x = element_text(size=10,vjust = 12,color='#3d5a80'),
+  axis.text.y = element_text(color='#3d5a80',size=10,margin = margin(0,-1.30,0,1, unit = 'cm')),
+  axis.title = element_blank(),
+  axis.ticks.length=unit(-0.20, "cm"),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  panel.background = element_rect(fill = '#F2F2F2'))+
+  
+  xlab('Longitude')+ylab('Latitude')+
+  
+  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth=1.5))+
+  
+  scale_x_continuous(breaks = c(4,6,8)) +
+  scale_y_continuous(breaks = c(53.5,54.5,55.5))
+Map_protected
+```
+
+
+
+
+
+Add legend
+
+
+```{r, fig.height=6, fig.width=8}
+Map_protected<-Map_protected +
+  
+  annotate("segment", x = 3812000+100000, xend = 3833000+100000,
+           y = 3400000+50000, yend = 3400000+50000, 
+           colour = "black", size=0.8, linetype = "solid")+
+  annotate("text", x = 3835000+100000, y = 3400000+50000, 
+           colour = "black", label = "Economic Exclusive Zone (EEZ)", size=5, hjust=0)+
+
+  annotate("segment", x = 3812000+100000, xend = 3833000+100000,
+           y = 3380000+50000, yend = 3380000+50000, 
+           colour = "black", size=0.8, linetype = "dashed")+
+  annotate("text", x = 3835000+100000, y = 3380000+50000, 
+           colour = "black", label = "Protected Areas", size=5, hjust=0)+
+  NULL
+Map_protected
+```
+
+# Area
+
+Germany - 38% of water managed by the marine protected network. (no set date) 
+
+```{r}
+SPA<-GermanNorthSea::German_natura
+SCA<-GermanNorthSea::German_SCA
+```
+
+```{r}
+SPA$AREA_QKM<-gsub(" km²","",SPA$AREA_QKM)
+sum(as.numeric(SPA$AREA_QKM))
+```
+```{r}
+sum(as.numeric(SCA$Shape_Area))
+```
+
+```{r}
+SPA$area <- st_area(SPA)
+```
+
+```{r}
+sum(SPA$area)
+```
+
+```{r}
+SCA$area <- st_area(SCA)
+```
+
+```{r}
+sum(SCA$area)
+```
+
+```{r}
+sum(SCA$area)+sum(SPA$area)
+```
+
+In the German North Sea, approximately 46% of the Exclusive Economic Zone (EEZ) is covered by Marine Protected Areas (MPAs) and other nature conservation areas. Specifically, these areas encompass 18,698 km², while the total German North Sea EEZ is 40,999 km². 
+Here's a more detailed breakdown:
+
+MPAs and Nature Conservation Areas: These areas, including those implemented and unimplemented, cover 18,698 km². 
+
+German North Sea EEZ: The total area of the German North Sea Exclusive Economic Zone is 40,999 km². 
+
+Proportion: Dividing the area of protected areas by the total EEZ area gives a percentage of 46% (18,698 / 40,999 * 100 = 45.6%)
+
+https://biodiversity.europa.eu/countries/germany
+
+# Human activities
+
+However in marine protected areas, many activities are allow.
+
+https://seas-at-risk.org/press-releases/new-german-legal-action-begins-over-lack-of-marine-ecosystem-protection/
+
+# References
+
+```{r, echo=FALSE, eval=FALSE}
+# Export
+library(here)
+here()
+My_directory<-paste0(here(),"/_posts/2025-11-15-protected")
+ggsave(Map_protected,
+       filename = paste0(My_directory,"/protected_areas.jpeg"),
+       width = 8, 
+       height = 6)
+```
+
+- [Birds directive](https://environment.ec.europa.eu/topics/nature-and-biodiversity/birds-directive_en)
+- [Habitats directive](https://environment.ec.europa.eu/topics/nature-and-biodiversity/habitats-directive_en)
+- [Natura 2000](https://www.eea.europa.eu/themes/biodiversity/natura-2000/the-natura-2000-protected-areas-network)
+- [Marine Protected Areas](https://www.mcsuk.org/ocean-emergency/marine-protected-areas/why-marine-protected-areas-are-important/)
