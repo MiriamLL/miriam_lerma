@@ -9,8 +9,6 @@ date: 2023-06-06
 preview: plotting_front.png
 output:
   distill::distill_article:
-    toc: true
-    toc_depth: 2
     self_contained: false
 ---
 
@@ -65,8 +63,8 @@ In this class:<br>
 
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
-          text = "Open",
-          url = "https://miriamll.github.io/teaching_R/Plotting_0606.html#1")
+          text = "Download",
+          url = "https://raw.githubusercontent.com/MiriamLL/data_supporting_webpage/main/Teaching/Plotting.pdf")
 ```
 
 
@@ -77,7 +75,7 @@ icon_link(icon = "fas fa-images",
 
 To download the files there are several options:  
 
-1. Directly from github `r fa("github", fill = "#e76f51")`, go to file, click on raw, select **save as**. [See video here](https://www.gitkraken.com/learn/git/github-download#how-to-download-a-csv-from-github)
+1. Directly from github `r fa("github", fill = "#e76f51")`, go to file, click on raw, select **save as**. [See video here](https://www.gitkraken.com/learn/git/github-download#how-to-download-a-csv-from-github).
 
 2. In firefox `r fa("firefox", fill = "#e76f51")`, open link, click on three lines icon `r fa("grip-lines", fill = "#ee9b00")`, and select **save page as** (or control+S)
 
@@ -93,6 +91,3 @@ To download the files there are several options:
 
 - Rmd script to export html document. Click [here to download](https://github.com/MiriamLL/teaching_R/blob/master/05PlotInteractive.Rmd).
 
-**Presentation**
-
-To download the presentation as pdf click [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-plotting/Plotting.pdf).

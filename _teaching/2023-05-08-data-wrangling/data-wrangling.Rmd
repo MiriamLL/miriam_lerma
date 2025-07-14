@@ -9,7 +9,7 @@ date: 2023-05-08
 preview: data_wrangling_front.png
 output:
   distill::distill_article:
-    toc: true
+    toc: false
     toc_depth: 2
     self_contained: false
 ---
@@ -57,8 +57,8 @@ In this class: <br>
 
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
-          text = "Open",
-          url = "https://miriamll.github.io/teaching_R/DataWrangling_0805.html#1")
+          text = "Download",
+          url = "https://github.com/MiriamLL/data_supporting_webpage/blob/main/Teaching/DataWrangling.pdf")
 ```
 
 <br>
@@ -79,6 +79,3 @@ To download the files there are several options:
 
 - Csv file containing penguin data. Click [here to download](https://raw.githubusercontent.com/MiriamLL/teaching_R/master/Downloads/penguins1.csv) .
 
-**Presentation**
-
-To download the presentation as pdf click [here](https://github.com/MiriamLL/data_supporting_webpage/blob/main/Teaching/DataWrangling.pdf).
