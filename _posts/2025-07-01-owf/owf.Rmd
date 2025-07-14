@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-07-01
-preview: owf_portada.jpg
+preview: owf_front.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -23,7 +23,7 @@ An Offshore Wind Farm (OWF) is defined as a group of wind turbines placed in the
 <html>
 <body>
    <left>
-      <a href="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-07-01-owf/Alpha_Ventus_Windmills_wikipedia.JPG?raw=true"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-07-01-owf/Alpha_Ventus_Windmills_wikipedia.JPG?raw=true" style="width:450px"></a>
+      <img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2025/OWF/Alpha_Ventus_Windmills_wikipedia.JPG?raw=true" style="width:450px"></a>
    </left>
 </body>
 </html>
