@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-04-18
-preview: 000Index.png
+preview: intro_to_r_front.png
 output:
   distill::distill_article:
     toc: true
@@ -16,7 +16,6 @@ output:
 
 ```{r libraries, echo=FALSE}
 library(distilltools)
-library(emo)
 library(fontawesome)
 ```
 
@@ -30,16 +29,16 @@ The materials will be updated together with the training.
 
 # Intro a R.
 In this class: <br>
-- [Install or update R](https://miriamll.github.io/R_intro/IntroToR_1104.html#7)<br>
-- [Workspace panes](https://miriamll.github.io/R_intro/IntroToR_1104.html#22)<br>
-- [Packages](https://miriamll.github.io/R_intro/IntroToR_1104.html#51)<br>
-- [Directories](https://miriamll.github.io/R_intro/IntroToR_1104.html#56)<br>
+- [Install or update R](https://miriamll.github.io/teaching_R/IntroToR_1104.html#7)<br>
+- [Workspace panes](https://miriamll.github.io/teaching_R/IntroToR_1104.html#22)<br>
+- [Packages](https://miriamll.github.io/teaching_R/IntroToR_1104.html#51)<br>
+- [Directories](https://miriamll.github.io/teaching_R/IntroToR_1104.html#56)<br>
 
 ## Slides
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/IntroToR_1104.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000Index.png?raw=true" style="width:400px"></a>
+      <a href="https://miriamll.github.io/teaching_R/IntroToR_1104.html#1"><img src="https://github.com/MiriamLL/teaching_R/blob/master/Images/000Index.png?raw=true" style="width:400px"></a>
    </left>
 </body>
 </html>
@@ -48,7 +47,7 @@ In this class: <br>
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Open",
-          url = "https://miriamll.github.io/R_intro/IntroToR_1104.html#1")
+          url = "https://miriamll.github.io/teaching_R/IntroToR_1104.html#1")
 ```
 
 
@@ -67,11 +66,13 @@ To download the files for the exercises there are several options:
 
 **Exercises**
 
-- R script containing exercises from the first part. Click [here](https://raw.githubusercontent.com/MiriamLL/R_intro/master/01Exercises.R).
+- R script containing exercises from the first part. Click [here](https://raw.githubusercontent.com/MiriamLL/teaching_R/master/01Exercises.R).
 
-- Csv file containing penguin data. Click [here](https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv).
+- Csv file containing penguin data. Click [here](https://raw.githubusercontent.com/MiriamLL/teaching_R/master/Downloads/penguins1.csv).
 
 **Presentation**
 
-To download the presentation as pdf click [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-04-18-intro-to-r/IntroToR.pdf)
+To download the presentation as pdf click [here](https://github.com/MiriamLL/data_supporting_webpage/blob/main/Teaching/IntroToR.pdf).
+
+
 

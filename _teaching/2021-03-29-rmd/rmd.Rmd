@@ -34,7 +34,7 @@ En esta clase aprenderás como crear documentos en Rmd. <br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase09.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Rmd-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase09.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -42,10 +42,10 @@ En esta clase aprenderás como crear documentos en Rmd. <br>
 ```{r icon-links1,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Rmd-Parte1")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Rmd-Parte1")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte1.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Rmd-Parte1.pdf")
 ```
 
 
@@ -56,7 +56,7 @@ En esta clase aprenderás como agregar citas y formato de revista. <br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Rmd-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase10.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Rmd-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase10.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -64,10 +64,10 @@ En esta clase aprenderás como agregar citas y formato de revista. <br>
 ```{r icon-links2,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Rmd-Parte2")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Rmd-Parte2")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Rmd-Parte2.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Rmd-Parte2.pdf")
 ```
 
 ## Presentar tus resultados usando Xaringan.
@@ -78,7 +78,7 @@ Podrás incluir tablas y figuras sin salir de RStudio. <br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Xaringan-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase11.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -87,10 +87,10 @@ Podrás incluir tablas y figuras sin salir de RStudio. <br>
 ```{r icon-links3,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Xaringan-Parte1")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Xaringan-Parte1")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte1.pdf")
+          url = "https://github.com/MiriamLL/teaching_R_Rmd/blob/main/Pdfs/Xaringan-Parte1.pdf")
 ```
 
 
@@ -101,7 +101,7 @@ En esta clase aprenderás como cambiar el estilo de letras o colores de tus pres
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase11Xaringan.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Xaringan-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase11Xaringan.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -109,10 +109,10 @@ En esta clase aprenderás como cambiar el estilo de letras o colores de tus pres
 ```{r icon-links4,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Xaringan-Parte2")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://github.com/MiriamLL/Curso_CIAD/blob/main/Pdfs/Xaringan-Parte2.pdf")
+          url = "https://github.com/MiriamLL/teaching_R_Rmd/blob/main/Pdfs/Xaringan-Parte2.pdf")
 ```
 
 
@@ -123,7 +123,7 @@ En esta clase aprenderás como crear un repositorio en github, como utilizar Zen
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/GitGithubZenodo"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase12.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/GitGithubZenodo"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase12.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -131,10 +131,10 @@ En esta clase aprenderás como crear un repositorio en github, como utilizar Zen
 ```{r icon-links5,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/GitGithubZenodo")
+          url = "https://miriamll.github.io/teaching_R_Rmd/GitGithubZenodo")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/GitGithubZenodo.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/GitGithubZenodo.pdf")
 ```
 
 
@@ -146,7 +146,7 @@ En esta clase verás básicos de reproducibilidad en la ciencia y en las publica
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Repro#1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase13.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Repro#1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase13.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -154,10 +154,10 @@ En esta clase verás básicos de reproducibilidad en la ciencia y en las publica
 ```{r icon-links6,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Repro#1")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Repro#1")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Repro.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Repro.pdf")
 ```
 
 

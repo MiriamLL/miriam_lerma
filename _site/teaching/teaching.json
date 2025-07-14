@@ -51,25 +51,6 @@
     "input_file": {}
   },
   {
-    "path": "teaching/2023-06-06-plotting/",
-    "title": "Plotting",
-    "description": "Using ggplot to create plots and maps.",
-    "author": [
-      {
-        "name": "Miriam Lerma",
-        "url": {}
-      }
-    ],
-    "date": "2023-06-06",
-    "categories": [],
-    "contents": "\r\n\r\nContents\r\nPlotting\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nPlotting\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class: - Using\r\nggplot - Scatterplot\r\n- Line\r\nchart - Barplot\r\n- Boxplot\r\n- Trajectory\r\n- Maps\r\n- Shapefiles\r\n- Limits\r\n- Scale\r\n- Arrow\r\n- Aesthetics\r\n- Colors\r\n- Theme\r\n- Axis\r\nlegend - Add\r\ngeometries in a map - Size\r\n- Shape\r\n- Linetype\r\n- Interactive\r\n- Animate\r\n- Export\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercises\r\nRmd script containing exercises. Click here\r\nto download.\r\nShapefile of Europa. Click here\r\nto download.\r\nRmd script to export word document. Click here\r\nto download.\r\nRmd script to export html document. Click here\r\nto download.\r\nPresentation\r\nTo download the presentation as pdf click here.\r\n\r\n\r\n\r\n",
-    "preview": "teaching/2023-06-06-plotting/000Plotting.png",
-    "last_modified": "2025-05-06T14:16:55+02:00",
-    "input_file": {},
-    "preview_width": 816,
-    "preview_height": 606
-  },
-  {
     "path": "teaching/2023-06-06-tracking/",
     "title": "Tracking",
     "description": "Tracking data into a workflow.",
@@ -89,6 +70,25 @@
     "preview_height": 878
   },
   {
+    "path": "teaching/2023-06-06-plotting/",
+    "title": "Plotting",
+    "description": "Using ggplot to create plots and maps.",
+    "author": [
+      {
+        "name": "Miriam Lerma",
+        "url": {}
+      }
+    ],
+    "date": "2023-06-06",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nPlotting\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nPlotting\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:\r\n- Using ggplot\r\n- Scatterplot\r\n- Line chart\r\n- Barplot\r\n- Boxplot\r\n- Trajectory\r\n- Maps\r\n- Shapefiles\r\n- Limits\r\n- Scale\r\n- Arrow\r\n- Aesthetics\r\n- Colors\r\n- Theme\r\n- Axis legend\r\n- Add geometries in a map\r\n- Size\r\n- Shape\r\n- Linetype\r\n- Interactive\r\n- Animate\r\n- Export\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github , go to file, click on raw, select save as. See video here\r\nIn firefox , open link, click on three lines icon , and select save page as (or control+S)\r\nIn chrome , open the link, and click on the share icon \r\nExercises\r\nRmd script containing exercises. Click here to download.\r\nShapefile of Europa. Click here to download.\r\nRmd script to export word document. Click here to download.\r\nRmd script to export html document. Click here to download.\r\nPresentation\r\nTo download the presentation as pdf click here.\r\n\r\n\r\n\r\n",
+    "preview": "teaching/2023-06-06-plotting/plotting_front.png",
+    "last_modified": "2025-07-14T11:30:38+02:00",
+    "input_file": "plotting.knit.md",
+    "preview_width": 816,
+    "preview_height": 606
+  },
+  {
     "path": "teaching/2023-05-08-data-wrangling/",
     "title": "Data wrangling",
     "description": "Load data, basic calculations, tidydata, pipe operations, join and export data frames.",
@@ -100,10 +100,10 @@
     ],
     "date": "2023-05-08",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nData\r\nwrangling\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class:  - rmd\r\n- load\r\nfiles - basic\r\noperations  - rows\r\nand columns  - tidydata\r\n - count\r\n - select\r\n - filter\r\n - mutate\r\n - summarize\r\n - nas\r\n- join\r\n - export\r\n\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S)\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n\r\nExercises\r\nRmd script containing exercises. Click here\r\nto download .\r\nCsv file containing penguin data. Click here\r\nto download .\r\nPresentation\r\nTo download the presentation as pdf click here\r\n\r\n\r\n\r\n",
-    "preview": "teaching/2023-05-08-data-wrangling/data-wrangling.png",
-    "last_modified": "2025-05-06T14:16:55+02:00",
-    "input_file": {},
+    "contents": "\r\n\r\nContents\r\nData wrangling\r\nIndex\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nData wrangling\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIndex\r\nIn this class: \r\n- rmd\r\n- load files\r\n- basic operations \r\n- rows and columns \r\n- tidydata \r\n- count \r\n- select \r\n- filter \r\n- mutate \r\n- summarize \r\n- nas\r\n- join \r\n- export \r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files there are several options:\r\nDirectly from github , go to file, click on raw, select save as. See video here\r\nIn firefox , open link, click on three lines icon , and select save page as (or control+S)\r\nIn chrome , open the link, and click on the share icon \r\nExercises\r\nRmd script containing exercises. Click here to download .\r\nCsv file containing penguin data. Click here to download .\r\nPresentation\r\nTo download the presentation as pdf click here.\r\n\r\n\r\n\r\n",
+    "preview": "teaching/2023-05-08-data-wrangling/data_wrangling_front.png",
+    "last_modified": "2025-07-14T11:27:25+02:00",
+    "input_file": "data-wrangling.knit.md",
     "preview_width": 1225,
     "preview_height": 919
   },
@@ -119,10 +119,10 @@
     ],
     "date": "2023-04-18",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nFirst\r\nsteps into R\r\nIntro a R.\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nFirst steps into R\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIntro a R.\r\nIn this class:  - Install\r\nor update R - Workspace\r\npanes - Packages\r\n- Directories\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files for the exercises there are several\r\noptions:\r\nDirectly from github\r\n,\r\ngo to file, click on raw, select save as. See\r\nvideo here.\r\nIn firefox\r\n,\r\nopen link, click on three lines icon\r\n,\r\nand select save page as (or control+S).\r\nIn chrome\r\n,\r\nopen the link, and click on the share icon\r\n.\r\nExercises\r\nR script containing exercises from the first part. Click here.\r\nCsv file containing penguin data. Click here.\r\nPresentation\r\nTo download the presentation as pdf click here\r\n\r\n\r\n\r\n",
-    "preview": "teaching/2023-04-18-intro-to-r/000Index.png",
-    "last_modified": "2025-05-06T14:16:55+02:00",
-    "input_file": {},
+    "contents": "\r\n\r\nContents\r\nFirst steps into R\r\nIntro a R.\r\nSlides\r\nDownloads\r\n\r\n\r\n\r\n\r\n\r\nFirst steps into R\r\nWelcome!\r\nThis material was prepared for DDA-FTZ\r\nThe materials will be updated together with the training.\r\nIntro a R.\r\nIn this class: \r\n- Install or update R\r\n- Workspace panes\r\n- Packages\r\n- Directories\r\nSlides\r\n\r\n\r\n\r\n\r\n Open\r\n\r\n\r\nDownloads\r\nTo download the files for the exercises there are several options:\r\nDirectly from github , go to file, click on raw, select save as. See video here.\r\nIn firefox , open link, click on three lines icon , and select save page as (or control+S).\r\nIn chrome , open the link, and click on the share icon .\r\nExercises\r\nR script containing exercises from the first part. Click here.\r\nCsv file containing penguin data. Click here.\r\nPresentation\r\nTo download the presentation as pdf click here.\r\n\r\n\r\n\r\n",
+    "preview": "teaching/2023-04-18-intro-to-r/intro_to_r_front.png",
+    "last_modified": "2025-07-14T11:23:12+02:00",
+    "input_file": "intro-to-r.knit.md",
     "preview_width": 1225,
     "preview_height": 919
   },
@@ -138,10 +138,10 @@
     ],
     "date": "2021-03-16",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nRmarkdown para escribir artículos\r\nPresentar tus resultados usando Xaringan.\r\nEstilizar tus dispositivas Xaringan.\r\nGithub, Zenodo y Git.\r\nReproducibilidad.\r\n\r\n\r\n\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. \r\n\r\n\r\n \r\n Presentación Descargar\r\n\r\nRmarkdown para escribir artículos\r\nEn esta clase aprenderás como agregar citas y formato de revista. \r\n\r\n\r\n \r\n Presentación Descargar\r\n\r\nPresentar tus resultados usando Xaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. \r\n\r\n\r\n \r\n Presentación Descargar\r\n\r\nEstilizar tus dispositivas Xaringan.\r\nEn esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. También aprenderás como compartirlas ya sea en github o en pdf. \r\n\r\n\r\n \r\n Presentación Descargar\r\n\r\nGithub, Zenodo y Git.\r\nEn esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. \r\n\r\n\r\n \r\n Presentación Descargar\r\n\r\nReproducibilidad.\r\nEn esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. \r\n\r\n\r\n \r\n Presentación Descargar\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nRmarkdown\r\nRmarkdown.\r\nRmarkdown para escribir artículos\r\nPresentar tus resultados usando Xaringan.\r\nEstilizar tus dispositivas Xaringan.\r\nGithub, Zenodo y Git.\r\nReproducibilidad.\r\n\r\n\r\n\r\n\r\n\r\nRmarkdown\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nRmarkdown.\r\nEn esta clase aprenderás como crear documentos en Rmd. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nRmarkdown para escribir artículos\r\nEn esta clase aprenderás como agregar citas y formato de revista. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nPresentar tus resultados usando Xaringan.\r\nEn esta clase aprenderás como crear presentaciones en Xaringan.\r\nPodrás incluir tablas y figuras sin salir de RStudio. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nEstilizar tus dispositivas Xaringan.\r\nEn esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. También aprenderás como compartirlas ya sea en github o en pdf. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nGithub, Zenodo y Git.\r\nEn esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nReproducibilidad.\r\nEn esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\n\r\n\r\n\r\n",
     "preview": "teaching/2021-03-29-rmd/rmd.png",
-    "last_modified": "2025-05-06T14:16:54+02:00",
-    "input_file": {},
+    "last_modified": "2025-07-14T11:05:24+02:00",
+    "input_file": "rmd.knit.md",
     "preview_width": 1236,
     "preview_height": 927
   },
@@ -159,8 +159,8 @@
     "categories": [],
     "contents": "\r\n\r\nContents\r\nClase de R\r\nIntro a R.\r\nCargar tus datos.\r\nGráficos.\r\nOperaciones.\r\nOrdenar, unir y exportar.\r\nProyectos.\r\nModelo lineal simple.\r\nAnalisis de varianzas.\r\nModelos mixtos.\r\n\r\n\r\n\r\n\r\n\r\nClase de R\r\nBienvenido!\r\nEste material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo CIAD.\r\nNo obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.\r\nIré subiendo materiales conforme se vayan actualizando.\r\nIntro a R.\r\nEn esta clase aprenderás a abrir RStudio e identificar sus partes. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nCargar tus datos.\r\nEn esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nGráficos.\r\nEn esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.\r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nOperaciones.\r\nEn esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. \r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nOrdenar, unir y exportar.\r\nEn esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.\r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nProyectos.\r\nEn esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.\r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nModelo lineal simple.\r\nEn esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu gráfico.\r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nAnalisis de varianzas.\r\nEn esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.\r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\nModelos mixtos.\r\nEsta clase es una introducción a los modelos mixtos y a la selección de modelos usando el AIC.\r\n\r\n\r\n\r\n\r\n Presentación\r\n Descargar\r\n\r\n\r\n\r\n\r\n",
     "preview": "teaching/2021-03-01-IntroaR/cursoR.png",
-    "last_modified": "2025-07-14T10:41:35+02:00",
-    "input_file": {},
+    "last_modified": "2025-07-14T11:04:17+02:00",
+    "input_file": "IntroaR.knit.md",
     "preview_width": 1236,
     "preview_height": 927
   }

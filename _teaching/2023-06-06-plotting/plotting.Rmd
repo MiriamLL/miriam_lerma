@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-06-06
-preview: 000Plotting.png
+preview: plotting_front.png
 output:
   distill::distill_article:
     toc: true
@@ -16,7 +16,6 @@ output:
 
 ```{r libraries, echo=FALSE}
 library(distilltools)
-library(emo)
 library(fontawesome)
 ```
 
@@ -31,34 +30,34 @@ The materials will be updated together with the training.
 # Index
 
 In this class:<br>
-- [Using ggplot](https://miriamll.github.io/R_intro/Plotting_0606.html#11)<br>
-- [Scatterplot](https://miriamll.github.io/R_intro/Plotting_0606.html#27)<br>
-- [Line chart](https://miriamll.github.io/R_intro/Plotting_0606.html#28)<br>
-- [Barplot](https://miriamll.github.io/R_intro/Plotting_0606.html#29)<br>
-- [Boxplot](https://miriamll.github.io/R_intro/Plotting_0606.html#31)<br>
-- [Trajectory](https://miriamll.github.io/R_intro/Plotting_0606.html#33)<br>
-- [Maps](https://miriamll.github.io/R_intro/Plotting_0606.html#36)<br>
-- [Shapefiles](https://miriamll.github.io/R_intro/Plotting_0606.html#42)<br>
-- [Limits](https://miriamll.github.io/R_intro/Plotting_0606.html#46)<br>
-- [Scale](https://miriamll.github.io/R_intro/Plotting_0606.html#47)<br>
-- [Arrow](https://miriamll.github.io/R_intro/Plotting_0606.html#48)<br>
-- [Aesthetics](https://miriamll.github.io/R_intro/Plotting_0606.html#55)<br>
-- [Colors](https://miriamll.github.io/R_intro/Plotting_0606.html#58)<br>
-- [Theme](https://miriamll.github.io/R_intro/Plotting_0606.html#63)<br>
-- [Axis legend](https://miriamll.github.io/R_intro/Plotting_0606.html#68)<br>
-- [Add geometries in a map](https://miriamll.github.io/R_intro/Plotting_0606.html#72)<br>
-- [Size](https://miriamll.github.io/R_intro/Plotting_0606.html#80)<br>
-- [Shape](https://miriamll.github.io/R_intro/Plotting_0606.html#81)<br>
-- [Linetype](https://miriamll.github.io/R_intro/Plotting_0606.html#83)<br>
-- [Interactive](https://miriamll.github.io/R_intro/Plotting_0606.html#86)<br>
-- [Animate](https://miriamll.github.io/R_intro/Plotting_0606.html#88)<br>
-- [Export](https://miriamll.github.io/R_intro/Plotting_0606.html#89)<br>
+- [Using ggplot](https://miriamll.github.io/teaching_R/Plotting_0606.html#11)<br>
+- [Scatterplot](https://miriamll.github.io/teaching_R/Plotting_0606.html#27)<br>
+- [Line chart](https://miriamll.github.io/teaching_R/Plotting_0606.html#28)<br>
+- [Barplot](https://miriamll.github.io/teaching_R/Plotting_0606.html#29)<br>
+- [Boxplot](https://miriamll.github.io/teaching_R/Plotting_0606.html#31)<br>
+- [Trajectory](https://miriamll.github.io/teaching_R/Plotting_0606.html#33)<br>
+- [Maps](https://miriamll.github.io/teaching_R/Plotting_0606.html#36)<br>
+- [Shapefiles](https://miriamll.github.io/teaching_R/Plotting_0606.html#42)<br>
+- [Limits](https://miriamll.github.io/teaching_R/Plotting_0606.html#46)<br>
+- [Scale](https://miriamll.github.io/teaching_R/Plotting_0606.html#47)<br>
+- [Arrow](https://miriamll.github.io/teaching_R/Plotting_0606.html#48)<br>
+- [Aesthetics](https://miriamll.github.io/teaching_R/Plotting_0606.html#55)<br>
+- [Colors](https://miriamll.github.io/teaching_R/Plotting_0606.html#58)<br>
+- [Theme](https://miriamll.github.io/teaching_R/Plotting_0606.html#63)<br>
+- [Axis legend](https://miriamll.github.io/teaching_R/Plotting_0606.html#68)<br>
+- [Add geometries in a map](https://miriamll.github.io/teaching_R/Plotting_0606.html#72)<br>
+- [Size](https://miriamll.github.io/teaching_R/Plotting_0606.html#80)<br>
+- [Shape](https://miriamll.github.io/teaching_R/Plotting_0606.html#81)<br>
+- [Linetype](https://miriamll.github.io/teaching_R/Plotting_0606.html#83)<br>
+- [Interactive](https://miriamll.github.io/teaching_R/Plotting_0606.html#86)<br>
+- [Animate](https://miriamll.github.io/teaching_R/Plotting_0606.html#88)<br>
+- [Export](https://miriamll.github.io/teaching_R/Plotting_0606.html#89)<br>
 
 ## Slides
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/Plotting_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-plotting/000Plotting.png?raw=true" style="width:350px"></a>
+      <a href="https://miriamll.github.io/teaching_R/Plotting_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-plotting/plotting_front.png?raw=true" style="width:350px"></a>
    </left>
 </body>
 </html>
@@ -67,7 +66,7 @@ In this class:<br>
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Open",
-          url = "https://miriamll.github.io/R_intro/Plotting_0606.html#1")
+          url = "https://miriamll.github.io/teaching_R/Plotting_0606.html#1")
 ```
 
 
@@ -86,13 +85,13 @@ To download the files there are several options:
 
 **Exercises**
 
-- Rmd script containing exercises. Click [here to download](https://github.com/MiriamLL/R_intro/blob/master/03ExercisesPlotting.Rmd).
+- Rmd script containing exercises. Click [here to download](https://github.com/MiriamLL/teaching_R/blob/master/03ExercisesPlotting.Rmd).
 
-- Shapefile of Europa. Click [here to download](https://github.com/MiriamLL/R_intro/blob/master/Downloads/Europe.shp).
+- Shapefile of Europa. Click [here to download](https://github.com/MiriamLL/teaching_R/blob/master/Downloads/Europe.shp).
 
-- Rmd script to export word document. Click [here to download](https://github.com/MiriamLL/R_intro/blob/master/04PlotWord.Rmd).
+- Rmd script to export word document. Click [here to download](https://github.com/MiriamLL/teaching_R/blob/master/04PlotWord.Rmd).
 
-- Rmd script to export html document. Click [here to download](https://github.com/MiriamLL/R_intro/blob/master/05PlotInteractive.Rmd).
+- Rmd script to export html document. Click [here to download](https://github.com/MiriamLL/teaching_R/blob/master/05PlotInteractive.Rmd).
 
 **Presentation**
 
