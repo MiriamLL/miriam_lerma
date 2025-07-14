@@ -57,7 +57,7 @@ In this class:<br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/teaching_R/Plotting_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-plotting/plotting_front.png?raw=true" style="width:350px"></a>
+      <a href="https://miriamll.github.io/teaching_R/Plotting_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_teaching/2023-06-06-plotting/plotting_front.png?raw=true" style="width:350px"></a>
    </left>
 </body>
 </html>
