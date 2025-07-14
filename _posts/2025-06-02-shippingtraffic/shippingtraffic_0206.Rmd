@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-06-02
-preview: shipping_portada.jpg
+preview: shipping_front.jpg
 output:
   distill::distill_article:
     self_contained: false
