@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-04-07
-preview: sst_portada.jpg
+preview: sst_front.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -47,14 +47,14 @@ Based on the coordinates 1 to 10 and 50 to 60
 For the time frame of April and May 2018  
 From the depths 0 to 60 m
 
-To download test data in nc format [click here](https://github.com/MiriamLL/TestData/blob/main/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc).  
+To download test data in nc format [click here](https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/SST/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc).  
 
 ## Read data
 
 Select the directory where the information is stored, or as here, use the data directly form the repository. 
 
 ```{r}
-SST_nc<-"https://github.com/MiriamLL/TestData/raw/refs/heads/main/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc"
+SST_nc<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/SST/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc"
 ```
 
 Load the [terra package](https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html) for reading raster data.
@@ -173,7 +173,7 @@ ggplot() +
 To select different palettes explore [ggplot2 book](https://ggplot2-book.org/scales-colour). Here are some of the palette options. 
 
 ```{r, echo=FALSE, out.width = "80%"}
-knitr::include_graphics("https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-04-15-copernicus-sst/color_palettes.png?raw=true")
+knitr::include_graphics("https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2025/SST/color_palettes.png?raw=true")
 ```
 
 To change the color palette use **scale_fill_distiller**.
