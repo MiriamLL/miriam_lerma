@@ -21,6 +21,8 @@ navbar:
     - icon: fab fa-github
       href: https://github.com/MiriamLL
 collections:
+  teaching:
+    citations: false
   posts:
     citations: false
 output: 
