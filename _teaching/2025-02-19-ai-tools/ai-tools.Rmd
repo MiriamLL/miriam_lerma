@@ -44,7 +44,7 @@ convert_pptx(path = this_pptx, author = "Miriam Lerma")
 <html>
 <body>
    <left>
-      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-02-19-ai-tools/AI-tools_1902.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-02-19-ai-tools/AI_front.jpg?raw=true" style="width:450px"></a>
+      <a href="https://raw.githubusercontent.com/MiriamLL/data_supporting_webpage/main/Teaching/AITools.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_teaching/2025-02-19-ai-tools/AI_front.jpg?raw=true" style="width:450px"></a>
    </left>
 </body>
 </html>

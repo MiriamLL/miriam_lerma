@@ -50,7 +50,7 @@ Load data<br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-06-06-tracking/002move.png?raw=true" style="width:350px"></a>
+      <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_teaching/2023-06-06-tracking/tracking_front.png?raw=true" style="width:350px"></a>
    </left>
 </body>
 </html>

@@ -81,7 +81,7 @@ I keep the list concise, though there are certainly many other resources availab
 - My package [sula](https://github.com/MiriamLL/sula)
 
 **2023**  
-- My [teaching materials](https://www.miriam-lerma.com/posts/2023-06-06-tracking/)
+- My [teaching materials](https://www.miriam-lerma.com/teaching/2023-06-06-tracking/)
 
 **2024**  
 - ExMove: An open-source toolkit for processing and exploring animal-tracking data by [L Langley](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.14111)  
