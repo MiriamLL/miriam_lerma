@@ -39,44 +39,56 @@ To read from file.
 
 Select the directory where the information is.
 
-```{r, eval=FALSE}
-library(here)
-here()
-this_folder<-paste0(here(),"/_posts/2025-02-15-distancetocoast")
+```{r, eval=FALSE, echo=TRUE}
+this_folder<-here()
 this_file<-paste0(this_folder,"/GMT_intermediate_coast_distance_01d.tif")
+this_raster<-rast(this_file)
 ```
 
-To read the raster data define the folder, or as here, use the data directly form the repository. 
+```{r, eval=FALSE, echo=FALSE}
+library(here)
+here()
+this_folder<-paste0("C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2025/1Programming/1Distill/Tests/")
+this_file<-paste0(this_folder,"/GMT_intermediate_coast_distance_01d.tif")
+library(terra)
+this_raster<-rast(this_file)
+library(raster)
+this_extent <- as(extent(2, 10, 52, 57), 'SpatialPolygons')
+crs(this_extent) <- "+proj=longlat +datum=WGS84 +no_defs"
+this_cut <- crop(this_raster, this_extent)
+class(this_cut)
+writeRaster(this_cut,'Subset_GMT_intermediate_coast_distance_01d.tif')
+```
+
+Alternatively, use the data directly from the repository. 
 
 ```{r}
-DistCoast_tif<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/FishingWatch/public-global-fishing-effort-v3.0.tif"
+DistCoast_tif<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/DistanceToCoast/Subset_GMT_intermediate_coast_distance_01d.tif"
 ```
 
 Use the package **terra** to use the function **rast**.  
 Then convert to data frame.  
 
-```{r, eval=FALSE}
+```{r}
 library(terra)
-DistCoast_file<-rast(DistCoast_tiff)
+DistCoast_file<-rast(DistCoast_tif)
 ```
 
-```{r, eval=FALSE}
+```{r}
 DistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)
-beepr::beep(sound=1)
 ```
 
 The file is quite large, so I recommend to subset the data to the area of interest.  
 
 Here I select the area close to the German North Sea. 
 
-```{r, eval=FALSE}
+```{r}
 library(tidyverse)
 DistCoast_dataframe_sub <-DistCoast_dataframe  %>%
   filter(x > 2 & x < 10)%>%
   filter(y > 52 & y < 57)%>%
   rename(Dist=3) %>%
   mutate(Dist = as.numeric(Dist))
-beepr::beep(sound=1)
 ```
 
 To save as rda would make the reading a lot faster.
@@ -84,16 +96,6 @@ To save as rda would make the reading a lot faster.
 ```{r,eval=FALSE}
 German_distancecoast<-DistCoast_dataframe_sub
 save(German_distancecoast, file="German_distancecoast.rda")
-```
-
-Alternatively, access the information from the package **GermanNorthSea**.
-
-```{r}
-library(GermanNorthSea)
-```
-
-```{r}
-DistCoast_dataframe<-GermanNorthSea::German_distancecoast
 ```
 
 # Plot
@@ -117,7 +119,7 @@ library(tidyverse)
 ```
 
 ```{r}
-DistCoast_dataframe_sub<-DistCoast_dataframe %>%
+DistCoast_dataframe_sub<-DistCoast_dataframe_sub %>%
   filter(Dist > -20)
 ```
 

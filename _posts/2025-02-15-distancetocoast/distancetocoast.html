@@ -1567,16 +1567,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Select the directory where the information is.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://here.r-lib.org/reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span><span class='va'>this_folder</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org/reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"/_posts/2025-02-15-distancetocoast"</span><span class='op'>)</span></span>
-<span><span class='va'>this_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>this_folder</span>,<span class='st'>"/GMT_intermediate_coast_distance_01d.tif"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>this_folder</span><span class='op'>&lt;-</span><span class='fu'>here</span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='va'>this_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>this_folder</span>,<span class='st'>"/GMT_intermediate_coast_distance_01d.tif"</span><span class='op'>)</span></span>
+<span><span class='va'>this_raster</span><span class='op'>&lt;-</span><span class='fu'>rast</span><span class='op'>(</span><span class='va'>this_file</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>To read the raster data define the folder, or as here, use the data directly form the repository.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Alternatively, use the data directly from the repository.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DistCoast_tif</span><span class='op'>&lt;-</span><span class='st'>"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/FishingWatch/public-global-fishing-effort-v3.0.tif"</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DistCoast_tif</span><span class='op'>&lt;-</span><span class='st'>"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/DistanceToCoast/Subset_GMT_intermediate_coast_distance_01d.tif"</span></span></code></pre>
 </div>
 </div>
 <p>Use the package <strong>terra</strong> to use the function <strong>rast</strong>.<br />
@@ -1584,13 +1586,12 @@ Then convert to data frame.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/'>terra</a></span><span class='op'>)</span></span>
-<span><span class='va'>DistCoast_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rspatial.github.io/terra/reference/rast.html'>rast</a></span><span class='op'>(</span><span class='va'>DistCoast_tiff</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>DistCoast_file</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rspatial.github.io/terra/reference/rast.html'>rast</a></span><span class='op'>(</span><span class='va'>DistCoast_tif</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DistCoast_dataframe</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>DistCoast_file</span>, xy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span><span class='fu'>beepr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/beepr/man/beep.html'>beep</a></span><span class='op'>(</span>sound<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DistCoast_dataframe</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rspatial.github.io/terra/reference/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>DistCoast_file</span>, xy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>The file is quite large, so I recommend to subset the data to the area of interest.</p>
@@ -1602,8 +1603,7 @@ Then convert to data frame.</p>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&gt;</span> <span class='fl'>2</span> <span class='op'>&amp;</span> <span class='va'>x</span> <span class='op'>&lt;</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>&gt;</span> <span class='fl'>52</span> <span class='op'>&amp;</span> <span class='va'>y</span> <span class='op'>&lt;</span> <span class='fl'>57</span><span class='op'>)</span><span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>Dist<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Dist</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='fu'>beepr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/beepr/man/beep.html'>beep</a></span><span class='op'>(</span>sound<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Dist</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>To save as rda would make the reading a lot faster.</p>
@@ -1611,17 +1611,6 @@ Then convert to data frame.</p>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>German_distancecoast</span><span class='op'>&lt;-</span><span class='va'>DistCoast_dataframe_sub</span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>German_distancecoast</span>, file<span class='op'>=</span><span class='st'>"German_distancecoast.rda"</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>Alternatively, access the information from the package <strong>GermanNorthSea</strong>.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>GermanNorthSea</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DistCoast_dataframe</span><span class='op'>&lt;-</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_distancecoast.html'>German_distancecoast</a></span></span></code></pre>
 </div>
 </div>
 <h1 id="plot">Plot</h1>
@@ -1645,7 +1634,7 @@ Then convert to data frame.</p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DistCoast_dataframe_sub</span><span class='op'>&lt;-</span><span class='va'>DistCoast_dataframe</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>DistCoast_dataframe_sub</span><span class='op'>&lt;-</span><span class='va'>DistCoast_dataframe_sub</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Dist</span> <span class='op'>&gt;</span> <span class='op'>-</span><span class='fl'>20</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
@@ -1664,7 +1653,7 @@ Then convert to data frame.</p>
 <span><span class='va'>Plot_distance</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guides.html'>guides</a></span><span class='op'>(</span>fill<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guide_legend.html'>guide_legend</a></span><span class='op'>(</span>title<span class='op'>=</span><span class='st'>"Distance to coast"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="distancetocoast_files/figure-html5/unnamed-chunk-13-1.png" width="384" /></p>
+<p><img src="distancetocoast_files/figure-html5/unnamed-chunk-12-1.png" width="384" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
