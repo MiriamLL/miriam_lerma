@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-05-08
-preview: data-wrangling.png
+preview: data_wrangling_front.png
 output:
   distill::distill_article:
     toc: true
@@ -16,7 +16,6 @@ output:
 
 ```{r libraries, echo=FALSE}
 library(distilltools)
-library(emo)
 library(fontawesome)
 ```
 
@@ -31,26 +30,26 @@ The materials will be updated together with the training.
 # Index
 
 In this class: <br>
-- [rmd](https://miriamll.github.io/R_intro/DataWrangling_0805.html#6)<br>
-- [load files](https://miriamll.github.io/R_intro/DataWrangling_0805.html#27)<br>
-- [basic operations](https://miriamll.github.io/R_intro/DataWrangling_0805.html#44) <br>
-- [rows and columns](https://miriamll.github.io/R_intro/DataWrangling_0805.html#54) <br>
-- [tidydata](https://miriamll.github.io/R_intro/DataWrangling_0805.html#59) <br>
-- [count](https://miriamll.github.io/R_intro/DataWrangling_0805.html#66) <br>
-- [select](https://miriamll.github.io/R_intro/DataWrangling_0805.html#68) <br>
-- [filter](https://miriamll.github.io/R_intro/DataWrangling_0805.html#69) <br>
-- [mutate](https://miriamll.github.io/R_intro/DataWrangling_0805.html#74) <br>
-- [summarize](https://miriamll.github.io/R_intro/DataWrangling_0805.html#75) <br>
-- [nas](https://miriamll.github.io/R_intro/DataWrangling_0805.html#76)<br>
-- [join](https://miriamll.github.io/R_intro/DataWrangling_0805.html#80) <br>
-- [export](https://miriamll.github.io/R_intro/DataWrangling_0805.html#94) <br>
+- [rmd](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#6)<br>
+- [load files](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#27)<br>
+- [basic operations](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#44) <br>
+- [rows and columns](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#54) <br>
+- [tidydata](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#59) <br>
+- [count](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#66) <br>
+- [select](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#68) <br>
+- [filter](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#69) <br>
+- [mutate](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#74) <br>
+- [summarize](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#75) <br>
+- [nas](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#76)<br>
+- [join](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#80) <br>
+- [export](https://miriamll.github.io/teaching_R/DataWrangling_0805.html#94) <br>
 
 
 ## Slides
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/R_intro/DataWrangling_0805.html#1"><img src="https://github.com/MiriamLL/R_intro/blob/master/Images/000data-wrangling.png?raw=true" style="width:400px"></a>
+      <a href="https://miriamll.github.io/teaching_R/DataWrangling_0805.html#1"><img src="https://github.com/MiriamLL/teaching_R/blob/master/Images/000data-wrangling.png?raw=true" style="width:400px"></a>
    </left>
 </body>
 </html>
@@ -59,7 +58,7 @@ In this class: <br>
 ```{r icon-links1,echo=FALSE,eval=TRUE}
 icon_link(icon = "fas fa-images",
           text = "Open",
-          url = "https://miriamll.github.io/R_intro/DataWrangling_0805.html#1")
+          url = "https://miriamll.github.io/teaching_R/DataWrangling_0805.html#1")
 ```
 
 <br>
@@ -76,10 +75,10 @@ To download the files there are several options:
 
 **Exercises**
 
-- Rmd script containing exercises. Click [here to download](https://raw.githubusercontent.com/MiriamLL/R_intro/master/02ExercisesRmd.Rmd) .
+- Rmd script containing exercises. Click [here to download](https://raw.githubusercontent.com/MiriamLL/teaching_R/master/02ExercisesRmd.Rmd) .
 
-- Csv file containing penguin data. Click [here to download](https://raw.githubusercontent.com/MiriamLL/R_intro/master/Downloads/penguins1.csv) .
+- Csv file containing penguin data. Click [here to download](https://raw.githubusercontent.com/MiriamLL/teaching_R/master/Downloads/penguins1.csv) .
 
 **Presentation**
 
-To download the presentation as pdf click [here](https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2023-05-08-data-wrangling/DataWrangling.pdf)
+To download the presentation as pdf click [here](https://github.com/MiriamLL/data_supporting_webpage/blob/main/Teaching/DataWrangling.pdf).
