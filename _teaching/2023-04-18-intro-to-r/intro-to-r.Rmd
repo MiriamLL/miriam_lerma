@@ -31,7 +31,7 @@ The materials will be updated together with the training.
 In this class: <br>
 - [Install or update R](https://miriamll.github.io/teaching_R/IntroToR_1104.html#7)<br>
 - [Workspace panes](https://miriamll.github.io/teaching_R/IntroToR_1104.html#22)<br>
-- [Packages](https://miriamll.github.io/teaching_R/IntroToR_1104.html#51)<br>
+- [Packages](https://miriamll.github.io/teaching_R/IntroToR_1104.html#52)<br>
 - [Directories](https://miriamll.github.io/teaching_R/IntroToR_1104.html#56)<br>
 
 ## Slides
