@@ -1,6 +1,6 @@
 ---
 title: "Miriam Lerma"
-image: "images/Miriam_Lerma-6622_circular.jpg"
+image: "_images/Miriam_Lerma-6622_circular.jpg"
 links:
   - label: '<i class="fa-brands fa-linkedin-in"></i> Linkedin'
     url: "https://www.linkedin.com/in/miriam-lerma/"
