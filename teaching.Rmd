@@ -1,7 +1,7 @@
 ---
 title: "Teaching"
 listing:
-  posts:
+  teaching:
     - 2025-04-01-journals
     - 2025-02-19-ai-tools
     - 2024-12-06-tracking

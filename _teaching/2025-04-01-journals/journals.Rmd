@@ -1,0 +1,130 @@
+---
+title: "Choosing a journal"
+description: |
+  A file with a decision tree that might help you choose the most suitable journal for publishing your research. Links to journals are included. 
+authors:
+  - name: Miriam Lerma
+preview: journals_portada.jpg
+date: '2025-04-01'
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+---
+
+# Choosing a journal
+
+In this blog post, I provide a decision tree with that might help you choose the most suitable journal for publishing your research.  
+I’ll also share tips and links to get you started, focusing on journal scope, open access fees, impact factor, DOI, peer review process, and publication timelines.  
+
+I briefly share my own experiences. In addition, I offer a brief list of journals that publish ornithological research, complete with a map to guide your selection.  
+
+The goal is to be a guide for those looking to submit papers into an ornithological journals.   
+
+# Click on the image to open the pdf
+
+<html>
+<body>
+   <left>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-04-01-journals/journals_0104.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-04-01-journals/journals_portada.jpg?raw=true" style="width:500px"></a>
+   </left>
+</body>
+</html>
+  
+  
+# Links to journals 
+
+```{r,echo=FALSE}
+Names<-data.frame(Journal=c(
+'Journal of Field Ornithology',
+'Journal of Animal Ecology',
+'Pacific Science',
+'Ornithology',
+'Wilson Journal of Ornithology',
+'Acta ornithologica',
+'Ornithological applications',
+'Ornithologia Neotropical',
+'Tropical Zoology',
+'Journal of Ornithology',
+'Austral ecology',
+'Marine ecology','Oecologia',
+'Ornithology research',
+'Ecosphere',
+'Oikos','Ecology',
+'Ecology letters',
+'Bird study',
+'Ibis',
+'Bird Conservation International',
+'Ardeola',
+'Avian Research',
+'Movement ecology',
+'Journal of Avian Biology',
+'Marine Ecology Progress Series',
+'The Auk - Now Ornithology',
+'The Condor - Now Ornithological applications',
+
+'Ardea',
+'Waterbirds',
+'Journal of Sea Research',
+'Marine Biology',
+'Behavioural ecology and sociobiology',
+'Marine Ornithology',
+'Emu',
+'Ecology and Evolution'))
+```
+
+```{r,echo=FALSE}
+Links<-data.frame(Link=c(
+'https://journal.afonet.org/',
+'https://besjournals.onlinelibrary.wiley.com/journal/13652656',
+'https://bioone.org/journals/pacific-science',
+'https://academic.oup.com/auk',
+'https://wilsonsociety.org/pubs/wjo/',
+'https://bioone.org/journals/acta-ornithologica/current',
+'https://academic.oup.com/condor',
+'https://journals.sfu.ca/ornneo/index.php/ornneo/about/submissions
+','https://www.pagepress.org/biology/index.php/tz',
+'https://link.springer.com/journal/10336',
+'https://onlinelibrary.wiley.com/journal/14429993',
+'https://onlinelibrary.wiley.com/journal/14390485',
+'https://link.springer.com/journal/442',
+'https://link.springer.com/journal/43388',
+'https://esajournals.onlinelibrary.wiley.com/journal/21508925',
+'https://nsojournals.onlinelibrary.wiley.com/journal/1600048x',
+'https://esajournals.onlinelibrary.wiley.com/journal/19399170',
+'https://onlinelibrary.wiley.com/journal/14610248',
+'https://www.tandfonline.com/journals/tbis20',
+'https://onlinelibrary.wiley.com/journal/1474919x',
+'https://www.cambridge.org/core/journals/bird-conservation-international',
+'https://www.ardeola.org/es/autores/',
+'https://www.sciencedirect.com/journal/avian-research',
+'https://movementecologyjournal.biomedcentral.com/about',
+'https://nsojournals.onlinelibrary.wiley.com/journal/1600048x',
+'https://www.int-res.com/journals/meps/meps-home/',
+'https://americanornithology.org/publications/ornithology/',
+'https://americanornithology.org/publications/ornithological-applications/',
+
+'https://bioone.org/journals/ardea',
+'https://bioone.org/journals/waterbirds/scope-and-details',
+'https://www.sciencedirect.com/journal/journal-of-sea-research',
+'https://link.springer.com/journal/227',
+'https://link.springer.com/journal/265',
+'http://www.marineornithology.org/',
+'https://www.tandfonline.com/journals/temu20',
+'https://onlinelibrary.wiley.com/journal/20457758'
+))
+```
+
+```{r,echo=FALSE}
+List<-cbind(Names,Links)
+```
+
+```{r,echo=FALSE}
+List<-List[order(List$Journal),]
+rownames(List) <- NULL
+```
+
+```{r KnitTableSightings, echo=FALSE}
+knitr::kable(List)
+```
