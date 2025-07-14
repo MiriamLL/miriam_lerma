@@ -32,7 +32,7 @@ A zip file named "EMODnet_HA_Vessel_Density_all_2017-2023 would be downloaded. F
 
 ## Load
 
-To download test data in tif format [click here](https://github.com/MiriamLL/TestData/blob/main/ShippingTraffic_crop.tif).  
+To download test data in tif format [click here](https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/ShippingTraffic/ShippingTraffic_crop.tif).  
 
 Use the package **terra** to use the function **rast**.  
 
@@ -43,7 +43,7 @@ library(terra)
 The function **rast** reads your file as a formal class SpatRaster. Here I am using the file directly from the repository. 
 
 ```{r}
-ShippingTraffic_tif<-'https://github.com/MiriamLL/TestData/raw/refs/heads/main/ShippingTraffic_crop.tif'
+ShippingTraffic_tif<-'https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/ShippingTraffic/ShippingTraffic_crop.tif'
 ```
 
 ```{r}
