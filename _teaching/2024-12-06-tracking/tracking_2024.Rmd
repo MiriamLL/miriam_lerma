@@ -6,10 +6,10 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2024-12-06
-preview: tracking_portada.jpg
+preview: tracking_front.jpg
 output:
   distill::distill_article:
-    toc: true
+    toc: false
     toc_depth: 2
     self_contained: false
 ---
@@ -19,12 +19,12 @@ output:
 There are numerous tools available for analyzing tracking data. In this post, I share a curated collection of my blog entries that focus specifically on movement analysis, covering from data loading and cleaning to visualizations. Additionally, I’ve included a brief list of papers that can serve as guidance when embarking on tracking studies.
 
 **Load data**  
-- [From movebank](https://miriamll.github.io/R_intro/Tracking_0606.html#4)  
-- [From csv](https://miriamll.github.io/R_intro/Tracking_0606.html#20)  
+- [From movebank](https://miriamll.github.io/teaching_R/Tracking_0606.html#4)  
+- [From csv](https://miriamll.github.io/teaching_R/Tracking_0606.html#20)  
 
 **Data preparation**  
 - [Usage of time formats](https://www.miriam-lerma.com/posts/2022-06-30-time-formats/)  
-- [Converting times](https://miriamll.github.io/R_intro/Tracking_0606.html#36)  
+- [Converting times](https://miriamll.github.io/teaching_R/Tracking_0606.html#36)  
 - [Time overlap between individuals](https://www.miriam-lerma.com/posts/2022-02-24-timeoverlaps/)  
 - [Locate the animals central location](https://www.miriam-lerma.com/posts/2022-07-01-nestlocation/)  
 - [Include Julian days](https://www.miriam-lerma.com/posts/2022-08-17-count-days/)  
@@ -33,11 +33,11 @@ There are numerous tools available for analyzing tracking data. In this post, I 
 - [Behaviour classification](https://www.miriam-lerma.com/posts/2021-11-25-embc/)  
 
 **Clean raw data**   
-- [Select columns](https://miriamll.github.io/R_intro/Tracking_0606.html#30)  
+- [Select columns](https://miriamll.github.io/teaching_R/Tracking_0606.html#30)  
 - [Remove undesired locations](https://www.miriam-lerma.com/posts/2024-08-01-removelocs/)  
 - [Identify gaps](https://www.miriam-lerma.com/posts/2022-10-04-identify-gaps/)  
 - [Complete or incomplete](https://www.miriam-lerma.com/posts/2024-11-05-completeorincomplete/)  
-- [Export clean data frame](https://miriamll.github.io/R_intro/Tracking_0606.html#34)  
+- [Export clean data frame](https://miriamll.github.io/teaching_R/Tracking_0606.html#34)  
 
 **Calculate trip parameters**  
 - Number of trips: [Identify events](https://www.miriam-lerma.com/posts/2024-09-19-identifyevents/)  
@@ -54,7 +54,7 @@ There are numerous tools available for analyzing tracking data. In this post, I 
 - [In land or not](https://www.miriam-lerma.com/posts/2022-04-07-land-or-not/)  
 
 **Visualizations**  
-- [Plot basics](https://miriamll.github.io/R_intro/Tracking_0606.html#40)  
+- [Plot basics](https://miriamll.github.io/teaching_R/Tracking_0606.html#40)  
 - [Create a base map in R](https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/)  
 - [Inside plot legend](https://www.miriam-lerma.com/posts/2023-10-02-inside-legend/)  
 - [Animations](https://www.miriam-lerma.com/posts/2023-06-01-gganimate/)  

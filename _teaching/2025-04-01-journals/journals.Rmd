@@ -4,12 +4,10 @@ description: |
   A file with a decision tree that might help you choose the most suitable journal for publishing your research. Links to journals are included. 
 authors:
   - name: Miriam Lerma
-preview: journals_portada.jpg
+preview: journals_front.jpg
 date: '2025-04-01'
 output:
   distill::distill_article:
-    toc: true
-    toc_depth: 2
     self_contained: false
 ---
 
@@ -27,7 +25,7 @@ The goal is to be a guide for those looking to submit papers into an ornithologi
 <html>
 <body>
    <left>
-      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_posts/2025-04-01-journals/journals_0104.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2025-04-01-journals/journals_portada.jpg?raw=true" style="width:500px"></a>
+      <a href="https://raw.githubusercontent.com/MiriamLL/miriamlerma_/main/_teaching/2025-04-01-journals/journals_0104.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_teaching/2025-04-01-journals/journals_front.jpg?raw=true" style="width:500px"></a>
    </left>
 </body>
 </html>
