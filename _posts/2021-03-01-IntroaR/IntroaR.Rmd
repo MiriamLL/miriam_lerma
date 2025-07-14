@@ -34,7 +34,7 @@ En esta clase aprenderás a abrir RStudio e identificar sus partes. <br>
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase1.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase1.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -42,10 +42,10 @@ En esta clase aprenderás a abrir RStudio e identificar sus partes. <br>
 ```{r icon-links1,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase1")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase1")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1-Intro.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase1-Intro.pdf")
 ```
 
 ## Cargar tus datos.
@@ -55,7 +55,7 @@ En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y ca
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase1Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase2.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase1Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase2.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -64,10 +64,10 @@ En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y ca
 ```{r icon-links2,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase1Parte2")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase1Parte2")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase1Parte2-CargarDatos.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase1Parte2-CargarDatos.pdf")
 ```
 
 
@@ -78,7 +78,7 @@ En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráfic
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase3.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase3.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -86,10 +86,10 @@ En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráfic
 ```{r icon-links3,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase2")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase2")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase2-Graficos.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase2-Graficos.pdf")
 ```
 
 
@@ -100,7 +100,7 @@ En esta clase aprenderás algunas funciones básicas para realizar operaciones m
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase4.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase3Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase4.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -109,10 +109,10 @@ En esta clase aprenderás algunas funciones básicas para realizar operaciones m
 ```{r icon-links4,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase3Parte1")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase3Parte1")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase3Parte1-Filascolumnas.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase3Parte1-Filascolumnas.pdf")
 ```
 
 
@@ -123,7 +123,7 @@ En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus 
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase3Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase5.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase3Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase5.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -131,10 +131,10 @@ En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus 
 ```{r icon-links5,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase3Parte2")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase3Parte2")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase3Parte2-tidyverse.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase3Parte2-tidyverse.pdf")
 ```
 
 
@@ -145,7 +145,7 @@ En esta clase aprenderás porque es importante trabajar por proyectos, como crea
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase4Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase6.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase4Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase6.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -153,10 +153,10 @@ En esta clase aprenderás porque es importante trabajar por proyectos, como crea
 ```{r icon-links6,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase4Parte1")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase4Parte1")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase4Parte1-Poyectos.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase4Parte1-Poyectos.pdf")
 ```
 
 
@@ -168,7 +168,7 @@ En esta clase aprenderás como explorar tus datos, cuales son los argumentos par
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase7"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase7.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase7"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase7.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -176,10 +176,10 @@ En esta clase aprenderás como explorar tus datos, cuales son los argumentos par
 ```{r icon-links7,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase7")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase7")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase7.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase7.pdf")
 ```
 
 
@@ -190,7 +190,7 @@ En esta clase aprenderás como convertir a factor, cuales son los argumentos par
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase8"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Figure8.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase8"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Figure8.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -198,10 +198,10 @@ En esta clase aprenderás como convertir a factor, cuales son los argumentos par
 ```{r icon-links8,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase8")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase8")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase8.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase8.pdf")
 ```
 
 
@@ -213,7 +213,7 @@ Esta clase es una introducción a los modelos mixtos y a la selección de modelo
 <html>
 <body>
    <left>
-      <a href="https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos"><img src="https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Figuras/Clase15.png" style="width:300px"></a>
+      <a href="https://miriamll.github.io/teaching_R_Rmd/Clase9-modelosmixtos"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase15.png" style="width:300px"></a>
    </left>
 </body>
 </html>
@@ -221,9 +221,9 @@ Esta clase es una introducción a los modelos mixtos y a la selección de modelo
 ```{r icon-links9,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Presentación",
-          url = "https://miriamll.github.io/Curso_CIAD/Clase9-modelosmixtos")
+          url = "https://miriamll.github.io/teaching_R_Rmd/Clase9-modelosmixtos")
 icon_link(icon = "fas fa-download",
           text = "Descargar",
-          url = "https://raw.githubusercontent.com/MiriamLL/Curso_CIAD/main/Pdfs/Clase9-modelosmixtos.pdf")
+          url = "https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase9-modelosmixtos.pdf")
 ```
 

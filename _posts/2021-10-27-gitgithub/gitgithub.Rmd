@@ -19,7 +19,6 @@ output:
 
 ```{r libraries, echo=FALSE}
 library(distilltools)
-library(emo)
 library(fontawesome)
 ColorLink<-"#74c69d"
 ```
@@ -42,7 +41,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/miriamlerma_
 ```{r icon-links6,echo=FALSE}
 icon_link(icon = "fas fa-images",
           text = "Open presentation",
-          url = "https://miriamll.github.io/git_pres/GitGithubZenodo#1")
+          url = "https://miriamll.github.io/talk_github/GitGithubZenodo#1")
 ```
 
 ⚡⚡⚡

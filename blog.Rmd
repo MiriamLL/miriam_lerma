@@ -36,7 +36,7 @@ listing:
     - 2023-05-05-github-page
     - 2023-04-06-gridraster
     - 2023-03-04-mapping-in-r
-    - psg2023
+    - 2023-02-16-psg
     - 2023-02-04-subset-shapefile
     - 2023-01-27-qgispolygon
     - 2022-12-04-day-night
@@ -53,7 +53,7 @@ listing:
     - 2022-01-21-sharedareas
     - 2021-11-25-embc
     - 2021-10-27-gitgithub
-    - bls7
+    - 2021-09-23-bls7
     - 2021-09-24-home-range-adehabitathr
     - 2021-07-05-GIScolores    
     - 2021-06-03-paquetes    
