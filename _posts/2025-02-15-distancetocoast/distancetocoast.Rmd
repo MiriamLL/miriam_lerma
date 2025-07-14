@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-02-20
-preview: blog42_portadas.jpg
+preview: coast_front.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -46,13 +46,18 @@ this_folder<-paste0(here(),"/_posts/2025-02-15-distancetocoast")
 this_file<-paste0(this_folder,"/GMT_intermediate_coast_distance_01d.tif")
 ```
 
+To read the raster data define the folder, or as here, use the data directly form the repository. 
+
+```{r}
+DistCoast_tif<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/FishingWatch/public-global-fishing-effort-v3.0.tif"
+```
+
 Use the package **terra** to use the function **rast**.  
 Then convert to data frame.  
 
-
 ```{r, eval=FALSE}
 library(terra)
-DistCoast_file<-rast(this_file)
+DistCoast_file<-rast(DistCoast_tiff)
 ```
 
 ```{r, eval=FALSE}
@@ -137,7 +142,7 @@ library(here)
 here()
 this_folder<-paste0(here(),"/_posts/2024-10-15-distancetocoast")
 ggsave(Plot_distance,
-       filename = paste0(this_folder,"/blog42.jpg"),
+       filename = paste0(this_folder,"/coast_export.jpg"),
        width = 4, 
        height = 4, 
        units = "in",

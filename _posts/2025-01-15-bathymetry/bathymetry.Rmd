@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-01-10
-preview: blog41_portadas.jpg
+preview: bathymetry_front.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -148,7 +148,7 @@ More details about how to add features to a map [here](https://www.miriam-lerma.
 
 ```{r, echo=FALSE, eval=FALSE}
 ggsave(Plot_bath,
-       filename = paste0(this_folder,"/blog41.jpg"),
+       filename = paste0(this_folder,"/bathymetry_export.jpg"),
        width = 4, 
        height = 4, 
        units = "in",
