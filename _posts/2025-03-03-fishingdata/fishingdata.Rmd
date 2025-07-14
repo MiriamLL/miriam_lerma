@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-03-03
-preview: Y2025_mar.jpg
+preview: fishingwatch_front.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -34,13 +34,13 @@ To download the data, you need to log in using your [email](https://globalfishin
 
 For a test data we will see the apparent [fishing effort](https://globalfishingwatch.org/map?access-token=wi1_Ffdm-AjT1k_urFVmOPTMqMXrKQ) (AIC).  
 Fishing effort data is provided in **tif** format.  
-To download test data in tif format [click here](https://github.com/MiriamLL/TestData/blob/main/public-global-fishing-effort-v3.0.tif).  
+To download test data in tif format [click here](https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/FishingWatch/public-global-fishing-effort-v3.0.tif).  
 The example data is limited to April and May of 2018.
 
 To read the raster data define the folder, or as here, use the data directly form the repository. 
 
 ```{r}
-Fishing_tif<-"https://github.com/MiriamLL/TestData/raw/refs/heads/main/public-global-fishing-effort-v3.0.tif"
+Fishing_tif<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/FishingWatch/public-global-fishing-effort-v3.0.tif"
 ```
 
 Use the package **terra** to use the function **rast**.  
@@ -194,7 +194,7 @@ To download test data in csv format [here](https://raw.githubusercontent.com/Mir
 To load, select your folder and file.
 
 ```{r}
-Fishing_csv<-"https://github.com/MiriamLL/TestData/raw/refs/heads/main/layer-activity-data-0/public-global-fishing-effort-v3.0.csv"
+Fishing_csv<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/FishingWatch/layer-activity-data-0/public-global-fishing-effort-v3.0.csv"
 ```
 
 ### Read csv
@@ -209,7 +209,7 @@ There is no clear way to link this data and the previous map.
 
 ### Gear Type
 
-For an overview of the GearType. This information may not be conclusive, but it provides a solid overview of the types of gear primarily registred.
+For an overview of the GearType. This information may not be conclusive, but it provides a solid overview of the types of gear primarily registered.
 
 ```{r, eval=FALSE}
 Fishing_csv %>%
