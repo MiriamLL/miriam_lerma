@@ -1,11 +1,11 @@
 ---
-title: "Oil and Gas Offshore Installations"
-description: |
-  In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization.
+title: "Underwater Power and Telecomunication Cables"
+description: "In this month’s blog post, I map the underwater cable network of the German North Sea using open data from EMODnet. With R, I explore and visualize both telecommunication and power cables. "
 author:
   - name: Miriam Lerma
     url: {}
-date: 2025-08-15
+date: 2025-09-15
+preview: cables_front.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -13,24 +13,24 @@ output:
 
 # Intro
 
-Underwater (submarine) cables include cables use for telecommunication and for power.
-Although limited impacts have been found, the disturbance of the seabed during installation can disrupt benthic communities. Power cables additionally emit electromagnetic fields (EMFs) which might afect sensitive species such as migratory animals. Furthermore, these cables can warm the water surrounding them, and the effects of this are poorly known. 
+In this month’s blog post, I take a closer look at the network of underwater cables stretching across the German North Sea. Using openly available geospatial data from EMODnet, I downloaded and worked with datasets covering both telecommunication and power cables. With R as my main analysis tool, I walk you through the process of exploring, cleaning, and visualizing the data. Building this map not only deepened my understanding of how these cables are distributed across the seafloor, but also raised important questions about how this often-invisible infrastructure intersects with other marine activities and ecologically sensitive areas. Sometimes, the most revealing stories are the ones hidden just beneath the surface.
+
+## Cables 
+
+Underwater (submarine, or undersea) cables include cables use for telecommunication and for power.
+Although limited impacts have been found, the disturbance of the seabed during installation can disrupt benthic communities. Power cables additionally emit electromagnetic fields (EMFs) which might affect sensitive species such as migratory animals. Furthermore, these cables can warm the water surrounding them, but their effects by this are poorly known (see compilation of effects of cables in: Lloret et al. 2022, Hale et al. 2024)
 
 <html>
 <body>
    <left>
-      <a href="https://www.sa-world.com/images/econa-article-images/260/full/Untitled%20design(72).jpg" style="width:450px"></a>
+      <a href="https://ychef.files.bbci.co.uk/1600x900/p0jxm9xs.webp" style="width:450px"></a>
       <img src="https://www.sa-world.com/images/econa-article-images/260/full/Untitled%20design(72).jpg" style="width:450px"></a>
    </left>
 </body>
 </html>
-Source: [Sa-word](https://www.sa-world.com/blog/ztt-has-concluded-installing-the-gode-wind-3-submarine-cable-in-the-german-north-sea.html)
+Image from: [BBC](https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running)
 
-- [Cable instalation](https://oceannews.com/news/subsea-cable/jan-de-nul-to-install-inter-array-cables-for-wind-farms-german-north-sea/)
-
-# Data
-
-There are two  main installations: telecommunications (which for example provide internet access) and power (transporting energy, for example from wind farms to land)
+While it's difficult to pinpoint an exact annual number, estimates suggest that hundreds of kilometers of new submarine cables are installed each year to meet the growing global demand for internet and telecommunications. However, the number of new cables installed varies significantly each year, with the total number of operational and planned cables exceeding 600 in early 2025
 
 <html>
 <body>
@@ -39,22 +39,25 @@ There are two  main installations: telecommunications (which for example provide
    </left>
 </body>
 </html>
-Germany Mecklenburg-Western Pomerania Baltic Sea – undersea cable to Hiddensee island. 
+Image from Germany Mecklenburg-Western Pomerania Baltic Sea – undersea cable to Hiddensee island. Source [Energy Industry Review](https://energyindustryreview.com/wp-content/uploads/2022/03/submarin-cable-layout.jpg)
 
+# Data
+
+There are two  main installations: telecommunications (which for example provide internet access) and power (transporting energy, for example from wind farms to land)
 
 To download the the dataset on subsea telecommunication and power cables, this information available at the European Marine Observation and Data Network (EMODnet). <br>
 This dataset is updated every year, and is available for viewing and download on the EMODnet web portal>[Human Activities](https://emodnet.ec.europa.eu/en/human-activities). 
 
 ```{r, echo=FALSE,fig.width=5, fig.height=4}
-knitr::include_graphics('Instructions2.png')
+knitr::include_graphics('cables_instruction.png')
 ```
 
-# Read
 
-Prepare to read shapefiles, by providing the folder where the data is stored.
+To have easier access to the files, save them in the same directory and provide the directory where the data is stored.
 
 ```{r}
 library(here)
+library(tidyverse)
 library(sf)
 ```
 
@@ -62,8 +65,13 @@ library(sf)
 This_directory<-here()
 ```
 
+## Telecommunications
+
+There are around 1.4 million kilometers (870,000 miles) of telecommunication cables lining the seafloor, connecting every ocean across the globe. Laid end to end, they could stretch across the diameter of the Sun, and they carry an astounding 99% of the world’s digital data. Yet for something so vital, these cables are surprisingly slim, often just 2 cm thick, roughly the width of a garden hose.
+Source: [BBC](https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running)
+
 ```{r,echo=FALSE, include=FALSE}
-This_directory<-"C:\\Users\\lerma\\OneDrive\\Documents\\03Academico\\02Proyectos-Postdoc\\2025\\1Programming\\2Packages\\TestData\\Cables\\"
+This_directory<-"C:\\Users\\lerma\\OneDrive\\Documents\\03Academico\\02Proyectos-Postdoc\\2025\\1Programming\\1Distill\\data_supporting_webpage\\Blog//2025//Cables\\"
 list.files(This_directory)
 Germany_telecommunications<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_Data_CablesLine.shp"))
 France_telecommunications<-st_read(paste0(This_directory,"/FR_SIGCables_Submarine_Cables_Routes.shp"))
@@ -75,21 +83,15 @@ Norway_voltage<-st_read(paste0(This_directory,"/NO_NVE_Sjokabel.shp"))
 
 The relevant files for the telecommunication lines in the German North Sea are in the files from German, France and Netherlands telecommunications.
 
+To load this files:
+
 ```{r, echo=TRUE, eval=FALSE}
 Germany_telecommunications<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_Data_CablesLine.shp"))
 France_telecommunications<-st_read(paste0(This_directory,"/FR_SIGCables_Submarine_Cables_Routes.shp"))
 Netherlands_telecommunications<-st_read(paste0(This_directory,"/NL_Rijkswaterstaat_Telecom_kabels_noordzee.shp"))
 ```
 
-The relevant files for the power lines in the German North Sea are in the files form German, France and Norway cables.
-
-```{r, echo=TRUE, eval=FALSE}
-Germany_voltage<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_High_Voltage_CablesLine.shp"))
-Netherlands_voltage<-st_read(paste0(This_directory,"/NL_Rijkswaterstaat_Electra_kabels_noordzee.shp"))
-Norway_voltage<-st_read(paste0(This_directory,"/NO_NVE_Sjokabel.shp"))
-```
-
-# Base Map
+### Visualization
 
 Load ggplot to start creating visualizations. 
 
@@ -97,10 +99,15 @@ Load ggplot to start creating visualizations.
 library(ggplot2)
 ```
 
-Create a base map using shapefiles from the package GermanNorthSea. 
+Load base shapefiles from the package GermanNorthSea. 
 
 ```{r}
 library(GermanNorthSea)
+```
+
+```{r}
+German_EEZ<-st_transform(German_EEZ,4326)
+German_land<-st_transform(German_land,4326)
 ```
 
 Add the attributes and the theme to your base map.
@@ -108,104 +115,247 @@ Add the attributes and the theme to your base map.
 ```{r, fig.height=6, fig.width=8}
 Base_map<-ggplot() + 
   # Fill colors
-  geom_sf(data = GermanNorthSea::German_EEZ, color='#43585E',fill='transparent',alpha=0.1, linewidth = 1)+
-  geom_sf(data = German_land, colour = '#43585E', fill = '#43585E')+
-  
-  geom_sf(data = GermanNorthSea::German_SCA, colour = '#43585E', fill = NA, 
-          linewidth=0.1, linetype = "dashed",alpha=0.3)+
-  geom_sf(data = GermanNorthSea::German_natura, colour = '#43585E', fill = NA, 
-          linewidth=0.1, linetype = "dashed",alpha=0.3)+
+  geom_sf(data = German_EEZ, color='#212529',fill=NA,alpha=0.1, linewidth = 1)+
+  geom_sf(data = German_land, colour = 'black', fill = 'black')+
   
   scale_x_continuous(breaks = c(4,6,8),labels = function(x) paste0(x, '\u00B0')) +
   scale_y_continuous(breaks = c(53.5,54.5,55.5),labels = function(x) paste0(x, '\u00B0'))  +
   
   theme(
-  axis.text.x = element_text(size=10,vjust = 12,color='#3d5a80'),
-  axis.text.y = element_text(color='#3d5a80',size=10,margin = margin(0,-1.30,0,1, unit = 'cm')),
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
   axis.title = element_blank(),
   axis.ticks.length=unit(-0.20, "cm"),
+  axis.ticks = element_line(color="black"),
   panel.grid.major = element_blank(),
   panel.grid.minor = element_blank(),
-  panel.background = element_rect(fill = '#F2F2F2'))+
+  panel.background = element_rect(fill = '#495057'))+
   
   xlab('Longitude')+ylab('Latitude')+
   
-  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth=1.5))
+  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth = 1.5))+
+  coord_sf(ylim = c(53,56), xlim = c(3,9),
+                    label_axes = list(left = "N", bottom = 'E'))
+Base_map
 ```
 
-## Telecommunications
+### Filter
+
+Telecommunications in Germany connect UK, Netherlands, Denmark and Norway. 
 
 ```{r}
+library(ggtext)
+```
+
+```{r, fig.height=6}
 Base_map +
-  geom_sf(data = Netherlands_telecommunications,color='green')+
-  geom_sf(data = France_telecommunications,color='blue')+
-  geom_sf(data = Germany_telecommunications, color='red')+
-  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+  geom_sf(data = Netherlands_telecommunications,color='#8ac926',linewidth=0.8)+
+  geom_sf(data = France_telecommunications,color='#c86bfa',linewidth=0.8)+
+  geom_sf(data = Germany_telecommunications, color='#ffd60a',linewidth=0.8)+
+  
+  geom_richtext(aes(x =  2.9, y = 56.0,
+  label = "<span style='color:#adb5bd'>Underwater Telecommunication Cables crossing  <br> 
+  the German North Sea.  <br>
+  Data source from: <span style='color:#8ac926'>Netherlands</span>, 
+  <span style='color:#c86bfa'>France</span> and 
+  <span style='color:#ffd60a'>Germany</span>."), 
+  size = 4,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE
+  )+
+  coord_sf(ylim = c(53,56.4), xlim = c(3,9),
                     label_axes = list(left = "N", bottom = 'E'))
 ```
 
-Some connecting Uk, Netherlands, Germany, Denmark and Norway. 
 
-- [Submarine networks](https://www.submarinenetworks.com/en/systems/intra-europe/ioema/ioema-fibre-to-build-submarine-cable-connecting-five-northern-european-markets)
+### Examples
 
-- [Submarine cable map](https://www.submarinecablemap.com/)
+SEA-ME-WE 3 (South-East Asia – Middle East – Western Europe 3) is the world’s longest optical submarine telecommunications cable, linking Asia, the Middle East, and Europe. Source: [Wikipedia](https://en.wikipedia.org/wiki/SEA-ME-WE_3)
 
-- Atlantic Crossing-1
-- IOEMA 
-- Cobra Cable
+```{r, eval=FALSE}
+unique(France_telecommunications$NAME)
+```
+
+```{r}
+library(showtext)
+showtext_auto()
+font_add_google("Share Tech Mono", "Share Tech Mono")
+```
+
+```{r, fig.height=6}
+Base_map +
+  geom_sf(data = France_telecommunications %>% filter(NAME %in% c('SEA ME WE3-S10.4','SEA ME WE3-S10.3',
+                                                                  'SEA ME WE3-S10.2','SEA ME WE3-S10.1')),
+          color='#c86bfa',linewidth=0.8)+
+  geom_sf(data = Germany_telecommunications %>% filter(name_=='SeaMeWe 3'), 
+            color='#ffd60a',linewidth=0.8)+
+  geom_sf(data = Netherlands_telecommunications %>% filter(NAAM %in% c('SEA-ME-WE 3 Segment 10.1',
+                                                                       'SEA-ME-WE 3 Segment 10.2 + 10.3')), 
+          color='#8ac926',linewidth=0.8)+
+  
+   geom_label(aes(x =  2.9, y = 56.3,
+                 label = "Underwater Telecommunication Cable: SEA-ME-WE3   "),
+                 size=7,color='#adb5bd', hjust=0,fill='black',label.size = 0,
+                 family = "Share Tech Mono")+
+  
+  coord_sf(ylim = c(53,56.4), xlim = c(3,9),
+                  label_axes = list(left = "N", bottom = 'E'))
+```
 
 ## Power
 
+The relevant files for the power lines in the German North Sea are in the files from German, Netherland and Norway cables.
+
+```{r, echo=TRUE, eval=FALSE}
+Germany_voltage<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_High_Voltage_CablesLine.shp"))
+Netherlands_voltage<-st_read(paste0(This_directory,"/NL_Rijkswaterstaat_Electra_kabels_noordzee.shp"))
+Norway_voltage<-st_read(paste0(This_directory,"/NO_NVE_Sjokabel.shp"))
+```
+
+### Filter
+
+The data contains "in use" and "planned" cables, keep only those that are "inUse". 
+
 ```{r}
-Base_map +
-  geom_sf(data = Netherlands_voltage,color='green')+
-  geom_sf(data = Norway_voltage,color='blue')+
-  geom_sf(data = Germany_voltage, color='red')+
-  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
+Germany_voltage<-Germany_voltage %>%
+  filter(status=='inUse')
+```
+
+### Visualization
+
+Add them in your base map.
+
+```{r, warning=FALSE, fig.height=6}
+Power_cables<-Base_map +
+  geom_sf(data = Netherlands_voltage,color='#ff595e',linetype = "dashed", linewidth= 0.8)+
+  geom_sf(data = Norway_voltage,color='#ff924c',linetype = "dashed", linewidth= 0.8)+
+  geom_sf(data = Germany_voltage, color='#ffca3a',linetype = "dashed", linewidth= 0.8)+
+  coord_sf(ylim = c(53,56.4), xlim = c(3,9),
+                    label_axes = list(left = "N", bottom = 'E'))+
+
+  geom_richtext(aes(x =  2.9, y = 56.1,
+  label = "<span style='color:#adb5bd'>Underwater Power Cables crossing the German North Sea.\n
+  <span style='color:#adb5bd'>Data source from: 
+  <span style='color:#ff595e'>Netherlands</span>, 
+  <span style='color:#ff924c'>Norway</span> and 
+  <span style='color:#ffca3a'>Germany</span>.</span>"),
+  size = 8,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE
+  )
+Power_cables
+```
+
+Note than in Germany, many of the power cables are connected to Offshore Wind Farms
+
+```{r}
+German_OWF<-st_transform(GermanNorthSea::OWF_EMODnet,4326)
+```
+
+```{r, warning=FALSE, fig.height=6}
+Power_cables+
+  geom_sf(data = German_OWF, color='#850a0a',fill='#850a0a', alpha=0.5)+
+  coord_sf(ylim = c(53,56.4), xlim = c(3,9),
                     label_axes = list(left = "N", bottom = 'E'))
 ```
 
-Note than in Germany, many of the power cables are connected to their OWF
+### Examples
 
+NorNed is a high-voltage direct current (HVDC) submarine power cable connecting Norway and the Netherlands. Spanning approximately 580 kilometers under the North Sea, it is one of the longest subsea power interconnectors in the world. 
 
-```{r}
+```{r, fig.height=6}
 Base_map +
-  geom_sf(data = Netherlands_voltage,color='green')+
-  geom_sf(data = Norway_voltage,color='blue')+
-  geom_sf(data = Germany_voltage, color='red')+
-  geom_sf(data = GermanNorthSea::OWF_EMODnet, color='grey', alpha=0.5)+
-  coord_sf(xlim = c(3900000,4250000), ylim = c(3350000,3680000),
-                    label_axes = list(left = "N", bottom = 'E'))
+  geom_sf(data = Norway_voltage %>% filter(navn=='NorNed'), 
+            color='#ff924c',linewidth=0.8)+
+  geom_sf(data = Germany_voltage %>% filter(name_=='NorNed'), 
+            color='#ffca3a',linewidth=0.8)+
+  geom_label(aes(x =  2.9, y = 56.3,
+                 label = "Underwater Power Cables: NorNed   "),
+                 size=7,color='#adb5bd', hjust=0,fill='black',label.size = 0,
+                 family = "Share Tech Mono")+
+  
+  coord_sf(ylim = c(53,56.4), xlim = c(3,9),
+                  label_axes = list(left = "N", bottom = 'E'))
 ```
 
-<html>
-<body>
-   <left>
-      <a href="https://img.offshore-mag.com/files/base/ebm/os/image/2024/02/65cf9e769eb5bc001ee30b5e-balwin_amprion.png?auto=format,compress&fit=max&q=45" style="width:450px"><img src="https://img.offshore-mag.com/files/base/ebm/os/image/2024/02/65cf9e769eb5bc001ee30b5e-balwin_amprion.png?auto=format,compress&fit=max&q=45" style="width:450px"></a></a>
-   </left>
-</body>
-</html>
+# Both
 
-Source: [Offshore mag](https://www.offshore-mag.com/renewable-energy/article/14305254/prysmian-supplying-cables-for-two-german-offshore-wind-farms)
+Combine the spatial data of telecommunication and power cables into one comprehensive map to enable clear visualization and analysis of the widespread cable infrastructure.
 
-Some connecting with Norway. 
+```{r}
+library(ggtext)
+```
 
-- [KFW](https://www.kfw.de/stories/environment/renewable-energy/nordlink/)
+```{r, fig.height=6}
+Cables<-Base_map +
+  geom_sf(data = Netherlands_telecommunications,color='#8ac926',linewidth=0.8)+
+  geom_sf(data = France_telecommunications,color='#c86bfa',linewidth=0.8)+
+  geom_sf(data = Germany_telecommunications, color='#ffd60a',linewidth=0.8)+
+  
+  geom_sf(data = Netherlands_voltage,color='#ff595e',linetype = "dashed", linewidth= 0.8)+
+  geom_sf(data = Norway_voltage,color='#ff924c',linetype = "dashed", linewidth= 0.8)+
+  geom_sf(data = Germany_voltage, color='#ffca3a',linetype = "dashed", linewidth= 0.8)+ 
+  coord_sf(ylim = c(53,56.4), xlim = c(3,9),
+                    label_axes = list(left = "N", bottom = 'E'))
+Cables_wtext<-Cables+
+  geom_richtext(aes(x = 2.7, y = 56.0,
+label =  "<span style='color:#adb5bd'>  Undersea Cables crossing the German North Sea.</span>\n
+<span style='color:#adb5bd'>  Power cable  (in dashed lines) data source from: 
+<span style='color:#ff595e'>Netherlands</span>, 
+<span style='color:#ff924c'>Norway</span> and 
+<span style='color:#ffca3a'>Germany</span>.</span> \n
+<span style='color:#adb5bd'>  Telecommunications cable (in solid lines) data source from: 
+<span style='color:#8ac926'>Netherlands</span>, 
+<span style='color:#c86bfa'>France</span> and 
+<span style='color:#ffd60a'>Germany</span>.</span>"),  
+  size = 7, fill = "black", label.color = "black", hjust = 0, vjust = 0
+)
+Cables_wtext
+```
+
 
 ```{r, echo=FALSE, eval=FALSE}
 # Export
 library(here)
 here()
 My_directory<-paste0(here(),"/_posts/2025-09-15-cables")
-ggsave(Plot_cables,
-       filename = paste0(My_directory,"/cables.jpeg"),
-       width = 8, 
+ggsave(Cables+
+  geom_richtext(aes(x = 2.7, y = 56.0,
+label =  "<span style='color:#adb5bd'>  Undersea Cables crossing the German North Sea.</span>\n
+<span style='color:#adb5bd'>  Power cable  (in dashed lines) data source from: 
+<span style='color:#ff595e'>Netherlands</span>, 
+<span style='color:#ff924c'>Norway</span> and 
+<span style='color:#ffca3a'>Germany</span>.</span> \n
+<span style='color:#adb5bd'>  Telecommunications cable (in solid lines) data source from: 
+<span style='color:#8ac926'>Netherlands</span>, 
+<span style='color:#c86bfa'>France</span> and 
+<span style='color:#ffd60a'>Germany</span>.</span>"),  
+  size = 10, fill = "black", label.color = "black", hjust = 0, vjust = 0
+),
+       filename = paste0(My_directory,"/cables_export.jpeg"),
+       width = 6, 
        height = 6)
 ```
 
 # References
 
-- [How do they get installed - Video](https://youtu.be/Gg1aFmsKQgk)
-- [Buck et al 2024](https://www.researchgate.net/publication/235938669_Extensive_open_ocean_aquaculture_development_within_wind_farms_in_Germany_The_prospect_of_offshore_co-management_and_legal_constraints)
-- [Submarine cable map](https://www.submarinecablemap.com/)
+**Effects**  
+- [Viking Link 2017](https://www.commissiemer.nl/projectdocumenten/00002753.pdf?documenttitle=Appendix%20I%20-%20Cable%20Heating%20Effects%20Report.pdf)<br>
+- [Farr et al. 2021](https://www.sciencedirect.com/science/article/pii/S096456912100096X#:~:text=We%20evaluated%20six%20categories%20of%20potential%20effects:,such%20as%20coastal%20residents%2C%20conservationists%2C%20and%20fisheries)<br>
+- [Lloret et al. 2022](https://www.sciencedirect.com/science/article/pii/S0048969722008956)<br>
+- [Middleton et al 2023](https://www.boem.gov/sites/default/files/documents/renewable-energy/studies/Transmission_Cable_Heat_WhitePaper.pdf#:~:text=This%20paper%20provides%20information%20about%20heat%20generated,from%20the%20heat%20generated%20from%20buried%20cables)<br>
+- [Hale et al 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC12054580/#:~:text=The%20near%2Dfield%20physical%20disturbances%20can%20also%20affect,by%20seabirds%20as%20resting%20and%20roosting%20platforms)<br>
+- [Buck et al 2024](https://www.researchgate.net/publication/235938669_Extensive_open_ocean_aquaculture_development_within_wind_farms_in_Germany_The_prospect_of_offshore_co-management_and_legal_constraints)<br>
+
+**Telecommuncations**  
+- [Ocean Cables Map](https://www.nytimes.com/interactive/2019/03/10/technology/internet-cables-oceans.html)<br>
+- [Submarine networks](https://www.submarinenetworks.com/en/systems/intra-europe/ioema/ioema-fibre-to-build-submarine-cable-connecting-five-northern-european-markets)<br>
+- [IOEMA Fibre optic](https://www.submarinenetworks.com/en/systems/intra-europe/ioema/ioema-fibre-to-build-submarine-cable-connecting-five-northern-european-markets)
+
+**Power**  
+- [Power cable installations connected to Offshore Wind farms](https://www.offshore-mag.com/renewable-energy/article/14305254/prysmian-supplying-cables-for-two-german-offshore-wind-farms)<br>
+- [NordLink](https://www.kfw.de/stories/environment/renewable-energy/nordlink/)<br>
+
+**Both**  
+- [Submarine cable map](https://www.submarinecablemap.com/)<br>
+- [How do the submarine cables get installed - Video](https://youtu.be/Gg1aFmsKQgk)<br>
+- [Cable instalation](https://oceannews.com/news/subsea-cable/jan-de-nul-to-install-inter-array-cables-for-wind-farms-german-north-sea/)<br>
+
+
 

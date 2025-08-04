@@ -88,37 +88,37 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Oil and Gas Offshore Installations</title>
+  <title>Underwater Power and Telecomunication Cables</title>
 
-  <meta property="description" itemprop="description" content="In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization."/>
+  <meta property="description" itemprop="description" content="In this month’s blog post, I map the underwater cable network of the German North Sea using open data from EMODnet. With R, I explore and visualize both telecommunication and power cables."/>
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2025-08-15"/>
-  <meta property="article:created" itemprop="dateCreated" content="2025-08-15"/>
+  <meta property="article:published" itemprop="datePublished" content="2025-09-15"/>
+  <meta property="article:created" itemprop="dateCreated" content="2025-09-15"/>
   <meta name="article:author" content="Miriam Lerma"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Oil and Gas Offshore Installations"/>
+  <meta property="og:title" content="Underwater Power and Telecomunication Cables"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization."/>
+  <meta property="og:description" content="In this month’s blog post, I map the underwater cable network of the German North Sea using open data from EMODnet. With R, I explore and visualize both telecommunication and power cables."/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Oil and Gas Offshore Installations"/>
-  <meta property="twitter:description" content="In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization."/>
+  <meta property="twitter:title" content="Underwater Power and Telecomunication Cables"/>
+  <meta property="twitter:description" content="In this month’s blog post, I map the underwater cable network of the German North Sea using open data from EMODnet. With R, I explore and visualize both telecommunication and power cables."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Oil and Gas Offshore Installations"]},{"type":"character","attributes":{},"value":["In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2025-08-15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","output"]}},"value":[{"type":"character","attributes":{},"value":["Underwater Power and Telecomunication Cables"]},{"type":"character","attributes":{},"value":["In this month’s blog post, I map the underwater cable network of the German North Sea using open data from EMODnet. With R, I explore and visualize both telecommunication and power cables. "]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Miriam Lerma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2025-09-15"]},{"type":"character","attributes":{},"value":["cables_front.jpg"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["cables_files/anchor-4.2.2/anchor.min.js","cables_files/bowser-1.9.3/bowser.min.js","cables_files/distill-2.2.21/template.v2.js","cables_files/figure-html5/unnamed-chunk-10-1.png","cables_files/figure-html5/unnamed-chunk-11-1.png","cables_files/figure-html5/unnamed-chunk-12-1.png","cables_files/figure-html5/unnamed-chunk-13-1.png","cables_files/figure-html5/unnamed-chunk-9-1.png","cables_files/header-attrs-2.28/header-attrs.js","cables_files/jquery-3.6.0/jquery-3.6.0.js","cables_files/jquery-3.6.0/jquery-3.6.0.min.js","cables_files/jquery-3.6.0/jquery-3.6.0.min.map","cables_files/popper-2.6.0/popper.min.js","cables_files/tippy-6.2.7/tippy-bundle.umd.min.js","cables_files/tippy-6.2.7/tippy-light-border.css","cables_files/tippy-6.2.7/tippy.css","cables_files/tippy-6.2.7/tippy.umd.min.js","cables_files/webcomponents-2.0.0/webcomponents.js","Instructions2.png"]}
+  {"type":"character","attributes":{},"value":["cables_export.jpeg","cables_files/anchor-4.2.2/anchor.min.js","cables_files/bowser-1.9.3/bowser.min.js","cables_files/distill-2.2.21/template.v2.js","cables_files/figure-html5/unnamed-chunk-10-1.png","cables_files/figure-html5/unnamed-chunk-11-1.png","cables_files/figure-html5/unnamed-chunk-12-1.png","cables_files/figure-html5/unnamed-chunk-13-1.png","cables_files/figure-html5/unnamed-chunk-14-1.png","cables_files/figure-html5/unnamed-chunk-15-1.png","cables_files/figure-html5/unnamed-chunk-16-1.png","cables_files/figure-html5/unnamed-chunk-17-1.png","cables_files/figure-html5/unnamed-chunk-18-1.png","cables_files/figure-html5/unnamed-chunk-19-1.png","cables_files/figure-html5/unnamed-chunk-20-1.png","cables_files/figure-html5/unnamed-chunk-21-1.png","cables_files/figure-html5/unnamed-chunk-22-1.png","cables_files/figure-html5/unnamed-chunk-23-1.png","cables_files/figure-html5/unnamed-chunk-9-1.png","cables_files/header-attrs-2.28/header-attrs.js","cables_files/htmltools-fill-0.5.8.1/fill.css","cables_files/htmlwidgets-1.6.4/htmlwidgets.js","cables_files/jquery-3.6.0/jquery-3.6.0.js","cables_files/jquery-3.6.0/jquery-3.6.0.min.js","cables_files/jquery-3.6.0/jquery-3.6.0.min.map","cables_files/leaflet-1.3.1/images/layers-2x.png","cables_files/leaflet-1.3.1/images/layers.png","cables_files/leaflet-1.3.1/images/marker-icon-2x.png","cables_files/leaflet-1.3.1/images/marker-icon.png","cables_files/leaflet-1.3.1/images/marker-shadow.png","cables_files/leaflet-1.3.1/leaflet.css","cables_files/leaflet-1.3.1/leaflet.js","cables_files/leaflet-binding-2.2.2/leaflet.js","cables_files/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js","cables_files/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js","cables_files/leafletfix-1.0.0/leafletfix.css","cables_files/popper-2.6.0/popper.min.js","cables_files/proj4-2.6.2/proj4.min.js","cables_files/Proj4Leaflet-1.0.1/proj4leaflet.js","cables_files/rstudio_leaflet-1.3.1/images/1px.png","cables_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css","cables_files/tippy-6.2.7/tippy-bundle.umd.min.js","cables_files/tippy-6.2.7/tippy-light-border.css","cables_files/tippy-6.2.7/tippy.css","cables_files/tippy-6.2.7/tippy.umd.min.js","cables_files/webcomponents-2.0.0/webcomponents.js","cables_front.jpg","cables_instruction.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1521,7 +1521,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Oil and Gas Offshore Installations","description":"In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2025-08-15T00:00:00.000+02:00","citationText":"Lerma, 2025"}
+{"title":"Underwater Power and Telecomunication Cables","description":"In this month’s blog post, I map the underwater cable network of the German North Sea using open data from EMODnet. With R, I explore and visualize both telecommunication and power cables.","authors":[{"author":"Miriam Lerma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2025-09-15T00:00:00.000+02:00","citationText":"Lerma, 2025"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1531,34 +1531,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Oil and Gas Offshore Installations</h1>
+<h1>Underwater Power and Telecomunication Cables</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>In this blog post, we will explore oil and gas data available for a specific area by downloading it from EMODnet, followed by data analysis and visualization.</p></p>
+<p>In this month’s blog post, I map the underwater cable network of the German North Sea using open data from EMODnet. With R, I explore and visualize both telecommunication and power cables.</p>
 </div>
 
 <div class="d-byline">
   Miriam Lerma true 
   
-<br/>2025-08-15
+<br/>2025-09-15
 </div>
 
 <div class="d-article">
 <h1 id="intro">Intro</h1>
-<p>Underwater (submarine) cables include cables use for telecommunication and for power.
-Although limited impacts have been found, the disturbance of the seabed during installation can disrupt benthic communities. Power cables additionally emit electromagnetic fields (EMFs) which might afect sensitive species such as migratory animals. Furthermore, these cables can warm the water surrounding them, and the effects of this are poorly known.</p>
+<p>In this month’s blog post, I take a closer look at the network of underwater cables stretching across the German North Sea. Using openly available geospatial data from EMODnet, I downloaded and worked with datasets covering both telecommunication and power cables. With R as my main analysis tool, I walk you through the process of exploring, cleaning, and visualizing the data. Building this map not only deepened my understanding of how these cables are distributed across the seafloor, but also raised important questions about how this often-invisible infrastructure intersects with other marine activities and ecologically sensitive areas. Sometimes, the most revealing stories are the ones hidden just beneath the surface.</p>
+<h2 id="cables">Cables</h2>
+<p>Underwater (submarine, or undersea) cables include cables use for telecommunication and for power.
+Although limited impacts have been found, the disturbance of the seabed during installation can disrupt benthic communities. Power cables additionally emit electromagnetic fields (EMFs) which might affect sensitive species such as migratory animals. Furthermore, these cables can warm the water surrounding them, but their effects by this are poorly known (see compilation of effects of cables in: Lloret et al. 2022, Hale et al. 2024)</p>
 <html>
 <body>
 <left>
-<a href="https://www.sa-world.com/images/econa-article-images/260/full/Untitled%20design(72).jpg" style="width:450px"></a>
+<a href="https://ychef.files.bbci.co.uk/1600x900/p0jxm9xs.webp" style="width:450px"></a>
 <img src="https://www.sa-world.com/images/econa-article-images/260/full/Untitled%20design(72).jpg" style="width:450px"></a>
 </left>
 </body>
 </html>
-<p>Source: <a href="https://www.sa-world.com/blog/ztt-has-concluded-installing-the-gode-wind-3-submarine-cable-in-the-german-north-sea.html">Sa-word</a></p>
-<h1 id="data">Data</h1>
-<p>There are two main installations: telecommunications (which for example provide internet access) and power (transporting energy, for example from wind farms to land)</p>
+<p>Image from: <a href="https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running">BBC</a></p>
+<p>While it’s difficult to pinpoint an exact annual number, estimates suggest that hundreds of kilometers of new submarine cables are installed each year to meet the growing global demand for internet and telecommunications. However, the number of new cables installed varies significantly each year, with the total number of operational and planned cables exceeding 600 in early 2025</p>
 <html>
 <body>
 <left>
@@ -1566,17 +1567,19 @@ Although limited impacts have been found, the disturbance of the seabed during i
 </left>
 </body>
 </html>
-<p>Germany Mecklenburg-Western Pomerania Baltic Sea – undersea cable to Hiddensee island.</p>
+<p>Image from Germany Mecklenburg-Western Pomerania Baltic Sea – undersea cable to Hiddensee island. Source <a href="https://energyindustryreview.com/wp-content/uploads/2022/03/submarin-cable-layout.jpg">Energy Industry Review</a></p>
+<h1 id="data">Data</h1>
+<p>There are two main installations: telecommunications (which for example provide internet access) and power (transporting energy, for example from wind farms to land)</p>
 <p>To download the the dataset on subsea telecommunication and power cables, this information available at the European Marine Observation and Data Network (EMODnet). <br>
 This dataset is updated every year, and is available for viewing and download on the EMODnet web portal&gt;<a href="https://emodnet.ec.europa.eu/en/human-activities">Human Activities</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="Instructions2.png" width="640" /></p>
+<p><img src="cables_instruction.png" width="640" /></p>
 </div>
-<h1 id="read">Read</h1>
-<p>Prepare to read shapefiles, by providing the folder where the data is stored.</p>
+<p>To have easier access to the files, save them in the same directory and provide the directory where the data is stored.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
@@ -1585,7 +1588,11 @@ This dataset is updated every year, and is available for viewing and download on
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>This_directory</span><span class='op'>&lt;-</span><span class='fu'><a href='https://here.r-lib.org/reference/here.html'>here</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<h2 id="telecommunications">Telecommunications</h2>
+<p>There are around 1.4 million kilometers (870,000 miles) of telecommunication cables lining the seafloor, connecting every ocean across the globe. Laid end to end, they could stretch across the diameter of the Sun, and they carry an astounding 99% of the world’s digital data. Yet for something so vital, these cables are surprisingly slim, often just 2 cm thick, roughly the width of a garden hose.
+Source: <a href="https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running">BBC</a></p>
 <p>The relevant files for the telecommunication lines in the German North Sea are in the files from German, France and Netherlands telecommunications.</p>
+<p>To load this files:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Germany_telecommunications</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/DE_BSH_CONTIS_Data_CablesLine.shp"</span><span class='op'>)</span><span class='op'>)</span></span>
@@ -1593,25 +1600,23 @@ This dataset is updated every year, and is available for viewing and download on
 <span><span class='va'>Netherlands_telecommunications</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/NL_Rijkswaterstaat_Telecom_kabels_noordzee.shp"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>The relevant files for the power lines in the German North Sea are in the files form German, France and Norway cables.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Germany_voltage</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/DE_BSH_CONTIS_High_Voltage_CablesLine.shp"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='va'>Netherlands_voltage</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/NL_Rijkswaterstaat_Electra_kabels_noordzee.shp"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='va'>Norway_voltage</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/NO_NVE_Sjokabel.shp"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<h1 id="base-map">Base Map</h1>
+<h3 id="visualization">Visualization</h3>
 <p>Load ggplot to start creating visualizations.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Create a base map using shapefiles from the package GermanNorthSea.</p>
+<p>Load base shapefiles from the package GermanNorthSea.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>GermanNorthSea</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>German_EEZ</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='va'>German_EEZ</span>,<span class='fl'>4326</span><span class='op'>)</span></span>
+<span><span class='va'>German_land</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='va'>German_land</span>,<span class='fl'>4326</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Add the attributes and the theme to your base map.</p>
@@ -1619,84 +1624,226 @@ This dataset is updated every year, and is available for viewing and download on
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Base_map</span><span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='co'># Fill colors</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_EEZ.html'>German_EEZ</a></span>, color<span class='op'>=</span><span class='st'>'#43585E'</span>,fill<span class='op'>=</span><span class='st'>'transparent'</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, linewidth <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_land</span>, colour <span class='op'>=</span> <span class='st'>'#43585E'</span>, fill <span class='op'>=</span> <span class='st'>'#43585E'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_SCA.html'>German_SCA</a></span>, colour <span class='op'>=</span> <span class='st'>'#43585E'</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, </span>
-<span>          linewidth<span class='op'>=</span><span class='fl'>0.1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/German_natura.html'>German_natura</a></span>, colour <span class='op'>=</span> <span class='st'>'#43585E'</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, </span>
-<span>          linewidth<span class='op'>=</span><span class='fl'>0.1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span>,alpha<span class='op'>=</span><span class='fl'>0.3</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_EEZ</span>, color<span class='op'>=</span><span class='st'>'#212529'</span>,fill<span class='op'>=</span><span class='cn'>NA</span>,alpha<span class='op'>=</span><span class='fl'>0.1</span>, linewidth <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_land</span>, colour <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>6</span>,<span class='fl'>8</span><span class='op'>)</span>,labels <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>'\u00B0'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53.5</span>,<span class='fl'>54.5</span>,<span class='fl'>55.5</span><span class='op'>)</span>,labels <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>'\u00B0'</span><span class='op'>)</span><span class='op'>)</span>  <span class='op'>+</span></span>
 <span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
-<span>  axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>10</span>,vjust <span class='op'>=</span> <span class='fl'>12</span>,color<span class='op'>=</span><span class='st'>'#3d5a80'</span><span class='op'>)</span>,</span>
-<span>  axis.text.y <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'#3d5a80'</span>,size<span class='op'>=</span><span class='fl'>10</span>,margin <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>margin</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='op'>-</span><span class='fl'>1.30</span>,<span class='fl'>0</span>,<span class='fl'>1</span>, unit <span class='op'>=</span> <span class='st'>'cm'</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>  axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>  axis.text.y <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span>  axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span>  axis.ticks.length<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.20</span>, <span class='st'>"cm"</span><span class='op'>)</span>,</span>
+<span>  axis.ticks <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_line</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>"black"</span><span class='op'>)</span>,</span>
 <span>  panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span>  panel.grid.minor <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>  panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'#F2F2F2'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'#495057'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>'Longitude'</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>'Latitude'</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, linewidth<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.border <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>, fill<span class='op'>=</span><span class='cn'>NA</span>, linewidth <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56</span><span class='op'>)</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>,</span>
+<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>Base_map</span></span></code></pre>
+</div>
+<p><img src="cables_files/figure-html5/unnamed-chunk-9-1.png" width="768" /></p>
+</div>
+<h3 id="filter">Filter</h3>
+<p>Telecommunications in Germany connect UK, Netherlands, Denmark and Norway.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wilkelab.org/ggtext/'>ggtext</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<h2 id="telecommunications">Telecommunications</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Base_map</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_telecommunications</span>,color<span class='op'>=</span><span class='st'>'green'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>France_telecommunications</span>,color<span class='op'>=</span><span class='st'>'blue'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_telecommunications</span>, color<span class='op'>=</span><span class='st'>'red'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3900000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
-<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="cables_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
-</div>
-<h2 id="power">Power</h2>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Base_map</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_voltage</span>,color<span class='op'>=</span><span class='st'>'green'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Norway_voltage</span>,color<span class='op'>=</span><span class='st'>'blue'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_voltage</span>, color<span class='op'>=</span><span class='st'>'red'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3900000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_telecommunications</span>,color<span class='op'>=</span><span class='st'>'#8ac926'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>France_telecommunications</span>,color<span class='op'>=</span><span class='st'>'#c86bfa'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_telecommunications</span>, color<span class='op'>=</span><span class='st'>'#ffd60a'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>  <span class='fu'><a href='https://wilkelab.org/ggtext/reference/geom_richtext.html'>geom_richtext</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span>  <span class='fl'>2.9</span>, y <span class='op'>=</span> <span class='fl'>56.0</span>,</span>
+<span>  label <span class='op'>=</span> <span class='st'>"&lt;span style='color:#adb5bd'&gt;Underwater Telecommunication Cables crossing  &lt;br&gt; </span></span>
+<span><span class='st'>  the German North Sea.  &lt;br&gt;</span></span>
+<span><span class='st'>  Data source from: &lt;span style='color:#8ac926'&gt;Netherlands&lt;/span&gt;, </span></span>
+<span><span class='st'>  &lt;span style='color:#c86bfa'&gt;France&lt;/span&gt; and </span></span>
+<span><span class='st'>  &lt;span style='color:#ffd60a'&gt;Germany&lt;/span&gt;."</span><span class='op'>)</span>, </span>
+<span>  size <span class='op'>=</span> <span class='fl'>4</span>,fill <span class='op'>=</span><span class='st'>"black"</span>,label.color <span class='op'>=</span> <span class='cn'>NA</span>,  hjust <span class='op'>=</span> <span class='fl'>0</span>,  vjust<span class='op'>=</span> <span class='fl'>0</span>,  inherit.aes <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span>  <span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56.4</span><span class='op'>)</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>,</span>
 <span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="cables_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
 </div>
-<p>Note than in Germany, many of the power cables are connected to their OWF</p>
+<h3 id="examples">Examples</h3>
+<p>SEA-ME-WE 3 (South-East Asia – Middle East – Western Europe 3) is the world’s longest optical submarine telecommunications cable, linking Asia, the Middle East, and Europe. Source: <a href="https://en.wikipedia.org/wiki/SEA-ME-WE_3">Wikipedia</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>France_telecommunications</span><span class='op'>$</span><span class='va'>NAME</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/yixuan/showtext'>showtext</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/showtext/man/showtext_auto.html'>showtext_auto</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/sysfonts/man/font_add_google.html'>font_add_google</a></span><span class='op'>(</span><span class='st'>"Share Tech Mono"</span>, <span class='st'>"Share Tech Mono"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Base_map</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_voltage</span>,color<span class='op'>=</span><span class='st'>'green'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Norway_voltage</span>,color<span class='op'>=</span><span class='st'>'blue'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_voltage</span>, color<span class='op'>=</span><span class='st'>'red'</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/OWF_EMODnet.html'>OWF_EMODnet</a></span>, color<span class='op'>=</span><span class='st'>'grey'</span>, alpha<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3900000</span>,<span class='fl'>4250000</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3350000</span>,<span class='fl'>3680000</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>France_telecommunications</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>NAME</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'SEA ME WE3-S10.4'</span>,<span class='st'>'SEA ME WE3-S10.3'</span>,</span>
+<span>                                                                  <span class='st'>'SEA ME WE3-S10.2'</span>,<span class='st'>'SEA ME WE3-S10.1'</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>          color<span class='op'>=</span><span class='st'>'#c86bfa'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_telecommunications</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name_</span><span class='op'>==</span><span class='st'>'SeaMeWe 3'</span><span class='op'>)</span>, </span>
+<span>            color<span class='op'>=</span><span class='st'>'#ffd60a'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_telecommunications</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>NAAM</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'SEA-ME-WE 3 Segment 10.1'</span>,</span>
+<span>                                                                       <span class='st'>'SEA-ME-WE 3 Segment 10.2 + 10.3'</span><span class='op'>)</span><span class='op'>)</span>, </span>
+<span>          color<span class='op'>=</span><span class='st'>'#8ac926'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span>  <span class='fl'>2.9</span>, y <span class='op'>=</span> <span class='fl'>56.3</span>,</span>
+<span>                 label <span class='op'>=</span> <span class='st'>"Underwater Telecommunication Cable: SEA-ME-WE3   "</span><span class='op'>)</span>,</span>
+<span>                 size<span class='op'>=</span><span class='fl'>7</span>,color<span class='op'>=</span><span class='st'>'#adb5bd'</span>, hjust<span class='op'>=</span><span class='fl'>0</span>,fill<span class='op'>=</span><span class='st'>'black'</span>,label.size <span class='op'>=</span> <span class='fl'>0</span>,</span>
+<span>                 family <span class='op'>=</span> <span class='st'>"Share Tech Mono"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56.4</span><span class='op'>)</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>,</span>
+<span>                  label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="cables_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<h2 id="power">Power</h2>
+<p>The relevant files for the power lines in the German North Sea are in the files from German, Netherland and Norway cables.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Germany_voltage</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/DE_BSH_CONTIS_High_Voltage_CablesLine.shp"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>Netherlands_voltage</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/NL_Rijkswaterstaat_Electra_kabels_noordzee.shp"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>Norway_voltage</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>This_directory</span>,<span class='st'>"/NO_NVE_Sjokabel.shp"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="filter-1">Filter</h3>
+<p>The data contains “in use” and “planned” cables, keep only those that are “inUse”.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Germany_voltage</span><span class='op'>&lt;-</span><span class='va'>Germany_voltage</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>status</span><span class='op'>==</span><span class='st'>'inUse'</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="visualization-1">Visualization</h3>
+<p>Add them in your base map.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Power_cables</span><span class='op'>&lt;-</span><span class='va'>Base_map</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_voltage</span>,color<span class='op'>=</span><span class='st'>'#ff595e'</span>,linetype <span class='op'>=</span> <span class='st'>"dashed"</span>, linewidth<span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Norway_voltage</span>,color<span class='op'>=</span><span class='st'>'#ff924c'</span>,linetype <span class='op'>=</span> <span class='st'>"dashed"</span>, linewidth<span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_voltage</span>, color<span class='op'>=</span><span class='st'>'#ffca3a'</span>,linetype <span class='op'>=</span> <span class='st'>"dashed"</span>, linewidth<span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56.4</span><span class='op'>)</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>,</span>
+<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span></span>
+<span>  <span class='fu'><a href='https://wilkelab.org/ggtext/reference/geom_richtext.html'>geom_richtext</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span>  <span class='fl'>2.9</span>, y <span class='op'>=</span> <span class='fl'>56.1</span>,</span>
+<span>  label <span class='op'>=</span> <span class='st'>"&lt;span style='color:#adb5bd'&gt;Underwater Power Cables crossing the German North Sea.\n</span></span>
+<span><span class='st'>  &lt;span style='color:#adb5bd'&gt;Data source from: </span></span>
+<span><span class='st'>  &lt;span style='color:#ff595e'&gt;Netherlands&lt;/span&gt;, </span></span>
+<span><span class='st'>  &lt;span style='color:#ff924c'&gt;Norway&lt;/span&gt; and </span></span>
+<span><span class='st'>  &lt;span style='color:#ffca3a'&gt;Germany&lt;/span&gt;.&lt;/span&gt;"</span><span class='op'>)</span>,</span>
+<span>  size <span class='op'>=</span> <span class='fl'>8</span>,fill <span class='op'>=</span><span class='st'>"black"</span>,label.color <span class='op'>=</span> <span class='cn'>NA</span>,  hjust <span class='op'>=</span> <span class='fl'>0</span>,  vjust<span class='op'>=</span> <span class='fl'>0</span>,  inherit.aes <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span>  <span class='op'>)</span></span>
+<span><span class='va'>Power_cables</span></span></code></pre>
+</div>
+<p><img src="cables_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
+</div>
+<p>Note than in Germany, many of the power cables are connected to Offshore Wind Farms</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>German_OWF</span><span class='op'>&lt;-</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>GermanNorthSea</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/GermanNorthSea/man/OWF_EMODnet.html'>OWF_EMODnet</a></span>,<span class='fl'>4326</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Power_cables</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>German_OWF</span>, color<span class='op'>=</span><span class='st'>'#850a0a'</span>,fill<span class='op'>=</span><span class='st'>'#850a0a'</span>, alpha<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56.4</span><span class='op'>)</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>,</span>
 <span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="cables_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+<p><img src="cables_files/figure-html5/unnamed-chunk-19-1.png" width="624" /></p>
 </div>
-<html>
-<body>
-<left>
-<a href="https://img.offshore-mag.com/files/base/ebm/os/image/2024/02/65cf9e769eb5bc001ee30b5e-balwin_amprion.png?auto=format,compress&fit=max&q=45" style="width:450px"><img src="https://img.offshore-mag.com/files/base/ebm/os/image/2024/02/65cf9e769eb5bc001ee30b5e-balwin_amprion.png?auto=format,compress&fit=max&q=45" style="width:450px"></a></a>
-</left>
-</body>
-</html>
-<p>Source: <a href="https://www.offshore-mag.com/renewable-energy/article/14305254/prysmian-supplying-cables-for-two-german-offshore-wind-farms">Offshore mag</a></p>
+<h3 id="examples-1">Examples</h3>
+<p>NorNed is a high-voltage direct current (HVDC) submarine power cable connecting Norway and the Netherlands. Spanning approximately 580 kilometers under the North Sea, it is one of the longest subsea power interconnectors in the world.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Base_map</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Norway_voltage</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>navn</span><span class='op'>==</span><span class='st'>'NorNed'</span><span class='op'>)</span>, </span>
+<span>            color<span class='op'>=</span><span class='st'>'#ff924c'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_voltage</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name_</span><span class='op'>==</span><span class='st'>'NorNed'</span><span class='op'>)</span>, </span>
+<span>            color<span class='op'>=</span><span class='st'>'#ffca3a'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span>  <span class='fl'>2.9</span>, y <span class='op'>=</span> <span class='fl'>56.3</span>,</span>
+<span>                 label <span class='op'>=</span> <span class='st'>"Underwater Power Cables: NorNed   "</span><span class='op'>)</span>,</span>
+<span>                 size<span class='op'>=</span><span class='fl'>7</span>,color<span class='op'>=</span><span class='st'>'#adb5bd'</span>, hjust<span class='op'>=</span><span class='fl'>0</span>,fill<span class='op'>=</span><span class='st'>'black'</span>,label.size <span class='op'>=</span> <span class='fl'>0</span>,</span>
+<span>                 family <span class='op'>=</span> <span class='st'>"Share Tech Mono"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56.4</span><span class='op'>)</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>,</span>
+<span>                  label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="cables_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
+</div>
+<h1 id="both">Both</h1>
+<p>Combine the spatial data of telecommunication and power cables into one comprehensive map to enable clear visualization and analysis of the widespread cable infrastructure.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wilkelab.org/ggtext/'>ggtext</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Cables</span><span class='op'>&lt;-</span><span class='va'>Base_map</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_telecommunications</span>,color<span class='op'>=</span><span class='st'>'#8ac926'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>France_telecommunications</span>,color<span class='op'>=</span><span class='st'>'#c86bfa'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_telecommunications</span>, color<span class='op'>=</span><span class='st'>'#ffd60a'</span>,linewidth<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Netherlands_voltage</span>,color<span class='op'>=</span><span class='st'>'#ff595e'</span>,linetype <span class='op'>=</span> <span class='st'>"dashed"</span>, linewidth<span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Norway_voltage</span>,color<span class='op'>=</span><span class='st'>'#ff924c'</span>,linetype <span class='op'>=</span> <span class='st'>"dashed"</span>, linewidth<span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Germany_voltage</span>, color<span class='op'>=</span><span class='st'>'#ffca3a'</span>,linetype <span class='op'>=</span> <span class='st'>"dashed"</span>, linewidth<span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>53</span>,<span class='fl'>56.4</span><span class='op'>)</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>9</span><span class='op'>)</span>,</span>
+<span>                    label_axes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='st'>"N"</span>, bottom <span class='op'>=</span> <span class='st'>'E'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>Cables_wtext</span><span class='op'>&lt;-</span><span class='va'>Cables</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://wilkelab.org/ggtext/reference/geom_richtext.html'>geom_richtext</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>2.7</span>, y <span class='op'>=</span> <span class='fl'>56.0</span>,</span>
+<span>label <span class='op'>=</span>  <span class='st'>"&lt;span style='color:#adb5bd'&gt;  Undersea Cables crossing the German North Sea.&lt;/span&gt;\n</span></span>
+<span><span class='st'>&lt;span style='color:#adb5bd'&gt;  Power cable  (in dashed lines) data source from: </span></span>
+<span><span class='st'>&lt;span style='color:#ff595e'&gt;Netherlands&lt;/span&gt;, </span></span>
+<span><span class='st'>&lt;span style='color:#ff924c'&gt;Norway&lt;/span&gt; and </span></span>
+<span><span class='st'>&lt;span style='color:#ffca3a'&gt;Germany&lt;/span&gt;.&lt;/span&gt; \n</span></span>
+<span><span class='st'>&lt;span style='color:#adb5bd'&gt;  Telecommunications cable (in solid lines) data source from: </span></span>
+<span><span class='st'>&lt;span style='color:#8ac926'&gt;Netherlands&lt;/span&gt;, </span></span>
+<span><span class='st'>&lt;span style='color:#c86bfa'&gt;France&lt;/span&gt; and </span></span>
+<span><span class='st'>&lt;span style='color:#ffd60a'&gt;Germany&lt;/span&gt;.&lt;/span&gt;"</span><span class='op'>)</span>,  </span>
+<span>  size <span class='op'>=</span> <span class='fl'>7</span>, fill <span class='op'>=</span> <span class='st'>"black"</span>, label.color <span class='op'>=</span> <span class='st'>"black"</span>, hjust <span class='op'>=</span> <span class='fl'>0</span>, vjust <span class='op'>=</span> <span class='fl'>0</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='va'>Cables_wtext</span></span></code></pre>
+</div>
+<p><img src="cables_files/figure-html5/unnamed-chunk-22-1.png" width="624" /></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <h1 id="references">References</h1>
-<ul>
-<li><a href="https://youtu.be/Gg1aFmsKQgk">Video</a></li>
-<li><a href="https://www.researchgate.net/publication/235938669_Extensive_open_ocean_aquaculture_development_within_wind_farms_in_Germany_The_prospect_of_offshore_co-management_and_legal_constraints">Buck et al 2024</a></li>
-</ul>
+<p><strong>Effects</strong><br />
+- <a href="https://www.commissiemer.nl/projectdocumenten/00002753.pdf?documenttitle=Appendix%20I%20-%20Cable%20Heating%20Effects%20Report.pdf">Viking Link 2017</a><br>
+- <a href="https://www.sciencedirect.com/science/article/pii/S096456912100096X#:~:text=We%20evaluated%20six%20categories%20of%20potential%20effects:,such%20as%20coastal%20residents%2C%20conservationists%2C%20and%20fisheries">Farr et al. 2021</a><br>
+- <a href="https://www.sciencedirect.com/science/article/pii/S0048969722008956">Lloret et al. 2022</a><br>
+- <a href="https://www.boem.gov/sites/default/files/documents/renewable-energy/studies/Transmission_Cable_Heat_WhitePaper.pdf#:~:text=This%20paper%20provides%20information%20about%20heat%20generated,from%20the%20heat%20generated%20from%20buried%20cables">Middleton et al 2023</a><br>
+- <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12054580/#:~:text=The%20near%2Dfield%20physical%20disturbances%20can%20also%20affect,by%20seabirds%20as%20resting%20and%20roosting%20platforms">Hale et al 2024</a><br>
+- <a href="https://www.researchgate.net/publication/235938669_Extensive_open_ocean_aquaculture_development_within_wind_farms_in_Germany_The_prospect_of_offshore_co-management_and_legal_constraints">Buck et al 2024</a><br></p>
+<p><strong>Telecommuncations</strong><br />
+- <a href="https://www.nytimes.com/interactive/2019/03/10/technology/internet-cables-oceans.html">Ocean Cables Map</a><br>
+- <a href="https://www.submarinenetworks.com/en/systems/intra-europe/ioema/ioema-fibre-to-build-submarine-cable-connecting-five-northern-european-markets">Submarine networks</a><br>
+- <a href="https://www.submarinenetworks.com/en/systems/intra-europe/ioema/ioema-fibre-to-build-submarine-cable-connecting-five-northern-european-markets">IOEMA Fibre optic</a></p>
+<p><strong>Power</strong><br />
+- <a href="https://www.offshore-mag.com/renewable-energy/article/14305254/prysmian-supplying-cables-for-two-german-offshore-wind-farms">Power cable installations connected to Offshore Wind farms</a><br>
+- <a href="https://www.kfw.de/stories/environment/renewable-energy/nordlink/">NordLink</a><br></p>
+<p><strong>Both</strong><br />
+- <a href="https://www.submarinecablemap.com/">Submarine cable map</a><br>
+- <a href="https://youtu.be/Gg1aFmsKQgk">How do the submarine cables get installed - Video</a><br>
+- <a href="https://oceannews.com/news/subsea-cable/jan-de-nul-to-install-inter-array-cables-for-wind-farms-german-north-sea/">Cable instalation</a><br></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
