@@ -1,6 +1,6 @@
 ---
 title: "Oil and Gas Offshore Installations"
-description: In this month’s blog post, we'll explore oil and gas infrastructure in the German North Sea, by using EMODnet geospatial data to map offshore installations and pipelines, as well as focusing on a site near the ecologically sensitive Borkum Reef, revealing why recent projects there have sparked environmental concern.
+description: In this month’s blog post, we'll explore oil and gas infrastructure in the German North Sea, by using EMODnet geospatial data to map offshore installations and pipelines, as well as focusing on a site near the ecologically sensitive Borkum Reef, revealing why recently proposed projects there have sparked environmental concern.
 author:
   - name: Miriam Lerma
     url: {}
@@ -13,7 +13,7 @@ output:
 
 # Intro
 
-In this month’s blog post, I dive into the world of oil and gas infrastructure in the German North Sea. Using openly available geospatial data from EMODnet, I downloaded and analyzed datasets related to offshore installations and pipelines. Step by step, I walk through the process of transforming raw data into a map. Creating this visualization not only helped me better understand the spatial layout of these industrial structures, but also shed light on why a particular location has drawn criticism. The proximity to ecologically sensitive areas like Borkum Reef raises important questions, questions that are best understood when we can actually see the data.
+In this month’s blog post, I dive into the world of oil and gas infrastructure in the German North Sea. Using openly available geospatial data from EMODnet, I downloaded and analyzed datasets related to offshore installations and pipelines. Step by step, I walk through the process of transforming raw data into a map. Creating this visualization not only helped me better understand the spatial layout of these industrial structures, but also shed light on why a particular proposed site has drawn criticism. The proximity to ecologically sensitive areas like Borkum Reef raises important questions, questions that are best understood when we can actually see the data.
 
 # Data
 
