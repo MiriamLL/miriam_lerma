@@ -99,7 +99,6 @@ ggplot() +
   geom_sf(data = Oil_germany)
 ```
 
-
 ## Places
 
 Create a base map using shapefiles from the package GermanNorthSea.
@@ -178,6 +177,7 @@ Mittelplate is Germany’s largest oil field, located 7 km (4.3 mi) offshore in 
    </left>
 </body>
 </html>
+Image showing Mittleplate A oil field. 
 
 **A6-A**
 
@@ -191,6 +191,7 @@ Operated by the German North Sea Consortium, with Wintershall Noordzee B.V. mana
    </left>
 </body>
 </html>
+Image showing A6-A Offshore gas field. 
 
 
 # Pipelines

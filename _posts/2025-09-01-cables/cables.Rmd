@@ -59,6 +59,8 @@ The relevant files for the power lines in the German North Sea are in the files 
 
 To have easier access to the files, it is recommended to save them in the same directory.
 
+Data test also available to download at [github](https://github.com/MiriamLL/data_supporting_webpage/tree/main/Blog/2025/Cables).
+
 # Telecommunications
 
 There are around 1.4 million kilometers (870,000 miles) of telecommunication cables lining the seafloor, connecting every ocean across the globe. Laid end to end, they could stretch across the diameter of the Sun, and they carry an astounding 99% of the world’s digital data. Yet for something so vital, these cables are surprisingly slim, often just 2 cm thick, roughly the width of a garden hose.
@@ -79,7 +81,7 @@ This_directory<-here()
 ```
 
 ```{r,echo=FALSE, include=FALSE}
-This_directory<-"C:\\Users\\lerma\\OneDrive\\Documents\\03Academico\\02Proyectos-Postdoc\\2025\\1Programming\\1Distill\\data_supporting_webpage\\Blog//2025//Cables\\"
+This_directory<-"C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2025/1Programming/1Distill/data_supporting_webpage\\Blog//2025//Cables\\"
 list.files(This_directory)
 Germany_telecommunications<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_Data_CablesLine.shp"))
 France_telecommunications<-st_read(paste0(This_directory,"/FR_SIGCables_Submarine_Cables_Routes.shp"))
