@@ -4,7 +4,7 @@ description: "In this month’s blog post, I map the underwater cable network of
 author:
   - name: Miriam Lerma
     url: {}
-date: 2025-09-15
+date: 2025-09-01
 preview: cables_front.jpg
 output:
   distill::distill_article:
@@ -13,7 +13,7 @@ output:
 
 # Intro
 
-In this month’s blog post, I take a closer look at the network of underwater cables stretching across the German North Sea. Using openly available geospatial data from EMODnet, I downloaded and worked with datasets covering both telecommunication and power cables. With R as my main analysis tool, I walk you through the process of exploring, cleaning, and visualizing the data. Building this map not only deepened my understanding of how these cables are distributed across the seafloor, but also raised important questions about how this often-invisible infrastructure intersects with other marine activities and ecologically sensitive areas. Sometimes, the most revealing stories are the ones hidden just beneath the surface.
+In this month’s blog post, I take a closer look at the network of underwater cables stretching across the German North Sea. Using openly available geospatial data from EMODnet, I downloaded and worked with datasets covering both telecommunication and power cables. With R as my main analysis tool, I walk you through the process of exploring, cleaning, and visualizing the data. Building this map deepened my understanding of how these often-invisible infrastructures are distributed across the seafloor.
 
 ## Cables 
 
@@ -28,9 +28,9 @@ Although limited impacts have been found, the disturbance of the seabed during i
    </left>
 </body>
 </html>
-Image from: [BBC](https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running)
+Image from a underwater cable from [BBC](https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running)
 
-While it's difficult to pinpoint an exact annual number, estimates suggest that hundreds of kilometers of new submarine cables are installed each year to meet the growing global demand for internet and telecommunications. However, the number of new cables installed varies significantly each year, with the total number of operational and planned cables exceeding 600 in early 2025
+While it's difficult to pinpoint an exact annual number, estimates suggest that hundreds of kilometers of new submarine cables are installed each year to meet the growing global demand for internet and telecommunications. However, the number of new cables installed varies significantly each year, with the total number of operational and planned cables exceeding 600 in early 2025.
 
 <html>
 <body>
@@ -39,21 +39,34 @@ While it's difficult to pinpoint an exact annual number, estimates suggest that 
    </left>
 </body>
 </html>
-Image from Germany Mecklenburg-Western Pomerania Baltic Sea – undersea cable to Hiddensee island. Source [Energy Industry Review](https://energyindustryreview.com/wp-content/uploads/2022/03/submarin-cable-layout.jpg)
+Image from the installation of undersea cable in waters from the Hiddensee island at Germany Mecklenburg-Western Pomerania Baltic Sea from [Energy Industry Review](https://energyindustryreview.com/wp-content/uploads/2022/03/submarin-cable-layout.jpg)
 
-# Data
+# Source
 
-There are two  main installations: telecommunications (which for example provide internet access) and power (transporting energy, for example from wind farms to land)
+There are two  main installations: telecommunications (which for example provide internet access) and power (transporting energy, for example from wind farms to land).
 
-To download the the dataset on subsea telecommunication and power cables, this information available at the European Marine Observation and Data Network (EMODnet). <br>
-This dataset is updated every year, and is available for viewing and download on the EMODnet web portal>[Human Activities](https://emodnet.ec.europa.eu/en/human-activities). 
+The information from  subsea telecommunication and power cables is available at the European Marine Observation and Data Network (EMODnet)<br>
+This dataset is updated every year, to download on the EMODnet web portal>[Human Activities](https://emodnet.ec.europa.eu/en/human-activities). 
 
 ```{r, echo=FALSE,fig.width=5, fig.height=4}
 knitr::include_graphics('cables_instruction.png')
 ```
 
 
-To have easier access to the files, save them in the same directory and provide the directory where the data is stored.
+The relevant files for the telecommunication lines in the German North Sea are in the files from German, France and Netherlands telecommunications.
+
+The relevant files for the power lines in the German North Sea are in the files from German, Netherlands and Norway cables.
+
+To have easier access to the files, it is recommended to save them in the same directory.
+
+# Telecommunications
+
+There are around 1.4 million kilometers (870,000 miles) of telecommunication cables lining the seafloor, connecting every ocean across the globe. Laid end to end, they could stretch across the diameter of the Sun, and they carry an astounding 99% of the world’s digital data. Yet for something so vital, these cables are surprisingly slim, often just 2 cm thick, roughly the width of a garden hose.
+Source: [BBC](https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running)
+
+### Visualization
+
+To visualize the telecommunications data, load your data and call the package ggplot. 
 
 ```{r}
 library(here)
@@ -64,11 +77,6 @@ library(sf)
 ```{r, echo=TRUE}
 This_directory<-here()
 ```
-
-## Telecommunications
-
-There are around 1.4 million kilometers (870,000 miles) of telecommunication cables lining the seafloor, connecting every ocean across the globe. Laid end to end, they could stretch across the diameter of the Sun, and they carry an astounding 99% of the world’s digital data. Yet for something so vital, these cables are surprisingly slim, often just 2 cm thick, roughly the width of a garden hose.
-Source: [BBC](https://www.bbc.co.uk/future/article/20241014-the-deep-sea-emergency-service-that-keeps-the-internet-running)
 
 ```{r,echo=FALSE, include=FALSE}
 This_directory<-"C:\\Users\\lerma\\OneDrive\\Documents\\03Academico\\02Proyectos-Postdoc\\2025\\1Programming\\1Distill\\data_supporting_webpage\\Blog//2025//Cables\\"
@@ -81,25 +89,17 @@ Netherlands_voltage<-st_read(paste0(This_directory,"/NL_Rijkswaterstaat_Electra_
 Norway_voltage<-st_read(paste0(This_directory,"/NO_NVE_Sjokabel.shp"))
 ```
 
-The relevant files for the telecommunication lines in the German North Sea are in the files from German, France and Netherlands telecommunications.
-
-To load this files:
-
 ```{r, echo=TRUE, eval=FALSE}
 Germany_telecommunications<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_Data_CablesLine.shp"))
 France_telecommunications<-st_read(paste0(This_directory,"/FR_SIGCables_Submarine_Cables_Routes.shp"))
 Netherlands_telecommunications<-st_read(paste0(This_directory,"/NL_Rijkswaterstaat_Telecom_kabels_noordzee.shp"))
 ```
 
-### Visualization
-
-Load ggplot to start creating visualizations. 
-
 ```{r}
 library(ggplot2)
 ```
 
-Load base shapefiles from the package GermanNorthSea. 
+To have reference points, load base shapefiles from the package GermanNorthSea for this exercise.  
 
 ```{r}
 library(GermanNorthSea)
@@ -139,9 +139,17 @@ Base_map<-ggplot() +
 Base_map
 ```
 
-### Filter
+### Text
 
-Telecommunications in Germany connect UK, Netherlands, Denmark and Norway. 
+Fonts from goggle can be use in ggplot. In the example, I will be using ["Share Tech Mono"](https://fonts.google.com/specimen/Share+Tech+Mono).
+
+```{r}
+library(showtext)
+showtext_auto()
+font_add_google("Share Tech Mono", "Share Tech Mono")
+```
+
+Add text and colors for the label. 
 
 ```{r}
 library(ggtext)
@@ -153,31 +161,25 @@ Base_map +
   geom_sf(data = France_telecommunications,color='#c86bfa',linewidth=0.8)+
   geom_sf(data = Germany_telecommunications, color='#ffd60a',linewidth=0.8)+
   
-  geom_richtext(aes(x =  2.9, y = 56.0,
-  label = "<span style='color:#adb5bd'>Underwater Telecommunication Cables crossing  <br> 
-  the German North Sea.  <br>
-  Data source from: <span style='color:#8ac926'>Netherlands</span>, 
+  geom_richtext(aes(x =  2.9, y = 56.1,
+  label = "<span style='color:#adb5bd'>Underwater Telecommunication Cables crossing the German North Sea.\n
+  <span style='color:#adb5bd'>Data source from: 
+  <span style='color:#8ac926'>Netherlands</span>, 
   <span style='color:#c86bfa'>France</span> and 
-  <span style='color:#ffd60a'>Germany</span>."), 
-  size = 4,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE
+  <span style='color:#ffd60a'>Germany</span> (EMODnet).</span>"),
+  size = 8,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE, family = "Share Tech Mono"
   )+
   coord_sf(ylim = c(53,56.4), xlim = c(3,9),
                     label_axes = list(left = "N", bottom = 'E'))
 ```
 
 
-### Examples
+### Filter
 
-SEA-ME-WE 3 (South-East Asia – Middle East – Western Europe 3) is the world’s longest optical submarine telecommunications cable, linking Asia, the Middle East, and Europe. Source: [Wikipedia](https://en.wikipedia.org/wiki/SEA-ME-WE_3)
+To visualize a specific cable, use filter functions. For the exercise, lets focus on SEA-ME-WE 3 (South-East Asia – Middle East – Western Europe 3), the world’s longest optical submarine telecommunications cable, linking Asia, the Middle East, and Europe. Source: [Wikipedia](https://en.wikipedia.org/wiki/SEA-ME-WE_3)
 
 ```{r, eval=FALSE}
 unique(France_telecommunications$NAME)
-```
-
-```{r}
-library(showtext)
-showtext_auto()
-font_add_google("Share Tech Mono", "Share Tech Mono")
 ```
 
 ```{r, fig.height=6}
@@ -200,9 +202,9 @@ Base_map +
                   label_axes = list(left = "N", bottom = 'E'))
 ```
 
-## Power
+# Power Cables
 
-The relevant files for the power lines in the German North Sea are in the files from German, Netherland and Norway cables.
+The relevant files for the power lines in the German North Sea are in the files from German, Netherlands and Norway cables.
 
 ```{r, echo=TRUE, eval=FALSE}
 Germany_voltage<-st_read(paste0(This_directory,"/DE_BSH_CONTIS_High_Voltage_CablesLine.shp"))
@@ -237,7 +239,7 @@ Power_cables<-Base_map +
   <span style='color:#ff595e'>Netherlands</span>, 
   <span style='color:#ff924c'>Norway</span> and 
   <span style='color:#ffca3a'>Germany</span>.</span>"),
-  size = 8,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE
+  size = 8,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE, family = "Share Tech Mono"
   )
 Power_cables
 ```
@@ -290,46 +292,111 @@ Cables<-Base_map +
   
   geom_sf(data = Netherlands_voltage,color='#ff595e',linetype = "dashed", linewidth= 0.8)+
   geom_sf(data = Norway_voltage,color='#ff924c',linetype = "dashed", linewidth= 0.8)+
-  geom_sf(data = Germany_voltage, color='#ffca3a',linetype = "dashed", linewidth= 0.8)+ 
-  coord_sf(ylim = c(53,56.4), xlim = c(3,9),
-                    label_axes = list(left = "N", bottom = 'E'))
-Cables_wtext<-Cables+
-  geom_richtext(aes(x = 2.7, y = 56.0,
-label =  "<span style='color:#adb5bd'>  Undersea Cables crossing the German North Sea.</span>\n
-<span style='color:#adb5bd'>  Power cable  (in dashed lines) data source from: 
-<span style='color:#ff595e'>Netherlands</span>, 
-<span style='color:#ff924c'>Norway</span> and 
-<span style='color:#ffca3a'>Germany</span>.</span> \n
-<span style='color:#adb5bd'>  Telecommunications cable (in solid lines) data source from: 
-<span style='color:#8ac926'>Netherlands</span>, 
-<span style='color:#c86bfa'>France</span> and 
-<span style='color:#ffd60a'>Germany</span>.</span>"),  
-  size = 7, fill = "black", label.color = "black", hjust = 0, vjust = 0
-)
-Cables_wtext
+  geom_sf(data = Germany_voltage, color='#ffca3a',linetype = "dashed", linewidth= 0.8)
 ```
 
 
-```{r, echo=FALSE, eval=FALSE}
+```{r cable types, fig.height=6}
+Cables_wtext<-Cables+
+  
+  annotate("rect", fill = "black", ymin =  -Inf, ymax = 53.6,xmin = -Inf, xmax = Inf)+
+
+  geom_richtext(aes(x = 2.8, y = 53.4,
+                    label =  "<span style='color:#adb5bd'>  Undersea Cables crossing the German North Sea.</span>\n"),
+                    size = 11, fill = "black", label.color = "black", hjust = 0, vjust = 0,family = "Share Tech Mono"
+                    )+
+  geom_richtext(aes(x =  2.8, y = 53.0,
+  label = "<span style='color:#adb5bd'>Telecommunication Cables (in solid lines).\n
+  <span style='color:#adb5bd'>Data source from: 
+  <span style='color:#8ac926'>Netherlands</span>, 
+  <span style='color:#c86bfa'>France</span> and 
+  <span style='color:#ffd60a'>Germany</span> (EMODnet).</span>"),
+  size = 8,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE, family = "Share Tech Mono"
+  )+
+
+  geom_richtext(aes(x =  2.8, y = 52.6,
+  label = "<span style='color:#adb5bd'>Power Cables (in dashed lines).\n
+  <span style='color:#adb5bd'>Data source from: 
+  <span style='color:#ff595e'>Netherlands</span>, 
+  <span style='color:#ff924c'>Norway</span> and 
+  <span style='color:#ffca3a'>Germany</span> (EMODnet).</span>"),
+  size = 8,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE, family = "Share Tech Mono"
+  )+
+
+  coord_sf(ylim = c(52.7,56), xlim = c(3,9),
+                    label_axes = list(left = "N", bottom = 'E'))
+Cables_wtext
+```
+
 # Export
+
+```{r,echo=FALSE, eval=FALSE}
 library(here)
 here()
 My_directory<-paste0(here(),"/_posts/2025-09-15-cables")
-ggsave(Cables+
-  geom_richtext(aes(x = 2.7, y = 56.0,
-label =  "<span style='color:#adb5bd'>  Undersea Cables crossing the German North Sea.</span>\n
-<span style='color:#adb5bd'>  Power cable  (in dashed lines) data source from: 
-<span style='color:#ff595e'>Netherlands</span>, 
-<span style='color:#ff924c'>Norway</span> and 
-<span style='color:#ffca3a'>Germany</span>.</span> \n
-<span style='color:#adb5bd'>  Telecommunications cable (in solid lines) data source from: 
-<span style='color:#8ac926'>Netherlands</span>, 
-<span style='color:#c86bfa'>France</span> and 
-<span style='color:#ffd60a'>Germany</span>.</span>"),  
-  size = 10, fill = "black", label.color = "black", hjust = 0, vjust = 0
-),
+```
+
+```{r, eval=FALSE}
+Cables_export<-ggplot() + 
+  # Fill colors
+  geom_sf(data = German_EEZ, color='#212529',fill=NA,alpha=0.1, linewidth = 0.5)+
+  geom_sf(data = German_land, colour = 'black', fill = 'black')+
+  
+  scale_x_continuous(breaks = c(4,6,8),labels = function(x) paste0(x, '\u00B0')) +
+  scale_y_continuous(breaks = c(53.5,54.5,55.5),labels = function(x) paste0(x, '\u00B0'))  +
+  
+  theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.title = element_blank(),
+  axis.ticks.length=unit(-0.20, "cm"),
+  axis.ticks = element_line(color="black"),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  panel.background = element_rect(fill = '#495057'))+
+  
+  xlab('Longitude')+ylab('Latitude')+
+  
+  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth = 1.5))+
+  
+  geom_sf(data = Netherlands_telecommunications,color='#8ac926',linewidth=0.5)+
+  geom_sf(data = France_telecommunications,color='#c86bfa',linewidth=0.5)+
+  geom_sf(data = Germany_telecommunications, color='#ffd60a',linewidth=0.5)+
+  
+  geom_sf(data = Netherlands_voltage,color='#ff595e',linetype = "dashed", linewidth= 0.5)+
+  geom_sf(data = Norway_voltage,color='#ff924c',linetype = "dashed", linewidth= 0.5)+
+  geom_sf(data = Germany_voltage, color='#ffca3a',linetype = "dashed", linewidth= 0.5)+
+  
+  annotate("rect", fill = "black", ymin =  -Inf, ymax = 53.35,xmin = -Inf, xmax = Inf)+
+
+  geom_richtext(aes(x = 2.8, y = 53.15,
+                    label =  "<span style='color:#adb5bd'>  Undersea Cables crossing the German North Sea.\n</span>"),
+                    size = 20, fill = "black", label.color = "black", hjust = 0, vjust = 0,family = "Share Tech Mono"
+                    )+
+  geom_richtext(aes(x =  2.8, y = 53.0,
+  label = "<span style='color:#adb5bd'>\n
+  <span style='color:#adb5bd'>Telecommunications (solid lines) data source from: 
+  <span style='color:#8ac926'>Netherlands</span>, 
+  <span style='color:#c86bfa'>France</span> and 
+  <span style='color:#ffd60a'>Germany</span> (EMODnet).</span>"),
+  size = 10,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE, family = "Share Tech Mono"
+  )+
+
+  geom_richtext(aes(x =  2.8, y = 52.9,
+  label = "<span style='color:#adb5bd'>Power Cables (dashed lines) data source from: 
+  <span style='color:#ff595e'>Netherlands</span>, 
+  <span style='color:#ff924c'>Norway</span> and 
+  <span style='color:#ffca3a'>Germany</span> (EMODnet).</span>"),
+  size = 10,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE, family = "Share Tech Mono"
+  )+
+
+  coord_sf(ylim = c(53,56), xlim = c(3,9),
+                    label_axes = list(left = "N", bottom = 'E'))
+  
+# Export
+ggsave(Cables_export,
        filename = paste0(My_directory,"/cables_export.jpeg"),
-       width = 6, 
+       width = 8, 
        height = 6)
 ```
 
