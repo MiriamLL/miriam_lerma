@@ -1,11 +1,2 @@
-# miriamlerma_
-
-PaginaDistill
-
-Ejemplo de pagina: 
-
+Move to quarto on the 08-09-2025
 www.miriam-lerma.com
-
-Blog con instrucciones crear tu propia pagina:
-
-https://www.miriam-lerma.com/posts/2021-06-03-paginadistill/
